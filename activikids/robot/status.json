@@ -1,0 +1,27 @@
+{
+  "source": "export local du Google Sheet 2026-09-30",
+  "generation_time_utc": "2026-09-30T14:51:36.168152+00:00",
+  "counts": {
+    "Événements": 1067,
+    "Éditions": 1154,
+    "Sources & partenaires": 981,
+    "Lieux à surveiller": 276,
+    "Contrôle mensuel 528": 528
+  },
+  "coverage": {
+    "Repérage partiel": 4,
+    "À rechercher": 524
+  },
+  "build": {
+    "event_count": 1067,
+    "edition_count": 1154,
+    "place_count": 276,
+    "new_events": 0,
+    "new_places": 17,
+    "old_site_editions": 1155,
+    "editions_overridden_by_authoritative_sheet": true
+  },
+  "monitored_url_candidates": 724,
+  "scraper_to_publication": "INTERDIT : revue humaine -> Sheet -> prochaine build",
+  "site_generation": "Fichiers statiques générés; déploiement à constater séparément"
+}
