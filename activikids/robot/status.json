@@ -1,6 +1,6 @@
 {
-  "source": "export local du Google Sheet 2026-09-30",
-  "generation_time_utc": "2026-09-30T14:51:36.168152+00:00",
+  "source": "live Google Sheet",
+  "generation_time_utc": "2026-09-30T18:57:41.223302+00:00",
   "counts": {
     "Événements": 1067,
     "Éditions": 1154,
@@ -23,5 +23,19 @@
   },
   "monitored_url_candidates": 724,
   "scraper_to_publication": "INTERDIT : revue humaine -> Sheet -> prochaine build",
-  "site_generation": "Fichiers statiques générés; déploiement à constater séparément"
+  "site_generation": "Fichiers statiques générés; déploiement à constater séparément",
+  "daily_last_run": {
+    "at_utc": "2026-09-30T19:00:15.263274+00:00",
+    "count": 40,
+    "ok": 34,
+    "blocked": 3,
+    "failed": 3
+  },
+  "archive_last_run": {
+    "at_utc": "2026-09-30T19:00:15.263410+00:00",
+    "count": 25,
+    "ok": 20,
+    "blocked": 2,
+    "failed": 3
+  }
 }
