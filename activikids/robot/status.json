@@ -1,6 +1,6 @@
 {
   "source": "live Google Sheet",
-  "generation_time_utc": "2026-10-01T11:41:29.610687+00:00",
+  "generation_time_utc": "2026-10-01T13:06:50.009980+00:00",
   "counts": {
     "Événements": 1067,
     "Éditions": 1154,
@@ -25,10 +25,10 @@
   "scraper_to_publication": "INTERDIT : revue humaine -> Sheet -> prochaine build",
   "site_generation": "Fichiers statiques générés; déploiement à constater séparément",
   "daily_last_run": {
-    "at_utc": "2026-10-01T11:43:29.926847+00:00",
+    "at_utc": "2026-10-01T13:09:00.501637+00:00",
     "count": 40,
-    "ok": 29,
-    "blocked": 9,
-    "failed": 2
+    "ok": 25,
+    "blocked": 8,
+    "failed": 7
   }
 }
