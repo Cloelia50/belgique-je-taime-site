@@ -1,11 +1,11 @@
 {
   "source": "live Google Sheet",
-  "generation_time_utc": "2026-10-03T07:01:28.127197+00:00",
+  "generation_time_utc": "2026-10-03T08:11:29.632657+00:00",
   "counts": {
     "Événements": 1067,
     "Éditions": 1154,
     "Sources & partenaires": 981,
-    "Lieux à surveiller": 276,
+    "Lieux à surveiller": 286,
     "Contrôle mensuel 528": 528
   },
   "coverage": {
@@ -15,13 +15,13 @@
   "build": {
     "event_count": 1067,
     "edition_count": 1154,
-    "place_count": 276,
+    "place_count": 286,
     "new_events": 0,
-    "new_places": 17,
+    "new_places": 27,
     "old_site_editions": 1155,
     "editions_overridden_by_authoritative_sheet": true
   },
-  "monitored_url_candidates": 951,
+  "monitored_url_candidates": 958,
   "scraper_to_publication": "INTERDIT : revue humaine -> Sheet -> prochaine build",
   "site_generation": "Fichiers statiques générés; déploiement à constater séparément",
   "ratissage_private": {
@@ -35,18 +35,18 @@
   "automatic_structured_publication": {
     "mode": "structured_high_confidence",
     "manual_review_required": false,
-    "candidates_seen": 143,
-    "accepted_candidates": 25,
-    "rejected_candidates": 118,
+    "candidates_seen": 146,
+    "accepted_candidates": 27,
+    "rejected_candidates": 119,
     "auto_events_added": 11,
     "auto_editions_added": 19,
-    "attached_to_existing_events": 9
+    "attached_to_existing_events": 11
   },
   "daily_last_run": {
-    "at_utc": "2026-10-03T07:03:47.506874+00:00",
+    "at_utc": "2026-10-03T08:13:39.321580+00:00",
     "count": 40,
-    "ok": 30,
-    "blocked": 5,
-    "failed": 5
+    "ok": 34,
+    "blocked": 4,
+    "failed": 2
   }
 }
