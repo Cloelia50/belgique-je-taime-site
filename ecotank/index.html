@@ -918,7 +918,7 @@ nav.index .tab{width:12px;height:22px;border-radius:5px 5px 0 0}
 }
 
 /* ==========================================================================
-   ECOTANK V77 — un peu plus de vie (scope : .ecotank-page uniquement)
+   ECOTANK V78 — statuts explicites + priorités sûres (scope : .ecotank-page uniquement)
    N'affecte ni l'accueil, ni la page Sorties, ni les pages de texte.
    ========================================================================== */
 .ecotank-page{--e-grad:linear-gradient(135deg,#14B592 0%,var(--brand) 55%,var(--brand-strong) 100%);--e-glow:0 14px 28px -12px color-mix(in srgb,var(--brand) 65%,transparent)}
@@ -1048,7 +1048,7 @@ nav.index .tab{width:12px;height:22px;border-radius:5px 5px 0 0}
   <header class="top">
     <div>
       <h1>Récupérer de l'argent, payer moins cher</h1>
-      <p class="lede">Référentiel durable pour les personnes vivant en Région de Bruxelles-Capitale, vérifié en septembre 2026. Le périmètre est volontairement limité à Bruxelles : les droits fédéraux applicables aux Bruxellois sont inclus, mais pas les dispositifs propres à la Wallonie ou à la Flandre. Les filtres de situation et de commune servent à explorer les droits sans supprimer les autres possibilités. Les statuts « À exploiter », « En attente », « Fait », « Pas intéressé » et « Pas concerné » sont enregistrés dans ce navigateur ; utilisez aussi la sauvegarde exportable pour conserver le suivi sur plusieurs années ou appareils. Les règles et montants datés doivent toujours être revalidés auprès de la source officielle. Version v74 — architecture web publique + interface simplifiée + ressources concrètes : accueil, quelques questions, cinq priorités puis toutes les pistes liées aux situations signalées, avec ajout de services bruxellois concrets (alimentation, hygiène, domicile, aidants, autonomie et logement). La base complète et les outils avancés restent disponibles dans « Explorer toutes les pistes ». La mention « base revue » correspond à l’audit structurel du référentiel, pas à une revalidation individuelle de chaque droit auprès de son organisme.</p>
+      <p class="lede">Référentiel durable pour les personnes vivant en Région de Bruxelles-Capitale, vérifié en septembre 2026. Le périmètre est volontairement limité à Bruxelles : les droits fédéraux applicables aux Bruxellois sont inclus, mais pas les dispositifs propres à la Wallonie ou à la Flandre. Les filtres de situation et de commune servent à explorer les droits sans supprimer les autres possibilités. Les statuts « À exploiter », « En attente », « Fait », « Pas intéressé » et « Pas concerné » sont enregistrés dans ce navigateur ; utilisez aussi la sauvegarde exportable pour conserver le suivi sur plusieurs années ou appareils. Les règles et montants datés doivent toujours être revalidés auprès de la source officielle. Version v78 — architecture web publique + interface simplifiée + séparation stricte entre filtres de situation et statuts administratifs confirmés : accueil, quelques questions, cinq priorités puis toutes les pistes liées aux situations signalées, avec ajout de services bruxellois concrets (alimentation, hygiène, domicile, aidants, autonomie et logement). La base complète et les outils avancés restent disponibles dans « Explorer toutes les pistes ». La mention « base revue » correspond à l’audit structurel du référentiel, pas à une revalidation individuelle de chaque droit auprès de son organisme.</p>
     </div>
     <div class="total" aria-live="polite">
       <svg class="ring" viewBox="0 0 100 100" aria-hidden="true"><circle class="track" cx="50" cy="50" r="42"/><circle class="bar" id="ringbar" cx="50" cy="50" r="42" stroke-dasharray="263.9" stroke-dashoffset="263.9"/></svg>
@@ -1071,7 +1071,7 @@ nav.index .tab{width:12px;height:22px;border-radius:5px 5px 0 0}
   <div class="profiles" role="group" aria-label="Filtrer selon votre situation">
     <p>Ma situation :</p>
     <div id="chips" style="display:contents"></div>
-    <small>Sans sélection, les pistes générales s’affichent. Les aides liées aux animaux de compagnie apparaissent lorsque vous activez ce profil ; les autres profils affinent la liste sans supprimer les pistes générales.</small>
+    <small>Sans sélection, les pistes générales s’affichent. Les boutons de situation servent uniquement à filtrer et à faire remonter des pistes : ils ne confirment jamais à eux seuls un statut administratif (BIM, RIS, handicap reconnu, invalidité mutualité, aidant proche reconnu…). Les statuts qui conditionnent réellement un droit doivent être confirmés dans « Mon profil ».</small>
   </div>
 
   <div class="commune-filter">
@@ -1093,7 +1093,7 @@ nav.index .tab{width:12px;height:22px;border-radius:5px 5px 0 0}
       <div class="metric"><strong id="mCoverage">—</strong><span>fiches classées avec vos réponses</span></div>
     </div>
     <details class="elig-form" id="eligForm">
-      <summary>Mon profil — répondre en quelques étapes</summary><p class="fact-note" style="padding:0 0 8px">Le moteur v63 combine des règles ET / OU / SAUF SI et distingue désormais « À vérifier » de « Je préfère ne pas répondre ». Il ne transforme jamais une information absente en réponse négative et affiche la règle utilisée dans chaque fiche.</p>
+      <summary>Mon profil — répondre en quelques étapes</summary><p class="fact-note" style="padding:0 0 8px">Le moteur combine des règles ET / OU / SAUF SI et distingue « À vérifier » de « Je préfère ne pas répondre ». Les filtres de situation sont des indices de recherche, jamais des preuves : « petits revenus » ne vaut pas BIM, « sans revenus » ne vaut pas RIS, une invalidité mutualité ne vaut pas reconnaissance DG Personnes handicapées, et aider un proche ne vaut pas reconnaissance officielle d’aidant proche. Une information absente n’est jamais transformée en « non ».</p>
       <div class="fact-grid">
         <label>Âge<input id="factAge" type="number" min="0" max="120" inputmode="numeric" placeholder="Ex. 43"></label>
         <label>Âges des enfants<input id="factChildren" type="text" placeholder="Ex. 8, 13, 16"></label>
@@ -1120,7 +1120,7 @@ nav.index .tab{width:12px;height:22px;border-radius:5px 5px 0 0}
         <div class="fact-validation" id="factValidation"><button type="button" id="validateProfile" class="validate-profile">✓ Voir mes droits</button><span id="profileValidationStatus">Complétez seulement ce que vous savez. Les questions utiles apparaissent progressivement.</span></div><div class="profile-result" id="profileResult" hidden></div><div class="fact-actions"><button type="button" id="clearFacts">Effacer ces données</button></div>
       </div>
     </details>
-    <div class="top-opportunities"><div class="priority-title-row"><div><h3>Priorités économiques détectées</h3><p>Score = gain potentiel × facteur d’éligibilité × urgence ÷ effort. Les démarches sans montant suffisamment structuré restent visibles dans la checklist mais ne reçoivent pas encore de score financier.</p></div><details class="priority-method"><summary>Comment le score est calculé</summary><div><b>Éligibilité :</b> très probable = ×1 ; à confirmer = ×0,55 ; non évaluée = non classée ; hors critères = 0.<br><b>Urgence :</b> augmente lorsqu’une date limite approche ou lorsqu’un délai court est explicitement indiqué.<br><b>Effort :</b> estimation du temps administratif actif en tranches de 5 à 60 min, hors attente, rendez-vous et déplacement.<br><b>Gain :</b> seulement les montants structurés et calculables sont utilisés. Un « jusqu’à » reste affiché comme tel.</div></details></div><div class="top-list" id="topOpportunities"><small>Renseignez quelques critères pour faire remonter les opportunités les plus intéressantes.</small></div></div>
+    <div class="top-opportunities"><div class="priority-title-row"><div><h3>Priorités économiques détectées</h3><p>Score = gain potentiel × facteur d’éligibilité × urgence ÷ effort. Seules les règles d’éligibilité structurées ou structurées avec vérification peuvent être classées financièrement : un simple ciblage de profil (« aidant », « handicap », etc.) ne suffit jamais. Les démarches sans montant fiable restent visibles dans la checklist sans score financier.</p></div><details class="priority-method"><summary>Comment le score est calculé</summary><div><b>Éligibilité :</b> très probable = ×1 ; à confirmer = ×0,55 ; non évaluée = non classée ; hors critères = 0.<br><b>Urgence :</b> augmente lorsqu’une date limite approche ou lorsqu’un délai court est explicitement indiqué.<br><b>Effort :</b> estimation du temps administratif actif en tranches de 5 à 60 min, hors attente, rendez-vous et déplacement.<br><b>Gain :</b> seulement les montants structurés et calculables sont utilisés. Un « jusqu’à » reste affiché comme tel.</div></details></div><div class="top-list" id="topOpportunities"><small>Renseignez quelques critères pour faire remonter les opportunités les plus intéressantes.</small></div></div>
   </section>
 
   <section class="cascade-panel" id="cascadePanel" hidden aria-live="polite">
@@ -1254,8 +1254,8 @@ nav.index .tab{width:12px;height:22px;border-radius:5px 5px 0 0}
     <small>Ecotank affiche les coordonnées présentes dans la fiche et les liens officiels disponibles. Vérifiez le destinataire avant envoi lorsqu’aucune adresse structurée n’est connue.</small>
   </div>
 </dialog>
-<footer class="site-footer"><div class="site-container site-footer-inner"><span>© <span data-year></span> <span class="footer-heart" aria-hidden="true">♥</span> Belgique, je t’aime · Prototype V77</span><nav><a href="#confidentialite">Confidentialité</a><a href="#apropos">À propos</a></nav></div></footer><script>
-const PROFILES = {pet:"Animaux de compagnie", bim:"BIM / petits revenus", enf:"Enfants", fam3:"Famille nombreuse", mono:"Famille monoparentale", prop:"Propriétaire", loc:"Locataire", maison:"Maison / hors copropriété", copro:"Immeuble en copropriété", sal:"Salarié·e", syn:"Syndiqué·e", prof:"Personnel de l’enseignement", art:"Auteur·rice / artiste / indépendant·e", voit:"Voiture", hand:"Handicap / invalidité", aid:"Aidant proche", cho:"Chômage / sans revenus", sen:"65 ans et plus", cred:"Crédit / dettes", mal:"Maladie grave / soins lourds", pro:"Accident du travail / maladie professionnelle", etu:"Études / formation", jur:"Justice / séparation / victime", dec:"Décès / succession", ret:"Pension / retraite", sin:"Sinistre / assurance", logurg:"Logement précaire / expulsion", par:"Grossesse / parentalité", maj:"18–25 ans", voy:"Voyage", num:"Aide numérique", move:"Déménagement à Bruxelles"};
+<footer class="site-footer"><div class="site-container site-footer-inner"><span>© <span data-year></span> <span class="footer-heart" aria-hidden="true">♥</span> Belgique, je t’aime · Prototype V78</span><nav><a href="#confidentialite">Confidentialité</a><a href="#apropos">À propos</a></nav></div></footer><script>
+const PROFILES = {pet:"Animaux de compagnie", bim:"BIM / petits revenus", enf:"Enfants", fam3:"Famille nombreuse", mono:"Famille monoparentale", prop:"Propriétaire", loc:"Locataire", maison:"Maison / hors copropriété", copro:"Immeuble en copropriété", sal:"Salarié·e", syn:"Syndiqué·e", prof:"Personnel de l’enseignement", art:"Auteur·rice / artiste / indépendant·e", voit:"Voiture", hand:"Handicap / invalidité (situation)", aid:"J’aide un proche", cho:"Chômage / sans revenus", sen:"65 ans et plus", cred:"Crédit / dettes", mal:"Maladie grave / soins lourds", pro:"Accident du travail / maladie professionnelle", etu:"Études / formation", jur:"Justice / séparation / victime", dec:"Décès / succession", ret:"Pension / retraite", sin:"Sinistre / assurance", logurg:"Logement précaire / expulsion", par:"Grossesse / parentalité", maj:"18–25 ans", voy:"Voyage", num:"Aide numérique", move:"Déménagement à Bruxelles"};
 const COMMUNES = {anderlecht:"Anderlecht", auderghem:"Auderghem", berchem:"Berchem-Sainte-Agathe", bruxelles:"Ville de Bruxelles", etterbeek:"Etterbeek", evere:"Evere", forest:"Forest", ganshoren:"Ganshoren", ixelles:"Ixelles", jette:"Jette", koekelberg:"Koekelberg", molenbeek:"Molenbeek-Saint-Jean", saintgilles:"Saint-Gilles", saintjosse:"Saint-Josse-ten-Noode", schaerbeek:"Schaerbeek", uccle:"Uccle", watermael:"Watermael-Boitsfort", woluwe1200:"Woluwe-Saint-Lambert", woluwe1150:"Woluwe-Saint-Pierre"};
 const POLICE_ZONES={
   bruxelles:{id:"5339",name:"Zone 5339 — Bruxelles CAPITALE Ixelles (PolBru)",url:"https://www.police.be/5339/fr"},ixelles:{id:"5339",name:"Zone 5339 — Bruxelles CAPITALE Ixelles (PolBru)",url:"https://www.police.be/5339/fr"},
@@ -65955,17 +65955,17 @@ const ELIGIBILITY_RULE_SCHEMA_VERSION = 1;
 
 function parseChildrenAges(v){return String(v||"").split(/[,;\s]+/).map(x=>Number(x)).filter(x=>Number.isFinite(x)&&x>=0&&x<40)}
 function boolFact(v){return v==="yes"?true:v==="no"?false:null}
-function factOrProfile(key,profileCode){
-  const explicit=boolFact(facts[key]); if(explicit!==null)return explicit;
-  return prof.includes(profileCode)?true:null;
-}
 function derivedFacts(){
   const ages=parseChildrenAges(facts.children),age=Number(facts.age),hasAge=Number.isFinite(age)&&facts.age!=="",income=Number(facts.income),hasIncome=Number.isFinite(income)&&facts.income!=="";
+  const explicitIncap=boolFact(facts.incap);
   const b={
     age:hasAge?age:null,childrenAges:ages,childrenCount:ages.length?ages.length:null,income:hasIncome?income:null,
-    bim:factOrProfile("bim","bim"),ris:factOrProfile("ris","cho"),grapa:boolFact(facts.grapa),apa:boolFact(facts.apa),
-    hand:factOrProfile("hand","hand"),handAllowance:boolFact(facts.handAllowance),childHand:boolFact(facts.childHand),
-    incap:factOrProfile("incap","hand"),caregiver:factOrProfile("caregiver","aid"),parental:factOrProfile("parental","par"),
+    // Important: les boutons de situation sont des filtres de découverte, pas des preuves de statut.
+    // Les statuts administratifs/juridiques ne deviennent vrais qu'après une réponse explicite.
+    bim:boolFact(facts.bim),ris:boolFact(facts.ris),grapa:boolFact(facts.grapa),apa:boolFact(facts.apa),
+    hand:boolFact(facts.hand),handAllowance:boolFact(facts.handAllowance),childHand:boolFact(facts.childHand),
+    incap:explicitIncap!==null?explicitIncap:(facts.employment==="incapacity"?true:null),
+    caregiver:boolFact(facts.caregiver),parental:boolFact(facts.parental),
     socialHousing:boolFact(facts.socialHousing),protectedEnergy:boolFact(facts.protectedEnergy),
     housing:facts.housing||null,dwelling:facts.dwelling||null,employment:facts.employment||null
   };
@@ -66133,8 +66133,9 @@ function urgencyMeta(it){
 }
 function priorityMeta(cat,it){
   const el=eligibilityFor(cat,it), ef=eligibilityFactor(el), ga=gainAmounts(it), effort=effortMeta(it), urg=urgencyMeta(it);
-  const value=ga.annual+ga.oneoff;
+  const value=ga.annual+ga.oneoff, level=(it.eligibility&&it.eligibility.level)||"general";
   const activeState=state[stableId(cat,it)];
+  if(!["structured","partial"].includes(level)) return {scored:false,reason:"éligibilité trop générale pour être classée financièrement",el,effort,urg,value,ga};
   if(activeState==="done"||activeState==="skip"||activeState==="notconcerned") return {scored:false,reason:"déjà traité",el,effort,urg,value,ga};
   if(activeState==="wait") return {scored:false,reason:"déjà en cours",el,effort,urg,value,ga};
   if(!value) return {scored:false,reason:"gain non chiffré",el,effort,urg,value,ga};
@@ -66275,10 +66276,26 @@ function updateAdaptiveQuestions(){
   const show={unemployment:emp==="unemployed"||prof.includes("cho"),bim:low||senior||hand||incap,ris:emp==="unemployed"||prof.includes("cho")||facts.ris==="yes",senior,handicap:hand,children:hasChildren,incapacity:incap||prof.includes("hand"),caregiver:prof.includes("aid")||facts.caregiver==="yes",parental:prof.includes("par")||ages.some(x=>x<=1)||facts.parental==="yes",housing:tenant,energy:low||facts.protectedEnergy==="yes"};
   document.querySelectorAll(".adaptive-q").forEach(el=>el.classList.toggle("show",!!show[el.dataset.q]));
 }
+function profileCountRelevant(cat,it,d){
+  const r=it.eligibility||{};
+  if((it.m||[]).length && commune && (it.m||[]).includes(commune))return true;
+  if((it.p||[]).some(p=>prof.includes(p)))return true;
+  if(relevantProfileMatches(r,d))return true;
+  return [...(r.all||[]),...(r.any||[])].some(c=>conditionValue(c,d)===true);
+}
 function profileResultCounts(){
-  let likely=0,possible=0,unknown=0,no=0;const levels={structured:0,partial:0,manual:0,profile:0,general:0};
-  DATA.forEach(cat=>cat.items.forEach(it=>{if(cat.meta||it.meta)return;const e=eligibilityFor(cat,it),lv=(it.eligibility&&it.eligibility.level)||"general";levels[lv]=(levels[lv]||0)+1;if(e.status==="likely")likely++;else if(e.status==="possible")possible++;else if(e.status==="no")no++;else unknown++;}));
-  return {likely,possible,unknown,no,levels};
+  let likely=0,possible=0,unknown=0,no=0,general=0,considered=0;const levels={structured:0,partial:0,manual:0,profile:0,general:0},d=derivedFacts();
+  DATA.forEach(cat=>cat.items.forEach(it=>{
+    if(cat.meta||it.meta)return;
+    const lv=(it.eligibility&&it.eligibility.level)||"general";
+    levels[lv]=(levels[lv]||0)+1;
+    if(lv==="general"){general++;return;}
+    if(!profileCountRelevant(cat,it,d))return;
+    considered++;
+    const e=eligibilityFor(cat,it);
+    if(e.status==="likely")likely++;else if(e.status==="possible")possible++;else if(e.status==="no")no++;else unknown++;
+  }));
+  return {likely,possible,unknown,no,general,considered,levels};
 }
 function validateProfile(){
   readFacts({paintNow:false});profileValidated=true;save();paint();
@@ -66286,7 +66303,7 @@ function validateProfile(){
   const missing=[...document.querySelectorAll(".adaptive-q.show input,.adaptive-q.show select")].filter(x=>!x.value).length;
   const checks=verificationIntents(),priv=privateStatusCount();
   box.hidden=false;
-  box.innerHTML=`<strong>Profil analysé.</strong> ${c.likely} droit${c.likely>1?"s":""} très probablement pertinent${c.likely>1?"s":""}, ${c.possible} à confirmer, ${c.no} hors critères connus. ${checks.length?`<b>${checks.length} statut${checks.length>1?"s":""} à approfondir.</b> `:""}${missing?`${missing} question${missing>1?"s":""} utile${missing>1?"s":""} reste${missing>1?"nt":""} sans réponse. `:""}<small>Moteur : ${c.levels.structured} règles structurées · ${c.levels.partial} structurées avec vérification · ${c.levels.manual} manuelles · ${c.levels.profile} ciblages de profil · ${c.levels.general} démarches générales.</small>${priv?`<span class="privacy-note">${priv} réponse${priv>1?"s":""} laissée${priv>1?"s":""} volontairement privée${priv>1?"s":""} : Ecotank n’essaiera pas de vous la redemander.</span>`:""}${verificationIntentsHtml()}`;
+  box.innerHTML=`<strong>Profil analysé.</strong> Parmi les pistes réellement personnalisées : ${c.likely} très probable${c.likely>1?"s":""}, ${c.possible} à confirmer, ${c.no} hors critères connus. Les ${c.general} fiches générales de conseils ne sont pas comptées comme des « droits » dans ce bilan. ${checks.length?`<b>${checks.length} statut${checks.length>1?"s":""} à approfondir.</b> `:""}${missing?`${missing} question${missing>1?"s":""} utile${missing>1?"s":""} reste${missing>1?"nt":""} sans réponse. `:""}<small>Moteur : ${c.levels.structured} règles structurées · ${c.levels.partial} structurées avec vérification · ${c.levels.manual} manuelles · ${c.levels.profile} ciblages de profil · ${c.levels.general} démarches générales.</small>${priv?`<span class="privacy-note">${priv} réponse${priv>1?"s":""} laissée${priv>1?"s":""} volontairement privée${priv>1?"s":""} : Ecotank n’essaiera pas de vous la redemander.</span>`:""}${verificationIntentsHtml()}`;
   document.getElementById("profileValidationStatus").textContent=checks.length?`Profil validé — ${checks.length} point${checks.length>1?"s":""} à vérifier ajouté${checks.length>1?"s":""} au bilan.`:"Profil validé — vous pouvez modifier une réponse puis relancer l’analyse à tout moment.";
   document.getElementById("eligForm").open=false;
   paint();
