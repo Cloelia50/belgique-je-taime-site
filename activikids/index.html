@@ -636,6 +636,13 @@ function passDate(o,w){
   }
   return false;
 }
+function displayDateForOcc(o,w){
+  w=w||state.when;
+  var r=whenRange(w); if(!r)return o.s;
+  var a=o.s>r[0]?o.s:r[0],b=o.en<r[1]?o.en:r[1],d=a;
+  while(d<=b){if(occursOnDate(o,d))return d;d=addDays(d,1)}
+  return o.s;
+}
 function isLong(o){return o.long}
 
 /* ---------- libellés ---------- */
@@ -701,9 +708,11 @@ function snippet(e,o){
 }
 function favBtn(id){var on=FAVS.has(id);return '<button class="ak-fav" data-fav="'+esc(id)+'" aria-pressed="'+on+'" aria-label="'+(on?'Retirer des favoris':'Ajouter aux favoris')+'"></button>'}
 function cardOcc(o,i){
-  var e=o.e,focus=(state.when==='today'&&o.s<=TODAY&&o.en>=TODAY)?TODAY:o.s,d=parseIso(focus),c=colorOf(e);
+  var e=o.e,focus=displayDateForOcc(o),d=parseIso(focus),c=colorOf(e);
   var hrs=hours(o.d);
-  var when=[hrs?'🕒 '+hrs:'',o.s!==o.en?(o.s<TODAY?'en cours jusqu’au '+fmtShort(o.en):'jusqu’au '+fmtShort(o.en)):''].filter(Boolean).join(' · ');
+  var span='';
+  if(o.s!==o.en)span=(focus>o.s?'a lieu aussi ce jour · ':'')+'jusqu’au '+fmtShort(o.en);
+  var when=[hrs?'🕒 '+hrs:'',span].filter(Boolean).join(' · ');
   var block=o.long?'<div class="ak-date emo"><span class="d">'+emojiOf(e)+'</span><span class="m">saison</span></div>'
     :'<div class="ak-date'+(o.s!==o.en?' range':'')+'"><span class="w">'+fmtDay(focus).replace('.','')+'</span><span class="d">'+d.getDate()+'</span><span class="m">'+MOIS_C[d.getMonth()].replace('.','')+'</span></div>';
   return '<article class="ak-card" style="--c:'+c+';--i:'+Math.min(i,14)+'" tabindex="0" role="button" data-open="'+esc(e.id)+'" data-occ="'+esc(o.s)+'">'+block+
@@ -764,9 +773,10 @@ function groupsSoon(rows){
   var g=[],ong=[],lng=[],by={},order=[];
   rows.forEach(function(o){
     if(o.long){lng.push(o);return}
-    if(o.s<TODAY){ong.push(o);return}
-    if(!by[o.s]){by[o.s]=[];order.push(o.s)}
-    by[o.s].push(o);
+    var shown=displayDateForOcc(o);
+    if(state.when==='any'&&o.s<TODAY){ong.push(o);return}
+    if(!by[shown]){by[shown]=[];order.push(shown)}
+    by[shown].push(o);
   });
   if(ong.length)g.push({title:'En ce moment',sub:'ça a déjà commencé, il est encore temps',dot:true,items:ong});
   order.forEach(function(s){
