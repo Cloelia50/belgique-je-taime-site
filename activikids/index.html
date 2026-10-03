@@ -580,12 +580,61 @@ function whenRange(w){
   if(w==='date'&&state.date&&state.date>=TODAY)return [state.date,state.date];
   return null;
 }
+function listedScheduleDates(o){
+  var txt=[o.e.n,o.e.per,o.e.regle,o.d.prog].filter(Boolean).join(' ');
+  var re=/\\b([0-3]?\\d)[\\/.-]([01]?\\d)(?:[\\/.-](\\d{2,4}))?\\b/g,m,out={},sy=parseIso(o.s).getFullYear(),ey=parseIso(o.en).getFullYear();
+  while((m=re.exec(txt))){
+    var dd=+m[1],mm=+m[2],yy=m[3]?+m[3]:null;if(yy!=null&&yy<100)yy+=2000;
+    var ys=yy!=null?[yy]:[];if(yy==null){for(var y=sy;y<=ey;y++)ys.push(y)}
+    ys.forEach(function(y){var iso=y+'-'+pad(mm)+'-'+pad(dd),d=parseIso(iso);if(d.getFullYear()===y&&d.getMonth()+1===mm&&d.getDate()===dd&&iso>=o.s&&iso<=o.en)out[iso]=1});
+  }
+  return Object.keys(out);
+}
+function scheduleWeekdays(o){
+  var txt=norm([o.e.n,o.e.per,o.e.regle,o.d.prog].filter(Boolean).join(' ')),out=(o.e.days||[]).slice();
+  JOURS.forEach(function(d){if(txt.indexOf(d)>=0&&out.indexOf(d)<0)out.push(d)});
+  return out;
+}
+function occursOnDate(o,day){
+  if(day<o.s||day>o.en)return false;
+  if(o.s===o.en)return day===o.s;
+  var e=o.e,txt=norm([e.n,e.per,e.regle,o.d.prog].filter(Boolean).join(' '));
+  var exact=listedScheduleDates(o);
+  if(exact.length>=2)return exact.indexOf(day)>=0;
+  var wd=JOURS[(parseIso(day).getDay()+6)%7],wds=scheduleWeekdays(o);
+  var series=e.k==='regular'||e.k==='recurring'||(e.days&&e.days.length);
+  if(series){
+    if(wds.length&&wds.indexOf(wd)<0)return false;
+    if(/bimensuel|une? .* sur deux|toutes? les deux semaines|une semaine sur deux/.test(txt)){
+      return wds.indexOf(wd)>=0&&diffDays(o.s,day)%14===0;
+    }
+    if(/hebdomadaire|chaque semaine|tous les|toutes les|chaque (lundi|mardi|mercredi|jeudi|vendredi|samedi|dimanche)/.test(txt)){
+      return wds.length?wds.indexOf(wd)>=0:false;
+    }
+    if(/ponctuel|dates? (variables|non regulieres)|calendrier (a controler|precis a controler)|altern/.test(txt))return false;
+    return wds.length?wds.indexOf(wd)>=0:(day===o.s||day===o.en);
+  }
+  if(/deux week-ends|plusieurs week-ends/.test(txt))return wd==='samedi'||wd==='dimanche';
+  if(/deux (lundis|mardis|mercredis|jeudis|vendredis|samedis|dimanches)|plusieurs (lundis|mardis|mercredis|jeudis|vendredis|samedis|dimanches)|dates? retrouvees/.test(txt)){
+    return wds.length?wds.indexOf(wd)>=0:(day===o.s||day===o.en);
+  }
+  var span=diffDays(o.s,o.en);
+  var continuous=/tous les jours|chaque jour|exposition|\\bexpo\\b|foire|kermesse|braderie|installation|ouvert|accessible/.test(txt);
+  if(span>3&&day!==o.s&&day!==o.en&&!continuous)return false;
+  return true;
+}
 function passDate(o,w){
   var r=whenRange(w); if(!r)return true;
   if(o.long)return false;
   if(o.s>r[1]||o.en<r[0])return false;
-  if(w==='today'&&o.en===TODAY&&o.d.he&&o.d.he<NOWHM)return false;
-  return true;
+  var a=o.s>r[0]?o.s:r[0],b=o.en<r[1]?o.en:r[1],d=a;
+  while(d<=b){
+    if(occursOnDate(o,d)){
+      if(!(w==='today'&&d===TODAY&&o.d.he&&o.d.he<NOWHM))return true;
+    }
+    d=addDays(d,1);
+  }
+  return false;
 }
 function isLong(o){return o.long}
 
@@ -652,12 +701,11 @@ function snippet(e,o){
 }
 function favBtn(id){var on=FAVS.has(id);return '<button class="ak-fav" data-fav="'+esc(id)+'" aria-pressed="'+on+'" aria-label="'+(on?'Retirer des favoris':'Ajouter aux favoris')+'"></button>'}
 function cardOcc(o,i){
-  var e=o.e,d=parseIso(o.s),c=colorOf(e);
+  var e=o.e,focus=(state.when==='today'&&o.s<=TODAY&&o.en>=TODAY)?TODAY:o.s,d=parseIso(focus),c=colorOf(e);
   var hrs=hours(o.d);
-  var when=[hrs?'🕒 '+hrs:'',o.s!==o.en?'jusqu’au '+fmtShort(o.en):''].filter(Boolean).join(' · ');
+  var when=[hrs?'🕒 '+hrs:'',o.s!==o.en?(o.s<TODAY?'en cours jusqu’au '+fmtShort(o.en):'jusqu’au '+fmtShort(o.en)):''].filter(Boolean).join(' · ');
   var block=o.long?'<div class="ak-date emo"><span class="d">'+emojiOf(e)+'</span><span class="m">saison</span></div>'
-    :(o.s<TODAY?'<div class="ak-date range"><span class="w">→</span><span class="d">'+parseIso(o.en).getDate()+'</span><span class="m">'+MOIS_C[parseIso(o.en).getMonth()].replace('.','')+'</span></div>'
-    :'<div class="ak-date'+(o.s!==o.en?' range':'')+'"><span class="w">'+fmtDay(o.s).replace('.','')+'</span><span class="d">'+d.getDate()+'</span><span class="m">'+MOIS_C[d.getMonth()].replace('.','')+'</span></div>');
+    :'<div class="ak-date'+(o.s!==o.en?' range':'')+'"><span class="w">'+fmtDay(focus).replace('.','')+'</span><span class="d">'+d.getDate()+'</span><span class="m">'+MOIS_C[d.getMonth()].replace('.','')+'</span></div>';
   return '<article class="ak-card" style="--c:'+c+';--i:'+Math.min(i,14)+'" tabindex="0" role="button" data-open="'+esc(e.id)+'" data-occ="'+esc(o.s)+'">'+block+
     '<div class="ak-c-body">'+badges(e,o)+'<h3 class="ak-c-title">'+esc(e.n)+'</h3>'+(when?'<p class="ak-when-line">'+esc(when)+'</p>':'')+
     '<p class="ak-c-where">'+whereLine(e)+'</p><div class="ak-chips">'+chipsHTML(e,o)+'</div>'+snippet(e,o)+'</div>'+favBtn(e.id)+'</article>';
