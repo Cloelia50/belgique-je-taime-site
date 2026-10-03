@@ -1,6 +1,6 @@
 {
   "source": "live Google Sheet",
-  "generation_time_utc": "2026-10-02T21:22:08.487198+00:00",
+  "generation_time_utc": "2026-10-03T06:32:04.051838+00:00",
   "counts": {
     "Événements": 1067,
     "Éditions": 1154,
@@ -43,10 +43,10 @@
     "attached_to_existing_events": 7
   },
   "daily_last_run": {
-    "at_utc": "2026-10-02T21:24:14.685754+00:00",
+    "at_utc": "2026-10-03T06:33:55.676223+00:00",
     "count": 40,
-    "ok": 35,
-    "blocked": 2,
-    "failed": 3
+    "ok": 37,
+    "blocked": 1,
+    "failed": 2
   }
 }
