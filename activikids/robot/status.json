@@ -1,6 +1,6 @@
 {
   "source": "live Google Sheet",
-  "generation_time_utc": "2026-10-05T21:43:45.967970+00:00",
+  "generation_time_utc": "2026-10-05T23:13:29.725014+00:00",
   "counts": {
     "Événements": 1078,
     "Éditions": 1158,
@@ -36,21 +36,21 @@
     "mode": "structured_high_confidence",
     "manual_review_required": false,
     "candidates_seen": 341,
-    "accepted_candidates": 79,
-    "rejected_candidates": 262,
+    "accepted_candidates": 78,
+    "rejected_candidates": 263,
     "auto_events_added": 62,
-    "auto_editions_added": 73,
+    "auto_editions_added": 72,
     "attached_to_existing_events": 13
   },
   "daily_last_run": {
-    "at_utc": "2026-10-05T21:45:06.529654+00:00",
-    "count": 8,
+    "at_utc": "2026-10-05T23:15:33.743757+00:00",
+    "count": 0,
     "ok": 0,
     "blocked": 0,
-    "failed": 8
+    "failed": 0
   },
   "archive_last_run": {
-    "at_utc": "2026-10-05T21:45:06.529773+00:00",
+    "at_utc": "2026-10-05T23:15:33.743911+00:00",
     "count": 8,
     "ok": 8,
     "blocked": 0,
