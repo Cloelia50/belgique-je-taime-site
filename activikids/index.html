@@ -643,6 +643,21 @@ function displayDateForOcc(o,w){
   while(d<=b){if(occursOnDate(o,d))return d;d=addDays(d,1)}
   return o.s;
 }
+function hasDiscreteSchedule(o){
+  var e=o.e,txt=norm([e.n,e.per,e.regle,o.d.prog].filter(Boolean).join(' '));
+  if(listedScheduleDates(o).length>=2)return true;
+  if(e.k==='regular'||e.k==='recurring'||(e.days&&e.days.length))return true;
+  return /deux week-ends|plusieurs week-ends|deux (lundis|mardis|mercredis|jeudis|vendredis|samedis|dimanches)|plusieurs (lundis|mardis|mercredis|jeudis|vendredis|samedis|dimanches)|dates? retrouvees/.test(txt);
+}
+function isCarryOverForSelection(o){
+  if(state.when==='any')return false;
+  var r=whenRange();if(!r)return false;
+  var shown=displayDateForOcc(o);
+  return o.s<r[0]&&shown>=r[0]&&!hasDiscreteSchedule(o);
+}
+function carryTitle(){
+  return {today:'Déjà en cours aujourd’hui',tomorrow:'Déjà en cours demain',weekend:'Déjà en cours ce week-end',wed:'Déjà en cours mercredi',holidays:'Déjà en cours au début des vacances',date:'Déjà en cours à cette date'}[state.when]||'Déjà en cours';
+}
 function isLong(o){return o.long}
 
 /* ---------- libellés ---------- */
@@ -711,7 +726,11 @@ function cardOcc(o,i){
   var e=o.e,focus=displayDateForOcc(o),d=parseIso(focus),c=colorOf(e);
   var hrs=hours(o.d);
   var span='';
-  if(o.s!==o.en)span=(focus>o.s?'a lieu aussi ce jour · ':'')+'jusqu’au '+fmtShort(o.en);
+  if(o.s!==o.en){
+    if(isCarryOverForSelection(o))span='déjà commencé · jusqu’au '+fmtShort(o.en);
+    else if(focus>o.s&&hasDiscreteSchedule(o))span='rendez-vous ce jour';
+    else span=(focus>o.s?'a lieu aussi ce jour · ':'')+'jusqu’au '+fmtShort(o.en);
+  }
   var when=[hrs?'🕒 '+hrs:'',span].filter(Boolean).join(' · ');
   var block=o.long?'<div class="ak-date emo"><span class="d">'+emojiOf(e)+'</span><span class="m">saison</span></div>'
     :'<div class="ak-date'+(o.s!==o.en?' range':'')+'"><span class="w">'+fmtDay(focus).replace('.','')+'</span><span class="d">'+d.getDate()+'</span><span class="m">'+MOIS_C[d.getMonth()].replace('.','')+'</span></div>';
@@ -770,11 +789,12 @@ function groupsSoon(rows){
     rows=rows.slice();sortByDist(rows,function(o){return o.e});
     return [{title:'',items:rows}];
   }
-  var g=[],ong=[],lng=[],by={},order=[];
+  var g=[],ong=[],carry=[],lng=[],by={},order=[];
   rows.forEach(function(o){
     if(o.long){lng.push(o);return}
     var shown=displayDateForOcc(o);
     if(state.when==='any'&&o.s<TODAY){ong.push(o);return}
+    if(isCarryOverForSelection(o)){carry.push(o);return}
     if(!by[shown]){by[shown]=[];order.push(shown)}
     by[shown].push(o);
   });
@@ -783,6 +803,7 @@ function groupsSoon(rows){
     var t=s===TODAY?'Aujourd’hui':s===addDays(TODAY,1)?'Demain':fmtLong(s);
     g.push({title:t,sub:s===TODAY||s===addDays(TODAY,1)?fmtLong(s):'',items:by[s],dot:s===TODAY});
   });
+  if(carry.length)g.push({title:carryTitle(),sub:'commencé avant la période choisie, mais encore accessible',items:carry});
   if(lng.length)g.push({title:'Toute la saison',sub:'séries et rendez-vous qui durent',items:lng});
   return g;
 }
@@ -1213,7 +1234,7 @@ function bind(){
       if(b.getAttribute('data-toggle')&&state[k]===v)v='';
       if(k==='budget'&&state.budget===v&&v!=='any')v='any';
       state[k]=v;
-      if(k==='when'&&state.tab!=='soon')state.tab='soon';
+      if(k==='when'){if(v!=='date')state.date='';if(state.tab!=='soon')state.tab='soon'}
       state.limit=CONFIG.pageSize;render();return;
     }
     if((b=t.closest('[data-multi]'))){var kk=b.getAttribute('data-multi'),vv=b.getAttribute('data-v');if(state[kk].has(vv))state[kk].delete(vv);else state[kk].add(vv);state.limit=CONFIG.pageSize;render();return}
@@ -1266,8 +1287,15 @@ function bind(){
     else if(v==='__geo')geolocate();
     else{var c=COORDS[v];setPlace({mode:'commune',commune:v,lat:c?c[0]:null,lng:c?c[1]:null,radius:10,label:v})}
   });
+  function applyDateChoice(value){
+    if(value&&!/^\d{4}-\d{2}-\d{2}$/.test(value))return;
+    state.date=value;state.when=value?'date':'any';state.tab='soon';state.limit=CONFIG.pageSize;render();
+  }
+  root.addEventListener('input',function(ev){
+    if(ev.target.matches('[data-el="date"]'))applyDateChoice(ev.target.value);
+  });
   root.addEventListener('change',function(ev){
-    if(ev.target.matches('[data-el="date"]')){state.date=ev.target.value;state.when=state.date?'date':'any';state.tab='soon';state.limit=CONFIG.pageSize;render()}
+    if(ev.target.matches('[data-el="date"]'))applyDateChoice(ev.target.value);
     if(ev.target.matches('[data-el="dur"]')){}
   });
   [el.dlg,el.sur].forEach(function(d){d.addEventListener('click',function(ev){if(ev.target===d)d.close()})});
