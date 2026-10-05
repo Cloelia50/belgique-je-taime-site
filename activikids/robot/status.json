@@ -1,6 +1,6 @@
 {
   "source": "live Google Sheet",
-  "generation_time_utc": "2026-10-05T21:16:14.320718+00:00",
+  "generation_time_utc": "2026-10-05T21:43:45.967970+00:00",
   "counts": {
     "Événements": 1078,
     "Éditions": 1158,
@@ -43,14 +43,14 @@
     "attached_to_existing_events": 13
   },
   "daily_last_run": {
-    "at_utc": "2026-10-05T21:17:38.562689+00:00",
+    "at_utc": "2026-10-05T21:45:06.529654+00:00",
     "count": 8,
     "ok": 0,
     "blocked": 0,
     "failed": 8
   },
   "archive_last_run": {
-    "at_utc": "2026-10-05T21:17:38.562831+00:00",
+    "at_utc": "2026-10-05T21:45:06.529773+00:00",
     "count": 8,
     "ok": 8,
     "blocked": 0,

@@ -449,6 +449,7 @@ function isoOf(d){return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDa
 function parseIso(s){var p=s.split('-');return new Date(+p[0],+p[1]-1,+p[2])}
 function addDays(s,n){var d=parseIso(s);d.setDate(d.getDate()+n);return isoOf(d)}
 function diffDays(a,b){return Math.round((parseIso(b)-parseIso(a))/864e5)}
+function hmMinutes(v){var m=String(v||'').match(/^(\d{1,2}):(\d{2})$/);if(!m)return null;var h=+m[1],n=+m[2];return h>=0&&h<24&&n>=0&&n<60?h*60+n:null}
 function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
 function norm(s){return String(s||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase()}
 function cap(s){return s?s.charAt(0).toUpperCase()+s.slice(1):s}
@@ -460,7 +461,8 @@ function store(k,v){try{if(v===undefined){return JSON.parse(localStorage.getItem
 var qs=new URLSearchParams(location.search);
 var NOW=new Date();
 var TODAY=(qs.get('today')&&/^\d{4}-\d{2}-\d{2}$/.test(qs.get('today')))?qs.get('today'):isoOf(NOW);
-var NOWHM=pad(NOW.getHours())+':'+pad(NOW.getMinutes());
+var TEST_NOWHM=qs.get('now');
+var NOWHM=(TEST_NOWHM&&/^(?:[01]\d|2[0-3]):[0-5]\d$/.test(TEST_NOWHM))?TEST_NOWHM:pad(NOW.getHours())+':'+pad(NOW.getMinutes());
 var TODAY_DOW=(parseIso(TODAY).getDay()+6)%7; // 0=lundi
 
 /* ---------- données ---------- */
@@ -600,7 +602,7 @@ function whenRange(w){
 }
 function listedScheduleDates(o){
   var txt=[o.e.n,o.e.per,o.e.regle,o.d.prog].filter(Boolean).join(' ');
-  var re=/\\b([0-3]?\\d)[\\/.-]([01]?\\d)(?:[\\/.-](\\d{2,4}))?\\b/g,m,out={},sy=parseIso(o.s).getFullYear(),ey=parseIso(o.en).getFullYear();
+  var re=/\b([0-3]?\d)[\/.-]([01]?\d)(?:[\/.-](\d{2,4}))?\b/g,m,out={},sy=parseIso(o.s).getFullYear(),ey=parseIso(o.en).getFullYear();
   while((m=re.exec(txt))){
     var dd=+m[1],mm=+m[2],yy=m[3]?+m[3]:null;if(yy!=null&&yy<100)yy+=2000;
     var ys=yy!=null?[yy]:[];if(yy==null){for(var y=sy;y<=ey;y++)ys.push(y)}
@@ -637,9 +639,22 @@ function occursOnDate(o,day){
     return wds.length?wds.indexOf(wd)>=0:(day===o.s||day===o.en);
   }
   var span=diffDays(o.s,o.en);
-  var continuous=/tous les jours|chaque jour|exposition|\\bexpo\\b|foire|kermesse|braderie|installation|ouvert|accessible/.test(txt);
+  var continuous=/tous les jours|chaque jour|exposition|\bexpo\b|foire|kermesse|braderie|installation|ouvert|accessible/.test(txt);
   if(span>3&&day!==o.s&&day!==o.en&&!continuous)return false;
   return true;
+}
+function endTimeAppliesOnDay(o,day){
+  if(day!==TODAY||!o.d.he)return false;
+  if(o.s===o.en||o.en===day)return true;
+  if(hasDiscreteSchedule(o)||scheduleWeekdays(o).length)return true;
+  var txt=norm([o.e.n,o.e.per,o.e.regle,o.d.prog].filter(Boolean).join(' '));
+  return /tous les jours|chaque jour|quotidien|quotidienne|ouvert tous les jours|ouvert chaque jour|ouverture quotidienne/.test(txt);
+}
+function occurrenceSelectableOnDate(o,day){
+  if(!occursOnDate(o,day))return false;
+  if(!endTimeAppliesOnDay(o,day))return true;
+  var end=hmMinutes(o.d.he),now=hmMinutes(NOWHM);
+  return end==null||now==null||end>now;
 }
 function passDate(o,w){
   var r=whenRange(w); if(!r)return true;
@@ -647,9 +662,7 @@ function passDate(o,w){
   if(o.s>r[1]||o.en<r[0])return false;
   var a=o.s>r[0]?o.s:r[0],b=o.en<r[1]?o.en:r[1],d=a;
   while(d<=b){
-    if(occursOnDate(o,d)){
-      if(!(w==='today'&&d===TODAY&&o.d.he&&o.d.he<NOWHM))return true;
-    }
+    if(occurrenceSelectableOnDate(o,d))return true;
     d=addDays(d,1);
   }
   return false;
@@ -658,7 +671,7 @@ function displayDateForOcc(o,w){
   w=w||state.when;
   var r=whenRange(w); if(!r)return o.s;
   var a=o.s>r[0]?o.s:r[0],b=o.en<r[1]?o.en:r[1],d=a;
-  while(d<=b){if(occursOnDate(o,d))return d;d=addDays(d,1)}
+  while(d<=b){if(occurrenceSelectableOnDate(o,d))return d;d=addDays(d,1)}
   return o.s;
 }
 function hasDiscreteSchedule(o){
@@ -1384,6 +1397,7 @@ function bind(){
   });
   function applyDateChoice(value){
     if(value&&!/^\d{4}-\d{2}-\d{2}$/.test(value))return;
+    if(value&&value<TODAY){state.date='';state.when='any';state.tab='soon';state.limit=CONFIG.pageSize;render();return}
     state.date=value;state.when=value?'date':'any';state.tab='soon';state.limit=CONFIG.pageSize;render();
   }
   root.addEventListener('input',function(ev){
@@ -1436,7 +1450,17 @@ function init(){
   if(state.place.mode==='address'&&(state.place.lat==null||state.place.lng==null))state.place={mode:'all',commune:'',lat:null,lng:null,radius:10,label:'',address:''};
   render();
   root.classList.add('ak-ready');
-  window.Activikids={state:state,render:render,setTab:function(t){state.tab=t;render()},data:DATA,outboundMetrics:function(){return store('ak_outbound_v1')||{total:0,byKind:{},byEvent:{}}}};
+  window.Activikids={
+    state:state,render:render,setTab:function(t){state.tab=t;render()},data:DATA,
+    outboundMetrics:function(){return store('ak_outbound_v1')||{total:0,byKind:{},byEvent:{}}},
+    temporal:{
+      today:TODAY,now:NOWHM,addDays:addDays,diffDays:diffDays,listedScheduleDates:listedScheduleDates,occursOnDate:occursOnDate,
+      passDate:passDate,displayDateForOcc:displayDateForOcc,
+      occurrenceSelectableOnDate:occurrenceSelectableOnDate,
+      range:function(w,dateValue){var old=state.date;if(w==='date'&&dateValue!=null)state.date=dateValue;var out=whenRange(w);state.date=old;return out},
+      nextHoliday:nextHoliday
+    }
+  };
 }
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
 })();
