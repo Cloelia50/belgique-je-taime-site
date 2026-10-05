@@ -421,6 +421,9 @@ html,body{margin:0}
 var CONFIG={
   suggestUrl:'',            // ex. 'mailto:contact@tonsite.be?subject=Activikids' — laisse vide pour masquer le lien « Il manque un truc ? »
   siteName:'Belgique, je t’aime',
+  analyticsEndpoint:'',     // optionnel : endpoint first-party si on en ajoute un plus tard
+  analyticsProvider:'https://counterapi.com/api',
+  analyticsNamespace:'belgique-je-taime-activikids',
   pageSize:40
 };
 // Vacances scolaires (Fédération Wallonie-Bruxelles, dates officielles 2026-2027) — à mettre à jour chaque année
@@ -948,9 +951,9 @@ function renderPlaceUI(){
   }
   var rs=el.radius; if(rs){
     rs.hidden=p.mode==='all';
-    $('[data-radius]',rs).forEach(function(b){b.setAttribute('aria-pressed',String(+b.getAttribute('data-radius')===p.radius));b.hidden=(p.mode!=='commune'&&b.getAttribute('data-radius')==='0')});
+    $$('[data-radius]',rs).forEach(function(b){b.setAttribute('aria-pressed',String(+b.getAttribute('data-radius')===p.radius));b.hidden=(p.mode!=='commune'&&b.getAttribute('data-radius')==='0')});
   }
-  $('[data-travel]',root).forEach(function(b){b.setAttribute('aria-pressed',String(b.getAttribute('data-travel')===state.travel))});
+  $$('[data-travel]',root).forEach(function(b){b.setAttribute('aria-pressed',String(b.getAttribute('data-travel')===state.travel))});
 }
 function syncUI(){
   $$('[data-single]',root).forEach(function(b){
@@ -1058,6 +1061,34 @@ function mapsUrl(e){
   var origin=originForMaps();if(origin)url+='&origin='+encodeURIComponent(origin);
   return url;
 }
+function eventAction(e,cur){
+  var booking=(cur&&cur.booking)||e.booking||'';
+  var url=booking||(cur&&cur.src)||e.url||'';
+  if(!url)return null;
+  if(e.stat==='incertain')return {url:url,kind:'verify',label:'🔎 Vérifier l’événement'};
+  if(booking||e.resa==='oui')return {url:url,kind:'booking',label:'🎟️ Réserver / s’inscrire'};
+  if(e.resa==='var')return {url:url,kind:'signup_info',label:'🎟️ Inscription / infos'};
+  return {url:url,kind:'event_info',label:'ℹ️ Voir l’événement'};
+}
+function recordOutbound(e,kind,url){
+  var key='ak_outbound_v1';
+  var m=store(key)||{total:0,byKind:{},byEvent:{}};
+  m.total=(m.total||0)+1;
+  m.byKind=m.byKind||{};m.byKind[kind]=(m.byKind[kind]||0)+1;
+  m.byEvent=m.byEvent||{};m.byEvent[e.id]=(m.byEvent[e.id]||0)+1;
+  m.last={event_id:e.id,kind:kind,url:url,at:new Date().toISOString()};
+  store(key,m);
+  try{window.dispatchEvent(new CustomEvent('belgiquejetaime:outbound',{detail:{event_id:e.id,kind:kind,url:url}}))}catch(err){}
+  if(CONFIG.analyticsProvider&&CONFIG.analyticsNamespace){
+    try{
+      var countUrl=CONFIG.analyticsProvider+'/'+encodeURIComponent(CONFIG.analyticsNamespace)+'/'+encodeURIComponent(kind)+'/'+encodeURIComponent(e.id)+'?trackOnly=true';
+      fetch(countUrl,{method:'GET',mode:'no-cors',keepalive:true,cache:'no-store'}).catch(function(){});
+    }catch(err){}
+  }
+  if(CONFIG.analyticsEndpoint&&navigator.sendBeacon){
+    try{navigator.sendBeacon(CONFIG.analyticsEndpoint,new Blob([JSON.stringify({event:'event_action_click',event_id:e.id,kind:kind,url:url,at:new Date().toISOString()})],{type:'application/json'}))}catch(err){}
+  }
+}
 function icsFor(e,o){
   var s=o.s.replace(/-/g,''),en=addDays(o.en,1).replace(/-/g,'');
   var L=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Activikids//FR','BEGIN:VEVENT','UID:'+e.id+'-'+s+'@activikids','DTSTAMP:'+TODAY.replace(/-/g,'')+'T000000Z'];
@@ -1087,6 +1118,8 @@ function openEvent(id,occStart){
     (e.stat==='incertain'?'<span class="ak-chip">⚠️ À vérifier avant de partir</span>':'')+'</div></div><div class="ak-sh-body">';
   // actions
   h+='<div class="ak-sh-actions">';
+  var act=eventAction(e,cur);
+  if(act)h+='<a class="ak-btn small" target="_blank" rel="noopener" data-eventaction="'+esc(e.id)+'" data-kind="'+esc(act.kind)+'" data-url="'+esc(act.url)+'" href="'+esc(act.url)+'">'+esc(act.label)+'</a>';
   var tm=travelMeta();
   h+='<a class="ak-btn teal small" target="_blank" rel="noopener" href="'+esc(mapsUrl(e))+'">'+tm[0]+' Itinéraire '+tm[1]+'</a>';
   if(curO)h+='<button class="ak-btn small" data-ics="'+esc(e.id)+'" data-occ="'+esc(cur.s)+'">📆 Ajouter à mon agenda</button>';
@@ -1134,7 +1167,7 @@ function openEvent(id,occStart){
   if(e.tel)ct.push('<a class="ak-btn ghost small" href="tel:'+esc(e.tel.replace(/[^\d+]/g,''))+'">📞 '+esc(e.tel)+'</a>');
   if(e.mail)ct.push('<a class="ak-btn ghost small" href="mailto:'+esc(e.mail)+'">✉️ Écrire</a>');
   if(ct.length||e.org){h+='<section class="ak-sec"><h4>🤝 Organisation</h4>'+(e.org?'<p>'+esc(e.org)+'</p>':'')+'<div class="ak-contact">'+ct.join('')+'</div></section>'}
-  h+='<div class="ak-fine">Les dates et horaires peuvent bouger : vérifie sur le site officiel avant de partir. Base mise à jour le '+esc(fmtLong(DATA.asof))+'.</div></div></div>';
+  h+='<div class="ak-fine">Les dates et horaires peuvent bouger : vérifie sur le site officiel avant de partir. Base mise à jour le '+esc(fmtLong(DATA.asof))+'. Les clics vers les organisateurs sont comptés de façon agrégée ; Activikids ne transmet ni nom, ni e-mail, ni compte utilisateur.</div></div></div>';
   el.dlg.innerHTML=h;
   if(!el.dlg.open)el.dlg.showModal();
   el.dlg.querySelector('.ak-sh-body').scrollTop=0;
@@ -1264,6 +1297,12 @@ function resetAll(){
 function bind(){
   root.addEventListener('click',function(ev){
     var t=ev.target;
+    var out=t.closest('[data-eventaction]');
+    if(out){
+      var oe=BY_ID[out.getAttribute('data-eventaction')],ok=out.getAttribute('data-kind')||'event_info',ou=out.getAttribute('data-url')||out.href||'';
+      if(oe&&ou)recordOutbound(oe,ok,ou);
+      return;
+    }
     var fav=t.closest('[data-fav]');
     if(fav){
       ev.stopPropagation();
@@ -1397,7 +1436,7 @@ function init(){
   if(state.place.mode==='address'&&(state.place.lat==null||state.place.lng==null))state.place={mode:'all',commune:'',lat:null,lng:null,radius:10,label:'',address:''};
   render();
   root.classList.add('ak-ready');
-  window.Activikids={state:state,render:render,setTab:function(t){state.tab=t;render()},data:DATA};
+  window.Activikids={state:state,render:render,setTab:function(t){state.tab=t;render()},data:DATA,outboundMetrics:function(){return store('ak_outbound_v1')||{total:0,byKind:{},byEvent:{}}}};
 }
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
 })();
