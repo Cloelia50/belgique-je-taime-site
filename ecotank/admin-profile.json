@@ -814,6 +814,21 @@
     }
   ],
   "official_sources": {
+    "basic_bank": {
+      "label": "SPF Économie — service bancaire de base pour particuliers",
+      "url": "https://economie.fgov.be/fr/themes/services-financiers/services-de-paiement/service-bancaire-de-base/service-bancaire-de-base-pour-0",
+      "authority": "SPF Économie"
+    },
+    "belgium_eid_pin": {
+      "label": "Belgium.be — demander un nouveau code PIN eID",
+      "url": "https://www.belgium.be/fr/services_en_ligne/app_reimpression_pin_puk",
+      "authority": "Belgium.be / SPF Intérieur"
+    },
+    "brussels_digital_help": {
+      "label": "Région de Bruxelles-Capitale — inclusion numérique et aide aux démarches",
+      "url": "https://be.brussels/fr/propos-de-la-region/valeurs-budget-et-strategie/strategie-et-priorites-politiques/linclusion-numerique/inclusion-numerique-en-region-bruxelloise",
+      "authority": "Région de Bruxelles-Capitale"
+    },
     "cgra_asylum": {
       "label": "CGRA — protection internationale",
       "url": "https://www.cgra.be/fr/asile",
@@ -833,6 +848,11 @@
       "label": "Coming to Belgium — couverture sociale transfrontalière",
       "url": "https://www.comingtobelgium.be/",
       "authority": "Sécurité sociale belge"
+    },
+    "cpas_online": {
+      "label": "CPAS Online — première demande d’aide en ligne",
+      "url": "https://www.socialsecurity.be/citizen/fr/static/applics/ocmw-cpas-online/index.htm",
+      "authority": "SPP Intégration sociale / Sécurité sociale"
     },
     "diplomacy_diplomatic": {
       "label": "SPF Affaires étrangères — missions diplomatiques et consulaires",
@@ -879,6 +899,46 @@
       "url": "https://dofi.ibz.be/fr/themes/citoyens-de-lunion",
       "authority": "Office des étrangers"
     },
+    "inami_affiliation": {
+      "label": "INAMI — s’affilier à une mutualité ou à la CAAMI",
+      "url": "https://www.inami.fgov.be/fr/themes/soins-de-sante-cout-et-remboursement/assurabilite/s-affilier-a-une-mutualite",
+      "authority": "INAMI"
+    },
+    "irisbox": {
+      "label": "IRISbox — guichet électronique bruxellois",
+      "url": "https://irisbox.irisnet.be/",
+      "authority": "Région de Bruxelles-Capitale"
+    },
+    "itsme_activate": {
+      "label": "itsme — activer un compte avec eID ou banque",
+      "url": "https://www.itsme-id.com/fr-be/get-started",
+      "authority": "itsme"
+    },
+    "itsme_support_eid": {
+      "label": "itsme — activation avec eID et lecteur de carte",
+      "url": "https://support.itsme-id.com/hc/fr/articles/42247441318679-Activer-avec-eID",
+      "authority": "itsme"
+    },
+    "mondossier": {
+      "label": "Mon Dossier — Registre national, certificats et composition de ménage",
+      "url": "https://www.ibz.rrn.fgov.be/fr/registre-national/mon-dossier/",
+      "authority": "SPF Intérieur — Registre national"
+    },
+    "myebox": {
+      "label": "My eBox — recevoir et consulter les documents officiels",
+      "url": "https://myebox.be/fr",
+      "authority": "BOSA / eBox Citoyen"
+    },
+    "mygov": {
+      "label": "MyGov.be — application officielle et portefeuille administratif",
+      "url": "https://mygov.be/",
+      "authority": "Administration fédérale belge"
+    },
+    "reference_address": {
+      "label": "Sécurité sociale — adresse de référence et aide au logement",
+      "url": "https://www.socialsecurity.be/citizen/fr/assistance-sociale-et-cpas/aide-au-logement",
+      "authority": "Sécurité sociale belge"
+    },
     "socialsecurity_international": {
       "label": "SPF Sécurité sociale — coordination internationale",
       "url": "https://socialsecurity.belgium.be/fr/a-propos-de-la-securite-sociale/international",
@@ -888,7 +948,483 @@
       "label": "SPF Sécurité sociale — structure et régimes",
       "url": "https://socialsecurity.belgium.be/fr/a-propos-de-la-securite-sociale/structure-et-organisation",
       "authority": "SPF Sécurité sociale"
+    },
+    "universal_bank": {
+      "label": "SPF Économie — service bancaire universel",
+      "url": "https://economie.fgov.be/fr/themes/services-financiers/services-de-paiement/service-bancaire-universel",
+      "authority": "SPF Économie"
     }
+  },
+  "online_assistance": {
+    "version": 1,
+    "purpose": "Aider l’utilisateur à franchir concrètement les prérequis administratifs et numériques avant ou pendant ses démarches, avec une voie de secours quand le canal en ligne principal est impossible.",
+    "privacy": {
+      "persist_answers": false,
+      "collect_identifiers": false,
+      "never_request_pin_or_password": true,
+      "never_request_national_register_number": true,
+      "note": "EcoTank peut demander si un élément existe ou fonctionne, mais ne demande jamais le code PIN eID, le code itsme, un mot de passe, un numéro complet de registre national ou des coordonnées bancaires complètes."
+    },
+    "principles": [
+      "Un prérequis manquant ne doit jamais bloquer l’accès au reste du parcours.",
+      "Toujours proposer une voie en ligne principale et, lorsqu’elle existe, une solution sans authentification ou hors ligne.",
+      "Prioriser ce qui débloque plusieurs démarches à la fois : identité, authentification, adresse, compte bancaire, couverture santé, réception des courriers officiels.",
+      "Conserver les accusés de réception, décisions, preuves d’envoi et échéances.",
+      "Ne jamais demander à l’utilisateur de transmettre à EcoTank un secret d’authentification."
+    ],
+    "readiness_items": [
+      {
+        "id": "identity_document",
+        "label": "Document d’identité ou de séjour utilisable",
+        "question": "Avez-vous un document d’identité ou de séjour actuel que vous pouvez utiliser pour vos démarches ?",
+        "states": [
+          "oui",
+          "expiré ou en renouvellement",
+          "perdu / volé",
+          "je ne sais pas"
+        ],
+        "priority": 1,
+        "source_refs": [
+          "dofi_union",
+          "dofi_third_country"
+        ],
+        "direct_action": {},
+        "fallback": "Si le document est inconnu, expiré ou en renouvellement, poursuivre le parcours séjour avec la preuve réellement détenue au lieu de conclure à un séjour irrégulier."
+      },
+      {
+        "id": "eid_pin",
+        "label": "eID et code PIN",
+        "question": "Si vous avez une eID belge, connaissez-vous son code PIN et la carte fonctionne-t-elle ?",
+        "states": [
+          "fonctionne",
+          "PIN perdu",
+          "carte non disponible",
+          "pas d’eID belge",
+          "je ne sais pas"
+        ],
+        "priority": 2,
+        "source_refs": [
+          "belgium_eid_pin"
+        ],
+        "direct_action": {
+          "label": "Demander un nouveau code PIN",
+          "source_ref": "belgium_eid_pin"
+        },
+        "fallback": "L’eID n’est pas indispensable à toutes les démarches : certaines disposent d’un formulaire non authentifié, d’un contact e-mail/téléphone ou d’un guichet."
+      },
+      {
+        "id": "itsme",
+        "label": "Compte itsme",
+        "question": "Pouvez-vous vous connecter avec itsme ?",
+        "states": [
+          "oui",
+          "à activer",
+          "bloqué / nouveau téléphone ou numéro",
+          "impossible avec mon document",
+          "je ne sais pas"
+        ],
+        "priority": 3,
+        "source_refs": [
+          "itsme_activate",
+          "itsme_support_eid"
+        ],
+        "direct_action": {
+          "label": "Activer ou réactiver itsme",
+          "source_ref": "itsme_activate"
+        },
+        "fallback": "Avec une eID belge, l’activation peut se faire avec un lecteur de carte ou via certaines banques. Si itsme est impossible, utiliser eID/CSAM ou une voie non authentifiée quand le service le permet."
+      },
+      {
+        "id": "email",
+        "label": "Adresse e-mail accessible",
+        "question": "Avez-vous accès à une adresse e-mail que vous consultez réellement ?",
+        "states": [
+          "oui",
+          "non",
+          "j’ai perdu l’accès",
+          "j’utilise l’adresse d’une personne de confiance"
+        ],
+        "priority": 4,
+        "source_refs": [
+          "myebox",
+          "cpas_online"
+        ],
+        "direct_action": {},
+        "fallback": "CPAS Online permet d’indiquer l’adresse e-mail d’une personne qui aide à la demande. Pour My eBox, une adresse e-mail validée est nécessaire pour l’activation."
+      },
+      {
+        "id": "phone",
+        "label": "Numéro de téléphone utilisable",
+        "question": "Avez-vous un numéro de téléphone auquel vous avez accès ?",
+        "states": [
+          "oui",
+          "non",
+          "numéro changé",
+          "accès temporaire seulement"
+        ],
+        "priority": 5,
+        "source_refs": [
+          "itsme_activate"
+        ],
+        "direct_action": {},
+        "fallback": "Un numéro est particulièrement utile pour itsme et pour être rappelé par les administrations, mais certaines demandes restent possibles sans téléphone."
+      },
+      {
+        "id": "national_number",
+        "label": "Numéro de registre national ou BIS",
+        "question": "Savez-vous si vous avez un numéro de registre national ou un numéro BIS ?",
+        "states": [
+          "oui",
+          "BIS",
+          "non",
+          "je ne sais pas"
+        ],
+        "priority": 6,
+        "source_refs": [
+          "cpas_online",
+          "mondossier"
+        ],
+        "direct_action": {},
+        "fallback": "Ne communiquez pas ce numéro à EcoTank. CPAS Online prévoit aussi le cas où la personne n’a pas de numéro de registre national."
+      },
+      {
+        "id": "official_address",
+        "label": "Adresse officielle ou adresse de référence",
+        "question": "Avez-vous une adresse officielle où vous êtes inscrit, ou une adresse de référence ?",
+        "states": [
+          "domicile officiel",
+          "adresse de référence",
+          "aucune",
+          "situation incertaine"
+        ],
+        "priority": 7,
+        "source_refs": [
+          "reference_address"
+        ],
+        "direct_action": {
+          "label": "Comprendre l’adresse de référence",
+          "source_ref": "reference_address"
+        },
+        "fallback": "L’absence de domicile ne peut pas, à elle seule, empêcher une demande de revenu d’intégration au CPAS. Une adresse de référence peut toutefois être nécessaire pour préserver d’autres droits."
+      },
+      {
+        "id": "bank_account",
+        "label": "Compte bancaire / IBAN utilisable",
+        "question": "Avez-vous un compte de paiement utilisable pour recevoir des revenus ou allocations ?",
+        "states": [
+          "oui",
+          "non",
+          "compte bloqué ou fermé",
+          "je ne peux pas utiliser la banque en ligne"
+        ],
+        "priority": 8,
+        "source_refs": [
+          "basic_bank",
+          "universal_bank"
+        ],
+        "direct_action": {
+          "label": "Voir le droit au service bancaire de base",
+          "source_ref": "basic_bank"
+        },
+        "fallback": "Le service bancaire de base peut garantir un compte de paiement sous conditions. Le service bancaire universel offre une solution pensée pour les personnes en difficulté avec le numérique."
+      },
+      {
+        "id": "health_cover",
+        "label": "Mutualité ou CAAMI",
+        "question": "Êtes-vous affilié à une mutualité ou à la CAAMI et savez-vous si votre couverture est en ordre ?",
+        "states": [
+          "oui et en ordre",
+          "affilié mais situation incertaine",
+          "non affilié",
+          "je ne sais pas"
+        ],
+        "priority": 9,
+        "source_refs": [
+          "inami_affiliation"
+        ],
+        "direct_action": {
+          "label": "Voir comment s’affilier",
+          "source_ref": "inami_affiliation"
+        },
+        "fallback": "La CAAMI est une alternative publique sans assurance complémentaire. En cas d’absence de revenu ou de statut incertain, vérifier l’assurabilité avec une mutualité/CAAMI plutôt que supposer une absence de couverture."
+      },
+      {
+        "id": "official_mail",
+        "label": "Réception des courriers officiels",
+        "question": "Pouvez-vous recevoir et retrouver les décisions et courriers administratifs importants ?",
+        "states": [
+          "oui par courrier",
+          "oui via eBox",
+          "les deux",
+          "non / courrier instable",
+          "je ne sais pas"
+        ],
+        "priority": 10,
+        "source_refs": [
+          "myebox",
+          "mygov"
+        ],
+        "direct_action": {
+          "label": "Ouvrir My eBox",
+          "source_ref": "myebox"
+        },
+        "fallback": "Ne jamais rater un délai faute de courrier : si l’adresse est instable, vérifier l’eBox et demander aux organismes comment recevoir les décisions."
+      },
+      {
+        "id": "certificates",
+        "label": "Certificats et preuves administratives",
+        "question": "Pouvez-vous récupérer une composition de ménage, un certificat de résidence ou d’autres attestations officielles ?",
+        "states": [
+          "oui",
+          "non",
+          "je ne sais pas comment",
+          "authentification bloquée"
+        ],
+        "priority": 11,
+        "source_refs": [
+          "mondossier",
+          "irisbox",
+          "mygov"
+        ],
+        "direct_action": {
+          "label": "Accéder à Mon Dossier",
+          "source_ref": "mondossier"
+        },
+        "fallback": "À Bruxelles, IRISbox et les guichets communaux offrent aussi des voies pour obtenir de nombreux documents."
+      },
+      {
+        "id": "device_help",
+        "label": "Ordinateur, smartphone, scan/PDF et aide numérique",
+        "question": "Avez-vous le matériel et l’aide nécessaires pour remplir, scanner et envoyer des documents en ligne ?",
+        "states": [
+          "oui",
+          "pas d’ordinateur",
+          "pas de smartphone",
+          "je ne sais pas scanner / PDF",
+          "j’ai besoin d’un accompagnement"
+        ],
+        "priority": 12,
+        "source_refs": [
+          "brussels_digital_help"
+        ],
+        "direct_action": {
+          "label": "Trouver de l’aide numérique à Bruxelles",
+          "source_ref": "brussels_digital_help"
+        },
+        "fallback": "Les EPN et structures d’inclusion numérique bruxelloises peuvent fournir un ordinateur, Internet et un accompagnement aux démarches administratives."
+      }
+    ],
+    "fast_actions": [
+      {
+        "id": "first_cpas_request",
+        "label": "Introduire une première demande au CPAS",
+        "when_profiles_any": [
+          "rupture_droits_zero_revenu",
+          "droit_en_attente",
+          "situation_inconnue",
+          "sejour_irregulier"
+        ],
+        "when_readiness": {},
+        "source_refs": [
+          "cpas_online"
+        ],
+        "online": {
+          "label": "CPAS Online — version sécurisée",
+          "url": "https://www.socialsecurity.be/citizen/fr/static/applics/ocmw-cpas-online/index.htm",
+          "requires": [
+            "eID ou itsme"
+          ]
+        },
+        "fallback": {
+          "label": "CPAS Online — formulaire sans connexion",
+          "url": "https://pcswonline.socialsecurity.be/unsecured/fr/helpRequestForm.html",
+          "requires": [
+            "adresse e-mail personnelle ou d’une personne qui aide"
+          ]
+        },
+        "note": "Réservé à une première demande d’aide. Si la personne reçoit déjà une aide ou a déjà un dossier, elle doit contacter directement son CPAS."
+      },
+      {
+        "id": "recover_eid_pin",
+        "label": "Récupérer l’accès eID",
+        "when_profiles_any": [],
+        "when_readiness": {
+          "eid_pin": [
+            "PIN perdu"
+          ]
+        },
+        "source_refs": [
+          "belgium_eid_pin"
+        ],
+        "online": {
+          "label": "Demander un nouveau code PIN",
+          "source_ref": "belgium_eid_pin"
+        },
+        "fallback": {},
+        "note": null
+      },
+      {
+        "id": "activate_itsme",
+        "label": "Activer ou réactiver itsme",
+        "when_profiles_any": [],
+        "when_readiness": {
+          "itsme": [
+            "à activer",
+            "bloqué / nouveau téléphone ou numéro"
+          ]
+        },
+        "source_refs": [
+          "itsme_activate",
+          "itsme_support_eid"
+        ],
+        "online": {
+          "label": "Démarrer l’activation",
+          "source_ref": "itsme_activate"
+        },
+        "fallback": {
+          "label": "Utiliser eID/CSAM ou une démarche non authentifiée",
+          "source_ref": "brussels_digital_help"
+        },
+        "note": null
+      },
+      {
+        "id": "open_bank_account",
+        "label": "Rétablir un compte de paiement",
+        "when_profiles_any": [],
+        "when_readiness": {
+          "bank_account": [
+            "non",
+            "compte bloqué ou fermé"
+          ]
+        },
+        "source_refs": [
+          "basic_bank",
+          "universal_bank"
+        ],
+        "online": {
+          "label": "Comprendre le service bancaire de base",
+          "source_ref": "basic_bank"
+        },
+        "fallback": {
+          "label": "Voir le service bancaire universel",
+          "source_ref": "universal_bank"
+        },
+        "note": null
+      },
+      {
+        "id": "reference_address",
+        "label": "Rétablir une adresse administrative",
+        "when_profiles_any": [],
+        "when_readiness": {
+          "official_address": [
+            "aucune",
+            "situation incertaine"
+          ]
+        },
+        "source_refs": [
+          "reference_address"
+        ],
+        "online": {
+          "label": "Comprendre l’adresse de référence",
+          "source_ref": "reference_address"
+        },
+        "fallback": {},
+        "note": null
+      },
+      {
+        "id": "health_affiliation",
+        "label": "Vérifier ou rétablir la couverture santé",
+        "when_profiles_any": [],
+        "when_readiness": {
+          "health_cover": [
+            "affilié mais situation incertaine",
+            "non affilié",
+            "je ne sais pas"
+          ]
+        },
+        "source_refs": [
+          "inami_affiliation"
+        ],
+        "online": {
+          "label": "Mutualité ou CAAMI",
+          "source_ref": "inami_affiliation"
+        },
+        "fallback": {},
+        "note": null
+      },
+      {
+        "id": "official_inbox",
+        "label": "Sécuriser les courriers officiels",
+        "when_profiles_any": [],
+        "when_readiness": {
+          "official_mail": [
+            "non / courrier instable",
+            "je ne sais pas"
+          ]
+        },
+        "source_refs": [
+          "myebox",
+          "mygov"
+        ],
+        "online": {
+          "label": "Activer My eBox",
+          "source_ref": "myebox"
+        },
+        "fallback": {
+          "label": "Utiliser MyGov.be",
+          "source_ref": "mygov"
+        },
+        "note": null
+      },
+      {
+        "id": "get_certificates",
+        "label": "Récupérer les certificats nécessaires",
+        "when_profiles_any": [],
+        "when_readiness": {
+          "certificates": [
+            "non",
+            "je ne sais pas comment",
+            "authentification bloquée"
+          ]
+        },
+        "source_refs": [
+          "mondossier",
+          "irisbox",
+          "mygov"
+        ],
+        "online": {
+          "label": "Mon Dossier",
+          "source_ref": "mondossier"
+        },
+        "fallback": {
+          "label": "IRISbox",
+          "source_ref": "irisbox"
+        },
+        "note": null
+      },
+      {
+        "id": "digital_support",
+        "label": "Trouver quelqu’un qui aide à faire la démarche",
+        "when_profiles_any": [],
+        "when_readiness": {
+          "device_help": [
+            "pas d’ordinateur",
+            "pas de smartphone",
+            "je ne sais pas scanner / PDF",
+            "j’ai besoin d’un accompagnement"
+          ]
+        },
+        "source_refs": [
+          "brussels_digital_help"
+        ],
+        "online": {
+          "label": "Annuaire et aide numérique à Bruxelles",
+          "source_ref": "brussels_digital_help"
+        },
+        "fallback": {},
+        "note": null
+      }
+    ]
   },
   "ecotank_bridges": {
     "version": 1,
