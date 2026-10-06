@@ -2598,7 +2598,44 @@
         "intro": "Ce parcours parle activité, cotisations, trésorerie et protection de l'indépendant. Il n'est pas présenté comme un parcours CPAS/chômage.",
         "special_form": "self_employed_intake",
         "general_social_aids_hidden_by_default": true,
-        "allow_personal_safety_net_opt_in": true
+        "allow_personal_safety_net_opt_in": true,
+        "resource_cards": [
+          {
+            "id": "self_1819",
+            "title": "Obtenir une orientation entrepreneuriale gratuite",
+            "description": "Le 1819 / hub.info répond aux questions des indépendants bruxellois et oriente vers les bons services.",
+            "action_label": "Ouvrir le service 1819",
+            "url": "https://hub.brussels/fr/services/information-entreprendre/",
+            "authority": "hub.brussels",
+            "phone": "1819",
+            "email": "info@hub.brussels",
+            "source_url": "https://hub.brussels/fr/services/information-entreprendre/",
+            "verified_at": "2026-10-06",
+            "freshness": "medium"
+          },
+          {
+            "id": "self_social_contributions",
+            "title": "Si les cotisations deviennent difficiles à payer",
+            "description": "Contactez rapidement votre caisse d’assurances sociales pour vérifier réduction, plan d’apurement ou dispense éventuelle selon les conditions.",
+            "action_label": "Voir les solutions INASTI",
+            "url": "https://www.inasti.be/fr/faq/et-si-je-ne-sais-pas-payer-mes-cotisations-sociales",
+            "authority": "INASTI",
+            "source_url": "https://www.inasti.be/fr/faq/et-si-je-ne-sais-pas-payer-mes-cotisations-sociales",
+            "verified_at": "2026-10-06",
+            "freshness": "high"
+          },
+          {
+            "id": "self_subsidies",
+            "title": "Vérifier les subsides bruxellois",
+            "description": "L’outil officiel filtre les aides disponibles pour les entreprises et indépendants bruxellois.",
+            "action_label": "Voir les subsides possibles",
+            "url": "https://economie-emploi.brussels/quels-subsides",
+            "authority": "Bruxelles Économie et Emploi",
+            "source_url": "https://economie-emploi.brussels/quels-subsides",
+            "verified_at": "2026-10-06",
+            "freshness": "high"
+          }
+        ]
       },
       {
         "id": "company",
@@ -2618,6 +2655,211 @@
           "énergie et locaux professionnels",
           "assurances et risques",
           "entreprise en difficulté, restructuration et cessation"
+        ],
+        "intake": {
+          "id": "company_intake",
+          "privacy": "EcoTank ne demande pas le numéro d’entreprise complet dans ce formulaire. Il demande seulement les caractéristiques utiles pour orienter les démarches.",
+          "questions": [
+            {
+              "id": "brussels_activity",
+              "label": "Votre entreprise ou une unité d’établissement est-elle située en Région de Bruxelles-Capitale ?",
+              "type": "single",
+              "options": [
+                "oui",
+                "non",
+                "je ne sais pas"
+              ]
+            },
+            {
+              "id": "enterprise_number",
+              "label": "Votre entreprise a-t-elle déjà un numéro d’entreprise BCE ?",
+              "type": "single",
+              "options": [
+                "oui",
+                "pas encore",
+                "je ne sais pas"
+              ]
+            },
+            {
+              "id": "employees",
+              "label": "Combien de travailleurs employez-vous actuellement ?",
+              "type": "single",
+              "options": [
+                "aucun",
+                "1 à 4",
+                "5 à 19",
+                "20 ou plus",
+                "je ne sais pas"
+              ]
+            },
+            {
+              "id": "nace_known",
+              "label": "Connaissez-vous votre activité/code NACE enregistré à la BCE ?",
+              "type": "single",
+              "options": [
+                "oui",
+                "non",
+                "je ne sais pas"
+              ]
+            },
+            {
+              "id": "accounting_support",
+              "label": "Êtes-vous accompagné par un comptable ou expert-comptable ?",
+              "type": "single",
+              "options": [
+                "oui",
+                "non",
+                "ponctuellement"
+              ]
+            },
+            {
+              "id": "cash_position",
+              "label": "Votre trésorerie vous permet-elle de payer les prochaines échéances importantes ?",
+              "type": "single",
+              "options": [
+                "oui",
+                "c’est serré",
+                "non",
+                "je ne sais pas"
+              ]
+            },
+            {
+              "id": "debts",
+              "label": "Avez-vous déjà des dettes fiscales, sociales, bancaires ou fournisseurs qui posent problème ?",
+              "type": "multi",
+              "options": [
+                "aucune connue",
+                "fiscales",
+                "cotisations sociales",
+                "ONSS",
+                "banque/crédit",
+                "fournisseurs",
+                "loyer/énergie",
+                "autre",
+                "je ne sais pas"
+              ]
+            }
+          ]
+        },
+        "resource_cards": [
+          {
+            "id": "business_subsidy_finder",
+            "priority_for": [
+              "financing",
+              "starting",
+              "running"
+            ],
+            "title": "Vérifier les subsides bruxellois avec votre situation réelle",
+            "description": "L’outil officiel de Bruxelles Économie et Emploi filtre les aides selon l’entreprise, le secteur et la taille. La décision finale appartient toujours à l’administration.",
+            "action_label": "Voir les subsides possibles",
+            "url": "https://economie-emploi.brussels/quels-subsides",
+            "source_url": "https://economie-emploi.brussels/quels-subsides",
+            "authority": "Bruxelles Économie et Emploi",
+            "verified_at": "2026-10-06",
+            "freshness": "high"
+          },
+          {
+            "id": "business_1819",
+            "priority_for": [
+              "starting",
+              "running",
+              "financing",
+              "administration",
+              "difficulty"
+            ],
+            "title": "Poser la question à un conseiller entreprise",
+            "description": "Le service 1819 / hub.info informe et oriente gratuitement les entrepreneurs bruxellois sur les démarches, aides, financements, statut social et organismes utiles.",
+            "action_label": "Ouvrir le service 1819",
+            "url": "https://hub.brussels/fr/services/information-entreprendre/",
+            "authority": "hub.brussels",
+            "phone": "1819",
+            "email": "info@hub.brussels",
+            "phone_script": "Bonjour, je dirige une entreprise à Bruxelles et j’aurais besoin d’être orienté sur [mon problème]. Pouvez-vous me dire quelle démarche ou quel organisme est le plus adapté ?",
+            "email_subject": "Demande d’orientation pour mon entreprise",
+            "email_body": "Bonjour,\nJe dirige une entreprise à Bruxelles et j’aurais besoin d’être orienté concernant [votre sujet : trésorerie, financement, formalités, personnel, difficultés…].\nPouvez-vous m’indiquer la démarche ou le service le plus adapté à ma situation ?\nMerci d’avance.",
+            "source_url": "https://hub.brussels/fr/services/information-entreprendre/",
+            "verified_at": "2026-10-06",
+            "freshness": "medium"
+          },
+          {
+            "id": "business_current_grants_alert",
+            "priority_for": [
+              "financing",
+              "running"
+            ],
+            "title": "Primes bruxelloises : vérifier les mesures encore ouvertes",
+            "description": "Certaines primes de fonctionnement ont été temporairement suspendues à partir du 12 août 2026, tandis que plusieurs primes à l’investissement et certains dispositifs restent ouverts. Toujours vérifier la page actuelle avant d’engager une dépense.",
+            "action_label": "Voir l’état actuel des primes",
+            "url": "https://economie-emploi.brussels/news-reorientation-primes",
+            "authority": "Bruxelles Économie et Emploi",
+            "source_url": "https://economie-emploi.brussels/news-reorientation-primes",
+            "verified_at": "2026-10-06",
+            "freshness": "very_high",
+            "expires_or_recheck_after": "2026-12-31"
+          },
+          {
+            "id": "business_first_employee",
+            "priority_for": [
+              "employer",
+              "staff"
+            ],
+            "title": "Vous engagez votre premier travailleur",
+            "description": "L’ONSS explique l’identification comme employeur et les démarches nécessaires avant les déclarations sociales.",
+            "action_label": "Voir la procédure ONSS",
+            "url": "https://www.socialsecurity.be/employer/instructions/dmfa/fr/latest/instructions/employers/identification/new_employer.html",
+            "authority": "ONSS / Sécurité sociale",
+            "source_url": "https://www.socialsecurity.be/employer/instructions/dmfa/fr/latest/instructions/employers/identification/new_employer.html",
+            "verified_at": "2026-10-06",
+            "freshness": "high"
+          },
+          {
+            "id": "business_social_contributions_difficulty",
+            "priority_for": [
+              "cashflow_problem",
+              "difficulty",
+              "closing"
+            ],
+            "title": "Cotisations sociales difficiles à payer",
+            "description": "L’INASTI indique les pistes à examiner rapidement avec la caisse d’assurances sociales : adaptation des cotisations provisoires, plan d’apurement et, sous conditions, dispense.",
+            "action_label": "Voir les solutions INASTI",
+            "url": "https://www.inasti.be/fr/faq/et-si-je-ne-sais-pas-payer-mes-cotisations-sociales",
+            "authority": "INASTI",
+            "source_url": "https://www.inasti.be/fr/faq/et-si-je-ne-sais-pas-payer-mes-cotisations-sociales",
+            "verified_at": "2026-10-06",
+            "freshness": "high"
+          },
+          {
+            "id": "business_tax_payment_plan",
+            "priority_for": [
+              "cashflow_problem",
+              "taxes",
+              "difficulty"
+            ],
+            "title": "Demander un plan de paiement fiscal",
+            "description": "Le SPF Finances prévoit des demandes de plan de paiement via MyMinfin et, selon la situation, par le service de recouvrement compétent.",
+            "action_label": "Voir les modalités de paiement",
+            "url": "https://finances.belgium.be/fr/entreprises/tva/paiement/",
+            "authority": "SPF Finances",
+            "source_url": "https://finances.belgium.be/fr/entreprises/tva/paiement/",
+            "verified_at": "2026-10-06",
+            "freshness": "high"
+          },
+          {
+            "id": "business_investment_grants",
+            "priority_for": [
+              "financing",
+              "energy_premises",
+              "running"
+            ],
+            "title": "Investissements, matériel, immobilier et mise aux normes",
+            "description": "Bruxelles Économie et Emploi regroupe les primes d’investissement concernant notamment matériel, travaux, immobilier, conformité, sécurisation, accessibilité et mobilité.",
+            "action_label": "Voir les primes à l’investissement",
+            "url": "https://economie-emploi.brussels/primes-investissements",
+            "authority": "Bruxelles Économie et Emploi",
+            "source_url": "https://economie-emploi.brussels/primes-investissements",
+            "verified_at": "2026-10-06",
+            "freshness": "high"
+          }
         ]
       },
       {
@@ -2650,6 +2892,13 @@
       "never_default_to_social_aid_language": true,
       "personal_rights_entry_label": "Je veux aussi vérifier mes droits personnels",
       "note": "Un dirigeant peut juridiquement relever du statut social des indépendants, mais EcoTank conserve deux parcours d'usage distincts pour ne pas confondre l'activité indépendante en personne physique avec la gestion d'une société."
+    },
+    "business_content_policy": {
+      "date_sensitive_cards_require_recheck": true,
+      "hide_expired_or_unverified_time_sensitive_cards": true,
+      "never_infer_subsidy_eligibility": true,
+      "never_replace_accountant_or_legal_advice": true,
+      "source_links_must_be_official_when_available": true
     }
   },
   "safety": {
