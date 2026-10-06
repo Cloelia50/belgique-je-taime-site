@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /activikids/robot/
+
+Sitemap: https://cloelia50.github.io/belgique-je-taime-site/sitemap.xml
