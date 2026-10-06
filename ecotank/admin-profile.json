@@ -1,0 +1,902 @@
+{
+  "schema_version": 1,
+  "catalog_version": 1,
+  "updated_at": "2026-10-06",
+  "axes": [
+    {
+      "id": "nationalite",
+      "label": "Nationalité / appartenance européenne",
+      "selection": "single",
+      "options": [
+        {
+          "id": "belge",
+          "label": "Belge",
+          "source_refs": []
+        },
+        {
+          "id": "ue_eee_suisse",
+          "label": "Citoyen UE / EEE / Suisse",
+          "source_refs": [
+            "dofi_union"
+          ]
+        },
+        {
+          "id": "pays_tiers",
+          "label": "Ressortissant d'un pays tiers",
+          "source_refs": [
+            "dofi_third_country"
+          ]
+        },
+        {
+          "id": "apatride_ou_nationalite_indeterminee",
+          "label": "Apatride reconnu, en demande de reconnaissance, ou nationalité indéterminée",
+          "source_refs": [
+            "cgra_asylum",
+            "dofi_third_country"
+          ]
+        },
+        {
+          "id": "nationalite_inconnue",
+          "label": "Je ne sais pas quelle catégorie utiliser",
+          "source_refs": [
+            "dofi_third_country"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sejour_protection",
+      "label": "Droit de séjour / protection / titre détenu",
+      "selection": "single_or_unknown",
+      "options": [
+        {
+          "id": "non_applicable_belge",
+          "label": "Belge — pas de titre de séjour étranger",
+          "source_refs": []
+        },
+        {
+          "id": "ue_court_sejour",
+          "label": "Citoyen UE/EEE/Suisse — séjour jusqu'à 3 mois",
+          "source_refs": [
+            "dofi_union"
+          ]
+        },
+        {
+          "id": "ue_sejour_plus_3_mois",
+          "label": "Citoyen UE/EEE/Suisse — séjour de plus de 3 mois",
+          "source_refs": [
+            "dofi_union"
+          ]
+        },
+        {
+          "id": "ue_sejour_permanent",
+          "label": "Citoyen UE/EEE/Suisse — séjour permanent",
+          "source_refs": [
+            "dofi_union"
+          ]
+        },
+        {
+          "id": "membre_famille_belge_ue",
+          "label": "Membre de famille d'un Belge ou d'un citoyen UE/EEE/Suisse",
+          "source_refs": [
+            "dofi_union",
+            "dofi_family"
+          ]
+        },
+        {
+          "id": "tiers_carte_a",
+          "label": "Ressortissant pays tiers — séjour limité / carte A",
+          "source_refs": [
+            "dofi_third_country"
+          ]
+        },
+        {
+          "id": "tiers_carte_b",
+          "label": "Ressortissant pays tiers — séjour illimité / carte B",
+          "source_refs": [
+            "dofi_third_country"
+          ]
+        },
+        {
+          "id": "tiers_carte_k",
+          "label": "Établissement / carte K",
+          "source_refs": [
+            "dofi_third_country"
+          ]
+        },
+        {
+          "id": "tiers_carte_l",
+          "label": "Résident longue durée / carte L",
+          "source_refs": [
+            "dofi_third_country"
+          ]
+        },
+        {
+          "id": "tiers_carte_h",
+          "label": "Travailleur hautement qualifié / carte H",
+          "source_refs": [
+            "dofi_third_country"
+          ]
+        },
+        {
+          "id": "tiers_carte_i",
+          "label": "ICT — catégorie de séjour; carte I non encore délivrée selon l’Office des étrangers",
+          "source_refs": [
+            "dofi_third_country"
+          ],
+          "note": "Ne pas demander à l'usager de produire une carte I comme document actuel; identifier le document effectivement détenu."
+        },
+        {
+          "id": "tiers_carte_j",
+          "label": "Mobile ICT — catégorie de séjour; carte J non encore délivrée selon l’Office des étrangers",
+          "source_refs": [
+            "dofi_third_country"
+          ],
+          "note": "Ne pas demander à l'usager de produire une carte J comme document actuel; identifier le document effectivement détenu."
+        },
+        {
+          "id": "brexit_carte_m",
+          "label": "Bénéficiaire de l'accord de retrait Brexit / carte M",
+          "source_refs": [
+            "dofi_brexit",
+            "dofi_third_country"
+          ]
+        },
+        {
+          "id": "brexit_carte_n",
+          "label": "Travailleur frontalier relevant de l’accord de retrait Brexit — carte N signalée comme non encore disponible dans le tableau actuel des cartes",
+          "source_refs": [
+            "dofi_brexit",
+            "dofi_third_country"
+          ],
+          "note": "Identifier le document effectivement détenu et vérifier la page Brexit dédiée; ne pas supposer le support matériel à partir du seul code N."
+        },
+        {
+          "id": "visa_c",
+          "label": "Court séjour / visa C ou dispense",
+          "source_refs": [
+            "dofi_third_country"
+          ]
+        },
+        {
+          "id": "visa_d_attente_titre",
+          "label": "Visa D / long séjour — titre belge en cours d'établissement",
+          "source_refs": [
+            "dofi_third_country"
+          ]
+        },
+        {
+          "id": "demandeur_protection_internationale",
+          "label": "Demandeur de protection internationale",
+          "source_refs": [
+            "cgra_asylum"
+          ]
+        },
+        {
+          "id": "refugie_reconnu",
+          "label": "Réfugié reconnu",
+          "source_refs": [
+            "cgra_refugee"
+          ]
+        },
+        {
+          "id": "protection_subsidiaire",
+          "label": "Bénéficiaire de la protection subsidiaire",
+          "source_refs": [
+            "cgra_subsidiary"
+          ]
+        },
+        {
+          "id": "protection_temporaire",
+          "label": "Bénéficiaire de la protection temporaire",
+          "source_refs": [
+            "dofi_ukraine"
+          ]
+        },
+        {
+          "id": "apatridie_sejour",
+          "label": "Apatridie — reconnaissance et/ou admission au séjour en cours ou acquise",
+          "source_refs": [
+            "cgra_asylum",
+            "dofi_third_country"
+          ]
+        },
+        {
+          "id": "sejour_irregulier",
+          "label": "Sans titre valable / séjour irrégulier",
+          "source_refs": [
+            "dofi_irregular"
+          ]
+        },
+        {
+          "id": "diplomatique_consulaire_special",
+          "label": "Personnel diplomatique ou consulaire avec carte d'identité spéciale",
+          "source_refs": [
+            "diplomacy_diplomatic"
+          ]
+        },
+        {
+          "id": "organisation_internationale_special",
+          "label": "Fonctionnaire d'une organisation internationale avec titre/carte spéciale",
+          "source_refs": [
+            "diplomacy_io"
+          ]
+        },
+        {
+          "id": "expert_detache_mission_special",
+          "label": "Expert national détaché, fonctionnaire en mission ou autre statut spécial",
+          "source_refs": [
+            "diplomacy_special",
+            "diplomacy_diplomatic"
+          ]
+        },
+        {
+          "id": "famille_statut_special",
+          "label": "Membre de famille d'une personne sous statut diplomatique/international spécial",
+          "source_refs": [
+            "diplomacy_diplomatic",
+            "diplomacy_io"
+          ]
+        },
+        {
+          "id": "titre_inconnu_ou_en_cours",
+          "label": "Je ne connais pas mon titre / document en renouvellement ou procédure en cours",
+          "source_refs": [
+            "dofi_union",
+            "dofi_third_country",
+            "cgra_asylum"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "regime_professionnel_social",
+      "label": "Régime professionnel / sécurité sociale",
+      "selection": "multi",
+      "options": [
+        {
+          "id": "salarie",
+          "label": "Travailleur salarié",
+          "source_refs": [
+            "socialsecurity_regimes"
+          ]
+        },
+        {
+          "id": "independant",
+          "label": "Travailleur indépendant",
+          "source_refs": [
+            "socialsecurity_regimes"
+          ]
+        },
+        {
+          "id": "fonctionnaire_statutaire",
+          "label": "Fonctionnaire statutaire",
+          "source_refs": [
+            "socialsecurity_regimes"
+          ]
+        },
+        {
+          "id": "secteur_public_contractuel",
+          "label": "Agent contractuel du secteur public",
+          "source_refs": [
+            "socialsecurity_regimes"
+          ]
+        },
+        {
+          "id": "chomeur",
+          "label": "Demandeur d'emploi / chômage",
+          "source_refs": [
+            "socialsecurity_regimes"
+          ]
+        },
+        {
+          "id": "incapacite_invalidite",
+          "label": "Incapacité de travail / invalidité",
+          "source_refs": [
+            "socialsecurity_regimes"
+          ]
+        },
+        {
+          "id": "pensionne",
+          "label": "Pensionné",
+          "source_refs": [
+            "socialsecurity_regimes"
+          ]
+        },
+        {
+          "id": "etudiant",
+          "label": "Étudiant",
+          "source_refs": [
+            "socialsecurity_international"
+          ]
+        },
+        {
+          "id": "travailleur_detache",
+          "label": "Travailleur détaché en Belgique ou depuis la Belgique",
+          "source_refs": [
+            "socialsecurity_international",
+            "coming_to_belgium"
+          ]
+        },
+        {
+          "id": "travailleur_frontalier",
+          "label": "Travailleur frontalier / activité dans plusieurs États",
+          "source_refs": [
+            "socialsecurity_international",
+            "coming_to_belgium"
+          ]
+        },
+        {
+          "id": "personnel_organisation_internationale",
+          "label": "Personnel d'une institution/organisation internationale avec régime particulier",
+          "source_refs": [
+            "diplomacy_io",
+            "socialsecurity_international"
+          ]
+        },
+        {
+          "id": "sans_regime_identifie",
+          "label": "Aucun régime identifié / je ne sais pas où je cotise",
+          "source_refs": [
+            "socialsecurity_regimes",
+            "coming_to_belgium"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "situation_droits_revenus",
+      "label": "Situation actuelle de droits et revenus",
+      "selection": "multi",
+      "options": [
+        {
+          "id": "revenu_actif",
+          "label": "J'ai actuellement un revenu professionnel ou de remplacement",
+          "source_refs": [
+            "socialsecurity_regimes"
+          ]
+        },
+        {
+          "id": "rupture_droits_zero_revenu",
+          "label": "Je n'ai plus de revenu personnel / j'ai perdu un ou plusieurs droits",
+          "source_refs": [
+            "socialsecurity_regimes"
+          ]
+        },
+        {
+          "id": "droit_en_attente",
+          "label": "Une demande, un recours ou une réouverture est en cours",
+          "source_refs": [
+            "socialsecurity_regimes"
+          ]
+        },
+        {
+          "id": "dependant_revenus_menage",
+          "label": "Je n'ai pas de revenu personnel mais mon ménage en a",
+          "source_refs": [
+            "socialsecurity_regimes"
+          ]
+        },
+        {
+          "id": "couverture_sociale_etrangere",
+          "label": "Je dépends en tout ou partie d'une sécurité sociale étrangère",
+          "source_refs": [
+            "socialsecurity_international",
+            "coming_to_belgium"
+          ]
+        },
+        {
+          "id": "situation_inconnue",
+          "label": "Je ne sais pas quels droits sont encore ouverts",
+          "source_refs": [
+            "socialsecurity_regimes",
+            "coming_to_belgium"
+          ]
+        }
+      ]
+    }
+  ],
+  "routing_questions": [
+    {
+      "id": "q_nationalite",
+      "axis": "nationalite",
+      "text": "Quelle est votre nationalité ou votre appartenance UE/EEE/Suisse ?",
+      "only_if_uncertain": false
+    },
+    {
+      "id": "q_sejour",
+      "axis": "sejour_protection",
+      "text": "Quel titre, statut de séjour ou statut de protection détenez-vous actuellement ?",
+      "only_if_uncertain": false
+    },
+    {
+      "id": "q_regime",
+      "axis": "regime_professionnel_social",
+      "text": "De quel régime professionnel ou de sécurité sociale dépendez-vous ?",
+      "only_if_uncertain": false
+    },
+    {
+      "id": "q_revenus",
+      "axis": "situation_droits_revenus",
+      "text": "Avez-vous aujourd'hui un revenu ou un droit en cours de paiement ?",
+      "only_if_uncertain": false
+    },
+    {
+      "id": "q_document",
+      "axis": "sejour_protection",
+      "text": "Quel document concret avez-vous en main (carte, annexe, visa, carte spéciale, preuve de procédure) ?",
+      "only_if_uncertain": true
+    }
+  ],
+  "administrative_pathways": [
+    {
+      "id": "identifier_sejour",
+      "label": "Identifier et sécuriser le séjour",
+      "trigger_profiles": [
+        "ue_court_sejour",
+        "ue_sejour_plus_3_mois",
+        "ue_sejour_permanent",
+        "membre_famille_belge_ue",
+        "tiers_carte_a",
+        "tiers_carte_b",
+        "tiers_carte_k",
+        "tiers_carte_l",
+        "tiers_carte_h",
+        "tiers_carte_i",
+        "tiers_carte_j",
+        "brexit_carte_m",
+        "brexit_carte_n",
+        "visa_c",
+        "visa_d_attente_titre",
+        "titre_inconnu_ou_en_cours",
+        "sejour_irregulier"
+      ],
+      "steps": [
+        {
+          "id": "document",
+          "label": "Identifier le document réellement détenu et sa date de validité",
+          "state_options": [
+            "à faire",
+            "preuve obtenue",
+            "document expiré",
+            "document en renouvellement",
+            "incertain"
+          ]
+        },
+        {
+          "id": "base_legale",
+          "label": "Identifier la base du séjour: UE, travail, études, famille, long séjour, accord de retrait, autre",
+          "state_options": [
+            "à faire",
+            "identifiée",
+            "à vérifier"
+          ]
+        },
+        {
+          "id": "autorite",
+          "label": "Identifier l'autorité compétente: commune, Office des étrangers ou poste diplomatique/consulaire",
+          "state_options": [
+            "à faire",
+            "identifiée",
+            "contactée"
+          ]
+        },
+        {
+          "id": "echeance",
+          "label": "Repérer renouvellement, délai, convocation ou recours éventuel",
+          "state_options": [
+            "à faire",
+            "aucune échéance connue",
+            "échéance trouvée",
+            "urgent"
+          ]
+        },
+        {
+          "id": "registre",
+          "label": "Vérifier inscription communale, registre et numéro d'identification utilisable",
+          "state_options": [
+            "à faire",
+            "ok",
+            "problème à résoudre"
+          ]
+        },
+        {
+          "id": "droits_dependants",
+          "label": "Recalculer les droits qui dépendent du séjour avant toute recommandation EcoTank",
+          "state_options": [
+            "à faire",
+            "vérifiés",
+            "vérification juridique nécessaire"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "protection_internationale",
+      "label": "Protection internationale / apatridie",
+      "trigger_profiles": [
+        "demandeur_protection_internationale",
+        "refugie_reconnu",
+        "protection_subsidiaire",
+        "protection_temporaire",
+        "apatridie_sejour"
+      ],
+      "steps": [
+        {
+          "id": "stade",
+          "label": "Identifier le stade exact: demande, recours, reconnaissance, protection subsidiaire/temporaire ou apatridie",
+          "state_options": [
+            "à faire",
+            "identifié"
+          ]
+        },
+        {
+          "id": "document",
+          "label": "Identifier attestation, annexe ou carte de séjour actuellement valable",
+          "state_options": [
+            "à faire",
+            "preuve obtenue",
+            "renouvellement nécessaire"
+          ]
+        },
+        {
+          "id": "autorites",
+          "label": "Identifier les interlocuteurs utiles: OE, CGRA, Fedasil, commune ou tribunal selon le cas",
+          "state_options": [
+            "à faire",
+            "identifiés",
+            "contactés"
+          ]
+        },
+        {
+          "id": "accueil_soins",
+          "label": "Vérifier accueil, accompagnement, soins et couverture sociale correspondant au stade actuel",
+          "state_options": [
+            "à faire",
+            "vérifiés",
+            "urgent"
+          ]
+        },
+        {
+          "id": "recours",
+          "label": "Vérifier s'il existe un délai ou une voie de recours en cours",
+          "state_options": [
+            "à faire",
+            "aucun identifié",
+            "recours à examiner",
+            "urgent"
+          ]
+        },
+        {
+          "id": "transition",
+          "label": "Préparer la transition de droits lorsque le statut change",
+          "state_options": [
+            "à faire",
+            "non applicable",
+            "préparée"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "statut_special_international",
+      "label": "Diplomatie, organisations internationales et statuts spéciaux",
+      "trigger_profiles": [
+        "diplomatique_consulaire_special",
+        "organisation_internationale_special",
+        "expert_detache_mission_special",
+        "famille_statut_special",
+        "personnel_organisation_internationale"
+      ],
+      "steps": [
+        {
+          "id": "carte_speciale",
+          "label": "Identifier la carte/titre spécial et l'organisme qui l'a demandé",
+          "state_options": [
+            "à faire",
+            "preuve obtenue",
+            "à renouveler"
+          ]
+        },
+        {
+          "id": "accord",
+          "label": "Identifier la mission, l'organisation ou l'accord de siège applicable",
+          "state_options": [
+            "à faire",
+            "identifié",
+            "à vérifier"
+          ]
+        },
+        {
+          "id": "protocole",
+          "label": "Passer par le service Protocole compétent et, si nécessaire, le service RH/Protocole de l'employeur",
+          "state_options": [
+            "à faire",
+            "contacté",
+            "résolu"
+          ]
+        },
+        {
+          "id": "commune",
+          "label": "Vérifier quelles démarches restent du ressort de la commune malgré le statut spécial",
+          "state_options": [
+            "à faire",
+            "vérifiées"
+          ]
+        },
+        {
+          "id": "social_fiscal",
+          "label": "Vérifier séparément sécurité sociale, fiscalité et éventuels privilèges; ne jamais appliquer le régime ordinaire par défaut",
+          "state_options": [
+            "à faire",
+            "vérifiés",
+            "expertise nécessaire"
+          ]
+        },
+        {
+          "id": "famille",
+          "label": "Vérifier le statut des membres de famille séparément, surtout en cas d'activité professionnelle",
+          "state_options": [
+            "à faire",
+            "non applicable",
+            "vérifié"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "regime_social_professionnel",
+      "label": "Identifier le régime de sécurité sociale",
+      "trigger_profiles": [
+        "salarie",
+        "independant",
+        "fonctionnaire_statutaire",
+        "secteur_public_contractuel",
+        "chomeur",
+        "incapacite_invalidite",
+        "pensionne",
+        "etudiant",
+        "travailleur_detache",
+        "travailleur_frontalier",
+        "personnel_organisation_internationale",
+        "sans_regime_identifie",
+        "couverture_sociale_etrangere"
+      ],
+      "steps": [
+        {
+          "id": "regime",
+          "label": "Identifier le régime réel: salarié, indépendant, fonctionnaire, régime étranger ou particulier",
+          "state_options": [
+            "à faire",
+            "identifié",
+            "incertain"
+          ]
+        },
+        {
+          "id": "organisme",
+          "label": "Identifier l'organisme compétent et le dernier organisme payeur/cotisant",
+          "state_options": [
+            "à faire",
+            "identifié",
+            "contacté"
+          ]
+        },
+        {
+          "id": "historique",
+          "label": "Reconstituer les périodes de travail, cotisation, chômage, maladie ou détachement utiles",
+          "state_options": [
+            "à faire",
+            "partiel",
+            "complet"
+          ]
+        },
+        {
+          "id": "couverture_sante",
+          "label": "Vérifier mutualité/CAAMI ou couverture étrangère et continuité des soins",
+          "state_options": [
+            "à faire",
+            "ok",
+            "rupture à traiter"
+          ]
+        },
+        {
+          "id": "droits",
+          "label": "Vérifier les branches concernées: chômage, incapacité, pension, famille, accident, faillite, etc.",
+          "state_options": [
+            "à faire",
+            "vérifiés",
+            "recours/réouverture à examiner"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rupture_droits",
+      "label": "Rupture de droits / zéro revenu",
+      "trigger_profiles": [
+        "rupture_droits_zero_revenu",
+        "droit_en_attente",
+        "dependant_revenus_menage",
+        "sans_regime_identifie",
+        "situation_inconnue"
+      ],
+      "steps": [
+        {
+          "id": "urgence",
+          "label": "Identifier ce qui ne peut pas attendre: nourriture, logement, énergie, soins, transport, enfants",
+          "state_options": [
+            "à faire",
+            "sécurisé",
+            "urgence active"
+          ]
+        },
+        {
+          "id": "dernier_droit",
+          "label": "Identifier le dernier statut/droit perdu, la date et la raison exacte",
+          "state_options": [
+            "à faire",
+            "identifié"
+          ]
+        },
+        {
+          "id": "decision",
+          "label": "Obtenir la décision écrite, les preuves et les délais de recours/réouverture",
+          "state_options": [
+            "à faire",
+            "obtenu",
+            "absence de décision écrite",
+            "délai urgent"
+          ]
+        },
+        {
+          "id": "droits_secondaires",
+          "label": "Préserver soins, mutualité, adresse, allocations familiales et autres droits indépendants du revenu perdu",
+          "state_options": [
+            "à faire",
+            "vérifiés",
+            "rupture détectée"
+          ]
+        },
+        {
+          "id": "recours_reouverture",
+          "label": "Explorer recours, révision, nouvelle demande ou changement de régime sans présumer du résultat",
+          "state_options": [
+            "à faire",
+            "piste trouvée",
+            "en cours",
+            "aucune piste démontrée"
+          ]
+        },
+        {
+          "id": "aides_sans_statut",
+          "label": "Chercher les aides fondées sur revenus, ménage ou dépenses plutôt que sur le statut perdu",
+          "state_options": [
+            "à faire",
+            "recherche effectuée"
+          ]
+        },
+        {
+          "id": "plan",
+          "label": "Produire un plan ordonné: aujourd'hui / cette semaine / avant les échéances",
+          "state_options": [
+            "à faire",
+            "plan généré"
+          ]
+        }
+      ]
+    }
+  ],
+  "special_warnings": [
+    {
+      "profile_id": "sejour_irregulier",
+      "level": "high",
+      "message": "Ne jamais déduire absence totale de droits. Orienter vers les droits et soins qui subsistent, l'aide juridique et la vérification du séjour."
+    },
+    {
+      "profile_id": "titre_inconnu_ou_en_cours",
+      "level": "high",
+      "message": "Ne jamais classer automatiquement la personne comme irrégulière; demander le document ou la preuve de procédure."
+    },
+    {
+      "profile_id": "diplomatique_consulaire_special",
+      "level": "high",
+      "message": "Les privilèges, immunités, fiscalité et sécurité sociale peuvent déroger au droit commun; utiliser les sources du Protocole."
+    },
+    {
+      "profile_id": "organisation_internationale_special",
+      "level": "high",
+      "message": "Le titre de séjour spécial et le régime social/fiscal peuvent être propres à l'organisation et à l'accord de siège."
+    },
+    {
+      "profile_id": "rupture_droits_zero_revenu",
+      "level": "critical",
+      "message": "Activer simultanément le parcours rupture_droits: urgence, maintien des droits secondaires, recours/réouverture et alternatives."
+    }
+  ],
+  "official_sources": {
+    "cgra_asylum": {
+      "label": "CGRA — protection internationale",
+      "url": "https://www.cgra.be/fr/asile",
+      "authority": "CGRA"
+    },
+    "cgra_refugee": {
+      "label": "CGRA — réfugié reconnu",
+      "url": "https://www.cgra.be/fr/asile/refugie-reconnu",
+      "authority": "CGRA"
+    },
+    "cgra_subsidiary": {
+      "label": "CGRA — bénéficiaire de la protection subsidiaire",
+      "url": "https://www.cgra.be/fr/asile/beneficiaire-de-la-protection-subsidiaire",
+      "authority": "CGRA"
+    },
+    "coming_to_belgium": {
+      "label": "Coming to Belgium — couverture sociale transfrontalière",
+      "url": "https://www.comingtobelgium.be/",
+      "authority": "Sécurité sociale belge"
+    },
+    "diplomacy_diplomatic": {
+      "label": "SPF Affaires étrangères — missions diplomatiques et consulaires",
+      "url": "https://diplomatie.belgium.be/fr/protocole/privileges-et-immunites/missions-diplomatiques-et-consulaires",
+      "authority": "SPF Affaires étrangères"
+    },
+    "diplomacy_io": {
+      "label": "SPF Affaires étrangères — organisations internationales",
+      "url": "https://diplomatie.belgium.be/fr/protocole/privileges-et-immunites/organisations-internationales",
+      "authority": "SPF Affaires étrangères"
+    },
+    "diplomacy_special": {
+      "label": "SPF Affaires étrangères — statuts spéciaux",
+      "url": "https://diplomatie.belgium.be/fr/protocole/privileges-et-immunites/affaires-juridiques-immunites-et-statuts-speciaux",
+      "authority": "SPF Affaires étrangères"
+    },
+    "dofi_brexit": {
+      "label": "Office des étrangers — Brexit / accord de retrait",
+      "url": "https://dofi.ibz.be/fr/themes/brexit",
+      "authority": "Office des étrangers"
+    },
+    "dofi_family": {
+      "label": "Office des étrangers — regroupement familial",
+      "url": "https://dofi.ibz.be/fr/themes/third-country-nationals/regroupement-familial",
+      "authority": "Office des étrangers"
+    },
+    "dofi_irregular": {
+      "label": "Office des étrangers — séjour irrégulier",
+      "url": "https://dofi.ibz.be/fr/themes/sejour-irregulier",
+      "authority": "Office des étrangers"
+    },
+    "dofi_third_country": {
+      "label": "Office des étrangers — cartes pour ressortissants de pays tiers",
+      "url": "https://dofi.ibz.be/fr/themes/propos/cartes-electroniques-pour-etrangers/ressortissants-de-pays-tiers",
+      "authority": "Office des étrangers"
+    },
+    "dofi_ukraine": {
+      "label": "Office des étrangers — Ukraine / protection temporaire",
+      "url": "https://dofi.ibz.be/fr/themes/ukraine",
+      "authority": "Office des étrangers"
+    },
+    "dofi_union": {
+      "label": "Office des étrangers — citoyens de l'Union",
+      "url": "https://dofi.ibz.be/fr/themes/citoyens-de-lunion",
+      "authority": "Office des étrangers"
+    },
+    "socialsecurity_international": {
+      "label": "SPF Sécurité sociale — coordination internationale",
+      "url": "https://socialsecurity.belgium.be/fr/a-propos-de-la-securite-sociale/international",
+      "authority": "SPF Sécurité sociale"
+    },
+    "socialsecurity_regimes": {
+      "label": "SPF Sécurité sociale — structure et régimes",
+      "url": "https://socialsecurity.belgium.be/fr/a-propos-de-la-securite-sociale/structure-et-organisation",
+      "authority": "SPF Sécurité sociale"
+    }
+  },
+  "safety": {
+    "informational_only": true,
+    "creates_entitlements": false,
+    "decides_eligibility": false,
+    "decides_immigration_status": false,
+    "decides_refugee_status": false,
+    "changes_amounts": false,
+    "requires_current_official_verification": true
+  }
+}
