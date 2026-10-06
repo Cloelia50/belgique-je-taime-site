@@ -976,7 +976,7 @@
         "pathway_id": "rupture_droits",
         "step_id": "decision",
         "profile_ids_any": [],
-        "category_id": "cpas",
+        "category_id": "sansrevenu",
         "item_title": "Refus ou silence du CPAS : recours au tribunal du travail",
         "reason": "À ouvrir si le problème concerne précisément une décision ou une absence de décision du CPAS."
       },
