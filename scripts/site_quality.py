@@ -7,7 +7,7 @@ errors = []
 
 required = [
     "index.html", "a-propos.html", "methodologie.html", "confidentialite.html",
-    "404.html", "robots.txt", "sitemap.xml", "analytics.js", "site.css",
+    "404.html", "signaler.html", "robots.txt", "sitemap.xml", "analytics.js", "site.css",
     "activikids/index.html", "ecotank/index.html", "cogito/index.html",
 ]
 for rel in required:
@@ -53,6 +53,28 @@ for rel in ("index.html", "a-propos.html", "methodologie.html", "confidentialite
     for m in re.finditer(r"<a\b[^>]*target=[\"']_blank[\"'][^>]*>", text, re.I):
         if "noopener" not in m.group(0).lower():
             errors.append(f"blank_without_noopener:{rel}")
+
+
+BASE = "https://cloelia50.github.io/belgique-je-taime-site/"
+PROJECT_ROOT = "/belgique-je-taime-site/"
+
+# Les pages globales doivent annoncer leur URL canonique et garder un accès au signalement.
+for rel in ("index.html", "a-propos.html", "methodologie.html", "confidentialite.html", "signaler.html"):
+    text = (ROOT / rel).read_text(encoding="utf-8")
+    expected = BASE if rel == "index.html" else BASE + rel
+    if f'<link rel="canonical" href="{expected}">' not in text:
+        errors.append(f"canonical_missing_or_wrong:{rel}")
+    if rel != "signaler.html" and 'href="signaler.html"' not in text:
+        errors.append(f"report_link_missing:{rel}")
+
+sitemap = (ROOT / "sitemap.xml").read_text(encoding="utf-8")
+if BASE + "signaler.html" not in sitemap:
+    errors.append("sitemap_missing:signaler.html")
+
+not_found = (ROOT / "404.html").read_text(encoding="utf-8")
+for required_404 in (PROJECT_ROOT + "site.css", PROJECT_ROOT + '",', PROJECT_ROOT + "activikids/", PROJECT_ROOT + "signaler.html"):
+    if required_404 not in not_found:
+        errors.append(f"404_not_project_root_safe:{required_404}")
 
 forbidden_terms = ("interest_score", "score_breakdown", "source_replacement_ledger", "PUBLIC_SITE_TOKEN")
 for p in ROOT.rglob("*"):
