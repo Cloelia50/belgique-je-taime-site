@@ -537,7 +537,31 @@ body.explore-mode .searchbar{grid-column:1/-1}
 .admin-source-list a:hover{text-decoration:underline;text-underline-offset:3px}
 .admin-source-list small{display:block;color:var(--muted);margin-top:2px}
 .admin-empty{padding:16px;border:1px dashed var(--line);border-radius:14px;color:var(--muted)}
-@media(max-width:700px){.admin-choice-grid{grid-template-columns:1fr}.admin-step{grid-template-columns:1fr}.admin-step-state{min-height:44px}.admin-bridge-card{grid-template-columns:1fr}.admin-bridge-card button{justify-self:start}}
+.online-readiness{margin:20px 0;padding:18px;border:1px solid var(--line);border-radius:18px;background:var(--sheet)}
+.online-readiness-head{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;flex-wrap:wrap}
+.online-readiness-head h3{margin:0 0 5px}
+.online-readiness-head p{margin:0;color:var(--muted);max-width:65ch;font-size:.9rem}
+.online-privacy{margin:12px 0;padding:11px 13px;border-radius:11px;background:var(--gold-soft);color:var(--ink);font-size:.82rem;line-height:1.4}
+.online-readiness-list{display:grid;gap:8px;margin-top:12px}
+.online-ready-item{display:grid;grid-template-columns:minmax(0,1fr) minmax(185px,250px);gap:12px;align-items:center;padding:11px 0;border-top:1px solid var(--line)}
+.online-ready-item:first-child{border-top:0}
+.online-ready-item b{display:block;font-size:.9rem}
+.online-ready-item small{display:block;margin-top:3px;color:var(--muted);line-height:1.35}
+.online-ready-item select{width:100%;min-height:44px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink);padding:8px 10px;font:inherit}
+.online-actions{margin:18px 0}
+.online-actions h3{margin:0 0 5px}
+.online-actions>p{margin:0 0 12px;color:var(--muted);font-size:.9rem}
+.online-action-list{display:grid;gap:10px}
+.online-action-card{padding:14px;border:1px solid var(--line);border-radius:14px;background:var(--sheet)}
+.online-action-card.urgent{box-shadow:inset 4px 0 0 var(--urgent)}
+.online-action-card h4{margin:0 0 4px;font-family:var(--display);font-size:1rem}
+.online-action-card p{margin:0 0 10px;color:var(--muted);font-size:.84rem;line-height:1.4}
+.online-action-links{display:flex;flex-wrap:wrap;gap:8px}
+.online-action-links a{display:inline-flex;align-items:center;min-height:38px;padding:7px 11px;border-radius:9px;border:1px solid var(--line);text-decoration:none;color:var(--ink);font-weight:800;font-size:.82rem}
+.online-action-links a.primary{background:var(--ink);color:var(--sheet);border-color:var(--ink)}
+.online-action-links a:hover{text-decoration:underline;text-underline-offset:3px}
+.online-summary{margin-top:9px;font-size:.8rem;color:var(--muted)}
+@media(max-width:700px){.admin-choice-grid{grid-template-columns:1fr}.admin-step{grid-template-columns:1fr}.admin-step-state{min-height:44px}.admin-bridge-card{grid-template-columns:1fr}.admin-bridge-card button{justify-self:start}.online-ready-item{grid-template-columns:1fr}}
 </style><style>/* ==========================================================================
    Belgique, je t’aime — V76 · sobre, chaleureux, coloré
    Surfaces claires, contours fins, ombres douces, marine + teal comme socle,
@@ -1077,6 +1101,15 @@ nav.index .tab{width:12px;height:22px;border-radius:5px 5px 0 0}
       <div class="admin-results-note"><strong>Important</strong>Ce parcours ne confirme ni un titre de séjour, ni un statut de réfugié, ni l’éligibilité à une aide. Il sert à identifier les bonnes démarches et les sources officielles à vérifier.</div>
       <div id="simpleAdminWarningHost"></div>
       <div id="simpleAdminProfileSummary" class="admin-profile-summary"></div>
+      <section id="simpleOnlineReadiness" class="online-readiness">
+        <div class="online-readiness-head">
+          <div><h3>Avant les démarches : est-ce que les bases fonctionnent ?</h3><p>EcoTank vérifie ce qui peut bloquer plusieurs démarches à la fois : identité numérique, adresse, compte bancaire, mutualité, réception des courriers et matériel.</p></div>
+          <button type="button" class="soft" id="simpleOnlineReset">Réinitialiser ces réponses</button>
+        </div>
+        <div class="online-privacy"><strong>Ne donnez jamais ici</strong> votre code PIN eID, code itsme, mot de passe, numéro complet de registre national ou numéro de compte. EcoTank demande seulement si l’outil fonctionne ou non.</div>
+        <div id="simpleOnlineReadinessList" class="online-readiness-list"></div>
+        <div id="simpleOnlineActions" class="online-actions"></div>
+      </section>
       <div id="simpleAdminPathways"></div>
       <div id="simpleAdminSources" class="admin-sources"></div>
       <div class="simple-actions">
@@ -67303,7 +67336,7 @@ enhanceFactChoices();syncFactForm();applyGlossary(document.getElementById("list"
 
 
   /* === EcoTank v78 : parcours administratif public, réponses en mémoire seulement === */
-  let adminCatalog=null, adminCatalogPromise=null, adminQuestionIndex=0, adminDocument="", adminSelected={}, adminStepState={};
+  let adminCatalog=null, adminCatalogPromise=null, adminQuestionIndex=0, adminDocument="", adminSelected={}, adminStepState={}, adminReadiness={};
   const ADMIN_AXES=["nationalite","sejour_protection","regime_professionnel_social","situation_droits_revenus"];
   const ADMIN_HELP={
     nationalite:"La nationalité et le titre de séjour sont deux choses différentes. Choisissez la catégorie qui correspond le mieux.",
@@ -67448,9 +67481,56 @@ enhanceFactChoices();syncFactForm();applyGlossary(document.getElementById("list"
     const gapHtml=gap?'<div class="admin-gap-note"><strong>Couverture EcoTank :</strong> '+esc(gap)+'</div>':"";
     return '<section class="admin-pathway '+(pathway.id==="rupture_droits"?"critical":"")+'"><h3>'+esc(pathway.label)+'</h3><p class="admin-pathway-lead">'+(pathway.id==="rupture_droits"?"Commencez par ce qui ne peut pas attendre, puis reconstruisez les droits et les preuves.":"Suivez les vérifications dans cet ordre et conservez les décisions ou preuves écrites.")+'</p>'+gapHtml+inner+'</section>';
   }
+  function adminSourceByRef(ref){
+    return adminCatalog&&adminCatalog.official_sources&&adminCatalog.official_sources[ref]||null;
+  }
+  function adminActionLink(spec){
+    if(!spec)return null;
+    if(spec.url)return {label:spec.label||"Ouvrir",url:spec.url};
+    if(spec.source_ref){
+      const src=adminSourceByRef(spec.source_ref);
+      if(src&&src.url)return {label:spec.label||src.label||"Ouvrir",url:src.url};
+    }
+    return null;
+  }
+  function renderOnlineReadiness(){
+    const list=document.getElementById("simpleOnlineReadinessList"),actionsHost=document.getElementById("simpleOnlineActions");
+    const online=adminCatalog&&adminCatalog.online_assistance||{};
+    const items=(online.readiness_items||[]).slice().sort(function(a,b){return (a.priority||99)-(b.priority||99);});
+    if(list){
+      list.innerHTML=items.map(function(item){
+        const value=adminReadiness[item.id]||"";
+        return '<div class="online-ready-item"><div><b>'+esc(item.label)+'</b><small>'+esc(item.question||"")+'</small></div><select data-readiness-id="'+esc(item.id)+'"><option value="">Je n’ai pas encore vérifié</option>'+(item.states||[]).map(function(state){return '<option value="'+esc(state)+'" '+(value===state?'selected':'')+'>'+esc(state)+'</option>';}).join("")+'</select></div>';
+      }).join("");
+    }
+    if(actionsHost){
+      const selectedProfiles=adminSelectedIds();
+      const actions=(online.fast_actions||[]).filter(function(action){
+        const profileNeed=action.when_profiles_any||[];
+        const profileHit=profileNeed.length&&profileNeed.some(function(id){return selectedProfiles.includes(id);});
+        const readiness=action.when_readiness||{};
+        const readinessHit=Object.keys(readiness).some(function(id){
+          return (readiness[id]||[]).includes(adminReadiness[id]);
+        });
+        return profileHit||readinessHit;
+      });
+      const answered=Object.keys(adminReadiness).filter(function(id){return !!adminReadiness[id];}).length;
+      if(!actions.length){
+        actionsHost.innerHTML='<h3>Actions de déblocage</h3><p>Indiquez ce qui fonctionne ou bloque ci-dessus. EcoTank fera remonter les actions réalisables immédiatement.</p><div class="online-summary">'+answered+' élément'+(answered>1?'s':'')+' vérifié'+(answered>1?'s':'')+' sur '+items.length+'.</div>';
+      }else{
+        actionsHost.innerHTML='<h3>À débloquer maintenant</h3><p>Commencez par les premières cartes : elles peuvent débloquer plusieurs autres démarches.</p><div class="online-action-list">'+actions.map(function(action,index){
+          const main=adminActionLink(action.online),fallback=adminActionLink(action.fallback);
+          const links=[main&&'<a class="primary" href="'+esc(main.url)+'" target="_blank" rel="noopener noreferrer">'+esc(main.label)+'</a>',fallback&&'<a href="'+esc(fallback.url)+'" target="_blank" rel="noopener noreferrer">Alternative : '+esc(fallback.label)+'</a>'].filter(Boolean).join("");
+          return '<article class="online-action-card '+(index===0?'urgent':'')+'"><h4>'+(index+1)+'. '+esc(action.label)+'</h4>'+(action.note?'<p>'+esc(action.note)+'</p>':'')+'<div class="online-action-links">'+links+'</div></article>';
+        }).join("")+'</div><div class="online-summary">'+answered+' élément'+(answered>1?'s':'')+' vérifié'+(answered>1?'s':'')+' sur '+items.length+'. Les réponses restent uniquement en mémoire pendant cette page.</div>';
+      }
+    }
+  }
+
   function renderAdminResults(){
     if(!adminCatalog)return;
     const ids=adminSelectedIds(),optionMap=adminOptionMap(),summary=document.getElementById("simpleAdminProfileSummary");
+    renderOnlineReadiness();
     if(summary)summary.innerHTML=ids.length?ids.map(function(id){return '<span class="admin-profile-chip">'+esc(optionMap[id]&&optionMap[id].label||id)+'</span>';}).join(""):'<span class="admin-profile-chip">Aucun statut précis indiqué</span>';
     const warnings=(adminCatalog.special_warnings||[]).filter(function(w){return ids.includes(w.profile_id);});
     const wh=document.getElementById("simpleAdminWarningHost");
@@ -67468,7 +67548,7 @@ enhanceFactChoices();syncFactForm();applyGlossary(document.getElementById("list"
     renderAdminResults();showSimple("simpleAdminResults");
   }
   function resetAdminJourney(){
-    adminQuestionIndex=0;adminDocument="";adminSelected={};adminStepState={};
+    adminQuestionIndex=0;adminDocument="";adminSelected={};adminStepState={};adminReadiness={};
     showSimple("simpleHome");
   }
 
@@ -67493,6 +67573,14 @@ enhanceFactChoices();syncFactForm();applyGlossary(document.getElementById("list"
     if(e.target.closest("[data-admin-finish]")){finishAdminJourney();return;}
     if(e.target.closest("[data-admin-next]")){nextAdminQuestion();return;}
   });
+  document.getElementById("simpleOnlineReadinessList")?.addEventListener("change",function(e){
+    const select=e.target.closest("[data-readiness-id]");
+    if(select){
+      if(select.value)adminReadiness[select.dataset.readinessId]=select.value;else delete adminReadiness[select.dataset.readinessId];
+      renderOnlineReadiness();
+    }
+  });
+  document.getElementById("simpleOnlineReset")?.addEventListener("click",function(){adminReadiness={};renderOnlineReadiness();});
   document.getElementById("simpleAdminPathways")?.addEventListener("change",function(e){
     const select=e.target.closest("[data-admin-step]");if(select)adminStepState[select.dataset.adminStep]=select.value;
   });
