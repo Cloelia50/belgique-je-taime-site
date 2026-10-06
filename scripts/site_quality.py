@@ -35,7 +35,7 @@ for phrase in ("Gratuit", "Indépendant", "Méthode &amp; sources", "Vie privée
         errors.append(f"home_missing_trust_marker:{phrase}")
 
 privacy = (ROOT / "confidentialite.html").read_text(encoding="utf-8")
-for phrase in ("CounterAPI", "Nominatim", "Écotank n’envoie pas de mesure d’audience"):
+for phrase in ("CounterAPI", "Nominatim", "Écotank n’envoie pas de mesure d’audience", "Le site public est hébergé par GitHub Pages"):
     if phrase not in privacy:
         errors.append(f"privacy_missing_disclosure:{phrase}")
 
