@@ -1,10 +1,10 @@
 {
   "source": "live Google Sheet",
-  "generation_time_utc": "2026-10-06T04:53:56.126500+00:00",
+  "generation_time_utc": "2026-10-06T05:33:55.973710+00:00",
   "counts": {
-    "Événements": 1078,
-    "Éditions": 1158,
-    "Sources & partenaires": 983,
+    "Événements": 1080,
+    "Éditions": 1160,
+    "Sources & partenaires": 987,
     "Lieux à surveiller": 297,
     "Contrôle mensuel 528": 528
   },
@@ -13,21 +13,21 @@
     "À rechercher": 524
   },
   "build": {
-    "event_count": 1078,
-    "edition_count": 1158,
+    "event_count": 1080,
+    "edition_count": 1160,
     "place_count": 297,
-    "new_events": 11,
+    "new_events": 13,
     "new_places": 38,
     "old_site_editions": 1155,
     "editions_overridden_by_authoritative_sheet": true
   },
-  "monitored_url_candidates": 981,
+  "monitored_url_candidates": 986,
   "scraper_to_publication": "INTERDIT : revue humaine -> Sheet -> prochaine build",
   "site_generation": "Fichiers statiques générés; déploiement à constater séparément",
   "ratissage_private": {
     "ratissage_open": 528,
     "partial_controls": 4,
-    "annual_2027_without_confirmed_edition": 725,
+    "annual_2027_without_confirmed_edition": 727,
     "annual_due_now": 0,
     "automatic_month_certification": false,
     "future_dates_are_predictions": false
@@ -43,14 +43,14 @@
     "attached_to_existing_events": 13
   },
   "daily_last_run": {
-    "at_utc": "2026-10-06T04:57:17.208438+00:00",
-    "count": 8,
-    "ok": 0,
+    "at_utc": "2026-10-06T05:36:21.547010+00:00",
+    "count": 13,
+    "ok": 10,
     "blocked": 0,
-    "failed": 8
+    "failed": 3
   },
   "archive_last_run": {
-    "at_utc": "2026-10-06T04:57:17.208592+00:00",
+    "at_utc": "2026-10-06T05:36:21.547174+00:00",
     "count": 8,
     "ok": 8,
     "blocked": 0,
