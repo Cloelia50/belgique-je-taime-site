@@ -364,6 +364,13 @@
           ]
         },
         {
+          "id": "beneficiaire_cpas",
+          "label": "Je reçois actuellement une aide du CPAS / un revenu d’intégration",
+          "source_refs": [
+            "cpas_dis_procedure"
+          ]
+        },
+        {
           "id": "droit_en_attente",
           "label": "Une demande, un recours ou une réouverture est en cours",
           "source_refs": [
@@ -711,6 +718,62 @@
       ]
     },
     {
+      "id": "assistance_sociale_cpas",
+      "label": "Dossier CPAS déjà ouvert / revenu d’intégration",
+      "trigger_profiles": [
+        "beneficiaire_cpas"
+      ],
+      "steps": [
+        {
+          "id": "dossier_cpas",
+          "label": "Identifier le CPAS qui gère le dossier et conserver la référence du dossier ou de la dernière décision",
+          "state_options": [
+            "à faire",
+            "identifié",
+            "preuve conservée"
+          ]
+        },
+        {
+          "id": "decision_paiement",
+          "label": "Vérifier la dernière décision écrite, sa période et les informations de paiement sans conclure automatiquement au maintien du droit",
+          "state_options": [
+            "à faire",
+            "vérifié",
+            "information manquante"
+          ]
+        },
+        {
+          "id": "changement_situation",
+          "label": "Vérifier si un changement de situation doit être signalé au CPAS et par quel canal",
+          "state_options": [
+            "à faire",
+            "non applicable",
+            "signalé",
+            "à vérifier"
+          ]
+        },
+        {
+          "id": "continuites",
+          "label": "Vérifier séparément soins, adresse, logement, énergie, famille et autres aides qui ne doivent pas être confondus avec le revenu principal",
+          "state_options": [
+            "à faire",
+            "vérifiés",
+            "problème détecté"
+          ]
+        },
+        {
+          "id": "recours",
+          "label": "En cas de refus, modification, suspension ou silence, relever la date de notification et vérifier la voie et le délai de recours",
+          "state_options": [
+            "à faire",
+            "aucun problème identifié",
+            "recours à examiner",
+            "urgent"
+          ]
+        }
+      ]
+    },
+    {
       "id": "rupture_droits",
       "label": "Rupture de droits / zéro revenu",
       "trigger_profiles": [
@@ -848,6 +911,11 @@
       "label": "Coming to Belgium — couverture sociale transfrontalière",
       "url": "https://www.comingtobelgium.be/",
       "authority": "Sécurité sociale belge"
+    },
+    "cpas_dis_procedure": {
+      "label": "SPP Intégration sociale — droit à l’intégration sociale : procédure",
+      "url": "https://primabook.mi-is.be/fr/droit-lintegration-sociale/la-procedure",
+      "authority": "SPP Intégration sociale"
     },
     "cpas_online": {
       "label": "CPAS Online — première demande d’aide en ligne",
@@ -1783,6 +1851,26 @@
         "category_id": "justice",
         "item_title": "Premier conseil juridique gratuit pour tous",
         "reason": "Pour vérifier un délai, un recours ou la nécessité d’un accompagnement juridique."
+      },
+      {
+        "pathway_id": "assistance_sociale_cpas",
+        "step_id": "recours",
+        "profile_ids_any": [
+          "beneficiaire_cpas"
+        ],
+        "category_id": "sansrevenu",
+        "item_title": "Refus ou silence du CPAS : recours au tribunal du travail",
+        "reason": "Pour vérifier une contestation ou un délai lorsqu’un dossier CPAS déjà ouvert fait l’objet d’un refus, d’une suspension, d’une modification ou d’un silence."
+      },
+      {
+        "pathway_id": "assistance_sociale_cpas",
+        "step_id": "continuites",
+        "profile_ids_any": [
+          "beneficiaire_cpas"
+        ],
+        "category_id": "cpas",
+        "item_title": "Frais de transport, médicaux, médicaments, hospitalisation",
+        "reason": "Pour vérifier séparément certaines aides de soins ou de frais lorsqu’un dossier CPAS existe déjà, sans les confondre avec le revenu principal."
       }
     ],
     "gap_messages": {
@@ -1790,7 +1878,8 @@
       "protection_internationale": "EcoTank ne possède pas encore assez de fiches spécifiques à l’asile, au statut de réfugié, à la protection subsidiaire/temporaire ou à l’apatridie. Les sources CGRA, Office des étrangers et les autorités compétentes restent prioritaires.",
       "statut_special_international": "EcoTank ne possède pas encore de fiches suffisamment spécifiques aux privilèges, immunités, cartes spéciales et accords de siège. Utilisez les sources du Protocole et de l’organisation concernée.",
       "regime_social_professionnel": "Certaines branches professionnelles ou transfrontalières restent couvertes seulement par les sources officielles lorsqu’aucune fiche EcoTank suffisamment précise n’existe.",
-      "rupture_droits": "Les fiches reliées servent de filets de sécurité ou de pistes de recours ; elles ne prouvent jamais l’ouverture d’un droit."
+      "rupture_droits": "Les fiches reliées servent de filets de sécurité ou de pistes de recours ; elles ne prouvent jamais l’ouverture d’un droit.",
+      "assistance_sociale_cpas": "Pour un dossier CPAS déjà ouvert, EcoTank guide le suivi, la conservation des décisions et les pistes de recours. Une première demande CPAS Online n’est pas proposée comme si la personne n’avait pas encore de dossier."
     }
   },
   "support_layer": {
@@ -2232,7 +2321,10 @@
             "id": "start_from_zero",
             "label": "Je pars de presque zéro / je ne sais plus quels droits ou documents sont encore en ordre",
             "destination_id": "foundation_recovery",
-            "general_aid_catalog": "hidden"
+            "general_aid_catalog": "hidden",
+            "suggested_profile_ids": [
+              "situation_inconnue"
+            ]
           },
           {
             "id": "replacement_income",
@@ -2244,7 +2336,10 @@
             "id": "employee",
             "label": "Je travaille comme salarié, ouvrier ou employé",
             "next_question_id": "q_foundations_ok",
-            "destination_id": "employee"
+            "destination_id": "employee",
+            "suggested_profile_ids": [
+              "salarie"
+            ]
           },
           {
             "id": "public_worker",
@@ -2256,7 +2351,10 @@
             "id": "self_employed",
             "label": "Je suis indépendant en personne physique / profession libérale",
             "next_question_id": "q_business_stage",
-            "destination_id": "self_employed"
+            "destination_id": "self_employed",
+            "suggested_profile_ids": [
+              "independant"
+            ]
           },
           {
             "id": "company_director",
@@ -2268,13 +2366,25 @@
             "id": "student",
             "label": "Je suis étudiant",
             "next_question_id": "q_foundations_ok",
-            "destination_id": "student"
+            "destination_id": "student",
+            "suggested_profile_ids": [
+              "etudiant"
+            ]
           },
           {
             "id": "retired",
             "label": "Je suis pensionné",
             "next_question_id": "q_foundations_ok",
-            "destination_id": "retired"
+            "destination_id": "retired",
+            "suggested_profile_ids": [
+              "pensionne"
+            ]
+          },
+          {
+            "id": "new_arrival_or_residence",
+            "label": "Je viens d’arriver en Belgique / mon séjour, ma protection ou mon titre doit être clarifié",
+            "destination_id": "residence_status",
+            "general_aid_catalog": "hidden"
           },
           {
             "id": "international_special",
@@ -2285,7 +2395,10 @@
             "id": "other_unknown",
             "label": "Je ne sais pas / aucune de ces situations ne correspond vraiment",
             "destination_id": "guided_orientation",
-            "general_aid_catalog": "hidden"
+            "general_aid_catalog": "hidden",
+            "suggested_profile_ids": [
+              "situation_inconnue"
+            ]
           }
         ],
         "groups": [
@@ -2320,6 +2433,7 @@
             "option_ids": [
               "student",
               "retired",
+              "new_arrival_or_residence",
               "international_special"
             ]
           }
@@ -2340,6 +2454,10 @@
             "label": "Chômage / allocations ONEM",
             "profile_ids": [
               "chomeur"
+            ],
+            "suggested_profile_ids": [
+              "chomeur",
+              "revenu_actif"
             ]
           },
           {
@@ -2347,6 +2465,10 @@
             "label": "CPAS / revenu d'intégration / aide sociale",
             "tags": [
               "cpas"
+            ],
+            "suggested_profile_ids": [
+              "beneficiaire_cpas",
+              "revenu_actif"
             ]
           },
           {
@@ -2354,6 +2476,10 @@
             "label": "Incapacité de travail / invalidité",
             "profile_ids": [
               "incapacite_invalidite"
+            ],
+            "suggested_profile_ids": [
+              "incapacite_invalidite",
+              "revenu_actif"
             ]
           },
           {
@@ -2361,6 +2487,10 @@
             "label": "Pension / GRAPA",
             "profile_ids": [
               "pensionne"
+            ],
+            "suggested_profile_ids": [
+              "pensionne",
+              "revenu_actif"
             ]
           },
           {
@@ -2368,6 +2498,9 @@
             "label": "Autre allocation ou revenu de remplacement",
             "tags": [
               "replacement_income_other"
+            ],
+            "suggested_profile_ids": [
+              "revenu_actif"
             ]
           },
           {
@@ -2375,6 +2508,9 @@
             "label": "Je ne sais pas exactement",
             "tags": [
               "replacement_income_unknown"
+            ],
+            "suggested_profile_ids": [
+              "revenu_actif"
             ]
           }
         ],
@@ -2407,7 +2543,10 @@
           {
             "id": "no_or_unknown",
             "label": "Non / je ne sais plus ce qui est en ordre",
-            "effect": "foundation_recovery_first"
+            "effect": "foundation_recovery_first",
+            "suggested_profile_ids": [
+              "situation_inconnue"
+            ]
           }
         ]
       },
@@ -2555,7 +2694,13 @@
           "eid_pin",
           "itsme"
         ],
-        "can_surface_immediate_safety_nets": true
+        "can_surface_immediate_safety_nets": true,
+        "status_focus_axes": [
+          "situation_droits_revenus",
+          "regime_professionnel_social",
+          "sejour_protection",
+          "nationalite"
+        ]
       },
       {
         "id": "social_protection",
@@ -2569,6 +2714,10 @@
           "recours",
           "complément",
           "continuité"
+        ],
+        "status_focus_axes": [
+          "regime_professionnel_social",
+          "situation_droits_revenus"
         ]
       },
       {
@@ -2584,13 +2733,21 @@
           "réduction",
           "fiscalité",
           "famille"
+        ],
+        "status_focus_axes": [
+          "regime_professionnel_social",
+          "situation_droits_revenus"
         ]
       },
       {
         "id": "public_worker",
         "title": "Ma situation dans le secteur public",
         "intro": "Votre régime peut différer de celui d'un salarié du privé. On le garde distinct dès le départ.",
-        "general_aid_catalog": "filtered"
+        "general_aid_catalog": "filtered",
+        "status_focus_axes": [
+          "regime_professionnel_social",
+          "situation_droits_revenus"
+        ]
       },
       {
         "id": "self_employed",
@@ -2635,6 +2792,10 @@
             "verified_at": "2026-10-06",
             "freshness": "high"
           }
+        ],
+        "status_focus_axes": [
+          "regime_professionnel_social",
+          "situation_droits_revenus"
         ]
       },
       {
@@ -2865,24 +3026,56 @@
       {
         "id": "student",
         "title": "Ma situation d'étudiant",
-        "general_aid_catalog": "filtered"
+        "general_aid_catalog": "filtered",
+        "status_focus_axes": [
+          "regime_professionnel_social",
+          "situation_droits_revenus"
+        ]
       },
       {
         "id": "retired",
         "title": "Ma situation de pensionné",
-        "general_aid_catalog": "filtered"
+        "general_aid_catalog": "filtered",
+        "status_focus_axes": [
+          "regime_professionnel_social",
+          "situation_droits_revenus"
+        ]
+      },
+      {
+        "id": "residence_status",
+        "label": "Clarifier mon séjour, ma protection et mon régime",
+        "general_aid_catalog": "hidden_until_status_orientation",
+        "special_form": "administrative_status_intake",
+        "status_focus_axes": [
+          "nationalite",
+          "sejour_protection",
+          "regime_professionnel_social"
+        ],
+        "administrative_first": true,
+        "title": "Clarifier mon séjour, ma protection et mon régime",
+        "intro": "On identifie d’abord votre document ou procédure de séjour, votre protection éventuelle et l’autorité compétente avant de vous proposer les démarches suivantes."
       },
       {
         "id": "international_special",
         "title": "Ma situation internationale ou spéciale",
         "general_aid_catalog": "hidden_until_status_orientation",
-        "start_with_existing_status_router": true
+        "start_with_existing_status_router": true,
+        "status_focus_axes": [
+          "sejour_protection",
+          "regime_professionnel_social"
+        ]
       },
       {
         "id": "guided_orientation",
         "title": "Trouver d'abord votre situation",
         "general_aid_catalog": "hidden_until_orientation",
-        "start_with_existing_status_router": true
+        "start_with_existing_status_router": true,
+        "status_focus_axes": [
+          "nationalite",
+          "sejour_protection",
+          "regime_professionnel_social",
+          "situation_droits_revenus"
+        ]
       }
     ],
     "business_guardrails": {
