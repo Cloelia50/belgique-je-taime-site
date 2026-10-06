@@ -1062,7 +1062,7 @@ nav.index .tab{width:12px;height:22px;border-radius:5px 5px 0 0}
 @media (prefers-reduced-motion:reduce){
   .ecotank-page .simple-home-card::before,.ecotank-page .simple-home-card::after,.ecotank-page .home-art .coin-float,.ecotank-page .twinkle,.ecotank-page .joy-badge::before,.ecotank-page .simple-progress span,.ecotank-page .simple-badge.likely::before{animation:none}
 }
-</style></head><body class="simple-mode ecotank-page"><a class="skip-link" href="#simpleApp">Aller au contenu</a><header class="site-topbar"><div class="site-container site-topbar-inner">
+</style><link rel="stylesheet" href="./entry-router.css"></head><body class="simple-mode ecotank-page"><a class="skip-link" href="#simpleApp">Aller au contenu</a><header class="site-topbar"><div class="site-container site-topbar-inner">
 <a class="site-brand" href="#" onclick="window.location.href='../'; return false;"><span class="site-brand-mark"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJnIiB4MT0iMCIgeTE9IjAiIHgyPSIxIiB5Mj0iMSI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjRkY5QThBIi8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjRTU2MjREIi8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiByeD0iMTgiIGZpbGw9IiMwRjIyNDciLz48cGF0aCBkPSJNMzIgNDdDMTcgMzYuNTAwIDE1LjUwMCAyNSAyMiAyMC41MDBjNC42MDAtMy4yMDAgOC42MDAtLjUwMCAxMCAzLjUwMCAxLjQwMC00IDUuNDAwLTYuNzAwIDEwLTMuNTAwQzQ4LjUwMCAyNSA0NyAzNi41MDAgMzIgNDdaIiBmaWxsPSJ1cmwoI2cpIi8+PGNpcmNsZSBjeD0iNDciIGN5PSIxNyIgcj0iNC41MDAiIGZpbGw9IiNGMkIzM0QiLz48L3N2Zz4=" alt="" width="44" height="44"></span><span>Belgique, je t’aime<small>guide pratique · Bruxelles</small></span></a>
 <nav class="site-nav" aria-label="Navigation principale"><a href="#simpleApp" aria-current="page">Économies</a><a href="#sorties">Sorties</a><a href="#apropos">À propos</a></nav>
 </div></header><section id="simpleApp" class="simple-app" aria-live="polite">
@@ -67257,6 +67257,10 @@ enhanceFactChoices();syncFactForm();applyGlossary(document.getElementById("list"
   ];
   function renderQuestion(){
     const q=questions[wizardIndex],host=document.getElementById("simpleQuestionHost");if(!q||!host)return;
+    if(q.key==="employment"&&window.ECOTANK_ENTRY_EMPLOYMENT){
+      const prefilled=window.ECOTANK_ENTRY_EMPLOYMENT;window.ECOTANK_ENTRY_EMPLOYMENT="";
+      applyEmployment(prefilled);nextQuestion();return;
+    }
     document.getElementById("simpleProgressBar").style.width=`${((wizardIndex+1)/questions.length)*100}%`;
     document.getElementById("simpleProgressText").textContent=`${wizardIndex+1} / ${questions.length}`;
     host.innerHTML=`<div class="simple-kicker">Quelques questions</div><h2>${esc(q.title)}</h2><p>${esc(q.help)}</p>${q.render()}`;
@@ -67649,7 +67653,7 @@ enhanceFactChoices();syncFactForm();applyGlossary(document.getElementById("list"
   document.getElementById("simpleSavingsList")?.addEventListener("click",e=>handleSimpleListClick(e,"simpleSavings"));
   document.getElementById("simpleDetailHost")?.addEventListener("click",e=>{if(e.target.closest("#simpleDetailBack")){showSimple(detailOrigin);return;}const b=e.target.closest("[data-simple-status]");if(b){setSimpleStatus(b.dataset.id,b.dataset.simpleStatus);if(b.dataset.simpleStatus==="skip")showSimple(detailOrigin);else{const hit=findHitById(b.dataset.id);if(hit)renderSimpleDetail(hit);} }});
 
-  document.getElementById("simpleStart")?.addEventListener("click",startWizard);
+  document.getElementById("simpleStart")?.addEventListener("click",()=>window.EcoTankEntryRouter?.start?.()||startWizard());
   document.getElementById("simpleMySavings")?.addEventListener("click",()=>showSimple("simpleSavings"));
   document.getElementById("simpleExplore")?.addEventListener("click",enterExplore);
   document.getElementById("simpleWizardHome")?.addEventListener("click",()=>showSimple("simpleHome"));
@@ -67768,4 +67772,4 @@ enhanceFactChoices();syncFactForm();applyGlossary(document.getElementById("list"
   }, true);
 })();
 
-</script><script defer src="../analytics.js"></script></body></html>
+</script><script defer src="./entry-router.js"></script><script defer src="../analytics.js"></script></body></html>
