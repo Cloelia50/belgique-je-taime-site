@@ -1430,7 +1430,91 @@
         "fallback": {},
         "note": null
       }
-    ]
+    ],
+    "evidence_pack": {
+      "purpose": "Préparer sur l’appareil de l’utilisateur les preuves les plus souvent nécessaires sans les téléverser vers EcoTank.",
+      "privacy_note": "EcoTank ne demande pas d’envoyer ces documents. Cette liste sert uniquement à préparer le dossier sur votre appareil ou dans un espace de stockage choisi par vous.",
+      "items": [
+        {
+          "id": "identity_copy",
+          "label": "Copie ou photo lisible du document d’identité / séjour actuel",
+          "why": "Souvent demandée pour identifier la personne ou vérifier le titre détenu."
+        },
+        {
+          "id": "administrative_decisions",
+          "label": "Dernières décisions écrites concernant chômage, mutuelle, invalidité, pension, CPAS ou séjour",
+          "why": "La date et le motif exacts de la décision déterminent souvent la suite et les délais."
+        },
+        {
+          "id": "income_proofs",
+          "label": "Preuves des revenus actuels ou de leur absence",
+          "why": "Fiches de paie, extraits de paiement, attestations d’allocations ou preuve de fin de droit selon la situation."
+        },
+        {
+          "id": "bank_proof",
+          "label": "Preuve d’un compte de paiement utilisable",
+          "why": "De nombreux organismes demandent un compte pour verser une aide; ne communiquez pas vos accès bancaires à EcoTank."
+        },
+        {
+          "id": "household_address",
+          "label": "Composition de ménage et/ou certificat de résidence si la démarche les demande",
+          "why": "Ces documents peuvent être téléchargés via Mon Dossier, MyGov.be ou des guichets régionaux/communaux."
+        },
+        {
+          "id": "health_affiliation_proof",
+          "label": "Preuve d’affiliation à une mutualité ou à la CAAMI si pertinente",
+          "why": "Utile pour vérifier l’assurabilité et les indemnités liées à la santé."
+        },
+        {
+          "id": "housing_proofs",
+          "label": "Bail, preuve d’hébergement, factures d’énergie/eau ou documents de logement si pertinents",
+          "why": "Souvent nécessaires pour les demandes liées au CPAS, au logement ou à l’énergie."
+        },
+        {
+          "id": "family_proofs",
+          "label": "Documents concernant enfants ou personnes à charge si pertinents",
+          "why": "Ils peuvent influencer certaines aides ou attestations demandées."
+        },
+        {
+          "id": "previous_requests",
+          "label": "Accusés de réception, e-mails, numéros de dossier et captures des demandes déjà envoyées",
+          "why": "Évite de recommencer une procédure et permet de prouver la date d’introduction."
+        }
+      ]
+    },
+    "submission_protocol": {
+      "purpose": "Transformer chaque démarche envoyée en dossier traçable, même si l’administration répond plus tard.",
+      "steps": [
+        {
+          "id": "save_receipt",
+          "label": "Enregistrer immédiatement l’accusé de réception ou la page de confirmation."
+        },
+        {
+          "id": "save_reference",
+          "label": "Noter le numéro de dossier, la date et l’heure d’envoi."
+        },
+        {
+          "id": "save_copy",
+          "label": "Conserver une copie exacte du formulaire et des pièces envoyées."
+        },
+        {
+          "id": "check_channel",
+          "label": "Noter où la réponse doit arriver : eBox, e-mail, courrier, portail ou téléphone."
+        },
+        {
+          "id": "record_deadline",
+          "label": "Dès qu’une décision arrive, noter la date de réception et le délai éventuel de recours."
+        },
+        {
+          "id": "request_written_decision",
+          "label": "Si une réponse importante est uniquement orale, demander une confirmation ou décision écrite quand c’est possible."
+        },
+        {
+          "id": "follow_up",
+          "label": "Si le délai annoncé passe sans réponse, relancer avec le numéro de dossier et la preuve d’envoi."
+        }
+      ]
+    }
   },
   "ecotank_bridges": {
     "version": 1,

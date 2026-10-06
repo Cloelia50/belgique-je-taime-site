@@ -561,6 +561,17 @@ body.explore-mode .searchbar{grid-column:1/-1}
 .online-action-links a.primary{background:var(--ink);color:var(--sheet);border-color:var(--ink)}
 .online-action-links a:hover{text-decoration:underline;text-underline-offset:3px}
 .online-summary{margin-top:9px;font-size:.8rem;color:var(--muted)}
+.admin-proof-pack,.admin-submit-protocol{margin:18px 0;padding:18px;border:1px solid var(--line);border-radius:18px;background:var(--sheet)}
+.admin-proof-pack h3,.admin-submit-protocol h3{margin:0 0 5px}
+.admin-proof-pack>p,.admin-submit-protocol>p{margin:0 0 12px;color:var(--muted);font-size:.9rem}
+.admin-proof-list,.admin-submit-list{display:grid;gap:7px}
+.admin-proof-row,.admin-submit-row{display:grid;grid-template-columns:auto minmax(0,1fr);gap:10px;align-items:start;padding:9px 0;border-top:1px solid var(--line)}
+.admin-proof-row:first-child,.admin-submit-row:first-child{border-top:0}
+.admin-proof-row input,.admin-submit-row input{margin-top:3px;width:18px;height:18px}
+.admin-proof-row b,.admin-submit-row b{display:block;font-size:.9rem;line-height:1.35}
+.admin-proof-row small{display:block;margin-top:3px;color:var(--muted);font-size:.78rem;line-height:1.35}
+.admin-proof-note{margin:10px 0 0;padding:10px 12px;border-radius:10px;background:var(--bg);color:var(--muted);font-size:.8rem;line-height:1.4}
+.admin-pack-progress{margin-top:10px;font-size:.8rem;color:var(--muted)}
 @media(max-width:700px){.admin-choice-grid{grid-template-columns:1fr}.admin-step{grid-template-columns:1fr}.admin-step-state{min-height:44px}.admin-bridge-card{grid-template-columns:1fr}.admin-bridge-card button{justify-self:start}.online-ready-item{grid-template-columns:1fr}}
 </style><style>/* ==========================================================================
    Belgique, je t’aime — V76 · sobre, chaleureux, coloré
@@ -1109,6 +1120,18 @@ nav.index .tab{width:12px;height:22px;border-radius:5px 5px 0 0}
         <div class="online-privacy"><strong>Ne donnez jamais ici</strong> votre code PIN eID, code itsme, mot de passe, numéro complet de registre national ou numéro de compte. EcoTank demande seulement si l’outil fonctionne ou non.</div>
         <div id="simpleOnlineReadinessList" class="online-readiness-list"></div>
         <div id="simpleOnlineActions" class="online-actions"></div>
+      </section>
+      <section class="admin-proof-pack">
+        <h3>Préparer mon dossier</h3>
+        <p>Cette checklist sert seulement à vérifier que les pièces sont prêtes sur votre propre appareil. Aucun document n’est envoyé à EcoTank.</p>
+        <div id="simpleAdminProofList" class="admin-proof-list"></div>
+        <div id="simpleAdminProofProgress" class="admin-pack-progress"></div>
+      </section>
+      <section class="admin-submit-protocol">
+        <h3>Après chaque envoi : garder une preuve</h3>
+        <p>Une démarche administrative n’est pas terminée au clic sur « Envoyer ». Conservez de quoi prouver la date, le contenu et suivre la réponse.</p>
+        <div id="simpleAdminSubmitList" class="admin-submit-list"></div>
+        <div id="simpleAdminSubmitProgress" class="admin-pack-progress"></div>
       </section>
       <div id="simpleAdminPathways"></div>
       <div id="simpleAdminSources" class="admin-sources"></div>
@@ -67336,7 +67359,7 @@ enhanceFactChoices();syncFactForm();applyGlossary(document.getElementById("list"
 
 
   /* === EcoTank v78 : parcours administratif public, réponses en mémoire seulement === */
-  let adminCatalog=null, adminCatalogPromise=null, adminQuestionIndex=0, adminDocument="", adminSelected={}, adminStepState={}, adminReadiness={};
+  let adminCatalog=null, adminCatalogPromise=null, adminQuestionIndex=0, adminDocument="", adminSelected={}, adminStepState={}, adminReadiness={}, adminProof={}, adminSubmission={};
   const ADMIN_AXES=["nationalite","sejour_protection","regime_professionnel_social","situation_droits_revenus"];
   const ADMIN_HELP={
     nationalite:"La nationalité et le titre de séjour sont deux choses différentes. Choisissez la catégorie qui correspond le mieux.",
@@ -67527,10 +67550,33 @@ enhanceFactChoices();syncFactForm();applyGlossary(document.getElementById("list"
     }
   }
 
+  function renderAdminProofPack(){
+    const online=adminCatalog&&adminCatalog.online_assistance||{};
+    const pack=online.evidence_pack||{},items=pack.items||[],host=document.getElementById("simpleAdminProofList"),progress=document.getElementById("simpleAdminProofProgress");
+    if(host)host.innerHTML=items.map(function(item){
+      const checked=!!adminProof[item.id];
+      return '<label class="admin-proof-row"><input type="checkbox" data-admin-proof="'+esc(item.id)+'" '+(checked?'checked':'')+'><span><b>'+esc(item.label)+'</b><small>'+esc(item.why||"")+'</small></span></label>';
+    }).join("");
+    const done=items.filter(function(item){return !!adminProof[item.id];}).length;
+    if(progress)progress.textContent=items.length?done+" / "+items.length+" pièces ou preuves préparées.":"";
+  }
+  function renderAdminSubmissionProtocol(){
+    const online=adminCatalog&&adminCatalog.online_assistance||{};
+    const protocol=online.submission_protocol||{},steps=protocol.steps||[],host=document.getElementById("simpleAdminSubmitList"),progress=document.getElementById("simpleAdminSubmitProgress");
+    if(host)host.innerHTML=steps.map(function(step){
+      const checked=!!adminSubmission[step.id];
+      return '<label class="admin-submit-row"><input type="checkbox" data-admin-submit="'+esc(step.id)+'" '+(checked?'checked':'')+'><span><b>'+esc(step.label)+'</b></span></label>';
+    }).join("");
+    const done=steps.filter(function(step){return !!adminSubmission[step.id];}).length;
+    if(progress)progress.textContent=steps.length?done+" / "+steps.length+" étapes de traçabilité vérifiées.":"";
+  }
+
   function renderAdminResults(){
     if(!adminCatalog)return;
     const ids=adminSelectedIds(),optionMap=adminOptionMap(),summary=document.getElementById("simpleAdminProfileSummary");
     renderOnlineReadiness();
+    renderAdminProofPack();
+    renderAdminSubmissionProtocol();
     if(summary)summary.innerHTML=ids.length?ids.map(function(id){return '<span class="admin-profile-chip">'+esc(optionMap[id]&&optionMap[id].label||id)+'</span>';}).join(""):'<span class="admin-profile-chip">Aucun statut précis indiqué</span>';
     const warnings=(adminCatalog.special_warnings||[]).filter(function(w){return ids.includes(w.profile_id);});
     const wh=document.getElementById("simpleAdminWarningHost");
@@ -67548,7 +67594,7 @@ enhanceFactChoices();syncFactForm();applyGlossary(document.getElementById("list"
     renderAdminResults();showSimple("simpleAdminResults");
   }
   function resetAdminJourney(){
-    adminQuestionIndex=0;adminDocument="";adminSelected={};adminStepState={};adminReadiness={};
+    adminQuestionIndex=0;adminDocument="";adminSelected={};adminStepState={};adminReadiness={};adminProof={};adminSubmission={};
     showSimple("simpleHome");
   }
 
@@ -67581,6 +67627,14 @@ enhanceFactChoices();syncFactForm();applyGlossary(document.getElementById("list"
     }
   });
   document.getElementById("simpleOnlineReset")?.addEventListener("click",function(){adminReadiness={};renderOnlineReadiness();});
+  document.getElementById("simpleAdminProofList")?.addEventListener("change",function(e){
+    const input=e.target.closest("[data-admin-proof]");if(!input)return;
+    adminProof[input.dataset.adminProof]=!!input.checked;renderAdminProofPack();
+  });
+  document.getElementById("simpleAdminSubmitList")?.addEventListener("change",function(e){
+    const input=e.target.closest("[data-admin-submit]");if(!input)return;
+    adminSubmission[input.dataset.adminSubmit]=!!input.checked;renderAdminSubmissionProtocol();
+  });
   document.getElementById("simpleAdminPathways")?.addEventListener("change",function(e){
     const select=e.target.closest("[data-admin-step]");if(select)adminStepState[select.dataset.adminStep]=select.value;
   });
