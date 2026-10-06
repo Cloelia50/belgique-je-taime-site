@@ -190,7 +190,7 @@
     const foundation=state.answers.q_foundations_ok;
     const needsRepair=(foundation==="no_or_unknown");
     const someRepair=(foundation==="some_problems");
-    const adminFirst=id==="foundation_recovery"||id==="international_special"||id==="guided_orientation"||needsRepair;
+    const adminFirst=d.administrative_first===true||id==="residence_status"||id==="foundation_recovery"||id==="international_special"||id==="guided_orientation"||needsRepair;
 
     let context="";
     if(id==="social_protection"&&answerLabel("q_replacement_income_type"))context='<div class="business-context"><span class="business-pill">'+esc(answerLabel("q_replacement_income_type"))+'</span></div>';
