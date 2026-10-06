@@ -854,6 +854,11 @@
       "url": "https://www.socialsecurity.be/citizen/fr/static/applics/ocmw-cpas-online/index.htm",
       "authority": "SPP Intégration sociale / Sécurité sociale"
     },
+    "cpas_online_unsecured": {
+      "label": "CPAS Online — formulaire sans connexion",
+      "url": "https://pcswonline.socialsecurity.be/unsecured/fr/helpRequestForm.html",
+      "authority": "SPP Intégration sociale / Sécurité sociale"
+    },
     "diplomacy_diplomatic": {
       "label": "SPF Affaires étrangères — missions diplomatiques et consulaires",
       "url": "https://diplomatie.belgium.be/fr/protocole/privileges-et-immunites/missions-diplomatiques-et-consulaires",
@@ -953,11 +958,6 @@
       "label": "SPF Économie — service bancaire universel",
       "url": "https://economie.fgov.be/fr/themes/services-financiers/services-de-paiement/service-bancaire-universel",
       "authority": "SPF Économie"
-    },
-    "cpas_online_unsecured": {
-      "label": "CPAS Online — formulaire sans connexion",
-      "url": "https://pcswonline.socialsecurity.be/unsecured/fr/helpRequestForm.html",
-      "authority": "SPP Intégration sociale / Sécurité sociale"
     }
   },
   "online_assistance": {
@@ -1246,7 +1246,8 @@
           "source_ref": "cpas_online_unsecured",
           "requires": [
             "adresse e-mail personnelle ou d’une personne qui aide"
-          ]
+          ],
+          "url": "https://pcswonline.socialsecurity.be/unsecured/fr/helpRequestForm.html"
         },
         "note": "Réservé à une première demande d’aide. Si la personne reçoit déjà une aide ou a déjà un dossier, elle doit contacter directement son CPAS."
       },
@@ -1791,6 +1792,405 @@
       "regime_social_professionnel": "Certaines branches professionnelles ou transfrontalières restent couvertes seulement par les sources officielles lorsqu’aucune fiche EcoTank suffisamment précise n’existe.",
       "rupture_droits": "Les fiches reliées servent de filets de sécurité ou de pistes de recours ; elles ne prouvent jamais l’ouverture d’un droit."
     }
+  },
+  "support_layer": {
+    "version": 1,
+    "updated_at": "2026-10-06",
+    "purpose": "Couche EcoTank d'accompagnement humain, local et opérationnel. Elle complète le GPS administratif sans interrompre l'accompagnement numérique.",
+    "principles": [
+      "Un relais humain est toujours proposé en renfort, jamais comme condition pour continuer EcoTank.",
+      "EcoTank continue en parallèle toutes les démarches qu'il sait déjà guider.",
+      "Toujours privilégier le lien le plus proche de l'action réelle plutôt qu'une page d'accueil générale.",
+      "Adapter les relais au lieu où la personne se trouve et, lorsque la compétence administrative dépend du domicile officiel, l'indiquer explicitement.",
+      "Respecter la préférence de contact de l'utilisateur: e-mail, téléphone, formulaire ou déplacement.",
+      "Quand un appel est utile, fournir deux ou trois phrases simples à dire. Quand un e-mail est possible, fournir un texte court à copier-coller.",
+      "Ne jamais présenter un échec, un retard ou une interruption de parcours comme une faute de l'utilisateur.",
+      "Rendre visibles les petites étapes accomplies et expliquer ce qu'elles débloquent."
+    ],
+    "tone_policy": {
+      "id": "reprise_en_main",
+      "label": "Reprise en main chaleureuse et non jugeante",
+      "rules": [
+        "Parler à un adulte avec respect, sans infantiliser ni dramatiser.",
+        "Reconnaître qu'une situation peut être lourde sans nier la difficulté ni promettre qu'elle sera vite réglée.",
+        "Normaliser les blocages administratifs: ils peuvent arriver et se cumuler.",
+        "Valoriser le fait d'avoir commencé la démarche sans enthousiasme artificiel.",
+        "Découper le parcours en une prochaine action concrète, puis seulement la suivante.",
+        "Toujours autoriser la réponse « je ne sais pas » et proposer comment vérifier.",
+        "Après une pause, reprendre là où la personne en était sans reproche ni compteur de retard."
+      ],
+      "preferred_phrases": [
+        "On va remettre les choses en ordre petit à petit.",
+        "Vous n'avez pas besoin de tout régler aujourd'hui.",
+        "Cette étape peut prendre un peu de temps. Pendant ce temps, nous pouvons avancer sur ce qui ne dépend pas d'elle.",
+        "C'est fait. Une chose de moins à régler.",
+        "Vous avez fait ce qu'il fallait de votre côté. Cette étape dépend maintenant de la réponse du service.",
+        "Si vous ne savez pas, ce n'est pas bloquant: on peut d'abord le vérifier."
+      ],
+      "avoid_phrases": [
+        "Vous auriez dû",
+        "Vous n'avez pas fait le nécessaire",
+        "Dossier incomplet",
+        "Revenez quand tout sera en ordre",
+        "Contactez le service compétent"
+      ],
+      "return_after_pause": "Bienvenue. Votre parcours est toujours là. Regardons simplement ce qui a changé depuis la dernière fois et reprenons à partir de là."
+    },
+    "routing_policy": {
+      "human_relay_optional": true,
+      "continue_guidance_in_parallel": true,
+      "never_end_with_relay_only": true,
+      "max_primary_relays_at_once": 2,
+      "default_message": "On peut continuer ensemble. Si vous le souhaitez, je peux aussi vous proposer une personne ou un service proche de chez vous pour vous aider sur cette étape.",
+      "blocked_service_message": "Ce service n'a pas répondu ou n'est pas compétent? Ce n'est pas la fin du parcours. On peut essayer un autre canal ou un autre relais tout en continuant les autres étapes.",
+      "ui_rules": [
+        "Le bouton principal reste « Continuer ma démarche ici ».",
+        "Le relais humain apparaît comme renfort secondaire et ne remplace jamais l’étape EcoTank en cours.",
+        "Après ouverture d’un contact ou d’un modèle d’e-mail, conserver l’accès immédiat au parcours EcoTank.",
+        "Ne pas afficher plus de deux relais principaux à la fois; proposer « voir d’autres options » si nécessaire."
+      ]
+    },
+    "localisation_policy": {
+      "ask_current_location_when_needed": true,
+      "ask_official_domicile_when_competence_depends_on_it": true,
+      "current_location_use": "Relais physiques, accueil, écrivain public, aide numérique, planning familial, SSM et services accessibles localement.",
+      "official_domicile_use": "Démarches dont l'autorité compétente dépend du domicile, notamment certaines démarches communales et CPAS.",
+      "allow_current_and_official_to_differ": true,
+      "fallback_order": [
+        "municipality",
+        "postal_code",
+        "region",
+        "country"
+      ],
+      "preferred_precision": "municipality_or_postal_code",
+      "require_precise_gps": false,
+      "privacy_note": "La commune ou le code postal suffit pour sélectionner la plupart des relais. EcoTank ne doit pas exiger une position GPS précise."
+    },
+    "contact_preferences": [
+      "email",
+      "form",
+      "phone",
+      "walk_in"
+    ],
+    "relay_categories": [
+      {
+        "id": "social_generalist",
+        "label": "Service social généraliste / CPAS"
+      },
+      {
+        "id": "digital_help",
+        "label": "Aide numérique et démarches en ligne"
+      },
+      {
+        "id": "public_writer",
+        "label": "Écrivain public"
+      },
+      {
+        "id": "legal_first_line",
+        "label": "Aide juridique de première ligne"
+      },
+      {
+        "id": "mental_health",
+        "label": "Service de santé mentale"
+      },
+      {
+        "id": "family_planning",
+        "label": "Planning familial / vie relationnelle, affective et sexuelle"
+      }
+    ],
+    "link_policy": {
+      "quality_order": [
+        "task_direct",
+        "task_hub",
+        "specific_page",
+        "service_section",
+        "homepage"
+      ],
+      "rules": [
+        "Ne jamais envoyer vers une page d'accueil si une page spécifique ou un formulaire stable est connu.",
+        "Si le lien le plus profond disponible laisse encore un clic à faire, indiquer exactement lequel.",
+        "Conserver une URL de preuve officielle séparée de l'URL d'action lorsque les deux diffèrent.",
+        "Dégrader un lien dont la cible disparaît vers la meilleure alternative connue sans supprimer son historique."
+      ]
+    },
+    "action_links": [
+      {
+        "id": "be-mondossier-certificates",
+        "intent": "administrative_certificate",
+        "label": "Ouvrir Mon Dossier pour télécharger des certificats",
+        "geography": {
+          "country": "BE"
+        },
+        "url": "https://mondossier.rrn.fgov.be/",
+        "quality": "task_hub",
+        "requires": [
+          "eID et code PIN"
+        ],
+        "one_more_step": "Après connexion, ouvrez les attestations et choisissez le certificat dont vous avez besoin.",
+        "source_url": "https://www.ibz.rrn.fgov.be/fr/registre-national/mon-dossier/",
+        "verified_at": "2026-10-06"
+      },
+      {
+        "id": "brussels-irisbox-quicklinks-composition",
+        "intent": "composition_menage",
+        "label": "Ouvrir les téléchargements rapides IRISbox",
+        "geography": {
+          "country": "BE",
+          "region": "Brussels-Capital"
+        },
+        "url": "https://irisbox.irisnet.be/irisbox/quickLinks",
+        "quality": "task_hub",
+        "requires": [
+          "itsme ou eID"
+        ],
+        "one_more_step": "Après identification, choisissez « Certificat de composition de ménage ».",
+        "source_url": "https://be.brussels/fr/identite-nationalite/services-en-ligne-pour-les-citoyens/documents-administratifs",
+        "verified_at": "2026-10-06"
+      },
+      {
+        "id": "auderghem-composition-menage",
+        "intent": "composition_menage",
+        "label": "Composition de ménage — Auderghem",
+        "geography": {
+          "country": "BE",
+          "region": "Brussels-Capital",
+          "municipality": "Auderghem",
+          "postal_codes": [
+            "1160"
+          ]
+        },
+        "url": "https://irisbox.irisnet.be/irisbox/quickLinks",
+        "quality": "task_hub",
+        "requires": [
+          "itsme ou eID"
+        ],
+        "one_more_step": "Après identification, choisissez « Certificat de composition de ménage ». Si cela bloque, la commune indique aussi le guichet physique.",
+        "source_url": "https://www.auderghem.be/certificat-de-composition-de-menage",
+        "verified_at": "2026-10-06"
+      }
+    ],
+    "relays": [
+      {
+        "id": "auderghem-cpas",
+        "name": "CPAS d'Auderghem",
+        "category_ids": [
+          "social_generalist"
+        ],
+        "geography": {
+          "country": "BE",
+          "region": "Brussels-Capital",
+          "municipality": "Auderghem",
+          "postal_codes": [
+            "1160"
+          ]
+        },
+        "jurisdiction_basis": "official_domicile_or_actual_situation_to_check",
+        "contacts": {
+          "phone": [
+            "02 679 94 10"
+          ],
+          "form": "https://www.auderghem.be/contacter-le-cpas-dauderghem",
+          "address": "Avenue du Paepedelle 87, 1160 Bruxelles"
+        },
+        "can_help_with": [
+          "aide sociale",
+          "aide financière",
+          "logement",
+          "énergie",
+          "santé",
+          "médiation de dettes"
+        ],
+        "phone_script": "Bonjour, ma situation administrative et financière est devenue compliquée et j'aurais besoin de faire le point avec un travailleur social. Pouvez-vous m'indiquer comment introduire ou reprendre une demande ?",
+        "form_message": "Bonjour, je rencontre actuellement plusieurs difficultés administratives et financières et j'aurais besoin d'un accompagnement pour faire le point sur ma situation et les démarches à effectuer. Pourriez-vous m'indiquer comment obtenir un rendez-vous ou un suivi ? Merci d'avance.",
+        "source_url": "https://www.auderghem.be/contacter-le-cpas-dauderghem",
+        "verified_at": "2026-10-06"
+      },
+      {
+        "id": "auderghem-digital-helper",
+        "name": "Informaticien public d'Auderghem",
+        "category_ids": [
+          "digital_help"
+        ],
+        "geography": {
+          "country": "BE",
+          "region": "Brussels-Capital",
+          "municipality": "Auderghem",
+          "postal_codes": [
+            "1160"
+          ]
+        },
+        "jurisdiction_basis": "current_location",
+        "contacts": {
+          "phone": [
+            "02 679 94 94"
+          ],
+          "website": "https://www.auderghem.be/informaticien-public",
+          "walk_in_note": "Plusieurs permanences gratuites dans la commune; horaires et lieux sur la page officielle."
+        },
+        "can_help_with": [
+          "itsme",
+          "lecteur eID",
+          "composition de ménage",
+          "e-mails",
+          "PDF/scan",
+          "demandes en ligne"
+        ],
+        "phone_script": "Bonjour, j'aurais besoin d'aide pour une démarche administrative en ligne et je ne suis pas à l'aise avec itsme, l'eID ou les documents à télécharger. À quelle permanence puis-je venir ?",
+        "source_url": "https://www.auderghem.be/informaticien-public",
+        "verified_at": "2026-10-06"
+      },
+      {
+        "id": "auderghem-planning-familial",
+        "name": "Planning Familial d'Auderghem",
+        "category_ids": [
+          "family_planning"
+        ],
+        "geography": {
+          "country": "BE",
+          "region": "Brussels-Capital",
+          "municipality": "Auderghem",
+          "postal_codes": [
+            "1160"
+          ]
+        },
+        "jurisdiction_basis": "current_location",
+        "contacts": {
+          "phone": [
+            "02 660 75 06"
+          ],
+          "email": [
+            "info@planningfamilialauderghem.com"
+          ],
+          "address": "Rue de la Stratégie 45, 1160 Bruxelles",
+          "website": "https://www.planningfamilial.net/liste-des-centres/?centreUid=203"
+        },
+        "can_help_with": [
+          "vie relationnelle",
+          "sexualité",
+          "contraception",
+          "questions affectives",
+          "accompagnement psycho-social"
+        ],
+        "phone_script": "Bonjour, j'aurais besoin de parler à quelqu'un au sujet d'une question personnelle ou relationnelle et je voudrais savoir quel type de rendez-vous vous proposez.",
+        "email_template": {
+          "subject": "Demande d'information ou de rendez-vous",
+          "body": "Bonjour,\nJ'aurais besoin d'un accompagnement concernant une question personnelle, relationnelle ou de santé sexuelle. Je préfère vous contacter par écrit. Pourriez-vous me dire s'il est possible d'obtenir un rendez-vous et comment procéder ?\nMerci d'avance."
+        },
+        "source_url": "https://www.planningfamilial.net/liste-des-centres/?centreUid=203",
+        "verified_at": "2026-10-06"
+      },
+      {
+        "id": "auderghem-ssm-le-gres",
+        "name": "Service de Santé Mentale Le Grès",
+        "category_ids": [
+          "mental_health"
+        ],
+        "geography": {
+          "country": "BE",
+          "region": "Brussels-Capital",
+          "municipality": "Auderghem",
+          "postal_codes": [
+            "1160"
+          ]
+        },
+        "jurisdiction_basis": "current_location",
+        "contacts": {
+          "phone": [
+            "02 660 50 73",
+            "02 660 50 74"
+          ],
+          "email": [
+            "ssm@legres.be",
+            "legresasbl@gmail.com"
+          ],
+          "address": "Rue des Trois Ponts 51, 1160 Auderghem",
+          "website": "https://www.auderghem.be/le-gres-asbl-0"
+        },
+        "can_help_with": [
+          "difficultés psychiques",
+          "difficultés sociales ou relationnelles",
+          "accompagnement pluridisciplinaire"
+        ],
+        "phone_script": "Bonjour, je traverse une période difficile et plusieurs problèmes se sont accumulés. J'aurais besoin de savoir si quelqu'un peut m'accompagner et comment prendre un premier rendez-vous.",
+        "email_template": {
+          "subject": "Demande de premier contact",
+          "body": "Bonjour,\nJe traverse actuellement une période difficile et plusieurs difficultés personnelles et administratives se sont accumulées. J'aimerais savoir s'il est possible d'avoir un premier contact avec votre service et comment prendre rendez-vous.\nMerci d'avance."
+        },
+        "source_url": "https://www.auderghem.be/le-gres-asbl-0",
+        "verified_at": "2026-10-06"
+      },
+      {
+        "id": "brussels-baj-legal",
+        "name": "Bureau d'aide juridique / Commission d'aide juridique de Bruxelles",
+        "category_ids": [
+          "legal_first_line"
+        ],
+        "geography": {
+          "country": "BE",
+          "region": "Brussels-Capital"
+        },
+        "jurisdiction_basis": "region",
+        "contacts": {
+          "phone": [
+            "02 335 24 40",
+            "02 511 54 83"
+          ],
+          "email": [
+            "info@bajbxl.be"
+          ],
+          "address": "Rue de la Régence 63, 1000 Bruxelles",
+          "website": "https://www.bajbruxelles.be/contacts"
+        },
+        "can_help_with": [
+          "premier conseil juridique gratuit",
+          "comprendre une décision",
+          "recours",
+          "orientation vers un avocat"
+        ],
+        "phone_script": "Bonjour, j'ai reçu une décision ou je rencontre un problème administratif et j'aurais besoin d'un premier avis juridique pour comprendre mes options. Pouvez-vous m'indiquer la permanence adaptée ?",
+        "email_template": {
+          "subject": "Demande de premier conseil juridique",
+          "body": "Bonjour,\nJe rencontre actuellement un problème administratif ou juridique et j'aurais besoin d'un premier conseil pour comprendre la décision reçue et les démarches possibles. Pourriez-vous m'indiquer la permanence ou le rendez-vous adapté à ma situation ?\nMerci d'avance."
+        },
+        "local_note": "Une permanence décentralisée existe à Auderghem, Avenue du Paepedelle 87, les 2e et 4e mercredis du mois de 14h à 16h, sans rendez-vous (horaires d'été spécifiques).",
+        "source_url": "https://www.bajbruxelles.be/permanences-decentralisees",
+        "verified_at": "2026-10-06"
+      },
+      {
+        "id": "brussels-public-writers",
+        "name": "Espace Écrivain·es Publics — Bruxelles",
+        "category_ids": [
+          "public_writer"
+        ],
+        "geography": {
+          "country": "BE",
+          "region": "Brussels-Capital"
+        },
+        "jurisdiction_basis": "current_location",
+        "contacts": {
+          "phone": [
+            "0466 47 75 78"
+          ],
+          "email": [
+            "eve.leguebe@pac-bruxelles.be"
+          ],
+          "website": "https://www.espace-ecrivain-public.be/permanences/bruxelles/"
+        },
+        "can_help_with": [
+          "lire un courrier",
+          "rédiger une réponse",
+          "compléter un formulaire",
+          "écrire un e-mail ou une lettre"
+        ],
+        "phone_script": "Bonjour, j'ai besoin d'aide pour lire ou rédiger un courrier administratif et je cherche une permanence d'écrivain public proche de chez moi. Pouvez-vous m'orienter ?",
+        "email_template": {
+          "subject": "Recherche d'une permanence d'écrivain public",
+          "body": "Bonjour,\nJ'aurais besoin d'aide pour lire ou rédiger un courrier ou un formulaire administratif. Pourriez-vous m'indiquer la permanence d'écrivain public la plus adaptée et la plus proche de chez moi ?\nMerci d'avance."
+        },
+        "source_url": "https://www.espace-ecrivain-public.be/permanences/bruxelles/",
+        "verified_at": "2026-10-06"
+      }
+    ]
   },
   "safety": {
     "informational_only": true,
