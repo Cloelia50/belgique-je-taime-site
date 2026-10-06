@@ -696,15 +696,16 @@ function openEvent(id,trigger){
   var n=N[id];
   lastFocus=trigger||document.activeElement;
   S.openId=id;
-  var off=safeUrl(e.official_url), reg=safeUrl(e.registration_url);
+  var off=safeUrl(e.official_url), reg=safeUrl(e.registration_url), ticket=safeUrl(e.ticketing_url);
   var spk=e.speakers||[], roles=e.speaker_roles||{};
   var h='<div class="cogito-panel-in">'+
     '<div class="cogito-panel-top"><span class="cogito-cat"><i class="cogito-dot" style="background:'+catColor(e.category)+'"></i>'+esc(e.category)+'</span><button type="button" class="cogito-x" id="cogito-close" aria-label="Fermer le détail">'+ICON.x+'</button></div>'+
     '<h2 class="cogito-panel-title" id="cogito-panel-title">'+esc(e.title)+'</h2>'+
     '<p class="cogito-panel-when">'+esc(whenLong(e))+'</p>'+
     '<div class="cogito-actions">'+
-      (reg?'<a class="cogito-btn cogito-btn-solid" href="'+esc(reg)+'" target="_blank" rel="noopener noreferrer">S’inscrire '+ICON.ext+'</a>':'')+
-      (off?'<a class="cogito-btn'+(reg?'':' cogito-btn-solid')+'" href="'+esc(off)+'" target="_blank" rel="noopener noreferrer">Page officielle '+ICON.ext+'</a>':'')+
+      (ticket?'<a class="cogito-btn cogito-btn-solid" href="'+esc(ticket)+'" target="_blank" rel="noopener noreferrer" data-bjt-action="cogito_ticketing" data-bjt-key="'+esc(id)+'">Billetterie / Réserver '+ICON.ext+'</a>':
+       (reg?'<a class="cogito-btn cogito-btn-solid" href="'+esc(reg)+'" target="_blank" rel="noopener noreferrer" data-bjt-action="cogito_registration" data-bjt-key="'+esc(id)+'">S’inscrire '+ICON.ext+'</a>':''))+
+      (off?'<a class="cogito-btn'+((ticket||reg)?'':' cogito-btn-solid')+'" href="'+esc(off)+'" target="_blank" rel="noopener noreferrer" data-bjt-action="cogito_official" data-bjt-key="'+esc(id)+'">Page officielle '+ICON.ext+'</a>':'')+
       '<button type="button" class="cogito-btn cogito-btn-quiet" id="cogito-pfav" data-fav="'+esc(id)+'" aria-pressed="'+FAV.has(id)+'">'+ICON.mark+'Favori</button>'+
       (off?'<button type="button" class="cogito-btn cogito-btn-quiet" id="cogito-copy">'+ICON.copy+'Copier le lien</button>':'')+
       '<button type="button" class="cogito-btn cogito-btn-quiet" id="cogito-ics">'+ICON.cal+'Ajouter à l’agenda</button>'+
@@ -759,7 +760,7 @@ function buildIcs(e){
   }
   L.push('SUMMARY:'+icsEscape(e.title));
   if(e.location) L.push('LOCATION:'+icsEscape(e.location));
-  var u=safeUrl(e.registration_url)||safeUrl(e.official_url);
+  var u=safeUrl(e.ticketing_url)||safeUrl(e.registration_url)||safeUrl(e.official_url);
   L.push('DESCRIPTION:'+icsEscape([e.organizer,e.description,u].filter(Boolean).join('\n')));
   if(u) L.push('URL:'+u);
   L.push('END:VEVENT','END:VCALENDAR');
@@ -852,5 +853,6 @@ window.CogitoApp={
 };
 })();
 </script>
+<script defer src="../analytics.js"></script>
 </body>
 </html>
