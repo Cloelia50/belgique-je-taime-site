@@ -492,6 +492,40 @@ body.explore-mode.advanced-explore .freshness-panel,body.explore-mode.advanced-e
 body.explore-mode .searchbar{grid-column:1/-1}
 .simple-app [hidden]{display:none!important}
 @media(max-width:700px){.simple-home-buttons,.simple-choice-grid{grid-template-columns:1fr}.simple-home-buttons .primary{grid-column:1}.simple-card{border-radius:14px}.simple-question{min-height:300px}.simple-results-head,.simple-savings-head,.simple-result-top{flex-direction:column}.simple-gain{text-align:left;max-width:none}.simple-explore-bar{align-items:flex-start}.simple-explore-bar .left{align-items:flex-start;flex-direction:column}.simple-q-footer{align-items:flex-end}}
+
+/* === EcoTank v78 : parcours administratif public, non décisionnel === */
+.simple-home-buttons .admin-entry{grid-column:1/-1;display:grid;gap:4px;text-align:left;padding:14px 16px;background:var(--bg);border-style:dashed}
+.simple-home-buttons .admin-entry strong{font-family:var(--display);font-size:1rem;color:var(--ink)}
+.simple-home-buttons .admin-entry span{font-size:.84rem;font-weight:500;color:var(--muted);line-height:1.35}
+.admin-choice-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin-top:14px}
+.admin-choice-grid button{min-height:50px;text-align:left}
+.admin-choice-grid button[aria-pressed="true"]{background:var(--ink);color:var(--sheet);border-color:var(--ink)}
+.admin-select-wrap{display:grid;gap:8px;margin-top:16px}
+.admin-select-wrap label{font-weight:800}
+.admin-select-wrap select,.admin-document-input,.admin-step-state{width:100%;min-height:46px;border:1.5px solid var(--line);border-radius:10px;background:var(--sheet);color:var(--ink);padding:9px 11px;font:inherit}
+.admin-help-note{margin:14px 0 0;padding:12px 14px;border-radius:12px;background:var(--bg);color:var(--muted);font-size:.88rem;line-height:1.45}
+.admin-results-note{margin:0 0 18px;padding:14px 16px;border:1px solid var(--line);border-radius:14px;background:var(--bg);line-height:1.45}
+.admin-results-note strong{display:block;margin-bottom:4px}
+.admin-profile-summary{display:flex;flex-wrap:wrap;gap:7px;margin:0 0 18px}
+.admin-profile-chip{display:inline-flex;align-items:center;padding:6px 10px;border:1px solid var(--line);border-radius:999px;background:var(--sheet);font-size:.82rem}
+.admin-warning{margin:0 0 12px;padding:13px 15px;border-radius:12px;background:var(--urgent-soft);color:var(--ink);border:1px solid color-mix(in srgb,var(--urgent) 35%,var(--line))}
+.admin-warning strong{color:var(--urgent)}
+.admin-pathway{margin:14px 0;padding:18px;border:1px solid var(--line);border-radius:16px;background:var(--sheet)}
+.admin-pathway.critical{box-shadow:inset 4px 0 0 var(--urgent)}
+.admin-pathway h3{margin:0 0 5px}
+.admin-pathway-lead{margin:0 0 14px;color:var(--muted);font-size:.9rem}
+.admin-time-group{margin-top:14px}
+.admin-time-group>strong{display:block;margin:0 0 7px;font-size:.82rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+.admin-step{display:grid;grid-template-columns:minmax(0,1fr) minmax(145px,210px);gap:12px;align-items:center;padding:11px 0;border-top:1px solid var(--line)}
+.admin-step:first-child{border-top:0}
+.admin-step label{font-weight:700;line-height:1.35}
+.admin-sources{margin-top:22px;padding-top:18px;border-top:1px solid var(--line)}
+.admin-source-list{display:grid;gap:8px;margin-top:10px}
+.admin-source-list a{display:block;padding:11px 13px;border:1px solid var(--line);border-radius:11px;color:var(--ink);text-decoration:none;background:var(--sheet)}
+.admin-source-list a:hover{text-decoration:underline;text-underline-offset:3px}
+.admin-source-list small{display:block;color:var(--muted);margin-top:2px}
+.admin-empty{padding:16px;border:1px dashed var(--line);border-radius:14px;color:var(--muted)}
+@media(max-width:700px){.admin-choice-grid{grid-template-columns:1fr}.admin-step{grid-template-columns:1fr}.admin-step-state{min-height:44px}}
 </style><style>/* ==========================================================================
    Belgique, je t’aime — V76 · sobre, chaleureux, coloré
    Surfaces claires, contours fins, ombres douces, marine + teal comme socle,
@@ -993,6 +1027,7 @@ nav.index .tab{width:12px;height:22px;border-radius:5px 5px 0 0}
         <p class="simple-lead">Aides, droits, réductions et services utiles : répondez à quelques questions et Ecotank trie plus de 800 pistes à votre place. Vous pouvez toujours passer une question.</p>
         <div class="simple-home-buttons">
           <button type="button" class="primary" id="simpleStart">Commencer</button>
+          <button type="button" class="admin-entry" id="simpleAdminStart"><strong>Ma situation administrative est compliquée</strong><span>Nationalité, séjour, réfugié ou protection, fonction publique, diplomatie, sécurité sociale, perte de droits…</span></button>
           <button type="button" id="simpleMySavings">Mes économies</button>
           <button type="button" id="simpleExplore">Explorer toutes les pistes</button>
         </div>
@@ -1008,6 +1043,33 @@ nav.index .tab{width:12px;height:22px;border-radius:5px 5px 0 0}
           <span class="simple-step-label" id="simpleProgressText"></span>
         </div>
         <div id="simpleQuestionHost" class="simple-question"></div>
+      </div>
+    </section>
+
+    <section id="simpleAdminWizard" class="simple-screen">
+      <div class="simple-card">
+        <div class="simple-topline">
+          <button type="button" class="linkish" id="simpleAdminHome">← Accueil</button>
+          <div class="simple-progress" aria-hidden="true"><span id="simpleAdminProgressBar"></span></div>
+          <span class="simple-step-label" id="simpleAdminProgressText"></span>
+        </div>
+        <div id="simpleAdminQuestionHost" class="simple-question"></div>
+      </div>
+    </section>
+
+    <section id="simpleAdminResults" class="simple-screen">
+      <div class="simple-results-head">
+        <div><div class="simple-kicker">Parcours administratif</div><h2>Votre plan de vérification</h2><p>EcoTank ordonne les démarches à vérifier selon ce que vous avez indiqué, sans décider à la place des administrations.</p></div>
+        <button type="button" class="soft" id="simpleAdminEdit">Revoir mes réponses</button>
+      </div>
+      <div class="admin-results-note"><strong>Important</strong>Ce parcours ne confirme ni un titre de séjour, ni un statut de réfugié, ni l’éligibilité à une aide. Il sert à identifier les bonnes démarches et les sources officielles à vérifier.</div>
+      <div id="simpleAdminWarningHost"></div>
+      <div id="simpleAdminProfileSummary" class="admin-profile-summary"></div>
+      <div id="simpleAdminPathways"></div>
+      <div id="simpleAdminSources" class="admin-sources"></div>
+      <div class="simple-actions">
+        <button type="button" id="simpleAdminResultsHome">Accueil</button>
+        <button type="button" class="linkish" id="simpleAdminReset">Effacer les réponses de cette session</button>
       </div>
     </section>
 
@@ -67083,7 +67145,7 @@ enhanceFactChoices();syncFactForm();applyGlossary(document.getElementById("list"
 </script><script>
 /* === v73 : parcours utilisateur simplifié + couverture des situations + ressources concrètes === */
 (()=>{
-  const screens=["simpleHome","simpleWizard","simpleResults","simpleSavings","simpleDetail"];
+  const screens=["simpleHome","simpleWizard","simpleAdminWizard","simpleAdminResults","simpleResults","simpleSavings","simpleDetail"];
   let wizardIndex=0, childYes=(parseChildrenAges(facts.children).length>0||prof.includes("enf")), detailOrigin="simpleResults";
   const managedExtras=["pet","hand","aid","par","voit","cred","mal","copro","logurg"];
 
@@ -67226,6 +67288,169 @@ enhanceFactChoices();syncFactForm();applyGlossary(document.getElementById("list"
     save();paint();
   }
   function handleSimpleListClick(e,origin){const open=e.target.closest("[data-simple-open]");if(open){openSimpleDetail(open.dataset.simpleOpen,open.dataset.origin||origin);return;}const quick=e.target.closest("[data-simple-quick]");if(quick){setSimpleStatus(quick.dataset.simpleQuick,"todo");renderSimpleResults();return;}const dis=e.target.closest("[data-simple-dismiss]");if(dis){setSimpleStatus(dis.dataset.simpleDismiss,"skip");renderSimpleResults();return;}if(e.target.closest("[data-find-now]"))startWizard();}
+
+
+  /* === EcoTank v78 : parcours administratif public, réponses en mémoire seulement === */
+  let adminCatalog=null, adminCatalogPromise=null, adminQuestionIndex=0, adminDocument="", adminSelected={}, adminStepState={};
+  const ADMIN_AXES=["nationalite","sejour_protection","regime_professionnel_social","situation_droits_revenus"];
+  const ADMIN_HELP={
+    nationalite:"La nationalité et le titre de séjour sont deux choses différentes. Choisissez la catégorie qui correspond le mieux.",
+    sejour_protection:"Choisissez le document ou statut que vous détenez réellement. Si vous hésitez ou si un renouvellement est en cours, choisissez l’option prévue pour cela.",
+    regime_professionnel_social:"Vous pouvez cumuler plusieurs situations. Ce volet concerne le régime professionnel et la sécurité sociale, pas le droit de séjour.",
+    situation_droits_revenus:"Indiquez ce qui est vrai aujourd’hui. Une perte de revenu déclenche un parcours spécifique de récupération de droits."
+  };
+  function adminAxis(id){return (adminCatalog&&adminCatalog.axes||[]).find(function(x){return x.id===id;});}
+  function adminQuestionText(axisId){
+    const q=(adminCatalog&&adminCatalog.routing_questions||[]).find(function(x){return x.axis===axisId&&!x.only_if_uncertain;});
+    return q&&q.text?q.text:(adminAxis(axisId)&&adminAxis(axisId).label)||"Votre situation";
+  }
+  function adminSelectedIds(){
+    const out=[];
+    ADMIN_AXES.forEach(function(id){(adminSelected[id]||[]).forEach(function(x){if(!out.includes(x))out.push(x);});});
+    return out;
+  }
+  function adminOptionMap(){
+    const out={};
+    (adminCatalog&&adminCatalog.axes||[]).forEach(function(axis){(axis.options||[]).forEach(function(opt){out[opt.id]=opt;});});
+    return out;
+  }
+  function adminSetSingle(axisId,value){adminSelected[axisId]=value?[value]:[];}
+  function adminToggle(axisId,value){
+    const current=adminSelected[axisId]||[];
+    adminSelected[axisId]=current.includes(value)?current.filter(function(x){return x!==value;}):current.concat([value]);
+  }
+  function adminResidenceOptions(axis){
+    const nationality=(adminSelected.nationalite||[])[0]||"";
+    if(!nationality)return axis.options||[];
+    const common=["diplomatique_consulaire_special","organisation_internationale_special","expert_detache_mission_special","famille_statut_special","titre_inconnu_ou_en_cours"];
+    let allowed=[];
+    if(nationality==="belge")allowed=["non_applicable_belge"].concat(common);
+    else if(nationality==="ue_eee_suisse")allowed=["ue_court_sejour","ue_sejour_plus_3_mois","ue_sejour_permanent","membre_famille_belge_ue"].concat(common);
+    else if(nationality==="apatride_ou_nationalite_indeterminee")allowed=["demandeur_protection_internationale","refugie_reconnu","protection_subsidiaire","protection_temporaire","apatridie_sejour","sejour_irregulier"].concat(common);
+    else if(nationality==="pays_tiers")allowed=["membre_famille_belge_ue","tiers_carte_a","tiers_carte_b","tiers_carte_k","tiers_carte_l","tiers_carte_h","tiers_carte_i","tiers_carte_j","brexit_carte_m","brexit_carte_n","visa_c","visa_d_attente_titre","demandeur_protection_internationale","refugie_reconnu","protection_subsidiaire","protection_temporaire","apatridie_sejour","sejour_irregulier"].concat(common);
+    else return axis.options||[];
+    return (axis.options||[]).filter(function(x){return allowed.includes(x.id);});
+  }
+  async function loadAdminCatalog(){
+    if(adminCatalog)return adminCatalog;
+    if(!adminCatalogPromise){
+      adminCatalogPromise=fetch("./admin-profile.json",{cache:"no-store"}).then(function(r){if(!r.ok)throw new Error("HTTP "+r.status);return r.json();}).then(function(data){
+        if(!data||!Array.isArray(data.axes)||!Array.isArray(data.administrative_pathways))throw new Error("format");
+        adminCatalog=data;return data;
+      }).catch(function(err){adminCatalogPromise=null;throw err;});
+    }
+    return adminCatalogPromise;
+  }
+  function adminTotalQuestions(){
+    return ADMIN_AXES.length+(adminSelectedIds().includes("titre_inconnu_ou_en_cours")?1:0);
+  }
+  function renderAdminQuestion(){
+    const host=document.getElementById("simpleAdminQuestionHost");if(!host||!adminCatalog)return;
+    const total=adminTotalQuestions(),progress=document.getElementById("simpleAdminProgressBar"),label=document.getElementById("simpleAdminProgressText");
+    if(progress)progress.style.width=String(Math.min(100,((adminQuestionIndex+1)/total)*100))+"%";
+    if(label)label.textContent=String(adminQuestionIndex+1)+" / "+String(total);
+    if(adminQuestionIndex>=ADMIN_AXES.length){
+      host.innerHTML='<div class="simple-kicker">Document en main</div><h2>Quel document concret avez-vous actuellement ?</h2><p>Carte, annexe, visa, carte spéciale, preuve de renouvellement ou de procédure. Cette réponse reste uniquement en mémoire dans cette page et n’est envoyée nulle part.</p><div class="simple-input"><label for="adminDocumentInput">Document ou preuve, facultatif</label><input class="admin-document-input" id="adminDocumentInput" type="text" value="'+esc(adminDocument)+'" placeholder="Ex. annexe en cours, carte expirée, preuve de renouvellement…"></div><div class="simple-q-footer"><button class="linkish" data-admin-back>← Retour</button><button class="primary" data-admin-finish>Voir mon plan</button></div>';
+      return;
+    }
+    const axisId=ADMIN_AXES[adminQuestionIndex],axis=adminAxis(axisId),selected=adminSelected[axisId]||[];
+    if(!axis){host.innerHTML='<div class="admin-empty">Cette question est momentanément indisponible.</div>';return;}
+    let control="";
+    if(axisId==="sejour_protection"){
+      const opts=adminResidenceOptions(axis);
+      control='<div class="admin-select-wrap"><label for="adminResidenceSelect">Titre, statut ou document</label><select id="adminResidenceSelect"><option value="">Je ne sais pas / je préfère passer</option>'+opts.map(function(opt){return '<option value="'+esc(opt.id)+'" '+(selected[0]===opt.id?'selected':'')+'>'+esc(opt.label)+'</option>';}).join("")+'</select></div>';
+      const picked=opts.find(function(x){return x.id===selected[0];});
+      if(picked&&picked.note)control+='<div class="admin-help-note">'+esc(picked.note)+'</div>';
+    }else{
+      control='<div class="admin-choice-grid">'+(axis.options||[]).map(function(opt){return '<button type="button" data-admin-option="'+esc(opt.id)+'" data-admin-axis="'+esc(axisId)+'" aria-pressed="'+String(selected.includes(opt.id))+'">'+esc(opt.label)+'</button>';}).join("")+'</div>';
+    }
+    const actionText=adminQuestionIndex===ADMIN_AXES.length-1&&!adminSelectedIds().includes("titre_inconnu_ou_en_cours")?"Voir mon plan":"Continuer";
+    host.innerHTML='<div class="simple-kicker">Situation administrative</div><h2>'+esc(adminQuestionText(axisId))+'</h2><p>'+esc(ADMIN_HELP[axisId]||"Vous pouvez passer cette question.")+'</p>'+control+'<div class="simple-q-footer"><button class="linkish" data-admin-back>← Retour</button><button class="linkish" data-admin-skip>Passer</button><button class="primary" data-admin-next>'+actionText+'</button></div>';
+  }
+  function nextAdminQuestion(){
+    if(adminQuestionIndex<ADMIN_AXES.length-1){adminQuestionIndex++;renderAdminQuestion();return;}
+    if(adminQuestionIndex===ADMIN_AXES.length-1&&adminSelectedIds().includes("titre_inconnu_ou_en_cours")){adminQuestionIndex++;renderAdminQuestion();return;}
+    finishAdminJourney();
+  }
+  function prevAdminQuestion(){if(adminQuestionIndex>0){adminQuestionIndex--;renderAdminQuestion();}else showSimple("simpleHome");}
+  async function startAdminJourney(){
+    showSimple("simpleAdminWizard");
+    const host=document.getElementById("simpleAdminQuestionHost");
+    if(host)host.innerHTML='<div class="simple-kicker">Situation administrative</div><h2>Chargement du parcours…</h2><p>EcoTank charge uniquement sa taxonomie publique et ses liens officiels.</p>';
+    try{await loadAdminCatalog();adminQuestionIndex=0;renderAdminQuestion();}
+    catch(err){if(host)host.innerHTML='<div class="simple-kicker">Situation administrative</div><h2>Le parcours n’a pas pu être chargé.</h2><p>Le reste d’EcoTank reste disponible. Réessayez plus tard ou utilisez directement les sources officielles déjà présentes dans les fiches.</p><div class="simple-actions"><button type="button" class="primary" data-admin-home>Retour à l’accueil</button></div>';}
+  }
+  function adminSourceRows(selectedIds){
+    const optionMap=adminOptionMap(),ids=[];
+    selectedIds.forEach(function(pid){const opt=optionMap[pid];(opt&&opt.source_refs||[]).forEach(function(ref){if(!ids.includes(ref))ids.push(ref);});});
+    return ids.map(function(id){const src=adminCatalog.official_sources&&adminCatalog.official_sources[id];return src?Object.assign({id:id},src):null;}).filter(Boolean);
+  }
+  function adminPathwayOrder(id){return id==="rupture_droits"?0:id==="protection_internationale"?1:id==="identifier_sejour"?2:id==="statut_special_international"?3:4;}
+  function adminTimeLabel(index){return index<2?"Aujourd’hui":index<4?"Cette semaine":"Ensuite / avant les échéances";}
+  function renderAdminPathway(pathway){
+    const groups={"Aujourd’hui":[],"Cette semaine":[],"Ensuite / avant les échéances":[]};
+    (pathway.steps||[]).forEach(function(step,index){groups[adminTimeLabel(index)].push(step);});
+    let inner="";
+    Object.keys(groups).forEach(function(group){
+      if(!groups[group].length)return;
+      inner+='<div class="admin-time-group"><strong>'+esc(group)+'</strong>';
+      groups[group].forEach(function(step){
+        const key=pathway.id+"::"+step.id,options=step.state_options||["à faire"],value=adminStepState[key]||options[0]||"à faire";
+        inner+='<div class="admin-step"><label for="adminStep-'+esc(pathway.id)+'-'+esc(step.id)+'">'+esc(step.label)+'</label><select class="admin-step-state" id="adminStep-'+esc(pathway.id)+'-'+esc(step.id)+'" data-admin-step="'+esc(key)+'">'+options.map(function(x){return '<option value="'+esc(x)+'" '+(value===x?'selected':'')+'>'+esc(x)+'</option>';}).join("")+'</select></div>';
+      });
+      inner+='</div>';
+    });
+    return '<section class="admin-pathway '+(pathway.id==="rupture_droits"?"critical":"")+'"><h3>'+esc(pathway.label)+'</h3><p class="admin-pathway-lead">'+(pathway.id==="rupture_droits"?"Commencez par ce qui ne peut pas attendre, puis reconstruisez les droits et les preuves.":"Suivez les vérifications dans cet ordre et conservez les décisions ou preuves écrites.")+'</p>'+inner+'</section>';
+  }
+  function renderAdminResults(){
+    if(!adminCatalog)return;
+    const ids=adminSelectedIds(),optionMap=adminOptionMap(),summary=document.getElementById("simpleAdminProfileSummary");
+    if(summary)summary.innerHTML=ids.length?ids.map(function(id){return '<span class="admin-profile-chip">'+esc(optionMap[id]&&optionMap[id].label||id)+'</span>';}).join(""):'<span class="admin-profile-chip">Aucun statut précis indiqué</span>';
+    const warnings=(adminCatalog.special_warnings||[]).filter(function(w){return ids.includes(w.profile_id);});
+    const wh=document.getElementById("simpleAdminWarningHost");
+    if(wh)wh.innerHTML=warnings.map(function(w){return '<div class="admin-warning"><strong>'+(w.level==="critical"?"Priorité":"À vérifier")+'</strong>'+esc(w.message)+'</div>';}).join("");
+    let paths=(adminCatalog.administrative_pathways||[]).filter(function(p){return (p.trigger_profiles||[]).some(function(id){return ids.includes(id);});});
+    paths=paths.sort(function(a,b){return adminPathwayOrder(a.id)-adminPathwayOrder(b.id);});
+    const ph=document.getElementById("simpleAdminPathways");
+    if(ph)ph.innerHTML=paths.length?paths.map(renderAdminPathway).join(""):'<div class="admin-empty"><strong>Aucun parcours spécialisé n’est déclenché avec ces réponses.</strong><br>Vous pouvez revoir vos réponses ou utiliser les pistes générales d’EcoTank.</div>';
+    const sources=adminSourceRows(ids),sh=document.getElementById("simpleAdminSources");
+    if(sh)sh.innerHTML=sources.length?'<h3>Sources officielles à vérifier</h3><p>Ouvrez la source correspondant à votre situation actuelle, surtout si un document est en renouvellement ou si un délai de recours court.</p><div class="admin-source-list">'+sources.map(function(src){return '<a href="'+esc(src.url)+'" target="_blank" rel="noopener noreferrer">'+esc(src.label)+'<small>'+esc(src.authority||"Source officielle")+'</small></a>';}).join("")+'</div>':'';
+    if(adminDocument&&ph)ph.insertAdjacentHTML("beforebegin",'<div class="admin-help-note"><strong>Document indiqué :</strong> '+esc(adminDocument)+'. EcoTank ne l’interprète pas automatiquement : utilisez-le pour vérifier votre situation auprès de l’autorité compétente.</div>');
+  }
+  function finishAdminJourney(){
+    const input=document.getElementById("adminDocumentInput");if(input)adminDocument=input.value.trim();
+    renderAdminResults();showSimple("simpleAdminResults");
+  }
+  function resetAdminJourney(){
+    adminQuestionIndex=0;adminDocument="";adminSelected={};adminStepState={};
+    showSimple("simpleHome");
+  }
+
+  document.getElementById("simpleAdminStart")?.addEventListener("click",startAdminJourney);
+  document.getElementById("simpleAdminHome")?.addEventListener("click",function(){showSimple("simpleHome");});
+  document.getElementById("simpleAdminEdit")?.addEventListener("click",startAdminJourney);
+  document.getElementById("simpleAdminResultsHome")?.addEventListener("click",function(){showSimple("simpleHome");});
+  document.getElementById("simpleAdminReset")?.addEventListener("click",resetAdminJourney);
+  document.getElementById("simpleAdminQuestionHost")?.addEventListener("change",function(e){
+    if(e.target&&e.target.id==="adminResidenceSelect"){adminSetSingle("sejour_protection",e.target.value||"");renderAdminQuestion();}
+  });
+  document.getElementById("simpleAdminQuestionHost")?.addEventListener("click",function(e){
+    if(e.target.closest("[data-admin-home]")){showSimple("simpleHome");return;}
+    const option=e.target.closest("[data-admin-option]");
+    if(option){
+      const axisId=option.dataset.adminAxis,value=option.dataset.adminOption,axis=adminAxis(axisId);
+      if(axis&&axis.selection==="multi")adminToggle(axisId,value);else adminSetSingle(axisId,value);
+      renderAdminQuestion();return;
+    }
+    if(e.target.closest("[data-admin-back]")){prevAdminQuestion();return;}
+    if(e.target.closest("[data-admin-skip]")){const axisId=ADMIN_AXES[adminQuestionIndex];if(axisId)adminSelected[axisId]=[];nextAdminQuestion();return;}
+    if(e.target.closest("[data-admin-finish]")){finishAdminJourney();return;}
+    if(e.target.closest("[data-admin-next]")){nextAdminQuestion();return;}
+  });
+  document.getElementById("simpleAdminPathways")?.addEventListener("change",function(e){
+    const select=e.target.closest("[data-admin-step]");if(select)adminStepState[select.dataset.adminStep]=select.value;
+  });
+  document.getElementById("simpleAdminWizard")?.addEventListener("keydown",function(e){if(e.key==="Escape")showSimple("simpleHome");});
 
   document.getElementById("simpleResultsList")?.addEventListener("click",e=>handleSimpleListClick(e,"simpleResults"));
   document.getElementById("simpleSituationGroups")?.addEventListener("click",e=>handleSimpleListClick(e,"simpleResults"));
