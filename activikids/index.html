@@ -504,6 +504,7 @@ EVENTS.forEach(function(e){
     if(!d.s||d.st==='annulee')return;
     var en=d.e||d.s; if(en<TODAY)return;
     var o={e:e,d:d,s:d.s,en:en,long:diffDays(d.s,en)>31};
+    if(!occurrenceStillRelevant(o))return;
     OCC.push(o);
     var cur=NEXT_OCC[e.id]; var eff=d.s>TODAY?d.s:TODAY;
     if(!cur||eff<cur.eff||(eff===cur.eff&&d.s<cur.o.s)) NEXT_OCC[e.id]={o:o,eff:eff};
@@ -586,6 +587,7 @@ function nextHoliday(){
   for(var i=0;i<VACANCES.length;i++){if(VACANCES[i].to>=TODAY)return VACANCES[i]}
   return null;
 }
+function emptyPeriodRange(){return [TODAY,addDays(TODAY,-1)]}
 function whenRange(w){
   w=w||state.when;
   if(w==='today')return [TODAY,TODAY];
@@ -596,8 +598,8 @@ function whenRange(w){
     var sat=addDays(TODAY,5-TODAY_DOW);return [sat,addDays(sat,1)];
   }
   if(w==='wed'){var dd=(2-TODAY_DOW+7)%7;var d=addDays(TODAY,dd);return [d,d]}
-  if(w==='holidays'){var h=nextHoliday();return h?[h.from>TODAY?h.from:TODAY,h.to]:null}
-  if(w==='date'&&state.date&&state.date>=TODAY)return [state.date,state.date];
+  if(w==='holidays'){var h=nextHoliday();return h?[h.from>TODAY?h.from:TODAY,h.to]:emptyPeriodRange()}
+  if(w==='date')return state.date&&state.date>=TODAY?[state.date,state.date]:emptyPeriodRange();
   return null;
 }
 function listedScheduleDates(o){
@@ -655,6 +657,11 @@ function occurrenceSelectableOnDate(o,day){
   if(!endTimeAppliesOnDay(o,day))return true;
   var end=hmMinutes(o.d.he),now=hmMinutes(NOWHM);
   return end==null||now==null||end>now;
+}
+function occurrenceStillRelevant(o){
+  if(o.en<TODAY)return false;
+  if(o.en>TODAY)return true;
+  return occurrenceSelectableOnDate(o,TODAY);
 }
 function passDate(o,w){
   var r=whenRange(w); if(!r)return true;
@@ -1210,7 +1217,7 @@ function pickSurprise(){
     var horizon=addDays(TODAY,state.when==='any'?14:60);
     OCC.forEach(function(o){if(o.long)return;if(!passEvent(o.e))return;if(state.when!=='any'){if(!passDate(o))return}else if(o.s>horizon)return;pool.push({e:o.e,o:o,w:1+(o.e.free==='oui'?.3:0)+(o.e.stat==='actif'?.3:0)})});
   }
-  if(!pool.length){
+  if(!pool.length&&state.when==='any'){
     EVENTS.forEach(function(e){if(e.stat==='fini'||!passEvent(e))return;if(e.k==='annual'&&!NEXT_OCC[e.id])return;pool.push({e:e,o:NEXT_OCC[e.id]?NEXT_OCC[e.id].o:null,w:1})});
   }
   var res=[],usedT={},usedId={},tries=0;
@@ -1456,7 +1463,7 @@ function init(){
     temporal:{
       today:TODAY,now:NOWHM,addDays:addDays,diffDays:diffDays,listedScheduleDates:listedScheduleDates,occursOnDate:occursOnDate,
       passDate:passDate,displayDateForOcc:displayDateForOcc,
-      occurrenceSelectableOnDate:occurrenceSelectableOnDate,
+      occurrenceSelectableOnDate:occurrenceSelectableOnDate,occurrenceStillRelevant:occurrenceStillRelevant,
       range:function(w,dateValue){var old=state.date;if(w==='date'&&dateValue!=null)state.date=dateValue;var out=whenRange(w);state.date=old;return out},
       nextHoliday:nextHoliday
     }
