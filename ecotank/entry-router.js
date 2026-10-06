@@ -225,7 +225,17 @@
   }
 
   function priorityTokens(){
-    return [state.answers.q_company_stage,state.answers.q_company_goal,state.answers.q_business_stage].filter(Boolean);
+    const tokens=[state.answers.q_company_stage,state.answers.q_company_goal,state.answers.q_business_stage].filter(Boolean);
+    const cash=state.businessAnswers.cash_position||"";
+    const debts=state.businessAnswers.debts||"";
+    const employees=state.businessAnswers.employees||"";
+    if(cash==="c’est serré"||cash==="non")tokens.push("cashflow_problem","difficulty");
+    if(debts==="fiscales")tokens.push("taxes","difficulty");
+    if(debts==="cotisations sociales")tokens.push("cashflow_problem","difficulty");
+    if(debts==="ONSS")tokens.push("staff","difficulty");
+    if(debts==="banque/crédit"||debts==="fournisseurs"||debts==="loyer/énergie")tokens.push("cashflow_problem","difficulty");
+    if(employees&&employees!=="aucun"&&employees!=="je ne sais pas")tokens.push("employer","staff");
+    return [...new Set(tokens)];
   }
 
   function resourceCardHtml(card,index,priority){
@@ -254,7 +264,7 @@
     const intake=d.intake;
     const intakeHtml=intake&&Array.isArray(intake.questions)?(
       '<section class="business-intake"><h3>Pour affiner « Mon entreprise »</h3><p>'+esc(intake.privacy||"Ces réponses restent dans cette page.")+'</p><div class="business-intake-grid">'+
-      intake.questions.map(q=>'<label>'+esc(q.label)+'<select data-business-intake="'+esc(q.id)+'"><option value="">Je préfère ne pas préciser</option>'+(q.options||[]).map(o=>'<option value="'+esc(o)+'">'+esc(o)+'</option>').join("")+'</select></label>').join("")+
+      intake.questions.map(q=>'<label>'+esc(q.label)+'<select data-business-intake="'+esc(q.id)+'"><option value="">Je préfère ne pas préciser</option>'+(q.options||[]).map(o=>'<option value="'+esc(o)+'" '+(state.businessAnswers[q.id]===o?'selected':'')+'>'+esc(o)+'</option>').join("")+'</select></label>').join("")+
       '</div></section>'
     ):"";
     const future=(d.future_sections||[]).map(x=>'<span>'+esc(x)+'</span>').join("");
@@ -271,14 +281,14 @@
       intakeHtml+
       '<section><h3>Les premières actions utiles pour votre situation</h3><div class="business-grid">'+(cards.length?cards.map((x,i)=>resourceCardHtml(x.card,i,x.priority)).join(""):'<div class="business-card"><h3>Le parcours se construit</h3><p>Les premières sources officielles sont en cours de raccordement.</p></div>')+'</div></section>'+
       (future?'<section><h3>Ce volet va aussi couvrir</h3><div class="business-future">'+future+'</div></section>':"")+
-      '<div class="entry-route-actions"><button type="button" class="primary" data-business-refresh>Mettre à jour les priorités</button><button type="button" data-entry-personal>Je veux aussi vérifier mes droits personnels</button><button type="button" class="linkish" data-entry-home>Accueil</button></div>';
+      '<div class="entry-route-actions"><button type="button" class="primary" data-business-refresh>Actualiser les actions selon mes réponses</button><button type="button" data-entry-personal>Je veux aussi vérifier mes droits personnels</button><button type="button" class="linkish" data-entry-home>Accueil</button></div>';
     showScreen("simpleBusinessHome");
   }
 
   function openEmail(cardId){
     const d=destination(state.destinationId);
     const card=(d?.resource_cards||[]).find(x=>x.id===cardId);
-    const box=document.querySelector('[data-business-email-box="'+CSS.escape(cardId)+'"]');
+    const box=document.querySelector('[data-business-email-box="'+cardId+'"]');
     if(!card||!box)return;
     const subject=card.email_subject||"Demande d’information";
     const body=card.email_body||"Bonjour,\nJ’aurais besoin d’une information concernant mon entreprise.\nMerci d’avance.";
@@ -295,7 +305,7 @@
     try{await navigator.clipboard.writeText(text);}catch(e){
       const ta=document.createElement("textarea");ta.value=text;document.body.appendChild(ta);ta.select();document.execCommand("copy");ta.remove();
     }
-    const b=document.querySelector('[data-copy-business-email="'+CSS.escape(cardId)+'"]');
+    const b=document.querySelector('[data-copy-business-email="'+cardId+'"]');
     if(b){const old=b.textContent;b.textContent="Copié";setTimeout(()=>b.textContent=old,1200);}
   }
 
