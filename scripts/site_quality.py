@@ -44,7 +44,7 @@ for phrase in ("globalPrivacyControl", "doNotTrack", "section==='ecotank'", "ref
     if phrase not in analytics:
         errors.append(f"analytics_missing_guardrail:{phrase}")
 
-for rel in ("index.html", "a-propos.html", "methodologie.html", "confidentialite.html", "404.html"):
+for rel in ("index.html", "a-propos.html", "methodologie.html", "confidentialite.html", "signaler.html", "404.html"):
     text = (ROOT / rel).read_text(encoding="utf-8")
     if not re.search(r"<meta[^>]+name=[\"']viewport[\"']", text, re.I):
         errors.append(f"viewport_missing:{rel}")
@@ -72,7 +72,7 @@ if BASE + "signaler.html" not in sitemap:
     errors.append("sitemap_missing:signaler.html")
 
 not_found = (ROOT / "404.html").read_text(encoding="utf-8")
-for required_404 in (PROJECT_ROOT + "site.css", PROJECT_ROOT + '",', PROJECT_ROOT + "activikids/", PROJECT_ROOT + "signaler.html"):
+for required_404 in (PROJECT_ROOT + "site.css", f'href="{PROJECT_ROOT}"', PROJECT_ROOT + "activikids/", PROJECT_ROOT + "signaler.html"):
     if required_404 not in not_found:
         errors.append(f"404_not_project_root_safe:{required_404}")
 
