@@ -2192,6 +2192,466 @@
       }
     ]
   },
+  "entry_router": {
+    "version": 1,
+    "updated_at": "2026-10-06",
+    "purpose": "Sas d'entrée EcoTank. Avant d'afficher des aides, identifier rapidement la situation administrative et professionnelle afin d'ouvrir le bon parcours.",
+    "principles": [
+      "Ne pas afficher d'abord un catalogue d'aides à une personne qui ne sait plus quels statuts, revenus ou documents sont encore en ordre.",
+      "Identifier très tôt la situation professionnelle ou de revenu, sans assimiler salarié, allocataire, indépendant en personne physique et dirigeant de société.",
+      "Un dirigeant ou chef d'entreprise doit entrer dans un parcours clairement identifié comme professionnel/entreprise, avec son propre vocabulaire et son propre formulaire.",
+      "Les aides sociales personnelles restent accessibles plus tard si la personne les demande ou si une rupture personnelle est signalée, mais elles ne sont pas l'écran d'accueil du parcours entreprise.",
+      "Limiter le sas à quelques questions utiles; les détails viennent dans le formulaire spécialisé.",
+      "Toujours proposer « je ne sais pas » sans bloquer le parcours."
+    ],
+    "entry_policy": {
+      "required_before_general_aid_catalog": true,
+      "default_general_aid_catalog_visibility": "hidden_until_orientation",
+      "max_questions_before_destination": 3,
+      "allow_skip_to_search": false,
+      "note": "La recherche libre pourra rester disponible plus tard, mais l'accueil EcoTank doit d'abord orienter le profil.",
+      "presentation": {
+        "mode": "one_question_per_screen",
+        "option_layout": "grouped_cards",
+        "show_question_counter": true,
+        "show_percentage_progress": false,
+        "primary_action_after_route": "Continuer dans mon parcours",
+        "back_allowed": true,
+        "remember_answers_during_current_page_only": true
+      }
+    },
+    "questions": [
+      {
+        "id": "q_entry_situation",
+        "order": 1,
+        "required": true,
+        "text": "Quelle situation vous correspond le mieux aujourd'hui ?",
+        "helper": "Choisissez simplement la situation principale. On précisera ensuite si nécessaire.",
+        "options": [
+          {
+            "id": "start_from_zero",
+            "label": "Je pars de presque zéro / je ne sais plus quels droits ou documents sont encore en ordre",
+            "destination_id": "foundation_recovery",
+            "general_aid_catalog": "hidden"
+          },
+          {
+            "id": "replacement_income",
+            "label": "Je vis surtout d'un revenu de remplacement ou d'une aide (chômage, CPAS, incapacité, invalidité…)",
+            "next_question_id": "q_replacement_income_type",
+            "destination_id": "social_protection"
+          },
+          {
+            "id": "employee",
+            "label": "Je travaille comme salarié, ouvrier ou employé",
+            "next_question_id": "q_foundations_ok",
+            "destination_id": "employee"
+          },
+          {
+            "id": "public_worker",
+            "label": "Je travaille dans le secteur public / je suis fonctionnaire ou agent public",
+            "next_question_id": "q_foundations_ok",
+            "destination_id": "public_worker"
+          },
+          {
+            "id": "self_employed",
+            "label": "Je suis indépendant en personne physique / profession libérale",
+            "next_question_id": "q_business_stage",
+            "destination_id": "self_employed"
+          },
+          {
+            "id": "company_director",
+            "label": "Je dirige une société / je suis gérant, administrateur ou chef d'entreprise",
+            "next_question_id": "q_company_stage",
+            "destination_id": "company"
+          },
+          {
+            "id": "student",
+            "label": "Je suis étudiant",
+            "next_question_id": "q_foundations_ok",
+            "destination_id": "student"
+          },
+          {
+            "id": "retired",
+            "label": "Je suis pensionné",
+            "next_question_id": "q_foundations_ok",
+            "destination_id": "retired"
+          },
+          {
+            "id": "international_special",
+            "label": "J'ai une situation internationale ou un statut spécial (frontalier, détaché, diplomatie, organisation internationale…)",
+            "destination_id": "international_special"
+          },
+          {
+            "id": "other_unknown",
+            "label": "Je ne sais pas / aucune de ces situations ne correspond vraiment",
+            "destination_id": "guided_orientation",
+            "general_aid_catalog": "hidden"
+          }
+        ],
+        "groups": [
+          {
+            "id": "fragile",
+            "label": "Je dois d'abord remettre ma situation en ordre",
+            "option_ids": [
+              "start_from_zero",
+              "other_unknown"
+            ]
+          },
+          {
+            "id": "social",
+            "label": "Je vis principalement d'un revenu de remplacement",
+            "option_ids": [
+              "replacement_income"
+            ]
+          },
+          {
+            "id": "work",
+            "label": "Je travaille",
+            "option_ids": [
+              "employee",
+              "public_worker",
+              "self_employed",
+              "company_director"
+            ]
+          },
+          {
+            "id": "other",
+            "label": "Autres situations",
+            "option_ids": [
+              "student",
+              "retired",
+              "international_special"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "q_replacement_income_type",
+        "order": 2,
+        "required_if": {
+          "q_entry_situation": [
+            "replacement_income"
+          ]
+        },
+        "text": "Quel revenu ou statut vous concerne principalement ?",
+        "options": [
+          {
+            "id": "unemployment",
+            "label": "Chômage / allocations ONEM",
+            "profile_ids": [
+              "chomeur"
+            ]
+          },
+          {
+            "id": "cpas",
+            "label": "CPAS / revenu d'intégration / aide sociale",
+            "tags": [
+              "cpas"
+            ]
+          },
+          {
+            "id": "incapacity_invalidity",
+            "label": "Incapacité de travail / invalidité",
+            "profile_ids": [
+              "incapacite_invalidite"
+            ]
+          },
+          {
+            "id": "pension_or_grapa",
+            "label": "Pension / GRAPA",
+            "profile_ids": [
+              "pensionne"
+            ]
+          },
+          {
+            "id": "other_allowance",
+            "label": "Autre allocation ou revenu de remplacement",
+            "tags": [
+              "replacement_income_other"
+            ]
+          },
+          {
+            "id": "unknown",
+            "label": "Je ne sais pas exactement",
+            "tags": [
+              "replacement_income_unknown"
+            ]
+          }
+        ],
+        "destination_id": "social_protection"
+      },
+      {
+        "id": "q_foundations_ok",
+        "order": 2,
+        "required_if": {
+          "q_entry_situation": [
+            "employee",
+            "public_worker",
+            "student",
+            "retired"
+          ]
+        },
+        "text": "Vos bases administratives sont-elles globalement en ordre ?",
+        "helper": "Par exemple : identité/séjour, adresse officielle, compte bancaire, mutualité et accès aux courriers administratifs.",
+        "options": [
+          {
+            "id": "yes",
+            "label": "Oui, globalement",
+            "effect": "keep_destination"
+          },
+          {
+            "id": "some_problems",
+            "label": "Il y a quelques problèmes ou démarches en retard",
+            "effect": "add_foundation_check"
+          },
+          {
+            "id": "no_or_unknown",
+            "label": "Non / je ne sais plus ce qui est en ordre",
+            "effect": "foundation_recovery_first"
+          }
+        ]
+      },
+      {
+        "id": "q_business_stage",
+        "order": 2,
+        "required_if": {
+          "q_entry_situation": [
+            "self_employed"
+          ]
+        },
+        "text": "Où en est votre activité indépendante ?",
+        "options": [
+          {
+            "id": "starting",
+            "label": "Je démarre ou prépare mon activité"
+          },
+          {
+            "id": "running",
+            "label": "Mon activité fonctionne normalement"
+          },
+          {
+            "id": "cashflow_problem",
+            "label": "J'ai des difficultés de trésorerie ou de paiement"
+          },
+          {
+            "id": "interruption",
+            "label": "Je dois interrompre ou réduire fortement mon activité"
+          },
+          {
+            "id": "closing",
+            "label": "Je cesse ou envisage de cesser mon activité"
+          },
+          {
+            "id": "unknown",
+            "label": "Je ne sais pas encore"
+          }
+        ],
+        "destination_id": "self_employed"
+      },
+      {
+        "id": "q_company_stage",
+        "order": 2,
+        "required_if": {
+          "q_entry_situation": [
+            "company_director"
+          ]
+        },
+        "text": "Quelle est la situation de votre entreprise aujourd'hui ?",
+        "options": [
+          {
+            "id": "starting",
+            "label": "Création / lancement"
+          },
+          {
+            "id": "running",
+            "label": "Activité normale / développement"
+          },
+          {
+            "id": "employer",
+            "label": "J'emploie du personnel ou je vais engager"
+          },
+          {
+            "id": "cashflow_problem",
+            "label": "Trésorerie, dettes ou paiements deviennent difficiles"
+          },
+          {
+            "id": "restructuring",
+            "label": "Réorganisation / réduction d'activité"
+          },
+          {
+            "id": "closing",
+            "label": "Cessation / liquidation envisagée ou en cours"
+          },
+          {
+            "id": "unknown",
+            "label": "Je ne sais pas encore"
+          }
+        ],
+        "next_question_id": "q_company_goal",
+        "destination_id": "company"
+      },
+      {
+        "id": "q_company_goal",
+        "order": 3,
+        "required_if": {
+          "q_entry_situation": [
+            "company_director"
+          ]
+        },
+        "text": "Sur quoi voulez-vous être aidé en priorité ?",
+        "options": [
+          {
+            "id": "cashflow",
+            "label": "Trésorerie, charges, dettes ou délais de paiement"
+          },
+          {
+            "id": "taxes",
+            "label": "Fiscalité, TVA, précomptes ou obligations"
+          },
+          {
+            "id": "social_contributions",
+            "label": "Cotisations sociales et protection du dirigeant"
+          },
+          {
+            "id": "staff",
+            "label": "Personnel, embauche ou coûts employeur"
+          },
+          {
+            "id": "financing",
+            "label": "Financement, primes, subsides ou investissements"
+          },
+          {
+            "id": "energy_premises",
+            "label": "Énergie, locaux ou coûts de fonctionnement"
+          },
+          {
+            "id": "administration",
+            "label": "Formalités, guichets et démarches administratives"
+          },
+          {
+            "id": "difficulty",
+            "label": "Entreprise en difficulté / restructuration / cessation"
+          },
+          {
+            "id": "other",
+            "label": "Autre besoin"
+          }
+        ],
+        "destination_id": "company"
+      }
+    ],
+    "destinations": [
+      {
+        "id": "foundation_recovery",
+        "title": "Remettre d'abord les bases en ordre",
+        "intro": "On ne va pas commencer par vous montrer une longue liste d'aides. On vérifie d'abord ce qui est encore en ordre et ce qui bloque.",
+        "general_aid_catalog": "hidden_until_foundation_orientation",
+        "start_with_readiness_ids": [
+          "identity_document",
+          "official_address",
+          "health_cover",
+          "bank_account",
+          "official_mail",
+          "eid_pin",
+          "itsme"
+        ],
+        "can_surface_immediate_safety_nets": true
+      },
+      {
+        "id": "social_protection",
+        "title": "Mes revenus de remplacement et mes droits sociaux",
+        "intro": "On part de votre organisme payeur et de vos droits actuels, puis on vérifie ce qui peut compléter ou sécuriser la situation.",
+        "general_aid_catalog": "filtered",
+        "vocabulary": [
+          "droit",
+          "allocation",
+          "organisme payeur",
+          "recours",
+          "complément",
+          "continuité"
+        ]
+      },
+      {
+        "id": "employee",
+        "title": "Ma situation de salarié",
+        "intro": "On part de votre travail, de votre ménage et de vos dépenses avant de chercher ce qui est pertinent.",
+        "general_aid_catalog": "filtered",
+        "vocabulary": [
+          "salaire",
+          "emploi",
+          "contrat",
+          "avantage",
+          "réduction",
+          "fiscalité",
+          "famille"
+        ]
+      },
+      {
+        "id": "public_worker",
+        "title": "Ma situation dans le secteur public",
+        "intro": "Votre régime peut différer de celui d'un salarié du privé. On le garde distinct dès le départ.",
+        "general_aid_catalog": "filtered"
+      },
+      {
+        "id": "self_employed",
+        "title": "Mon activité indépendante",
+        "intro": "Ce parcours parle activité, cotisations, trésorerie et protection de l'indépendant. Il n'est pas présenté comme un parcours CPAS/chômage.",
+        "special_form": "self_employed_intake",
+        "general_social_aids_hidden_by_default": true,
+        "allow_personal_safety_net_opt_in": true
+      },
+      {
+        "id": "company",
+        "title": "Mon entreprise",
+        "intro": "Vous êtes dans le volet entreprise. On traite d'abord la société, sa trésorerie, ses obligations, son financement et, si nécessaire, votre protection personnelle de dirigeant.",
+        "special_form": "company_intake",
+        "distinct_from_self_employed": true,
+        "distinct_from_social_benefit_route": true,
+        "general_social_aids_hidden_by_default": true,
+        "allow_personal_safety_net_opt_in": true,
+        "future_sections": [
+          "trésorerie et charges",
+          "fiscalité, TVA et précomptes",
+          "cotisations sociales et protection du dirigeant",
+          "personnel et coûts employeur",
+          "financement, primes et subsides",
+          "énergie et locaux professionnels",
+          "assurances et risques",
+          "entreprise en difficulté, restructuration et cessation"
+        ]
+      },
+      {
+        "id": "student",
+        "title": "Ma situation d'étudiant",
+        "general_aid_catalog": "filtered"
+      },
+      {
+        "id": "retired",
+        "title": "Ma situation de pensionné",
+        "general_aid_catalog": "filtered"
+      },
+      {
+        "id": "international_special",
+        "title": "Ma situation internationale ou spéciale",
+        "general_aid_catalog": "hidden_until_status_orientation",
+        "start_with_existing_status_router": true
+      },
+      {
+        "id": "guided_orientation",
+        "title": "Trouver d'abord votre situation",
+        "general_aid_catalog": "hidden_until_orientation",
+        "start_with_existing_status_router": true
+      }
+    ],
+    "business_guardrails": {
+      "company_route_label": "Mon entreprise",
+      "self_employed_route_label": "Mon activité indépendante",
+      "never_merge_labels_in_ui": true,
+      "never_default_to_social_aid_language": true,
+      "personal_rights_entry_label": "Je veux aussi vérifier mes droits personnels",
+      "note": "Un dirigeant peut juridiquement relever du statut social des indépendants, mais EcoTank conserve deux parcours d'usage distincts pour ne pas confondre l'activité indépendante en personne physique avec la gestion d'une société."
+    }
+  },
   "safety": {
     "informational_only": true,
     "creates_entitlements": false,
