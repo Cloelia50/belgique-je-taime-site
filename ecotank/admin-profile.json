@@ -890,6 +890,282 @@
       "authority": "SPF Sécurité sociale"
     }
   },
+  "ecotank_bridges": {
+    "version": 1,
+    "purpose": "Relier prudemment les étapes du parcours administratif aux fiches EcoTank existantes sans déduire une éligibilité.",
+    "rules": [
+      "Une fiche reliée est une piste à vérifier, jamais une confirmation de droit.",
+      "Ne relier une fiche que si son sujet correspond réellement à l'étape administrative.",
+      "Quand aucune fiche EcoTank n'est assez spécifique, afficher le trou et renvoyer vers les sources officielles du parcours.",
+      "Les réponses administratives ne modifient pas automatiquement les statuts d'éligibilité des fiches EcoTank."
+    ],
+    "links": [
+      {
+        "pathway_id": "rupture_droits",
+        "step_id": "urgence",
+        "profile_ids_any": [],
+        "category_id": "sansrevenu",
+        "item_title": "Aide urgente en attendant",
+        "reason": "Pour couvrir les besoins immédiats pendant qu’un droit principal est interrompu ou en attente."
+      },
+      {
+        "pathway_id": "rupture_droits",
+        "step_id": "urgence",
+        "profile_ids_any": [],
+        "category_id": "sansrevenu",
+        "item_title": "Soins de santé sans revenu",
+        "reason": "Pour préserver l’accès aux soins pendant une période sans revenu."
+      },
+      {
+        "pathway_id": "rupture_droits",
+        "step_id": "urgence",
+        "profile_ids_any": [],
+        "category_id": "cpas",
+        "item_title": "Aide ponctuelle pour une facture",
+        "reason": "À vérifier lorsqu’une dépense essentielle devient impossible à payer."
+      },
+      {
+        "pathway_id": "rupture_droits",
+        "step_id": "dernier_droit",
+        "profile_ids_any": [
+          "chomeur"
+        ],
+        "category_id": "chomage",
+        "item_title": "En cas d'exclusion : demander le revenu d'intégration",
+        "reason": "Si le dernier droit perdu est le chômage, cette fiche montre le filet de sécurité à vérifier ensuite."
+      },
+      {
+        "pathway_id": "rupture_droits",
+        "step_id": "dernier_droit",
+        "profile_ids_any": [
+          "incapacite_invalidite"
+        ],
+        "category_id": "inami",
+        "item_title": "Incapacité de travail : formulaire 225 sur la composition de famille et les revenus",
+        "reason": "Pour vérifier les démarches liées à l’incapacité et à la situation familiale."
+      },
+      {
+        "pathway_id": "rupture_droits",
+        "step_id": "dernier_droit",
+        "profile_ids_any": [
+          "independant"
+        ],
+        "category_id": "indepdiff",
+        "item_title": "Droit passerelle en cas d’interruption ou cessation forcée",
+        "reason": "À vérifier lorsqu’un indépendant perd ses revenus après interruption ou cessation."
+      },
+      {
+        "pathway_id": "rupture_droits",
+        "step_id": "dernier_droit",
+        "profile_ids_any": [
+          "pensionne"
+        ],
+        "category_id": "pensions",
+        "item_title": "GRAPA si les ressources restent faibles",
+        "reason": "À vérifier si la pension ou les autres ressources restent insuffisantes."
+      },
+      {
+        "pathway_id": "rupture_droits",
+        "step_id": "decision",
+        "profile_ids_any": [],
+        "category_id": "justice",
+        "item_title": "Premier conseil juridique gratuit pour tous",
+        "reason": "Utile pour comprendre une décision, un délai ou une voie de recours avant d’agir."
+      },
+      {
+        "pathway_id": "rupture_droits",
+        "step_id": "decision",
+        "profile_ids_any": [],
+        "category_id": "cpas",
+        "item_title": "Refus ou silence du CPAS : recours au tribunal du travail",
+        "reason": "À ouvrir si le problème concerne précisément une décision ou une absence de décision du CPAS."
+      },
+      {
+        "pathway_id": "rupture_droits",
+        "step_id": "droits_secondaires",
+        "profile_ids_any": [],
+        "category_id": "sansrevenu",
+        "item_title": "Soins de santé sans revenu",
+        "reason": "Les soins et la couverture santé doivent être vérifiés séparément du revenu perdu."
+      },
+      {
+        "pathway_id": "rupture_droits",
+        "step_id": "droits_secondaires",
+        "profile_ids_any": [
+          "chomeur"
+        ],
+        "category_id": "chomage",
+        "item_title": "Rester en ordre de mutuelle",
+        "reason": "Après une perte ou fin de droit au chômage, la couverture santé doit être vérifiée séparément."
+      },
+      {
+        "pathway_id": "rupture_droits",
+        "step_id": "recours_reouverture",
+        "profile_ids_any": [],
+        "category_id": "justice",
+        "item_title": "Premier conseil juridique gratuit pour tous",
+        "reason": "Pour faire vérifier un recours, une révision ou une nouvelle demande sans supposer son issue."
+      },
+      {
+        "pathway_id": "rupture_droits",
+        "step_id": "recours_reouverture",
+        "profile_ids_any": [],
+        "category_id": "justice",
+        "item_title": "Avocat totalement ou partiellement gratuit",
+        "reason": "À vérifier si une procédure ou un recours nécessite un accompagnement juridique."
+      },
+      {
+        "pathway_id": "rupture_droits",
+        "step_id": "aides_sans_statut",
+        "profile_ids_any": [],
+        "category_id": "cpas",
+        "item_title": "Services sociaux gratuits hors CPAS",
+        "reason": "Pour obtenir une orientation sociale même quand le statut principal n’est pas encore rétabli."
+      },
+      {
+        "pathway_id": "rupture_droits",
+        "step_id": "aides_sans_statut",
+        "profile_ids_any": [],
+        "category_id": "sansrevenu",
+        "item_title": "Services gratuits de base",
+        "reason": "Pour repérer des services utiles indépendamment du rétablissement du revenu principal."
+      },
+      {
+        "pathway_id": "regime_social_professionnel",
+        "step_id": "regime",
+        "profile_ids_any": [
+          "chomeur"
+        ],
+        "category_id": "chomage",
+        "item_title": "Demander les allocations immédiatement : ne pas attendre d’avoir tous les documents",
+        "reason": "Pour enclencher rapidement le régime chômage lorsque c’est la situation déclarée."
+      },
+      {
+        "pathway_id": "regime_social_professionnel",
+        "step_id": "regime",
+        "profile_ids_any": [
+          "incapacite_invalidite"
+        ],
+        "category_id": "inami",
+        "item_title": "Incapacité de travail : formulaire 225 sur la composition de famille et les revenus",
+        "reason": "Pour la branche incapacité de travail lorsqu’elle correspond au régime déclaré."
+      },
+      {
+        "pathway_id": "regime_social_professionnel",
+        "step_id": "regime",
+        "profile_ids_any": [
+          "independant"
+        ],
+        "category_id": "indepdiff",
+        "item_title": "Réduire les cotisations sociales provisoires",
+        "reason": "Pour vérifier les leviers propres au régime indépendant en cas de baisse de revenus."
+      },
+      {
+        "pathway_id": "regime_social_professionnel",
+        "step_id": "regime",
+        "profile_ids_any": [
+          "pensionne"
+        ],
+        "category_id": "pensions",
+        "item_title": "Contrôler toute sa carrière sur mypension.be",
+        "reason": "Pour vérifier la carrière et les périodes prises en compte dans le régime de pension."
+      },
+      {
+        "pathway_id": "regime_social_professionnel",
+        "step_id": "couverture_sante",
+        "profile_ids_any": [],
+        "category_id": "mutuelle",
+        "item_title": "Comparer les mutualités",
+        "reason": "Pour identifier ou rétablir une affiliation utile lorsque la couverture santé est incertaine."
+      },
+      {
+        "pathway_id": "regime_social_professionnel",
+        "step_id": "droits",
+        "profile_ids_any": [
+          "chomeur"
+        ],
+        "category_id": "chomage",
+        "item_title": "Demander les allocations immédiatement : ne pas attendre d’avoir tous les documents",
+        "reason": "Pour la branche chômage lorsque cette situation est sélectionnée."
+      },
+      {
+        "pathway_id": "regime_social_professionnel",
+        "step_id": "droits",
+        "profile_ids_any": [
+          "incapacite_invalidite"
+        ],
+        "category_id": "handicap",
+        "item_title": "Invalidité : ce qui est souvent oublié",
+        "reason": "Pour vérifier les droits annexes liés à une invalidité déjà reconnue ou en cours de traitement."
+      },
+      {
+        "pathway_id": "regime_social_professionnel",
+        "step_id": "droits",
+        "profile_ids_any": [
+          "independant"
+        ],
+        "category_id": "indepdiff",
+        "item_title": "Droit passerelle en cas d’interruption ou cessation forcée",
+        "reason": "Pour la protection sociale propre aux indépendants dans certaines interruptions ou cessations."
+      },
+      {
+        "pathway_id": "regime_social_professionnel",
+        "step_id": "droits",
+        "profile_ids_any": [
+          "pensionne"
+        ],
+        "category_id": "pensions",
+        "item_title": "Pension minimum garantie",
+        "reason": "À vérifier dans le parcours pension lorsque les conditions de carrière et de montant peuvent être pertinentes."
+      },
+      {
+        "pathway_id": "identifier_sejour",
+        "step_id": "echeance",
+        "profile_ids_any": [
+          "titre_inconnu_ou_en_cours",
+          "sejour_irregulier"
+        ],
+        "category_id": "justice",
+        "item_title": "Premier conseil juridique gratuit pour tous",
+        "reason": "Pour faire vérifier rapidement un document, une échéance ou un recours de séjour lorsque la situation est incertaine."
+      },
+      {
+        "pathway_id": "identifier_sejour",
+        "step_id": "droits_dependants",
+        "profile_ids_any": [
+          "sejour_irregulier"
+        ],
+        "category_id": "sansrevenu",
+        "item_title": "Aide médicale urgente (AMU) pour les personnes en séjour irrégulier",
+        "reason": "Une absence de titre valable ne signifie pas absence de tout accès aux soins ; cette fiche couvre l’AMU."
+      },
+      {
+        "pathway_id": "identifier_sejour",
+        "step_id": "droits_dependants",
+        "profile_ids_any": [
+          "titre_inconnu_ou_en_cours"
+        ],
+        "category_id": "justice",
+        "item_title": "Premier conseil juridique gratuit pour tous",
+        "reason": "Pour éviter de déduire trop vite les droits dépendants tant que le document réel n’est pas identifié."
+      },
+      {
+        "pathway_id": "protection_internationale",
+        "step_id": "recours",
+        "profile_ids_any": [],
+        "category_id": "justice",
+        "item_title": "Premier conseil juridique gratuit pour tous",
+        "reason": "Pour vérifier un délai, un recours ou la nécessité d’un accompagnement juridique."
+      }
+    ],
+    "gap_messages": {
+      "identifier_sejour": "EcoTank ne possède pas encore assez de fiches dédiées au droit de séjour. Les étapes sans fiche restent guidées par les sources officielles Office des étrangers.",
+      "protection_internationale": "EcoTank ne possède pas encore assez de fiches spécifiques à l’asile, au statut de réfugié, à la protection subsidiaire/temporaire ou à l’apatridie. Les sources CGRA, Office des étrangers et les autorités compétentes restent prioritaires.",
+      "statut_special_international": "EcoTank ne possède pas encore de fiches suffisamment spécifiques aux privilèges, immunités, cartes spéciales et accords de siège. Utilisez les sources du Protocole et de l’organisation concernée.",
+      "regime_social_professionnel": "Certaines branches professionnelles ou transfrontalières restent couvertes seulement par les sources officielles lorsqu’aucune fiche EcoTank suffisamment précise n’existe.",
+      "rupture_droits": "Les fiches reliées servent de filets de sécurité ou de pistes de recours ; elles ne prouvent jamais l’ouverture d’un droit."
+    }
+  },
   "safety": {
     "informational_only": true,
     "creates_entitlements": false,
