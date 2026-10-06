@@ -703,7 +703,7 @@ function openEvent(id,trigger){
     '<h2 class="cogito-panel-title" id="cogito-panel-title">'+esc(e.title)+'</h2>'+
     '<p class="cogito-panel-when">'+esc(whenLong(e))+'</p>'+
     '<div class="cogito-actions">'+
-      (ticket?'<a class="cogito-btn cogito-btn-solid" href="'+esc(ticket)+'" target="_blank" rel="noopener noreferrer" data-bjt-action="cogito_ticketing" data-bjt-key="'+esc(id)+'">Billetterie / Réserver '+ICON.ext+'</a>':
+      (ticket?'<a class="cogito-btn cogito-btn-solid" href="'+esc(ticket)+'" target="_blank" rel="noopener noreferrer" data-bjt-action="'+(e.ticketing_kind==='direct'?'cogito_ticketing':'cogito_registration')+'" data-bjt-key="'+esc(id)+'">'+(e.ticketing_kind==='direct'?'Billetterie / Réserver':'S’inscrire / Billetterie')+' '+ICON.ext+'</a>':
        (reg?'<a class="cogito-btn cogito-btn-solid" href="'+esc(reg)+'" target="_blank" rel="noopener noreferrer" data-bjt-action="cogito_registration" data-bjt-key="'+esc(id)+'">S’inscrire '+ICON.ext+'</a>':''))+
       (off?'<a class="cogito-btn'+((ticket||reg)?'':' cogito-btn-solid')+'" href="'+esc(off)+'" target="_blank" rel="noopener noreferrer" data-bjt-action="cogito_official" data-bjt-key="'+esc(id)+'">Page officielle '+ICON.ext+'</a>':'')+
       '<button type="button" class="cogito-btn cogito-btn-quiet" id="cogito-pfav" data-fav="'+esc(id)+'" aria-pressed="'+FAV.has(id)+'">'+ICON.mark+'Favori</button>'+
