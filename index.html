@@ -1,14 +1,90 @@
 <!doctype html>
-<html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Belgique, je t’aime — Des droits, des sorties et des idées près de chez vous</title>
-<meta name="description" content="Belgique, je t’aime : aides et économies, sorties en famille, conférences, débats et rencontres intellectuelles réunis en un seul endroit.">
-<style>
-:root{font-family:system-ui,-apple-system,Segoe UI,sans-serif;color:#27305b;background:#fffaf3}*{box-sizing:border-box}body{margin:0}a:focus-visible{outline:3px solid #17a99e;outline-offset:4px}.banner{text-align:center;background:#fff1c1;padding:.65rem;color:#764800;font-weight:700}.wrap{max-width:1180px;margin:auto;padding:22px}nav{font-weight:700;padding:16px 0;color:#27305b}nav .heart{color:#ff795f}header{padding:55px 0 28px;text-align:center}h1{font-size:clamp(44px,8vw,77px);letter-spacing:-.05em;margin:0;line-height:1.05}.subtitle{max-width:760px;margin:20px auto;color:#58607e;font-size:clamp(18px,2.5vw,22px);line-height:1.5}.tag{background:#f7dce6;display:inline-block;border-radius:50px;padding:8px 14px;font-weight:700;margin-bottom:20px}.cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:23px;margin:40px auto 54px}.card{border-radius:28px;box-shadow:0 14px 40px rgba(40,48,90,.1);overflow:hidden;display:flex;flex-direction:column;border:1px solid #eee}.card .photo{min-height:146px;display:grid;place-content:center;font-size:65px}.eco .photo{background:linear-gradient(145deg,#caeadf,#e1f9ef)}.acti .photo{background:linear-gradient(145deg,#ffe6d4,#eee1ff)}.cogi .photo{background:linear-gradient(145deg,#dfe9e5,#eadfe6);color:#2D4B4D;font-family:Georgia,serif}.card-content{background:#fff;padding:28px;flex:1;display:flex;flex-direction:column}.card h2{font-size:34px;letter-spacing:-.03em;margin:0}.card p{font-size:17px;line-height:1.52;color:#58607e;flex:1}.button{display:inline-block;border-radius:30px;background:#27305b;color:white;text-decoration:none;font-weight:800;padding:13px 22px;align-self:flex-start}.acti .button{background:#ff795f}.cogi .button{background:#2D4B4D}footer{color:#6c738b;font-size:14px;text-align:center;border-top:1px solid #e9e2ec;padding:25px}footer b{color:#27305b}@media(max-width:900px){.cards{grid-template-columns:1fr 1fr}.cogi{grid-column:1/-1}}@media(max-width:690px){.cards{grid-template-columns:1fr}.cogi{grid-column:auto}header{padding:36px 0 10px}.wrap{padding:16px}}
-</style></head><body>
-<div class="wrap"><nav>♥ <span class="heart">Belgique, je t’aime</span></nav>
-<header><div class="tag">Une Belgique à découvrir… et à mieux connaître</div><h1>Belgique,<br>je t’aime <span aria-hidden="true">♥</span></h1>
-<p class="subtitle">Un seul endroit pour repérer les aides auxquelles vous pourriez avoir droit, trouver des sorties en famille et découvrir les conférences, débats et rencontres qui font réfléchir.</p></header>
-<main><div class="cards"><article class="card eco"><div class="photo" aria-hidden="true">🌱</div><div class="card-content"><h2>Écotank</h2><p>Primes, aides, tarifs préférentiels, démarches : votre tableau de bord des économies possibles en Belgique.</p><a class="button" href="ecotank/" data-bjt-action="section_open" data-bjt-key="ecotank">Explorer les économies →</a></div></article>
-<article class="card acti"><div class="photo" aria-hidden="true">🎈</div><div class="card-content"><h2>Activikids</h2><p>Fêtes locales, activités pour enfants, spectacles, promenades et rendez-vous à proximité, toute l’année.</p><a class="button" href="activikids/" data-bjt-action="section_open" data-bjt-key="activikids">Explorer les sorties →</a></div></article>
-<article class="card cogi"><div class="photo" aria-hidden="true">✦</div><div class="card-content"><h2>Cogito</h2><p>Conférences, débats, cours publics et rencontres intellectuelles : un agenda pour apprendre, comprendre et nourrir sa curiosité.</p><a class="button" href="cogito/" data-bjt-action="section_open" data-bjt-key="cogito">Explorer les idées →</a></div></article></div></main>
-<footer><b>Belgique, je t’aime</b> — un seul site, trois volets complémentaires. Les informations doivent toujours être confirmées auprès des organismes. · <a href="confidentialite.html">Vie privée</a></footer></div><script defer src="analytics.js"></script></body></html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#fffaf3">
+<title>Belgique, je t’aime — Sorties, idées, aides et démarches utiles</title>
+<meta name="description" content="Trois outils gratuits pour trouver des sorties en famille, mieux comprendre aides et démarches, et découvrir conférences et débats en Belgique.">
+<meta name="robots" content="index,follow">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Belgique, je t’aime">
+<meta property="og:description" content="Se divertir, se cultiver et mieux vivre en Belgique : Activikids, Écotank et Cogito réunis au même endroit.">
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<a class="skip" href="#contenu">Aller au contenu</a>
+<div class="shell">
+  <header class="topbar">
+    <a class="brand" href="./" aria-label="Belgique, je t’aime — accueil"><span class="heart">♥</span> Belgique, je t’aime</a>
+    <nav class="topnav" aria-label="Navigation principale">
+      <a href="a-propos.html">À propos</a>
+      <a href="methodologie.html">Méthode &amp; sources</a>
+      <a href="confidentialite.html">Vie privée</a>
+    </nav>
+  </header>
+
+  <main id="contenu">
+    <section class="hero" aria-labelledby="titre">
+      <div class="eyebrow"><span>Gratuit</span><span>Indépendant</span><span>Sans compte</span></div>
+      <h1 id="titre">Que voulez-vous faire aujourd’hui&nbsp;?</h1>
+      <p class="lede">Belgique, je t’aime rassemble trois outils pour <strong>se divertir</strong>, <strong>se cultiver</strong> et <strong>mieux s’en sortir au quotidien</strong> en Belgique.</p>
+    </section>
+
+    <p class="prompt">Choisissez simplement votre point de départ.</p>
+    <section class="cards" aria-label="Les trois services">
+      <article class="card activikids">
+        <div class="card-top"><span class="name">Activikids</span><span class="icon" aria-hidden="true">🎈</span></div>
+        <div class="card-content">
+          <h2>Je veux faire quelque chose</h2>
+          <p>Sorties, fêtes, spectacles, activités et idées à faire avec les enfants, aujourd’hui, ce week-end ou pendant les vacances.</p>
+          <a class="cta" href="activikids/" data-bjt-action="section_open" data-bjt-key="activikids">Trouver une sortie <span aria-hidden="true">&nbsp;→</span></a>
+        </div>
+      </article>
+
+      <article class="card ecotank">
+        <div class="card-top"><span class="name">Écotank</span><span class="icon" aria-hidden="true">🌱</span></div>
+        <div class="card-content">
+          <h2>Je veux économiser ou régler une démarche</h2>
+          <p>Aides, droits, réductions et parcours administratifs : des pistes triées, des sources officielles et des étapes concrètes à vérifier.</p>
+          <a class="cta" href="ecotank/" data-bjt-action="section_open" data-bjt-key="ecotank">Ouvrir Écotank <span aria-hidden="true">&nbsp;→</span></a>
+        </div>
+      </article>
+
+      <article class="card cogito">
+        <div class="card-top"><span class="name">Cogito</span><span class="icon" aria-hidden="true">✦</span></div>
+        <div class="card-content">
+          <h2>Je veux apprendre et réfléchir</h2>
+          <p>Conférences, débats, cours publics et rencontres avec chercheurs, auteurs, professeurs et experts.</p>
+          <a class="cta" href="cogito/" data-bjt-action="section_open" data-bjt-key="cogito">Voir les rendez-vous <span aria-hidden="true">&nbsp;→</span></a>
+        </div>
+      </article>
+    </section>
+
+    <section class="trust" aria-label="Pourquoi faire confiance au site">
+      <div><strong>Gratuit pour l’utilisateur</strong><span>Aucun abonnement ni compte n’est nécessaire pour consulter les trois services.</span></div>
+      <div><strong>Indépendant</strong><span>Belgique, je t’aime n’est pas un site de l’administration belge et ne se présente pas comme tel.</span></div>
+      <div><strong>Sources vérifiables</strong><span>Les informations importantes renvoient autant que possible vers l’organisme ou l’organisateur d’origine.</span></div>
+      <div><strong>Vie privée expliquée</strong><span>Le site distingue clairement ce qui reste sur votre appareil et les rares appels à des services externes.</span></div>
+    </section>
+
+    <section class="story">
+      <h2>Un projet belge, pensé pour la vraie vie</h2>
+      <p>Belgique, je t’aime est pensé et réalisé en Belgique par une Belge qui cherchait elle-même des idées pour se divertir et se cultiver, avec et sans ses enfants, tout en gardant un peu plus de marge dans le quotidien. Cette histoire explique le projet&nbsp;; sa fiabilité, elle, doit venir de sources identifiables, de règles de mise à jour et d’une transparence claire sur les limites du service.</p>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-row">
+      <div><strong>Belgique, je t’aime</strong><br><span class="small">Un site gratuit et indépendant. Les informations qui peuvent changer doivent être confirmées à leur source.</span></div>
+      <div class="footer-links">
+        <a href="a-propos.html">À propos</a>
+        <a href="methodologie.html">Méthode &amp; sources</a>
+        <a href="confidentialite.html">Vie privée</a>
+      </div>
+    </div>
+  </footer>
+</div>
+<script defer src="analytics.js"></script>
+</body>
+</html>
