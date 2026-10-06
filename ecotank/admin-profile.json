@@ -953,6 +953,11 @@
       "label": "SPF Économie — service bancaire universel",
       "url": "https://economie.fgov.be/fr/themes/services-financiers/services-de-paiement/service-bancaire-universel",
       "authority": "SPF Économie"
+    },
+    "cpas_online_unsecured": {
+      "label": "CPAS Online — formulaire sans connexion",
+      "url": "https://pcswonline.socialsecurity.be/unsecured/fr/helpRequestForm.html",
+      "authority": "SPP Intégration sociale / Sécurité sociale"
     }
   },
   "online_assistance": {
@@ -1226,7 +1231,8 @@
         ],
         "when_readiness": {},
         "source_refs": [
-          "cpas_online"
+          "cpas_online",
+          "cpas_online_unsecured"
         ],
         "online": {
           "label": "CPAS Online — version sécurisée",
@@ -1237,7 +1243,7 @@
         },
         "fallback": {
           "label": "CPAS Online — formulaire sans connexion",
-          "url": "https://pcswonline.socialsecurity.be/unsecured/fr/helpRequestForm.html",
+          "source_ref": "cpas_online_unsecured",
           "requires": [
             "adresse e-mail personnelle ou d’une personne qui aide"
           ]
