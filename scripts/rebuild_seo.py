@@ -7,6 +7,7 @@ import json
 import os
 import re
 import html
+import hashlib
 import unicodedata
 from pathlib import Path
 from datetime import date, datetime
@@ -65,7 +66,9 @@ def existing_path(old, key, prefix, label):
     record = old.get(key) or {}
     if isinstance(record, dict) and record.get("path", "").startswith(prefix) and record["path"].endswith("/index.html"):
         return record["path"]
-    return prefix + slug(label) + "/index.html"
+    # Identifiant technique déterministe pour distinguer les titres proches sans changer les anciennes URL.
+    suffix = hashlib.sha256(str(key).encode("utf8")).hexdigest()[:10]
+    return prefix + slug(label)[:55].rstrip("-") + "-" + suffix + "/index.html"
 
 def archive(old, new):
     for key, record in old.items():
