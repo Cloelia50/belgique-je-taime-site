@@ -1,0 +1,617 @@
+{
+  "COG-EVT-B0D11D2A09BC08": {
+    "path": "cogito/evenements/ilios-kotsou-apprivoiser-nos-peurs-pour-avancer-auderghem-cog-evt-b0d11d2a09bc08/index.html",
+    "slug": "ilios-kotsou-apprivoiser-nos-peurs-pour-avancer-auderghem-cog-evt-b0d11d2a09bc08",
+    "date": "2026-10-09"
+  },
+  "COG-EVT-0B83E36BB2D8A2": {
+    "path": "cogito/evenements/l-impact-de-l-ia-sur-la-pratique-de-l-enseignement-universitaire-cog-evt-0b83e36bb2d8a2/index.html",
+    "slug": "l-impact-de-l-ia-sur-la-pratique-de-l-enseignement-universitaire-cog-evt-0b83e36bb2d8a2",
+    "date": "2026-10-09"
+  },
+  "COG-EVT-5581D9366FE3E9": {
+    "path": "cogito/evenements/jerome-colin-je-suis-ne-dans-la-tempete-louvain-la-neuve-cog-evt-5581d9366fe3e9/index.html",
+    "slug": "jerome-colin-je-suis-ne-dans-la-tempete-louvain-la-neuve-cog-evt-5581d9366fe3e9",
+    "date": "2026-10-09"
+  },
+  "COG-EVT-C04E8BD5C17898": {
+    "path": "cogito/evenements/east-aid-life-chinese-medical-aid-in-africa-bruxelles-cog-evt-c04e8bd5c17898/index.html",
+    "slug": "east-aid-life-chinese-medical-aid-in-africa-bruxelles-cog-evt-c04e8bd5c17898",
+    "date": "2026-10-12"
+  },
+  "COG-EVT-5471E6DD6B8726": {
+    "path": "cogito/evenements/jan-carson-creer-des-personnages-memorables-bruxelles-cog-evt-5471e6dd6b8726/index.html",
+    "slug": "jan-carson-creer-des-personnages-memorables-bruxelles-cog-evt-5471e6dd6b8726",
+    "date": "2026-10-12"
+  },
+  "COG-EVT-32E922CDE53429": {
+    "path": "cogito/evenements/jean-delville-peintre-symboliste-belge-bruxelles-cog-evt-32e922cde53429/index.html",
+    "slug": "jean-delville-peintre-symboliste-belge-bruxelles-cog-evt-32e922cde53429",
+    "date": "2026-10-12"
+  },
+  "COG-EVT-292A754AFEE4B8": {
+    "path": "cogito/evenements/chine-en-afrique-rencontres-sino-congolaises-et-mixite-conjugale-cog-evt-292a754afee4b8/index.html",
+    "slug": "chine-en-afrique-rencontres-sino-congolaises-et-mixite-conjugale-cog-evt-292a754afee4b8",
+    "date": "2026-10-13"
+  },
+  "COG-EVT-301A5DB5C71286": {
+    "path": "cogito/evenements/mesoamerique-contacts-avec-l-equateur-etat-de-la-question-bruxel-cog-evt-301a5db5c71286/index.html",
+    "slug": "mesoamerique-contacts-avec-l-equateur-etat-de-la-question-bruxel-cog-evt-301a5db5c71286",
+    "date": "2026-10-13"
+  },
+  "COG-EVT-FF279621E13CCD": {
+    "path": "cogito/evenements/post-growth-nostalgia-in-contemporary-east-asian-societies-bruxe-cog-evt-ff279621e13ccd/index.html",
+    "slug": "post-growth-nostalgia-in-contemporary-east-asian-societies-bruxe-cog-evt-ff279621e13ccd",
+    "date": "2026-10-13"
+  },
+  "COG-EVT-85E05E71996F10": {
+    "path": "cogito/evenements/vieux-boomers-et-vieilles-peaux-l-insulte-au-prisme-de-l-agisme--cog-evt-85e05e71996f10/index.html",
+    "slug": "vieux-boomers-et-vieilles-peaux-l-insulte-au-prisme-de-l-agisme--cog-evt-85e05e71996f10",
+    "date": "2026-10-13"
+  },
+  "COG-EVT-A2DC8E13E06C4D": {
+    "path": "cogito/evenements/between-movements-and-parties-measuring-movementism-bruxelles-cog-evt-a2dc8e13e06c4d/index.html",
+    "slug": "between-movements-and-parties-measuring-movementism-bruxelles-cog-evt-a2dc8e13e06c4d",
+    "date": "2026-10-14"
+  },
+  "COG-EVT-34043D46350102": {
+    "path": "cogito/evenements/apres-santa-marta-droit-international-economique-au-dela-de-l-er-cog-evt-34043d46350102/index.html",
+    "slug": "apres-santa-marta-droit-international-economique-au-dela-de-l-er-cog-evt-34043d46350102",
+    "date": "2026-10-14"
+  },
+  "COG-EVT-826A0EF90CCB99": {
+    "path": "cogito/evenements/philippe-sabot-gouverner-par-la-precarite-la-biopolitique-a-l-ag-cog-evt-826a0ef90ccb99/index.html",
+    "slug": "philippe-sabot-gouverner-par-la-precarite-la-biopolitique-a-l-ag-cog-evt-826a0ef90ccb99",
+    "date": "2026-10-14"
+  },
+  "COG-EVT-79011650377227": {
+    "path": "cogito/evenements/william-audureau-histoire-du-mondial-de-la-covid-bruxelles-cog-evt-79011650377227/index.html",
+    "slug": "william-audureau-histoire-du-mondial-de-la-covid-bruxelles-cog-evt-79011650377227",
+    "date": "2026-10-14"
+  },
+  "COG-EVT-F48A7670EC30D2": {
+    "path": "cogito/evenements/inegalites-et-rapports-de-minorisation-a-l-ere-du-conservatisme--cog-evt-f48a7670ec30d2/index.html",
+    "slug": "inegalites-et-rapports-de-minorisation-a-l-ere-du-conservatisme--cog-evt-f48a7670ec30d2",
+    "date": "2026-10-15"
+  },
+  "COG-EVT-31B9591C4E44CE": {
+    "path": "cogito/evenements/le-temps-une-illusion-bruxelles-cog-evt-31b9591c4e44ce/index.html",
+    "slug": "le-temps-une-illusion-bruxelles-cog-evt-31b9591c4e44ce",
+    "date": "2026-10-15"
+  },
+  "COG-EVT-46441AB72A357C": {
+    "path": "cogito/evenements/foucault-table-ronde-autour-de-esthetique-de-l-existence-bruxell-cog-evt-46441ab72a357c/index.html",
+    "slug": "foucault-table-ronde-autour-de-esthetique-de-l-existence-bruxell-cog-evt-46441ab72a357c",
+    "date": "2026-10-15"
+  },
+  "COG-EVT-CFCB5DD98F9379": {
+    "path": "cogito/evenements/conference-manger-sainement-dans-le-respect-de-la-planete-avec-l-cog-evt-cfcb5dd98f9379/index.html",
+    "slug": "conference-manger-sainement-dans-le-respect-de-la-planete-avec-l-cog-evt-cfcb5dd98f9379",
+    "date": "2026-10-16"
+  },
+  "COG-EVT-C7BAE126E6C8C4": {
+    "path": "cogito/evenements/quelles-cles-pour-comprendre-l-economie-d-aujourd-hui-par-b-colm-cog-evt-c7bae126e6c8c4/index.html",
+    "slug": "quelles-cles-pour-comprendre-l-economie-d-aujourd-hui-par-b-colm-cog-evt-c7bae126e6c8c4",
+    "date": "2026-10-16"
+  },
+  "COG-EVT-6D9269343FAD43": {
+    "path": "cogito/evenements/vivre-chez-soi-habiter-ensemble-jeunes-acces-au-logement-et-sant-cog-evt-6d9269343fad43/index.html",
+    "slug": "vivre-chez-soi-habiter-ensemble-jeunes-acces-au-logement-et-sant-cog-evt-6d9269343fad43",
+    "date": "2026-10-16"
+  },
+  "COG-EVT-0BE05A46CA9330": {
+    "path": "cogito/evenements/fti-brussel-x-vub-what-if-robots-could-move-us-brussel-cog-evt-0be05a46ca9330/index.html",
+    "slug": "fti-brussel-x-vub-what-if-robots-could-move-us-brussel-cog-evt-0be05a46ca9330",
+    "date": "2026-10-19"
+  },
+  "COG-EVT-2C622F5FC3CC70": {
+    "path": "cogito/evenements/fti-brussels-x-vub-health-human-brussel-cog-evt-2c622f5fc3cc70/index.html",
+    "slug": "fti-brussels-x-vub-health-human-brussel-cog-evt-2c622f5fc3cc70",
+    "date": "2026-10-19"
+  },
+  "COG-EVT-00F0C1C1353413": {
+    "path": "cogito/evenements/fti-brussels-x-vub-circular-city-brussel-cog-evt-00f0c1c1353413/index.html",
+    "slug": "fti-brussels-x-vub-circular-city-brussel-cog-evt-00f0c1c1353413",
+    "date": "2026-10-20"
+  },
+  "COG-EVT-ACFF1F4649EE00": {
+    "path": "cogito/evenements/mesoamerique-l-artisanat-des-amanteca-la-plumasserie-azteque-bru-cog-evt-acff1f4649ee00/index.html",
+    "slug": "mesoamerique-l-artisanat-des-amanteca-la-plumasserie-azteque-bru-cog-evt-acff1f4649ee00",
+    "date": "2026-10-20"
+  },
+  "COG-EVT-2F7C8779371C53": {
+    "path": "cogito/evenements/entre-resonance-et-fragmentation-grande-strategie-de-l-allemagne-cog-evt-2f7c8779371c53/index.html",
+    "slug": "entre-resonance-et-fragmentation-grande-strategie-de-l-allemagne-cog-evt-2f7c8779371c53",
+    "date": "2026-10-20"
+  },
+  "COG-EVT-CE30847171342D": {
+    "path": "cogito/evenements/jean-francois-kervegan-la-puissance-des-droits-aujourd-hui-bruxe-cog-evt-ce30847171342d/index.html",
+    "slug": "jean-francois-kervegan-la-puissance-des-droits-aujourd-hui-bruxe-cog-evt-ce30847171342d",
+    "date": "2026-10-21"
+  },
+  "COG-EVT-6B501951621EF3": {
+    "path": "cogito/evenements/blandine-chelini-pont-religions-et-politique-dans-l-amerique-de--cog-evt-6b501951621ef3/index.html",
+    "slug": "blandine-chelini-pont-religions-et-politique-dans-l-amerique-de--cog-evt-6b501951621ef3",
+    "date": "2026-10-21"
+  },
+  "COG-EVT-C53432C1E1D48A": {
+    "path": "cogito/evenements/patient-community-day-2026-location-cog-evt-c53432c1e1d48a/index.html",
+    "slug": "patient-community-day-2026-location-cog-evt-c53432c1e1d48a",
+    "date": "2026-10-23"
+  },
+  "COG-EVT-0084460333796A": {
+    "path": "cogito/evenements/conference-aida-nivelles-asbl-nivelles-cog-evt-0084460333796a/index.html",
+    "slug": "conference-aida-nivelles-asbl-nivelles-cog-evt-0084460333796a",
+    "date": "2026-10-26"
+  },
+  "COG-EVT-F607A9B6C3EE23": {
+    "path": "cogito/evenements/fari-ai-happy-hour-european-strategic-autonomy-bruxelles-cog-evt-f607a9b6c3ee23/index.html",
+    "slug": "fari-ai-happy-hour-european-strategic-autonomy-bruxelles-cog-evt-f607a9b6c3ee23",
+    "date": "2026-10-26"
+  },
+  "COG-EVT-5006D538381EFD": {
+    "path": "cogito/evenements/afghanistan-taliban-administration-fiscale-et-formation-de-l-eta-cog-evt-5006d538381efd/index.html",
+    "slug": "afghanistan-taliban-administration-fiscale-et-formation-de-l-eta-cog-evt-5006d538381efd",
+    "date": "2026-10-27"
+  },
+  "COG-EVT-E476B455952F80": {
+    "path": "cogito/evenements/alex-noel-cafe-litteraire-nelly-arcan-bruxelles-cog-evt-e476b455952f80/index.html",
+    "slug": "alex-noel-cafe-litteraire-nelly-arcan-bruxelles-cog-evt-e476b455952f80",
+    "date": "2026-10-31"
+  },
+  "COG-EVT-599E2002BB5446": {
+    "path": "cogito/evenements/les-etats-europeens-face-a-l-unilateralisme-militaire-des-etats--cog-evt-599e2002bb5446/index.html",
+    "slug": "les-etats-europeens-face-a-l-unilateralisme-militaire-des-etats--cog-evt-599e2002bb5446",
+    "date": "2026-11-03"
+  },
+  "COG-EVT-00B953AA037848": {
+    "path": "cogito/evenements/exploration-du-monde-maroc-waterloo-cog-evt-00b953aa037848/index.html",
+    "slug": "exploration-du-monde-maroc-waterloo-cog-evt-00b953aa037848",
+    "date": "2026-11-04"
+  },
+  "COG-EVT-0A80CE0D4FBEDD": {
+    "path": "cogito/evenements/la-transition-energetique-en-fait-on-trop-la-fait-on-mal-ou-en-e-cog-evt-0a80ce0d4fbedd/index.html",
+    "slug": "la-transition-energetique-en-fait-on-trop-la-fait-on-mal-ou-en-e-cog-evt-0a80ce0d4fbedd",
+    "date": "2026-11-05"
+  },
+  "COG-EVT-F68FFCF93BD30A": {
+    "path": "cogito/evenements/la-danse-macabre-et-si-on-rattachait-les-pompes-funebres-a-la-se-cog-evt-f68ffcf93bd30a/index.html",
+    "slug": "la-danse-macabre-et-si-on-rattachait-les-pompes-funebres-a-la-se-cog-evt-f68ffcf93bd30a",
+    "date": "2026-11-06"
+  },
+  "COG-EVT-7BC60ED61CBD90": {
+    "path": "cogito/evenements/clefs-de-lecture-autour-de-l-art-contemporain-rencontres-re-sent-cog-evt-7bc60ed61cbd90/index.html",
+    "slug": "clefs-de-lecture-autour-de-l-art-contemporain-rencontres-re-sent-cog-evt-7bc60ed61cbd90",
+    "date": "2026-11-07"
+  },
+  "COG-EVT-0FBD36466AFEEE": {
+    "path": "cogito/evenements/cine-debat-bruxelles-nyota-les-enfants-lumiere-etterbeek-cog-evt-0fbd36466afeee/index.html",
+    "slug": "cine-debat-bruxelles-nyota-les-enfants-lumiere-etterbeek-cog-evt-0fbd36466afeee",
+    "date": "2026-11-08"
+  },
+  "COG-EVT-055121E70E0192": {
+    "path": "cogito/evenements/un-musicien-belge-a-weimar-edouard-lassen-disciple-de-liszt-et-m-cog-evt-055121e70e0192/index.html",
+    "slug": "un-musicien-belge-a-weimar-edouard-lassen-disciple-de-liszt-et-m-cog-evt-055121e70e0192",
+    "date": "2026-11-09"
+  },
+  "COG-EVT-47779E6893C9F3": {
+    "path": "cogito/evenements/voyage-au-fil-de-la-mer-la-beaute-des-eaux-par-o-duquenne-louvai-cog-evt-47779e6893c9f3/index.html",
+    "slug": "voyage-au-fil-de-la-mer-la-beaute-des-eaux-par-o-duquenne-louvai-cog-evt-47779e6893c9f3",
+    "date": "2026-11-10"
+  },
+  "COG-EVT-BCC638E69684E3": {
+    "path": "cogito/evenements/chine-contemporaine-nous-les-vieux-identites-d-age-et-vieillisse-cog-evt-bcc638e69684e3/index.html",
+    "slug": "chine-contemporaine-nous-les-vieux-identites-d-age-et-vieillisse-cog-evt-bcc638e69684e3",
+    "date": "2026-11-10"
+  },
+  "COG-EVT-BB41C0DC17AB1E": {
+    "path": "cogito/evenements/mesoamerique-les-outils-sacrificiels-mexicas-bruxelles-cog-evt-bb41c0dc17ab1e/index.html",
+    "slug": "mesoamerique-les-outils-sacrificiels-mexicas-bruxelles-cog-evt-bb41c0dc17ab1e",
+    "date": "2026-11-10"
+  },
+  "COG-EVT-4244B8792693FB": {
+    "path": "cogito/evenements/populisme-le-mal-nomme-bruxelles-cog-evt-4244b8792693fb/index.html",
+    "slug": "populisme-le-mal-nomme-bruxelles-cog-evt-4244b8792693fb",
+    "date": "2026-11-10"
+  },
+  "COG-EVT-E19E25DBCACD5F": {
+    "path": "cogito/evenements/document-terre-norvege-a-contre-courant-jodoigne-cog-evt-e19e25dbcacd5f/index.html",
+    "slug": "document-terre-norvege-a-contre-courant-jodoigne-cog-evt-e19e25dbcacd5f",
+    "date": "2026-11-12"
+  },
+  "COG-EVT-93F3CCFCB50513": {
+    "path": "cogito/evenements/geodesie-et-gnss-maillons-indispensables-de-notre-societe-modern-cog-evt-93f3ccfcb50513/index.html",
+    "slug": "geodesie-et-gnss-maillons-indispensables-de-notre-societe-modern-cog-evt-93f3ccfcb50513",
+    "date": "2026-11-12"
+  },
+  "COG-EVT-8DB86B938F8FB8": {
+    "path": "cogito/evenements/midi-de-l-urbanisme-objectif-solution-mixer-sans-brouiller-ottig-cog-evt-8db86b938f8fb8/index.html",
+    "slug": "midi-de-l-urbanisme-objectif-solution-mixer-sans-brouiller-ottig-cog-evt-8db86b938f8fb8",
+    "date": "2026-11-13"
+  },
+  "COG-EVT-637C8271040030": {
+    "path": "cogito/evenements/festival-des-sciences-muntpunt-proposition-bruxelles-cog-evt-637c8271040030/index.html",
+    "slug": "festival-des-sciences-muntpunt-proposition-bruxelles-cog-evt-637c8271040030",
+    "date": "2026-11-15"
+  },
+  "COG-EVT-7CDD385686FA4C": {
+    "path": "cogito/evenements/pauvrete-qui-compte-qui-se-cache-qui-s-en-sort-bruxelles-cog-evt-7cdd385686fa4c/index.html",
+    "slug": "pauvrete-qui-compte-qui-se-cache-qui-s-en-sort-bruxelles-cog-evt-7cdd385686fa4c",
+    "date": "2026-11-16"
+  },
+  "COG-EVT-06F7C4A67A2E4D": {
+    "path": "cogito/evenements/conference-a-tribord-toute-banalisation-et-diffusion-des-discour-cog-evt-06f7c4a67a2e4d/index.html",
+    "slug": "conference-a-tribord-toute-banalisation-et-diffusion-des-discour-cog-evt-06f7c4a67a2e4d",
+    "date": "2026-11-17"
+  },
+  "COG-EVT-A65C03EEC1BB84": {
+    "path": "cogito/evenements/chine-contemporaine-travail-tangping-fatigue-et-desillusions-bru-cog-evt-a65c03eec1bb84/index.html",
+    "slug": "chine-contemporaine-travail-tangping-fatigue-et-desillusions-bru-cog-evt-a65c03eec1bb84",
+    "date": "2026-11-17"
+  },
+  "COG-EVT-06E27DF3282113": {
+    "path": "cogito/evenements/mesoamerique-archeo-organologie-des-artefacts-sonores-precolombi-cog-evt-06e27df3282113/index.html",
+    "slug": "mesoamerique-archeo-organologie-des-artefacts-sonores-precolombi-cog-evt-06e27df3282113",
+    "date": "2026-11-17"
+  },
+  "COG-EVT-F44ACF68918DB5": {
+    "path": "cogito/evenements/femmes-de-science-re-decouvrir-leur-histoire-bruxelles-cog-evt-f44acf68918db5/index.html",
+    "slug": "femmes-de-science-re-decouvrir-leur-histoire-bruxelles-cog-evt-f44acf68918db5",
+    "date": "2026-11-17"
+  },
+  "COG-EVT-B79DAEE18FA62F": {
+    "path": "cogito/evenements/burn-out-parental-y-en-a-marre-de-ces-gosses-watermael-boitsfort-cog-evt-b79daee18fa62f/index.html",
+    "slug": "burn-out-parental-y-en-a-marre-de-ces-gosses-watermael-boitsfort-cog-evt-b79daee18fa62f",
+    "date": "2026-11-17"
+  },
+  "COG-EVT-0492468231CEF8": {
+    "path": "cogito/evenements/mindblowers-proximamente-festival-brussels-cog-evt-0492468231cef8/index.html",
+    "slug": "mindblowers-proximamente-festival-brussels-cog-evt-0492468231cef8",
+    "date": "2026-11-18"
+  },
+  "COG-EVT-946C8344E4B1D1": {
+    "path": "cogito/evenements/brain-innovation-days-brussels-cog-evt-946c8344e4b1d1/index.html",
+    "slug": "brain-innovation-days-brussels-cog-evt-946c8344e4b1d1",
+    "date": "2026-11-18"
+  },
+  "COG-EVT-011653E32A93B3": {
+    "path": "cogito/evenements/quel-avenir-pour-le-droit-international-bruxelles-cog-evt-011653e32a93b3/index.html",
+    "slug": "quel-avenir-pour-le-droit-international-bruxelles-cog-evt-011653e32a93b3",
+    "date": "2026-11-19"
+  },
+  "COG-EVT-37FF8016D8A70B": {
+    "path": "cogito/evenements/gouverner-l-ia-incarner-l-humain-pedro-correa-limelette-cog-evt-37ff8016d8a70b/index.html",
+    "slug": "gouverner-l-ia-incarner-l-humain-pedro-correa-limelette-cog-evt-37ff8016d8a70b",
+    "date": "2026-11-23"
+  },
+  "COG-EVT-653C0ABD38FB1B": {
+    "path": "cogito/evenements/fari-brussels-conference-2026-brussels-capital-of-ai-jour-1-brux-cog-evt-653c0abd38fb1b/index.html",
+    "slug": "fari-brussels-conference-2026-brussels-capital-of-ai-jour-1-brux-cog-evt-653c0abd38fb1b",
+    "date": "2026-11-23"
+  },
+  "COG-EVT-9CF5F34F59BE47": {
+    "path": "cogito/evenements/dans-la-bibliotheque-de-pierre-boulez-bruxelles-cog-evt-9cf5f34f59be47/index.html",
+    "slug": "dans-la-bibliotheque-de-pierre-boulez-bruxelles-cog-evt-9cf5f34f59be47",
+    "date": "2026-11-23"
+  },
+  "COG-EVT-AFF87A73E24605": {
+    "path": "cogito/evenements/aspects-philosophiques-de-la-revolution-copernicienne-bruxelles-cog-evt-aff87a73e24605/index.html",
+    "slug": "aspects-philosophiques-de-la-revolution-copernicienne-bruxelles-cog-evt-aff87a73e24605",
+    "date": "2026-11-23"
+  },
+  "COG-EVT-19269D28A83E46": {
+    "path": "cogito/evenements/fari-conference-ai-accelerator-final-pitches-jour-2-bruxelles-cog-evt-19269d28a83e46/index.html",
+    "slug": "fari-conference-ai-accelerator-final-pitches-jour-2-bruxelles-cog-evt-19269d28a83e46",
+    "date": "2026-11-24"
+  },
+  "COG-EVT-B6D02C76E131F8": {
+    "path": "cogito/evenements/mesoamerique-nicaragua-costa-rica-et-panama-a-travers-les-collec-cog-evt-b6d02c76e131f8/index.html",
+    "slug": "mesoamerique-nicaragua-costa-rica-et-panama-a-travers-les-collec-cog-evt-b6d02c76e131f8",
+    "date": "2026-11-24"
+  },
+  "COG-EVT-76838ED43DB2C6": {
+    "path": "cogito/evenements/lire-son-genome-entre-espoir-medical-et-question-ethique-bruxell-cog-evt-76838ed43db2c6/index.html",
+    "slug": "lire-son-genome-entre-espoir-medical-et-question-ethique-bruxell-cog-evt-76838ed43db2c6",
+    "date": "2026-11-24"
+  },
+  "COG-EVT-5EEC0115786E6A": {
+    "path": "cogito/evenements/conference-une-histoire-scolaire-genappe-cog-evt-5eec0115786e6a/index.html",
+    "slug": "conference-une-histoire-scolaire-genappe-cog-evt-5eec0115786e6a",
+    "date": "2026-11-25"
+  },
+  "COG-EVT-76CEDF47FBB8D5": {
+    "path": "cogito/evenements/rencontres-re-sentir-l-invisible-conference-par-ilios-kotsou-l-i-cog-evt-76cedf47fbb8d5/index.html",
+    "slug": "rencontres-re-sentir-l-invisible-conference-par-ilios-kotsou-l-i-cog-evt-76cedf47fbb8d5",
+    "date": "2026-11-26"
+  },
+  "COG-EVT-DE2418CA80C4E7": {
+    "path": "cogito/evenements/education-des-enfants-au-xxie-siecle-que-peuvent-encore-apporter-cog-evt-de2418ca80c4e7/index.html",
+    "slug": "education-des-enfants-au-xxie-siecle-que-peuvent-encore-apporter-cog-evt-de2418ca80c4e7",
+    "date": "2026-11-26"
+  },
+  "COG-EVT-EEC7DD7CB70B31": {
+    "path": "cogito/evenements/yann-coirault-l-art-de-decider-des-cles-pour-mieux-poser-mes-cho-cog-evt-eec7dd7cb70b31/index.html",
+    "slug": "yann-coirault-l-art-de-decider-des-cles-pour-mieux-poser-mes-cho-cog-evt-eec7dd7cb70b31",
+    "date": "2026-11-27"
+  },
+  "COG-EVT-0308A6315519C8": {
+    "path": "cogito/evenements/conference-aida-nivelles-asbl-en-collaboration-avec-le-ccn-et-la-cog-evt-0308a6315519c8/index.html",
+    "slug": "conference-aida-nivelles-asbl-en-collaboration-avec-le-ccn-et-la-cog-evt-0308a6315519c8",
+    "date": "2026-11-30"
+  },
+  "COG-EVT-E9BCEB3C42F4CA": {
+    "path": "cogito/evenements/la-strategie-de-la-presse-francophone-belge-bruxelles-cog-evt-e9bceb3c42f4ca/index.html",
+    "slug": "la-strategie-de-la-presse-francophone-belge-bruxelles-cog-evt-e9bceb3c42f4ca",
+    "date": "2026-11-30"
+  },
+  "COG-EVT-F6CD6F4B1CB265": {
+    "path": "cogito/evenements/iconoclasme-a-ciel-ouvert-la-statuaire-belge-prise-pour-cible-br-cog-evt-f6cd6f4b1cb265/index.html",
+    "slug": "iconoclasme-a-ciel-ouvert-la-statuaire-belge-prise-pour-cible-br-cog-evt-f6cd6f4b1cb265",
+    "date": "2026-12-01"
+  },
+  "COG-EVT-EAD693FDCCABD0": {
+    "path": "cogito/evenements/philippe-charles-schmerling-pionnier-des-recherches-prehistoriqu-cog-evt-ead693fdccabd0/index.html",
+    "slug": "philippe-charles-schmerling-pionnier-des-recherches-prehistoriqu-cog-evt-ead693fdccabd0",
+    "date": "2026-12-03"
+  },
+  "COG-EVT-EE57F50A247E93": {
+    "path": "cogito/evenements/la-transmission-des-savoirs-un-boy-s-club-louvain-la-neuve-cog-evt-ee57f50a247e93/index.html",
+    "slug": "la-transmission-des-savoirs-un-boy-s-club-louvain-la-neuve-cog-evt-ee57f50a247e93",
+    "date": "2026-12-03"
+  },
+  "COG-EVT-930859E24D701F": {
+    "path": "cogito/evenements/leurs-regards-25-000-km-a-travers-l-eurasie-nivelles-cog-evt-930859e24d701f/index.html",
+    "slug": "leurs-regards-25-000-km-a-travers-l-eurasie-nivelles-cog-evt-930859e24d701f",
+    "date": "2026-12-04"
+  },
+  "COG-EVT-EB23D6D891A73A": {
+    "path": "cogito/evenements/groenland-histoire-et-convoitises-bruxelles-cog-evt-eb23d6d891a73a/index.html",
+    "slug": "groenland-histoire-et-convoitises-bruxelles-cog-evt-eb23d6d891a73a",
+    "date": "2026-12-07"
+  },
+  "COG-EVT-BCBBFDF7B67B16": {
+    "path": "cogito/evenements/promenade-a-travers-les-plus-belles-demeures-de-bruxelles-bruxel-cog-evt-bcbbfdf7b67b16/index.html",
+    "slug": "promenade-a-travers-les-plus-belles-demeures-de-bruxelles-bruxel-cog-evt-bcbbfdf7b67b16",
+    "date": "2026-12-08"
+  },
+  "COG-EVT-55012B79FEBA45": {
+    "path": "cogito/evenements/exploration-du-monde-eurasie-waterloo-cog-evt-55012b79feba45/index.html",
+    "slug": "exploration-du-monde-eurasie-waterloo-cog-evt-55012b79feba45",
+    "date": "2026-12-09"
+  },
+  "COG-EVT-DF564F04422E4C": {
+    "path": "cogito/evenements/les-passions-de-colette-bruxelles-cog-evt-df564f04422e4c/index.html",
+    "slug": "les-passions-de-colette-bruxelles-cog-evt-df564f04422e4c",
+    "date": "2026-12-10"
+  },
+  "COG-EVT-82FFB867D8E1C4": {
+    "path": "cogito/evenements/histoire-et-anthropologie-des-fetes-traditionnelles-bruxelles-cog-evt-82ffb867d8e1c4/index.html",
+    "slug": "histoire-et-anthropologie-des-fetes-traditionnelles-bruxelles-cog-evt-82ffb867d8e1c4",
+    "date": "2026-12-14"
+  },
+  "COG-EVT-566A5FF52AB05A": {
+    "path": "cogito/evenements/la-tradition-brassicole-belge-patrimoine-culturel-immateriel-de--cog-evt-566a5ff52ab05a/index.html",
+    "slug": "la-tradition-brassicole-belge-patrimoine-culturel-immateriel-de--cog-evt-566a5ff52ab05a",
+    "date": "2026-12-15"
+  },
+  "COG-EVT-ABE25D86780198": {
+    "path": "cogito/evenements/la-ligue-hanseatique-une-introduction-historique-bruxelles-cog-evt-abe25d86780198/index.html",
+    "slug": "la-ligue-hanseatique-une-introduction-historique-bruxelles-cog-evt-abe25d86780198",
+    "date": "2026-12-17"
+  },
+  "COG-EVT-AC5478D0A62952": {
+    "path": "cogito/evenements/ixelles-terre-de-culture-bruxelles-cog-evt-ac5478d0a62952/index.html",
+    "slug": "ixelles-terre-de-culture-bruxelles-cog-evt-ac5478d0a62952",
+    "date": "2027-01-04"
+  },
+  "COG-EVT-F36D72A9371143": {
+    "path": "cogito/evenements/le-surrealisme-dans-tous-ses-etats-bruxelles-cog-evt-f36d72a9371143/index.html",
+    "slug": "le-surrealisme-dans-tous-ses-etats-bruxelles-cog-evt-f36d72a9371143",
+    "date": "2027-01-05"
+  },
+  "COG-EVT-FE99CBA4367C7B": {
+    "path": "cogito/evenements/les-75-ans-du-concours-reine-elisabeth-bruxelles-cog-evt-fe99cba4367c7b/index.html",
+    "slug": "les-75-ans-du-concours-reine-elisabeth-bruxelles-cog-evt-fe99cba4367c7b",
+    "date": "2027-01-07"
+  },
+  "COG-EVT-15DA00D8BC87B2": {
+    "path": "cogito/evenements/debussy-compositeur-impressionniste-bruxelles-cog-evt-15da00d8bc87b2/index.html",
+    "slug": "debussy-compositeur-impressionniste-bruxelles-cog-evt-15da00d8bc87b2",
+    "date": "2027-01-11"
+  },
+  "COG-EVT-D91897211C4832": {
+    "path": "cogito/evenements/le-nom-de-la-rose-d-umberto-eco-du-livre-au-film-et-a-la-bande-d-cog-evt-d91897211c4832/index.html",
+    "slug": "le-nom-de-la-rose-d-umberto-eco-du-livre-au-film-et-a-la-bande-d-cog-evt-d91897211c4832",
+    "date": "2027-01-12"
+  },
+  "COG-EVT-48A87A0AE0DBF9": {
+    "path": "cogito/evenements/exploration-du-monde-mexique-waterloo-cog-evt-48a87a0ae0dbf9/index.html",
+    "slug": "exploration-du-monde-mexique-waterloo-cog-evt-48a87a0ae0dbf9",
+    "date": "2027-01-13"
+  },
+  "COG-EVT-7FB6F032C93EF1": {
+    "path": "cogito/evenements/le-congo-un-geant-aux-pieds-d-argile-bruxelles-cog-evt-7fb6f032c93ef1/index.html",
+    "slug": "le-congo-un-geant-aux-pieds-d-argile-bruxelles-cog-evt-7fb6f032c93ef1",
+    "date": "2027-01-14"
+  },
+  "COG-EVT-2D0EEA0C1CCC78": {
+    "path": "cogito/evenements/un-monde-en-mutation-bruxelles-cog-evt-2d0eea0c1ccc78/index.html",
+    "slug": "un-monde-en-mutation-bruxelles-cog-evt-2d0eea0c1ccc78",
+    "date": "2027-01-18"
+  },
+  "COG-EVT-B683230385FB9E": {
+    "path": "cogito/evenements/securite-maritime-dans-le-golfe-de-guinee-bruxelles-cog-evt-b683230385fb9e/index.html",
+    "slug": "securite-maritime-dans-le-golfe-de-guinee-bruxelles-cog-evt-b683230385fb9e",
+    "date": "2027-01-19"
+  },
+  "COG-EVT-915D1424A16A54": {
+    "path": "cogito/evenements/document-terre-les-cevennes-le-chemin-de-stevenson-sur-les-pas-d-cog-evt-915d1424a16a54/index.html",
+    "slug": "document-terre-les-cevennes-le-chemin-de-stevenson-sur-les-pas-d-cog-evt-915d1424a16a54",
+    "date": "2027-01-21"
+  },
+  "COG-EVT-70A09B774466B7": {
+    "path": "cogito/evenements/heurs-et-malheurs-de-la-creation-de-l-observatoire-de-bruxelles--cog-evt-70a09b774466b7/index.html",
+    "slug": "heurs-et-malheurs-de-la-creation-de-l-observatoire-de-bruxelles--cog-evt-70a09b774466b7",
+    "date": "2027-01-21"
+  },
+  "COG-EVT-5E4EF75E163ECB": {
+    "path": "cogito/evenements/les-defis-du-commerce-belge-en-transformation-bruxelles-cog-evt-5e4ef75e163ecb/index.html",
+    "slug": "les-defis-du-commerce-belge-en-transformation-bruxelles-cog-evt-5e4ef75e163ecb",
+    "date": "2027-01-25"
+  },
+  "COG-EVT-FBE6130E41E7CA": {
+    "path": "cogito/evenements/democratie-etat-de-droit-et-droits-humains-des-allies-inseparabl-cog-evt-fbe6130e41e7ca/index.html",
+    "slug": "democratie-etat-de-droit-et-droits-humains-des-allies-inseparabl-cog-evt-fbe6130e41e7ca",
+    "date": "2027-01-26"
+  },
+  "COG-EVT-E21C4667DFD0CD": {
+    "path": "cogito/evenements/l-espace-sauvage-la-ruee-vers-le-vide-bruxelles-cog-evt-e21c4667dfd0cd/index.html",
+    "slug": "l-espace-sauvage-la-ruee-vers-le-vide-bruxelles-cog-evt-e21c4667dfd0cd",
+    "date": "2027-01-28"
+  },
+  "COG-EVT-2FF0EB12D7F22C": {
+    "path": "cogito/evenements/sophie-duverne-nos-heritages-invisibles-cadeau-ou-fardeau-auderg-cog-evt-2ff0eb12d7f22c/index.html",
+    "slug": "sophie-duverne-nos-heritages-invisibles-cadeau-ou-fardeau-auderg-cog-evt-2ff0eb12d7f22c",
+    "date": "2027-01-29"
+  },
+  "COG-EVT-2BC757FF3A1DB0": {
+    "path": "cogito/evenements/eloge-de-la-diversite-pourquoi-la-pollinisation-est-une-affaire--cog-evt-2bc757ff3a1db0/index.html",
+    "slug": "eloge-de-la-diversite-pourquoi-la-pollinisation-est-une-affaire--cog-evt-2bc757ff3a1db0",
+    "date": "2027-02-01"
+  },
+  "COG-EVT-8E105F71AF4C26": {
+    "path": "cogito/evenements/la-nature-a-l-epoque-de-charlemagne-idees-et-facons-d-interagir--cog-evt-8e105f71af4c26/index.html",
+    "slug": "la-nature-a-l-epoque-de-charlemagne-idees-et-facons-d-interagir--cog-evt-8e105f71af4c26",
+    "date": "2027-02-02"
+  },
+  "COG-EVT-6FAAF552757EDF": {
+    "path": "cogito/evenements/catholicisme-et-modernite-en-belgique-bruxelles-cog-evt-6faaf552757edf/index.html",
+    "slug": "catholicisme-et-modernite-en-belgique-bruxelles-cog-evt-6faaf552757edf",
+    "date": "2027-02-04"
+  },
+  "COG-EVT-9393DEB3EDCA81": {
+    "path": "cogito/evenements/se-depasser-face-aux-extremes-lea-vigier-limelette-cog-evt-9393deb3edca81/index.html",
+    "slug": "se-depasser-face-aux-extremes-lea-vigier-limelette-cog-evt-9393deb3edca81",
+    "date": "2027-02-08"
+  },
+  "COG-EVT-77B17444EDA382": {
+    "path": "cogito/evenements/la-musique-classique-est-partout-bruxelles-cog-evt-77b17444eda382/index.html",
+    "slug": "la-musique-classique-est-partout-bruxelles-cog-evt-77b17444eda382",
+    "date": "2027-02-08"
+  },
+  "COG-EVT-A1F88573715825": {
+    "path": "cogito/evenements/exploration-du-monde-albanie-waterloo-cog-evt-a1f88573715825/index.html",
+    "slug": "exploration-du-monde-albanie-waterloo-cog-evt-a1f88573715825",
+    "date": "2027-02-10"
+  },
+  "COG-EVT-D689545647F88B": {
+    "path": "cogito/evenements/la-belgitude-des-mots-bruxelles-cog-evt-d689545647f88b/index.html",
+    "slug": "la-belgitude-des-mots-bruxelles-cog-evt-d689545647f88b",
+    "date": "2027-02-11"
+  },
+  "COG-EVT-A67B06E09FC992": {
+    "path": "cogito/evenements/le-bien-commun-utopie-ou-solution-pour-nos-societes-en-crise-bru-cog-evt-a67b06e09fc992/index.html",
+    "slug": "le-bien-commun-utopie-ou-solution-pour-nos-societes-en-crise-bru-cog-evt-a67b06e09fc992",
+    "date": "2027-02-15"
+  },
+  "COG-EVT-C358B6CC9AD1DA": {
+    "path": "cogito/evenements/la-vie-affective-des-seniors-bruxelles-cog-evt-c358b6cc9ad1da/index.html",
+    "slug": "la-vie-affective-des-seniors-bruxelles-cog-evt-c358b6cc9ad1da",
+    "date": "2027-02-16"
+  },
+  "COG-EVT-5588F220EF9AC8": {
+    "path": "cogito/evenements/les-ateliers-de-hugues-carnaval-proposition-woluwe-saint-pierre-cog-evt-5588f220ef9ac8/index.html",
+    "slug": "les-ateliers-de-hugues-carnaval-proposition-woluwe-saint-pierre-cog-evt-5588f220ef9ac8",
+    "date": "2027-02-17"
+  },
+  "COG-EVT-AC278C9CCC23D5": {
+    "path": "cogito/evenements/sobriete-et-developpement-un-oxymore-bruxelles-cog-evt-ac278c9ccc23d5/index.html",
+    "slug": "sobriete-et-developpement-un-oxymore-bruxelles-cog-evt-ac278c9ccc23d5",
+    "date": "2027-02-18"
+  },
+  "COG-EVT-42A9C9E3B3CFE6": {
+    "path": "cogito/evenements/l-expedition-antarctique-de-la-belgica-en-1897-99-solidarite-hum-cog-evt-42a9c9e3b3cfe6/index.html",
+    "slug": "l-expedition-antarctique-de-la-belgica-en-1897-99-solidarite-hum-cog-evt-42a9c9e3b3cfe6",
+    "date": "2027-03-08"
+  },
+  "COG-EVT-1BCF4B659A798E": {
+    "path": "cogito/evenements/les-grands-modeles-de-langage-et-les-progres-recents-de-l-intell-cog-evt-1bcf4b659a798e/index.html",
+    "slug": "les-grands-modeles-de-langage-et-les-progres-recents-de-l-intell-cog-evt-1bcf4b659a798e",
+    "date": "2027-03-09"
+  },
+  "COG-EVT-03F11DBC2BC61C": {
+    "path": "cogito/evenements/exploration-du-monde-la-loire-waterloo-cog-evt-03f11dbc2bc61c/index.html",
+    "slug": "exploration-du-monde-la-loire-waterloo-cog-evt-03f11dbc2bc61c",
+    "date": "2027-03-10"
+  },
+  "COG-EVT-0A800FE27DE88F": {
+    "path": "cogito/evenements/la-democratie-et-l-etat-de-droit-aujourd-hui-en-tension-ou-en-da-cog-evt-0a800fe27de88f/index.html",
+    "slug": "la-democratie-et-l-etat-de-droit-aujourd-hui-en-tension-ou-en-da-cog-evt-0a800fe27de88f",
+    "date": "2027-03-11"
+  },
+  "COG-EVT-520E82706C885E": {
+    "path": "cogito/evenements/les-nouveaux-dilemmes-ethiques-des-dirigeant-es-bruxelles-cog-evt-520e82706c885e/index.html",
+    "slug": "les-nouveaux-dilemmes-ethiques-des-dirigeant-es-bruxelles-cog-evt-520e82706c885e",
+    "date": "2027-03-15"
+  },
+  "COG-EVT-1EF3EF30CEDF35": {
+    "path": "cogito/evenements/albanie-un-pays-singulier-et-neglige-des-balkans-bruxelles-cog-evt-1ef3ef30cedf35/index.html",
+    "slug": "albanie-un-pays-singulier-et-neglige-des-balkans-bruxelles-cog-evt-1ef3ef30cedf35",
+    "date": "2027-03-16"
+  },
+  "COG-EVT-888388B6EA37D5": {
+    "path": "cogito/evenements/florence-la-cathedrale-santa-maria-del-fiore-moment-inaugural-de-cog-evt-888388b6ea37d5/index.html",
+    "slug": "florence-la-cathedrale-santa-maria-del-fiore-moment-inaugural-de-cog-evt-888388b6ea37d5",
+    "date": "2027-03-18"
+  },
+  "COG-EVT-7CD976D36E8566": {
+    "path": "cogito/evenements/stephanie-haxhe-freres-et-s-urs-des-liens-a-soigner-auderghem-cog-evt-7cd976d36e8566/index.html",
+    "slug": "stephanie-haxhe-freres-et-s-urs-des-liens-a-soigner-auderghem-cog-evt-7cd976d36e8566",
+    "date": "2027-03-19"
+  },
+  "COG-EVT-3F87D7D6BD85A5": {
+    "path": "cogito/evenements/etre-dessinateur-de-presse-dans-un-monde-clive-et-continuer-a-ri-cog-evt-3f87d7d6bd85a5/index.html",
+    "slug": "etre-dessinateur-de-presse-dans-un-monde-clive-et-continuer-a-ri-cog-evt-3f87d7d6bd85a5",
+    "date": "2027-03-22"
+  },
+  "COG-EVT-737BB7F57D9696": {
+    "path": "cogito/evenements/quel-role-pour-les-organisations-de-consommateurs-bruxelles-cog-evt-737bb7f57d9696/index.html",
+    "slug": "quel-role-pour-les-organisations-de-consommateurs-bruxelles-cog-evt-737bb7f57d9696",
+    "date": "2027-03-23"
+  },
+  "COG-EVT-1534ED0E153CF6": {
+    "path": "cogito/evenements/savoir-occulte-et-ecriture-arabe-dans-la-societe-swahilie-du-con-cog-evt-1534ed0e153cf6/index.html",
+    "slug": "savoir-occulte-et-ecriture-arabe-dans-la-societe-swahilie-du-con-cog-evt-1534ed0e153cf6",
+    "date": "2027-03-25"
+  },
+  "COG-EVT-E0D1AAEDAE6589": {
+    "path": "cogito/evenements/le-pacte-d-excellence-bruxelles-cog-evt-e0d1aaedae6589/index.html",
+    "slug": "le-pacte-d-excellence-bruxelles-cog-evt-e0d1aaedae6589",
+    "date": "2027-03-30"
+  },
+  "COG-EVT-6D6C8E426F58C4": {
+    "path": "cogito/evenements/l-improvisation-une-beaute-inachevee-bruxelles-cog-evt-6d6c8e426f58c4/index.html",
+    "slug": "l-improvisation-une-beaute-inachevee-bruxelles-cog-evt-6d6c8e426f58c4",
+    "date": "2027-04-01"
+  },
+  "COG-EVT-8928C73F8685EB": {
+    "path": "cogito/evenements/stabilite-et-resilience-en-temps-de-guerre-decrypter-la-societe--cog-evt-8928c73f8685eb/index.html",
+    "slug": "stabilite-et-resilience-en-temps-de-guerre-decrypter-la-societe--cog-evt-8928c73f8685eb",
+    "date": "2027-04-05"
+  },
+  "COG-EVT-427DE65FDCB617": {
+    "path": "cogito/evenements/l-hopital-augmente-quand-robots-et-intelligence-artificielle-ent-cog-evt-427de65fdcb617/index.html",
+    "slug": "l-hopital-augmente-quand-robots-et-intelligence-artificielle-ent-cog-evt-427de65fdcb617",
+    "date": "2027-04-06"
+  },
+  "COG-EVT-E702B663CA472D": {
+    "path": "cogito/evenements/l-invention-de-la-chimie-bruxelles-cog-evt-e702b663ca472d/index.html",
+    "slug": "l-invention-de-la-chimie-bruxelles-cog-evt-e702b663ca472d",
+    "date": "2027-04-12"
+  },
+  "COG-EVT-C1D28ACBAAF35D": {
+    "path": "cogito/evenements/exploration-du-monde-la-voix-du-mekong-waterloo-cog-evt-c1d28acbaaf35d/index.html",
+    "slug": "exploration-du-monde-la-voix-du-mekong-waterloo-cog-evt-c1d28acbaaf35d",
+    "date": "2027-04-21"
+  }
+}
