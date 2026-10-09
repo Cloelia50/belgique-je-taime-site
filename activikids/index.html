@@ -837,7 +837,7 @@ function groupsSoon(rows){
     by[shown].push(o);
   });
   if(ong.length)g.push({title:'En ce moment',sub:'ça a déjà commencé, il est encore temps',dot:true,items:ong});
-  order.forEach(function(s){
+  order.sort().forEach(function(s){
     var t=s===TODAY?'Aujourd’hui':s===addDays(TODAY,1)?'Demain':fmtLong(s);
     g.push({title:t,sub:s===TODAY||s===addDays(TODAY,1)?fmtLong(s):'',items:by[s],dot:s===TODAY});
   });
