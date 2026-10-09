@@ -61,7 +61,19 @@ try{
     ok(Boolean(json),"Event JSON-LD manquant : "+name);
     const e=JSON.parse(json[1]).find(x=>x["@type"]==="Event");
     ok(e?.startDate&&e?.name&&e?.location?.address?.postalCode,"Event incomplet : "+name);
+    for(const field of ["startDate","endDate"]){
+     const stamp=e?.[field];
+     if(stamp?.includes("T"))ok(/(?:Z|[+-]\\d{2}:\\d{2})$/.test(stamp)&&Number.isFinite(Date.parse(stamp)),
+       "Date structurée sans fuseau ou invalide : "+name+" "+field+" "+stamp);
+    }
    }else ok(!json,"Une archive contient du balisage Event : "+name);
+  }
+  if(day==="2026-10-09"){
+   const filemon=read("evenements/activikids-evt-0285-2026-10-25/index.html");
+   const halloween=read("evenements/activikids-evt-0010-2026-10-31/index.html");
+   ok(filemon.includes("8 € (standard), 6 € (moins de 26 ans)"),"Tarif Filem’On 2026 confirmé absent");
+   ok(filemon.includes("filemon.be/fr/festival-filemon/programme"),"Source tarifaire Filem’On absente");
+   ok(halloween.includes("<strong>Tarif :</strong> À confirmer"),"Prix Halloween non confirmé à afficher prudemment");
   }
   const indexedPages=[];
   for(const eventName of names){
