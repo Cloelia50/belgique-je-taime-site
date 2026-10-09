@@ -124,6 +124,9 @@
       '<h2>'+esc(q.text||"Votre situation")+'</h2>'+
       (q.helper?'<p>'+esc(q.helper)+'</p>':"")+
       controls+
+      (qid==="q_entry_situation"?
+        '<div class="entry-route-actions entry-fast-help"><button type="button" class="primary" data-entry-fast-help>Mes droits sont coupés ou ma situation est compliquée : voir des premières pistes</button></div>'+
+        '<p class="entry-fast-help-note">Vous pouvez commencer sans répondre à toutes les questions. Vous pourrez préciser votre difficulté ensuite.</p>':"")+
       '<div class="entry-footer"><span></span><button type="button" class="linkish" data-entry-unknown>Je ne sais pas quoi choisir</button></div>';
     showScreen("simpleEntryRouter");
   }
@@ -430,6 +433,7 @@
     if(!ensureScreens())return false;
     state.answers={};
     state.destinationId="";
+    state.difficultTopic="";
     state.businessAnswers={};
     const host=document.getElementById("entryRouterHost");
     host.innerHTML='<div class="simple-kicker">Trouver le bon parcours</div><h2>On regarde d’abord d’où vous partez.</h2><p>Quelques secondes suffisent pour éviter de vous envoyer vers un formulaire qui ne correspond pas à votre situation.</p>';
@@ -445,6 +449,7 @@
     if(event.target.closest("[data-entry-home]")){hideCustomScreens();document.getElementById("simpleHome")?.classList.add("active");window.scrollTo({top:0,behavior:"smooth"});return;}
     if(event.target.closest("[data-entry-restart]")){state.answers={};state.destinationId="";renderQuestion("q_entry_situation");return;}
     if(event.target.closest("[data-entry-unknown]")){routeToDestination("guided_orientation");return;}
+    if(event.target.closest("[data-entry-fast-help]")){state.destinationId="foundation_recovery";state.difficultTopic="";renderDifficultHelp();return;}
     if(event.target.closest("[data-entry-admin]")){state.difficultTopic="";renderDifficultHelp();return;}
     const topic=event.target.closest("[data-help-topic]");
     if(topic){renderDifficultHelp(topic.dataset.helpTopic);return;}
