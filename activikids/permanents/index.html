@@ -1,0 +1,33 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Activikids — idées de sorties permanentes (préversion)</title>
+<style>
+:root{font-family:system-ui,-apple-system,"Segoe UI",sans-serif;color:#22302e;background:#fff9f5}*{box-sizing:border-box}body{margin:0;line-height:1.48}a{color:#1c675d}header,main{max-width:1100px;margin:0 auto;padding:26px 22px}nav{margin-bottom:30px}h1{font:normal clamp(2.3rem,4.7vw,4.1rem)/1.08 Georgia,serif;margin:8px 0 14px}header p{max-width:800px;color:#53605a}.eyebrow{font-size:.8rem;letter-spacing:.13em;text-transform:uppercase;font-weight:750;color:#aa5340}.filters{display:grid;grid-template-columns:2fr 1fr 1fr;gap:12px;background:white;padding:17px;border:1px solid #f1e5dd;border-radius:16px;margin-bottom:20px}.field label{display:block;font-weight:700;font-size:.86rem;margin-bottom:6px}input,select{width:100%;border:1px solid #d9c8bf;border-radius:9px;background:white;padding:10px;font:inherit}.results{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}article{background:white;border:1px solid #ead9d0;border-radius:15px;padding:20px;min-width:0}article h2{font:normal 1.42rem/1.2 Georgia,serif;margin:8px 0}article p{font-size:.92rem}article .meta{color:#54605b;font-size:.84rem}.tag{background:#fcf0e9;border-radius:20px;padding:4px 10px;font-size:.8rem;display:inline-block;margin-right:5px;margin-bottom:6px}.count{color:#596663}button{font:inherit;background:#a94d3e;color:white;border:0;border-radius:10px;padding:11px 20px;cursor:pointer;margin:20px 0}.empty{background:white;padding:30px}.note{font-size:.86rem;color:#656e68}@media(max-width:850px){.results{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:620px){.results,.filters{grid-template-columns:1fr}header,main{padding:18px 14px}}
+</style></head><body><header><nav><a href="../../">← Belgique, je t'aime</a> · <a href="../">Activikids</a></nav>
+<div class="eyebrow">Activikids · Préversion</div>
+<h1>Il n'y a pas que les sorties du week-end.</h1>
+<p>Musées, espaces de découverte, lieux culturels ou attractions : des activités accessibles toute l'année ou pendant une saison. À distinguer des événements qui se déroulent à une date précise.</p>
+<p class="note">Cette sélection préparatoire ne comprend que des fiches dont les informations essentielles ont été revues. Vérifiez les horaires, fermetures, tarifs et conditions sur le site officiel avant de partir.</p>
+</header>
+<main>
+<form id="filters" class="filters" role="search" aria-label="Filtrer les lieux">
+<div class="field"><label for="q">Rechercher</label><input type="search" id="q" placeholder="Musée, commune, activité…"></div>
+<div class="field"><label for="region">Région ou province</label><select id="region"><option value="">Toute la Belgique</option></select></div>
+<div class="field"><label for="prix">Tarification</label><select id="prix"><option value="">Tous les tarifs</option></select></div>
+</form>
+<p id="count" class="count" role="status" aria-live="polite">Chargement…</p>
+<section class="results" id="results" aria-label="Activités permanentes"></section><p id="empty" class="empty" hidden>Aucune activité ne correspond à ces critères.</p><button id="more" hidden type="button">Afficher davantage de lieux</button>
+</main>
+<script>
+"use strict";const $=id=>document.getElementById(id);let all=[],visible=36,found=[];
+function fold(v){return String(v??"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase()}
+function option(el,v){const o=document.createElement("option");o.value=v;o.textContent=v;el.append(o)}
+function node(tag,text,cls){const e=document.createElement(tag);if(text!=null)e.textContent=text;if(cls)e.className=cls;return e}
+function url(v){return /^https:\/\/[a-z0-9.-]+(?:\/|$)/i.test(String(v||""))?v:null}
+function card(x){const a=node("article"),h=node("h2",x.nom);a.append(h,node("p",[x.commune,x.region].filter(Boolean).join(" · "),"meta"));const tags=node("div");[x.categorie,x.tarification,x.indoor_outdoor].filter(Boolean).forEach(t=>tags.append(node("span",t,"tag")));a.append(tags);
+for(const t of [x.disponibilite,x.horaire,x.prix]){if(t)a.append(node("p",t,"meta"))}
+if(x.notes)a.append(node("p",x.notes));
+const l=url(x.source_pratique)||url(x.url_officielle);if(l){const link=node("a","Consulter le site officiel →");link.href=l;link.target="_blank";link.rel="noopener noreferrer";a.append(link)}return a}
+function show(){const root=$("results");root.replaceChildren();const frag=document.createDocumentFragment();found.slice(0,visible).forEach(x=>frag.append(card(x)));root.append(frag);$("count").textContent=found.length+" activité(s) correspondante(s)";$("more").hidden=found.length<=visible;$("empty").hidden=found.length>0}
+function filter(){const q=fold($("q").value),r=$("region").value,p=$("prix").value;found=all.filter(x=>(!q||fold([x.nom,x.categorie,x.commune,x.notes].join(" ")).includes(q))&&(!r||x.region===r)&&(!p||x.tarification===p));visible=36;show()}
+$("q").addEventListener("input",filter);$("region").addEventListener("change",filter);$("prix").addEventListener("change",filter);$("more").addEventListener("click",()=>{visible+=36;show()});
+fetch("./catalogue.json").then(r=>{if(!r.ok)throw Error("unavailable");return r.json()}).then(data=>{all=data.items.slice().sort((a,b)=>a.nom.localeCompare(b.nom,"fr"));for(const key of ["region","tarification"]){const el=$(key==="tarification"?"prix":key);[...new Set(all.map(x=>x[key]).filter(Boolean))].sort((a,b)=>a.localeCompare(b,"fr")).forEach(x=>option(el,x))}filter()}).catch(()=>{$("count").textContent="Catalogue temporairement indisponible."});
+</script></body></html>

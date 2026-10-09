@@ -61,3 +61,10 @@ footer{border-top:1px solid var(--line);padding:28px 0 38px;color:#69718a;font-s
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 .report-cta{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:11px 18px;border-radius:999px;background:var(--ink);color:#fff;text-decoration:none;font-weight:850}
 .report-cta:hover{text-decoration:underline;text-underline-offset:3px}
+
+/* Moteur livres belges (nom provisoire) */
+.livres-belges .card-top{background:#f4e9d7}
+.livres-belges .cta{background:#79543b}
+.livres-belges .name small{font-size:.75em;text-transform:none;letter-spacing:normal;font-weight:500}
+
+.card .card-secondary-link{display:inline-block;margin-top:13px;font-size:.86rem;font-weight:720;text-decoration:underline;text-underline-offset:3px}

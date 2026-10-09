@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#f8f5ee">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Découvrir les livres belges — Belgique, je t'aime (préversion)</title>
+  <meta name="description" content="Un explorateur de livres publiés par des auteurs belges, à découvrir par auteur, genre, région et longueur.">
+  <style>
+    :root{color-scheme:light;font-family:system-ui,-apple-system,Segoe UI,sans-serif;color:#202a2c;background:#f8f5ee}
+    *{box-sizing:border-box}body{margin:0;line-height:1.5}a{color:#215b56;text-underline-offset:3px}
+    .wrap{max-width:1100px;margin:auto;padding:22px 24px 80px}
+    nav{font-size:.92rem;padding:9px 0 28px}
+    header{border-bottom:1px solid #ddd9d0;padding-bottom:22px}
+    .kicker{font-size:.8rem;font-weight:750;letter-spacing:.12em;text-transform:uppercase;color:#48675e}
+    h1{font:normal clamp(2.5rem,5vw,4.5rem)/1.08 Georgia,serif;letter-spacing:-.03em;margin:14px 0 18px}
+    .lede{font-size:1.11rem;max-width:770px;color:#4c5556;margin:0}
+    .note{max-width:850px;font-size:.91rem;margin:20px 0 0;color:#5b605d}
+    .filters{background:#fff;border:1px solid #e4dfd4;border-radius:18px;padding:20px;margin:27px 0 18px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:15px}
+    .field{min-width:0}.field.search{grid-column:span 2}
+    label{display:block;font-weight:680;font-size:.85rem;margin:0 0 5px}
+    input,select{width:100%;padding:10px 11px;border:1px solid #bbbcb4;border-radius:9px;background:#fff;color:inherit;font:inherit}
+    input:focus,select:focus,button:focus-visible,a:focus-visible{outline:3px solid #8ab0a2;outline-offset:2px}
+    .toolbar{display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin:16px 0}
+    .toolbar p{margin:0;color:#4e5553}button{border:1px solid #315d56;border-radius:9px;padding:10px 14px;background:#315d56;color:white;font:inherit;cursor:pointer}
+    button.secondary{background:transparent;color:#315d56}
+    .results{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+    article{background:white;border:1px solid #e5e0d7;border-radius:14px;padding:20px;min-width:0}
+    article h2{font:normal 1.36rem/1.26 Georgia,serif;margin:8px 0 7px}
+    .author{font-size:.96rem;font-weight:660;margin:0}
+    .meta{font-size:.85rem;color:#65706b;margin:8px 0}
+    .tags{display:flex;flex-wrap:wrap;gap:5px;margin:11px 0}
+    .tags span{font-size:.74rem;background:#eef2ee;color:#34574d;padding:3px 8px;border-radius:30px}
+    .excerpt{font-size:.91rem;color:#475252;margin:12px 0;max-height:6.2em;overflow:hidden}
+    .links{display:flex;gap:14px;flex-wrap:wrap;margin-top:16px;font-size:.86rem}
+    .more{display:block;margin:25px auto 0}
+    .empty{padding:28px;background:white;border-radius:12px}
+    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+    [hidden]{display:none!important}
+    @media(max-width:850px){.filters{grid-template-columns:repeat(2,minmax(0,1fr))}.results{grid-template-columns:repeat(2,minmax(0,1fr))}}
+    @media(max-width:580px){.filters,.results{grid-template-columns:1fr}.field.search{grid-column:auto}.wrap{padding:16px 14px 50px}}
+  </style>
+</head>
+<body><div class="wrap">
+<nav><a href="../">← Belgique, je t'aime</a></nav>
+<header>
+  <div class="kicker">Lire et découvrir · nom définitif à venir</div>
+  <h1>Des livres de chez nous, pour toutes les envies.</h1>
+  <p class="lede">Romans, bandes dessinées, poésie, théâtre, nouvelles et livres jeunesse : explorez les œuvres d'auteurs belges par goût, par curiosité ou tout simplement pour dénicher votre prochain livre.</p>
+  <p class="note"><strong>Préversion éditoriale :</strong> les notices proviennent d'une base de travail datée du 9 octobre 2026. Certaines caractéristiques ne sont pas encore renseignées. Les liens renvoient aux sources ; les disponibilités, pages et éditions doivent être revérifiées avant achat ou emprunt.</p>
+</header>
+<main id="contenu">
+<form class="filters" id="filters" role="search" aria-label="Rechercher un livre belge">
+  <div class="field search"><label for="q">Titre, auteur, mot-clé</label><input id="q" type="search" placeholder="Par exemple : Simenon, fantastique, jeunesse…" autocomplete="off"></div>
+  <div class="field"><label for="type">Type de livre</label><select id="type"><option value="">Tous les types</option></select></div>
+  <div class="field"><label for="region">Région de l'auteur</label><select id="region"><option value="">Toutes les régions</option></select></div>
+  <div class="field"><label for="langue">Langue du livre</label><select id="langue"><option value="">Toutes les langues</option></select></div>
+  <div class="field"><label for="genre">Genre de l'auteur</label><select id="genre"><option value="">Non filtré</option><option value="femme">Femmes</option><option value="homme">Hommes</option></select></div>
+  <div class="field"><label for="longueur">Longueur documentée</label><select id="longueur"><option value="">Sans limite</option><option value="200">200 pages au plus</option><option value="350">350 pages au plus</option><option value="500">500 pages au plus</option></select></div>
+  <div class="field"><label for="public">Public</label><select id="public"><option value="">Tous les publics</option></select></div>
+</form>
+<div class="toolbar"><p id="count" role="status" aria-live="polite">Chargement des livres…</p><button class="secondary" type="button" id="reset">Effacer les filtres</button></div>
+<section class="results" id="results" aria-label="Livres trouvés"></section>
+<p id="empty" class="empty" hidden>Aucun livre ne correspond à ces critères. Essayez d'en retirer un pour élargir la recherche.</p>
+<button class="more" id="more" type="button" hidden>Afficher davantage de livres</button>
+</main>
+</div>
+<script>
+"use strict";
+const $=id=>document.getElementById(id);
+const state={books:[],filtered:[],visible:36};
+const fields=["q","type","region","langue","genre","longueur","public"];
+function fold(v){return String(v??"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase().trim()}
+function safeLink(url){return /^https:\/\/[a-z0-9.-]+(?:\/|$)/i.test(String(url||""))?url:null}
+function addOption(select,v){const option=document.createElement("option");option.value=v;option.textContent=v;select.appendChild(option)}
+function populate(key,id){const values=[...new Set(state.books.map(b=>b[key]).filter(Boolean))].sort((a,b)=>a.localeCompare(b,"fr"));values.forEach(v=>addOption($(id),v))}
+function el(name,text,className){const n=document.createElement(name);if(text!=null)n.textContent=text;if(className)n.className=className;return n}
+function makeCard(b){
+  const card=el("article"),auteur=el("p",b.auteur||"Auteur non renseigné","author");
+  const h2=el("h2",b.titre);
+  card.append(h2,auteur);
+  const meta=[b.annee||null,b.editeur||null,b.pages?b.pages+" pages":null].filter(Boolean).join(" · ");
+  if(meta)card.append(el("p",meta,"meta"));
+  const tags=el("div",null,"tags");
+  for(const v of [b.type,b.genre,b.region,b.langue].filter(Boolean).slice(0,4))tags.append(el("span",v));
+  card.append(tags);
+  if(b.bref)card.append(el("p",b.bref,"excerpt"));
+  const links=el("div",null,"links");
+  for(const [label,url] of [["Source bibliographique",b.source],["Voir chez l'éditeur",b.lien_editeur]]){
+    const href=safeLink(url);if(!href)continue;
+    const a=el("a",label);a.href=href;a.target="_blank";a.rel="noopener noreferrer";links.append(a);
+  }
+  card.append(links);return card;
+}
+function filter(){
+ const q=fold($("q").value),type=$("type").value,region=$("region").value,langue=$("langue").value,genre=$("genre").value,publicC=$("public").value,max=Number($("longueur").value)||0;
+ state.filtered=state.books.filter(b=>
+  (!q||fold([b.titre,b.auteur,b.genre,b.type,b.themes,b.ton,b.editeur].join(" ")).includes(q))&&
+  (!type||b.type===type)&&(!region||b.region===region)&&(!langue||b.langue===langue)&&
+  (!genre||fold(b.genre_auteur)===genre)&&(!publicC||b.public===publicC)&&
+  (!max||(b.pages&&b.pages<=max)));
+ state.visible=36;render();
+}
+function render(){
+ const result=$("results");result.replaceChildren();
+ const frag=document.createDocumentFragment();
+ state.filtered.slice(0,state.visible).forEach(b=>frag.append(makeCard(b)));
+ result.appendChild(frag);
+ $("count").textContent=state.filtered.length.toLocaleString("fr-BE")+" livre(s) correspondant aux critères";
+ $("more").hidden=state.visible>=state.filtered.length;
+ $("empty").hidden=state.filtered.length>0;
+}
+$("more").addEventListener("click",()=>{state.visible+=36;render()});
+$("reset").addEventListener("click",()=>{$("filters").reset();filter()});
+fields.forEach(id=>$(id).addEventListener(id==="q"?"input":"change",filter));
+fetch("./catalogue.json",{cache:"no-store"}).then(r=>{if(!r.ok)throw Error("Catalogue indisponible");return r.json()}).then(data=>{
+ if(!Array.isArray(data.catalogue))throw Error("Format invalide");
+ state.books=data.catalogue.slice().sort((a,b)=>a.titre.localeCompare(b.titre,"fr"));
+ for(const [key,id] of [["type","type"],["region","region"],["langue","langue"],["public","public"]])populate(key,id);
+ filter();
+}).catch(()=>{$("count").textContent="Le catalogue ne peut pas être chargé.";});
+</script></body></html>
