@@ -42,6 +42,7 @@ try{
  for(const f of ["activikids/data/catalog.json","cogito/index.html","ecotank/admin-profile.json","sitemap.xml"])
    put(f,fs.readFileSync(path.join(root,f),"utf8"));
  let previousActive=Infinity;
+ const sourceData=JSON.parse(read("ecotank/admin-profile.json")).official_sources;
  for(const day of ["2026-10-09","2026-11-01","2026-12-01","2027-04-01"]){
   const links=run(day);
   ok(links.length===new Set(links).size,"URLs dupliquées");
@@ -62,6 +63,23 @@ try{
     ok(e?.startDate&&e?.name&&e?.location?.address?.postalCode,"Event incomplet : "+name);
    }else ok(!json,"Une archive contient du balisage Event : "+name);
   }
+  const indexedPages=[];
+  for(const eventName of names){
+   const html=read("evenements/"+eventName+"/index.html");
+   if(html.includes('content="index,follow"'))indexedPages.push(["evenements/"+eventName,html]);
+  }
+  for(const slug of slugs)indexedPages.push(["guides/"+slug,read("guides/"+slug+"/index.html")]);
+  const titles=new Set(),canonicals=new Set(),descriptions=new Set();
+  for(const [name,html] of indexedPages){
+   const title=html.match(/<title>([^<]+)<\/title>/i)?.[1];
+   const canonical=html.match(/<link rel="canonical" href="([^"]+)"/i)?.[1];
+   const description=html.match(/<meta name="description" content="([^"]+)"/i)?.[1];
+   ok(Boolean(title&&canonical&&description),"Métadonnées manquantes : "+name);
+   ok(!titles.has(title),"Titre dupliqué : "+name);titles.add(title);
+   ok(!canonicals.has(canonical),"Canonique dupliquée : "+name);canonicals.add(canonical);
+   ok(!descriptions.has(description),"Description dupliquée : "+name);descriptions.add(description);
+   ok(description.length>=50&&description.length<=190,"Méta-description hors limites : "+name);
+  }
   for(const slug of slugs){
    const html=read("guides/"+slug+"/index.html");
    ok((html.match(/<h1\b/g)||[]).length===1,"H1 "+slug);
@@ -69,7 +87,10 @@ try{
    ok(links.some(u=>u.endsWith("/guides/"+slug+"/")),"Guide non référencé dans sitemap : "+slug);
   }
   const admin=read("guides/demarches-administratives/index.html");
-  ok(admin.includes("https://pcswonline.socialsecurity.be/unsecured/fr/helpRequestForm.html"),"Lien officiel CPAS sans connexion absent");
+  for(const id of ["cpas_online","cpas_online_unsecured"]){
+   const official=sourceData[id]?.url;
+   ok(official?.startsWith("https://")&&admin.includes(official),"Lien officiel CPAS absent : "+id);
+  }
  }
  const idem=read("sitemap.xml");
  run("2027-04-01");

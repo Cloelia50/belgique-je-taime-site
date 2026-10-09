@@ -13,3 +13,7 @@
 
 ## Fiabilisation du calendrier — 9 octobre 2026
 Le générateur valide désormais les dates civiles réelles : 31 février et 31 avril sont rejetés. L'heure de départ avec fuseau `Europe/Brussels` est calculée à l'heure locale de l'événement, pas à midi : cela évite une erreur lors du changement d'heure. Pour une heure inexistante ou répétée à la transition DST, la donnée structurée ne prétend pas connaître un décalage horaire non confirmé et conserve la date. Tests supplémentaires intégrés à `scripts/test_seo_offline.mjs`. Aucun nouveau workflow GitHub Actions.
+
+
+## Audit renforcé — 9 octobre 2026
+Les huit guides et les seize fiches sont contrôlés pour les titres, méta-descriptions et URL canoniques uniques. Les vérifications des liens CPAS puisent maintenant dans les URL officielles d'Écotank au lieu de figer une adresse susceptible d'être remplacée ultérieurement. Deux coûts (Halloween Rouge-Cloître et Opening Filem'On) nécessitent une vérification humaine. Aucun nouveau workflow n'est ajouté.

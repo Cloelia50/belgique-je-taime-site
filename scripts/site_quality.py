@@ -183,15 +183,25 @@ if event_dir.exists():
         if 'content="noindex,follow"' in event_file.read_text(encoding="utf-8") and BASE+"evenements/"+event_file.parent.name+"/" in sitemap:
             errors.append("archived_event_still_indexed:"+event_file.parent.name)
 
-# Une source administrative ne doit jamais être rendue comme un lien vide.
-cpas_page=(ROOT/"guides/demarches-administratives/index.html")
-if cpas_page.exists():
-    content=cpas_page.read_text(encoding="utf-8")
-    if "https://www.socialsecurity.be/citizen/fr/static/applics/ocmw-cpas-online/index.htm" not in content:
-        errors.append("missing_official_cpas_online_link")
-    if "https://pcswonline.socialsecurity.be/unsecured/fr/helpRequestForm.html" not in content:
-        errors.append("missing_official_cpas_unsecured_link")
-
+# Comparer les liens CPAS publiés aux données officielles courantes d'Écotank.
+# Évite qu'une ancienne URL figée rende ce test obsolète.
+admin_source_path=ROOT/"ecotank/admin-profile.json"
+cpas_page=ROOT/"guides/demarches-administratives/index.html"
+if not admin_source_path.is_file():
+    errors.append("missing_public_ecotank_admin_profile")
+else:
+    try:
+        import json as _admin_json
+        source_data=_admin_json.loads(admin_source_path.read_text(encoding="utf-8"))
+        official_sources=source_data.get("official_sources",{})
+        for key in ("cpas_online","cpas_online_unsecured"):
+            target=official_sources.get(key,{}).get("url","")
+            if not target.startswith("https://"):
+                errors.append("invalid_official_ecotank_source:"+key)
+            elif cpas_page.is_file() and target not in cpas_page.read_text(encoding="utf-8"):
+                errors.append("missing_official_ecotank_link:"+key)
+    except (ValueError,TypeError,AttributeError):
+        errors.append("invalid_public_ecotank_admin_profile")
 
 if '<html lang="fr-BE">' not in home:
     errors.append("homepage_language_fr_be_missing")
