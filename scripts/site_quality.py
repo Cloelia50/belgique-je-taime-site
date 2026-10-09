@@ -183,6 +183,16 @@ if event_dir.exists():
         if 'content="noindex,follow"' in event_file.read_text(encoding="utf-8") and BASE+"evenements/"+event_file.parent.name+"/" in sitemap:
             errors.append("archived_event_still_indexed:"+event_file.parent.name)
 
+# Une source administrative ne doit jamais être rendue comme un lien vide.
+cpas_page=(ROOT/"guides/demarches-administratives/index.html")
+if cpas_page.exists():
+    content=cpas_page.read_text(encoding="utf-8")
+    if "https://www.socialsecurity.be/citizen/fr/static/applics/ocmw-cpas-online/index.htm" not in content:
+        errors.append("missing_official_cpas_online_link")
+    if "https://pcswonline.socialsecurity.be/unsecured/fr/helpRequestForm.html" not in content:
+        errors.append("missing_official_cpas_unsecured_link")
+
+
 if errors:
     print("SITE QUALITY FAILED")
     for error in errors:

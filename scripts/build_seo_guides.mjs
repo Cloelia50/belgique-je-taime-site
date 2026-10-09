@@ -6,7 +6,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { rebuildEventPages } from "./build_seo_events.mjs";
-function buildGuides(catalog,cogito,asof,sitebase) {
+function buildGuides(catalog,cogito,asof,sitebase,admin) {
   const htmlEscape=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
   const validUrl=u=>/^https?:\/\/[^\s<>"']+$/i.test(String(u||""))?String(u):"";
   const formatDate=d=>{if(!/^\d{4}-\d\d-\d\d$/.test(String(d||"")))return "";return new Intl.DateTimeFormat("fr-BE",{day:"numeric",month:"long",year:"numeric",timeZone:"UTC"}).format(new Date(d+"T12:00:00Z"))};
@@ -68,7 +68,7 @@ function buildGuides(catalog,cogito,asof,sitebase) {
     `${topic("Des rencontres autour des livres",`<p>Un café littéraire se prête à la discussion. Un club de lecture permet de confronter ses impressions, même sans bagage universitaire. Une conférence littéraire peut offrir un éclairage différent sur une œuvre ou un auteur. Dans chaque cas, le format compte autant que le sujet.</p>`)}
     ${topic("Rendez-vous littéraires repérés",wrapIntro(true)+listing(literary.map(cogCard),"Peu de rendez-vous littéraires précis sont actuellement documentés. Nous préférons une petite sélection utile à une liste de dédicaces sans rencontre ou d’événements mal identifiés."))}
     ${topic("Pour aller plus loin",`<p>Vous pouvez également consulter les agendas de bibliothèques, des centres culturels et de lieux littéraires belges. <a href="../../cogito/">Cogito</a> réunit conférences, ateliers, débats et rencontres à travers la Belgique.</p>`)}`);
-  const sources=(catalog&&catalog.official_sources)||{};const sr=(id,label)=>{const x=sources[id];return x&&validUrl(x.url)?`<a href="${htmlEscape(validUrl(x.url))}" rel="noopener noreferrer" target="_blank">${htmlEscape(label||x.label)} ↗</a>`:""};
+  const sources=(admin&&admin.official_sources)||{};const sr=(id,label)=>{const x=sources[id];return x&&validUrl(x.url)?`<a href="${htmlEscape(validUrl(x.url))}" rel="noopener noreferrer" target="_blank">${htmlEscape(label||x.label)} ↗</a>`:""};
   guides["demarches-administratives"]=page("demarches-administratives",
     `${topic("1. Identifier ce qui est urgent",`<p>Votre priorité est-elle de conserver une adresse, d’accéder à des soins, de récupérer des documents, de comprendre une décision ou de demander une aide ? Vous n’êtes pas obligé de résoudre toute votre situation administrative d’un seul coup. Notez d’abord les courriers et échéances qui demandent une réaction.</p><p>Si un revenu ou une aide vient de s’arrêter, gardez la décision écrite, sa date, les coordonnées de l’organisme et la preuve de vos démarches. Les éventuels recours dépendent de votre situation : ne supposez pas un délai identique pour tous.</p>`)}
     ${topic("2. Documents d’identité et accès en ligne",`<p>Vérifiez le document d’identité ou de séjour que vous détenez réellement, sa validité et les moyens d’accès disponibles. En cas de code PIN eID perdu : ${sr("belgium_eid_pin","demander un nouveau code PIN auprès du service officiel")}. Si vous n’avez pas itsme, il peut exister d’autres solutions selon la démarche : un formulaire sans connexion, un courriel, un appel ou un guichet.</p><p>Ne concluez jamais automatiquement qu’une personne n’a plus de droits parce qu’elle n’a pas d’accès numérique, ou que son document est en renouvellement.</p>`)}
@@ -98,7 +98,9 @@ const raw=fs.readFileSync(path.join(root,"cogito/index.html"),"utf8");
 const match=raw.match(/<script type="application\/json" id="cogito-data">([\s\S]*?)<\/script>/);
 if(!match)throw new Error("Export Cogito public absent : génération SEO annulée.");
 const cogito=JSON.parse(match[1]);
-const output=buildGuides(catalog,cogito,asof,base);
+const admin=JSON.parse(fs.readFileSync(path.join(root,"ecotank/admin-profile.json"),"utf8"));
+if(!admin.official_sources?.cpas_online?.url||!admin.official_sources?.cpas_online_unsecured?.url)throw new Error("Sources officielles Écotank absentes");
+const output=buildGuides(catalog,cogito,asof,base,admin);
 for(const [p,c] of Object.entries(output.files)){const full=path.join(root,p);fs.mkdirSync(path.dirname(full),{recursive:true});fs.writeFileSync(full,c,"utf8")}
 process.stdout.write("Guides générés : "+JSON.stringify(output.metrics)+"\n");
 const ev=rebuildEventPages(root,catalog,cogito,asof,base);
