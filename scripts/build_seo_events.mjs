@@ -41,7 +41,11 @@ function entries(catalog,cogito,asof){
   let source=url(ed.src||e.url),addr=ed.adr||e.adr,p=post(addr),summary=text(ed.prog),place=ed.lieu||e.lieu;
   if(!source||!p||!place||summary.length<38||!e.n)continue;
   let ending=dayOK(ed.e)&&ed.e>=ed.s?ed.e:ed.s;
-  out.push({slug:"activikids-"+id.toLowerCase()+"-"+ed.s,name:e.n,group:"Activikids",city:e.co||p.addressLocality,place,address:addr,postal:p,source,summary,organizer:e.org||"",price:ed.prix||e.prix||"",age:e.age||"",start:ed.s,end:ending,startDate:localDateTime(ed.s,ed.hs),endDate:ed.he&&ending===ed.s?localDateTime(ed.s,ed.he):ending>ed.s?ending:"",archived:ending<asof});
+  // Tarif confirmé auprès de Filem'On pour cette séance précise, et non
+  // pour toute autre édition de l'événement ou pour les autres films.
+  const verifiedFilemon=id==="EVT-0285"&&ed.s==="2026-10-25";
+  const verifiedPrice=verifiedFilemon?"8 € (standard), 6 € (moins de 26 ans)":null;
+  out.push({slug:"activikids-"+id.toLowerCase()+"-"+ed.s,name:e.n,group:"Activikids",city:e.co||p.addressLocality,place,address:addr,postal:p,source,summary,organizer:e.org||"",price:verifiedPrice??(ed.prix||e.prix||""),verifiedPriceSource:verifiedFilemon?"https://filemon.be/fr/festival-filemon/programme/?programID=652&viewing=1062":"",age:e.age||"",start:ed.s,end:ending,startDate:localDateTime(ed.s,ed.hs),endDate:ed.he&&ending===ed.s?localDateTime(ed.s,ed.he):ending>ed.s?ending:"",archived:ending<asof});
  }
  for(let id of IDC){
   let e=(cogito.events||[]).find(x=>x.id===id);if(!e)continue;
@@ -75,6 +79,7 @@ function detail(e,base){
  '<p><strong>Quand ?</strong> <time datetime="'+esc(e.start)+'">'+esc(fmt(e.start))+'</time>'+(e.end!==e.start?" au "+esc(fmt(e.end)):"")+(e.startDate.includes("T")?" · "+esc(e.startDate.split("T")[1].slice(0,5)):"")+'</p>'+
  '<p><strong>Où ?</strong> '+esc(e.place)+' — '+esc(e.address)+'</p>'+
  '<p><strong>Tarif :</strong> '+esc(e.price||"à confirmer")+'</p>'+
+ (e.verifiedPriceSource?'<p><a href="'+esc(e.verifiedPriceSource)+'" rel="noopener noreferrer" target="_blank">Consulter les tarifs officiels Filem’On ↗</a></p>':"")+
  (e.age?'<p><strong>Public :</strong> '+esc(e.age)+'</p>':"")+
  (e.organizer?'<p><strong>Organisateur :</strong> '+esc(e.organizer)+'</p>':"")+
  '<p><a class="g-source" href="'+esc(e.source)+'" rel="noopener noreferrer" target="_blank">Consulter la page officielle de l’événement ↗</a></p></section>'+
