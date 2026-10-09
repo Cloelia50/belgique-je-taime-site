@@ -56,6 +56,11 @@ function hasHelp(html) {
 const quick = session();
 await ready(quick);
 assert.match(quick.html("entryRouterHost"), /data-entry-fast-help/);
+assert.ok(
+  quick.html("entryRouterHost").indexOf('data-entry-fast-help') <
+    quick.html("entryRouterHost").indexOf('data-entry-option'),
+  "L'aide urgente doit être visible AVANT la liste de situations, même sur petit écran"
+);
 quick.click("[data-entry-fast-help]");
 assert.ok(hasHelp(quick.html("entryDifficultHost")), "Premières pistes accessibles sans formulaire");
 assert.match(quick.html("entryDifficultHost"), /Commencer par une aide humaine/);
