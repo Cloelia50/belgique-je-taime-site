@@ -63,7 +63,7 @@ try{
     ok(e?.startDate&&e?.name&&e?.location?.address?.postalCode,"Event incomplet : "+name);
     for(const field of ["startDate","endDate"]){
      const stamp=e?.[field];
-     if(stamp?.includes("T"))ok(/(?:Z|[+-]\\d{2}:\\d{2})$/.test(stamp)&&Number.isFinite(Date.parse(stamp)),
+     if(stamp?.includes("T"))ok(/(?:Z|[+-]\d{2}:\d{2})$/.test(stamp)&&Number.isFinite(Date.parse(stamp)),
        "Date structurée sans fuseau ou invalide : "+name+" "+field+" "+stamp);
     }
    }else ok(!json,"Une archive contient du balisage Event : "+name);
