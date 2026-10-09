@@ -34,8 +34,8 @@ button:focus-visible,input:focus-visible,select:focus-visible,a:focus-visible{ou
 .brandtxt strong{font-family:Georgia,serif;font-size:24px;letter-spacing:-1px;display:block;line-height:1.1}
 .brandtxt small{display:block;color:#748179;letter-spacing:1.2px;font-size:9px;text-transform:uppercase;font-weight:700}
 .navlinks{display:flex;gap:34px;align-items:center}
-.navlinks button{border:0;background:none;color:#586c62;font-size:13px;font-weight:700;letter-spacing:.1px}
-.navlinks button:hover,.navlinks button.active{color:#1d4939}
+.navlinks button,.navlinks a{border:0;background:none;color:#586c62;font-size:13px;font-weight:700;letter-spacing:.1px;text-decoration:none;white-space:nowrap}
+.navlinks button:hover,.navlinks button.active,.navlinks a:hover{color:#1d4939}
 .top-actions{display:flex;align-items:center;gap:10px}
 .favtop{border:1px solid var(--line);border-radius:999px;padding:9px 15px;background:var(--paper);font-size:13px;font-weight:700;color:var(--forest)}
 .favtop span{color:var(--terra)}
@@ -235,6 +235,12 @@ button:focus-visible,input:focus-visible,select:focus-visible,a:focus-visible{ou
 @media(max-width:590px){.featured-voices{padding:26px 0}.featured-header{display:block}.featured-header .surprise{margin-top:14px}.featured-book-grid{grid-template-columns:1fr}.featured-entry{padding:11px 13px}.directory-list{grid-template-columns:1fr}.sec-head-actions{display:flex}.hero .search-wrap{max-width:100%}}
 
 
+.editorial-promo{background:#edf0e8;border-bottom:1px solid #dce6d9}
+.editorial-promo-inner{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:14px}
+.editorial-promo strong{color:#294637;font-size:13px}
+.editorial-promo span{font-size:12px;color:#667b6a}
+.editorial-promo a{display:inline-flex;align-items:center;gap:10px;white-space:nowrap;font-size:12px;font-weight:800;color:#274e3c;text-underline-offset:3px}
+@media(max-width:680px){.editorial-promo-inner{flex-direction:column;align-items:flex-start;gap:5px}.editorial-promo a{white-space:normal}}
 .return-home{display:inline-flex;align-items:center;color:#345b48;text-decoration:none;font-weight:750;font-size:12px;border:1px solid #dbe3d8;border-radius:24px;padding:9px 12px;white-space:nowrap;background:#fffefa}
 .return-home:hover,.footer a:hover{text-decoration:underline}
 .eyebrow a{color:inherit;text-decoration:none}
@@ -254,6 +260,7 @@ button:focus-visible,input:focus-visible,select:focus-visible,a:focus-visible{ou
     <button data-nav="authors">Autrices belges</button>
     <button data-nav="directory">Auteurs A–Z</button>
     <button data-nav="about">Le projet</button>
+    <a href="ligne-editoriale.html" class="editorial-nav">Ligne éditoriale ↗</a>
   </nav>
   <div class="top-actions"><a class="return-home" href="../">← Belgique, je t’aime</a><button class="favtop" id="favNav" aria-label="Voir mes livres favoris">♡ Mes favoris <span id="favTotal">0</span></button></div>
 </header>
@@ -297,6 +304,7 @@ button:focus-visible,input:focus-visible,select:focus-visible,a:focus-visible{ou
   <div class="stat-note">Une bibliothèque vivante, encore en enrichissement. Les informations manquantes restent signalées plutôt qu’inventées.</div>
  </div>
 </section>
+<div class="editorial-promo"><div class="container editorial-promo-inner"><div><strong>Comment choisissons-nous les ouvrages&nbsp;?</strong> <span>Édition à compte d’éditeur, critères de sélection et transparence.</span></div><a href="ligne-editoriale.html">Lire notre ligne éditoriale <span aria-hidden="true">→</span></a></div></div>
 
 <section class="featured-voices" aria-label="Quelques livres à retrouver">
  <div class="container">
@@ -354,7 +362,7 @@ button:focus-visible,input:focus-visible,select:focus-visible,a:focus-visible{ou
 
 <section class="feature-band" id="about">
  <div class="container feature-grid">
-  <div class="feature-intro"><span class="kicker">Bien plus qu’un catalogue</span><h2>Un pays. <em>Mille façons de le lire.</em></h2><p>Une fenêtre ouverte sur des écrivaines et écrivains de Belgique, de toutes les époques et de plusieurs langues. Le nom « Lire belge » est encore provisoire.</p></div>
+  <div class="feature-intro"><span class="kicker">Bien plus qu’un catalogue</span><h2>Un pays. <em>Mille façons de le lire.</em></h2><p>Une fenêtre ouverte sur des écrivaines et écrivains de Belgique, de toutes les époques et de plusieurs langues. Découvrez aussi <a href="ligne-editoriale.html">notre ligne éditoriale</a>.</p></div>
   <div class="feature"><div class="nr">01 / Explorer autrement</div><h3>Petits livres,<br>grandes découvertes</h3><p>Vous n’avez qu’une soirée ? Parcourez les livres de moins de 200 pages dont la pagination est connue.</p><button data-preset="short">Explorer les lectures courtes →</button></div>
   <div class="feature"><div class="nr">02 / La richesse des voix</div><h3>Des autrices<br>à rencontrer</h3><p>Voyagez parmi les œuvres écrites par des femmes, sans présumer du genre des auteurs non documentés.</p><button data-preset="women">Découvrir les autrices →</button></div>
  </div>
