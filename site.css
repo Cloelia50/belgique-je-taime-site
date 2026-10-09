@@ -66,3 +66,5 @@ footer{border-top:1px solid var(--line);padding:28px 0 38px;color:#69718a;font-s
 .livres-belges .card-top{background:#f4e9d7}
 .livres-belges .cta{background:#79543b}
 .livres-belges .name small{font-size:.75em;text-transform:none;letter-spacing:normal;font-weight:500}
+
+.card .card-secondary-link{display:inline-block;margin-top:13px;font-size:.86rem;font-weight:720;text-decoration:underline;text-underline-offset:3px}
