@@ -61,3 +61,13 @@ footer{border-top:1px solid var(--line);padding:28px 0 38px;color:#69718a;font-s
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 .report-cta{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:11px 18px;border-radius:999px;background:var(--ink);color:#fff;text-decoration:none;font-weight:850}
 .report-cta:hover{text-decoration:underline;text-underline-offset:3px}
+
+/* LIRABELGE : quatrième moteur disponible, avec Belveillance annoncée en bandeau. */
+.lirabelge .card-top{background:#e1e9df}
+.lirabelge .cta{background:#244f40}
+.belveillance{grid-column:1/-1;min-height:0}
+.belveillance .card-top{min-height:72px}
+.belveillance .card-content{padding:20px 26px}
+.belveillance .card-content h2{font-size:1.35rem}
+.belveillance .card-content p{margin-bottom:12px}
+@media(max-width:620px){.belveillance{grid-column:auto}}
