@@ -1,0 +1,1357 @@
+{
+  "EVT-0001": {
+    "path": "activikids/evenements/festival-des-ballons-et-des-ailes-le-roeulx-evt-0001/index.html",
+    "slug": "festival-des-ballons-et-des-ailes-le-roeulx-evt-0001",
+    "date": "2027-08-15"
+  },
+  "EVT-0010": {
+    "path": "activikids/evenements/halloween-au-rouge-cloitre-auderghem-evt-0010/index.html",
+    "slug": "halloween-au-rouge-cloitre-auderghem-evt-0010",
+    "date": "2026-10-31"
+  },
+  "EVT-0014": {
+    "path": "activikids/evenements/fete-des-fleurs-watermael-boitsfort-evt-0014/index.html",
+    "slug": "fete-des-fleurs-watermael-boitsfort-evt-0014",
+    "date": "2027-06-04"
+  },
+  "EVT-0015": {
+    "path": "activikids/evenements/halloween-watermael-boitsfort-watermael-boitsfort-evt-0015/index.html",
+    "slug": "halloween-watermael-boitsfort-watermael-boitsfort-evt-0015",
+    "date": "2026-10-30"
+  },
+  "EVT-0016": {
+    "path": "activikids/evenements/marche-de-noel-marche-des-createurs-et-artisans-watermael-boitsfo-evt-0016/index.html",
+    "slug": "marche-de-noel-marche-des-createurs-et-artisans-watermael-boitsfo-evt-0016",
+    "date": "2026-12-10"
+  },
+  "EVT-0025": {
+    "path": "activikids/evenements/classiques-du-marche-watermael-boitsfort-evt-0025/index.html",
+    "slug": "classiques-du-marche-watermael-boitsfort-evt-0025",
+    "date": "2026-11-29"
+  },
+  "EVT-0028": {
+    "path": "activikids/evenements/halloween-a-joli-bois-woluwe-saint-pierre-evt-0028/index.html",
+    "slug": "halloween-a-joli-bois-woluwe-saint-pierre-evt-0028",
+    "date": "2026-10-31"
+  },
+  "EVT-0037": {
+    "path": "activikids/evenements/marche-de-noel-de-la-place-des-maieurs-woluwe-saint-pierre-evt-0037/index.html",
+    "slug": "marche-de-noel-de-la-place-des-maieurs-woluwe-saint-pierre-evt-0037",
+    "date": "2026-12-13"
+  },
+  "EVT-0063": {
+    "path": "activikids/evenements/halloween-trick-or-treat-wezembeek-oppem-wezembeek-oppem-evt-0063/index.html",
+    "slug": "halloween-trick-or-treat-wezembeek-oppem-wezembeek-oppem-evt-0063",
+    "date": "2026-10-31"
+  },
+  "EVT-0065": {
+    "path": "activikids/evenements/fete-des-lumieres-laeken-bruxelles-ville-laeken-evt-0065/index.html",
+    "slug": "fete-des-lumieres-laeken-bruxelles-ville-laeken-evt-0065",
+    "date": "2026-12-16"
+  },
+  "EVT-0076": {
+    "path": "activikids/evenements/visite-de-saint-nicolas-bibliotheque-de-kraainem-kraainem-evt-0076/index.html",
+    "slug": "visite-de-saint-nicolas-bibliotheque-de-kraainem-kraainem-evt-0076",
+    "date": "2026-12-06"
+  },
+  "EVT-0092": {
+    "path": "activikids/evenements/halloween-r-h-ode-rhode-saint-genese-evt-0092/index.html",
+    "slug": "halloween-r-h-ode-rhode-saint-genese-evt-0092",
+    "date": "2026-10-23"
+  },
+  "EVT-0093": {
+    "path": "activikids/evenements/halloweenwandeling-tervuren-tervuren-evt-0093/index.html",
+    "slug": "halloweenwandeling-tervuren-tervuren-evt-0093",
+    "date": "2026-10-31"
+  },
+  "EVT-0094": {
+    "path": "activikids/evenements/halloweenfestival-griezelwandeling-hoeilaart-hoeilaart-evt-0094/index.html",
+    "slug": "halloweenfestival-griezelwandeling-hoeilaart-hoeilaart-evt-0094",
+    "date": "2026-10-31"
+  },
+  "EVT-0096": {
+    "path": "activikids/evenements/halloweentocht-met-spookhuis-meerbeek-kortenberg-meerbeek-evt-0096/index.html",
+    "slug": "halloweentocht-met-spookhuis-meerbeek-kortenberg-meerbeek-evt-0096",
+    "date": "2026-10-31"
+  },
+  "EVT-0097": {
+    "path": "activikids/evenements/halloweentocht-winksele-delle-herent-winksele-delle-evt-0097/index.html",
+    "slug": "halloweentocht-winksele-delle-herent-winksele-delle-evt-0097",
+    "date": "2026-10-24"
+  },
+  "EVT-0098": {
+    "path": "activikids/evenements/halloween-drogenbos-drogenbos-evt-0098/index.html",
+    "slug": "halloween-drogenbos-drogenbos-evt-0098",
+    "date": "2026-10-30"
+  },
+  "EVT-0101": {
+    "path": "activikids/evenements/arrivee-de-saint-nicolas-vilvoorde-vilvoorde-evt-0101/index.html",
+    "slug": "arrivee-de-saint-nicolas-vilvoorde-vilvoorde-evt-0101",
+    "date": "2026-11-21"
+  },
+  "EVT-0103": {
+    "path": "activikids/evenements/cortege-de-saint-nicolas-drogenbos-drogenbos-evt-0103/index.html",
+    "slug": "cortege-de-saint-nicolas-drogenbos-drogenbos-evt-0103",
+    "date": "2026-11-29"
+  },
+  "EVT-0104": {
+    "path": "activikids/evenements/arrivee-de-saint-nicolas-sintkasteel-kortenberg-kortenberg-evt-0104/index.html",
+    "slug": "arrivee-de-saint-nicolas-sintkasteel-kortenberg-kortenberg-evt-0104",
+    "date": "2026-11-21"
+  },
+  "EVT-0109": {
+    "path": "activikids/evenements/festival-anima-ixelles-bruxelles-evt-0109/index.html",
+    "slug": "festival-anima-ixelles-bruxelles-evt-0109",
+    "date": "2027-02-19"
+  },
+  "EVT-0112": {
+    "path": "activikids/evenements/plaisirs-d-hiver-winter-wonders-bruxelles-ville-evt-0112/index.html",
+    "slug": "plaisirs-d-hiver-winter-wonders-bruxelles-ville-evt-0112",
+    "date": "2026-11-27"
+  },
+  "EVT-0115": {
+    "path": "activikids/evenements/magie-de-noel-parade-de-noel-drogenbos-evt-0115/index.html",
+    "slug": "magie-de-noel-parade-de-noel-drogenbos-evt-0115",
+    "date": "2026-12-20"
+  },
+  "EVT-0119": {
+    "path": "activikids/evenements/carnaval-halle-halle-evt-0119/index.html",
+    "slug": "carnaval-halle-halle-evt-0119",
+    "date": "2027-03-06"
+  },
+  "EVT-0120": {
+    "path": "activikids/evenements/halloweendorp-etalageszoektocht-asse-asse-evt-0120/index.html",
+    "slug": "halloweendorp-etalageszoektocht-asse-asse-evt-0120",
+    "date": "2026-10-31"
+  },
+  "EVT-0121": {
+    "path": "activikids/evenements/sinterklaasfeest-wemmel-wemmel-evt-0121/index.html",
+    "slug": "sinterklaasfeest-wemmel-wemmel-evt-0121",
+    "date": "2026-11-29"
+  },
+  "EVT-0122": {
+    "path": "activikids/evenements/kunstendag-voor-kinderen-reseau-multi-lieux-evt-0122/index.html",
+    "slug": "kunstendag-voor-kinderen-reseau-multi-lieux-evt-0122",
+    "date": "2026-11-15"
+  },
+  "EVT-0123": {
+    "path": "activikids/evenements/filem-on-festival-international-de-cinema-jeune-public-bruxelles-evt-0123/index.html",
+    "slug": "filem-on-festival-international-de-cinema-jeune-public-bruxelles-evt-0123",
+    "date": "2026-10-25"
+  },
+  "EVT-0124": {
+    "path": "activikids/evenements/boektopia-kortrijk-antwerpen-evt-0124/index.html",
+    "slug": "boektopia-kortrijk-antwerpen-evt-0124",
+    "date": "2026-10-30"
+  },
+  "EVT-0125": {
+    "path": "activikids/evenements/winter-glow-lueur-d-hiver-bruges-bruges-evt-0125/index.html",
+    "slug": "winter-glow-lueur-d-hiver-bruges-bruges-evt-0125",
+    "date": "2026-11-20"
+  },
+  "EVT-0140": {
+    "path": "activikids/evenements/dia-de-muertos-dans-les-marolles-bruxelles-ville-marolles-evt-0140/index.html",
+    "slug": "dia-de-muertos-dans-les-marolles-bruxelles-ville-marolles-evt-0140",
+    "date": "2026-10-26"
+  },
+  "EVT-0154": {
+    "path": "activikids/evenements/marche-de-noel-des-asbl-pilifs-bruxelles-ville-neder-over-heembee-evt-0154/index.html",
+    "slug": "marche-de-noel-des-asbl-pilifs-bruxelles-ville-neder-over-heembee-evt-0154",
+    "date": "2026-12-12"
+  },
+  "EVT-0177": {
+    "path": "activikids/evenements/printemps-des-sciences-reseau-multi-lieux-evt-0177/index.html",
+    "slug": "printemps-des-sciences-reseau-multi-lieux-evt-0177",
+    "date": "2027-04-05"
+  },
+  "EVT-0188": {
+    "path": "activikids/evenements/foire-du-livre-de-bruxelles-bruxelles-ville-evt-0188/index.html",
+    "slug": "foire-du-livre-de-bruxelles-bruxelles-ville-evt-0188",
+    "date": "2027-03-18"
+  },
+  "EVT-0192": {
+    "path": "activikids/evenements/jardin-d-enfants-patinoire-poseidon-woluwe-saint-lambert-evt-0192/index.html",
+    "slug": "jardin-d-enfants-patinoire-poseidon-woluwe-saint-lambert-evt-0192",
+    "date": "2026-11-01"
+  },
+  "EVT-0196": {
+    "path": "activikids/evenements/slow-ways-weekend-bruxelles-multi-sites-evt-0196/index.html",
+    "slug": "slow-ways-weekend-bruxelles-multi-sites-evt-0196",
+    "date": "2026-10-17"
+  },
+  "EVT-0199": {
+    "path": "activikids/evenements/journee-familles-train-world-schaerbeek-evt-0199/index.html",
+    "slug": "journee-familles-train-world-schaerbeek-evt-0199",
+    "date": "2026-11-11"
+  },
+  "EVT-0203": {
+    "path": "activikids/evenements/kunstweekend-zaventem-zaventem-sint-stevens-woluwe-evt-0203/index.html",
+    "slug": "kunstweekend-zaventem-zaventem-sint-stevens-woluwe-evt-0203",
+    "date": "2026-10-10"
+  },
+  "EVT-0209": {
+    "path": "activikids/evenements/seances-de-lecture-bibliotheque-de-wezembeek-oppem-wezembeek-oppe-evt-0209/index.html",
+    "slug": "seances-de-lecture-bibliotheque-de-wezembeek-oppem-wezembeek-oppe-evt-0209",
+    "date": "2026-10-21"
+  },
+  "EVT-0224": {
+    "path": "activikids/evenements/stages-enfants-le-wolf-bruxelles-ville-centre-evt-0224/index.html",
+    "slug": "stages-enfants-le-wolf-bruxelles-ville-centre-evt-0224",
+    "date": "2026-10-19"
+  },
+  "EVT-0227": {
+    "path": "activikids/evenements/stages-de-natation-vacances-aqualens-lens-france-evt-0227/index.html",
+    "slug": "stages-de-natation-vacances-aqualens-lens-france-evt-0227",
+    "date": "2026-10-19"
+  },
+  "EVT-0242": {
+    "path": "activikids/evenements/baff-kids-brussels-art-film-festival-bruxelles-ville-centre-evt-0242/index.html",
+    "slug": "baff-kids-brussels-art-film-festival-bruxelles-ville-centre-evt-0242",
+    "date": "2026-11-11"
+  },
+  "EVT-0243": {
+    "path": "activikids/evenements/cinemamed-seance-famille-bruxelles-ville-centre-evt-0243/index.html",
+    "slug": "cinemamed-seance-famille-bruxelles-ville-centre-evt-0243",
+    "date": "2026-11-29"
+  },
+  "EVT-0252": {
+    "path": "activikids/evenements/stage-d-automne-stop-motion-wiels-forest-evt-0252/index.html",
+    "slug": "stage-d-automne-stop-motion-wiels-forest-evt-0252",
+    "date": "2026-11-02"
+  },
+  "EVT-0258": {
+    "path": "activikids/evenements/pierre-et-le-loup-wolubilis-woluwe-saint-lambert-evt-0258/index.html",
+    "slug": "pierre-et-le-loup-wolubilis-woluwe-saint-lambert-evt-0258",
+    "date": "2027-04-18"
+  },
+  "EVT-0261": {
+    "path": "activikids/evenements/ratinet-et-st-nicolas-contre-fantamos-uccle-evt-0261/index.html",
+    "slug": "ratinet-et-st-nicolas-contre-fantamos-uccle-evt-0261",
+    "date": "2026-11-25"
+  },
+  "EVT-0270": {
+    "path": "activikids/evenements/ateljee-kadee-kadee-boesdaalhoeve-rhode-saint-genese-evt-0270/index.html",
+    "slug": "ateljee-kadee-kadee-boesdaalhoeve-rhode-saint-genese-evt-0270",
+    "date": "2026-10-17"
+  },
+  "EVT-0271": {
+    "path": "activikids/evenements/kunstendag-voor-kinderen-boesdaalhoeve-rhode-saint-genese-evt-0271/index.html",
+    "slug": "kunstendag-voor-kinderen-boesdaalhoeve-rhode-saint-genese-evt-0271",
+    "date": "2026-11-15"
+  },
+  "EVT-0277": {
+    "path": "activikids/evenements/stages-communaux-jjjy-vacances-scolaires-woluwe-saint-lambert-evt-0277/index.html",
+    "slug": "stages-communaux-jjjy-vacances-scolaires-woluwe-saint-lambert-evt-0277",
+    "date": "2026-10-19"
+  },
+  "EVT-0279": {
+    "path": "activikids/evenements/saint-nicolas-centre-le-chemin-woluwe-saint-lambert-evt-0279/index.html",
+    "slug": "saint-nicolas-centre-le-chemin-woluwe-saint-lambert-evt-0279",
+    "date": "2026-11-28"
+  },
+  "EVT-0280": {
+    "path": "activikids/evenements/big-bang-festival-la-monnaie-bruxelles-ville-centre-evt-0280/index.html",
+    "slug": "big-bang-festival-la-monnaie-bruxelles-ville-centre-evt-0280",
+    "date": "2026-11-20"
+  },
+  "EVT-0281": {
+    "path": "activikids/evenements/opera-family-day-la-monnaie-bruxelles-ville-centre-evt-0281/index.html",
+    "slug": "opera-family-day-la-monnaie-bruxelles-ville-centre-evt-0281",
+    "date": "2026-12-12"
+  },
+  "EVT-0283": {
+    "path": "activikids/evenements/hip-hip-hip-le-zet-jette-evt-0283/index.html",
+    "slug": "hip-hip-hip-le-zet-jette-evt-0283",
+    "date": "2026-11-15"
+  },
+  "EVT-0285": {
+    "path": "activikids/evenements/opening-filem-on-festival-2026-bozar-kids-palace-bruxelles-ville--evt-0285/index.html",
+    "slug": "opening-filem-on-festival-2026-bozar-kids-palace-bruxelles-ville--evt-0285",
+    "date": "2026-10-25"
+  },
+  "EVT-0286": {
+    "path": "activikids/evenements/playground-kanal-architecture-ex-civa-bruxelles-ville-canal-evt-0286/index.html",
+    "slug": "playground-kanal-architecture-ex-civa-bruxelles-ville-canal-evt-0286",
+    "date": "2026-11-28"
+  },
+  "EVT-0287": {
+    "path": "activikids/evenements/avant-la-fin-pierre-de-lune-a-la-roseraie-uccle-evt-0287/index.html",
+    "slug": "avant-la-fin-pierre-de-lune-a-la-roseraie-uccle-evt-0287",
+    "date": "2027-03-24"
+  },
+  "EVT-0298": {
+    "path": "activikids/evenements/les-ateliers-de-hugues-whalll-woluwe-saint-pierre-evt-0298/index.html",
+    "slug": "les-ateliers-de-hugues-whalll-woluwe-saint-pierre-evt-0298",
+    "date": "2026-10-14"
+  },
+  "EVT-0317": {
+    "path": "activikids/evenements/cortege-de-saint-nicolas-schaerbeek-schaerbeek-evt-0317/index.html",
+    "slug": "cortege-de-saint-nicolas-schaerbeek-schaerbeek-evt-0317",
+    "date": "2026-12-05"
+  },
+  "EVT-0318": {
+    "path": "activikids/evenements/la-foire-aux-cauchemars-halloween-schaerbeek-evt-0318/index.html",
+    "slug": "la-foire-aux-cauchemars-halloween-schaerbeek-evt-0318",
+    "date": "2026-10-31"
+  },
+  "EVT-0319": {
+    "path": "activikids/evenements/stage-creatif-cache-cache-maison-des-arts-schaerbeek-evt-0319/index.html",
+    "slug": "stage-creatif-cache-cache-maison-des-arts-schaerbeek-evt-0319",
+    "date": "2026-10-19"
+  },
+  "EVT-0322": {
+    "path": "activikids/evenements/bota-kids-botanique-saint-josse-ten-noode-evt-0322/index.html",
+    "slug": "bota-kids-botanique-saint-josse-ten-noode-evt-0322",
+    "date": "2026-10-10"
+  },
+  "EVT-0339": {
+    "path": "activikids/evenements/festival-noel-au-theatre-atelier-210-etterbeek-evt-0339/index.html",
+    "slug": "festival-noel-au-theatre-atelier-210-etterbeek-evt-0339",
+    "date": "2026-12-26"
+  },
+  "EVT-0341": {
+    "path": "activikids/evenements/impro-kids-theatre-marni-ixelles-evt-0341/index.html",
+    "slug": "impro-kids-theatre-marni-ixelles-evt-0341",
+    "date": "2026-10-20"
+  },
+  "EVT-0349": {
+    "path": "activikids/evenements/halloween-day-evere-evere-evt-0349/index.html",
+    "slug": "halloween-day-evere-evere-evt-0349",
+    "date": "2026-10-24"
+  },
+  "EVT-0382": {
+    "path": "activikids/evenements/plaines-stages-communaux-berchem-berchem-sainte-agathe-evt-0382/index.html",
+    "slug": "plaines-stages-communaux-berchem-berchem-sainte-agathe-evt-0382",
+    "date": "2026-10-19"
+  },
+  "EVT-0383": {
+    "path": "activikids/evenements/halloween-a-la-fermette-evere-evt-0383/index.html",
+    "slug": "halloween-a-la-fermette-evere-evt-0383",
+    "date": "2026-10-31"
+  },
+  "EVT-0389": {
+    "path": "activikids/evenements/nos-racontines-ganshoren-ganshoren-evt-0389/index.html",
+    "slug": "nos-racontines-ganshoren-ganshoren-evt-0389",
+    "date": "2026-10-10"
+  },
+  "EVT-0392": {
+    "path": "activikids/evenements/halloween-bibliojette-l-epouvantable-epouvantail-jette-evt-0392/index.html",
+    "slug": "halloween-bibliojette-l-epouvantable-epouvantail-jette-evt-0392",
+    "date": "2026-10-28"
+  },
+  "EVT-0402": {
+    "path": "activikids/evenements/laetare-de-stavelot-stavelot-evt-0402/index.html",
+    "slug": "laetare-de-stavelot-stavelot-evt-0402",
+    "date": "2027-03-06"
+  },
+  "EVT-0406": {
+    "path": "activikids/evenements/animations-du-samedi-a-wavre-wavre-evt-0406/index.html",
+    "slug": "animations-du-samedi-a-wavre-wavre-evt-0406",
+    "date": "2026-10-31"
+  },
+  "EVT-0425": {
+    "path": "activikids/evenements/halloween-a-ceroux-ottignies-louvain-la-neuve-ceroux-evt-0425/index.html",
+    "slug": "halloween-a-ceroux-ottignies-louvain-la-neuve-ceroux-evt-0425",
+    "date": "2026-10-31"
+  },
+  "EVT-0432": {
+    "path": "activikids/evenements/saint-nicolas-spectacle-de-magie-au-gc-de-bosuil-overijse-evt-0432/index.html",
+    "slug": "saint-nicolas-spectacle-de-magie-au-gc-de-bosuil-overijse-evt-0432",
+    "date": "2026-12-05"
+  },
+  "EVT-0442": {
+    "path": "activikids/evenements/kermesse-de-melsbroek-steenokkerzeel-evt-0442/index.html",
+    "slug": "kermesse-de-melsbroek-steenokkerzeel-evt-0442",
+    "date": "2026-11-07"
+  },
+  "EVT-0443": {
+    "path": "activikids/evenements/kermesse-de-humelgem-avec-saint-nicolas-steenokkerzeel-evt-0443/index.html",
+    "slug": "kermesse-de-humelgem-avec-saint-nicolas-steenokkerzeel-evt-0443",
+    "date": "2026-11-21"
+  },
+  "EVT-0463": {
+    "path": "activikids/evenements/kermesse-d-automne-de-meerbeek-kortenberg-meerbeek-evt-0463/index.html",
+    "slug": "kermesse-d-automne-de-meerbeek-kortenberg-meerbeek-evt-0463",
+    "date": "2026-10-10"
+  },
+  "EVT-0464": {
+    "path": "activikids/evenements/kermesse-d-automne-d-everberg-kortenberg-everberg-evt-0464/index.html",
+    "slug": "kermesse-d-automne-d-everberg-kortenberg-everberg-evt-0464",
+    "date": "2026-11-07"
+  },
+  "EVT-0473": {
+    "path": "activikids/evenements/lumieres-du-souvenir-lichtpuntjes-kortenberg-evt-0473/index.html",
+    "slug": "lumieres-du-souvenir-lichtpuntjes-kortenberg-evt-0473",
+    "date": "2026-11-01"
+  },
+  "EVT-0474": {
+    "path": "activikids/evenements/bourse-gratuite-de-jouets-geefmarkt-speelgoed-kortenberg-evt-0474/index.html",
+    "slug": "bourse-gratuite-de-jouets-geefmarkt-speelgoed-kortenberg-evt-0474",
+    "date": "2026-11-11"
+  },
+  "EVT-0475": {
+    "path": "activikids/evenements/stuiterfuif-kids-fete-de-jeux-gonflables-kortenberg-evt-0475/index.html",
+    "slug": "stuiterfuif-kids-fete-de-jeux-gonflables-kortenberg-evt-0475",
+    "date": "2026-10-23"
+  },
+  "EVT-0476": {
+    "path": "activikids/evenements/halloween-dans-le-silsombos-marche-aux-lampions-kortenberg-evt-0476/index.html",
+    "slug": "halloween-dans-le-silsombos-marche-aux-lampions-kortenberg-evt-0476",
+    "date": "2026-10-31"
+  },
+  "EVT-0477": {
+    "path": "activikids/evenements/le-grand-orchestre-de-saint-nicolas-grote-sintorkest-kortenberg-evt-0477/index.html",
+    "slug": "le-grand-orchestre-de-saint-nicolas-grote-sintorkest-kortenberg-evt-0477",
+    "date": "2026-11-21"
+  },
+  "EVT-0479": {
+    "path": "activikids/evenements/contes-et-fabrication-de-lanternes-a-la-bibliotheque-kortenberg-evt-0479/index.html",
+    "slug": "contes-et-fabrication-de-lanternes-a-la-bibliotheque-kortenberg-evt-0479",
+    "date": "2026-12-02"
+  },
+  "EVT-0486": {
+    "path": "activikids/evenements/atelier-robots-bee-bots-pour-enfants-leefdaal-bertem-evt-0486/index.html",
+    "slug": "atelier-robots-bee-bots-pour-enfants-leefdaal-bertem-evt-0486",
+    "date": "2026-10-10"
+  },
+  "EVT-0487": {
+    "path": "activikids/evenements/bourse-de-puericulture-gezinsbond-bertem-bertem-evt-0487/index.html",
+    "slug": "bourse-de-puericulture-gezinsbond-bertem-bertem-evt-0487",
+    "date": "2026-10-11"
+  },
+  "EVT-0488": {
+    "path": "activikids/evenements/stages-sportifs-et-thematiques-de-toussaint-bertem-bertem-evt-0488/index.html",
+    "slug": "stages-sportifs-et-thematiques-de-toussaint-bertem-bertem-evt-0488",
+    "date": "2026-11-02"
+  },
+  "EVT-0496": {
+    "path": "activikids/evenements/saint-nicolas-et-sintcafe-a-ottenburg-huldenberg-evt-0496/index.html",
+    "slug": "saint-nicolas-et-sintcafe-a-ottenburg-huldenberg-evt-0496",
+    "date": "2026-12-06"
+  },
+  "EVT-0497": {
+    "path": "activikids/evenements/marche-de-noel-d-ottenburg-fete-de-village-huldenberg-evt-0497/index.html",
+    "slug": "marche-de-noel-d-ottenburg-fete-de-village-huldenberg-evt-0497",
+    "date": "2026-12-19"
+  },
+  "EVT-0514": {
+    "path": "activikids/evenements/marche-de-noel-de-kampenhout-kampenhout-evt-0514/index.html",
+    "slug": "marche-de-noel-de-kampenhout-kampenhout-evt-0514",
+    "date": "2026-12-16"
+  },
+  "EVT-0516": {
+    "path": "activikids/evenements/dag-van-de-trage-weg-promenade-guidee-kampenhout-evt-0516/index.html",
+    "slug": "dag-van-de-trage-weg-promenade-guidee-kampenhout-evt-0516",
+    "date": "2026-10-25"
+  },
+  "EVT-0520": {
+    "path": "activikids/evenements/jaazz-in-maazz-soirees-musicales-itinerantes-meise-evt-0520/index.html",
+    "slug": "jaazz-in-maazz-soirees-musicales-itinerantes-meise-evt-0520",
+    "date": "2026-10-09"
+  },
+  "EVT-0527": {
+    "path": "activikids/evenements/halloween-au-jardin-botanique-griezeltocht-meise-evt-0527/index.html",
+    "slug": "halloween-au-jardin-botanique-griezeltocht-meise-evt-0527",
+    "date": "2026-10-30"
+  },
+  "EVT-0528": {
+    "path": "activikids/evenements/saint-nicolas-de-peatles-de-pakjesbezorgers-meise-evt-0528/index.html",
+    "slug": "saint-nicolas-de-peatles-de-pakjesbezorgers-meise-evt-0528",
+    "date": "2026-12-06"
+  },
+  "EVT-0529": {
+    "path": "activikids/evenements/kunstendag-voor-kinderen-ribbedebeats-meise-evt-0529/index.html",
+    "slug": "kunstendag-voor-kinderen-ribbedebeats-meise-evt-0529",
+    "date": "2026-11-15"
+  },
+  "EVT-0530": {
+    "path": "activikids/evenements/contes-bib-meise-petits-de-2-a-3-ans-meise-evt-0530/index.html",
+    "slug": "contes-bib-meise-petits-de-2-a-3-ans-meise-evt-0530",
+    "date": "2026-11-28"
+  },
+  "EVT-0531": {
+    "path": "activikids/evenements/contes-bib-meise-enfants-de-4-a-7-ans-meise-evt-0531/index.html",
+    "slug": "contes-bib-meise-enfants-de-4-a-7-ans-meise-evt-0531",
+    "date": "2026-11-28"
+  },
+  "EVT-0547": {
+    "path": "activikids/evenements/halloween-familial-gezinsbond-brussegem-merchtem-brussegem-evt-0547/index.html",
+    "slug": "halloween-familial-gezinsbond-brussegem-merchtem-brussegem-evt-0547",
+    "date": "2026-10-24"
+  },
+  "EVT-0548": {
+    "path": "activikids/evenements/atelier-nature-en-duo-nourriture-pour-oiseaux-merchtem-evt-0548/index.html",
+    "slug": "atelier-nature-en-duo-nourriture-pour-oiseaux-merchtem-evt-0548",
+    "date": "2026-12-05"
+  },
+  "EVT-0549": {
+    "path": "activikids/evenements/atelier-parent-enfant-decorations-naturelles-de-noel-merchtem-evt-0549/index.html",
+    "slug": "atelier-parent-enfant-decorations-naturelles-de-noel-merchtem-evt-0549",
+    "date": "2026-12-19"
+  },
+  "EVT-0551": {
+    "path": "activikids/evenements/ateliers-nature-bosmaterialen-en-bibliotheque-merchtem-evt-0551/index.html",
+    "slug": "ateliers-nature-bosmaterialen-en-bibliotheque-merchtem-evt-0551",
+    "date": "2026-10-10"
+  },
+  "EVT-0552": {
+    "path": "activikids/evenements/fete-contee-halloween-a-la-bibliotheque-merchtem-evt-0552/index.html",
+    "slug": "fete-contee-halloween-a-la-bibliotheque-merchtem-evt-0552",
+    "date": "2026-11-04"
+  },
+  "EVT-0559": {
+    "path": "activikids/evenements/kermesse-d-octobre-de-malderen-londerzeel-malderen-evt-0559/index.html",
+    "slug": "kermesse-d-octobre-de-malderen-londerzeel-malderen-evt-0559",
+    "date": "2026-10-10"
+  },
+  "EVT-0561": {
+    "path": "activikids/evenements/kermesse-de-novembre-de-steenhuffel-londerzeel-steenhuffel-evt-0561/index.html",
+    "slug": "kermesse-de-novembre-de-steenhuffel-londerzeel-steenhuffel-evt-0561",
+    "date": "2026-11-07"
+  },
+  "EVT-0566": {
+    "path": "activikids/evenements/jaarmarkt-de-malderen-londerzeel-malderen-evt-0566/index.html",
+    "slug": "jaarmarkt-de-malderen-londerzeel-malderen-evt-0566",
+    "date": "2026-10-10"
+  },
+  "EVT-0570": {
+    "path": "activikids/evenements/marche-paysan-local-steenhuffel-londerzeel-steenhuffel-evt-0570/index.html",
+    "slug": "marche-paysan-local-steenhuffel-londerzeel-steenhuffel-evt-0570",
+    "date": "2026-10-17"
+  },
+  "EVT-0571": {
+    "path": "activikids/evenements/lancers-de-tickets-de-manege-pour-enfants-kermesses-londerzeel-evt-0571/index.html",
+    "slug": "lancers-de-tickets-de-manege-pour-enfants-kermesses-londerzeel-evt-0571",
+    "date": "2026-10-11"
+  },
+  "EVT-0573": {
+    "path": "activikids/evenements/marche-de-noel-de-londerzeel-londerzeel-evt-0573/index.html",
+    "slug": "marche-de-noel-de-londerzeel-londerzeel-evt-0573",
+    "date": "2026-12-18"
+  },
+  "EVT-0581": {
+    "path": "activikids/evenements/brocante-et-marche-d-antiquites-de-gaasbeek-lennik-gaasbeek-evt-0581/index.html",
+    "slug": "brocante-et-marche-d-antiquites-de-gaasbeek-lennik-gaasbeek-evt-0581",
+    "date": "2026-10-25"
+  },
+  "EVT-0588": {
+    "path": "activikids/evenements/sinterklaas-visite-a-domicile-dans-le-pajottenland-lennik-evt-0588/index.html",
+    "slug": "sinterklaas-visite-a-domicile-dans-le-pajottenland-lennik-evt-0588",
+    "date": "2026-11-28"
+  },
+  "EVT-0594": {
+    "path": "activikids/evenements/jaarmarkt-ternat-marche-annuel-et-fete-de-quartier-ternat-evt-0594/index.html",
+    "slug": "jaarmarkt-ternat-marche-annuel-et-fete-de-quartier-ternat-evt-0594",
+    "date": "2026-10-16"
+  },
+  "EVT-0597": {
+    "path": "activikids/evenements/kunstendag-voor-kinderen-arts-et-histoires-a-la-bibliotheque-tern-evt-0597/index.html",
+    "slug": "kunstendag-voor-kinderen-arts-et-histoires-a-la-bibliotheque-tern-evt-0597",
+    "date": "2026-11-15"
+  },
+  "EVT-0598": {
+    "path": "activikids/evenements/villa-frieda-journee-portes-ouvertes-d-atelier-creatif-ternat-sin-evt-0598/index.html",
+    "slug": "villa-frieda-journee-portes-ouvertes-d-atelier-creatif-ternat-sin-evt-0598",
+    "date": "2026-11-15"
+  },
+  "EVT-0599": {
+    "path": "activikids/evenements/gaming-saturday-apres-midi-jeux-video-ternat-evt-0599/index.html",
+    "slug": "gaming-saturday-apres-midi-jeux-video-ternat-evt-0599",
+    "date": "2026-10-31"
+  },
+  "EVT-0600": {
+    "path": "activikids/evenements/journee-des-mouvements-de-jeunesse-dag-van-de-jeugdbeweging-terna-evt-0600/index.html",
+    "slug": "journee-des-mouvements-de-jeunesse-dag-van-de-jeugdbeweging-terna-evt-0600",
+    "date": "2026-10-23"
+  },
+  "EVT-0601": {
+    "path": "activikids/evenements/multimove-kikkertjes-wolfjes-ternat-evt-0601/index.html",
+    "slug": "multimove-kikkertjes-wolfjes-ternat-evt-0601",
+    "date": "2026-11-14"
+  },
+  "EVT-0604": {
+    "path": "activikids/evenements/griezeltocht-roosdaal-parcours-halloween-roosdaal-evt-0604/index.html",
+    "slug": "griezeltocht-roosdaal-parcours-halloween-roosdaal-evt-0604",
+    "date": "2026-10-24"
+  },
+  "EVT-0621": {
+    "path": "activikids/evenements/halloweentocht-scouts-aurora-oetingen-gooik-oetingen-evt-0621/index.html",
+    "slug": "halloweentocht-scouts-aurora-oetingen-gooik-oetingen-evt-0621",
+    "date": "2026-10-31"
+  },
+  "EVT-0622": {
+    "path": "activikids/evenements/halloween-histoires-et-bricolage-a-la-bibliotheque-gooik-evt-0622/index.html",
+    "slug": "halloween-histoires-et-bricolage-a-la-bibliotheque-gooik-evt-0622",
+    "date": "2026-10-28"
+  },
+  "EVT-0624": {
+    "path": "activikids/evenements/luisterliefjes-contes-des-tout-petits-a-gooik-gooik-evt-0624/index.html",
+    "slug": "luisterliefjes-contes-des-tout-petits-a-gooik-gooik-evt-0624",
+    "date": "2026-11-04"
+  },
+  "EVT-0625": {
+    "path": "activikids/evenements/saint-nicolas-a-leerbeek-raak-gooik-leerbeek-evt-0625/index.html",
+    "slug": "saint-nicolas-a-leerbeek-raak-gooik-leerbeek-evt-0625",
+    "date": "2026-11-29"
+  },
+  "EVT-0653": {
+    "path": "activikids/evenements/smaken-van-de-wereld-village-creatif-et-spectacles-machelen-diege-evt-0653/index.html",
+    "slug": "smaken-van-de-wereld-village-creatif-et-spectacles-machelen-diege-evt-0653",
+    "date": "2026-10-16"
+  },
+  "EVT-0663": {
+    "path": "activikids/evenements/novemberkermis-elewijt-zemst-elewijt-evt-0663/index.html",
+    "slug": "novemberkermis-elewijt-zemst-elewijt-evt-0663",
+    "date": "2026-11-06"
+  },
+  "EVT-0669": {
+    "path": "activikids/evenements/oktoberkermis-zemst-laar-zemst-zemst-laar-evt-0669/index.html",
+    "slug": "oktoberkermis-zemst-laar-zemst-zemst-laar-evt-0669",
+    "date": "2026-10-16"
+  },
+  "EVT-0670": {
+    "path": "activikids/evenements/pinksterjaarmarkt-marche-de-pentecote-zemst-evt-0670/index.html",
+    "slug": "pinksterjaarmarkt-marche-de-pentecote-zemst-evt-0670",
+    "date": "2027-05-17"
+  },
+  "EVT-0678": {
+    "path": "activikids/evenements/speelplein-kaktus-vacances-zemst-evt-0678/index.html",
+    "slug": "speelplein-kaktus-vacances-zemst-evt-0678",
+    "date": "2027-02-08"
+  },
+  "EVT-0681": {
+    "path": "activikids/evenements/beker-van-zemst-finale-football-locale-zemst-zemst-laar-evt-0681/index.html",
+    "slug": "beker-van-zemst-finale-football-locale-zemst-zemst-laar-evt-0681",
+    "date": "2026-11-11"
+  },
+  "EVT-0687": {
+    "path": "activikids/evenements/fetes-de-la-saint-martin-grand-parcours-d-artistes-beauvechain-evt-0687/index.html",
+    "slug": "fetes-de-la-saint-martin-grand-parcours-d-artistes-beauvechain-evt-0687",
+    "date": "2026-11-08"
+  },
+  "EVT-0688": {
+    "path": "activikids/evenements/concert-inaugural-des-fetes-de-la-saint-martin-beauvechain-evt-0688/index.html",
+    "slug": "concert-inaugural-des-fetes-de-la-saint-martin-beauvechain-evt-0688",
+    "date": "2026-11-07"
+  },
+  "EVT-0692": {
+    "path": "activikids/evenements/ludotheque-itinerante-de-beauvechain-beauvechain-evt-0692/index.html",
+    "slug": "ludotheque-itinerante-de-beauvechain-beauvechain-evt-0692",
+    "date": "2026-11-04"
+  },
+  "EVT-0693": {
+    "path": "activikids/evenements/leon-spectacle-au-theatre-des-4-mains-beauvechain-evt-0693/index.html",
+    "slug": "leon-spectacle-au-theatre-des-4-mains-beauvechain-evt-0693",
+    "date": "2026-12-30"
+  },
+  "EVT-0696": {
+    "path": "activikids/evenements/stage-enfants-special-halloween-beauvechain-evt-0696/index.html",
+    "slug": "stage-enfants-special-halloween-beauvechain-evt-0696",
+    "date": "2026-10-19"
+  },
+  "EVT-0698": {
+    "path": "activikids/evenements/portrait-s-de-beauvechain-parcours-photographique-beauvechain-evt-0698/index.html",
+    "slug": "portrait-s-de-beauvechain-parcours-photographique-beauvechain-evt-0698",
+    "date": "2026-10-16"
+  },
+  "EVT-0716": {
+    "path": "activikids/evenements/village-du-pere-noel-grand-marche-et-animations-enfants-braine-le-evt-0716/index.html",
+    "slug": "village-du-pere-noel-grand-marche-et-animations-enfants-braine-le-evt-0716",
+    "date": "2026-12-12"
+  },
+  "EVT-0724": {
+    "path": "activikids/evenements/bal-des-possibles-initiation-aux-danses-folk-chastre-evt-0724/index.html",
+    "slug": "bal-des-possibles-initiation-aux-danses-folk-chastre-evt-0724",
+    "date": "2026-10-25"
+  },
+  "EVT-0728": {
+    "path": "activikids/evenements/atelier-aquarelle-intergenerationnel-chastre-evt-0728/index.html",
+    "slug": "atelier-aquarelle-intergenerationnel-chastre-evt-0728",
+    "date": "2026-10-14"
+  },
+  "EVT-0738": {
+    "path": "activikids/evenements/rencontre-pedagogique-judo-petits-enfants-chaumont-gistoux-evt-0738/index.html",
+    "slug": "rencontre-pedagogique-judo-petits-enfants-chaumont-gistoux-evt-0738",
+    "date": "2026-11-08"
+  },
+  "EVT-0742": {
+    "path": "activikids/evenements/vide-dressing-familial-chateaux-gonflables-et-grimage-court-saint-evt-0742/index.html",
+    "slug": "vide-dressing-familial-chateaux-gonflables-et-grimage-court-saint-evt-0742",
+    "date": "2026-10-11"
+  },
+  "EVT-0743": {
+    "path": "activikids/evenements/pokemania-2-marche-des-collectionneurs-court-saint-etienne-evt-0743/index.html",
+    "slug": "pokemania-2-marche-des-collectionneurs-court-saint-etienne-evt-0743",
+    "date": "2026-10-18"
+  },
+  "EVT-0744": {
+    "path": "activikids/evenements/en-l-air-festival-de-cirque-contemporain-court-saint-etienne-evt-0744/index.html",
+    "slug": "en-l-air-festival-de-cirque-contemporain-court-saint-etienne-evt-0744",
+    "date": "2026-11-07"
+  },
+  "EVT-0745": {
+    "path": "activikids/evenements/marche-de-noel-artisans-et-visite-du-pere-noel-court-saint-etienn-evt-0745/index.html",
+    "slug": "marche-de-noel-artisans-et-visite-du-pere-noel-court-saint-etienn-evt-0745",
+    "date": "2026-12-11"
+  },
+  "EVT-0746": {
+    "path": "activikids/evenements/noel-au-theatre-l-ilot-tresors-court-saint-etienne-evt-0746/index.html",
+    "slug": "noel-au-theatre-l-ilot-tresors-court-saint-etienne-evt-0746",
+    "date": "2027-01-03"
+  },
+  "EVT-0747": {
+    "path": "activikids/evenements/noel-au-theatre-l-inattendu-court-saint-etienne-evt-0747/index.html",
+    "slug": "noel-au-theatre-l-inattendu-court-saint-etienne-evt-0747",
+    "date": "2027-01-03"
+  },
+  "EVT-0748": {
+    "path": "activikids/evenements/chateau-faible-spectacle-pour-adolescents-court-saint-etienne-evt-0748/index.html",
+    "slug": "chateau-faible-spectacle-pour-adolescents-court-saint-etienne-evt-0748",
+    "date": "2027-04-06"
+  },
+  "EVT-0749": {
+    "path": "activikids/evenements/fast-spectacle-inti-theatre-ados-court-saint-etienne-evt-0749/index.html",
+    "slug": "fast-spectacle-inti-theatre-ados-court-saint-etienne-evt-0749",
+    "date": "2027-04-09"
+  },
+  "EVT-0754": {
+    "path": "activikids/evenements/fete-des-associations-du-grand-genappe-genappe-evt-0754/index.html",
+    "slug": "fete-des-associations-du-grand-genappe-genappe-evt-0754",
+    "date": "2026-10-11"
+  },
+  "EVT-0755": {
+    "path": "activikids/evenements/balades-contees-au-bois-balon-genappe-evt-0755/index.html",
+    "slug": "balades-contees-au-bois-balon-genappe-evt-0755",
+    "date": "2026-10-17"
+  },
+  "EVT-0756": {
+    "path": "activikids/evenements/grande-corrida-de-bousval-genappe-evt-0756/index.html",
+    "slug": "grande-corrida-de-bousval-genappe-evt-0756",
+    "date": "2026-10-09"
+  },
+  "EVT-0764": {
+    "path": "activikids/evenements/halloween-au-38-genappe-evt-0764/index.html",
+    "slug": "halloween-au-38-genappe-evt-0764",
+    "date": "2026-10-31"
+  },
+  "EVT-0774": {
+    "path": "activikids/evenements/stage-halloween-archennes-grez-doiceau-evt-0774/index.html",
+    "slug": "stage-halloween-archennes-grez-doiceau-evt-0774",
+    "date": "2026-10-26"
+  },
+  "EVT-0775": {
+    "path": "activikids/evenements/stage-cav-halloween-creation-de-spectacle-equestre-grez-doiceau-evt-0775/index.html",
+    "slug": "stage-cav-halloween-creation-de-spectacle-equestre-grez-doiceau-evt-0775",
+    "date": "2026-10-19"
+  },
+  "EVT-0776": {
+    "path": "activikids/evenements/bourse-automne-hiver-familles-vetements-et-jouets-grez-doiceau-evt-0776/index.html",
+    "slug": "bourse-automne-hiver-familles-vetements-et-jouets-grez-doiceau-evt-0776",
+    "date": "2026-11-08"
+  },
+  "EVT-0777": {
+    "path": "activikids/evenements/heleween-parcours-spectacle-au-chateau-helecine-evt-0777/index.html",
+    "slug": "heleween-parcours-spectacle-au-chateau-helecine-evt-0777",
+    "date": "2026-10-16"
+  },
+  "EVT-0786": {
+    "path": "activikids/evenements/stage-au-musee-archeologique-aventure-romaine-helecine-evt-0786/index.html",
+    "slug": "stage-au-musee-archeologique-aventure-romaine-helecine-evt-0786",
+    "date": "2026-10-19"
+  },
+  "EVT-0794": {
+    "path": "activikids/evenements/heure-du-livre-des-tout-petits-bibliotheque-d-opprebais-incourt-evt-0794/index.html",
+    "slug": "heure-du-livre-des-tout-petits-bibliotheque-d-opprebais-incourt-evt-0794",
+    "date": "2026-10-17"
+  },
+  "EVT-0796": {
+    "path": "activikids/evenements/soiree-doudou-halloween-bibliotheque-d-incourt-incourt-evt-0796/index.html",
+    "slug": "soiree-doudou-halloween-bibliotheque-d-incourt-incourt-evt-0796",
+    "date": "2026-10-30"
+  },
+  "EVT-0805": {
+    "path": "activikids/evenements/cine-gouter-ernest-celestine-ittre-evt-0805/index.html",
+    "slug": "cine-gouter-ernest-celestine-ittre-evt-0805",
+    "date": "2026-10-28"
+  },
+  "EVT-0806": {
+    "path": "activikids/evenements/atelier-decouverte-de-calligraphie-ittre-evt-0806/index.html",
+    "slug": "atelier-decouverte-de-calligraphie-ittre-evt-0806",
+    "date": "2026-11-15"
+  },
+  "EVT-0807": {
+    "path": "activikids/evenements/atelier-decouverte-bijoux-ittre-evt-0807/index.html",
+    "slug": "atelier-decouverte-bijoux-ittre-evt-0807",
+    "date": "2026-11-22"
+  },
+  "EVT-0813": {
+    "path": "activikids/evenements/nocturnes-des-commercants-de-jodoigne-jodoigne-evt-0813/index.html",
+    "slug": "nocturnes-des-commercants-de-jodoigne-jodoigne-evt-0813",
+    "date": "2026-11-12"
+  },
+  "EVT-0816": {
+    "path": "activikids/evenements/les-boites-a-histoires-spectacle-gratuit-jodoigne-evt-0816/index.html",
+    "slug": "les-boites-a-histoires-spectacle-gratuit-jodoigne-evt-0816",
+    "date": "2026-10-09"
+  },
+  "EVT-0817": {
+    "path": "activikids/evenements/le-jeu-en-vaut-l-apero-jeux-de-societe-jodoigne-evt-0817/index.html",
+    "slug": "le-jeu-en-vaut-l-apero-jeux-de-societe-jodoigne-evt-0817",
+    "date": "2026-10-09"
+  },
+  "EVT-0818": {
+    "path": "activikids/evenements/les-mots-en-bout-de-plume-festival-du-livre-jodoigne-evt-0818/index.html",
+    "slug": "les-mots-en-bout-de-plume-festival-du-livre-jodoigne-evt-0818",
+    "date": "2026-10-10"
+  },
+  "EVT-0819": {
+    "path": "activikids/evenements/decouverte-des-echecs-apres-midi-jodoigne-evt-0819/index.html",
+    "slug": "decouverte-des-echecs-apres-midi-jodoigne-evt-0819",
+    "date": "2026-10-14"
+  },
+  "EVT-0820": {
+    "path": "activikids/evenements/t-as-de-beaux-jeux-soiree-jeux-jodoigne-evt-0820/index.html",
+    "slug": "t-as-de-beaux-jeux-soiree-jeux-jodoigne-evt-0820",
+    "date": "2026-10-16"
+  },
+  "EVT-0821": {
+    "path": "activikids/evenements/halloween-a-l-hotel-des-libertes-jodoigne-evt-0821/index.html",
+    "slug": "halloween-a-l-hotel-des-libertes-jodoigne-evt-0821",
+    "date": "2026-10-31"
+  },
+  "EVT-0822": {
+    "path": "activikids/evenements/festival-international-de-musique-a-jodoigne-jodoigne-evt-0822/index.html",
+    "slug": "festival-international-de-musique-a-jodoigne-jodoigne-evt-0822",
+    "date": "2026-10-16"
+  },
+  "EVT-0823": {
+    "path": "activikids/evenements/stage-vacances-multisports-et-laser-game-6-10-ans-jodoigne-evt-0823/index.html",
+    "slug": "stage-vacances-multisports-et-laser-game-6-10-ans-jodoigne-evt-0823",
+    "date": "2026-10-26"
+  },
+  "EVT-0824": {
+    "path": "activikids/evenements/stage-vacances-psychomotricite-et-bien-etre-2-5-5-5-ans-jodoigne-evt-0824/index.html",
+    "slug": "stage-vacances-psychomotricite-et-bien-etre-2-5-5-5-ans-jodoigne-evt-0824",
+    "date": "2026-10-26"
+  },
+  "EVT-0828": {
+    "path": "activikids/evenements/balade-historique-arbres-temoins-de-notre-histoire-jodoigne-evt-0828/index.html",
+    "slug": "balade-historique-arbres-temoins-de-notre-histoire-jodoigne-evt-0828",
+    "date": "2026-11-08"
+  },
+  "EVT-0842": {
+    "path": "activikids/evenements/atelier-familial-d-origami-fondation-folon-la-hulpe-evt-0842/index.html",
+    "slug": "atelier-familial-d-origami-fondation-folon-la-hulpe-evt-0842",
+    "date": "2026-10-21"
+  },
+  "EVT-0843": {
+    "path": "activikids/evenements/atelier-familial-d-etegami-fondation-folon-la-hulpe-evt-0843/index.html",
+    "slug": "atelier-familial-d-etegami-fondation-folon-la-hulpe-evt-0843",
+    "date": "2026-10-28"
+  },
+  "EVT-0844": {
+    "path": "activikids/evenements/carnets-de-voyage-a-l-aquarelle-fondation-folon-la-hulpe-evt-0844/index.html",
+    "slug": "carnets-de-voyage-a-l-aquarelle-fondation-folon-la-hulpe-evt-0844",
+    "date": "2026-10-24"
+  },
+  "EVT-0845": {
+    "path": "activikids/evenements/exposition-jiro-taniguchi-portrait-lointain-la-hulpe-evt-0845/index.html",
+    "slug": "exposition-jiro-taniguchi-portrait-lointain-la-hulpe-evt-0845",
+    "date": "2026-10-17"
+  },
+  "EVT-0846": {
+    "path": "activikids/evenements/promenade-feerique-le-petit-chaperon-rouge-la-hulpe-evt-0846/index.html",
+    "slug": "promenade-feerique-le-petit-chaperon-rouge-la-hulpe-evt-0846",
+    "date": "2026-10-17"
+  },
+  "EVT-0854": {
+    "path": "activikids/evenements/balade-decouverte-nature-de-lasne-nature-lasne-evt-0854/index.html",
+    "slug": "balade-decouverte-nature-de-lasne-nature-lasne-evt-0854",
+    "date": "2026-10-11"
+  },
+  "EVT-0855": {
+    "path": "activikids/evenements/marche-nature-de-couture-saint-germain-lasne-evt-0855/index.html",
+    "slug": "marche-nature-de-couture-saint-germain-lasne-evt-0855",
+    "date": "2026-11-01"
+  },
+  "EVT-0856": {
+    "path": "activikids/evenements/marche-nature-depart-centre-sportif-de-lasne-lasne-evt-0856/index.html",
+    "slug": "marche-nature-depart-centre-sportif-de-lasne-lasne-evt-0856",
+    "date": "2026-11-29"
+  },
+  "EVT-0864": {
+    "path": "activikids/evenements/memoire-des-aviateurs-a-corbais-mont-saint-guibert-evt-0864/index.html",
+    "slug": "memoire-des-aviateurs-a-corbais-mont-saint-guibert-evt-0864",
+    "date": "2026-10-15"
+  },
+  "EVT-0867": {
+    "path": "activikids/evenements/autour-de-gertrude-video-mapping-a-180-nivelles-evt-0867/index.html",
+    "slug": "autour-de-gertrude-video-mapping-a-180-nivelles-evt-0867",
+    "date": "2026-10-16"
+  },
+  "EVT-0875": {
+    "path": "activikids/evenements/les-mondes-de-nivelles-festival-des-cultures-nivelles-evt-0875/index.html",
+    "slug": "les-mondes-de-nivelles-festival-des-cultures-nivelles-evt-0875",
+    "date": "2026-10-17"
+  },
+  "EVT-0876": {
+    "path": "activikids/evenements/pas-de-trois-voyage-musical-jeune-public-nivelles-evt-0876/index.html",
+    "slug": "pas-de-trois-voyage-musical-jeune-public-nivelles-evt-0876",
+    "date": "2026-10-14"
+  },
+  "EVT-0877": {
+    "path": "activikids/evenements/cine-bidouille-3-5-ans-au-cine4-nivelles-evt-0877/index.html",
+    "slug": "cine-bidouille-3-5-ans-au-cine4-nivelles-evt-0877",
+    "date": "2026-10-22"
+  },
+  "EVT-0878": {
+    "path": "activikids/evenements/cine-bidouille-6-10-ans-au-cine4-nivelles-evt-0878/index.html",
+    "slug": "cine-bidouille-6-10-ans-au-cine4-nivelles-evt-0878",
+    "date": "2026-10-29"
+  },
+  "EVT-0879": {
+    "path": "activikids/evenements/le-pays-des-chansons-spectacle-familial-nivelles-evt-0879/index.html",
+    "slug": "le-pays-des-chansons-spectacle-familial-nivelles-evt-0879",
+    "date": "2026-10-22"
+  },
+  "EVT-0880": {
+    "path": "activikids/evenements/bam-festival-droits-de-l-enfant-nivelles-evt-0880/index.html",
+    "slug": "bam-festival-droits-de-l-enfant-nivelles-evt-0880",
+    "date": "2026-11-21"
+  },
+  "EVT-0881": {
+    "path": "activikids/evenements/adieu-mochi-spectacle-jeune-public-nivelles-evt-0881/index.html",
+    "slug": "adieu-mochi-spectacle-jeune-public-nivelles-evt-0881",
+    "date": "2026-11-18"
+  },
+  "EVT-0882": {
+    "path": "activikids/evenements/douce-revolution-spectacle-jeune-public-nivelles-evt-0882/index.html",
+    "slug": "douce-revolution-spectacle-jeune-public-nivelles-evt-0882",
+    "date": "2026-12-16"
+  },
+  "EVT-0885": {
+    "path": "activikids/evenements/capj-stage-halloween-et-emotions-des-tout-petits-orp-jauche-evt-0885/index.html",
+    "slug": "capj-stage-halloween-et-emotions-des-tout-petits-orp-jauche-evt-0885",
+    "date": "2026-10-19"
+  },
+  "EVT-0886": {
+    "path": "activikids/evenements/capj-stage-judo-et-multisport-orp-jauche-evt-0886/index.html",
+    "slug": "capj-stage-judo-et-multisport-orp-jauche-evt-0886",
+    "date": "2026-10-19"
+  },
+  "EVT-0887": {
+    "path": "activikids/evenements/plaine-voyage-au-pays-des-histoires-orp-jauche-evt-0887/index.html",
+    "slug": "plaine-voyage-au-pays-des-histoires-orp-jauche-evt-0887",
+    "date": "2026-10-26"
+  },
+  "EVT-0888": {
+    "path": "activikids/evenements/plaine-sports-decouverte-6-12-ans-orp-jauche-evt-0888/index.html",
+    "slug": "plaine-sports-decouverte-6-12-ans-orp-jauche-evt-0888",
+    "date": "2026-10-26"
+  },
+  "EVT-0889": {
+    "path": "activikids/evenements/epn-halloween-night-quiz-cinema-et-jeux-orp-jauche-evt-0889/index.html",
+    "slug": "epn-halloween-night-quiz-cinema-et-jeux-orp-jauche-evt-0889",
+    "date": "2026-10-23"
+  },
+  "EVT-0894": {
+    "path": "activikids/evenements/en-avant-fete-des-droits-de-l-enfant-ottignies-louvain-la-neuve-evt-0894/index.html",
+    "slug": "en-avant-fete-des-droits-de-l-enfant-ottignies-louvain-la-neuve-evt-0894",
+    "date": "2026-11-18"
+  },
+  "EVT-0895": {
+    "path": "activikids/evenements/c-ur-de-patate-spectacle-enfants-ottignies-louvain-la-neuve-evt-0895/index.html",
+    "slug": "c-ur-de-patate-spectacle-enfants-ottignies-louvain-la-neuve-evt-0895",
+    "date": "2026-11-18"
+  },
+  "EVT-0896": {
+    "path": "activikids/evenements/petites-histoires-pour-grandes-oreilles-scene-conte-ottignies-lou-evt-0896/index.html",
+    "slug": "petites-histoires-pour-grandes-oreilles-scene-conte-ottignies-lou-evt-0896",
+    "date": "2026-11-18"
+  },
+  "EVT-0897": {
+    "path": "activikids/evenements/histoire-sous-la-tente-atelier-solidaire-ottignies-louvain-la-neu-evt-0897/index.html",
+    "slug": "histoire-sous-la-tente-atelier-solidaire-ottignies-louvain-la-neu-evt-0897",
+    "date": "2026-11-18"
+  },
+  "EVT-0898": {
+    "path": "activikids/evenements/creer-sa-pancarte-atelier-d-expression-ottignies-louvain-la-neuve-evt-0898/index.html",
+    "slug": "creer-sa-pancarte-atelier-d-expression-ottignies-louvain-la-neuve-evt-0898",
+    "date": "2026-11-18"
+  },
+  "EVT-0899": {
+    "path": "activikids/evenements/louvain-la-neige-marche-de-noel-ottignies-louvain-la-neuve-evt-0899/index.html",
+    "slug": "louvain-la-neige-marche-de-noel-ottignies-louvain-la-neuve-evt-0899",
+    "date": "2026-11-27"
+  },
+  "EVT-0900": {
+    "path": "activikids/evenements/desirs-de-ville-marche-creatif-participatif-ottignies-louvain-la--evt-0900/index.html",
+    "slug": "desirs-de-ville-marche-creatif-participatif-ottignies-louvain-la--evt-0900",
+    "date": "2026-10-16"
+  },
+  "EVT-0901": {
+    "path": "activikids/evenements/heure-du-conte-des-3-ans-bibliotheque-ottignies-ottignies-louvain-evt-0901/index.html",
+    "slug": "heure-du-conte-des-3-ans-bibliotheque-ottignies-ottignies-louvain-evt-0901",
+    "date": "2026-10-10"
+  },
+  "EVT-0902": {
+    "path": "activikids/evenements/heure-du-conte-0-3-ans-bibliotheque-ottignies-ottignies-louvain-l-evt-0902/index.html",
+    "slug": "heure-du-conte-0-3-ans-bibliotheque-ottignies-ottignies-louvain-l-evt-0902",
+    "date": "2026-10-14"
+  },
+  "EVT-0903": {
+    "path": "activikids/evenements/heure-du-conte-des-3-ans-bibliotheque-louvain-la-neuve-ottignies--evt-0903/index.html",
+    "slug": "heure-du-conte-des-3-ans-bibliotheque-louvain-la-neuve-ottignies--evt-0903",
+    "date": "2026-12-16"
+  },
+  "EVT-0904": {
+    "path": "activikids/evenements/nuit-du-jeu-ludotheque-d-ottignies-ottignies-louvain-la-neuve-evt-0904/index.html",
+    "slug": "nuit-du-jeu-ludotheque-d-ottignies-ottignies-louvain-la-neuve-evt-0904",
+    "date": "2026-10-16"
+  },
+  "EVT-0907": {
+    "path": "activikids/evenements/ateliers-a-4-mains-peinture-avec-la-nature-ottignies-louvain-la-n-evt-0907/index.html",
+    "slug": "ateliers-a-4-mains-peinture-avec-la-nature-ottignies-louvain-la-n-evt-0907",
+    "date": "2026-10-11"
+  },
+  "EVT-0908": {
+    "path": "activikids/evenements/ateliers-a-4-mains-creation-d-un-attrape-reve-ottignies-louvain-l-evt-0908/index.html",
+    "slug": "ateliers-a-4-mains-creation-d-un-attrape-reve-ottignies-louvain-l-evt-0908",
+    "date": "2026-11-29"
+  },
+  "EVT-0909": {
+    "path": "activikids/evenements/ateliers-a-4-mains-eveil-musical-ottignies-louvain-la-neuve-evt-0909/index.html",
+    "slug": "ateliers-a-4-mains-eveil-musical-ottignies-louvain-la-neuve-evt-0909",
+    "date": "2026-12-13"
+  },
+  "EVT-0914": {
+    "path": "activikids/evenements/grande-fete-du-15-aout-a-maleves-perwez-evt-0914/index.html",
+    "slug": "grande-fete-du-15-aout-a-maleves-perwez-evt-0914",
+    "date": "2027-08-12"
+  },
+  "EVT-0915": {
+    "path": "activikids/evenements/halloween-du-comite-des-fetes-de-maleves-perwez-evt-0915/index.html",
+    "slug": "halloween-du-comite-des-fetes-de-maleves-perwez-evt-0915",
+    "date": "2026-10-31"
+  },
+  "EVT-0916": {
+    "path": "activikids/evenements/saint-nicolas-des-enfants-de-maleves-perwez-evt-0916/index.html",
+    "slug": "saint-nicolas-des-enfants-de-maleves-perwez-evt-0916",
+    "date": "2026-11-29"
+  },
+  "EVT-0917": {
+    "path": "activikids/evenements/passage-du-pere-noel-a-maleves-perwez-evt-0917/index.html",
+    "slug": "passage-du-pere-noel-a-maleves-perwez-evt-0917",
+    "date": "2026-12-19"
+  },
+  "EVT-0926": {
+    "path": "activikids/evenements/stage-realise-ton-jt-le-foyer-perwez-evt-0926/index.html",
+    "slug": "stage-realise-ton-jt-le-foyer-perwez-evt-0926",
+    "date": "2026-10-19"
+  },
+  "EVT-0927": {
+    "path": "activikids/evenements/stage-halloween-le-foyer-perwez-evt-0927/index.html",
+    "slug": "stage-halloween-le-foyer-perwez-evt-0927",
+    "date": "2026-10-26"
+  },
+  "EVT-0928": {
+    "path": "activikids/evenements/pouces-verts-spectacle-cimarra-perwez-evt-0928/index.html",
+    "slug": "pouces-verts-spectacle-cimarra-perwez-evt-0928",
+    "date": "2026-10-18"
+  },
+  "EVT-0929": {
+    "path": "activikids/evenements/en-barque-compagnie-les-pieds-dans-le-vent-perwez-evt-0929/index.html",
+    "slug": "en-barque-compagnie-les-pieds-dans-le-vent-perwez-evt-0929",
+    "date": "2026-10-25"
+  },
+  "EVT-0931": {
+    "path": "activikids/evenements/soiree-halloween-quiz-et-film-au-foyer-perwez-evt-0931/index.html",
+    "slug": "soiree-halloween-quiz-et-film-au-foyer-perwez-evt-0931",
+    "date": "2026-10-30"
+  },
+  "EVT-0932": {
+    "path": "activikids/evenements/saint-nicolas-au-foyer-perwez-evt-0932/index.html",
+    "slug": "saint-nicolas-au-foyer-perwez-evt-0932",
+    "date": "2026-12-02"
+  },
+  "EVT-0933": {
+    "path": "activikids/evenements/cine-kids-le-tresor-de-barracuda-perwez-evt-0933/index.html",
+    "slug": "cine-kids-le-tresor-de-barracuda-perwez-evt-0933",
+    "date": "2026-12-02"
+  },
+  "EVT-0934": {
+    "path": "activikids/evenements/cine-raclette-maman-j-ai-rate-l-avion-2-perwez-evt-0934/index.html",
+    "slug": "cine-raclette-maman-j-ai-rate-l-avion-2-perwez-evt-0934",
+    "date": "2026-12-16"
+  },
+  "EVT-0935": {
+    "path": "activikids/evenements/nuit-des-bibliotheques-contes-au-foyer-perwez-evt-0935/index.html",
+    "slug": "nuit-des-bibliotheques-contes-au-foyer-perwez-evt-0935",
+    "date": "2026-12-18"
+  },
+  "EVT-0936": {
+    "path": "activikids/evenements/ici-baba-en-corps-perwez-evt-0936/index.html",
+    "slug": "ici-baba-en-corps-perwez-evt-0936",
+    "date": "2026-12-20"
+  },
+  "EVT-0937": {
+    "path": "activikids/evenements/festicarnaval-trois-journees-famille-perwez-evt-0937/index.html",
+    "slug": "festicarnaval-trois-journees-famille-perwez-evt-0937",
+    "date": "2027-03-02"
+  },
+  "EVT-0938": {
+    "path": "activikids/evenements/perwez-international-film-festival-piff-perwez-evt-0938/index.html",
+    "slug": "perwez-international-film-festival-piff-perwez-evt-0938",
+    "date": "2027-03-10"
+  },
+  "EVT-0939": {
+    "path": "activikids/evenements/stage-radio-et-podcast-le-foyer-perwez-evt-0939/index.html",
+    "slug": "stage-radio-et-podcast-le-foyer-perwez-evt-0939",
+    "date": "2027-04-26"
+  },
+  "EVT-0943": {
+    "path": "activikids/evenements/coderdojo-ateliers-programmation-enfants-ramillies-evt-0943/index.html",
+    "slug": "coderdojo-ateliers-programmation-enfants-ramillies-evt-0943",
+    "date": "2026-10-10"
+  },
+  "EVT-0954": {
+    "path": "activikids/evenements/cine-junior-angelo-dans-la-foret-mysterieuse-rebecq-evt-0954/index.html",
+    "slug": "cine-junior-angelo-dans-la-foret-mysterieuse-rebecq-evt-0954",
+    "date": "2026-10-14"
+  },
+  "EVT-0955": {
+    "path": "activikids/evenements/lumerottes-lanternes-de-betteraves-rebecq-evt-0955/index.html",
+    "slug": "lumerottes-lanternes-de-betteraves-rebecq-evt-0955",
+    "date": "2026-10-21"
+  },
+  "EVT-0956": {
+    "path": "activikids/evenements/zakoustics-concert-musique-pour-tout-petits-au-moulin-rebecq-evt-0956/index.html",
+    "slug": "zakoustics-concert-musique-pour-tout-petits-au-moulin-rebecq-evt-0956",
+    "date": "2026-10-18"
+  },
+  "EVT-0957": {
+    "path": "activikids/evenements/cine-junior-leo-fabuleuse-histoire-de-leonard-rebecq-evt-0957/index.html",
+    "slug": "cine-junior-leo-fabuleuse-histoire-de-leonard-rebecq-evt-0957",
+    "date": "2026-11-25"
+  },
+  "EVT-0958": {
+    "path": "activikids/evenements/imagina-son-cine-concert-jeune-public-rebecq-evt-0958/index.html",
+    "slug": "imagina-son-cine-concert-jeune-public-rebecq-evt-0958",
+    "date": "2026-12-02"
+  },
+  "EVT-0959": {
+    "path": "activikids/evenements/cine-junior-wish-asha-et-la-bonne-etoile-rebecq-evt-0959/index.html",
+    "slug": "cine-junior-wish-asha-et-la-bonne-etoile-rebecq-evt-0959",
+    "date": "2026-12-16"
+  },
+  "EVT-0960": {
+    "path": "activikids/evenements/cine-documentaire-mission-castor-rebecq-evt-0960/index.html",
+    "slug": "cine-documentaire-mission-castor-rebecq-evt-0960",
+    "date": "2027-02-17"
+  },
+  "EVT-0965": {
+    "path": "activikids/evenements/randotourix-et-village-equitable-10-ans-rixensart-evt-0965/index.html",
+    "slug": "randotourix-et-village-equitable-10-ans-rixensart-evt-0965",
+    "date": "2026-10-11"
+  },
+  "EVT-0966": {
+    "path": "activikids/evenements/balades-contees-d-halloween-la-foret-interdite-rixensart-evt-0966/index.html",
+    "slug": "balades-contees-d-halloween-la-foret-interdite-rixensart-evt-0966",
+    "date": "2026-10-31"
+  },
+  "EVT-0969": {
+    "path": "activikids/evenements/oraura-eveil-par-la-danse-rixensart-evt-0969/index.html",
+    "slug": "oraura-eveil-par-la-danse-rixensart-evt-0969",
+    "date": "2026-12-13"
+  },
+  "EVT-0970": {
+    "path": "activikids/evenements/match-d-impro-famille-au-ccr-rixensart-evt-0970/index.html",
+    "slug": "match-d-impro-famille-au-ccr-rixensart-evt-0970",
+    "date": "2026-12-17"
+  },
+  "EVT-0972": {
+    "path": "activikids/evenements/j-ai-enleve-mamie-theatre-des-4-mains-rixensart-evt-0972/index.html",
+    "slug": "j-ai-enleve-mamie-theatre-des-4-mains-rixensart-evt-0972",
+    "date": "2027-02-14"
+  },
+  "EVT-0973": {
+    "path": "activikids/evenements/journee-musicale-pour-les-petites-oreilles-rixensart-evt-0973/index.html",
+    "slug": "journee-musicale-pour-les-petites-oreilles-rixensart-evt-0973",
+    "date": "2027-03-14"
+  },
+  "EVT-0975": {
+    "path": "activikids/evenements/stages-musicaux-d-automne-jeunesses-musicales-bw-rixensart-evt-0975/index.html",
+    "slug": "stages-musicaux-d-automne-jeunesses-musicales-bw-rixensart-evt-0975",
+    "date": "2026-10-19"
+  },
+  "EVT-0976": {
+    "path": "activikids/evenements/marche-artisanal-de-noel-de-noah-s-ark-rosieres-rixensart-evt-0976/index.html",
+    "slug": "marche-artisanal-de-noel-de-noah-s-ark-rosieres-rixensart-evt-0976",
+    "date": "2026-11-27"
+  },
+  "EVT-0979": {
+    "path": "activikids/evenements/tubizzare-day-halloween-dans-les-rues-tubize-evt-0979/index.html",
+    "slug": "tubizzare-day-halloween-dans-les-rues-tubize-evt-0979",
+    "date": "2026-10-31"
+  },
+  "EVT-0982": {
+    "path": "activikids/evenements/amelie-et-la-metaphysique-des-tubes-cine-familial-tubize-evt-0982/index.html",
+    "slug": "amelie-et-la-metaphysique-des-tubes-cine-familial-tubize-evt-0982",
+    "date": "2026-10-21"
+  },
+  "EVT-0983": {
+    "path": "activikids/evenements/le-pays-des-chansons-spectacle-familial-tubize-evt-0983/index.html",
+    "slug": "le-pays-des-chansons-spectacle-familial-tubize-evt-0983",
+    "date": "2026-10-27"
+  },
+  "EVT-0985": {
+    "path": "activikids/evenements/mimi-le-petit-minou-spectacle-marionnettes-tubize-evt-0985/index.html",
+    "slug": "mimi-le-petit-minou-spectacle-marionnettes-tubize-evt-0985",
+    "date": "2026-10-24"
+  },
+  "EVT-0986": {
+    "path": "activikids/evenements/apres-midi-jeux-de-societe-a-saintes-tubize-evt-0986/index.html",
+    "slug": "apres-midi-jeux-de-societe-a-saintes-tubize-evt-0986",
+    "date": "2026-10-25"
+  },
+  "EVT-0987": {
+    "path": "activikids/evenements/la-colline-aux-histoires-contes-et-marionnettes-tubize-evt-0987/index.html",
+    "slug": "la-colline-aux-histoires-contes-et-marionnettes-tubize-evt-0987",
+    "date": "2026-11-08"
+  },
+  "EVT-0988": {
+    "path": "activikids/evenements/le-temps-des-histoires-spectacle-conte-a-saintes-tubize-evt-0988/index.html",
+    "slug": "le-temps-des-histoires-spectacle-conte-a-saintes-tubize-evt-0988",
+    "date": "2026-11-08"
+  },
+  "EVT-0989": {
+    "path": "activikids/evenements/zakoustics-2-sitar-et-percussions-tubize-evt-0989/index.html",
+    "slug": "zakoustics-2-sitar-et-percussions-tubize-evt-0989",
+    "date": "2026-11-15"
+  },
+  "EVT-0990": {
+    "path": "activikids/evenements/cartes-de-v-ux-au-cyanotype-atelier-creatif-tubize-evt-0990/index.html",
+    "slug": "cartes-de-v-ux-au-cyanotype-atelier-creatif-tubize-evt-0990",
+    "date": "2026-11-21"
+  },
+  "EVT-0991": {
+    "path": "activikids/evenements/cartes-de-v-ux-aquarelle-et-embossage-tubize-evt-0991/index.html",
+    "slug": "cartes-de-v-ux-aquarelle-et-embossage-tubize-evt-0991",
+    "date": "2026-11-28"
+  },
+  "EVT-0992": {
+    "path": "activikids/evenements/la-princesse-et-le-rossignol-seance-cinema-tubize-evt-0992/index.html",
+    "slug": "la-princesse-et-le-rossignol-seance-cinema-tubize-evt-0992",
+    "date": "2026-12-06"
+  },
+  "EVT-0993": {
+    "path": "activikids/evenements/collage-graphique-en-famille-tubize-evt-0993/index.html",
+    "slug": "collage-graphique-en-famille-tubize-evt-0993",
+    "date": "2026-12-16"
+  },
+  "EVT-0994": {
+    "path": "activikids/evenements/zakoustics-3-clarinette-et-contrebasse-tubize-evt-0994/index.html",
+    "slug": "zakoustics-3-clarinette-et-contrebasse-tubize-evt-0994",
+    "date": "2027-02-07"
+  },
+  "EVT-0995": {
+    "path": "activikids/evenements/collage-et-broderie-sur-papier-atelier-tubize-evt-0995/index.html",
+    "slug": "collage-et-broderie-sur-papier-atelier-tubize-evt-0995",
+    "date": "2027-02-07"
+  },
+  "EVT-0996": {
+    "path": "activikids/evenements/l-inattendu-spectacle-jeune-public-a-saintes-tubize-evt-0996/index.html",
+    "slug": "l-inattendu-spectacle-jeune-public-a-saintes-tubize-evt-0996",
+    "date": "2027-04-04"
+  },
+  "EVT-0997": {
+    "path": "activikids/evenements/zakoustics-4-harpe-reverie-et-harpe-celtique-tubize-evt-0997/index.html",
+    "slug": "zakoustics-4-harpe-reverie-et-harpe-celtique-tubize-evt-0997",
+    "date": "2027-06-20"
+  },
+  "EVT-0998": {
+    "path": "activikids/evenements/moulin-de-saintes-visite-gratuite-et-demonstration-du-meunier-tub-evt-0998/index.html",
+    "slug": "moulin-de-saintes-visite-gratuite-et-demonstration-du-meunier-tub-evt-0998",
+    "date": "2026-11-01"
+  },
+  "EVT-1018": {
+    "path": "activikids/evenements/chasse-au-tresor-nocturne-a-l-abbaye-villers-la-ville-evt-1018/index.html",
+    "slug": "chasse-au-tresor-nocturne-a-l-abbaye-villers-la-ville-evt-1018",
+    "date": "2026-10-17"
+  },
+  "EVT-1019": {
+    "path": "activikids/evenements/la-princesse-qui-pue-qui-pete-spectacle-interactif-villers-la-vil-evt-1019/index.html",
+    "slug": "la-princesse-qui-pue-qui-pete-spectacle-interactif-villers-la-vil-evt-1019",
+    "date": "2026-10-18"
+  },
+  "EVT-1020": {
+    "path": "activikids/evenements/stage-apprentis-sorciers-a-l-abbaye-villers-la-ville-evt-1020/index.html",
+    "slug": "stage-apprentis-sorciers-a-l-abbaye-villers-la-ville-evt-1020",
+    "date": "2026-10-26"
+  },
+  "EVT-1021": {
+    "path": "activikids/evenements/contes-et-legendes-au-crepuscule-abbaye-villers-la-ville-evt-1021/index.html",
+    "slug": "contes-et-legendes-au-crepuscule-abbaye-villers-la-ville-evt-1021",
+    "date": "2026-11-27"
+  },
+  "EVT-1022": {
+    "path": "activikids/evenements/les-lutins-farceurs-spectacle-de-noel-villers-la-ville-evt-1022/index.html",
+    "slug": "les-lutins-farceurs-spectacle-de-noel-villers-la-ville-evt-1022",
+    "date": "2026-12-19"
+  },
+  "EVT-1023": {
+    "path": "activikids/evenements/monsieur-nicolas-spectacle-de-noel-villers-la-ville-evt-1023/index.html",
+    "slug": "monsieur-nicolas-spectacle-de-noel-villers-la-ville-evt-1023",
+    "date": "2026-12-20"
+  },
+  "EVT-1024": {
+    "path": "activikids/evenements/expo-la-famille-alain-laboile-villers-la-ville-evt-1024/index.html",
+    "slug": "expo-la-famille-alain-laboile-villers-la-ville-evt-1024",
+    "date": "2026-10-10"
+  },
+  "EVT-1025": {
+    "path": "activikids/evenements/visites-guidees-de-l-abbaye-dimanches-familles-villers-la-ville-evt-1025/index.html",
+    "slug": "visites-guidees-de-l-abbaye-dimanches-familles-villers-la-ville-evt-1025",
+    "date": "2026-10-11"
+  },
+  "EVT-1026": {
+    "path": "activikids/evenements/chorale-ephemere-chanter-ensemble-a-l-abbaye-villers-la-ville-evt-1026/index.html",
+    "slug": "chorale-ephemere-chanter-ensemble-a-l-abbaye-villers-la-ville-evt-1026",
+    "date": "2026-10-11"
+  },
+  "EVT-1028": {
+    "path": "activikids/evenements/nuit-des-ch-urs-spectacle-promenade-villers-la-ville-evt-1028/index.html",
+    "slug": "nuit-des-ch-urs-spectacle-promenade-villers-la-ville-evt-1028",
+    "date": "2027-08-27"
+  },
+  "EVT-1029": {
+    "path": "activikids/evenements/atelier-creez-votre-carnet-d-artiste-abbaye-villers-la-ville-evt-1029/index.html",
+    "slug": "atelier-creez-votre-carnet-d-artiste-abbaye-villers-la-ville-evt-1029",
+    "date": "2026-10-10"
+  },
+  "EVT-1030": {
+    "path": "activikids/evenements/atelier-corporel-parent-enfant-abbaye-villers-la-ville-evt-1030/index.html",
+    "slug": "atelier-corporel-parent-enfant-abbaye-villers-la-ville-evt-1030",
+    "date": "2026-11-14"
+  },
+  "EVT-1048": {
+    "path": "activikids/evenements/waterloo-lounge-magic-show-waterloo-evt-1048/index.html",
+    "slug": "waterloo-lounge-magic-show-waterloo-evt-1048",
+    "date": "2026-10-22"
+  },
+  "EVT-1049": {
+    "path": "activikids/evenements/waterloo-unplugged-concerts-acoustiques-waterloo-evt-1049/index.html",
+    "slug": "waterloo-unplugged-concerts-acoustiques-waterloo-evt-1049",
+    "date": "2026-11-05"
+  },
+  "EVT-1068": {
+    "path": "activikids/evenements/week-end-de-la-foret-escale-forestiere-de-bon-secours-peruwelz-evt-1068/index.html",
+    "slug": "week-end-de-la-foret-escale-forestiere-de-bon-secours-peruwelz-evt-1068",
+    "date": "2026-10-17"
+  },
+  "EVT-1080": {
+    "path": "activikids/evenements/pompoenregatta-de-kasterlee-course-en-citrouilles-geantes-kasterl-evt-1080/index.html",
+    "slug": "pompoenregatta-de-kasterlee-course-en-citrouilles-geantes-kasterl-evt-1080",
+    "date": "2026-10-25"
+  }
+}
