@@ -1,4 +1,6 @@
 from pathlib import Path
+import json
+from urllib.parse import urlparse
 import re
 import sys
 
@@ -55,8 +57,8 @@ for rel in ("index.html", "a-propos.html", "methodologie.html", "confidentialite
             errors.append(f"blank_without_noopener:{rel}")
 
 
-BASE = "https://cloelia50.github.io/belgique-je-taime-site/"
-PROJECT_ROOT = "/belgique-je-taime-site/"
+BASE = json.loads((ROOT / "seo" / "site.json").read_text(encoding="utf-8"))["site_base_url"]
+PROJECT_ROOT = urlparse(BASE).path or "/"
 
 # Les pages globales doivent annoncer leur URL canonique et garder un accès au signalement.
 for rel in ("index.html", "a-propos.html", "methodologie.html", "confidentialite.html", "signaler.html"):
