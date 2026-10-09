@@ -7,7 +7,7 @@ import fs from "node:fs";
 import path from "node:path";
 function buildGuides(catalog,cogito,asof,sitebase) {
   const htmlEscape=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
-  const validUrl=u=>{try{const x=new URL(String(u||""));return ["https:","http:"].includes(x.protocol)?x.href:""}catch{return""}};
+  const validUrl=u=>/^https?:\/\/[^\s<>"']+$/i.test(String(u||""))?String(u):"";
   const formatDate=d=>{if(!/^\d{4}-\d\d-\d\d$/.test(String(d||"")))return "";return new Intl.DateTimeFormat("fr-BE",{day:"numeric",month:"long",year:"numeric",timeZone:"UTC"}).format(new Date(d+"T12:00:00Z"))};
   const fullBase=String(sitebase).replace(/\/?$/,"/");
   const paths={
@@ -84,13 +84,13 @@ const args=process.argv.slice(2);
 const arg=(name,def)=>{const i=args.indexOf(name);return i>=0&&args[i+1]?args[i+1]:def};
 const root=path.resolve(arg("--repo","."));
 const asof=arg("--as-of",new Intl.DateTimeFormat("sv-SE",{timeZone:"Europe/Brussels",year:"numeric",month:"2-digit",day:"2-digit"}).format(new Date()));
-if(!/^\\d{4}-\\d{2}-\\d{2}$/.test(asof))throw new Error("Date invalide YYYY-MM-DD");
+if(!/^\d{4}-\d{2}-\d{2}$/.test(asof))throw new Error("Date invalide YYYY-MM-DD");
 const base=arg("--base-url","https://cloelia50.github.io/belgique-je-taime-site/");
 const catalog=JSON.parse(fs.readFileSync(path.join(root,"activikids/data/catalog.json"),"utf8"));
 const raw=fs.readFileSync(path.join(root,"cogito/index.html"),"utf8");
-const match=raw.match(/<script type="application\\/json" id="cogito-data">([\\s\\S]*?)<\\/script>/);
+const match=raw.match(/<script type="application\/json" id="cogito-data">([\s\S]*?)<\/script>/);
 if(!match)throw new Error("Export Cogito public absent : génération SEO annulée.");
 const cogito=JSON.parse(match[1]);
 const output=buildGuides(catalog,cogito,asof,base);
 for(const [p,c] of Object.entries(output.files)){const full=path.join(root,p);fs.mkdirSync(path.dirname(full),{recursive:true});fs.writeFileSync(full,c,"utf8")}
-process.stdout.write("Guides générés : "+JSON.stringify(output.metrics)+"\\n");
+process.stdout.write("Guides générés : "+JSON.stringify(output.metrics)+"\n");
