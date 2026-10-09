@@ -11,3 +11,8 @@ Ces pages ne sont pas en production tant que cette branche n’est pas fusionné
 - Le générateur ne change aucune source ni aucun seuil de validation. Si l’export Cogito est absent ou illisible, la génération s’arrête sans produire de faux résultats.
 - Ne pas ouvrir de pull request ni fusionner tant que la contrainte de minutes GitHub Actions s’applique. Le workflow du site public se déclenche sur PR et push main, **pas** sur push de cette branche.
 - Quand le domaine sera acquis, fournir `--base-url https://nouveau-domaine.example/`, puis ajuster aussi l’accueil, le sitemap et les canoniques des autres pages.
+
+
+## Extension : trois guides durables
+
+Sorties à petit budget, conférences gratuites, première demande au CPAS. Pages durables générées avec les guides existants, liées depuis l’accueil et insérées dans le sitemap. Le CPAS est présenté comme procédure à vérifier, avec des liens directs aux autorités.

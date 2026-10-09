@@ -98,6 +98,9 @@ guides = [
     "conferences-bruxelles",
     "rencontres-litteraires",
     "demarches-administratives",
+    "sorties-famille-petit-budget",
+    "conferences-gratuites-belgique",
+    "premiere-demande-cpas",
 ]
 seo_titles = set()
 for slug in guides:
