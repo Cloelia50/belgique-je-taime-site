@@ -193,6 +193,11 @@ if cpas_page.exists():
         errors.append("missing_official_cpas_unsecured_link")
 
 
+if '<html lang="fr-BE">' not in home:
+    errors.append("homepage_language_fr_be_missing")
+if '"@type":"WebSite"' not in home or '"inLanguage":"fr-BE"' not in home:
+    errors.append("homepage_schema_website_missing")
+
 if errors:
     print("SITE QUALITY FAILED")
     for error in errors:
