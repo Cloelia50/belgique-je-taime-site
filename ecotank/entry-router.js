@@ -33,6 +33,13 @@
       dest.innerHTML='<div class="simple-card"><div id="entryDestinationHost" class="entry-destination"></div></div>';
       shell.insertBefore(dest,document.getElementById("simpleWizard")||null);
     }
+    if(!document.getElementById("simpleDifficultHelp")){
+      const help=document.createElement("section");
+      help.id="simpleDifficultHelp";
+      help.className="simple-screen";
+      help.innerHTML='<div class="simple-card"><div id="entryDifficultHost" class="entry-destination"></div></div>';
+      shell.insertBefore(help,document.getElementById("simpleWizard")||null);
+    }
     if(!document.getElementById("simpleBusinessHome")){
       const business=document.createElement("section");
       business.id="simpleBusinessHome";
@@ -51,7 +58,7 @@
   }
 
   function hideCustomScreens(){
-    ["simpleEntryRouter","simpleEntryDestination","simpleBusinessHome"].forEach(id=>document.getElementById(id)?.classList.remove("active"));
+    ["simpleEntryRouter","simpleEntryDestination","simpleBusinessHome","simpleDifficultHelp"].forEach(id=>document.getElementById(id)?.classList.remove("active"));
   }
 
   function loadCatalog(){
@@ -177,6 +184,108 @@
     if(start)start.click();
   }
 
+
+  // Parcours rapide réservé aux personnes qui rencontrent des blocages.
+  // Les autres parcours EcoTank et le questionnaire détaillé restent inchangés.
+  function renderDifficultHelp(nextTopic){
+    if(!ensureScreens())return;
+    if(nextTopic)state.difficultTopic=nextTopic;
+    const initial=state.destinationId==="residence_status"?"residence":
+      state.destinationId==="international_special"?"international":"overview";
+    const topic=state.difficultTopic||initial;
+    const host=document.getElementById("entryDifficultHost");
+    if(!host)return;
+    const sources=state.catalog?.official_sources||{};
+    const safeLink=(key,label)=>{
+      const source=sources[key];
+      if(!source||typeof source.url!=="string"||!/^https:\/\//i.test(source.url))return "";
+      return '<a href="'+esc(source.url)+'" target="_blank" rel="noopener noreferrer">'+esc(label||source.label||"Ouvrir la source officielle")+' ↗</a>';
+    };
+    // Chaque piste renvoie à une source officielle déjà référencée dans la base.
+    // Aucune réponse ne permet de déduire automatiquement l'ouverture d'un droit.
+    const guides={
+      overview:[
+        ["Commencer par une aide humaine et concrète","Si vous n'arrivez plus à faire face aux besoins essentiels, demandez à un service social de faire le point avec vous. N'attendez pas d'avoir tous vos documents.",[["cpas_dis_procedure","Comprendre les démarches auprès du CPAS"]]],
+        ["Ne pas perdre l'accès aux soins","Vérifiez votre affiliation ou les démarches pour la rétablir, indépendamment de vos autres droits.",[["inami_affiliation","Mutualité ou CAAMI"]]],
+        ["Remettre en ordre ce qui bloque","Une adresse administrative incertaine peut empêcher d'autres démarches. C'est un problème à traiter, pas une raison d'arrêter la recherche.",[["reference_address","Adresse de référence et aides"]]]
+      ],
+      income:[
+        ["Demander un examen de votre situation","Sans revenu ou après une interruption de droits, le CPAS peut examiner les aides accessibles selon votre situation. Ce n'est pas une garantie d'attribution.",[["cpas_dis_procedure","Comprendre la procédure CPAS"]]],
+        ["Introduire une première demande, si vous n'avez pas déjà de dossier","Deux accès existent, dont un sans identification itsme. Si un dossier est déjà ouvert, reprenez contact avec votre CPAS plutôt que de déposer une nouvelle première demande.",[["cpas_online","Première demande avec identification"],["cpas_online_unsecured","Première demande sans connexion"]]],
+        ["Préserver l'accès aux soins","Un droit au revenu suspendu n'implique pas qu'il faille attendre pour vérifier sa couverture santé.",[["inami_affiliation","Vérifier sa couverture santé"]]]
+      ],
+      housing:[
+        ["Signaler une urgence de logement ou de charges","Un service social peut examiner votre situation, les risques immédiats et les aides envisageables.",[["cpas_dis_procedure","Démarches et aides sociales"]]],
+        ["Sans domicile officiel ou en cas d'adresse perdue","Vérifiez la possibilité d'une adresse de référence. Les conditions doivent être examinées au cas par cas.",[["reference_address","Adresse de référence"]]],
+        ["Conserver l'accès aux décisions importantes","Si votre courrier est instable, faites le point sur les moyens de recevoir les communications officielles.",[["myebox","My eBox"],["mygov","MyGov.be"]]]
+      ],
+      health:[
+        ["Vérifier ou rétablir la couverture santé","Une mutualité ou la CAAMI peut préciser les démarches selon votre situation réelle.",[["inami_affiliation","Affiliation et couverture santé"]]],
+        ["Signaler un problème d'accès aux soins","Un service social peut vous orienter vers les aides ou procédures qui correspondent à votre cas.",[["cpas_dis_procedure","Se renseigner sur l'aide sociale"]]],
+        ["Si les démarches numériques bloquent","Une demande sociale initiale peut, dans certains cas, être introduite sans itsme.",[["cpas_online_unsecured","Première demande CPAS sans connexion"]]]
+      ],
+      identity:[
+        ["Vous ne retrouvez plus votre code PIN eID","La procédure officielle permet de demander un nouveau code. N'indiquez jamais votre code PIN sur EcoTank.",[["belgium_eid_pin","Demander un nouveau PIN"]]],
+        ["Vous devez obtenir une attestation","Vérifiez le portail officiel et ses moyens de connexion avant de vous déplacer.",[["mondossier","Mon Dossier — attestations"]]],
+        ["L'identification numérique vous bloque","L'activation itsme n'est pas la seule voie possible pour toutes les démarches.",[["itsme_activate","Activer itsme"],["cpas_online_unsecured","Première demande CPAS sans identification"]]]
+      ],
+      digital:[
+        ["Première demande sociale sans itsme","Si c'est une première demande, le formulaire sans connexion peut constituer une solution. Pour un dossier existant, contactez votre CPAS.",[["cpas_online_unsecured","Ouvrir le formulaire sans connexion"]]],
+        ["Chercher un accompagnement numérique","À Bruxelles, des structures peuvent aider avec eID, courriels ou formulaires. Ailleurs, renseignez-vous auprès de votre commune ou d'un service social.",[["brussels_digital_help","Aide numérique à Bruxelles"]]],
+        ["Récupérer ou activer un accès","Utilisez les pages officielles pour retrouver votre PIN ou activer votre identité numérique.",[["belgium_eid_pin","Nouveau PIN eID"],["itsme_activate","Activer itsme"]]]
+      ],
+      decision:[
+        ["Comprendre la décision et ses délais","Conservez la décision écrite et sa date. Pour une décision CPAS, la procédure officielle explique le cadre applicable; les délais sont à vérifier sans attendre.",[["cpas_dis_procedure","Procédure et décisions CPAS"]]],
+        ["Un dossier CPAS est déjà ouvert","Contactez directement le CPAS qui gère votre dossier; n'utilisez pas le lien de première demande comme s'il s'agissait d'un dossier nouveau.",[["cpas_dis_procedure","Informations officielles CPAS"]]],
+        ["Conserver les documents officiels","Vérifiez les canaux sur lesquels vos décisions sont disponibles, si vous pouvez y accéder.",[["myebox","Consulter My eBox"]]]
+      ],
+      bank:[
+        ["Sans compte bancaire utilisable","Le service bancaire de base existe sous conditions. Un établissement doit examiner votre demande et les règles applicables.",[["basic_bank","Service bancaire de base"]]],
+        ["Vérifier les possibilités alternatives","Le service bancaire universel répond à un autre besoin et ne remplace pas nécessairement le service bancaire de base.",[["universal_bank","Service bancaire universel"]]],
+        ["Si l'absence de compte bloque vos aides","Signalez-le à l'organisme ou au service social qui traite votre demande afin d'examiner les possibilités.",[["cpas_dis_procedure","Démarches CPAS"]]]
+      ],
+      residence:[
+        ["Identifier votre situation de séjour","La procédure dépend notamment de votre nationalité et du document réellement détenu. EcoTank ne peut pas décider de votre statut.",[["dofi_union","Citoyens de l'Union européenne"],["dofi_third_country","Ressortissants de pays tiers"]]],
+        ["Si vous avez une procédure de protection","Vérifiez les étapes et autorités compétentes, sans déduire automatiquement un droit d'un document.",[["cgra_asylum","Protection internationale — CGRA"]]],
+        ["Si vous manquez de ressources ou de soins","Un service compétent doit examiner les possibilités selon votre situation administrative. Certaines aides varient avec le séjour.",[["cpas_dis_procedure","Comprendre la procédure sociale"]]]
+      ],
+      international:[
+        ["Clarifier votre régime spécial","La situation des personnes liées à une mission ou à une organisation internationale relève de règles particulières.",[["diplomacy_special","Statuts spéciaux"],["diplomacy_io","Organisations internationales"]]],
+        ["Vérifier quel régime social s'applique","Les situations transfrontalières et internationales requièrent une vérification auprès des autorités compétentes.",[["socialsecurity_international","Coordination internationale"],["coming_to_belgium","Coming to Belgium"]]],
+        ["Si la couverture santé pose question","L'organisme compétent dépend de votre régime réel. Ne supposez pas une affiliation belge sans vérification.",[["inami_affiliation","Affiliation en Belgique"]]]
+      ]
+    };
+    const choices=[
+      ["income","Revenus ou droits coupés"],["housing","Logement ou adresse"],
+      ["health","Soins de santé"],["identity","Papiers et eID"],
+      ["digital","itsme / démarches en ligne"],["decision","Décision ou recours"],
+      ["bank","Compte bancaire"],["residence","Séjour / protection"]
+    ];
+    const selected=guides[topic]?topic:"overview";
+    const cards=guides[selected];
+    const title=selected==="residence"?"Premières pistes pour votre situation de séjour":
+      selected==="international"?"Premières pistes pour votre situation internationale":
+      "Voici des premières solutions, sans autre questionnaire";
+    host.innerHTML=
+      '<div class="entry-topline"><button type="button" class="linkish" data-help-back>← Mon orientation</button><span class="entry-step">Aucune autre réponse obligatoire</span></div>'+
+      '<div class="simple-kicker">Situations compliquées · accès rapide</div>'+
+      '<h2>'+esc(title)+'</h2>'+
+      '<p>Vous pouvez agir dès maintenant. Les liens ci-dessous viennent des sources officielles déjà référencées dans EcoTank. Ce sont des pistes à vérifier, pas des droits accordés automatiquement.</p>'+
+      '<div class="business-grid">'+cards.map((card,i)=>
+        '<article class="business-card '+(i===0?'priority':'')+'"><h3>'+(i+1)+'. '+esc(card[0])+'</h3><p>'+esc(card[1])+'</p>'+
+        '<div class="resource-actions">'+card[2].map(link=>safeLink(link[0],link[1])).filter(Boolean).join("")+'</div></article>'
+      ).join("")+'</div>'+
+      '<section class="business-intake"><h3>Qu’est-ce qui vous bloque le plus ? (facultatif)</h3>'+
+      '<p>Un clic adapte immédiatement ces pistes. Pas besoin de compléter tout votre dossier.</p>'+
+      '<div class="entry-choice-grid">'+choices.map(([id,label])=>
+        '<button type="button" class="entry-choice" data-help-topic="'+id+'" aria-pressed="'+(id===selected?'true':'false')+'">'+esc(label)+'</button>'
+      ).join("")+'</div></section>'+
+      '<div class="entry-route-actions"><button type="button" class="linkish" data-help-reset>Revoir les premières pistes</button>'+
+      '<button type="button" data-help-detailed>Examiner ma situation en détail (facultatif)</button></div>'+
+      '<p class="business-safety">EcoTank ne demande ni numéro national, ni code PIN, ni mot de passe. Si vous avez déjà introduit une demande ou si votre situation est urgente, contactez directement le service compétent sans attendre de terminer le questionnaire.</p>';
+    showScreen("simpleDifficultHelp");
+  }
+
   function handoffAdmin(){
     hideCustomScreens();
     const b=document.getElementById("simpleAdminStart");
@@ -199,13 +308,13 @@
 
     let actions="";
     if(adminFirst){
-      actions+='<button type="button" class="primary" data-entry-admin>Remettre ma situation en ordre</button>';
+      actions+='<button type="button" class="primary" data-entry-admin>Voir mes premières solutions</button>';
       if(id!=="foundation_recovery"&&id!=="international_special"&&id!=="guided_orientation"){
         actions+='<button type="button" data-entry-general>Continuer aussi vers mes économies</button>';
       }
     }else{
       actions+='<button type="button" class="primary" data-entry-general>Continuer dans mon parcours</button>';
-      if(someRepair)actions+='<button type="button" data-entry-admin>Vérifier mes bases administratives</button>';
+      if(someRepair)actions+='<button type="button" data-entry-admin>Voir des solutions pour mes blocages</button>';
     }
     host.innerHTML=
       '<div class="entry-topline"><button type="button" class="linkish" data-entry-restart>← Changer de situation</button></div>'+
@@ -336,7 +445,12 @@
     if(event.target.closest("[data-entry-home]")){hideCustomScreens();document.getElementById("simpleHome")?.classList.add("active");window.scrollTo({top:0,behavior:"smooth"});return;}
     if(event.target.closest("[data-entry-restart]")){state.answers={};state.destinationId="";renderQuestion("q_entry_situation");return;}
     if(event.target.closest("[data-entry-unknown]")){routeToDestination("guided_orientation");return;}
-    if(event.target.closest("[data-entry-admin]")){handoffAdmin();return;}
+    if(event.target.closest("[data-entry-admin]")){state.difficultTopic="";renderDifficultHelp();return;}
+    const topic=event.target.closest("[data-help-topic]");
+    if(topic){renderDifficultHelp(topic.dataset.helpTopic);return;}
+    if(event.target.closest("[data-help-back]")){renderDestination(state.destinationId);return;}
+    if(event.target.closest("[data-help-reset]")){state.difficultTopic="";renderDifficultHelp();return;}
+    if(event.target.closest("[data-help-detailed]")){handoffAdmin();return;}
     if(event.target.closest("[data-entry-general]")){handoffGeneral();return;}
     if(event.target.closest("[data-entry-fallback]")){handoffGeneral();return;}
     if(event.target.closest("[data-entry-personal]")){
