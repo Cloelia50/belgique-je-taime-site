@@ -9,6 +9,12 @@ function text(v){return String(v||"").replace(/<[^>]+>/g," ").replace(/&nbsp;|&#
 function clipped(v,n){let x=text(v);return x.length>n?x.slice(0,n).replace(/\s+\S*$/,"")+"…":x}
 function dayOK(v){return /^\d{4}-\d{2}-\d{2}$/.test(v||"")&&!Number.isNaN(Date.parse(v+"T12:00:00Z"))}
 function fmt(v){return new Intl.DateTimeFormat("fr-BE",{day:"numeric",month:"long",year:"numeric",timeZone:"UTC"}).format(new Date(v+"T12:00:00Z"))}
+function belgianOffset(date){
+ const part=new Intl.DateTimeFormat("en",{timeZone:"Europe/Brussels",timeZoneName:"shortOffset"}).formatToParts(new Date(date+"T12:00:00Z")).find(p=>p.type==="timeZoneName");
+ const m=String(part?.value||"").match(/^GMT([+-])(\d{1,2})(?::(\d{2}))?$/);
+ return m?m[1]+m[2].padStart(2,"0")+":"+(m[3]||"00"):"";
+}
+function localDateTime(date,time){return /^\d\d:\d\d$/.test(time||"")?date+"T"+time+":00"+belgianOffset(date):date}
 function post(v){let m=String(v||"").match(/,\s*(\d{4})\s+([^,]+)\s*$/);if(!m)return null;let street=String(v).slice(0,m.index).split(",").pop().trim();if(street.length<7)return null;return {"@type":"PostalAddress",streetAddress:street,postalCode:m[1],addressLocality:m[2].trim(),addressCountry:"BE"}}
 function ld(x){return JSON.stringify(x).replace(/</g,"\\u003c")}
 function entries(catalog,cogito,asof){
@@ -20,14 +26,14 @@ function entries(catalog,cogito,asof){
   let source=url(ed.src||e.url),addr=ed.adr||e.adr,p=post(addr),summary=text(ed.prog),place=ed.lieu||e.lieu;
   if(!source||!p||!place||summary.length<38||!e.n)continue;
   let ending=dayOK(ed.e)&&ed.e>=ed.s?ed.e:ed.s;
-  out.push({slug:"activikids-"+id.toLowerCase()+"-"+ed.s,name:e.n,group:"Activikids",city:e.co||p.addressLocality,place,address:addr,postal:p,source,summary,organizer:e.org||"",price:ed.prix||e.prix||"",age:e.age||"",start:ed.s,end:ending,startDate:ed.s+(ed.hs?"T"+ed.hs+":00":""),endDate:ed.he&&ending===ed.s?ed.s+"T"+ed.he+":00":ending>ed.s?ending:"",archived:ending<asof});
+  out.push({slug:"activikids-"+id.toLowerCase()+"-"+ed.s,name:e.n,group:"Activikids",city:e.co||p.addressLocality,place,address:addr,postal:p,source,summary,organizer:e.org||"",price:ed.prix||e.prix||"",age:e.age||"",start:ed.s,end:ending,startDate:localDateTime(ed.s,ed.hs),endDate:ed.he&&ending===ed.s?localDateTime(ed.s,ed.he):ending>ed.s?ending:"",archived:ending<asof});
  }
  for(let id of IDC){
   let e=(cogito.events||[]).find(x=>x.id===id);if(!e)continue;
   let date=String(e.start||e.date||"").slice(0,10),loc=e.location||"",p=post(loc),source=url(e.official_url),summary=text(e.description);
   if(!dayOK(date)||!p||!source||summary.length<55||!e.title||!e.time||/en ligne/i.test(e.mode||""))continue;
   let ending=String(e.end||"").slice(0,10);if(!dayOK(ending)||ending<date)ending=date;
-  out.push({slug:"cogito-"+id.toLowerCase(),name:e.title,group:"Cogito",city:e.city||p.addressLocality,place:loc.split(",")[0],address:loc,postal:p,source,summary:clipped(summary,450),organizer:e.organizer||"",price:e.price_label||"",age:"",start:date,end:ending,startDate:String(e.start).includes("T")?e.start:date+"T"+e.time+":00",endDate:String(e.end).includes("T")?e.end:ending>date?ending:"",archived:ending<asof});
+  out.push({slug:"cogito-"+id.toLowerCase(),name:e.title,group:"Cogito",city:e.city||p.addressLocality,place:loc.split(",")[0],address:loc,postal:p,source,summary:clipped(summary,450),organizer:e.organizer||"",price:e.price_label||"",age:"",start:date,end:ending,startDate:String(e.start).includes("T")?e.start:localDateTime(date,e.time),endDate:String(e.end).includes("T")?e.end:ending>date?ending:"",archived:ending<asof});
  }
  return out.sort((a,b)=>a.start.localeCompare(b.start)||a.name.localeCompare(b.name));
 }
