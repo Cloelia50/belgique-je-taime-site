@@ -12,7 +12,7 @@ assert.equal(new Set(catalog.items.map(x=>x.id)).size,63,'ID permanent doublonn�
 for(const item of catalog.items){assert(item.url_officielle||item.source_pratique,'source manquante '+item.id);assert(!/Partenariat commercial en pause/.test(item.notes||''),'note interne '+item.id)}
 assert(exists('sorties-permanentes/index.html'),'page permanente absente');
 assert(!exists('activikids/permanents/catalogue.json'),'ne pas créer des permanents dans le répertoire remplacé par le robot');
-const map=read('sitemap.xml');const urls=[...map.matchAll(/<loc>([^<]+)<\\/loc>/g)].map(m=>m[1]);assert.equal(urls.length,new Set(urls).size,'sitemap doublons');
+const map=read('sitemap.xml');const urls=[...map.matchAll(/<loc>([^<]+)<[/]loc>/g)].map(m=>m[1]);assert.equal(urls.length,new Set(urls).size,'sitemap doublons');
 for(const slug of ['activites-gratuites-bruxelles','sorties-ce-week-end','conferences-bruxelles','rencontres-litteraires','demarches-administratives','sorties-famille-petit-budget','conferences-gratuites-belgique','premiere-demande-cpas']){
  assert(exists('guides/'+slug+'/index.html'),'guide absent '+slug);
  assert(urls.some(u=>u.endsWith('/guides/'+slug+'/')),'sitemap guide absent '+slug);
