@@ -8,7 +8,7 @@ assert.ok(first >= 0, "Lirabelge: script bookData introuvable");
 const end = page.indexOf("</script>", first + open.length);
 assert.ok(end > first, "Lirabelge: script bookData non fermé");
 const data = JSON.parse(page.slice(first + open.length, end));
-assert.ok(Array.isArray(data.books) && data.books.length >= 1536, "Le catalogue a régressé sous 1 536 livres");
+assert.ok(Array.isArray(data.books) && data.books.length >= 1538, "Le catalogue a régressé sous 1 538 livres");
 assert.ok(Array.isArray(data.authors) && data.authors.length >= 192, "Les nouvelles autrices ont disparu");
 const ids = data.books.map(book => book.id);
 assert.equal(new Set(ids).size, ids.length, "Livre ID dupliqué");
@@ -22,7 +22,9 @@ const expected = new Map([
   ["LB-50-AUTRICES-001", "Les Miroirs du désordre"],
   ["LB-50-AUTRICES-002", "D'abord le souffle"],
   ["LB-50-AUTRICES-003", "Sources de sel"],
-  ["LB-50-AUTRICES-004", "Poésies"]
+  ["LB-50-AUTRICES-004", "Poésies"],
+  ["LB-50-AUTRICES-6", "Bruxelles"],
+  ["LB-50-AUTRICES-007", "Droit de regards"]
 ]);
 for (const [id, title] of expected) {
   const book = data.books.find(b => b.id === id);
@@ -32,8 +34,8 @@ for (const [id, title] of expected) {
   assert.ok(/^\d{13}$/.test(String(book.isbn)), "ISBN douteux : " + id);
   assert.ok(book.publisher && book.author && book.source.startsWith("https://"), "Données essentielles absentes : " + id);
 }
-for (const name of ["Anne-Marielle Wilwerth", "Madeleine Ley"]) {
+for (const name of ["Anne-Marielle Wilwerth", "Madeleine Ley", "Marie-Françoise Plissart"]) {
   assert.ok(data.authors.some(a => a.name === name), "Fiche autrice absente : " + name);
 }
 assert.ok(page.includes("fonts/newsreader.woff2"), "Design local disparu");
-console.log("Lirabelge: " + data.books.length + " livres, " + data.authors.length + " auteurs, 7 nouveaux ouvrages conservés — OK");
+console.log("Lirabelge: " + data.books.length + " livres, " + data.authors.length + " auteurs, 9 nouveaux ouvrages conservés — OK");
