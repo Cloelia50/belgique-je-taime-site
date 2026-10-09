@@ -26,6 +26,8 @@ jobs:
         run: node scripts/test_seo_offline.mjs
       - name: Vérifier les liens internes
         run: node scripts/test_seo_links.mjs
+      - name: Vérifier les réservations Activikids et préserver les fiches
+        run: node scripts/test_activikids_booking_guard.mjs
       - name: Vérifier les correctifs Cogito et les identifiants
         run: node scripts/test_cogito_curations.mjs
       - name: Vérifier l'accueil, les guides et les permanents

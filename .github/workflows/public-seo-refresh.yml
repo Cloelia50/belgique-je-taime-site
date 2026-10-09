@@ -9,6 +9,8 @@ on:
       - 'activikids/data/catalog.json'
       - 'cogito/index.html'
       - 'ecotank/admin-profile.json'
+      - 'scripts/activikids_booking_guard.mjs'
+      - '.github/workflows/public-seo-refresh.yml'
 permissions:
   contents: write
 concurrency:
@@ -25,12 +27,15 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - name: Nettoyer les fausses réservations Activikids dans les fichiers PUBLICS
+        run: node scripts/activikids_booking_guard.mjs --repo .
       - name: Corriger les liens Cogito confirmés depuis les données publiques
         run: node scripts/cogito_curated_corrections.mjs --repo .
       - name: Recomposer les guides et le sitemap depuis les SEULES données publiques
         run: node scripts/build_seo_guides.mjs --repo .
       - name: Vérifier dates, liens et sources
         run: |
+          node scripts/test_activikids_booking_guard.mjs
           node scripts/test_seo_offline.mjs
           node scripts/test_seo_links.mjs
           node scripts/verify_public_release.mjs
@@ -38,7 +43,7 @@ jobs:
         run: |
           git config user.name 'bjt-seo-public'
           git config user.email 'bjt-seo-public@users.noreply.github.com'
-          git add -- guides/ evenements/ sitemap.xml cogito/index.html
+          git add -- guides/ evenements/ sitemap.xml cogito/index.html activikids/index.html activikids/data/catalog.json
           if ! git diff --cached --quiet; then
             git commit -m 'SEO public : actualiser les sélections datées [skip ci]'
             git pull --rebase origin main
