@@ -26,6 +26,8 @@ jobs:
         run: node scripts/test_seo_offline.mjs
       - name: Vérifier les liens internes
         run: node scripts/test_seo_links.mjs
+      - name: Contrôler le catalogue Lirabelge sans requête réseau
+        run: node scripts/test_lirabelge_catalogue.mjs
       - name: Vérifier les aides immédiates EcoTank (test local, aucun robot)
         run: node scripts/test_ecotank_fast_help.mjs
       - name: Vérifier les réservations Activikids et préserver les fiches
