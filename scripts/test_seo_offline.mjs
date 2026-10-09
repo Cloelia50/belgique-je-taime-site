@@ -7,6 +7,7 @@ import assert from "node:assert/strict";
 import { fileURLToPath } from "node:url";
 import { spawnSync } from "node:child_process";
 
+import { dayOK, localDateTime } from "./build_seo_events.mjs";
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),"..");
 const temp=fs.mkdtempSync(path.join(os.tmpdir(),"bjt-seo-"));
 let checks=0;
@@ -21,6 +22,23 @@ function run(date){
  return urls(read("sitemap.xml"));
 }
 try{
+ for(const [date,valid] of [["2026-02-28",true],["2026-02-29",false],["2028-02-29",true],["2026-02-31",false],["2026-04-31",false],["2026-13-02",false]]){
+  ok(dayOK(date)===valid,"Date civile invalide acceptée : "+date);
+ }
+ const timestamps=[
+  ["2026-10-24","23:30","2026-10-24T23:30:00+02:00"],
+  ["2026-10-25","01:30","2026-10-25T01:30:00+02:00"],
+  ["2026-10-25","02:30","2026-10-25"],
+  ["2026-10-25","03:30","2026-10-25T03:30:00+01:00"],
+  ["2026-03-29","01:30","2026-03-29T01:30:00+01:00"],
+  ["2026-03-29","02:30","2026-03-29"],
+  ["2026-03-29","03:30","2026-03-29T03:30:00+02:00"],
+  ["2026-12-05","19:00","2026-12-05T19:00:00+01:00"],
+  ["2026-12-05","25:90","2026-12-05"]
+ ];
+ for(const [date,hour,expected] of timestamps){
+  ok(localDateTime(date,hour)===expected,"Horaire Europe/Brussels incorrect : "+date+" "+hour);
+ }
  for(const f of ["activikids/data/catalog.json","cogito/index.html","ecotank/admin-profile.json","sitemap.xml"])
    put(f,fs.readFileSync(path.join(root,f),"utf8"));
  let previousActive=Infinity;

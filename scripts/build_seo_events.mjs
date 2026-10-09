@@ -7,14 +7,29 @@ function esc(v){return String(v==null?"":v).replace(/[&<>"']/g,c=>({"&":"&amp;",
 function url(v){return /^https?:\/\/[^\s<>"']+\.[^\s<>"']+/i.test(String(v||""))?String(v):""}
 function text(v){return String(v||"").replace(/<[^>]+>/g," ").replace(/&nbsp;|&#160;/g," ").replace(/&amp;/g,"&").replace(/&quot;/g,'"').replace(/\s+/g," ").trim().replace(/(?:Lien officiel|Programme officiel)\s*:\s*https?:\/\/.+$/i,"")}
 function clipped(v,n){let x=text(v);return x.length>n?x.slice(0,n).replace(/\s+\S*$/,"")+"…":x}
-function dayOK(v){return /^\d{4}-\d{2}-\d{2}$/.test(v||"")&&!Number.isNaN(Date.parse(v+"T12:00:00Z"))}
-function fmt(v){return new Intl.DateTimeFormat("fr-BE",{day:"numeric",month:"long",year:"numeric",timeZone:"UTC"}).format(new Date(v+"T12:00:00Z"))}
-function belgianOffset(date){
- const part=new Intl.DateTimeFormat("en",{timeZone:"Europe/Brussels",timeZoneName:"shortOffset"}).formatToParts(new Date(date+"T12:00:00Z")).find(p=>p.type==="timeZoneName");
- const m=String(part?.value||"").match(/^GMT([+-])(\d{1,2})(?::(\d{2}))?$/);
- return m?m[1]+m[2].padStart(2,"0")+":"+(m[3]||"00"):"";
+export function dayOK(v){
+ if(!/^\d{4}-\d{2}-\d{2}$/.test(v||""))return false;
+ const parsed=new Date(v+"T12:00:00Z");
+ return Number.isFinite(parsed.getTime())&&parsed.toISOString().slice(0,10)===v;
 }
-function localDateTime(date,time){return /^\d\d:\d\d$/.test(time||"")?date+"T"+time+":00"+belgianOffset(date):date}
+function fmt(v){return new Intl.DateTimeFormat("fr-BE",{day:"numeric",month:"long",year:"numeric",timeZone:"UTC"}).format(new Date(v+"T12:00:00Z"))}
+/* Les heures inexistantes ou ambiguës lors d'un changement d'heure
+   ne reçoivent pas de décalage UTC inventé ; on conserve alors la date. */
+export function localDateTime(day,time){
+ if(!dayOK(day)||!/^\d{2}:\d{2}$/.test(time||""))return day;
+ const [hh,mm]=time.split(":").map(Number);
+ if(hh>23||mm>59)return day;
+ const [y,m,d]=day.split("-").map(Number);
+ const naive=Date.UTC(y,m-1,d,hh,mm);
+ const formatter=new Intl.DateTimeFormat("en-GB",{timeZone:"Europe/Brussels",year:"numeric",month:"2-digit",day:"2-digit",hour:"2-digit",minute:"2-digit",hourCycle:"h23"});
+ const matches=[];
+ for(const offsetMinutes of [120,60]){
+  const parts=Object.fromEntries(formatter.formatToParts(new Date(naive-offsetMinutes*60000)).map(p=>[p.type,p.value]));
+  if(parts.year+"-"+parts.month+"-"+parts.day+"T"+parts.hour+":"+parts.minute===day+"T"+time)matches.push(offsetMinutes);
+ }
+ if(matches.length!==1)return day;
+ return day+"T"+time+":00"+(matches[0]===120?"+02:00":"+01:00");
+}
 function post(v){let m=String(v||"").match(/,\s*(\d{4})\s+([^,]+)\s*$/);if(!m)return null;let street=String(v).slice(0,m.index).split(",").pop().trim();if(street.length<7)return null;return {"@type":"PostalAddress",streetAddress:street,postalCode:m[1],addressLocality:m[2].trim(),addressCountry:"BE"}}
 function ld(x){return JSON.stringify(x).replace(/</g,"\\u003c")}
 function entries(catalog,cogito,asof){

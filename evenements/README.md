@@ -9,3 +9,7 @@
 - Le balisage Event ne garantit pas un résultat enrichi : la Belgique ne figure pas parmi les pays officiellement éligibles aux événements enrichis de Google à la date de ce travail.
 - Pour valider localement : node scripts/build_seo_guides.mjs --repo . --as-of 2026-10-09 ; python scripts/site_quality.py
 - Branche de travail : seo/fiches-evenements-20261009. Ne pas créer de PR ou fusionner tant que les minutes GitHub Actions sont limitées.
+
+
+## Fiabilisation du calendrier — 9 octobre 2026
+Le générateur valide désormais les dates civiles réelles : 31 février et 31 avril sont rejetés. L'heure de départ avec fuseau `Europe/Brussels` est calculée à l'heure locale de l'événement, pas à midi : cela évite une erreur lors du changement d'heure. Pour une heure inexistante ou répétée à la transition DST, la donnée structurée ne prétend pas connaître un décalage horaire non confirmé et conserve la date. Tests supplémentaires intégrés à `scripts/test_seo_offline.mjs`. Aucun nouveau workflow GitHub Actions.
