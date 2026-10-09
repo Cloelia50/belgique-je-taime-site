@@ -89,6 +89,61 @@ for p in ROOT.rglob("*"):
         if term in text:
             errors.append(f"forbidden_private_marker:{p.relative_to(ROOT)}:{term}")
 
+
+# Guides SEO — contrôle statique sans appel réseau ni consommation d'API.
+import xml.etree.ElementTree as ET
+guides = [
+    "activites-gratuites-bruxelles",
+    "sorties-ce-week-end",
+    "conferences-bruxelles",
+    "rencontres-litteraires",
+    "demarches-administratives",
+]
+seo_titles = set()
+for slug in guides:
+    rel = f"guides/{slug}/index.html"
+    f = ROOT / rel
+    if not f.exists():
+        errors.append(f"seo_guide_missing:{rel}")
+        continue
+    page = f.read_text(encoding="utf-8")
+    expected_url = BASE + f"guides/{slug}/"
+    if f'<link rel="canonical" href="{expected_url}">' not in page:
+        errors.append(f"seo_wrong_canonical:{slug}")
+    title = re.search(r"<title>(.*?)</title>", page, re.I | re.S)
+    if not title:
+        errors.append(f"seo_missing_title:{slug}")
+    elif title.group(1) in seo_titles:
+        errors.append(f"seo_duplicate_title:{slug}")
+    else:
+        seo_titles.add(title.group(1))
+    if len(re.findall(r"<h1\b", page, re.I)) != 1:
+        errors.append(f"seo_h1_count:{slug}")
+    if not re.search(r'<meta name="description" content="[^"]{35,}"', page, re.I):
+        errors.append(f"seo_description_missing:{slug}")
+    if f'href="guides/{slug}/"' not in home:
+        errors.append(f"seo_home_link_missing:{slug}")
+    if expected_url not in sitemap:
+        errors.append(f"seo_sitemap_missing:{slug}")
+    if 'href="../../signaler.html"' not in page:
+        errors.append(f"seo_signalement_missing:{slug}")
+if not (ROOT / "guides" / "guides.css").is_file():
+    errors.append("seo_css_missing")
+if not (ROOT / "guides" / "index.html").is_file():
+    errors.append("seo_hub_missing")
+if not (ROOT / "scripts" / "build_seo_guides.mjs").is_file():
+    errors.append("seo_generator_missing")
+try:
+    root = ET.fromstring(sitemap)
+    locs = [e.text for e in root.iter() if e.tag.endswith("loc")]
+    if len(locs) != len(set(locs)):
+        errors.append("seo_duplicate_sitemap_urls")
+    if BASE + "guides/" not in locs:
+        errors.append("seo_hub_not_in_sitemap")
+except ET.ParseError:
+    errors.append("seo_sitemap_invalid_xml")
+
+
 if errors:
     print("SITE QUALITY FAILED")
     for error in errors:
