@@ -144,6 +144,42 @@ except ET.ParseError:
     errors.append("seo_sitemap_invalid_xml")
 
 
+# Fiches événement : contrôle de l'indexation, des sources et du schéma Event
+import json as _event_json
+event_dir=ROOT/"evenements"
+if not (event_dir/"index.html").is_file():
+    errors.append("events_hub_missing")
+event_sitemap_urls=re.findall(r"<loc>(https?://[^<]*/evenements/[^<]*)</loc>",sitemap)
+if len(event_sitemap_urls)!=len(set(event_sitemap_urls)):
+    errors.append("events_sitemap_duplicates")
+for event_url in event_sitemap_urls:
+    slug=event_url.rstrip("/").split("/")[-1]
+    event_file=event_dir/("index.html" if slug=="evenements" else f"{slug}/index.html")
+    if not event_file.is_file():
+        errors.append("event_page_missing:"+slug)
+        continue
+    content=event_file.read_text(encoding="utf-8")
+    if 'content="noindex,follow"' in content:
+        errors.append("event_noindex_in_sitemap:"+slug)
+    if f'<link rel="canonical" href="{event_url}">' not in content:
+        errors.append("event_canonical_wrong:"+slug)
+    if slug!="evenements":
+        match=re.search(r'<script type="application/ld\+json">([\s\S]*?)</script>',content)
+        if not match:
+            errors.append("event_structured_data_missing:"+slug)
+        else:
+            try:
+                data=_event_json.loads(match.group(1))
+                event=next((v for v in data if v.get("@type")=="Event"),{})
+                if not event.get("name") or not event.get("startDate") or not event.get("location",{}).get("address",{}).get("postalCode"):
+                    errors.append("event_structured_data_incomplete:"+slug)
+            except (ValueError, TypeError):
+                errors.append("event_structured_data_invalid:"+slug)
+if event_dir.exists():
+    for event_file in event_dir.glob("*/index.html"):
+        if 'content="noindex,follow"' in event_file.read_text(encoding="utf-8") and BASE+"evenements/"+event_file.parent.name+"/" in sitemap:
+            errors.append("archived_event_still_indexed:"+event_file.parent.name)
+
 if errors:
     print("SITE QUALITY FAILED")
     for error in errors:
