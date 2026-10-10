@@ -158,3 +158,33 @@ assert.match(refusedHtml, /https:\/\/www\.fdss\.be/);
 doubleRefusal.click("[data-help-topic]",{helpTopic:"income"});
 assert.match(doubleRefusal.html("entryDifficultHost"), /Demander un examen/,"Le parcours revenus ordinaire doit rester utilisable");
 console.log("EcoTank : double refus CPAS/chômage — recours, aide associative et autres droits sans nouveau formulaire CPAS : OK.");
+
+// Régressions terrain : mêmes droits d'accès pour une personne sans revenus,
+// téléphone, itsme, chômage ou revenu d'intégration. Aucune attestation Activa
+// nouvelle n'est annoncée depuis la suppression du 15 juillet 2026.
+const practical=session();
+await ready(practical);
+practical.click("[data-entry-fast-help]");
+const practicalChoices=practical.html("entryDifficultHost");
+for(const topic of ["employment_no_income","food_social","care_zero","no_phone"]){
+  assert.match(practicalChoices, new RegExp('data-help-topic="'+topic+'"'));
+}
+practical.click("[data-help-topic]",{helpTopic:"refusals"});
+const overview=practical.html("entryDifficultHost");
+for (const phrase of ["FPIE","activa.brussels","15 juillet 2026","épicerie sociale","cotisation personnelle de 0 €","itsme","sans numéro actif","aidealimentaire@fdss.be"]){
+  assert.ok(overview.includes(phrase),"Parcours double refus incomplet : "+phrase);
+}
+assert.doesNotMatch(overview,/Première demande CPAS sans connexion|Première demande avec identification/);
+for(const [topic,needles] of [
+  ["employment_no_income",["Actiris","FPIE","prime FPIE","15 juillet 2026","fpie@bruxellesformation.brussels"]],
+  ["food_social",["associatif","orientation","aidealimentaire@fdss.be"]],
+  ["care_zero",["INAMI","0 €","CAAMI","personne à charge"]],
+  ["no_phone",["SMS","eID","sans numéro de téléphone","Espaces Publics Numériques","papier"]]
+]){
+  practical.click("[data-help-topic]",{helpTopic:topic});
+  const h=practical.html("entryDifficultHost");
+  for(const phrase of needles)assert.ok(h.includes(phrase),topic+" missing "+phrase);
+  assert.match(h,/https:\/\//,topic+" missing URLs");
+  assert.doesNotMatch(h,/cpas_online_unsecured|Première demande CPAS sans connexion/);
+}
+console.log("EcoTank : sans revenus/chômage/CPAS/téléphone, accès FPIE, épicerie, CAAMI et eID — OK.");
