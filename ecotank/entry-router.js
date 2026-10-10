@@ -387,7 +387,7 @@
   // Les autres parcours EcoTank et le questionnaire détaillé restent inchangés.
   function renderDifficultHelp(nextTopic){
     if(!ensureScreens())return;
-    if(nextTopic)state.difficultTopic=nextTopic;
+    if(nextTopic){state.difficultTopic=nextTopic;state.helpStep=0;}
     const initial=state.destinationId==="residence_status"?"residence":
       state.destinationId==="international_special"?"international":"overview";
     const topic=state.difficultTopic||initial;
@@ -611,46 +611,31 @@
       eid_works_no_phone:"Lecteur eID fonctionnel : continuer sans itsme ni SMS",
       no_phone:"Faire des démarches sans numéro de téléphone"
     }[selected]||"Vos premières démarches possibles";
-    const visibleCards=selected==="overview"?[guides.urgent_food[0],guides.urgent_shelter[0],guides.urgent_care[0]]:cards.slice(0,3);
-    const moreCards=selected==="overview"?cards:cards.slice(3);
-    const choicesHtml=list=>list.map(([id,label])=>
-      '<button type="button" class="entry-choice" data-help-topic="'+id+'" aria-pressed="'+(id===selected?'true':'false')+'">'+esc(label)+'</button>'
-    ).join("");
-    const cardHtml=list=>list.map((card,i)=>
-      '<article class="business-card '+(i===0?'priority':'')+'"><h3>'+(i+1)+'. '+esc(card[0])+'</h3><p>'+esc(card[1])+'</p>'+
-      '<div class="resource-actions">'+card[2].map(link=>safeLink(link[0],link[1])).filter(Boolean).join("")+'</div></article>'
-    ).join("");
-    const needSection=
-      '<section class="urgent-needs"><h3>Ce qui est urgent pour vous</h3>'+
-      '<div class="urgent-needs-grid">'+choicesHtml(firstChoices)+'</div>'+
-      '<details class="urgent-secondary"><summary>Autres situations : deux refus, séjour, banque, papiers, logement…</summary>'+
-      '<div class="entry-choice-grid">'+choicesHtml(otherChoices)+'</div></details></section>';
-    const immediateLinks=selected==="overview"?"":'<nav class="ecotank-immediate-links" aria-label="Trois démarches à essayer maintenant">'+
-      '<strong>Les trois démarches à essayer en premier</strong>'+
-      '<div class="ecotank-immediate-links-grid">'+visibleCards.map((card,i)=>
-        '<div><span>'+(i+1)+'. '+esc(card[0])+'</span>'+
-        (card[2]?.[0]?safeLink(card[2][0][0],card[2][0][1]):"")+'</div>'
-      ).join("")+'</div>'+
-      '<p>Lisez les conditions dans les fiches ci-dessous. Une inscription ne garantit ni l’aide ni une place.</p></nav>';
-    const actionSection=
-      immediateLinks+
-      (selected==="refusals"?'<p class="business-safety"><strong>Les refus sont déjà connus.</strong> Nous ne proposons pas une nouvelle première demande CPAS, mais d’autres démarches et les recours.</p>':"")+
-      '<h3 class="urgent-actions-title">'+(selected==="overview"?"Premiers gestes possibles":"À faire en premier")+'</h3>'+
-      '<div class="business-grid">'+cardHtml(visibleCards)+'</div>'+
-      (moreCards.length?'<details class="ecotank-more-actions"><summary>Autres démarches et détails ('+moreCards.length+')</summary>'+
-        '<div class="business-grid">'+cardHtml(moreCards)+'</div></details>':"");
-    host.innerHTML=
-      '<div class="entry-topline"><button type="button" class="linkish" data-help-back>← Retour</button><span class="entry-step">Sans questionnaire</span></div>'+
-      '<div class="simple-kicker">Aides concrètes à Bruxelles</div>'+
-      '<h2>'+esc(title)+'</h2>'+
-      '<p>'+(selected==="overview"?"Un clic suffit : choisissez votre besoin et découvrez les premières démarches.":"Voici quoi faire d’abord, sans autre formulaire obligatoire. Les droits et les places ne sont pas garantis.")+'</p>'+
-      (selected==="overview"?
-        needSection+actionSection:
-        actionSection+'<div class="entry-route-actions"><button type="button" class="linkish" data-help-reset>← Choisir un autre besoin</button></div>'+needSection)+
-      '<div class="entry-route-actions access-shortcut"><button type="button" data-help-access>Accès numérique bloqué ? Alternative sans itsme</button></div>'+
-      '<div class="entry-route-actions"><button type="button" class="linkish" data-help-reset>Revenir aux premières aides</button>'+
-      '<button type="button" data-help-detailed>Examiner ma situation en détail (facultatif)</button></div>'+
-      '<p class="business-safety">Ne communiquez jamais ici votre code PIN, mot de passe ou numéro national. Urgence médicale vitale : 112.</p>';
+
+    const compact={
+      urgent_food:["Choisissez votre commune dans le répertoire alimentaire.","Sans téléphone, écrivez à aidealimentaire@fdss.be.","Si l'épicerie refuse, cherchez une distribution de colis ou de repas."],
+      urgent_shelter:["Demandez une place au Samusocial pour cette nuit. Place non garantie.","Sans GSM, consultez la procédure avec un téléphone emprunté.","Si aucune place, demandez au Samusocial une réorientation."],
+      urgent_care:["Demandez une consultation au centre Athéna.","Prenez contact avec le CASO pour un rendez-vous.","Vérifiez vos droits auprès de votre ancienne mutuelle ou de la CAAMI."],
+      urgent_refusal:["Repérez la date de notification du refus. Vérifiez vite le délai de recours.","Demandez un avis juridique avec la décision.","Si le refus est oral, demandez une décision écrite et datée."],
+      urgent_access:["Essayez l'eID et le lecteur via CSAM, sans itsme.","Si vous avez un e-mail, vérifiez la clé CSAM par e-mail.","Sans accès numérique, demandez une procédure papier ou un guichet."]
+    };
+    const choicesHtml=list=>list.map(([id,label])=>'<button type="button" class="entry-choice" data-help-topic="'+id+'">'+esc(label)+'</button>').join("");
+    const choose='<section class="urgent-needs"><h3>De quoi avez-vous besoin ?</h3><div class="urgent-needs-grid">'+choicesHtml(firstChoices)+'</div><details><summary>Autres problèmes</summary><div class="entry-choice-grid">'+choicesHtml(otherChoices)+'</div></details></section>';
+    if(selected==="overview"){
+      host.innerHTML='<div class="simple-kicker">EcoTank vous guide</div><h2>De quoi avez-vous besoin aujourd’hui ?</h2><p>Un choix, une démarche à la fois.</p>'+choose+'<p class="business-safety">Danger médical immédiat : 112.</p>';
+    }else{
+      const n=Math.min(Number(state.helpStep||0),Math.max(0,cards.length-1)),card=cards[n];
+      const instruction=(compact[selected]||[])[n]||card[1].split(/[.!?] /)[0].slice(0,145)+'.';
+      const urls=card[2].map(link=>safeLink(link[0],link[1])).filter(Boolean);
+      host.innerHTML='<div class="simple-kicker">Une démarche à la fois</div><h2>'+esc(title)+'</h2>'+
+        '<section class="guided-one-step" aria-live="polite"><p class="guided-step-count">Solution '+(n+1)+' sur '+cards.length+'</p>'+
+        '<h3>'+esc(card[0])+'</h3><p class="guided-instruction">'+esc(instruction)+'</p>'+
+        '<div class="guided-main-link">'+(urls[0]||'')+'</div>'+
+        '<div class="guided-actions"><button type="button" data-help-next '+(n>=cards.length-1?'disabled':'')+'>Ça n’a pas marché → Autre solution</button>'+
+        '<button type="button" data-help-reset>Changer de problème</button></div>'+
+        '<details><summary>En savoir plus (facultatif)</summary><p>'+esc(card[1])+'</p>'+urls.slice(1).join('')+'</details></section>'+
+        '<p class="business-safety">Les aides ne sont jamais garanties. Danger vital : 112.</p>';
+    }
     showScreen("simpleDifficultHelp");
   }
 
@@ -821,6 +806,7 @@
     if(event.target.closest("[data-access-back]")){renderDifficultHelp();return;}
     if(event.target.closest("[data-access-reset]")){state.accessIssue="";state.accessService="general";renderAccessHelp();return;}
     if(event.target.closest("[data-entry-admin]")){state.difficultTopic="";renderDifficultHelp();return;}
+    if(event.target.closest("[data-help-next]")){state.helpStep=(state.helpStep||0)+1;renderDifficultHelp();return;}
     const topic=event.target.closest("[data-help-topic]");
     if(topic){renderDifficultHelp(topic.dataset.helpTopic);return;}
     if(event.target.closest("[data-help-back]")){
@@ -828,7 +814,7 @@
       else renderDestination(state.destinationId);
       return;
     }
-    if(event.target.closest("[data-help-reset]")){state.difficultTopic="";renderDifficultHelp();return;}
+    if(event.target.closest("[data-help-reset]")){state.difficultTopic="";state.helpStep=0;renderDifficultHelp();return;}
     if(event.target.closest("[data-help-detailed]")){handoffAdmin();return;}
     if(event.target.closest("[data-admin-retry]")){startImmediateHelp();return;}
     if(event.target.closest("[data-admin-immediate-help]")){state.fromAdminHome=true;startImmediateHelp();return;}
