@@ -275,3 +275,66 @@ access.change("[data-access-service]","myminfin");
 assert.match(access.html("entryDifficultHost"),/votre blocage peut rendre sa connexion en ligne inutilisable/);
 assert.match(access.html("entryDifficultHost"),/guichet/);
 console.log("EcoTank : service limité par équipement manquant, alternative proposée — OK.");
+
+
+// Parcours de précarité : aide opérationnelle AVANT les longs questionnaires.
+// Le test lit des rendus du routeur sans activer aucune collecte distante.
+const precarious=session();
+await ready(precarious);
+precarious.click("[data-entry-fast-help]");
+const firstHtml=precarious.html("entryDifficultHost");
+const priorityStart=firstHtml.indexOf('class="urgent-needs-grid"');
+const firstCards=firstHtml.indexOf('class="business-grid"');
+assert.ok(priorityStart>=0 && priorityStart<firstCards, "Choix du besoin avant les cartes explicatives");
+const primaryChoices=firstHtml.slice(priorityStart,firstHtml.indexOf('</div>',priorityStart));
+assert.equal((primaryChoices.match(/data-help-topic=/g)||[]).length,6,"Six choix immédiats visibles");
+assert.match(primaryChoices,/data-help-topic="urgent_food"/);
+assert.match(primaryChoices,/data-help-topic="urgent_shelter"/);
+assert.match(primaryChoices,/data-help-topic="urgent_care"/);
+assert.match(firstHtml,/class="urgent-secondary"/,"Les situations détaillées restent accessibles");
+assert.ok(firstHtml.includes("Commencer par une aide humaine"),"Aucun ancien contenu supprimé");
+function visibleActions(html){
+  const start=html.indexOf('<div class="business-grid">');
+  if(start<0)throw new Error("Aucune carte affichée");
+  const rest=html.slice(start);
+  return rest.split('<details class="ecotank-more-actions">')[0].split('<div class="entry-route-actions">')[0];
+}
+const urgentScenarios=[
+  ["urgent_food",["aidealimentaire@fdss.be","fdss.be","justificatifs"]],
+  ["urgent_shelter",["Samusocial","0800 99 340","9 h et 15 h","sans GSM"]],
+  ["urgent_care",["Athéna","Bischoffsheim 31","CASO","pas de consultation médicale sans rendez-vous"]],
+  ["urgent_income",["Actiris","FPIE","première demande CPAS"]],
+  ["urgent_refusal",["3 mois","aide juridique","décision écrite"]],
+  ["urgent_access",["lecteur","CSAM","SMS"]],
+  ["urgent_asylum",["Fedasil","rue Belliard 68","accueil matériel"]],
+  ["urgent_irregular",["Athéna","aide médicale urgente","Samusocial"]],
+  ["refusals",["FPIE","mutualité","tribunal du travail"]],
+  ["housing",["Samusocial","code d'inscription"]],
+  ["health",["Athéna","CAAMI"]],
+  ["residence",["Fedasil","Office des étrangers"]]
+];
+for(const [topic,words] of urgentScenarios){
+  precarious.click("[data-help-topic]",{helpTopic:topic});
+  const content=precarious.html("entryDifficultHost"),front=visibleActions(content);
+  const count=(front.match(/class="business-card /g)||[]).length;
+  assert.equal(count,3,topic+": trois actions au maximum avant « autres détails »");
+  for(const word of words) assert.ok(content.toLowerCase().includes(word.toLowerCase()),topic+": manque "+word);
+  assert.match(front,/href="https:\/\//,topic+": aucun lien direct utilisable");
+  assert.match(content,/data-help-detailed/,topic+": détails toujours facultatifs");
+}
+precarious.click("[data-help-topic]",{helpTopic:"refusals"});
+const longRefusal=precarious.html("entryDifficultHost");
+assert.match(longRefusal,/<details class="ecotank-more-actions">/,"Les quatre étapes suivantes sont repliées");
+assert.doesNotMatch(visibleActions(longRefusal),/Première demande CPAS sans connexion/);
+precarious.click("[data-help-reset]");
+assert.match(precarious.html("entryDifficultHost"),/De quoi avez-vous besoin aujourd/);
+const firstRequest=profile.online_assistance.fast_actions.find(a=>a.id==="first_cpas_request");
+const autoItsme=profile.online_assistance.fast_actions.find(a=>a.id==="activate_itsme");
+assert.ok(firstRequest&&autoItsme,"Les sources et aides historiques restent conservées");
+for(const action of [firstRequest,autoItsme]){
+  assert.deepEqual(action.when_profiles_any,[],"Aucun renvoi automatique pour "+action.id);
+  assert.deepEqual(action.when_readiness,{},"Aucune condition implicite pour "+action.id);
+}
+assert.ok(firstRequest.needs_explicit_first_request,"Une vraie première demande exige confirmation");
+assert.ok(autoItsme.needs_explicit_sms_access,"Ne pas activer itsme sans numéro");
+console.log("EcoTank précarité : 12 parcours, six besoins immédiats, trois actions visibles, pas de boucle CPAS/itsme — OK.");
