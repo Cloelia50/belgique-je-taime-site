@@ -134,3 +134,14 @@
   .ecotank-page #simpleHome .simple-home-card{padding-top:20px}
   .ecotank-page #simpleHome #simpleAdminStart{min-height:72px}
 }
+
+/* Test sur Chrome mobile : un lien directement utilisable dans la première vue,
+   même si le texte des cartes détaillées est long. */
+.ecotank-page .ecotank-immediate-links{margin:13px 0 17px;padding:13px;border:1px solid var(--line);border-radius:13px;background:var(--brand-soft,#e9f7f2)}
+.ecotank-page .ecotank-immediate-links>strong{display:block;font-size:.98rem;margin-bottom:10px}
+.ecotank-page .ecotank-immediate-links-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}
+.ecotank-page .ecotank-immediate-links-grid>div{display:flex;flex-direction:column;gap:6px;min-width:0;font-size:.82rem;line-height:1.3}
+.ecotank-page .ecotank-immediate-links-grid>div>span{font-weight:700}
+.ecotank-page .ecotank-immediate-links-grid a{display:inline-flex;align-items:center;min-height:44px;padding:8px 10px;border-radius:9px;border:1px solid var(--line);background:var(--sheet);color:var(--ink);font-size:.85rem;font-weight:750;line-height:1.3;text-decoration:none;overflow-wrap:anywhere}
+.ecotank-page .ecotank-immediate-links>p{margin:11px 0 0;font-size:.8rem;line-height:1.4;color:var(--muted)}
+@media(max-width:620px){.ecotank-page .ecotank-immediate-links-grid{grid-template-columns:minmax(0,1fr)}.ecotank-page .ecotank-immediate-links-grid>div{display:grid;grid-template-columns:minmax(0,1fr) minmax(120px,1.1fr);align-items:center}.ecotank-page .ecotank-immediate-links-grid>div>span{font-size:.78rem}}

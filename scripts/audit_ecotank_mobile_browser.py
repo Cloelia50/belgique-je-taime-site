@@ -65,13 +65,15 @@ def metrics(d):
  return d.execute_script("""
  const h=document.querySelector('#entryDifficultHost'),
  box=h?.querySelector(':scope > .business-grid'),
- link=box?.querySelector('a[href]');
+ quick=h?.querySelector('.ecotank-immediate-links a[href]'),
+ link=quick||box?.querySelector('a[href]');
  return {title:h?.querySelector('h2')?.textContent, width:innerWidth,
  height:innerHeight,documentWidth:document.documentElement.scrollWidth,
  sixChoices:h?.querySelectorAll('.urgent-needs-grid [data-help-topic]').length,
  actions:box?.querySelectorAll(':scope > article').length||0,
  firstLinkY:link?Math.round(link.getBoundingClientRect().top):null,
  firstLinkAboveFold:!!link&&link.getBoundingClientRect().top<innerHeight,
+ quickActionVisible:!!quick&&quick.getBoundingClientRect().top<innerHeight,
  urls:Array.from(box?.querySelectorAll('a[href]')||[],x=>x.href),
  otherCollapsed:h?.querySelector('details.ecotank-more-actions')?.open===false,
  textLength:h?.innerText?.length||0};
@@ -112,7 +114,8 @@ def run(w,h):
    try:
     choose(d,topic)
     m=metrics(d)
-    ok=m["actions"]==3 and any(domain in u for u in m["urls"])
+    ok=m["actions"]==3 and any(domain in u for u in m["urls"]) and
+     (label not in ("double_refus","plus_de_telephone") or m["quickActionVisible"])
     report(name+"-"+label,ok,{**m,"domaine_recherche":domain})
     if label in ("manger","dormir","soins","double_refus","asile_sans_accueil","eid_numero_perdu"):
      d.save_screenshot(str(DEST/(name+"-"+label+".png")))

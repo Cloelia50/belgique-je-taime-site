@@ -517,7 +517,7 @@
         ["Si le service exige itsme seulement","Un lecteur eID, même parfaitement fonctionnel, ne permet pas de finaliser l'activation itsme sans numéro recevant le SMS requis. Ne recommencez pas la procédure en boucle. Contactez le service concerné pour une alternative au guichet, par courrier ou par un autre canal d'identification. Pour Actiris, une antenne constitue une voie d'accès ; la première inscription exige normalement un rendez-vous.",[["itsme_sms_confirm","itsme : étape de confirmation SMS"],["actiris_register","Actiris : modalités en antenne"]]]
       ],
       no_phone:[
-        ["Pas de SMS : vérifier si une eID fonctionne déjà","L'activation itsme requiert un numéro de GSM et un code reçu par SMS, même avec un lecteur eID. Si vous avez déjà une carte eID et un lecteur fonctionnels, choisissez plutôt la rubrique Lecteur eID fonctionnel mais itsme bloqué : aucune nouvelle activation n'est nécessaire pour utiliser la connexion eID sur les services compatibles.",[["csam_eid_steps","Se connecter avec une eID sans itsme"],["itsme_sms_confirm","Pourquoi itsme demande un SMS"]]],
+        ["Pas de SMS : vérifier si une eID fonctionne déjà","L'activation itsme requiert un numéro de GSM et un code reçu par SMS, même avec un lecteur eID. Si vous avez déjà une carte eID et un lecteur fonctionnels, choisissez plutôt la rubrique Lecteur eID fonctionnel mais itsme bloqué : aucune nouvelle activation n'est nécessaire pour utiliser la connexion eID sur les services compatibles.",[["csam_keys","Se connecter via CSAM sans itsme"],["csam_eid_steps","Se connecter avec une eID sans itsme"],["itsme_sms_confirm","Pourquoi itsme demande un SMS"]]],
         ["Si la personne a une eID, mais pas de lecteur","La carte eID avec son PIN permet la connexion CSAM sur les services compatibles. Un Espace Public Numérique peut parfois fournir un ordinateur et de l'accompagnement ; vérifiez l'existence d'un lecteur de carte sur place.",[["eID_no_phone","Connexion avec l'eID"],["epn_access","Espaces Publics Numériques"]]],
         ["Sans accès numérique : demander une démarche papier ou en personne","Actiris propose des démarches en antenne et la CAAMI peut envoyer des formulaires papier. La récupération d'une ligne perdue dépend de l'opérateur. Ne donnez jamais votre code PIN ou mot de passe à un accompagnateur.",[["actiris_register","Actiris en présentiel"],["caami_join","CAAMI : formulaires papier"],["itsme_change_number","Numéro perdu et compte itsme"]]]
       ],
@@ -625,7 +625,15 @@
       '<div class="urgent-needs-grid">'+choicesHtml(firstChoices)+'</div>'+
       '<details class="urgent-secondary"><summary>Autres situations : deux refus, séjour, banque, papiers, logement…</summary>'+
       '<div class="entry-choice-grid">'+choicesHtml(otherChoices)+'</div></details></section>';
+    const immediateLinks=selected==="overview"?"":'<nav class="ecotank-immediate-links" aria-label="Trois démarches à essayer maintenant">'+
+      '<strong>Les trois démarches à essayer en premier</strong>'+
+      '<div class="ecotank-immediate-links-grid">'+visibleCards.map((card,i)=>
+        '<div><span>'+(i+1)+'. '+esc(card[0])+'</span>'+
+        (card[2]?.[0]?safeLink(card[2][0][0],card[2][0][1]):"")+'</div>'
+      ).join("")+'</div>'+
+      '<p>Lisez les conditions dans les fiches ci-dessous. Une inscription ne garantit ni l’aide ni une place.</p></nav>';
     const actionSection=
+      immediateLinks+
       (selected==="refusals"?'<p class="business-safety"><strong>Les refus sont déjà connus.</strong> Nous ne proposons pas une nouvelle première demande CPAS, mais d’autres démarches et les recours.</p>':"")+
       '<h3 class="urgent-actions-title">'+(selected==="overview"?"Premiers gestes possibles":"À faire en premier")+'</h3>'+
       '<div class="business-grid">'+cardHtml(visibleCards)+'</div>'+
