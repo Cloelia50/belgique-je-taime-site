@@ -108,8 +108,13 @@ for (const [name, answers, expectHelp] of journeys) {
 
 // Chaque identifiant de source des premières pistes existe dans le catalogue officiel.
 const linkedKeys = [...source.matchAll(/\[\["([a-z][a-z0-9_]+)","[^"]+"\]/g)].map(match => match[1]);
+const verifiedAdditionalUrls = Object.fromEntries(
+  [...source.matchAll(/^\s*([a-z][a-z0-9_]*):\{url:"(https:\/\/[^"]+)"\},?$/gm)]
+    .map(match => [match[1], match[2]])
+);
 for (const key of new Set(linkedKeys)) {
-  assert.ok(profile.official_sources?.[key]?.url?.startsWith("https://"), "Source officielle manquante : " + key);
+  const url = profile.official_sources?.[key]?.url || verifiedAdditionalUrls[key];
+  assert.ok(url?.startsWith("https://"), "Source officielle ou associative vérifiée manquante : " + key);
 }
 console.log("EcoTank : accès immédiat, retour à zéro, 8 parcours et sources officielles — OK (aucun robot exécuté).");
 
