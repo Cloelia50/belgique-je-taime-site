@@ -857,7 +857,21 @@
     startImmediateHelp();
   },true);
 
+
+  // On mobile, rendre l'aide concrète visible AVANT le parcours d'économies.
+  // Reclasser les boutons existants conserve leurs gestionnaires et les autres parcours.
+  function highlightUrgentEntry(){
+    const urgent=document.getElementById("simpleAdminStart");
+    const standard=document.getElementById("simpleStart");
+    if(!urgent||!standard||!urgent.parentElement||urgent.parentElement!==standard.parentElement)return;
+    urgent.innerHTML='<strong>Besoin d’aide maintenant ?</strong>'+
+      '<span>Nourriture, hébergement, soins, revenus, refus ou accès aux démarches · sans long questionnaire</span>';
+    urgent.setAttribute("aria-label","Besoin d’aide maintenant ? Trouver des solutions");
+    urgent.parentElement.insertBefore(urgent,standard);
+  }
+
   prioritizeAdminResults();
+  highlightUrgentEntry();
   ensureScreens();
   window.EcoTankEntryRouter={start};
 })();

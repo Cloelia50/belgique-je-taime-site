@@ -43,7 +43,15 @@ try {
     await page.locator('#simpleAdminStart').waitFor({ state:'visible', timeout:20000 });
     record((await page.title()).toLowerCase().includes('ecotank'), 'Titre de page inattendu');
     const homeCtas = await page.locator('#simpleHome.active .simple-home-buttons button').allTextContents();
-    record(homeCtas.some(x=>x.includes('Ma situation administrative est compliquée')), 'Entree pour situations difficiles introuvable');
+    record(homeCtas.some(x=>x.includes('Besoin d’aide maintenant ?')), 'Entree aide immédiate introuvable');
+    const homeBtnMetric=await page.locator('#simpleAdminStart').evaluate(el=>({
+      top:Math.round(el.getBoundingClientRect().top),bottom:Math.round(el.getBoundingClientRect().bottom),
+      firstButton:el.parentElement.querySelector('button')?.id,
+      accessibleLabel:el.getAttribute('aria-label')
+    }));
+    record(homeBtnMetric.firstButton==='simpleAdminStart','Le bouton d’aide est relégué derrière les économies');
+    record(homeBtnMetric.bottom<=844,'Le bouton d’aide n’est pas visible sur le premier écran mobile (bas='+homeBtnMetric.bottom+')');
+    results.push({id:'home-emergency',...homeBtnMetric});
     await page.screenshot({path:path.join(outputDir,'00-accueil-general.png'),fullPage:false,animations:'disabled'});
     await page.locator('#simpleAdminStart').click();
     await page.locator('#simpleDifficultHelp.active .urgent-needs-grid [data-help-topic="urgent_food"]').waitFor({ state:'visible', timeout:25000 });

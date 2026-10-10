@@ -124,3 +124,13 @@
 @media(max-width:340px){
   .ecotank-page #simpleDifficultHelp .urgent-needs-grid{grid-template-columns:minmax(0,1fr)}
 }
+
+/* Accueil : l'aide aux situations de précarité précède les économies sur petit écran. */
+.ecotank-page #simpleHome .simple-home-buttons #simpleAdminStart{order:-1}
+@media(max-width:620px){
+  .ecotank-page #simpleHome .home-art{display:none}
+  .ecotank-page #simpleHome .simple-home-card h1{font-size:clamp(1.55rem,7vw,2.2rem);line-height:1.12}
+  .ecotank-page #simpleHome .simple-home-card .simple-lead{font-size:1rem;line-height:1.42}
+  .ecotank-page #simpleHome .simple-home-card{padding-top:20px}
+  .ecotank-page #simpleHome #simpleAdminStart{min-height:72px}
+}
