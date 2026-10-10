@@ -114,8 +114,8 @@ def run(w,h):
    try:
     choose(d,topic)
     m=metrics(d)
-    ok=m["actions"]==3 and any(domain in u for u in m["urls"]) and
-     (label not in ("double_refus","plus_de_telephone") or m["quickActionVisible"])
+    ok=(m["actions"]==3 and any(domain in u for u in m["urls"])
+        and (label not in ("double_refus","plus_de_telephone") or m["quickActionVisible"]))
     report(name+"-"+label,ok,{**m,"domaine_recherche":domain})
     if label in ("manger","dormir","soins","double_refus","asile_sans_accueil","eid_numero_perdu"):
      d.save_screenshot(str(DEST/(name+"-"+label+".png")))
