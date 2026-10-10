@@ -260,7 +260,7 @@ assert.match(noEmail,/adresse e-mail personnelle/);
 access.change("[data-access-issue]","pin_missing");
 assert.match(access.html("entryDifficultHost"),/belgium\.be\/fr\/services_en_ligne\/app_reimpression_pin_puk/);
 access.change("[data-access-issue]","no_belgian_eid");
-assert.match(access.html("entryDifficultHost"),/bureau d.enregistrement/i);
+assert.match(access.html("entryDifficultHost"),/bureau d(?:'|&#39;)enregistrement/i);
 access.change("[data-access-service]","cpas");
 assert.match(access.html("entryDifficultHost"),/Si le CPAS a déjà refusé/);
 access.click("[data-access-reset]");
@@ -269,3 +269,9 @@ access.click("[data-access-back]");
 assert.match(access.html("entryDifficultHost"),/Situations compliquées/);
 assert.match(access.html("entryDifficultHost"),/data-help-access/);
 console.log("EcoTank : 16 blocages, 9 services, alternatives eID/CSAM/guichet/papier sans numéro — OK.");
+
+access.change("[data-access-issue]","no_belgian_eid");
+access.change("[data-access-service]","myminfin");
+assert.match(access.html("entryDifficultHost"),/votre blocage peut rendre sa connexion en ligne inutilisable/);
+assert.match(access.html("entryDifficultHost"),/guichet/);
+console.log("EcoTank : service limité par équipement manquant, alternative proposée — OK.");
