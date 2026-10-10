@@ -11,6 +11,8 @@
     bypassStart: false,
     bypassAdminStart: false,
     fromAdminHome: false,
+    accessIssue: "",
+    accessService: "general",
     businessAnswers: {}
   };
 
@@ -126,7 +128,7 @@
       '<h2>'+esc(q.text||"Votre situation")+'</h2>'+
       (q.helper?'<p>'+esc(q.helper)+'</p>':"")+
       (qid==="q_entry_situation"?
-        '<div class="entry-route-actions entry-fast-help"><button type="button" class="primary" data-entry-fast-help>Mes droits sont coupés ou ma situation est compliquée : voir des premières pistes</button></div>'+
+        '<div class="entry-route-actions entry-fast-help"><button type="button" class="primary" data-entry-fast-help>Mes droits sont coupés ou ma situation est compliquée : voir des premières pistes</button><button type="button" data-entry-access-help>Je ne peux pas me connecter (eID, itsme, GSM, PIN, e-mail…)</button></div>'+
         '<p class="entry-fast-help-note">Vous pouvez commencer sans répondre à toutes les questions. Vous pourrez préciser votre difficulté ensuite.</p>':"")+
       controls+
       '<div class="entry-footer"><span></span><button type="button" class="linkish" data-entry-unknown>Je ne sais pas quoi choisir</button></div>';
@@ -237,6 +239,145 @@
         '<button type="button" data-help-detailed>Ouvrir le parcours détaillé</button></div>';
     });
     return true;
+  }
+
+
+  // Guide de dépannage de l'accès public : toutes les sorties sont locales et facultatives.
+  // Les 16 cas sont des obstacles techniques, PAS une déduction d'éligibilité.
+  const ACCESS_REFS={
+    csam:["CSAM : mes clés numériques","https://www.csam.be/fr/profil-egov.html"],
+    csam_help:["BOSA : aide à l'identification sans eID","https://sma-help.bosa.belgium.be/fr/identification-sans-eid"],
+    csam_office:["BOSA : activation en bureau d'enregistrement","https://bosa.belgium.be/en/services/requesting-and-activating-digital-keys"],
+    eid:["Tester le lecteur et le logiciel eID","https://eid.belgium.be/fr"],
+    pin:["Demander de nouveaux codes PIN/PUK","https://www.belgium.be/fr/services_en_ligne/app_reimpression_pin_puk"],
+    loss:["Carte perdue ou volée : démarches","https://www.belgium.be/fr/famille/identite/carte_d_identite/perte_ou_vol"],
+    itsme:["Activation itsme et conditions","https://www.itsme-id.com/fr-BE/get-started/eid"],
+    email:["Guide officiel : clé numérique par e-mail","https://bosa.belgium.be/sites/default/files/documents/activer_une_cle_numerique-e-mail_otp.pdf"],
+    actiris:["Actiris : s'inscrire, se réinscrire, antennes","https://www.actiris.brussels/fr/citoyens/comment-minscrire-ou-me-reinscrire/"],
+    caami:["CAAMI : formulaires imprimables et au guichet","https://www.caami-hziv.fgov.be/fr/membres/formulaires"],
+    caami_post:["CAAMI : recevoir l'inscription par la poste","https://www.caami-hziv.fgov.be/fr/membres/devenir-membre/commande-de-formulaire-dinscription"],
+    ebox:["My eBox : comment se connecter via CSAM","https://myebox.be/fr/faq/comment-acceder-a-my-ebox"],
+    tax:["MyMinfin : connexion par eID/lecteur/PIN","https://finances.belgium.be/fr/node/2890"],
+    handicap:["My Handicap : connexion eID et accompagnement","https://www.socialsecurity.be/citizen/fr/static/applics/myhandicap/index.htm"],
+    cpas:["CPAS Online : première demande uniquement","https://www.socialsecurity.be/citizen/fr/static/applics/ocmw-cpas-online/index.htm"],
+    onem:["ONEM : démarche via un organisme de paiement","https://www.onem.be/citoyens/chomage-complet/comment-devez-vous-demander-les-allocations-/comment-devez-vous-introduire-une-demande-apres-une-interruption-du-chomage"],
+    epn:["Bruxelles : espaces publics numériques","https://www.bruxelles.be/ou-trouver-des-espaces-publics-numeriques-epn"]
+  };
+  const ACCESS_PROBLEMS=[
+    ["eid_ok_no_sms","Mon eID et mon lecteur fonctionnent, mais itsme exige un SMS",[
+      ["Continuer sans itsme","Vous avez déjà le lecteur et le PIN : choisissez « Identification avec un lecteur de cartes eID » sur le service public lorsqu'il le propose. Aucun nouveau numéro de GSM, nouveau lecteur ou code SMS n'est nécessaire.",["csam","eid"]],
+      ["Créer une alternative par e-mail si vous avez un e-mail","Connectez-vous une seule fois avec votre eID dans Mes clés numériques CSAM, puis activez le code de sécurité par e-mail. Cette clé fonctionne uniquement sur les services qui l'acceptent ; elle n'active pas itsme.",["csam","email"]],
+      ["Si le service n'offre vraiment qu'itsme","Ne répétez pas l'activation impossible. Demandez à CE service une procédure au guichet, par courrier, par e-mail ou une autre identification reconnue. Les accès proposés diffèrent selon les sites.",["csam_help"]]
+    ]],
+    ["number_lost","Ancien numéro perdu, résilié ou attribué à quelqu'un d'autre",[
+      ["Ne pas dépendre de l'ancien numéro","N'essayez pas de recevoir un SMS sur un numéro qui ne vous appartient plus. Pour les services publics compatibles, utilisez eID ou une clé CSAM déjà active. Les démarches de récupération d'itsme sont distinctes.",["csam","itsme"]],
+      ["Choisir un autre canal de contact","Demandez la modification de vos coordonnées directement au service concerné : guichet, courrier ou formulaire officiel. Ne communiquez pas vos codes à un tiers.",["actiris","caami"]]
+    ]],
+    ["phone_no_sms","GSM présent mais impossible de recevoir un SMS",[
+      ["Essayer un moyen d'identification sans SMS","Si vous disposez d'une eID et d'un lecteur fonctionnels, choisissez l'eID sur CSAM. Si une clé e-mail est déjà active et acceptée par le service, vous pouvez aussi l'utiliser.",["csam","email"]],
+      ["Vérifier la ligne sans bloquer les autres démarches","Pour l'activation d'itsme, il faut un numéro capable de recevoir le SMS. Examinez le problème de ligne avec l'opérateur, mais continuez les démarches administratives indépendantes.",["itsme"]]
+    ]],
+    ["no_smartphone","Pas de smartphone, smartphone hors service ou trop ancien",[
+      ["Utiliser un ordinateur et l'eID","itsme n'est pas obligatoire pour tout service public. Le lecteur eID sur ordinateur reste une solution lorsque le site propose CSAM.",["eid","csam"]],
+      ["Autres possibilités avec une adresse e-mail","Sur les services compatibles, une clé CSAM avec code par e-mail peut fonctionner sans smartphone une fois activée avec eID ou via un bureau d'enregistrement.",["csam","csam_office"]]
+    ]],
+    ["reader_missing","J'ai une carte eID et le PIN, mais pas de lecteur",[
+      ["Trouver un accès à un lecteur compatible","Un ordinateur seul ne remplace pas le lecteur. Demandez à une antenne, une association ou un Espace Public Numérique si un ordinateur équipé d'un lecteur eID est accessible. Vérifiez avant de vous déplacer.",["epn","eid"]],
+      ["Si impossible d'avoir un lecteur","Pour créer une autre clé numérique CSAM sans eID utilisable, un bureau d'enregistrement peut aider après vérification d'identité, mais une adresse e-mail personnelle est requise. Sinon, demandez une démarche physique ou papier.",["csam_office","csam_help"]]
+    ]],
+    ["reader_broken","Le lecteur ou le logiciel eID ne fonctionne pas",[
+      ["Tester l'installation avant toute autre démarche","Sur un ordinateur Windows, macOS ou Linux compatible, vérifiez le logiciel eID et le test de connexion CSAM. Un problème de navigateur, certificat ou orientation de carte ne signifie pas qu'itsme est obligatoire.",["eid"]],
+      ["Si l'erreur persiste","Ne fournissez jamais le PIN à un accompagnateur. Consultez l'aide du logiciel eID ou choisissez le guichet du service concerné ; certaines clés alternatives nécessitent une activation préalable.",["eid","csam_help"]]
+    ]],
+    ["pin_missing","PIN ou PUK oublié, eID bloquée",[
+      ["Faire rétablir le PIN/PUK","Un PIN oublié ou bloqué ne se débloque pas sur EcoTank. Demandez la procédure officielle de réimpression des codes, puis faites les opérations nécessaires auprès de votre commune.",["pin"]],
+      ["Pendant l'attente des codes","Si vous avez déjà une clé numérique alternative active et acceptée, utilisez-la ; sinon demandez une procédure papier ou en personne au service concerné.",["csam","csam_help"]]
+    ]],
+    ["card_lost","Carte eID perdue, volée, expirée ou inutilisable",[
+      ["Perte ou vol : protéger vos documents","Faites bloquer la carte via DOC STOP ou selon la procédure communale et demandez son remplacement. Ne tentez pas de continuer avec les certificats d'une carte annulée.",["loss"]],
+      ["Si la carte est expirée ou ne contient pas les bons certificats","Contactez la commune pour renouvellement ou vérification des certificats. Un bureau d'enregistrement CSAM peut proposer une clé alternative avec pièce d'identité et adresse e-mail personnelle.",["csam_office","eid"]]
+    ]],
+    ["no_belgian_eid","Pas de carte eID belge ni de titre électronique compatible",[
+      ["Bureau d'enregistrement des clés numériques","BOSA prévoit un enregistrement en personne pour les personnes sans eID/itsme compatibles, notamment certains résidents étrangers. Il faut une pièce d'identité reconnue et une adresse e-mail personnelle.",["csam_office","csam_help"]],
+      ["Vérifier les autres procédures propres au service","Selon le statut ou la nationalité, le service peut proposer un guichet ou une autre identification ; aucun accès n'est garanti automatiquement.",["csam_help"]]
+    ]],
+    ["no_email","Pas d'adresse e-mail personnelle accessible",[
+      ["Ne pas recommander la clé CSAM par e-mail","Sans accès à une boîte e-mail personnelle, le code par e-mail ne peut pas être utilisé. Le bureau d'enregistrement CSAM exige également une adresse e-mail personnelle pour activer ces clés.",["csam_office"]],
+      ["Utiliser eID ou une démarche hors ligne","Si votre eID et le lecteur fonctionnent, connectez-vous directement avec eux. Sinon demandez une démarche au guichet ou sur papier, et éventuellement un accompagnement pour créer une boîte e-mail personnelle.",["csam","actiris","caami"]]
+    ]],
+    ["no_computer","Pas d'ordinateur, d'accès Internet ou de connexion stable",[
+      ["Trouver un accès physique ou matériel","Les Espaces Publics Numériques peuvent proposer l'ordinateur et un accompagnement ; vérifiez s'ils disposent d'un lecteur eID. Actiris propose des antennes et des Self-Zones accessibles aux conditions précisées sur son site.",["epn","actiris"]],
+      ["Ne pas bloquer une démarche urgente","La CAAMI publie des documents à envoyer par la poste ou remettre au guichet. D'autres organismes acceptent parfois un dossier papier ou un rendez-vous : demandez-le au service concerné.",["caami"]]
+    ]],
+    ["service_itsme_only","Le service affiche seulement itsme ou refuse mon eID",[
+      ["Vérifier les moyens réellement acceptés","CSAM propose plusieurs clés, mais le service choisit lesquelles il accepte. Une clé par e-mail n'est donc pas un passe-partout ; eID n'active pas itsme.",["csam","csam_help"]],
+      ["Demander l'alternative au service concerné","Cherchez son assistance, un guichet, un formulaire papier ou une procédure encadrée. EcoTank ne promet pas le contournement d'une identification légalement requise.",["actiris","caami","onem"]]
+    ]],
+    ["keys_lost","Mot de passe CSAM ou accès aux anciennes clés numériques perdu",[
+      ["Utiliser l'eID pour gérer vos clés si possible","Si votre eID et votre lecteur fonctionnent, identifiez-vous à Mes clés numériques CSAM pour consulter ou modifier les clés proposées. Sans cela, consultez les procédures d'aide ou d'enregistrement.",["csam","csam_help"]],
+      ["E-mail perdu : récupérer d'abord un accès personnel","La clé par e-mail nécessite une boîte accessible. Un service d'aide numérique peut accompagner la récupération sans connaître ni demander votre mot de passe.",["epn","csam_office"]]
+    ]],
+    ["site_error","Erreur de connexion, site indisponible ou page qui tourne en boucle",[
+      ["Distinguer problème technique et refus d'accès","Testez la carte et le lecteur sur le site officiel eID. Si ce test fonctionne, notez le message d'erreur exact, la date et le service concerné, puis contactez l'assistance du service sans transmettre vos codes.",["eid","csam_help"]],
+      ["Quand le délai est important","Demandez au service comment déposer la démarche en personne, par courrier ou avec preuve de la tentative ; n'attendez pas une réparation technique si une échéance approche.",["actiris","caami"]]
+    ]],
+    ["no_address","Pas de domicile stable ou impossible de recevoir les courriers d'activation",[
+      ["Signaler l'obstacle matériel","Une adresse postale ou de référence peut être nécessaire pour certains documents. Demandez à la commune ou à un service social quelles modalités sont possibles : ne supposez pas que tous les organismes acceptent une adresse e-mail à la place.",["csam_help"]],
+      ["Si l'eID fonctionne, éviter les envois de codes inutiles","L'eID/lecteur/PIN peut suffire à accéder aux services compatibles sans nouvelle lettre ni SMS. Si le service impose une notification papier, demandez son alternative officielle.",["csam"]]
+    ]],
+    ["other","Autre blocage ou plusieurs problèmes en même temps",[
+      ["Commencer par le moyen que vous possédez réellement","Si l'eID et le lecteur fonctionnent, utilisez d'abord l'identification eID. Sinon cherchez une clé CSAM déjà active, puis une aide humaine ou un guichet. N'achetez pas un équipement avant d'avoir vérifié les alternatives.",["csam","csam_help"]],
+      ["Identifier le service avant de recommencer","Choisissez ci-dessous l'organisme concerné pour voir les modalités officielles connues. Les modes de connexion ne sont pas identiques partout.",["actiris","caami"]]
+    ]]
+  ];
+  const ACCESS_SERVICES=[
+    ["general","Je ne sais pas encore / plusieurs services","Le choix des clés numériques dépend de chaque site : vérifiez les méthodes proposées directement sur son écran d'identification.",["csam"]],
+    ["actiris","Actiris / recherche d'emploi","Actiris propose My Actiris et des démarches dans ses antennes. Les Self-Zones permettent certaines opérations sans rendez-vous ; une inscription accompagnée se fait sur rendez-vous. Demandez les modalités en personne si vous n'avez pas de GSM.",["actiris"]],
+    ["caami","CAAMI / mutuelle / remboursement santé","La CAAMI accepte l'eID ou itsme sur myCAAMI, mais propose aussi des formulaires web sans identification, des PDF à imprimer, un envoi postal ou le guichet. Les modalités des autres mutualités doivent être vérifiées auprès de chacune.",["caami","caami_post"]],
+    ["ebox","My eBox / documents officiels","My eBox utilise l'identification CSAM. Si vous avez une eID et son lecteur, essayez directement cette clé. Les autres clés disponibles dépendent du niveau demandé par le service.",["ebox","csam"]],
+    ["myminfin","MyMinfin / impôts / documents fiscaux","Le SPF Finances décrit explicitement la connexion avec eID, lecteur et PIN comme alternative à itsme pour MyMinfin.",["tax"]],
+    ["handicap","My Handicap / demande d'aide au handicap","My Handicap permet au citoyen de se connecter avec eID et code PIN. Un accompagnement par des professionnels autorisés existe ; vérifiez les conditions, sans partager vos identifiants privés.",["handicap"]],
+    ["cpas","CPAS / dossier social","CPAS Online sert à une première demande. Avec eID/lecteur, il existe une version authentifiée ; sans eID, une version non authentifiée. Si le CPAS a déjà refusé la demande, ne redéposez pas automatiquement une première demande : contactez le service pour suivi, décision écrite ou recours.",["cpas"]],
+    ["onem","ONEM / CAPAC / allocations de chômage","Les demandes et leur suivi peuvent passer par la CAPAC ou un organisme de paiement syndical. L'ONEM prévoit des démarches en personne ; un refus déjà signifié ne se résout pas en recréant son compte itsme.",["onem"]],
+    ["other","Autre organisme ou service exclusivement en ligne","Il faut examiner la page d'identification et les instructions de CET organisme ; les clés CSAM ne fonctionnent pas universellement. Demandez une alternative officielle pour les personnes privées de téléphone, de carte ou d'e-mail.",["csam_help","csam_office"]]
+  ];
+  function renderAccessHelp(){
+    if(!ensureScreens())return;
+    const host=document.getElementById("entryDifficultHost");
+    if(!host)return;
+    const issue=ACCESS_PROBLEMS.find(x=>x[0]===state.accessIssue);
+    const service=ACCESS_SERVICES.find(x=>x[0]===state.accessService)||ACCESS_SERVICES[0];
+    const link=k=>{
+      const entry=ACCESS_REFS[k];
+      return entry?'<a href="'+esc(entry[1])+'" target="_blank" rel="noopener noreferrer">'+esc(entry[0])+' ↗</a>':"";
+    };
+    const cards=issue?issue[2]:[
+      ["D'abord : ne pas imposer itsme","Une eID fonctionnelle donne accès aux services qui proposent l'identification eID. Aucun numéro GSM n'est requis pour cette connexion. La clé CSAM par e-mail n'est utilisable que si vous avez une adresse e-mail accessible et si le service accepte cette clé.",["csam","eid"]],
+      ["Si l'eID est impossible, cherchez la solution humaine","Un bureau d'enregistrement BOSA peut aider à activer des clés alternatives avec vérification d'identité et adresse e-mail personnelle. Des administrations proposent aussi des guichets ou formulaires papier.",["csam_office","actiris","caami"]]
+    ];
+    host.innerHTML=
+      '<div class="entry-topline"><button type="button" class="linkish" data-access-back>← Retour aux aides</button><span class="entry-step">Sans compte, sans données envoyées</span></div>'+
+      '<div class="simple-kicker">Accès aux démarches · solutions de rechange</div>'+
+      '<h2>Débloquer une démarche sans itsme ni téléphone</h2>'+
+      '<p>Choisissez seulement ce qui bloque. Vous obtenez immédiatement des pistes ; le service est facultatif. Aucun code, numéro national, numéro de téléphone ou mot de passe n’est demandé.</p>'+
+      '<div class="access-helper-fields">'+
+      '<label>Quel est votre blocage ?<select data-access-issue><option value="">Je ne sais pas / plusieurs problèmes</option>'+
+        ACCESS_PROBLEMS.map(x=>'<option value="'+esc(x[0])+'" '+(issue&&issue[0]===x[0]?'selected':'')+'>'+esc(x[1])+'</option>').join("")+
+      '</select></label>'+
+      '<label>Quel service devez-vous utiliser ? (facultatif)<select data-access-service>'+
+        ACCESS_SERVICES.map(x=>'<option value="'+esc(x[0])+'" '+(service[0]===x[0]?'selected':'')+'>'+esc(x[1])+'</option>').join("")+
+      '</select></label></div>'+
+      '<div class="business-safety"><strong>À retenir :</strong> perdre un numéro GSM n’annule pas votre carte eID. Une clé CSAM par e-mail ne remplace pas une clé plus forte si le service ne l’accepte pas. Si un délai de recours approche, contactez directement le service.</div>'+
+      '<h3 class="access-helper-subtitle">'+esc(issue?issue[1]:"Premières solutions possibles")+'</h3>'+
+      '<div class="access-helper-cards">'+cards.map((card,i)=>
+        '<article class="business-card '+(i===0?'priority':'')+'"><h4>'+esc(card[0])+'</h4><p>'+esc(card[1])+'</p>'+
+        '<div class="resource-actions">'+card[2].map(link).join("")+'</div></article>'
+      ).join("")+'</div>'+
+      '<section class="access-service-card"><h3>'+esc(service[1])+'</h3><p>'+esc(service[2])+'</p>'+
+      '<div class="resource-actions">'+service[3].map(link).join("")+'</div></section>'+
+      '<div class="entry-route-actions"><button type="button" class="linkish" data-access-reset>Recommencer le choix</button>'+
+      '<button type="button" data-access-back>Retour aux aides et droits</button></div>';
+    showScreen("simpleDifficultHelp");
   }
 
   // Parcours rapide réservé aux personnes qui rencontrent des blocages.
@@ -403,6 +544,7 @@
       '<h2>'+esc(title)+'</h2>'+
       '<p>Vous pouvez agir dès maintenant. Les liens ci-dessous proviennent de sources officielles ou de services associatifs identifiés. Ce sont des pistes à vérifier, pas des droits accordés automatiquement.</p>'+
       (selected==="refusals"?'<p class="business-safety"><strong>Pas de renvoi en boucle :</strong> ce parcours ne vous demande pas de déposer une nouvelle première demande CPAS. Les recours et les aides immédiates sont des démarches distinctes à mener en parallèle.</p>':"")+
+      '<div class="entry-route-actions access-shortcut"><button type="button" class="primary" data-help-access>Impossible de me connecter : trouver une alternative (eID, itsme, téléphone, PIN…)</button></div>'+
       '<div class="business-grid">'+cards.map((card,i)=>
         '<article class="business-card '+(i===0?'priority':'')+'"><h3>'+(i+1)+'. '+esc(card[0])+'</h3><p>'+esc(card[1])+'</p>'+
         '<div class="resource-actions">'+card[2].map(link=>safeLink(link[0],link[1])).filter(Boolean).join("")+'</div></article>'
@@ -580,6 +722,10 @@
     if(event.target.closest("[data-entry-restart]")){state.answers={};state.destinationId="";renderQuestion("q_entry_situation");return;}
     if(event.target.closest("[data-entry-unknown]")){routeToDestination("guided_orientation");return;}
     if(event.target.closest("[data-entry-fast-help]")){state.fromAdminHome=false;state.destinationId="foundation_recovery";state.difficultTopic="";renderDifficultHelp();return;}
+    if(event.target.closest("[data-entry-access-help]")){state.fromAdminHome=false;state.accessIssue="";state.accessService="general";renderAccessHelp();return;}
+    if(event.target.closest("[data-help-access]")){state.accessIssue="";state.accessService="general";renderAccessHelp();return;}
+    if(event.target.closest("[data-access-back]")){renderDifficultHelp();return;}
+    if(event.target.closest("[data-access-reset]")){state.accessIssue="";state.accessService="general";renderAccessHelp();return;}
     if(event.target.closest("[data-entry-admin]")){state.difficultTopic="";renderDifficultHelp();return;}
     const topic=event.target.closest("[data-help-topic]");
     if(topic){renderDifficultHelp(topic.dataset.helpTopic);return;}
@@ -604,6 +750,10 @@
   },true);
 
   document.addEventListener("change",event=>{
+    const issue=event.target.closest("[data-access-issue]");
+    if(issue){state.accessIssue=ACCESS_PROBLEMS.some(x=>x[0]===issue.value)?issue.value:"";renderAccessHelp();return;}
+    const service=event.target.closest("[data-access-service]");
+    if(service){state.accessService=ACCESS_SERVICES.some(x=>x[0]===service.value)?service.value:"general";renderAccessHelp();return;}
     const input=event.target.closest("[data-business-intake]");
     if(input)state.businessAnswers[input.dataset.businessIntake]=input.value;
   });

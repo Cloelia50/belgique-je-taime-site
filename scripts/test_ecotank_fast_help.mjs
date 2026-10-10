@@ -51,6 +51,9 @@ function session() {
     choose(question, option) {
       this.click("[data-entry-option]", { entryQuestion: question, entryOption: option });
     },
+    change(selector, value) {
+      listeners.change({ target: { value, closest: current => current === selector ? { value } : null } });
+    },
     html(id) {
       return elements.get(id)?.innerHTML ?? "";
     }
@@ -215,3 +218,54 @@ assert.match(withoutSms,/bruxelles\.be\/comment-vous-connecter/);
 assert.match(overview,/sans numéro actif/,"Le double refus doit préciser que l'eID fonctionne sans GSM actif");
 assert.doesNotMatch(withoutSms,/Première demande CPAS sans connexion|cpas_online_unsecured/);
 console.log("EcoTank : lecteur eID fonctionnel sans GSM, identification CSAM et clé e-mail sans itsme — OK.");
+
+// Parcours de dépannage sans matériel/numéro/code obligatoire :
+// tous les obstacles courants sont couverts par une solution concrète.
+const access=session();
+await ready(access);
+assert.match(access.html("entryRouterHost"), /data-entry-access-help/);
+access.click("[data-entry-access-help]");
+const initialAccess=access.html("entryDifficultHost");
+assert.match(initialAccess,/data-access-issue/);
+assert.match(initialAccess,/data-access-service/);
+const issues=[
+  "eid_ok_no_sms","number_lost","phone_no_sms","no_smartphone","reader_missing",
+  "reader_broken","pin_missing","card_lost","no_belgian_eid","no_email",
+  "no_computer","service_itsme_only","keys_lost","site_error","no_address","other"
+];
+const services=["general","actiris","caami","ebox","myminfin","handicap","cpas","onem","other"];
+for(const id of issues){
+  assert.match(initialAccess,new RegExp('<option value="'+id+'"'));
+  access.change("[data-access-issue]",id);
+  const html=access.html("entryDifficultHost");
+  assert.match(html,/href="https:\/\//,id+" : au moins une source HTTPS");
+  assert.match(html,/data-access-back/,id+" : sortie vers les aides");
+  assert.doesNotMatch(html,/data-help-detailed/,id+" : pas de questionnaire obligatoire");
+}
+for(const id of services){
+  access.change("[data-access-service]",id);
+  assert.match(access.html("entryDifficultHost"),new RegExp('<option value="'+id+'" selected'),id+": sélection du service");
+}
+access.change("[data-access-issue]","eid_ok_no_sms");
+access.change("[data-access-service]","myminfin");
+const eidAndTax=access.html("entryDifficultHost");
+assert.match(eidAndTax,/Aucun nouveau numéro de GSM/);
+assert.match(eidAndTax,/finances\.belgium\.be\/fr\/node\/2890/);
+assert.match(eidAndTax,/csam\.be\/fr\/profil-egov\.html/);
+assert.doesNotMatch(eidAndTax,/activer obligatoirement itsme/i);
+access.change("[data-access-issue]","no_email");
+const noEmail=access.html("entryDifficultHost");
+assert.match(noEmail,/Sans accès à une boîte e-mail personnelle/);
+assert.match(noEmail,/adresse e-mail personnelle/);
+access.change("[data-access-issue]","pin_missing");
+assert.match(access.html("entryDifficultHost"),/belgium\.be\/fr\/services_en_ligne\/app_reimpression_pin_puk/);
+access.change("[data-access-issue]","no_belgian_eid");
+assert.match(access.html("entryDifficultHost"),/bureau d.enregistrement/i);
+access.change("[data-access-service]","cpas");
+assert.match(access.html("entryDifficultHost"),/Si le CPAS a déjà refusé/);
+access.click("[data-access-reset]");
+assert.match(access.html("entryDifficultHost"),/<option value="" selected|<option value="">Je ne sais pas/);
+access.click("[data-access-back]");
+assert.match(access.html("entryDifficultHost"),/Situations compliquées/);
+assert.match(access.html("entryDifficultHost"),/data-help-access/);
+console.log("EcoTank : 16 blocages, 9 services, alternatives eID/CSAM/guichet/papier sans numéro — OK.");

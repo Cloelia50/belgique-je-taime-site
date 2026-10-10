@@ -79,3 +79,18 @@
   .ecotank-page .ecotank-action-first{padding:15px}
   .ecotank-page .ecotank-action-first .entry-route-actions{display:grid}
 }
+
+/* EcoTank : guide d'accès rapide (scope strictement limité aux situations difficiles). */
+.ecotank-page .access-helper-fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px;margin:20px 0}
+.ecotank-page .access-helper-fields label{display:grid;gap:7px;min-width:0;font-size:.94rem;font-weight:750}
+.ecotank-page .access-helper-fields select{max-width:100%;min-height:46px;padding:9px 11px;color:var(--ink);background:var(--sheet);border-radius:11px;border:1px solid var(--line);font:inherit;font-weight:500}
+.ecotank-page .access-helper-subtitle{font-size:1.18rem;margin:18px 0 10px}
+.ecotank-page .access-helper-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr));gap:12px}
+.ecotank-page .access-helper-cards .business-card h4{margin:0;font-size:1rem}
+.ecotank-page .access-service-card{margin-top:16px;border-radius:14px;padding:16px;border:1px solid var(--line);background:var(--brand-soft,#e9f7f2)}
+.ecotank-page .access-service-card h3{margin:0 0 7px;font-size:1.03rem}
+.ecotank-page .access-service-card p{margin:0 0 12px;line-height:1.5}
+.ecotank-page .access-service-card .resource-actions{display:flex;flex-wrap:wrap;gap:8px}
+.ecotank-page .access-service-card .resource-actions a{display:inline-flex;align-items:center;min-height:42px;border:1px solid var(--line);border-radius:9px;background:var(--sheet);padding:8px 11px;font-weight:700;text-decoration:none}
+.ecotank-page .access-shortcut{margin:14px 0}
+@media(max-width:720px){.ecotank-page .access-helper-fields{grid-template-columns:1fr}}
