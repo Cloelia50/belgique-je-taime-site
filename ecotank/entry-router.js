@@ -424,7 +424,15 @@
       csam_keys:{url:"https://www.csam.be/fr/profil-egov.html"},
       csam_email_guide:{url:"https://bosa.belgium.be/sites/default/files/documents/activer_une_cle_numerique-e-mail_otp.pdf"},
       csam_eid_steps:{url:"https://www.bruxelles.be/comment-vous-connecter-avec-votre-carte-didentite-electronique-eid"},
-      itsme_sms_confirm:{url:"https://www.itsme-id.com/fr-BE/get-started/eid"}
+      itsme_sms_confirm:{url:"https://www.itsme-id.com/fr-BE/get-started/eid"},
+      samu_web:{url:"https://0800.samusocial.be/"},
+      samu_help:{url:"https://samusocial.be/help/"},
+      mdm_care:{url:"https://medecinsdumonde.be/j-ai-besoin-de-voir-un-medecin"},
+      mdm_caso:{url:"https://medecinsdumonde.be/projets/centre-daccueil-de-soins-et-dorientation-caso-bruxelles"},
+      fedasil_reception:{url:"https://fedasil.be/fr/asile-en-belgique/accueil-des-demandeurs-dasile"},
+      fedasil_contact:{url:"https://fedasil.be/fr/contact"},
+      fedasil_registration:{url:"https://www.fedasilinfo.be/en/registration-your-application"},
+      amu_official:{url:"https://www.socialsecurity.be/citizen/fr/assistance-sociale-et-cpas/aide-pour-les-frais-medicaux"}
     };
     const safeLink=(key,label)=>{
       const source=sources[key]||refusalSources[key];
@@ -434,6 +442,46 @@
     // Chaque piste renvoie à une source officielle déjà référencée dans la base.
     // Aucune réponse ne permet de déduire automatiquement l'ouverture d'un droit.
     const guides={
+      urgent_food:[
+        ["Trouver une distribution alimentaire","Dans le répertoire FDSS, choisissez votre commune puis les filtres colis, repas ou épicerie sociale. Chaque organisme précise ses critères : un refus du RIS n'entraîne pas automatiquement un refus d'aide alimentaire. Vérifiez l'accueil et les horaires avant le déplacement.",[["fdss_food","Répertoire des distributions et épiceries"]]],
+        ["Sans téléphone, demander par e-mail","Écrivez à aidealimentaire@fdss.be en donnant la commune, le besoin urgent et le fait que vous ne pouvez pas téléphoner. Sans e-mail, demandez les modalités directement à une association du répertoire. Une place n'est pas garantie.",[["fdss_food","Coordonnées des organismes alimentaires"]]],
+        ["Si l'accès à une épicerie est refusé","Demandez quels justificatifs sont acceptés et s'il existe une distribution, un restaurant social ou une autre structure. Un service associatif peut parfois établir l'orientation sociale, selon le règlement de l'épicerie.",[["food_croixrouge","Conditions des épiceries sociales"],["fdss_food","Autres solutions alimentaires"]]]
+      ],
+      urgent_shelter:[
+        ["Demander une nuit au Samusocial","À Bruxelles, l'hébergement est gratuit, sans exigence de séjour régulier. Inscription annoncée entre 9 h et 15 h par le site ou au 0800 99 340. Une inscription ne garantit pas une place : confirmez les modalités du jour.",[["samu_web","S'inscrire par Internet"],["samu_help","Mode d'emploi Samusocial"]]],
+        ["Sans téléphone ni SMS","L'inscription web est possible avec Internet. Si vous empruntez un téléphone, notez le code d'inscription ; vous pouvez rappeler le 0800 99 340 avec ce code pour savoir si une place a été attribuée. Les équipes sont joignables 24 h/24.",[["samu_help","Suivre son inscription sans GSM personnel"]]],
+        ["Si la demande n'aboutit pas","Demandez au Samusocial les possibilités de réorientation et signalez les vulnérabilités particulières. Aucune place n'est garantie. En cas de danger médical immédiat, appelez le 112.",[["samu_help","Contacter l'équipe et comprendre les limites"]]]
+      ],
+      urgent_care:[
+        ["Voir un généraliste sans couverture : Athéna","À Bruxelles, Centre Athéna, boulevard Bischoffsheim 31, 1000 Bruxelles ; 02 244 53 02 ; accueil@athenabrussels.be. Médecins du Monde indique un accueil possible sans rendez-vous, selon la disponibilité. Si urgence vitale : 112.",[["mdm_care","Adresse, horaires et accès à Athéna"]]],
+        ["CASO : soin sur rendez-vous et aide aux droits","Rue Botanique 75, 1210 Bruxelles, 02 225 43 13. Le CASO de Médecins du Monde oriente les personnes exclues des soins. Attention : pas de consultation médicale sans rendez-vous au CASO.",[["mdm_care","Permanence téléphonique CASO"],["mdm_caso","Présentation du centre de soins"]]],
+        ["Rétablir les remboursements en parallèle","La fin du chômage n'interrompt pas toujours immédiatement les droits aux soins. Interrogez l'ancienne mutualité ou la CAAMI ; une cotisation personnelle nulle existe sous conditions. Ne retardez pas une consultation nécessaire pour cela.",[["inami_affiliation","Conditions de couverture"],["caami_join","CAAMI : recevoir un formulaire"]]]
+      ],
+      urgent_income:[
+        ["Chercher un emploi même sans allocations","L'inscription comme demandeur d'emploi chez Actiris ne suppose pas de toucher le chômage. Pour certains candidats, la FPIE peut aider un employeur à former puis engager ; contactez Bruxelles Formation AVANT de commencer.",[["actiris_register","Inscription Actiris et antennes"],["actiris_fpie","FPIE : conditions"]]],
+        ["Préserver les besoins essentiels en attendant","Pour manger immédiatement, cherchez distribution ou restaurant social dans le répertoire FDSS. Les organismes vérifient eux-mêmes les critères et les capacités.",[["fdss_food","Trouver une aide alimentaire"]]],
+        ["Si CPAS et chômage ont déjà dit non","N'introduisez pas une nouvelle première demande CPAS sans vérifier votre situation. Faites étudier les refus, leur date et les possibilités de recours ; le parcours « CPAS et chômage : deux refus » détaille les autres droits.",[["legal_aid","Aide juridique indépendante"],["appeal_court","Recours sociaux"]]]
+      ],
+      urgent_refusal:[
+        ["Repérer la date limite du recours","Rassemblez la décision écrite, sa date de notification et le motif du refus. Les recours devant le tribunal du travail sont généralement possibles dans les 3 mois ; faites contrôler le délai propre à votre décision.",[["appeal_court","Recours devant le tribunal du travail"]]],
+        ["Accéder à un avis juridique gratuit","Un premier avis juridique est gratuit ; un avocat peut être désigné gratuitement ou à faible coût selon les ressources. Apportez les refus du CPAS, chômage ou autres institutions.",[["legal_aid","Demander une aide juridique"]]],
+        ["Si le refus n'a été donné qu'oralement","Demandez une décision datée et motivée, sans attendre pour vérifier vos possibilités de recours. Le recours ne garantit pas le versement d'un revenu entre-temps.",[["appeal_cpas","Guide des recours CPAS"],["appeal_onem","Procédure ONEM"]]]
+      ],
+      urgent_access:[
+        ["Si eID et lecteur fonctionnent : ne pas refaire itsme","Sur un service compatible, choisissez CSAM et « Identification avec lecteur de cartes eID », puis utilisez votre PIN. Vous n'avez pas besoin de recevoir de SMS pour cette connexion.",[["csam_keys","Gérer les clés CSAM"]]],
+        ["Si vous avez accès à une adresse e-mail","Une clé CSAM avec code par e-mail peut être activée avec l'eID et servir sur certains portails, pas tous. Sans e-mail, n'essayez pas cette méthode.",[["csam_email_guide","Créer une clé par e-mail"]]],
+        ["S'il manque téléphone, lecteur, carte ou PIN","Utilisez le guide « Impossible de me connecter » pour votre blocage précis. Des guichets, procédures papier et bureaux d'enregistrement existent selon le service ; évitez de racheter un appareil avant d'avoir vérifié.",[["brussels_digital_help","Aide numérique en Belgique"]]]
+      ],
+      urgent_asylum:[
+        ["Pour déposer une nouvelle demande de protection","L'Office des étrangers enregistre les demandes à Bruxelles, rue Belliard 68 (vérifiez les modalités et heures actuelles). Le Petit-Château n'enregistre plus directement la première demande.",[["fedasil_registration","Où enregistrer une demande de protection"]]],
+        ["Fedasil : demander l'accueil matériel","Après l'enregistrement, Fedasil examine le droit à l'accueil et aux soins, distinct d'une allocation CPAS. L'attribution dépend des conditions et des capacités, sans garantie de place immédiate.",[["fedasil_reception","Accueil des demandeurs d'asile"]]],
+        ["Sans place ou hors réseau d'accueil","Le Point Info de Fedasil peut renseigner les personnes hors réseau. Consultez ses coordonnées et permanences, notamment si vous n'avez pas de téléphone.",[["fedasil_contact","Point Info Fedasil et adresses"]]]
+      ],
+      urgent_irregular:[
+        ["Se soigner sans attendre de documents","À Bruxelles, Athéna peut accueillir des personnes sans autre accès au médecin et le CASO oriente les personnes sans couverture (sur rendez-vous pour consultation). En urgence vitale, appelez le 112.",[["mdm_care","Athéna et CASO : comment obtenir des soins"]]],
+        ["Aide médicale urgente (AMU)","Une personne sans séjour légal et sans moyens peut demander l'AMU pour ses soins. Elle passe légalement par le CPAS compétent, même après un refus du RIS : ce sont deux droits distincts. Les conditions et soins éligibles doivent être vérifiés.",[["amu_official","Conditions légales de l'AMU"]]],
+        ["Si vous n'avez pas de toit","Le Samusocial accepte les demandes de nuit même en séjour irrégulier, sous réserve de places. Inscription par Internet si vous n'avez pas de numéro GSM personnel.",[["samu_web","Demander une nuit au Samusocial"],["samu_help","Conditions de l'accueil"]]]
+      ],
       overview:[
         ["Commencer par une aide humaine et concrète","Si vous n'arrivez plus à faire face aux besoins essentiels, demandez à un service social de faire le point avec vous. N'attendez pas d'avoir tous vos documents.",[["cpas_dis_procedure","Comprendre les démarches auprès du CPAS"]]],
         ["Ne pas perdre l'accès aux soins","Vérifiez votre affiliation ou les démarches pour la rétablir, indépendamment de vos autres droits.",[["inami_affiliation","Mutualité ou CAAMI"]]],
@@ -478,14 +526,15 @@
         ["Préserver l'accès aux soins","Un droit au revenu suspendu n'implique pas qu'il faille attendre pour vérifier sa couverture santé.",[["inami_affiliation","Vérifier sa couverture santé"]]]
       ],
       housing:[
-        ["Signaler une urgence de logement ou de charges","Un service social peut examiner votre situation, les risques immédiats et les aides envisageables.",[["cpas_dis_procedure","Démarches et aides sociales"]]],
+        ["Dormir en sécurité dès ce soir","Si vous êtes sans hébergement à Bruxelles, inscrivez-vous au Samusocial entre 9 h et 15 h par Internet ou au 0800 99 340 ; une demande ne garantit pas de place. Sans téléphone personnel, le site décrit le suivi grâce au code d'inscription.",[["samu_web","Demander un hébergement"],["samu_help","Inscription et suivi sans GSM personnel"]]],
+        ["Autres problèmes de logement et de charges","Un service social peut examiner votre situation, les risques immédiats et les aides envisageables.",[["cpas_dis_procedure","Démarches et aides sociales"]]],
         ["Sans domicile officiel ou en cas d'adresse perdue","Vérifiez la possibilité d'une adresse de référence. Les conditions doivent être examinées au cas par cas.",[["reference_address","Adresse de référence"]]],
         ["Conserver l'accès aux décisions importantes","Si votre courrier est instable, faites le point sur les moyens de recevoir les communications officielles.",[["myebox","My eBox"],["mygov","MyGov.be"]]]
       ],
       health:[
-        ["Vérifier ou rétablir la couverture santé","Une mutualité ou la CAAMI peut préciser les démarches selon votre situation réelle.",[["inami_affiliation","Affiliation et couverture santé"]]],
-        ["Signaler un problème d'accès aux soins","Un service social peut vous orienter vers les aides ou procédures qui correspondent à votre cas.",[["cpas_dis_procedure","Se renseigner sur l'aide sociale"]]],
-        ["Si les démarches numériques bloquent","Une demande sociale initiale peut, dans certains cas, être introduite sans itsme.",[["cpas_online_unsecured","Première demande CPAS sans connexion"]]]
+        ["Besoin de soins sans mutuelle : Athéna ou CASO","Médecins du Monde indique des consultations possibles à Athéna sans rendez-vous selon disponibilités, et au CASO sur rendez-vous. En urgence vitale : 112.",[["mdm_care","Soins et coordonnées directement accessibles"]]],
+        ["Vérifier ou rétablir la couverture santé","La mutualité ou la CAAMI peut préciser les démarches même sans chômage ou RIS ; sous conditions, une cotisation de résident de 0 € existe.",[["inami_affiliation","Affiliation"],["inami_rates_2026","Cotisation de résident"]]],
+        ["Si le séjour irrégulier bloque vos soins","L'aide médicale urgente est une procédure médicale particulière qui peut passer par le CPAS même si un revenu d'intégration a été refusé. Vous pouvez aussi solliciter l'orientation du CASO.",[["amu_official","Conditions de l'aide médicale urgente"],["mdm_caso","CASO"]]]
       ],
       identity:[
         ["Vous ne retrouvez plus votre code PIN eID","La procédure officielle permet de demander un nouveau code. N'indiquez jamais votre code PIN sur EcoTank.",[["belgium_eid_pin","Demander un nouveau PIN"]]],
@@ -508,6 +557,7 @@
         ["Si l'absence de compte bloque vos aides","Signalez-le à l'organisme ou au service social qui traite votre demande afin d'examiner les possibilités.",[["cpas_dis_procedure","Démarches CPAS"]]]
       ],
       residence:[
+        ["En demande de protection et sans accueil ?","Après l'enregistrement auprès de l'Office des étrangers, Fedasil examine le droit à l'accueil matériel, distinct des aides CPAS. Pour un dossier de séjour autre que l'asile, commencez par identifier le titre réel.",[["fedasil_registration","Office des étrangers : enregistrement"],["fedasil_reception","Fedasil : accueil matériel"]]],
         ["Identifier votre situation de séjour","La procédure dépend notamment de votre nationalité et du document réellement détenu. EcoTank ne peut pas décider de votre statut.",[["dofi_union","Citoyens de l'Union européenne"],["dofi_third_country","Ressortissants de pays tiers"]]],
         ["Si vous avez une procédure de protection","Vérifiez les étapes et autorités compétentes, sans déduire automatiquement un droit d'un document.",[["cgra_asylum","Protection internationale — CGRA"]]],
         ["Si vous manquez de ressources ou de soins","Un service compétent doit examiner les possibilités selon votre situation administrative. Certaines aides varient avec le séjour.",[["cpas_dis_procedure","Comprendre la procédure sociale"]]]
@@ -519,6 +569,14 @@
       ]
     };
     const choices=[
+      ["urgent_food","Manger ou trouver de la nourriture"],
+      ["urgent_shelter","Dormir en sécurité cette nuit"],
+      ["urgent_care","Me soigner sans mutuelle"],
+      ["urgent_income","Retrouver des revenus ou un emploi"],
+      ["urgent_refusal","Un refus administratif à contester"],
+      ["urgent_access","Impossible de faire une démarche (eID, itsme, téléphone…)"],
+      ["urgent_asylum","Protection internationale : sans accueil"],
+      ["urgent_irregular","Sans titre de séjour : soins et hébergement"],
       ["refusals","CPAS ET chômage : deux refus, aucun revenu"],
       ["employment_no_income","Je cherche un emploi sans allocations"],
       ["food_social","Accéder à une épicerie sociale"],
@@ -532,34 +590,53 @@
     ];
     const selected=guides[topic]?topic:"overview";
     const cards=guides[selected];
-    const title=selected==="refusals"?"Plus de revenus : le CPAS et le chômage ont déjà refusé":
-      selected==="employment_no_income"?"Retrouver un emploi sans allocations : dispositifs pour l'employeur":
-      selected==="food_social"?"Accéder à une épicerie sociale":
-      selected==="care_zero"?"Retrouver une couverture santé sans revenu":
-      selected==="eid_works_no_phone"?"Lecteur eID fonctionnel : continuer sans itsme ni SMS":
-      selected==="no_phone"?"Faire ses démarches sans numéro de téléphone ni itsme":
-      selected==="residence"?"Premières pistes pour votre situation de séjour":
-      selected==="international"?"Premières pistes pour votre situation internationale":
-      "Voici des premières solutions, sans autre questionnaire";
+    const urgentIds=new Set(["urgent_food","urgent_shelter","urgent_care","urgent_income","urgent_refusal","urgent_access"]);
+    const firstChoices=choices.filter(([id])=>urgentIds.has(id));
+    const otherChoices=choices.filter(([id])=>!urgentIds.has(id));
+    const title={
+      overview:"De quoi avez-vous besoin aujourd’hui ?",
+      urgent_food:"Trouver de quoi manger maintenant",
+      urgent_shelter:"Trouver un hébergement pour cette nuit",
+      urgent_care:"Recevoir des soins sans couverture",
+      urgent_income:"Retrouver des ressources sans attendre",
+      urgent_refusal:"Un refus : vérifier mes recours",
+      urgent_access:"Faire une démarche sans itsme ni GSM",
+      urgent_asylum:"Protection internationale : accueil et soins",
+      urgent_irregular:"Sans titre : soins et hébergement",
+      refusals:"Plus de revenus : le CPAS et le chômage ont déjà refusé",
+      employment_no_income:"Retrouver un emploi sans allocations",
+      food_social:"Accéder à une épicerie sociale",
+      care_zero:"Retrouver une couverture santé sans revenu",
+      eid_works_no_phone:"Lecteur eID fonctionnel : continuer sans itsme ni SMS",
+      no_phone:"Faire des démarches sans numéro de téléphone"
+    }[selected]||"Vos premières démarches possibles";
+    const visibleCards=selected==="overview"?[guides.urgent_food[0],guides.urgent_shelter[0],guides.urgent_care[0]]:cards.slice(0,3);
+    const moreCards=selected==="overview"?cards:cards.slice(3);
+    const choicesHtml=list=>list.map(([id,label])=>
+      '<button type="button" class="entry-choice" data-help-topic="'+id+'" aria-pressed="'+(id===selected?'true':'false')+'">'+esc(label)+'</button>'
+    ).join("");
+    const cardHtml=list=>list.map((card,i)=>
+      '<article class="business-card '+(i===0?'priority':'')+'"><h3>'+(i+1)+'. '+esc(card[0])+'</h3><p>'+esc(card[1])+'</p>'+
+      '<div class="resource-actions">'+card[2].map(link=>safeLink(link[0],link[1])).filter(Boolean).join("")+'</div></article>'
+    ).join("");
     host.innerHTML=
-      '<div class="entry-topline"><button type="button" class="linkish" data-help-back>← Mon orientation</button><span class="entry-step">Aucune autre réponse obligatoire</span></div>'+
-      '<div class="simple-kicker">Situations compliquées · accès rapide</div>'+
+      '<div class="entry-topline"><button type="button" class="linkish" data-help-back>← Retour</button><span class="entry-step">Aucune autre réponse obligatoire</span></div>'+
+      '<div class="simple-kicker">Situations compliquées · aides concrètes à Bruxelles</div>'+
       '<h2>'+esc(title)+'</h2>'+
-      '<p>Vous pouvez agir dès maintenant. Les liens ci-dessous proviennent de sources officielles ou de services associatifs identifiés. Ce sont des pistes à vérifier, pas des droits accordés automatiquement.</p>'+
-      (selected==="refusals"?'<p class="business-safety"><strong>Pas de renvoi en boucle :</strong> ce parcours ne vous demande pas de déposer une nouvelle première demande CPAS. Les recours et les aides immédiates sont des démarches distinctes à mener en parallèle.</p>':"")+
-      '<div class="entry-route-actions access-shortcut"><button type="button" class="primary" data-help-access>Impossible de me connecter : trouver une alternative (eID, itsme, téléphone, PIN…)</button></div>'+
-      '<div class="business-grid">'+cards.map((card,i)=>
-        '<article class="business-card '+(i===0?'priority':'')+'"><h3>'+(i+1)+'. '+esc(card[0])+'</h3><p>'+esc(card[1])+'</p>'+
-        '<div class="resource-actions">'+card[2].map(link=>safeLink(link[0],link[1])).filter(Boolean).join("")+'</div></article>'
-      ).join("")+'</div>'+
-      '<section class="business-intake"><h3>Qu’est-ce qui vous bloque le plus ? (facultatif)</h3>'+
-      '<p>Un clic adapte immédiatement ces pistes. Pas besoin de compléter tout votre dossier.</p>'+
-      '<div class="entry-choice-grid">'+choices.map(([id,label])=>
-        '<button type="button" class="entry-choice" data-help-topic="'+id+'" aria-pressed="'+(id===selected?'true':'false')+'">'+esc(label)+'</button>'
-      ).join("")+'</div></section>'+
-      '<div class="entry-route-actions"><button type="button" class="linkish" data-help-reset>Revoir les premières pistes</button>'+
+      '<p>Pas besoin de raconter toute votre vie. Choisissez un besoin : nous montrons trois démarches réalisables, leurs conditions et leurs limites. Aucun droit n’est accordé automatiquement.</p>'+
+      '<section class="urgent-needs"><h3>Votre besoin principal (un clic suffit)</h3>'+
+      '<div class="urgent-needs-grid">'+choicesHtml(firstChoices)+'</div>'+
+      '<details class="urgent-secondary"><summary>Autres situations : deux refus, séjour, banque, papiers, logement…</summary>'+
+      '<div class="entry-choice-grid">'+choicesHtml(otherChoices)+'</div></details></section>'+
+      (selected==="refusals"?'<p class="business-safety"><strong>Pas de nouvelle première demande CPAS :</strong> si le CPAS et le chômage ont déjà refusé, on vérifie les autres pistes et les recours.</p>':"")+
+      '<div class="entry-route-actions access-shortcut"><button type="button" data-help-access>Accès numérique bloqué ? Choisir une alternative sans itsme</button></div>'+
+      '<h3 class="urgent-actions-title">'+(selected==="overview"?"Trois points de départ immédiats":"Les trois premières actions")+'</h3>'+
+      '<div class="business-grid">'+cardHtml(visibleCards)+'</div>'+
+      (moreCards.length?'<details class="ecotank-more-actions"><summary>Autres démarches et détails ('+moreCards.length+')</summary>'+
+        '<div class="business-grid">'+cardHtml(moreCards)+'</div></details>':"")+
+      '<div class="entry-route-actions"><button type="button" class="linkish" data-help-reset>Revenir aux premières aides</button>'+
       '<button type="button" data-help-detailed>Examiner ma situation en détail (facultatif)</button></div>'+
-      '<p class="business-safety">EcoTank ne demande ni numéro national, ni code PIN, ni mot de passe. Si vous avez déjà introduit une demande ou si votre situation est urgente, contactez directement le service compétent sans attendre de terminer le questionnaire.</p>';
+      '<p class="business-safety">Ne communiquez jamais ici votre code PIN, mot de passe ou numéro national. Pour une urgence médicale mettant une vie en danger : 112. Les places et les droits dépendent des conditions réelles.</p>';
     showScreen("simpleDifficultHelp");
   }
 

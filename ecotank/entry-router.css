@@ -94,3 +94,14 @@
 .ecotank-page .access-service-card .resource-actions a{display:inline-flex;align-items:center;min-height:42px;border:1px solid var(--line);border-radius:9px;background:var(--sheet);padding:8px 11px;font-weight:700;text-decoration:none}
 .ecotank-page .access-shortcut{margin:14px 0}
 @media(max-width:720px){.ecotank-page .access-helper-fields{grid-template-columns:1fr}}
+
+/* Les premiers gestes sont visibles avant les textes détaillés et sans défilement forcé. */
+.ecotank-page .urgent-needs{margin:14px 0;padding:15px;border:1px solid var(--line);border-radius:15px;background:var(--sheet)}
+.ecotank-page .urgent-needs h3{font-size:1.06rem;margin:0 0 12px}
+.ecotank-page .urgent-needs-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+.ecotank-page .urgent-needs-grid .entry-choice{min-height:52px;line-height:1.4;font-weight:750;text-align:left}
+.ecotank-page .urgent-secondary,.ecotank-page .ecotank-more-actions{margin:14px 0;border:1px solid var(--line);border-radius:12px;padding:12px;background:var(--sheet)}
+.ecotank-page .urgent-secondary summary,.ecotank-page .ecotank-more-actions summary{cursor:pointer;font-weight:750;line-height:1.45;padding:5px}
+.ecotank-page .urgent-secondary .entry-choice-grid,.ecotank-page .ecotank-more-actions .business-grid{margin-top:12px}
+.ecotank-page .urgent-actions-title{margin:20px 0 12px;font-size:1.13rem}
+@media(max-width:620px){.ecotank-page .urgent-needs-grid{grid-template-columns:1fr}}

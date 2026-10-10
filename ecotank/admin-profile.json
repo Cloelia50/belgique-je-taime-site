@@ -1291,12 +1291,7 @@
       {
         "id": "first_cpas_request",
         "label": "Introduire une première demande au CPAS",
-        "when_profiles_any": [
-          "rupture_droits_zero_revenu",
-          "droit_en_attente",
-          "situation_inconnue",
-          "sejour_irregulier"
-        ],
+        "when_profiles_any": [],
         "when_readiness": {},
         "source_refs": [
           "cpas_online",
@@ -1317,7 +1312,8 @@
           ],
           "url": "https://pcswonline.socialsecurity.be/unsecured/fr/helpRequestForm.html"
         },
-        "note": "Réservé à une première demande d’aide. Si la personne reçoit déjà une aide ou a déjà un dossier, elle doit contacter directement son CPAS."
+        "note": "Ne jamais proposer une nouvelle première demande à partir du seul fait d'avoir zéro revenu ou un dossier en attente. Voir la voie CPAS initiale du parcours rapide si réellement première demande.",
+        "needs_explicit_first_request": true
       },
       {
         "id": "recover_eid_pin",
@@ -1342,12 +1338,7 @@
         "id": "activate_itsme",
         "label": "Activer ou réactiver itsme",
         "when_profiles_any": [],
-        "when_readiness": {
-          "itsme": [
-            "à activer",
-            "bloqué / nouveau téléphone ou numéro"
-          ]
-        },
+        "when_readiness": {},
         "source_refs": [
           "itsme_activate",
           "itsme_support_eid"
@@ -1360,7 +1351,8 @@
           "label": "Utiliser eID/CSAM ou une démarche non authentifiée",
           "source_ref": "brussels_digital_help"
         },
-        "note": null
+        "note": "Ne jamais proposer d'activer itsme en cas de perte du numéro ou sans SMS. Voir les alternatives eID, CSAM et guichet dans le guide rapide.",
+        "needs_explicit_sms_access": true
       },
       {
         "id": "open_bank_account",
