@@ -1,0 +1,35 @@
+name: EcoTank — audit navigateur mobile
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - scripts/audit_ecotank_mobile_browser.py
+      - .github/workflows/ecotank-mobile-browser.yml
+
+permissions:
+  contents: read
+
+jobs:
+  mobile:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.12'
+      - name: Préparer Chrome et Selenium
+        run: |
+          google-chrome --version
+          python -m pip install --disable-pip-version-check 'selenium>=4.25,<5'
+      - name: Examiner deux tailles de smartphone (vrai HTML, CSS et JavaScript)
+        run: python scripts/audit_ecotank_mobile_browser.py
+      - name: Archiver les captures et le rapport, même si des parcours échouent
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: ecotank-audit-mobile
+          path: reports/ecotank-mobile/
+          retention-days: 14
