@@ -64,7 +64,7 @@ async function ready(session) {
   for (let i = 0; i < 8; i++) await Promise.resolve();
 }
 function hasHelp(html) {
-  return html.includes("Aucune autre réponse obligatoire");
+  return html.includes("Aucune autre réponse obligatoire") || html.includes("Sans questionnaire");
 }
 
 const quick = session();
@@ -338,3 +338,15 @@ for(const action of [firstRequest,autoItsme]){
 assert.ok(firstRequest.needs_explicit_first_request,"Une vraie première demande exige confirmation");
 assert.ok(autoItsme.needs_explicit_sms_access,"Ne pas activer itsme sans numéro");
 console.log("EcoTank précarité : 12 parcours, six besoins immédiats, trois actions visibles, pas de boucle CPAS/itsme — OK.");
+
+// Après avoir choisi une urgence, les actions doivent précéder le questionnaire de choix.
+const mobileFirst=session();
+await ready(mobileFirst);
+mobileFirst.click("[data-entry-fast-help]");
+const overviewMobile=mobileFirst.html("entryDifficultHost");
+assert.ok(overviewMobile.indexOf('class="urgent-needs"')<overviewMobile.indexOf('class="business-grid"'),"L'accueil montre d'abord les besoins");
+mobileFirst.click("[data-help-topic]",{helpTopic:"urgent_food"});
+const afterFood=mobileFirst.html("entryDifficultHost");
+assert.ok(afterFood.indexOf('class="business-grid"')<afterFood.indexOf('class="urgent-needs"'),"Les solutions alimentaires doivent précéder les autres choix");
+assert.match(afterFood,/Choisir un autre besoin/);
+console.log("EcoTank : aides visibles immédiatement après le choix du besoin — OK.");

@@ -44,6 +44,7 @@ try {
     record((await page.title()).toLowerCase().includes('ecotank'), 'Titre de page inattendu');
     const homeCtas = await page.locator('#simpleHome.active .simple-home-buttons button').allTextContents();
     record(homeCtas.some(x=>x.includes('Ma situation administrative est compliquée')), 'Entree pour situations difficiles introuvable');
+    await page.screenshot({path:path.join(outputDir,'00-accueil-general.png'),fullPage:false,animations:'disabled'});
     await page.locator('#simpleAdminStart').click();
     await page.locator('#simpleDifficultHelp.active .urgent-needs-grid [data-help-topic="urgent_food"]').waitFor({ state:'visible', timeout:25000 });
     await page.screenshot({ path: path.join(outputDir,'00-accueil-besoins.png'), fullPage:false, animations:'disabled' });
@@ -54,6 +55,7 @@ try {
         viewportWidth:innerWidth, firstCardTop:Math.round(el.querySelector('.business-grid')?.getBoundingClientRect().top||0)}
     });
     record(initial.buttons===6,'Attendu: six besoins essentiels directement disponibles, recu '+initial.buttons);
+    record(initial.gridBottom<=844,'Les six choix prioritaires ne tiennent pas sur le premier ecran de 390px (bas='+initial.gridBottom+')',false);
     record(initial.width <= initial.viewportWidth+5,'Debordement horizontal sur mobile 390px : '+initial.width+' vs '+initial.viewportWidth);
     if (initial.gridBottom > 844) warnings.push('Les six besoins ne tiennent pas tous sur un seul ecran mobile (bottom='+initial.gridBottom+'px).');
     results.push({ id:'initial', outcome:'page chargee', ...initial });
@@ -94,7 +96,10 @@ try {
         const details=root.locator('details.ecotank-more-actions');
         const detailsCount=await details.count();
         const detailsOpen=detailsCount ? await details.evaluate(el=>el.open) : false;
-        const metrics={ id:topic,persona:name,cards:cardCount,links:mainLinks.length,
+        const layout=await root.evaluate(el=>({actionsTop:el.querySelector('.business-grid')?.getBoundingClientRect().top,
+          needChoicesTop:el.querySelector('.urgent-needs')?.getBoundingClientRect().top}));
+        if (topic!=='overview') record(layout.actionsTop<layout.needChoicesTop,topic+': les options restent AU-DESSUS des solutions');
+        const metrics={ id:topic,persona:name,cards:cardCount,links:mainLinks.length,actionsTop:layout.actionsTop,needChoicesTop:layout.needChoicesTop,
           firstLink:mainLinks[0]?.href||'',scrollWidth:overflow.scrollWidth,
           viewportWidth:overflow.viewportWidth,detailSections:detailsCount,
           detailsInitiallyOpen:detailsOpen,cpasFirst,mainTextLength:text.length,

@@ -361,8 +361,8 @@
     host.innerHTML=
       '<div class="entry-topline"><button type="button" class="linkish" data-access-back>← Retour aux aides</button><span class="entry-step">Sans compte, sans données envoyées</span></div>'+
       '<div class="simple-kicker">Accès aux démarches · solutions de rechange</div>'+
-      '<h2>Débloquer une démarche sans itsme ni téléphone</h2>'+
-      '<p>Choisissez seulement ce qui bloque. Vous obtenez immédiatement des pistes ; le service est facultatif. Aucun code, numéro national, numéro de téléphone ou mot de passe n’est demandé.</p>'+
+      '<h2>Faire mes démarches sans itsme</h2>'+
+      '<p>Choisissez votre blocage. Nous proposons des solutions sans demander vos codes, votre numéro national ni votre mot de passe.</p>'+
       '<div class="access-helper-fields">'+
       '<label>Quel est votre blocage ?<select data-access-issue><option value="">Je ne sais pas / plusieurs problèmes</option>'+
         ACCESS_PROBLEMS.map(x=>'<option value="'+esc(x[0])+'" '+(issue&&issue[0]===x[0]?'selected':'')+'>'+esc(x[1])+'</option>').join("")+
@@ -570,12 +570,12 @@
       ]
     };
     const choices=[
-      ["urgent_food","Manger ou trouver de la nourriture"],
-      ["urgent_shelter","Dormir en sécurité cette nuit"],
-      ["urgent_care","Me soigner sans mutuelle"],
-      ["urgent_income","Retrouver des revenus ou un emploi"],
-      ["urgent_refusal","Un refus administratif à contester"],
-      ["urgent_access","Impossible de faire une démarche (eID, itsme, téléphone…)"],
+      ["urgent_food","Manger / obtenir des courses"],
+      ["urgent_shelter","Dormir en sécurité"],
+      ["urgent_care","Me soigner"],
+      ["urgent_income","Revenus ou emploi"],
+      ["urgent_refusal","Contester un refus"],
+      ["urgent_access","Débloquer une démarche"],
       ["urgent_asylum","Protection internationale : sans accueil"],
       ["urgent_irregular","Sans titre de séjour : soins et hébergement"],
       ["refusals","CPAS ET chômage : deux refus, aucun revenu"],
@@ -620,24 +620,29 @@
       '<article class="business-card '+(i===0?'priority':'')+'"><h3>'+(i+1)+'. '+esc(card[0])+'</h3><p>'+esc(card[1])+'</p>'+
       '<div class="resource-actions">'+card[2].map(link=>safeLink(link[0],link[1])).filter(Boolean).join("")+'</div></article>'
     ).join("");
-    host.innerHTML=
-      '<div class="entry-topline"><button type="button" class="linkish" data-help-back>← Retour</button><span class="entry-step">Aucune autre réponse obligatoire</span></div>'+
-      '<div class="simple-kicker">Situations compliquées · aides concrètes à Bruxelles</div>'+
-      '<h2>'+esc(title)+'</h2>'+
-      '<p>Pas besoin de raconter toute votre vie. Choisissez un besoin : nous montrons trois démarches réalisables, leurs conditions et leurs limites. Aucun droit n’est accordé automatiquement.</p>'+
-      '<section class="urgent-needs"><h3>Votre besoin principal (un clic suffit)</h3>'+
+    const needSection=
+      '<section class="urgent-needs"><h3>Ce qui est urgent pour vous</h3>'+
       '<div class="urgent-needs-grid">'+choicesHtml(firstChoices)+'</div>'+
       '<details class="urgent-secondary"><summary>Autres situations : deux refus, séjour, banque, papiers, logement…</summary>'+
-      '<div class="entry-choice-grid">'+choicesHtml(otherChoices)+'</div></details></section>'+
-      (selected==="refusals"?'<p class="business-safety"><strong>Pas de nouvelle première demande CPAS :</strong> si le CPAS et le chômage ont déjà refusé, on vérifie les autres pistes et les recours.</p>':"")+
-      '<div class="entry-route-actions access-shortcut"><button type="button" data-help-access>Accès numérique bloqué ? Choisir une alternative sans itsme</button></div>'+
-      '<h3 class="urgent-actions-title">'+(selected==="overview"?"Trois points de départ immédiats":"Les trois premières actions")+'</h3>'+
+      '<div class="entry-choice-grid">'+choicesHtml(otherChoices)+'</div></details></section>';
+    const actionSection=
+      (selected==="refusals"?'<p class="business-safety"><strong>Les refus sont déjà connus.</strong> Nous ne proposons pas une nouvelle première demande CPAS, mais d’autres démarches et les recours.</p>':"")+
+      '<h3 class="urgent-actions-title">'+(selected==="overview"?"Premiers gestes possibles":"À faire en premier")+'</h3>'+
       '<div class="business-grid">'+cardHtml(visibleCards)+'</div>'+
       (moreCards.length?'<details class="ecotank-more-actions"><summary>Autres démarches et détails ('+moreCards.length+')</summary>'+
-        '<div class="business-grid">'+cardHtml(moreCards)+'</div></details>':"")+
+        '<div class="business-grid">'+cardHtml(moreCards)+'</div></details>':"");
+    host.innerHTML=
+      '<div class="entry-topline"><button type="button" class="linkish" data-help-back>← Retour</button><span class="entry-step">Sans questionnaire</span></div>'+
+      '<div class="simple-kicker">Aides concrètes à Bruxelles</div>'+
+      '<h2>'+esc(title)+'</h2>'+
+      '<p>'+(selected==="overview"?"Un clic suffit : choisissez votre besoin et découvrez les premières démarches.":"Voici quoi faire d’abord, sans autre formulaire obligatoire. Les droits et les places ne sont pas garantis.")+'</p>'+
+      (selected==="overview"?
+        needSection+actionSection:
+        actionSection+'<div class="entry-route-actions"><button type="button" class="linkish" data-help-reset>← Choisir un autre besoin</button></div>'+needSection)+
+      '<div class="entry-route-actions access-shortcut"><button type="button" data-help-access>Accès numérique bloqué ? Alternative sans itsme</button></div>'+
       '<div class="entry-route-actions"><button type="button" class="linkish" data-help-reset>Revenir aux premières aides</button>'+
       '<button type="button" data-help-detailed>Examiner ma situation en détail (facultatif)</button></div>'+
-      '<p class="business-safety">Ne communiquez jamais ici votre code PIN, mot de passe ou numéro national. Pour une urgence médicale mettant une vie en danger : 112. Les places et les droits dépendent des conditions réelles.</p>';
+      '<p class="business-safety">Ne communiquez jamais ici votre code PIN, mot de passe ou numéro national. Urgence médicale vitale : 112.</p>';
     showScreen("simpleDifficultHelp");
   }
 
