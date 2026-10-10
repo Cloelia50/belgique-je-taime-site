@@ -1,0 +1,42 @@
+name: EcoTank — audit navigateur mobile ponctuel
+
+on:
+  push:
+    paths:
+      - "scripts/test_ecotank_mobile.mjs"
+      - ".github/workflows/ecotank-mobile.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  browser-mobile:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - name: Lire la version publique
+        uses: actions/checkout@v7
+      - name: Préparer Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: "22"
+          package-manager-cache: false
+      - name: Préparer Chromium sans API externe
+        run: |
+          npm install --no-save --no-package-lock playwright-core@1.56.1
+          if ! command -v google-chrome >/dev/null 2>&1 && ! command -v chromium >/dev/null 2>&1; then
+            npx --yes playwright@1.56.1 install --with-deps chromium
+          fi
+      - name: Essayer 12 situations EcoTank dans un navigateur mobile
+        env:
+          ECOTANK_TEST_URL: https://cloelia50.github.io/belgique-je-taime-site/ecotank/
+        run: node scripts/test_ecotank_mobile.mjs
+      - name: Conserver le bilan et les captures 7 jours
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: ecotank-mobile-simulation
+          path: artifacts/ecotank-mobile/
+          retention-days: 7
+          if-no-files-found: warn
