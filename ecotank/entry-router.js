@@ -250,8 +250,21 @@
     const host=document.getElementById("entryDifficultHost");
     if(!host)return;
     const sources=state.catalog?.official_sources||{};
+    // Sources vérifiées manuellement pour les deux refus (CPAS + ONEM).
+    // Les liens de la base officielle restent prioritaires pour les autres situations.
+    const refusalSources={
+      appeal_cpas:{url:"https://www.mi-is.be/sites/default/files/documents/guide_du_recours_contre_la_decision_du_cpas_1_0.pdf"},
+      appeal_onem:{url:"https://www.onem.be/index.php/citoyens/chomage-complet/comment-devez-vous-demander-les-allocations-/comment-votre-dossier-sera-t-il-traite"},
+      appeal_court:{url:"https://www.rechtbanken-tribunaux.be/fr/node/3801"},
+      legal_aid:{url:"https://www.justice.belgium.be/fr/besoin_dun_avis_juridique"},
+      fdss_help:{url:"https://www.fdss.be/fr/membres/allo-aide-sociale-numero-gratuit-bruxelles-0800-35-243/"},
+      fdss_food:{url:"https://www.fdss.be/fr/caa/repertoire-de-l-aide-alimentaire/"},
+      inami_sick:{url:"https://www.inami.fgov.be/fr/themes/incapacite-de-travail/salaries-et-chomeurs/declarer-son-incapacite-de-travail"},
+      arr_disability:{url:"https://handicap.belgium.be/fr/allocations/allocation-de-remplacement-de-revenus"},
+      grapa_seniors:{url:"https://www.sfpd.fgov.be/fr/droit-a-la-pension/grapa"}
+    };
     const safeLink=(key,label)=>{
-      const source=sources[key];
+      const source=sources[key]||refusalSources[key];
       if(!source||typeof source.url!=="string"||!/^https:\/\//i.test(source.url))return "";
       return '<a href="'+esc(source.url)+'" target="_blank" rel="noopener noreferrer">'+esc(label||source.label||"Ouvrir la source officielle")+' ↗</a>';
     };
@@ -262,6 +275,12 @@
         ["Commencer par une aide humaine et concrète","Si vous n'arrivez plus à faire face aux besoins essentiels, demandez à un service social de faire le point avec vous. N'attendez pas d'avoir tous vos documents.",[["cpas_dis_procedure","Comprendre les démarches auprès du CPAS"]]],
         ["Ne pas perdre l'accès aux soins","Vérifiez votre affiliation ou les démarches pour la rétablir, indépendamment de vos autres droits.",[["inami_affiliation","Mutualité ou CAAMI"]]],
         ["Remettre en ordre ce qui bloque","Une adresse administrative incertaine peut empêcher d'autres démarches. C'est un problème à traiter, pas une raison d'arrêter la recherche.",[["reference_address","Adresse de référence et aides"]]]
+      ],
+      refusals:[
+        ["Faire examiner les deux décisions, sans recommencer les mêmes demandes","Le refus du CPAS et le refus du chômage peuvent avoir des motifs différents. Gardez les courriers, leurs dates et leurs motifs. Un recours devant le tribunal du travail est généralement possible dans les 3 mois après notification : vérifiez les délais pour chaque décision sans attendre. Si le refus n'était qu'oral, demandez une décision écrite. Aucun recours n'assure une issue favorable.",[["appeal_court","Recours contre les décisions sociales"],["appeal_cpas","Guide de recours CPAS"],["appeal_onem","Refus chômage : démarches ONEM"]]],
+        ["Demander un conseil indépendant et gratuit","Une première consultation juridique est gratuite pour tous. Selon vos ressources, un avocat peut être gratuit ou partiellement pris en charge pour étudier un recours. Le travailleur social ou le juriste peut vérifier le motif exact de chaque refus, les preuves et les autres aides possibles.",[["legal_aid","Trouver l'aide juridique gratuite"]]],
+        ["Trouver de quoi tenir maintenant, sans attendre une décision","À Bruxelles, appelez le 0800 35 243 (Allo Aide Sociale) pour être orienté vers un service associatif ; précisez que le CPAS et le chômage ont déjà refusé. Pour manger, utilisez le répertoire des aides alimentaires : les conditions d'accueil varient, il faut contacter l'association. Ces aides ne sont pas une allocation mensuelle garantie.",[["fdss_help","Aide sociale indépendante : 0800 35 243"],["fdss_food","Où trouver une aide alimentaire ?"]]],
+        ["Vérifier un autre droit seulement s'il correspond à votre situation","Une incapacité de travail médicalement reconnue peut, sous conditions, ouvrir des indemnités via la mutualité ; un handicap réduisant la capacité de gain peut ouvrir une ARR ; à l'âge légal de la pension, la GRAPA est une autre piste. Le refus du chômage ou du CPAS ne suffit pas à établir ces droits.",[["inami_sick","Incapacité de travail — INAMI"],["arr_disability","Allocation de remplacement de revenus"],["grapa_seniors","GRAPA — pension"]]]
       ],
       income:[
         ["Demander un examen de votre situation","Sans revenu ou après une interruption de droits, le CPAS peut examiner les aides accessibles selon votre situation. Ce n'est pas une garantie d'attribution.",[["cpas_dis_procedure","Comprendre la procédure CPAS"]]],
@@ -310,6 +329,7 @@
       ]
     };
     const choices=[
+      ["refusals","CPAS ET chômage : deux refus, aucun revenu"],
       ["income","Revenus ou droits coupés"],["housing","Logement ou adresse"],
       ["health","Soins de santé"],["identity","Papiers et eID"],
       ["digital","itsme / démarches en ligne"],["decision","Décision ou recours"],
@@ -317,14 +337,16 @@
     ];
     const selected=guides[topic]?topic:"overview";
     const cards=guides[selected];
-    const title=selected==="residence"?"Premières pistes pour votre situation de séjour":
+    const title=selected==="refusals"?"Plus de revenus : le CPAS et le chômage ont déjà refusé":
+      selected==="residence"?"Premières pistes pour votre situation de séjour":
       selected==="international"?"Premières pistes pour votre situation internationale":
       "Voici des premières solutions, sans autre questionnaire";
     host.innerHTML=
       '<div class="entry-topline"><button type="button" class="linkish" data-help-back>← Mon orientation</button><span class="entry-step">Aucune autre réponse obligatoire</span></div>'+
       '<div class="simple-kicker">Situations compliquées · accès rapide</div>'+
       '<h2>'+esc(title)+'</h2>'+
-      '<p>Vous pouvez agir dès maintenant. Les liens ci-dessous viennent des sources officielles déjà référencées dans EcoTank. Ce sont des pistes à vérifier, pas des droits accordés automatiquement.</p>'+
+      '<p>Vous pouvez agir dès maintenant. Les liens ci-dessous proviennent de sources officielles ou de services associatifs identifiés. Ce sont des pistes à vérifier, pas des droits accordés automatiquement.</p>'+
+      (selected==="refusals"?'<p class="business-safety"><strong>Pas de renvoi en boucle :</strong> ce parcours ne vous demande pas de déposer une nouvelle première demande CPAS. Les recours et les aides immédiates sont des démarches distinctes à mener en parallèle.</p>':"")+
       '<div class="business-grid">'+cards.map((card,i)=>
         '<article class="business-card '+(i===0?'priority':'')+'"><h3>'+(i+1)+'. '+esc(card[0])+'</h3><p>'+esc(card[1])+'</p>'+
         '<div class="resource-actions">'+card[2].map(link=>safeLink(link[0],link[1])).filter(Boolean).join("")+'</div></article>'

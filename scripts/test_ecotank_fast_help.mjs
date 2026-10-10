@@ -130,3 +130,26 @@ assert.match(source, /screen\.insertBefore\(sources,readiness\)/);
 assert.match(source, /more\.appendChild\(section\)/);
 assert.match(source, /data-admin-immediate-help/);
 console.log("EcoTank : entrée situation compliquée vers aide immédiate et plan avant les documents — OK.");
+
+// Cas d'impasse : deux refus, aucune ressource. Ne jamais renvoyer par défaut
+// vers une nouvelle première demande CPAS.
+const doubleRefusal=session();
+await ready(doubleRefusal);
+doubleRefusal.click("[data-entry-fast-help]");
+assert.match(doubleRefusal.html("entryDifficultHost"), /data-help-topic="refusals"/);
+doubleRefusal.click("[data-help-topic]",{helpTopic:"refusals"});
+const refusedHtml=doubleRefusal.html("entryDifficultHost");
+assert.match(refusedHtml, /CPAS et le chômage ont déjà refusé/);
+assert.match(refusedHtml, /tribunal du travail/);
+assert.match(refusedHtml, /3 mois/);
+assert.match(refusedHtml, /décision écrite/);
+assert.match(refusedHtml, /0800 35 243/);
+assert.match(refusedHtml, /aide alimentaire/);
+assert.match(refusedHtml, /mutualité/);
+assert.match(refusedHtml, /allocation mensuelle garantie/);
+assert.doesNotMatch(refusedHtml, /Première demande CPAS sans connexion|Première demande avec identification|cpas_online_unsecured/);
+assert.match(refusedHtml, /https:\/\/www\.justice\.belgium\.be/);
+assert.match(refusedHtml, /https:\/\/www\.fdss\.be/);
+doubleRefusal.click("[data-help-topic]",{helpTopic:"income"});
+assert.match(doubleRefusal.html("entryDifficultHost"), /Demander un examen/,"Le parcours revenus ordinaire doit rester utilisable");
+console.log("EcoTank : double refus CPAS/chômage — recours, aide associative et autres droits sans nouveau formulaire CPAS : OK.");
