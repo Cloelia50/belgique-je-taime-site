@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 """Essais Chromium mobile de l'EcoTank complet (et non DOM simulé)."""
-import functools, http.server, json, pathlib, threading
+import functools, http.server, json, pathlib, threading, time
 from urllib.request import urlopen
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
+from selenium.common.exceptions import WebDriverException
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 
@@ -47,8 +48,18 @@ def start_chrome(w,h):
  return d
 
 def click(d,selector):
- e=WebDriverWait(d,15).until(lambda x:x.find_element(By.CSS_SELECTOR,selector))
- e.click()
+ last=None
+ for attempt in range(4):
+  e=WebDriverWait(d,15).until(lambda x:x.find_element(By.CSS_SELECTOR,selector))
+  try:
+   d.execute_script("arguments[0].scrollIntoView({block:'center',behavior:'instant'})",e)
+   time.sleep(.30)
+   e.click()
+   return
+  except WebDriverException as exc:
+   last=exc
+   time.sleep(.35)
+ raise RuntimeError("Clic impossible sur "+selector+" après 4 essais : "+str(last)[:650])
 
 def metrics(d):
  return d.execute_script("""
@@ -72,6 +83,7 @@ def choose(d,topic):
  if not e.is_displayed():
   click(d,"#entryDifficultHost .urgent-secondary summary")
  click(d,selector)
+ time.sleep(.40)  # attendre la fin du retour au haut de page avant le clic suivant
  WebDriverWait(d,12).until(lambda x:bool(x.find_elements(
   By.CSS_SELECTOR,"#entryDifficultHost > .business-grid > article")))
 
@@ -105,7 +117,7 @@ def run(w,h):
     if label in ("manger","dormir","soins","double_refus","asile_sans_accueil","eid_numero_perdu"):
      d.save_screenshot(str(DEST/(name+"-"+label+".png")))
    except Exception as e:
-    report(name+"-"+label,False,{"erreur":repr(e)[:220]})
+    report(name+"-"+label,False,{"erreur":str(e)[:350]})
     d.save_screenshot(str(DEST/(name+"-ERREUR-"+label+".png")))
   # L'entrée générale ne doit pas condamner à remplir un autre questionnaire.
   try:
@@ -118,7 +130,7 @@ def run(w,h):
     By.CSS_SELECTOR,"#entryDifficultHost .urgent-needs-grid")))
    report(name+"-entree-generale",True,"Aide immédiate après Commencer")
   except Exception as e:
-   report(name+"-entree-generale",False,repr(e)[:220])
+   report(name+"-entree-generale",False,str(e)[:350])
   # Contrôle en plus de la version effectivement publiée.
   if w==390:
    try:
