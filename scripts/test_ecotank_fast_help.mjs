@@ -306,7 +306,7 @@ const urgentScenarios=[
   ["urgent_income",["Actiris","FPIE","première demande CPAS"]],
   ["urgent_refusal",["3 mois","aide juridique","décision écrite"]],
   ["urgent_access",["lecteur","CSAM","SMS"]],
-  ["urgent_asylum",["Fedasil","rue Belliard 68","accueil matériel"]],
+  ["urgent_asylum",["Fedasil","rue Belliard 68","accueil matériel","liste d'attente","fedasilinfo.be/fr/senregistrer-pour-une-place-daccueil"]],
   ["urgent_irregular",["Athéna","aide médicale urgente","Samusocial"]],
   ["refusals",["FPIE","mutualité","tribunal du travail"]],
   ["housing",["Samusocial","code d'inscription"]],
