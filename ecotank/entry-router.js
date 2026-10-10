@@ -387,7 +387,7 @@
   // Les autres parcours EcoTank et le questionnaire détaillé restent inchangés.
   function renderDifficultHelp(nextTopic){
     if(!ensureScreens())return;
-    if(nextTopic){state.difficultTopic=nextTopic;state.helpStep=0;}
+    if(nextTopic){state.difficultTopic=nextTopic;state.helpStep=0;state.foodLocationConfirmed=false;}
     const initial=state.destinationId==="residence_status"?"residence":
       state.destinationId==="international_special"?"international":"overview";
     const topic=state.difficultTopic||initial;
@@ -612,6 +612,13 @@
       no_phone:"Faire des démarches sans numéro de téléphone"
     }[selected]||"Vos premières démarches possibles";
 
+    // Lieux alimentaires dont les coordonnées sont publiées ; admission jamais présumée.
+    const FOOD_PLACES={
+      "1020":{name:"Resto du Cœur de Laeken",address:"Rue Stéphanie 26-32, 1020 Laeken",hours:"Repas chauds : lundi à vendredi, 11 h 30–13 h 30",note:"Colis sur rendez-vous ; confirmer les conditions et la disponibilité.",url:"https://restosducoeur.be/fr/nos-restos/resto-du-coeur-de-laeken"},
+      "1060":{name:"Resto du Cœur de Saint-Gilles",address:"Rue de Bosnie 22, 1060 Saint-Gilles",hours:"Repas chauds : lundi à vendredi, 11 h–13 h",note:"Colis après rendez-vous social ; vérifier l'accueil avant de se déplacer.",url:"https://aiguillages.brussels/precarite/"}
+    };
+    const FOOD_COMMUNES={"laeken":"1020","saint-gilles":"1060","st gilles":"1060"};
+    function foodCode(value){const v=String(value||"").trim().toLowerCase();return FOOD_COMMUNES[v]||(v.match(/\\b1[0-2][0-9]{2}\\b/)||[])[0]||"";}
     const compact={
       urgent_food:["Choisissez votre commune dans le répertoire alimentaire.","Sans téléphone, écrivez à aidealimentaire@fdss.be.","Si l'épicerie refuse, cherchez une distribution de colis ou de repas."],
       urgent_shelter:["Demandez une place au Samusocial pour cette nuit. Place non garantie.","Sans GSM, consultez la procédure avec un téléphone emprunté.","Si aucune place, demandez au Samusocial une réorientation."],
@@ -621,6 +628,40 @@
     };
     const choicesHtml=list=>list.map(([id,label])=>'<button type="button" class="entry-choice" data-help-topic="'+id+'">'+esc(label)+'</button>').join("");
     const choose='<section class="urgent-needs"><h3>De quoi avez-vous besoin ?</h3><div class="urgent-needs-grid">'+choicesHtml(firstChoices)+'</div><details><summary>Autres problèmes</summary><div class="entry-choice-grid">'+choicesHtml(otherChoices)+'</div></details></section>';
+    if(selected==="urgent_food"&&!state.foodLocationConfirmed){
+      host.innerHTML='<div class="simple-kicker">Une question seulement</div><h2>Dans quelle commune êtes-vous ?</h2>'+
+        '<p>Pour trouver une aide alimentaire, sans demander vos revenus.</p>'+
+        '<div class="guided-one-step"><label for="food-postal">Commune ou code postal</label>'+
+        '<input id="food-postal" inputmode="text" autocomplete="address-level2" placeholder="Ex. 1020 ou Laeken" value="'+esc(state.foodLocation||"")+'">'+
+        '<div class="guided-actions"><button type="button" data-food-find>Voir ma première démarche</button>'+
+        '<button type="button" data-help-reset>Changer de problème</button></div></div>';
+      showScreen("simpleDifficultHelp");return;
+    }
+    if(selected==="urgent_food"&&Number(state.helpStep||0)===0){
+      const place=FOOD_PLACES[foodCode(state.foodLocation)];
+      if(place){
+        host.innerHTML='<div class="simple-kicker">Une démarche à la fois</div><h2>Manger / obtenir des courses</h2>'+
+          '<section class="guided-one-step"><p class="guided-step-count">Première piste dans votre commune</p>'+
+          '<h3>'+esc(place.name)+'</h3><p class="guided-instruction">'+esc(place.address)+'</p>'+
+          '<p>'+esc(place.hours)+'</p><p>'+esc(place.note)+'</p>'+
+          '<div class="guided-main-link"><a href="'+esc(place.url)+'" target="_blank" rel="noopener noreferrer">Vérifier comment être accueilli ↗</a></div>'+
+          '<div class="guided-actions"><button type="button" data-help-next>Ça n’a pas marché → Autre solution</button>'+
+          '<button type="button" data-food-change>Changer de commune</button><button type="button" data-help-reset>Autre problème</button></div></section>';
+      }else{
+        const commune=String(state.foodLocation||"votre commune");
+        const subject=encodeURIComponent("Aide alimentaire urgente — "+commune);
+        const body=encodeURIComponent("Bonjour, je cherche une aide alimentaire accessible dans ma commune ("+commune+"). Pourriez-vous m’indiquer un lieu concret et les conditions pour être accueilli, si possible sans appel téléphonique ? Merci.");
+        host.innerHTML='<div class="simple-kicker">Une démarche à la fois</div><h2>Demander une adresse alimentaire</h2>'+
+          '<section class="guided-one-step"><p>Je n’ai pas encore de lieu vérifié pour cette commune. Je préfère ne pas vous envoyer à une mauvaise adresse.</p>'+
+          '<h3>Contacter directement l’équipe d’aide alimentaire FDSS</h3>'+
+          '<p class="guided-instruction">Indiquez votre commune et demandez où obtenir de la nourriture.</p>'+
+          '<div class="guided-main-link"><a href="mailto:aidealimentaire@fdss.be?subject='+subject+'&body='+body+'">Envoyer un e-mail prêt à l’emploi ↗</a></div>'+
+          '<div class="guided-actions"><button type="button" data-help-next>Pas d’e-mail ? Autre possibilité</button>'+
+          '<button type="button" data-food-change>Changer de commune</button><button type="button" data-help-reset>Autre problème</button></div>'+
+          '<details><summary>En savoir plus</summary><p>La FDSS recommande de confirmer critères, horaires et capacité d’accueil avant tout déplacement. Une réponse immédiate n’est pas garantie.</p></details></section>';
+      }
+      showScreen("simpleDifficultHelp");return;
+    }
     if(selected==="overview"){
       host.innerHTML='<div class="simple-kicker">EcoTank vous guide</div><h2>De quoi avez-vous besoin aujourd’hui ?</h2><p>Un choix, une démarche à la fois.</p>'+choose+'<p class="business-safety">Danger médical immédiat : 112.</p>';
     }else{
@@ -806,6 +847,8 @@
     if(event.target.closest("[data-access-back]")){renderDifficultHelp();return;}
     if(event.target.closest("[data-access-reset]")){state.accessIssue="";state.accessService="general";renderAccessHelp();return;}
     if(event.target.closest("[data-entry-admin]")){state.difficultTopic="";renderDifficultHelp();return;}
+    if(event.target.closest("[data-food-find]")){state.foodLocation=document.getElementById("food-postal")?.value?.trim()||"";state.foodLocationConfirmed=true;state.helpStep=0;renderDifficultHelp();return;}
+    if(event.target.closest("[data-food-change]")){state.foodLocationConfirmed=false;renderDifficultHelp();return;}
     if(event.target.closest("[data-help-next]")){state.helpStep=(state.helpStep||0)+1;renderDifficultHelp();return;}
     const topic=event.target.closest("[data-help-topic]");
     if(topic){renderDifficultHelp(topic.dataset.helpTopic);return;}
