@@ -212,5 +212,6 @@ for(const must of ["lecteur de cartes eID","aucun","sans téléphone","Code de s
 assert.match(withoutSms,/csam\.be\/fr\/profil-egov\.html/);
 assert.match(withoutSms,/activer_une_cle_numerique-e-mail_otp\.pdf/);
 assert.match(withoutSms,/bruxelles\.be\/comment-vous-connecter/);
+assert.match(overview,/sans numéro actif/,"Le double refus doit préciser que l'eID fonctionne sans GSM actif");
 assert.doesNotMatch(withoutSms,/Première demande CPAS sans connexion|cpas_online_unsecured/);
 console.log("EcoTank : lecteur eID fonctionnel sans GSM, identification CSAM et clé e-mail sans itsme — OK.");
