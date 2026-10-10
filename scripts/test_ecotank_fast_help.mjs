@@ -315,7 +315,7 @@ const urgentScenarios=[
 ];
 for(const [topic,words] of urgentScenarios){
   precarious.click("[data-help-topic]",{helpTopic:topic});
-  const content=precarious.html("entryDifficultHost"),front=visibleActions(content);
+  const content=precarious.html("entryDifficultHost").replaceAll("&#39;","'"),front=visibleActions(content);
   const count=(front.match(/class="business-card /g)||[]).length;
   assert.equal(count,3,topic+": trois actions au maximum avant « autres détails »");
   for(const word of words) assert.ok(content.toLowerCase().includes(word.toLowerCase()),topic+": manque "+word);
