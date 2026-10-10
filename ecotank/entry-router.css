@@ -46,3 +46,36 @@
   .entry-choice-grid,.business-grid,.business-intake-grid{grid-template-columns:1fr}
   .entry-choice{min-height:58px}
 }
+
+/* Parcours situation compliquée : les démarches précèdent les longues checklists. */
+.ecotank-page .ecotank-action-first{
+  margin:16px 0 20px;padding:18px 20px;border:2px solid var(--brand,#0E6F5C);
+  background:var(--brand-soft,#e9f7f2);border-radius:16px;
+}
+.ecotank-page .ecotank-action-first h3{font-size:1.16rem;margin:0 0 7px}
+.ecotank-page .ecotank-action-first p{margin:0;max-width:70ch;line-height:1.55}
+.ecotank-page .ecotank-action-first .entry-route-actions{margin-top:14px}
+.ecotank-page .ecotank-action-first a.primary{
+  display:inline-flex;align-items:center;justify-content:center;min-height:44px;
+  border-radius:9px;padding:10px 15px;background:var(--brand,#0E6F5C);color:#fff;
+  text-decoration:none;font-weight:750;
+}
+.ecotank-page .ecotank-optional-checks{
+  margin:20px 0;border:1px solid var(--line);border-radius:14px;
+  padding:0 15px 13px;background:var(--sheet);
+}
+.ecotank-page .ecotank-optional-checks summary{
+  cursor:pointer;padding:17px 4px;font-weight:800;line-height:1.4;
+}
+.ecotank-page .ecotank-optional-checks>p{margin:0 4px 10px;color:var(--muted);font-size:.9rem}
+.ecotank-page #simpleAdminResults .ecotank-optional-checks .online-readiness{
+  margin:12px 0;
+}
+.ecotank-page #simpleAdminResults .admin-warning strong,
+.ecotank-page #simpleAdminResults .admin-results-note strong{
+  display:block;margin-bottom:6px;
+}
+@media(max-width:720px){
+  .ecotank-page .ecotank-action-first{padding:15px}
+  .ecotank-page .ecotank-action-first .entry-route-actions{display:grid}
+}

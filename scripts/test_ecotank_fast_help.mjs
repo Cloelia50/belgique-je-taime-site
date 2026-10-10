@@ -29,11 +29,22 @@ function session() {
     addEventListener: (type, handler) => { listeners[type] = handler; }
   };
   elements.set("simpleHome", element("simpleHome"));
-  const window = { scrollTo() {} };
+  const windowListeners = {};
+  const window = { scrollTo() {}, addEventListener(type, handler) { windowListeners[type] = handler; } };
   const fetch = () => Promise.resolve({ ok: true, json: () => Promise.resolve(profile) });
   runInNewContext(source, { document, window, fetch });
   return {
     window, elements,
+    adminEntryClick() {
+      const event = {
+        target: { closest: selector => selector === "#simpleAdminStart" ? { id: "simpleAdminStart" } : null },
+        prevented: false, stopped: false,
+        preventDefault() { this.prevented = true; },
+        stopPropagation() { this.stopped = true; }
+      };
+      windowListeners.click(event);
+      return event;
+    },
     click(selector, dataset = {}) {
       listeners.click({ target: { closest: current => current === selector ? { dataset } : null } });
     },
@@ -101,3 +112,21 @@ for (const key of new Set(linkedKeys)) {
   assert.ok(profile.official_sources?.[key]?.url?.startsWith("https://"), "Source officielle manquante : " + key);
 }
 console.log("EcoTank : accès immédiat, retour à zéro, 8 parcours et sources officielles — OK (aucun robot exécuté).");
+
+// La vraie entrée « situation administrative compliquée » doit court-circuiter
+// le vieil interrogatoire et conduire aux liens officiels dès le premier clic.
+const entry = session();
+const blocked = entry.adminEntryClick();
+assert.equal(blocked.prevented, true, "Le clic doit interrompre l'ancien questionnaire");
+assert.equal(blocked.stopped, true, "Le formulaire historique ne doit pas démarrer");
+for (let i = 0; i < 8; i++) await Promise.resolve();
+assert.ok(hasHelp(entry.html("entryDifficultHost")), "Le bouton de l'accueil doit montrer l'aide immédiate");
+assert.match(entry.html("entryDifficultHost"), /https:\/\//);
+assert.match(entry.html("entryDifficultHost"), /data-help-topic="income"/);
+
+// Régression de mise en page : conserver le plan AVANT le contrôle des justificatifs.
+assert.match(source, /screen\.insertBefore\(pathways,readiness\)/);
+assert.match(source, /screen\.insertBefore\(sources,readiness\)/);
+assert.match(source, /more\.appendChild\(section\)/);
+assert.match(source, /data-admin-immediate-help/);
+console.log("EcoTank : entrée situation compliquée vers aide immédiate et plan avant les documents — OK.");

@@ -9,6 +9,8 @@
     answers: {},
     destinationId: "",
     bypassStart: false,
+    bypassAdminStart: false,
+    fromAdminHome: false,
     businessAnswers: {}
   };
 
@@ -188,6 +190,55 @@
   }
 
 
+
+  // L'ancien écran administratif met les listes de pièces AVANT les solutions.
+  // On conserve ses contrôles et ses réponses, mais on affiche les démarches d'abord.
+  function prioritizeAdminResults(){
+    const screen=document.getElementById("simpleAdminResults");
+    const pathways=document.getElementById("simpleAdminPathways");
+    const sources=document.getElementById("simpleAdminSources");
+    const readiness=document.getElementById("simpleOnlineReadiness");
+    if(!screen||!pathways||!sources||!readiness||document.getElementById("simpleAdminActionFirst"))return;
+    const action=document.createElement("section");
+    action.id="simpleAdminActionFirst";
+    action.className="ecotank-action-first";
+    action.innerHTML='<h3>Voici votre plan : les démarches d’abord</h3>'+
+      '<p>Vous pouvez consulter les pistes adaptées à vos réponses dès maintenant. Vérifier vos codes, vos documents ou votre compte est facultatif : cela ne doit pas vous empêcher de demander de l’aide.</p>'+
+      '<div class="entry-route-actions"><a class="primary" href="#simpleAdminPathways">Voir mon plan de démarches ↓</a>'+
+      '<button type="button" data-admin-immediate-help>Voir les premières aides sans autre question</button></div>';
+    const warnings=document.getElementById("simpleAdminWarningHost");
+    screen.insertBefore(action,warnings||readiness);
+    screen.insertBefore(pathways,readiness);
+    screen.insertBefore(sources,readiness);
+    const more=document.createElement("details");
+    more.id="simpleAdminOptionalChecks";
+    more.className="ecotank-optional-checks";
+    more.innerHTML='<summary>Vérifier mes accès et préparer mes documents (facultatif)</summary>'+
+      '<p>Ces listes servent à débloquer des démarches si vous en avez besoin. Elles ne conditionnent pas l’affichage de votre plan.</p>';
+    screen.insertBefore(more,readiness);
+    [readiness,screen.querySelector(".admin-proof-pack"),screen.querySelector(".admin-submit-protocol")]
+      .filter(Boolean).forEach(section=>more.appendChild(section));
+  }
+
+  // Le bouton « Ma situation administrative est compliquée » doit montrer
+  // l'aide rapide, pas commencer par un nouvel interrogatoire.
+  function startImmediateHelp(){
+    if(!ensureScreens())return false;
+    state.destinationId="foundation_recovery";
+    state.difficultTopic="";
+    const host=document.getElementById("entryDifficultHost");
+    if(host)host.innerHTML='<div class="simple-kicker">Aide immédiate</div>'+
+      '<h2>Recherche des premières démarches…</h2><p>Aucune réponse obligatoire.</p>';
+    showScreen("simpleDifficultHelp");
+    loadCatalog().then(()=>renderDifficultHelp()).catch(()=>{
+      if(host)host.innerHTML='<h2>Impossible de charger les pistes pour le moment</h2>'+
+        '<p>Vous pouvez réessayer ou ouvrir le parcours administratif classique.</p>'+
+        '<div class="entry-route-actions"><button type="button" data-admin-retry>Réessayer</button>'+
+        '<button type="button" data-help-detailed>Ouvrir le parcours détaillé</button></div>';
+    });
+    return true;
+  }
+
   // Parcours rapide réservé aux personnes qui rencontrent des blocages.
   // Les autres parcours EcoTank et le questionnaire détaillé restent inchangés.
   function renderDifficultHelp(nextTopic){
@@ -292,7 +343,7 @@
   function handoffAdmin(){
     hideCustomScreens();
     const b=document.getElementById("simpleAdminStart");
-    if(b)b.click();
+    if(b){state.bypassAdminStart=true;b.click();}
   }
 
   function renderDestination(id){
@@ -433,6 +484,7 @@
     if(!ensureScreens())return false;
     state.answers={};
     state.destinationId="";
+    state.fromAdminHome=false;
     state.difficultTopic="";
     state.businessAnswers={};
     const host=document.getElementById("entryRouterHost");
@@ -449,13 +501,19 @@
     if(event.target.closest("[data-entry-home]")){hideCustomScreens();document.getElementById("simpleHome")?.classList.add("active");window.scrollTo({top:0,behavior:"smooth"});return;}
     if(event.target.closest("[data-entry-restart]")){state.answers={};state.destinationId="";renderQuestion("q_entry_situation");return;}
     if(event.target.closest("[data-entry-unknown]")){routeToDestination("guided_orientation");return;}
-    if(event.target.closest("[data-entry-fast-help]")){state.destinationId="foundation_recovery";state.difficultTopic="";renderDifficultHelp();return;}
+    if(event.target.closest("[data-entry-fast-help]")){state.fromAdminHome=false;state.destinationId="foundation_recovery";state.difficultTopic="";renderDifficultHelp();return;}
     if(event.target.closest("[data-entry-admin]")){state.difficultTopic="";renderDifficultHelp();return;}
     const topic=event.target.closest("[data-help-topic]");
     if(topic){renderDifficultHelp(topic.dataset.helpTopic);return;}
-    if(event.target.closest("[data-help-back]")){renderDestination(state.destinationId);return;}
+    if(event.target.closest("[data-help-back]")){
+      if(state.fromAdminHome){hideCustomScreens();document.getElementById("simpleHome")?.classList.add("active");window.scrollTo({top:0,behavior:"smooth"});}
+      else renderDestination(state.destinationId);
+      return;
+    }
     if(event.target.closest("[data-help-reset]")){state.difficultTopic="";renderDifficultHelp();return;}
     if(event.target.closest("[data-help-detailed]")){handoffAdmin();return;}
+    if(event.target.closest("[data-admin-retry]")){startImmediateHelp();return;}
+    if(event.target.closest("[data-admin-immediate-help]")){state.fromAdminHome=true;startImmediateHelp();return;}
     if(event.target.closest("[data-entry-general]")){handoffGeneral();return;}
     if(event.target.closest("[data-entry-fallback]")){handoffGeneral();return;}
     if(event.target.closest("[data-entry-personal]")){
@@ -472,6 +530,20 @@
     if(input)state.businessAnswers[input.dataset.businessIntake]=input.value;
   });
 
+  // Capture AVANT le gestionnaire historique attaché directement au bouton.
+  // L'accès au questionnaire détaillé reste disponible via handoffAdmin().
+  window.addEventListener?.("click",event=>{
+    const target=event.target?.closest?.("#simpleAdminStart");
+    if(!target)return;
+    if(state.bypassAdminStart){state.bypassAdminStart=false;return;}
+    if(!ensureScreens())return;
+    event.preventDefault?.();
+    event.stopPropagation?.();
+    state.fromAdminHome=true;
+    startImmediateHelp();
+  },true);
+
+  prioritizeAdminResults();
   ensureScreens();
   window.EcoTankEntryRouter={start};
 })();
