@@ -188,3 +188,12 @@ for(const [topic,needles] of [
   assert.doesNotMatch(h,/cpas_online_unsecured|Première demande CPAS sans connexion/);
 }
 console.log("EcoTank : sans revenus/chômage/CPAS/téléphone, accès FPIE, épicerie, CAAMI et eID — OK.");
+
+
+const cleanTitle=practical.html("entryDifficultHost");
+practical.click("[data-help-topic]",{helpTopic:"refusals"});
+const readableTitles=practical.html("entryDifficultHost");
+assert.doesNotMatch(readableTitles, /<h3>\d+\. \d+\./, "Les titres ne doivent pas avoir une double numérotation");
+assert.match(readableTitles, /3 mois/, "Délai de recours indiqué dans le parcours");
+assert.match(readableTitles, /allocation mensuelle garantie/, "Aucune garantie d'allocation suggérée");
+console.log("EcoTank : titres lisibles et absence de droits automatiques — OK.");
