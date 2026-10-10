@@ -197,3 +197,20 @@ assert.doesNotMatch(readableTitles, /<h3>\d+\. \d+\./, "Les titres ne doivent pa
 assert.match(readableTitles, /3 mois/, "Délai de recours indiqué dans le parcours");
 assert.match(readableTitles, /allocation mensuelle garantie/, "Aucune garantie d'allocation suggérée");
 console.log("EcoTank : titres lisibles et absence de droits automatiques — OK.");
+
+// Cas réel : lecteur eID + carte + PIN déjà opérationnels ; numéro de GSM perdu.
+// Ne jamais renvoyer l'usager en boucle vers l'activation itsme ni le rachat d'un lecteur.
+const eidReady=session();
+await ready(eidReady);
+eidReady.click("[data-entry-fast-help]");
+assert.match(eidReady.html("entryDifficultHost"), /data-help-topic="eid_works_no_phone"/);
+eidReady.click("[data-help-topic]",{helpTopic:"eid_works_no_phone"});
+const withoutSms=eidReady.html("entryDifficultHost");
+for(const must of ["lecteur de cartes eID","aucun","sans téléphone","Code de sécurité par e-mail","sans numéro","guichet"]){
+  assert.ok(withoutSms.toLowerCase().includes(must.toLowerCase()),"Clé manquante pour eID fonctionnel : "+must);
+}
+assert.match(withoutSms,/csam\.be\/fr\/profil-egov\.html/);
+assert.match(withoutSms,/activer_une_cle_numerique-e-mail_otp\.pdf/);
+assert.match(withoutSms,/bruxelles\.be\/comment-vous-connecter/);
+assert.doesNotMatch(withoutSms,/Première demande CPAS sans connexion|cpas_online_unsecured/);
+console.log("EcoTank : lecteur eID fonctionnel sans GSM, identification CSAM et clé e-mail sans itsme — OK.");
