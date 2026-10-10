@@ -614,11 +614,15 @@
 
     // Lieux alimentaires dont les coordonnées sont publiées ; admission jamais présumée.
     const FOOD_PLACES={
-      "1020":{name:"Resto du Cœur de Laeken",address:"Rue Stéphanie 26-32, 1020 Laeken",hours:"Repas chauds : lundi à vendredi, 11 h 30–13 h 30",note:"Colis sur rendez-vous ; confirmer les conditions et la disponibilité.",url:"https://restosducoeur.be/fr/nos-restos/resto-du-coeur-de-laeken"},
-      "1060":{name:"Resto du Cœur de Saint-Gilles",address:"Rue de Bosnie 22, 1060 Saint-Gilles",hours:"Repas chauds : lundi à vendredi, 11 h–13 h",note:"Colis après rendez-vous social ; vérifier l'accueil avant de se déplacer.",url:"https://aiguillages.brussels/precarite/"}
+      "1020":{lat:50.87663,lon:4.3554716,name:"Resto du Cœur de Laeken",address:"Rue Stéphanie 26-32, 1020 Laeken",hours:"Repas chauds : lundi à vendredi, 11 h 30–13 h 30",note:"Colis sur rendez-vous ; confirmer les conditions et la disponibilité.",url:"https://restosducoeur.be/fr/nos-restos/resto-du-coeur-de-laeken"},
+      "1060":{lat:50.8292,lon:4.3352,name:"Resto du Cœur de Saint-Gilles",address:"Rue de Bosnie 22, 1060 Saint-Gilles",hours:"Repas chauds : lundi à vendredi, 11 h–13 h",note:"Colis après rendez-vous social ; vérifier l'accueil avant de se déplacer.",url:"https://aiguillages.brussels/precarite/"}
     };
     const FOOD_COMMUNES={"laeken":"1020","saint-gilles":"1060","st gilles":"1060"};
     function foodCode(value){const v=String(value||"").trim().toLowerCase();return FOOD_COMMUNES[v]||(v.match(/\\b1[0-2][0-9]{2}\\b/)||[])[0]||"";}
+    function foodDay(){const d=new Date();if(state.foodDay==="tomorrow")d.setDate(d.getDate()+1);return d;}
+    function foodDistance(a,b,c,d){const rad=Math.PI/180;const x=(d-b)*rad*Math.cos((a+c)*rad/2),y=(c-a)*rad;return Math.round(6371*Math.hypot(x,y)*10)/10;}
+    function foodCandidates(){const d=foodDay();if(d.getDay()===0||d.getDay()===6)return [];const places=Object.values(FOOD_PLACES);if(state.foodCoords){return places.sort((a,b)=>foodDistance(state.foodCoords.lat,state.foodCoords.lon,a.lat,a.lon)-foodDistance(state.foodCoords.lat,state.foodCoords.lon,b.lat,b.lon));}
+      const code=foodCode(state.foodLocation);return places.filter(p=>p===FOOD_PLACES[code]);}
     const compact={
       urgent_food:["Choisissez votre commune dans le répertoire alimentaire.","Sans téléphone, écrivez à aidealimentaire@fdss.be.","Si l'épicerie refuse, cherchez une distribution de colis ou de repas."],
       urgent_shelter:["Demandez une place au Samusocial pour cette nuit. Place non garantie.","Sans GSM, consultez la procédure avec un téléphone emprunté.","Si aucune place, demandez au Samusocial une réorientation."],
@@ -631,20 +635,20 @@
     if(selected==="urgent_food"&&!state.foodLocationConfirmed){
       host.innerHTML='<div class="simple-kicker">Une question seulement</div><h2>Dans quelle commune êtes-vous ?</h2>'+
         '<p>Pour trouver une aide alimentaire, sans demander vos revenus.</p>'+
-        '<div class="guided-one-step"><label for="food-postal">Commune ou code postal</label>'+
+        '<div class="guided-one-step"><button type="button" data-food-geo>📍 Utiliser ma position (facultatif)</button><p id="food-geo-status">Ou indiquez votre commune.</p><label for="food-postal">Commune ou code postal</label>'+
         '<input id="food-postal" inputmode="text" autocomplete="address-level2" placeholder="Ex. 1020 ou Laeken" value="'+esc(state.foodLocation||"")+'">'+
-        '<div class="guided-actions"><button type="button" data-food-find>Voir ma première démarche</button>'+
+        '<label for="food-day">Quand avez-vous besoin d’aide ?</label><select id="food-day"><option value="today">Aujourd’hui</option><option value="tomorrow">Demain</option></select><div class="guided-actions"><button type="button" data-food-find>Voir ma première démarche</button>'+
         '<button type="button" data-help-reset>Changer de problème</button></div></div>';
       showScreen("simpleDifficultHelp");return;
     }
     if(selected==="urgent_food"&&Number(state.helpStep||0)===0){
-      const place=FOOD_PLACES[foodCode(state.foodLocation)];
+      const place=foodCandidates()[0];
       if(place){
         host.innerHTML='<div class="simple-kicker">Une démarche à la fois</div><h2>Manger / obtenir des courses</h2>'+
           '<section class="guided-one-step"><p class="guided-step-count">Première piste dans votre commune</p>'+
           '<h3>'+esc(place.name)+'</h3><p class="guided-instruction">'+esc(place.address)+'</p>'+
           '<p>'+esc(place.hours)+'</p><p>'+esc(place.note)+'</p>'+
-          '<div class="guided-main-link"><a href="'+esc(place.url)+'" target="_blank" rel="noopener noreferrer">Vérifier comment être accueilli ↗</a></div>'+
+          '<p>'+(state.foodCoords?'Distance approximative à vol d’oiseau : '+foodDistance(state.foodCoords.lat,state.foodCoords.lon,place.lat,place.lon)+' km. ':'')+'Horaires publiés, accueil non garanti.</p><div class="guided-main-link"><a href="'+esc(place.url)+'" target="_blank" rel="noopener noreferrer">Vérifier comment être accueilli ↗</a></div>'+
           '<div class="guided-actions"><button type="button" data-help-next>Ça n’a pas marché → Autre solution</button>'+
           '<button type="button" data-food-change>Changer de commune</button><button type="button" data-help-reset>Autre problème</button></div></section>';
       }else{
@@ -847,7 +851,8 @@
     if(event.target.closest("[data-access-back]")){renderDifficultHelp();return;}
     if(event.target.closest("[data-access-reset]")){state.accessIssue="";state.accessService="general";renderAccessHelp();return;}
     if(event.target.closest("[data-entry-admin]")){state.difficultTopic="";renderDifficultHelp();return;}
-    if(event.target.closest("[data-food-find]")){state.foodLocation=document.getElementById("food-postal")?.value?.trim()||"";state.foodLocationConfirmed=true;state.helpStep=0;renderDifficultHelp();return;}
+    if(event.target.closest("[data-food-geo]")){const status=document.getElementById("food-geo-status");if(!navigator.geolocation){if(status)status.textContent="Position non disponible. Entrez votre commune.";return;}navigator.geolocation.getCurrentPosition(p=>{state.foodCoords={lat:p.coords.latitude,lon:p.coords.longitude};if(status)status.textContent="Position reçue pour cette recherche (non envoyée à EcoTank).";},()=>{if(status)status.textContent="Position refusée ou indisponible : entrez votre commune.";},{enableHighAccuracy:false,timeout:10000});return;}
+    if(event.target.closest("[data-food-find]")){state.foodLocation=document.getElementById("food-postal")?.value?.trim()||"";state.foodDay=document.getElementById("food-day")?.value||"today";state.foodLocationConfirmed=true;state.helpStep=0;renderDifficultHelp();return;}
     if(event.target.closest("[data-food-change]")){state.foodLocationConfirmed=false;renderDifficultHelp();return;}
     if(event.target.closest("[data-help-next]")){state.helpStep=(state.helpStep||0)+1;renderDifficultHelp();return;}
     const topic=event.target.closest("[data-help-topic]");
