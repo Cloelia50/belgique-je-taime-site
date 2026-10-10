@@ -26,7 +26,7 @@ CASES=[
  ("asile_sans_accueil","urgent_asylum","fedasil.be"),
  ("sans_titre_et_soins","urgent_irregular","medecinsdumonde.be"),
  ("eid_numero_perdu","eid_works_no_phone","csam.be"),
- ("plus_de_telephone","no_phone","csam.be")]
+ ("plus_de_telephone","no_phone","bruxelles.be")]
 results=[]
 
 class Handler(http.server.SimpleHTTPRequestHandler):
