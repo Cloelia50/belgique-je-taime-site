@@ -266,7 +266,7 @@ assert.match(access.html("entryDifficultHost"),/Si le CPAS a déjà refusé/);
 access.click("[data-access-reset]");
 assert.match(access.html("entryDifficultHost"),/<option value="" selected|<option value="">Je ne sais pas/);
 access.click("[data-access-back]");
-assert.match(access.html("entryDifficultHost"),/Situations compliquées/);
+assert.match(access.html("entryDifficultHost"),/Aides concrètes à Bruxelles|Situations compliquées/);
 assert.match(access.html("entryDifficultHost"),/data-help-access/);
 console.log("EcoTank : 16 blocages, 9 services, alternatives eID/CSAM/guichet/papier sans numéro — OK.");
 
