@@ -145,3 +145,17 @@
 .ecotank-page .ecotank-immediate-links-grid a{display:inline-flex;align-items:center;min-height:44px;padding:8px 10px;border-radius:9px;border:1px solid var(--line);background:var(--sheet);color:var(--ink);font-size:.85rem;font-weight:750;line-height:1.3;text-decoration:none;overflow-wrap:anywhere}
 .ecotank-page .ecotank-immediate-links>p{margin:11px 0 0;font-size:.8rem;line-height:1.4;color:var(--muted)}
 @media(max-width:620px){.ecotank-page .ecotank-immediate-links-grid{grid-template-columns:minmax(0,1fr)}.ecotank-page .ecotank-immediate-links-grid>div{display:grid;grid-template-columns:minmax(0,1fr) minmax(120px,1.1fr);align-items:center}.ecotank-page .ecotank-immediate-links-grid>div>span{font-size:.78rem}}
+
+/* EcoTank mobile : une action, aucun mur de cartes */
+.ecotank-page #simpleDifficultHelp .guided-one-step{max-width:640px;margin:18px auto;padding:clamp(18px,5vw,28px);border:2px solid var(--brand,#0e6f5c);border-radius:20px;background:var(--sheet);display:grid;gap:16px}
+.ecotank-page #simpleDifficultHelp .guided-one-step h3{font-size:clamp(1.3rem,5vw,1.8rem);line-height:1.2;margin:0}
+.ecotank-page #simpleDifficultHelp .guided-instruction{font-size:clamp(1.08rem,4.3vw,1.3rem);line-height:1.45;margin:0}
+.ecotank-page #simpleDifficultHelp .guided-step-count{font-size:.86rem;font-weight:800;color:var(--muted);margin:0}
+.ecotank-page #simpleDifficultHelp .guided-main-link a{display:block;padding:17px 14px;border-radius:12px;background:var(--brand,#0e6f5c);color:white;text-align:center;font-weight:800;text-decoration:none;line-height:1.4;overflow-wrap:anywhere}
+.ecotank-page #simpleDifficultHelp .guided-actions{display:grid;gap:10px}
+.ecotank-page #simpleDifficultHelp .guided-actions button{min-height:54px;border-radius:12px;padding:12px;font-size:1rem;font-weight:750}
+.ecotank-page #simpleDifficultHelp .guided-actions button:disabled{display:none}
+.ecotank-page #simpleDifficultHelp .guided-one-step details{border-top:1px solid var(--line);padding-top:12px;font-size:.93rem}
+.ecotank-page #simpleDifficultHelp .guided-one-step summary{cursor:pointer;font-weight:700}
+.ecotank-page #simpleDifficultHelp .urgent-needs-grid .entry-choice{font-size:1rem;min-height:64px}
+@media(max-width:620px){.ecotank-page #simpleDifficultHelp .guided-one-step{margin:12px 0}.ecotank-page #simpleDifficultHelp .guided-one-step h3{max-width:25ch}}
