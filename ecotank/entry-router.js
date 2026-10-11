@@ -144,6 +144,7 @@
       ((qid==="q_entry_situation"||qid==="q_employee_goal")?'<button type="button" class="entry-choice foundation" data-beatrice-start>Famille recomposée · garde alternée, impôts et pensions alimentaires</button>':"")+
       ((qid==="q_entry_situation"||qid==="q_independent_goal")?'<button type="button" class="entry-choice foundation" data-thomas-start>Indépendant · Animaux dans le bail, cotisations et déductions</button>':"")+
       ((qid==="q_entry_situation"||qid==="q_independent_goal")?'<button type="button" class="entry-choice foundation" data-jessica-start>Indépendant · Dépenses et énergie de mon commerce</button>':"")+
+      ((qid==="q_entry_situation"||qid==="q_employee_goal"||qid==="q_independent_goal")?'<button type="button" class="entry-choice foundation" data-pieter-start>Je suis salarié ou fonctionnaire ET indépendant complémentaire</button>':"")+
       controls+
       '<div class="entry-footer"><span></span><button type="button" class="linkish" data-entry-unknown>Je ne sais pas quoi choisir</button></div>';
     showScreen("simpleEntryRouter");
@@ -495,6 +496,34 @@
 
   // Parcours autonome : n'altère aucun état des autres parcours.
   // Orientation professionnelle indépendante : n'utilise ni AER ni données du ménage.
+  // Double activité : seul ce parcours utilise ces réponses.
+  function pieterEntry(){
+    if(!ensureScreens())return;
+    const h=document.getElementById("entryDifficultHost");
+    h.innerHTML='<h2>Vous cumulez un emploi et une activité indépendante ?</h2><p>Pas besoin de choisir un seul statut ni de donner votre déclaration fiscale.</p><div class="entry-choice-grid">'+
+      '<button type="button" data-pieter-topic="cotisations">Cotisations de mon activité complémentaire</button>'+
+      '<button type="button" data-pieter-topic="pension">Effet sur ma pension</button>'+
+      '<button type="button" data-pieter-topic="loyers">Impôt sur mes loyers</button>'+
+      '<button type="button" data-pieter-topic="frais">Déductions de ma consultance</button></div><button type="button" data-pieter-back>Retour</button>';
+    showScreen("simpleDifficultHelp");
+  }
+  function pieterGuide(short=false){
+    if(!ensureScreens())return;
+    const h=document.getElementById("entryDifficultHost");
+    const tasks=[
+      ["cotisations","Vérifier le statut complémentaire et les cotisations","Votre activité de fonctionnaire ou de salarié peut, sous conditions d’activité principale, permettre le statut d’indépendant à titre complémentaire. Demandez à votre caisse d’assurances sociales de vérifier l’assujettissement, les cotisations provisoires et leur régularisation. Des revenus professionnels faibles peuvent donner droit à une cotisation réduite ou nulle, sans ouvrir automatiquement de nouveaux droits sociaux.","https://www.rsvz-inasti.fgov.be/fr/independant-titre-complementaire"],
+      ["pension","Carrière mixte et pension : faire vérifier les droits réellement créés","Une carrière de fonctionnaire, salarié et indépendant peut relever de plusieurs régimes. L’activité complémentaire ne procure pas automatiquement une pension supplémentaire si les cotisations sont réduites. Vérifiez les périodes dans mypension.be ou auprès du Service fédéral des Pensions (1765), puis demandez une simulation adaptée.","https://www.sfpd.fgov.be/fr/carriere/annees"],
+      ["loyers","Loyers : l’usage du bien change l’impôt","La déclaration n’est pas identique selon que le locataire occupe le logement exclusivement à titre privé ou à des fins professionnelles. Le traitement dépend aussi du bail et d’une éventuelle location meublée. Faites vérifier la qualification et les montants par un comptable ou conseiller fiscal ; ne déduisez pas la règle de la seule somme encaissée.","https://finances.belgium.be/fr/particuliers/habitation/revenu_immobilier/revenus_locatifs"],
+      ["frais","Frais de consultance : dépenses réellement professionnelles","Vous pouvez examiner les logiciels, le matériel, les déplacements professionnels admissibles, les frais de comptabilité et la part justifiée des dépenses mixtes. La déduction dépend des preuves, du régime fiscal et des règles de TVA ; elle n’équivaut pas au remboursement intégral de la dépense. Un comptable doit vérifier les cumuls et la déclaration.","https://finances.belgium.be/fr/entreprises"]
+    ];
+    const topic=state.pieterTopic||"cotisations";
+    const ordered=tasks.filter(x=>x[0]===topic).concat(tasks.filter(x=>x[0]!==topic));
+    h.innerHTML='<div id="pieter-sheet" style="max-width:730px;margin:auto;padding:12px;background:#fff;color:#111"><h2>Emploi public + consultance · Evere</h2><p><strong>Vous avez deux statuts : ils ne se remplacent pas.</strong> EcoTank vous aide à préparer les bonnes vérifications, sans calculer artificiellement votre impôt ou votre pension.</p>'+
+      ordered.map((x,i)=>'<section style="border-top:1px solid #aaa;padding:9px 0;break-inside:avoid"><h3>'+(i+1)+'. '+esc(x[1])+'</h3><p>'+esc(x[2])+'</p>'+(short?'':'<p style="overflow-wrap:anywhere;font-size:.84em">'+esc(x[3])+'</p>')+'</section>').join('')+
+      '<p><strong>Avant de chercher des documents :</strong> demandez d’abord à votre caisse ou à votre comptable lesquels sont réellement nécessaires à votre question. Une simulation chiffrée nécessitera des données personnelles ; cette première orientation, non.</p></div><div class="entry-route-actions"><button type="button" data-pieter-short>Fiche courte</button><button type="button" data-pieter-full>Fiche détaillée</button><button type="button" data-pieter-print>Imprimer / PDF</button><button type="button" data-pieter-edit>Changer de priorité</button><button type="button" data-pieter-back>Retour</button></div>';
+    if(!document.getElementById("pieter-print-style")){const st=document.createElement("style");st.id="pieter-print-style";st.textContent='@media print{body *{visibility:hidden!important}#pieter-sheet,#pieter-sheet *{visibility:visible!important}#pieter-sheet{position:absolute;top:0;left:0;width:100%!important;max-width:none!important;color:#000!important;background:#fff!important}@page{size:A4;margin:12mm}}';document.head.appendChild(st);}
+    showScreen("simpleDifficultHelp");
+  }
   function jessicaEntry(){
     if(!ensureScreens())return;
     const h=document.getElementById("entryDifficultHost");
@@ -1588,6 +1617,13 @@
     if(event.target.closest("[data-lost-rights-reselect]")){
       state.lostRightsQueue=[];state.lostRightsIndex=0;state.immediateNeed="";renderQuestion("q_lost_rights_goal");return;
     }
+    if(event.target.closest("[data-pieter-start]")){pieterEntry();return;}
+    const pt=event.target.closest("[data-pieter-topic]");if(pt){state.pieterTopic=pt.dataset.pieterTopic;pieterGuide(false);return;}
+    if(event.target.closest("[data-pieter-short]")){pieterGuide(true);return;}
+    if(event.target.closest("[data-pieter-full]")){pieterGuide(false);return;}
+    if(event.target.closest("[data-pieter-print]")){window.print();return;}
+    if(event.target.closest("[data-pieter-edit]")){pieterEntry();return;}
+    if(event.target.closest("[data-pieter-back]")){renderQuestion("q_entry_situation");return;}
     if(event.target.closest("[data-jessica-start]")){jessicaEntry();return;}
     const jt=event.target.closest("[data-jessica-topic]");if(jt){state.jessicaTopic=jt.dataset.jessicaTopic;jessicaGuide(false);return;}
     if(event.target.closest("[data-jessica-short]")){jessicaGuide(true);return;}
