@@ -140,6 +140,14 @@
     if(!q||!opt)return;
     state.answers[qid]=oid;
     if(qid==="q_entry_situation")state.destinationId=opt.destination_id||"";
+    if(qid==="q_entry_situation"&&oid==="urgent"){state.difficultTopic="";state.helpStep=0;return renderDifficultHelp();}
+    const workTopics={no_income:"actiris_no_income",benefits:"employer_aid"};
+    const personalTopics={income:"urgent_income",care:"urgent_care",housing:"urgent_shelter",paperwork:"urgent_access"};
+    const selectedTopic=qid==="q_work_goal"?workTopics[oid]:qid==="q_personal_goal"?personalTopics[oid]:null;
+    if(selectedTopic){state.destinationId="foundation_recovery";return renderDifficultHelp(selectedTopic);}
+    if(qid==="q_independent_goal"){state.answers.q_business_stage=oid==="hiring"?"running":oid;state.businessCardIndex=0;}
+    if(qid==="q_employer_goal"){state.answers.q_company_goal=oid;state.businessCardIndex=0;}
+
     const next=opt.next_question_id||q.next_question_id;
     if(next){
       renderQuestion(next);
@@ -851,6 +859,8 @@
       priority:(card.priority_for||[]).some(x=>tokens.includes(x))
     })).sort((a,b)=>Number(b.priority)-Number(a.priority));
     const intake=d.intake;
+    const index=Math.max(0,Math.min(Number(state.businessCardIndex||0),Math.max(0,cards.length-1)));
+    const visibleCards=cards.slice(index,index+2);
     const intakeHtml=intake&&Array.isArray(intake.questions)?(
       '<section class="business-intake"><h3>Pour affiner « Mon entreprise »</h3><p>'+esc(intake.privacy||"Ces réponses restent dans cette page.")+'</p><div class="business-intake-grid">'+
       intake.questions.map(q=>'<label>'+esc(q.label)+'<select data-business-intake="'+esc(q.id)+'"><option value="">Je préfère ne pas préciser</option>'+(q.options||[]).map(o=>'<option value="'+esc(o)+'" '+(state.businessAnswers[q.id]===o?'selected':'')+'>'+esc(o)+'</option>').join("")+'</select></label>').join("")+
@@ -867,10 +877,10 @@
       '<div class="entry-topline"><button type="button" class="linkish" data-entry-restart>← Changer de situation</button></div>'+
       '<div class="business-head"><div class="simple-kicker">EcoTank professionnel</div><h2>'+esc(d.title||routeTitle)+'</h2><p class="business-lead">'+esc(d.intro||"EcoTank adapte ses conseils à votre activité professionnelle.")+'</p><div class="business-context">'+context+'</div></div>'+
       '<div class="business-safety"><strong>Important :</strong> ces pistes servent à agir et à vérifier. EcoTank ne déduit jamais automatiquement qu’une prime, un plan de paiement ou un autre droit vous est accordé.</div>'+
-      intakeHtml+
-      '<section><h3>Les premières actions utiles pour votre situation</h3><div class="business-grid">'+(cards.length?cards.map((x,i)=>resourceCardHtml(x.card,i,x.priority)).join(""):'<div class="business-card"><h3>Le parcours se construit</h3><p>Les premières sources officielles sont en cours de raccordement.</p></div>')+'</div></section>'+
+      '<section><h3>Vos deux premières pistes</h3><div class="business-grid">'+(cards.length?visibleCards.map((x,i)=>resourceCardHtml(x.card,index+i,x.priority)).join(""):'<div class="business-card"><h3>Le parcours se construit</h3><p>Les premières sources officielles sont en cours de raccordement.</p></div>')+'</div></section>'+
+      (cards.length>index+2?'<div class="entry-route-actions"><button type="button" data-business-more>Ces pistes ne conviennent pas → Voir deux autres</button></div>':'')+
       (future?'<section><h3>Ce volet va aussi couvrir</h3><div class="business-future">'+future+'</div></section>':"")+
-      '<div class="entry-route-actions"><button type="button" class="primary" data-business-refresh>Actualiser les actions selon mes réponses</button><button type="button" data-entry-personal>Je veux aussi vérifier mes droits personnels</button><button type="button" class="linkish" data-entry-home>Accueil</button></div>';
+      '<div class="entry-route-actions"><button type="button" data-business-refine>Préciser mon besoin</button><button type="button" data-entry-personal>Je veux aussi vérifier mes droits personnels</button><button type="button" class="linkish" data-entry-home>Accueil</button></div>';
     showScreen("simpleBusinessHome");
   }
 
@@ -913,6 +923,7 @@
     state.fromAdminHome=false;
     state.difficultTopic="";
     state.businessAnswers={};
+    state.businessCardIndex=0;
     const host=document.getElementById("entryRouterHost");
     host.innerHTML='<div class="simple-kicker">Trouver le bon parcours</div><h2>On regarde d’abord d’où vous partez.</h2><p>Quelques secondes suffisent pour éviter de vous envoyer vers un formulaire qui ne correspond pas à votre situation.</p>';
     showScreen("simpleEntryRouter");
@@ -924,6 +935,8 @@
     const opt=event.target.closest("[data-entry-option]");
     if(opt){chooseOption(opt.dataset.entryQuestion,opt.dataset.entryOption);return;}
 
+    if(event.target.closest("[data-business-more]")){state.businessCardIndex=Number(state.businessCardIndex||0)+2;renderBusiness(state.destinationId);return;}
+    if(event.target.closest("[data-business-refine]")){renderQuestion(state.destinationId==="company"?"q_employer_goal":"q_independent_goal");return;}
     if(event.target.closest("[data-entry-home]")){hideCustomScreens();document.getElementById("simpleHome")?.classList.add("active");window.scrollTo({top:0,behavior:"smooth"});return;}
     if(event.target.closest("[data-entry-restart]")){state.answers={};state.destinationId="";renderQuestion("q_entry_situation");return;}
     if(event.target.closest("[data-entry-unknown]")){routeToDestination("guided_orientation");return;}
