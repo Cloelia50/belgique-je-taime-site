@@ -2401,12 +2401,12 @@
           {
             "id": "household",
             "label": "Dépenses du ménage et factures",
-            "destination_id": "guided_orientation"
+            "next_question_id": "q_household_region"
           },
           {
             "id": "family",
             "label": "Enfants, famille et avantages",
-            "destination_id": "guided_orientation"
+            "next_question_id": "q_household_region"
           },
           {
             "id": "own_rights",
@@ -2460,22 +2460,22 @@
           {
             "id": "expenses",
             "label": "Réduire mes dépenses du ménage",
-            "destination_id": "employee"
+            "next_question_id": "q_household_region"
           },
           {
             "id": "work",
             "label": "Mes droits ou frais liés au travail",
-            "destination_id": "employee"
+            "next_question_id": "q_household_region"
           },
           {
             "id": "family",
             "label": "Mes droits liés aux enfants",
-            "destination_id": "employee"
+            "next_question_id": "q_household_region"
           },
           {
             "id": "difficulties",
             "label": "Je n'arrive plus à payer certaines dépenses",
-            "destination_id": "foundation_recovery"
+            "next_question_id": "q_household_region"
           }
         ]
       },
@@ -2578,22 +2578,22 @@
           {
             "id": "income",
             "label": "Pension, GRAPA ou avantages liés aux revenus",
-            "destination_id": "retired"
+            "next_question_id": "q_household_region"
           },
           {
             "id": "health",
             "label": "Soins et mutualité",
-            "destination_id": "retired"
+            "next_question_id": "q_household_region"
           },
           {
             "id": "housing",
             "label": "Logement, énergie ou factures",
-            "destination_id": "retired"
+            "next_question_id": "q_household_region"
           },
           {
             "id": "everyday",
             "label": "Courses, transport et vie quotidienne",
-            "destination_id": "retired"
+            "next_question_id": "q_household_region"
           }
         ]
       },
@@ -2605,7 +2605,7 @@
           {
             "id": "support",
             "label": "Reconnaissance, allocations ou droits",
-            "destination_id": "social_protection"
+            "next_question_id": "q_household_region"
           },
           {
             "id": "work",
@@ -2615,12 +2615,12 @@
           {
             "id": "care",
             "label": "Soins, équipements ou mobilité",
-            "destination_id": "social_protection"
+            "next_question_id": "q_household_region"
           },
           {
             "id": "bills",
             "label": "Réductions sur mes dépenses",
-            "destination_id": "social_protection"
+            "next_question_id": "q_household_region"
           }
         ]
       },
@@ -2632,22 +2632,22 @@
           {
             "id": "work",
             "label": "Job étudiant et revenus",
-            "destination_id": "student"
+            "next_question_id": "q_household_region"
           },
           {
             "id": "study",
             "label": "Études, formation ou bourses",
-            "destination_id": "student"
+            "next_question_id": "q_household_region"
           },
           {
             "id": "housing",
             "label": "Logement et transport",
-            "destination_id": "student"
+            "next_question_id": "q_household_region"
           },
           {
             "id": "daily",
             "label": "Dépenses et aides quotidiennes",
-            "destination_id": "student"
+            "next_question_id": "q_household_region"
           }
         ]
       },
@@ -2676,6 +2676,34 @@
             "id": "unknown",
             "label": "Je ne sais pas ou pas encore",
             "destination_id": "self_employed"
+          }
+        ]
+      },
+      {
+        "id": "q_household_region",
+        "order": 4,
+        "text": "Dans quelle Région habitez-vous ?",
+        "helper": "Les tarifs et avantages diffèrent selon la Région. La suite ne montrera aucun droit comme acquis.",
+        "options": [
+          {
+            "id": "brussels",
+            "label": "Bruxelles",
+            "destination_id": "guided_orientation"
+          },
+          {
+            "id": "wallonia",
+            "label": "Wallonie",
+            "destination_id": "guided_orientation"
+          },
+          {
+            "id": "flanders",
+            "label": "Flandre",
+            "destination_id": "guided_orientation"
+          },
+          {
+            "id": "unknown",
+            "label": "Je ne sais pas",
+            "destination_id": "guided_orientation"
           }
         ]
       }
