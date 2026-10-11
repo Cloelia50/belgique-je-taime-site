@@ -58,6 +58,25 @@
     document.body.classList.add("simple-mode");
     document.body.classList.remove("explore-mode","advanced-explore");
     document.querySelectorAll("#simpleApp .simple-screen").forEach(el=>el.classList.toggle("active",el.id===id));
+    if(id==="simpleDifficultHelp"&&Array.isArray(state.lostRightsQueue)&&state.lostRightsQueue.length){
+      const host=document.getElementById("entryDifficultHost");
+      if(host){
+        host.querySelector("[data-multi-banner]")?.remove();
+        const names={nothing:"Je n’ai plus aucune ressource",refused:"Une aide a été refusée",stopped:"Mes allocations ont été arrêtées",administrative:"Mes démarches sont bloquées"};
+        const ix=Math.max(0,Number(state.lostRightsIndex||0)),all=state.lostRightsQueue;
+        const next=ix+1<all.length;
+        const banner=document.createElement("section");
+        banner.setAttribute("data-multi-banner","");
+        banner.className="guided-one-step";
+        banner.setAttribute("aria-live","polite");
+        banner.innerHTML='<p class="guided-step-count">Problème '+(ix+1)+' sur '+all.length+' — '+esc(names[all[ix]]||"Votre situation")+'</p>'+
+          '<p>Vos '+all.length+' difficultés sont conservées. Vous pouvez consulter les premières démarches puis passer à la suivante. Cela ne veut pas dire que le problème est résolu.</p>'+
+          '<div class="guided-actions"><button type="button" data-lost-rights-next>'+(next?"Passer au problème suivant":"Voir le bilan de mes problèmes")+'</button>'+
+          '<button type="button" data-lost-rights-reselect>Modifier mes choix</button></div>';
+        host.insertBefore(banner,host.firstChild);
+      }
+    }
+
     window.scrollTo({top:0,behavior:"smooth"});
   }
 
@@ -1002,6 +1021,8 @@
     state.difficultTopic="";
     state.businessAnswers={};
     state.lostRightsSelected=[];
+    state.lostRightsQueue=[];
+    state.lostRightsIndex=0;
     state.businessCardIndex=0;
     state.savingStep=0;
     const host=document.getElementById("entryRouterHost");
@@ -1017,10 +1038,36 @@
       state.lostRightsSelected=chosen;state.answers.q_lost_rights_goal=chosen.join(",");
       if(!chosen.length){const h=document.getElementById("entryRouterHost");h?.querySelector("[data-lost-rights-submit]")?.focus();return;}
       const order=["nothing","refused","stopped","administrative"];
-      const chosenPriority=order.find(x=>chosen.includes(x));
+      state.lostRightsQueue=order.filter(x=>chosen.includes(x));
+      state.lostRightsIndex=0;
+      const chosenPriority=state.lostRightsQueue[0];
       state.destinationId="foundation_recovery";
       const topic=({nothing:"urgent_income",refused:"refusals",stopped:"urgent_income",administrative:"urgent_access"})[chosenPriority];
       renderDifficultHelp(topic);return;
+    }
+    if(event.target.closest("[data-lost-rights-reselect]")){
+      state.lostRightsQueue=[];state.lostRightsIndex=0;renderQuestion("q_lost_rights_goal");return;
+    }
+    if(event.target.closest("[data-lost-rights-next]")){
+      const queue=state.lostRightsQueue||[];
+      state.lostRightsIndex=Number(state.lostRightsIndex||0)+1;
+      if(state.lostRightsIndex<queue.length){
+        const selected=queue[state.lostRightsIndex];
+        const topics={nothing:"urgent_income",refused:"refusals",stopped:"urgent_income",administrative:"urgent_access"};
+        renderDifficultHelp(topics[selected]);return;
+      }
+      const host=document.getElementById("entryDifficultHost");
+      const names={nothing:"Absence de ressources",refused:"Refus d’aide",stopped:"Allocations arrêtées",administrative:"Démarches bloquées"};
+      host.innerHTML='<div class="simple-kicker">Votre bilan</div><h2>Tous les problèmes sélectionnés ont été examinés</h2>'+
+        '<p>Cela ne signifie pas qu’ils sont résolus. Voici les situations que vous avez signalées :</p>'+
+        '<ul>'+queue.map(x=>'<li>'+esc(names[x])+'</li>').join("")+'</ul>'+
+        '<div class="guided-actions"><button type="button" data-lost-rights-restart>Revoir les démarches</button>'+
+        '<button type="button" data-lost-rights-reselect>Modifier mes réponses</button></div>';
+      state.lostRightsQueue=[];showScreen("simpleDifficultHelp");return;
+    }
+    if(event.target.closest("[data-lost-rights-restart]")){
+      state.lostRightsQueue=["nothing","refused","stopped","administrative"].filter(x=>(state.lostRightsSelected||[]).includes(x));
+      state.lostRightsIndex=0;renderDifficultHelp("urgent_income");return;
     }
     const opt=event.target.closest("[data-entry-option]");
     if(opt){chooseOption(opt.dataset.entryQuestion,opt.dataset.entryOption);return;}
