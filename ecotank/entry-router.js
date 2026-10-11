@@ -452,6 +452,15 @@
     showScreen("simpleDifficultHelp");
   }
 
+  function feasibleAction(key,url,label){
+    const status=(state.feasibility||{})[key]||"";
+    const buttons=items=>'<div class="entry-choice-grid">'+items.map(x=>'<button type="button" class="entry-choice" data-feasible="'+x[0]+'" data-feasible-key="'+esc(key)+'">'+esc(x[1])+'</button>').join('')+'</div>';
+    if(!status)return '<section class="guided-feasibility"><h3>Pouvez-vous réellement effectuer cette démarche ?</h3>'+buttons([["ready","Oui"],["no_phone","Je n’ai pas de téléphone"],["no_internet","Pas de connexion ni de matériel"],["no_travel","Déplacement impossible"],["previous","Déjà essayé sans résultat"],["no_documents","Documents manquants"]])+'</section>';
+    if(status==="ready")return '<section class="guided-feasibility"><h3>Voici le lien correspondant</h3><a href="'+esc(url)+'" target="_blank" rel="noopener noreferrer">'+esc(label)+' ↗</a><p>Gardez EcoTank ouvert pour suivre les consignes.</p>'+buttons([["previous","Cette démarche n’a pas fonctionné"]])+'</section>';
+    const advice={no_phone:"Demandez une alternative sans SMS, par e-mail, au guichet ou par eID/CSAM si le service le permet.",no_internet:"Demandez un formulaire papier, un guichet ou un espace public numérique accompagné.",no_travel:"Demandez un échange à distance ou une permanence proche et vérifiez avant de payer un trajet.",previous:"Notez la réponse et son motif. Cherchez un réexamen, un recours ou une autre structure plutôt que répéter la même demande.",no_documents:"Faites préciser les pièces indispensables, les alternatives acceptées et comment obtenir les pièces manquantes."};
+    return '<section class="guided-feasibility"><h3>Votre alternative</h3><p>'+esc(advice[status])+'</p>'+buttons([["ready","Je peux maintenant essayer"],["reset","Choisir un autre obstacle"]])+'<p>Si cela reste impossible, choisissez une autre piste sans recommencer le parcours.</p></section>';
+  }
+
   // Chaque ressource doit être accompagnée de consignes avant de quitter EcoTank.
   // Les démarches, coordonnées et conditions sont à revérifier auprès du service.
   function actionGuide(kind){
@@ -567,7 +576,8 @@
             article60:["Emploi d’insertion : vérifier d’abord les droits","L’article 60 §7 exige des conditions précises, notamment liées à l’aide sociale et à la situation administrative. En cas de refus CPAS, faites d’abord examiner ce refus ; un renvoi automatique au CPAS serait inutile.","https://www.droitsquotidiens.be/fr","Examiner les conditions et le refus"],
             all_advantages:["Comparer les mesures avant de parler d’attestation","Vérifiez séparément : ACS (sur offre précise), FPIE (projet avec employeur), emploi d’insertion (conditions CPAS). Certaines réductions ONSS concernent l’employeur lui-même. Aucune éligibilité ne peut être affirmée sur ces seules réponses.","https://www.actiris.brussels/fr/citoyens/agents-contractuels-subventionnes/","Commencer par les conditions ACS"]
           };
-          const t=pages[state.workChoice]||pages.person;\n          const howto=actionGuide(state.workChoice);
+          const t=pages[state.workChoice]||pages.person;
+          const howto=actionGuide(state.workChoice);
           html+='<h2>Une première action adaptée</h2><section class="guided-one-step"><h3>'+esc(t[0])+'</h3><p>'+esc(t[1])+'</p><div class="guided-main-link"><a href="'+esc(t[2])+'" target="_blank" rel="noopener noreferrer">'+esc(t[3])+' ↗</a></div>'+
             howto+'<p>Cette piste est-elle praticable pour vous ?</p>'+pick([
               ["cannot_access","Non : impossible d’y accéder (connexion, téléphone, déplacement)"],
@@ -614,7 +624,8 @@
       const task=all[step];
       host.innerHTML='<div class="simple-kicker">Une démarche à la fois</div><h2>'+esc(({nothing:"Je n'ai aucun revenu",refused:"Une aide m'a été refusée",stopped:"Mes allocations ont été arrêtées",administrative:"Une démarche est bloquée"})[issue])+'</h2>'+
         '<section class="guided-one-step"><p class="guided-step-count">Piste '+(step+1)+' sur '+all.length+'</p><h3>'+esc(task[0])+'</h3><p>'+esc(task[1])+'</p>'+
-        '<div class="guided-main-link"><a href="'+esc(task[2])+'" target="_blank" rel="noopener noreferrer">'+esc(task[3])+' ↗</a></div>'+\n        actionGuide(issue==="nothing"?(state.immediateNeed||"other"):issue)+
+        feasibleAction('help-'+issue+'-'+(state.immediateNeed||'')+'-'+step,task[2],task[3])+ 
+        actionGuide(issue==="nothing"?(state.immediateNeed||"other"):issue)+
         '<div class="guided-actions">'+(step+1<all.length?'<button type="button" data-help-next>Cette piste ne convient pas — une autre</button>':'')+
         '<button type="button" data-lost-rights-next>'+((state.lostRightsIndex||0)+1<(state.lostRightsQueue||[]).length?'Passer à une autre situation':'Revenir à mes situations')+'</button>'+
         '<button type="button" data-lost-rights-reselect>Modifier mes réponses</button></div></section>';
@@ -1194,6 +1205,8 @@
     if(event.target.closest("[data-lost-rights-reselect]")){
       state.lostRightsQueue=[];state.lostRightsIndex=0;state.immediateNeed="";renderQuestion("q_lost_rights_goal");return;
     }
+    const feasible=event.target.closest("[data-feasible]");
+    if(feasible){state.feasibility=state.feasibility||{};const k=feasible.dataset.feasibleKey;if(feasible.dataset.feasible==="reset")delete state.feasibility[k];else state.feasibility[k]=feasible.dataset.feasible;renderDifficultHelp();return;}
     const work=event.target.closest("[data-work-pick]");
     if(work){
       const choice=work.dataset.workPick;
