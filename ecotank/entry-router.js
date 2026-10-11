@@ -140,6 +140,7 @@
       (qid==="q_entry_situation"?'<button type="button" class="entry-choice foundation" data-samira-start>Schaerbeek · Je travaille mais j’ai des dettes, un huissier ou un loyer impayé</button>':"")+
       (qid==="q_entry_situation"?'<button type="button" class="entry-choice foundation" data-celine-start>Ganshoren · Famille nombreuse : quatre économies à vérifier</button>':"")+
       (qid==="q_entry_situation"?'<button type="button" class="entry-choice foundation" data-karim-start>Jette · Parent veuf avec enfant en situation de handicap : droits déjà obtenus</button>':"")+
+      ((qid==="q_entry_situation"||qid==="q_employee_goal")?'<button type="button" class="entry-choice foundation" data-lotte-start>Grossesse · Mon contrat se termine avant la naissance</button>':"")+
       controls+
       '<div class="entry-footer"><span></span><button type="button" class="linkish" data-entry-unknown>Je ne sais pas quoi choisir</button></div>';
     showScreen("simpleEntryRouter");
@@ -488,6 +489,40 @@
   }
 
   // Parcours Daniel : aucune saisie personnelle, sortie rapide du questionnaire.
+
+  // Parcours autonome : n'altère aucun état des autres parcours.
+  function lotteEntry(){
+    if(!ensureScreens())return;
+    const h=document.getElementById("entryDifficultHost");
+    h.innerHTML='<h2>Votre contrat de travail pendant la grossesse</h2><p>Une seule question. Aucun revenu, AER ni date précise à fournir.</p><div class="entry-choice-grid">'+
+      '<button type="button" data-lotte-case="before">Mon CDD se termine avant la naissance</button>'+
+      '<button type="button" data-lotte-case="during">Mon contrat continue au début du congé</button>'+
+      '<button type="button" data-lotte-case="unknown">Je ne sais pas encore</button></div>'+
+      '<button type="button" data-lotte-back>Retour aux situations</button>';
+    showScreen("simpleDifficultHelp");
+  }
+  function lotteGuide(short=false){
+    if(!ensureScreens())return;
+    const h=document.getElementById("entryDifficultHost");
+    const before=state.lotteCase==="before";
+    const first=before
+      ?"Un CDD qui se termine avant l’accouchement ne fait pas automatiquement disparaître le droit aux indemnités de maternité. Il faut vérifier votre situation exacte à la date de début du repos, les conditions d’assurance et l’éventuel passage au chômage. Contactez votre mutualité avant la fin du contrat ; demandez une réponse écrite."
+      :"Le droit aux indemnités dépend du statut au début du repos de maternité et des conditions d’assurance. Demandez à votre mutualité de vérifier votre situation, particulièrement si votre contrat peut se terminer entre-temps.";
+    const tasks=[
+      ["1. Le plus important : protéger mes indemnités",first+" Demandez quels justificatifs précis sont nécessaires et à quelle date les transmettre.", "https://www.inami.fgov.be/fr/themes/grossesse-et-naissance/maternite/repos-de-maternite-pour-les-salariees-ou-les-chomeuses"],
+      ["2. Prévoir le début du repos","Avant la fin du contrat, discutez de votre calendrier avec l’employeur. Transmettez à la mutualité un certificat mentionnant la date prévue de l’accouchement et la date souhaitée de début du repos. Demandez comment déclarer la fin du CDD à la mutualité et à l’organisme de paiement si nécessaire.","https://www.inami.fgov.be/fr/themes/grossesse-et-naissance/maternite/repos-de-maternite-pour-les-salariees-ou-les-chomeuses"],
+      ["3. Chercher une crèche sans attendre","À Etterbeek, les demandes de crèches communales passent par BeKid. Choisissez les lieux et la date souhaitée ; surveillez le renouvellement de la demande tous les trois mois si nécessaire. Le réseau néerlandophone dispose de son propre guichet d’inscription.","https://etterbeek.brussels/fr/demarches/famille-et-sante/inscription-dans-une-creche"],
+      ["4. Allocation de naissance","Demandez à une caisse d’allocations familiales bruxelloise quand introduire la demande et quels justificatifs sont nécessaires. Vous n’avez pas besoin d’un AER pour cette première démarche.","https://famiris.brussels/fr/"],
+      ["5. Reconnaissance avant la naissance si vous n’êtes pas mariés","Le compagnon peut demander à l’état civil une reconnaissance prénatale avec votre consentement, selon les règles applicables. Une attestation médicale de grossesse indiquant la date prévue est normalement nécessaire.","https://www.belgium.be/fr/famille/enfants/naissance/reconnaissance"],
+      ["6. Congé de naissance du compagnon indépendant","Le compagnon doit contacter sa caisse d’assurances sociales afin de vérifier son droit au congé de naissance et à son indemnité d’indépendant, les délais de demande et les justificatifs.","https://www.inasti.be/fr"]
+    ];
+    h.innerHTML='<div id="lotte-sheet" style="max-width:730px;margin:auto;background:#fff;color:#111;padding:12px"><h2>Grossesse et CDD · Etterbeek</h2><p><strong>La première question est celle des indemnités, pas des primes.</strong> La fin d’un CDD ne supprime pas systématiquement le droit au congé indemnisé : votre mutualité doit vérifier votre dossier. Cette fiche est provisoirement en français.</p>'+
+      tasks.map(t=>'<section style="border-top:1px solid #aaa;padding:9px 0;break-inside:avoid"><h3>'+esc(t[0])+'</h3><p>'+esc(t[1])+'</p>'+(short?'':'<p style="overflow-wrap:anywhere;font-size:.84em">'+esc(t[2])+'</p>')+'</section>').join('')+
+      '<p><strong>À demander à la mutualité :</strong> « Mon CDD se termine avant la naissance. Quels seront mon statut et mes indemnités à la date de début du repos de maternité, et quelles démarches dois-je faire avant la fin du contrat ? »</p></div><div class="entry-route-actions">'+
+      '<button type="button" data-lotte-short>Fiche courte</button><button type="button" data-lotte-full>Fiche détaillée</button><button type="button" data-lotte-print>Imprimer / PDF</button><button type="button" data-lotte-edit>Modifier ma situation</button></div>';
+    if(!document.getElementById("lotte-print-style")){const st=document.createElement("style");st.id="lotte-print-style";st.textContent='@media print{body *{visibility:hidden!important}#lotte-sheet,#lotte-sheet *{visibility:visible!important}#lotte-sheet{position:absolute;top:0;left:0;width:100%!important;max-width:none!important;color:#000!important;background:#fff!important}@page{size:A4;margin:12mm}}';document.head.appendChild(st);}
+    showScreen("simpleDifficultHelp");
+  }
 
   function karimInventory(){
     if(!ensureScreens())return;
@@ -1462,6 +1497,13 @@
     if(event.target.closest("[data-lost-rights-reselect]")){
       state.lostRightsQueue=[];state.lostRightsIndex=0;state.immediateNeed="";renderQuestion("q_lost_rights_goal");return;
     }
+    if(event.target.closest("[data-lotte-start]")){lotteEntry();return;}
+    const lc=event.target.closest("[data-lotte-case]");if(lc){state.lotteCase=lc.dataset.lotteCase;lotteGuide(false);return;}
+    if(event.target.closest("[data-lotte-short]")){lotteGuide(true);return;}
+    if(event.target.closest("[data-lotte-full]")){lotteGuide(false);return;}
+    if(event.target.closest("[data-lotte-print]")){window.print();return;}
+    if(event.target.closest("[data-lotte-edit]")){lotteEntry();return;}
+    if(event.target.closest("[data-lotte-back]")){renderQuestion("q_entry_situation");return;}
     if(event.target.closest("[data-karim-start]")){state.karimHave={};karimInventory();return;}
     const karimTick=event.target.closest("[data-karim-have]");if(karimTick){const k=karimTick.dataset.karimHave;state.karimHave=state.karimHave||{};state.karimHave[k]=!!karimTick.checked;return;}
     if(event.target.closest("[data-karim-result]")){karimGuide(false);return;}
