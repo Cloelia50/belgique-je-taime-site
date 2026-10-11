@@ -137,6 +137,7 @@
       (qid==="q_entry_situation"?'<button type="button" class="entry-choice foundation" data-kevin-start>Anderlecht · Hébergé chez des proches, dettes ou chômage en difficulté</button>':"")+
       (qid==="q_entry_situation"?'<button type="button" class="entry-choice foundation" data-fatou-start>Molenbeek · Parent seul avec enfants : électricité, pension et aides</button>':"")+
       (qid==="q_entry_situation"?'<button type="button" class="entry-choice foundation" data-jozef-start>Koekelberg · Pension, carrière à l’étranger ou chambre sans bail</button>':"")+
+      (qid==="q_entry_situation"?'<button type="button" class="entry-choice foundation" data-samira-start>Schaerbeek · Je travaille mais j’ai des dettes, un huissier ou un loyer impayé</button>':"")+
       controls+
       '<div class="entry-footer"><span></span><button type="button" class="linkish" data-entry-unknown>Je ne sais pas quoi choisir</button></div>';
     showScreen("simpleEntryRouter");
@@ -458,6 +459,33 @@
 
   // Parcours Daniel : aucune saisie personnelle, sortie rapide du questionnaire.
 
+  function samiraGuide(short=false){
+    if(!ensureScreens())return;
+    const host=document.getElementById("entryDifficultHost");
+    const steps=[
+      ["URGENT — dettes et risque de saisie","Médiation de dettes du CPAS de Schaerbeek : boulevard Auguste Reyers 70, tél. 02 435 50 40. Permanences sans rendez-vous : lundi et vendredi 8h–10h, mardi 13h–15h, accueil limité à 5 personnes. Téléphone lundi–jeudi 8h–12h et 13h–16h. Ce service aide aussi les salariés, pour les arriérés de loyer et les huissiers. Apportez les courriers, sans attendre de calculer votre revenu annuel.","https://www.cpas-schaerbeek.brussels/mediation-des-dettes/"],
+      ["Huissier : vérifier le dossier et les délais","Demandez un décompte écrit détaillant dette initiale, paiements, intérêts et frais. Vérifiez le titre, les actes reçus et les dates limites avec le médiateur ou une aide juridique. Si une saisie de salaire, un commandement ou une vente est annoncé, traitez-le immédiatement : la médiation ne suspend pas automatiquement les poursuites. Un plan de paiement doit être réaliste, sans signer dans la précipitation.","https://www.mediationdedettes.be/"],
+      ["Loyer impayé et humidité : protéger le logement","Expliquez également les arriérés au médiateur. Prenez des photos datées de l'humidité, gardez les échanges et demandez au propriétaire par écrit les réparations nécessaires. Faites relire une mise en demeure par une association logement. Avant de saisir l'inspection régionale, vérifiez les conséquences possibles sur votre hébergement. Ne cessez pas unilatéralement de payer le loyer.","https://be.brussels/fr/logement/location/logement-en-mauvais-etat"],
+      ["Logement social, aide au loyer et énergie","Demandez l'inscription au logement social si nécessaire. L'allocation-loyer exige notamment un bail de résidence principale, une inscription sur liste d'attente et des critères de revenus et de priorité. Pour le tarif social énergie, vérifiez votre droit réel : être salariée à temps partiel ne suffit pas automatiquement. Si vos factures sont impayées, service énergie du CPAS 02 435 50 30.","https://be.brussels/fr/logement/location/aides-la-location/aides-financieres/allocation-loyer"],
+      ["Enfants en garde alternée","Contactez la caisse d'allocations familiales qui verse actuellement les prestations. Demandez comment la garde alternée, le domicile et les décisions judiciaires affectent les versements et les éventuels suppléments. Ne supposez pas automatiquement un statut de famille monoparentale.","https://famiris.brussels/fr/"],
+      ["Emploi à temps partiel et formation","Quand les urgences de dette et de logement sont sécurisées, demandez à l'employeur si des heures complémentaires compatibles sont possibles. Vérifiez aussi les formations de Bruxelles Formation et les droits liés au temps partiel, sans supposer d'office un complément chômage. Les titres-services ne garantissent pas des heures supplémentaires.","https://www.bruxellesformation.brussels/"]
+    ];
+    const mini=[
+      "1. URGENCE : Médiation de dettes CPAS Schaerbeek, bd Auguste Reyers 70, 02 435 50 40. Lundi/vendredi 8h–10h ; mardi 13h–15h (maximum 5 personnes).",
+      "2. HUISSIER : garder les courriers, demander le décompte et faire vérifier tout délai de saisie ou vente. La médiation ne suspend pas automatiquement la procédure.",
+      "3. LOGEMENT : photographier l'humidité, écrire au propriétaire et demander conseil avant une plainte. Ne pas arrêter seule de payer le loyer.",
+      "4. LOGEMENT / ÉNERGIE : logement social, allocation-loyer sous conditions ; énergie CPAS 02 435 50 30.",
+      "5. ENFANTS : demander à la caisse comment la garde alternée change les allocations et suppléments.",
+      "6. TRAVAIL : heures complémentaires si possibles, formations et vérification des droits liés au temps partiel."
+    ];
+    host.innerHTML='<div id="samira-sheet" style="max-width:720px;margin:auto;padding:12px;background:#fff;color:#111"><h2>Dettes, huissier et logement · Schaerbeek</h2><p><strong>Vous avez un emploi, mais les dettes sont prioritaires.</strong> Aucun revenu imposable annuel n’est requis. Vous pouvez être aidée par un service de médiation même si vous travaillez.</p>'+
+      (short?mini.map(x=>'<p style="border-top:1px solid #aaa;padding:7px 0">'+esc(x)+'</p>').join(''):steps.map((x,i)=>'<section style="border-top:1px solid #aaa;padding:8px 0;break-inside:avoid"><h3>'+(i+1)+'. '+esc(x[0])+'</h3><p>'+esc(x[1])+'</p><p style="font-size:.83em;overflow-wrap:anywhere">'+esc(x[2])+'</p></section>').join(''))+
+      '<p><strong>À demander :</strong> « Je travaille à temps partiel. J’ai des arriérés de loyer et un huissier me réclame de l’argent. Je voudrais faire vérifier les délais, éviter une saisie si possible et établir un plan de remboursement que je puisse payer. »</p>'+
+      '<p>Si une vente ou une saisie est imminente, commencez par le courrier de l’huissier et l’aide juridique, même avant les autres démarches.</p></div>'+
+      '<div class="entry-route-actions"><button type="button" data-samira-print>Imprimer / enregistrer PDF</button><button type="button" data-samira-short>Fiche courte pour capture</button><button type="button" data-samira-full>Fiche détaillée</button><button type="button" data-samira-back>Retour</button></div>';
+    if(!document.getElementById("samira-print-style")){const st=document.createElement("style");st.id="samira-print-style";st.textContent='@media print{body *{visibility:hidden!important}#samira-sheet,#samira-sheet *{visibility:visible!important}#samira-sheet{position:absolute;top:0;left:0;width:100%!important;max-width:none!important;color:#000!important;background:#fff!important}@page{size:A4;margin:12mm}}';document.head.appendChild(st);}
+    showScreen("simpleDifficultHelp");
+  }
   function jozefGuide(short=false){
     if(!ensureScreens())return;
     const h=document.getElementById("entryDifficultHost");
@@ -1351,6 +1379,11 @@
     if(event.target.closest("[data-lost-rights-reselect]")){
       state.lostRightsQueue=[];state.lostRightsIndex=0;state.immediateNeed="";renderQuestion("q_lost_rights_goal");return;
     }
+    if(event.target.closest("[data-samira-start]")){samiraGuide(false);return;}
+    if(event.target.closest("[data-samira-short]")){samiraGuide(true);return;}
+    if(event.target.closest("[data-samira-full]")){samiraGuide(false);return;}
+    if(event.target.closest("[data-samira-print]")){window.print();return;}
+    if(event.target.closest("[data-samira-back]")){renderQuestion("q_entry_situation");return;}
     if(event.target.closest("[data-jozef-start]")){jozefGuide(false);return;}
     if(event.target.closest("[data-jozef-print]")){window.print();return;}
     if(event.target.closest("[data-jozef-short]")){jozefGuide(true);return;}
