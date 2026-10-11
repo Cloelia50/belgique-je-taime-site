@@ -162,16 +162,46 @@
     routeToDestination(opt.destination_id||q.destination_id||currentDestinationFromFirst());
   }
 
+  // First evidence-backed eligibility rules (federal measures, 2026-10-11).
+  // A response selects a POSSIBILITY, not an administrative award.
+  const savingsRules=[
+    {id:"energy_social",title:"Tarif social fédéral de l’énergie",answers:["ris","grapa","handicap_allowance"],url:"https://economie.fgov.be/fr/themes/energie/energie-sociale/tarif-social-pour-lenergie",action:"Vérifier si le tarif social est appliqué à votre domicile",note:"Le droit dépend de l’allocation exacte et du contrat résidentiel."},
+    {id:"bim_auto",title:"Intervention majorée pour les soins (BIM)",answers:["ris","grapa","handicap_allowance"],url:"https://www.inami.fgov.be/fr/themes/soins-de-sante-cout-et-remboursement/facilites-financieres/intervention-majoree",action:"Vérifier l’intervention majorée auprès de votre mutualité",note:"L’octroi peut être automatique, mais dépend de l’allocation exacte et parfois de sa durée."}
+  ];
   function renderPersonalCheck(){
     const host=document.getElementById("entryDestinationHost");if(!host)return;
-    const a=state.answers,region=a.q_household_region||"unknown";
-    const kinds=[["q_employee_goal","Travail et ménage"],["q_retired_goal","Pension et ménage"],["q_student_goal","Études et ménage"],["q_home_goal","Foyer et ménage"],["q_disability_goal","Handicap et ménage"]];
-    const kind=kinds.find(([k])=>a[k])?.[1]||"Votre ménage";
-    host.innerHTML='<div class="simple-kicker">Économies adaptées</div><h2>'+esc(kind)+'</h2>'+
-      '<section class="guided-one-step"><h3>Une précision est encore nécessaire</h3>'+
-      '<p>Votre région : '+esc(({brussels:"Bruxelles",wallonia:"Wallonie",flanders:"Flandre",unknown:"non précisée"})[region])+'. Les réductions peuvent aussi dépendre du revenu du ménage, de sa composition et du tarif déjà appliqué.</p>'+
-      '<p><strong>Aucune économie ne peut encore être annoncée comme personnellement applicable.</strong> Vous pouvez poursuivre la vérification détaillée.</p>'+
-      '<div class="guided-actions"><button type="button" data-personal-continue>Vérifier les droits et les économies</button><button type="button" data-entry-restart>Changer de situation</button></div></section>';
+    const region=state.answers.q_household_region||"unknown";
+    const selected=state.answers.q_qualifying_allowance;
+    if(!selected){
+      host.innerHTML='<div class="simple-kicker">Économies du ménage</div><h2>Quel revenu ou allocation votre ménage reçoit-il ?</h2>'+
+        '<p>Une réponse suffit pour vérifier les premiers tarifs sociaux. Nous ne demandons aucun montant.</p>'+
+        '<div class="entry-choice-grid">'+[
+          ["ris","Revenu d’intégration (RIS) du CPAS"],
+          ["grapa","Garantie de revenus aux personnes âgées (GRAPA)"],
+          ["handicap_allowance","Allocation de personne handicapée reconnue (SPF)"],
+          ["other","Autre revenu ou allocation"],
+          ["none","Aucune de ces allocations"],
+          ["unknown","Je ne sais pas"]
+        ].map(x=>'<button type="button" class="entry-choice" data-saving-allowance="'+x[0]+'">'+esc(x[1])+'</button>').join("")+
+        '</div><div class="entry-footer"><button type="button" data-entry-restart>Recommencer</button></div>';
+      showScreen("simpleEntryDestination");return;
+    }
+    const possible=savingsRules.filter(rule=>rule.answers.includes(selected));
+    const index=Math.min(Math.max(Number(state.savingStep||0),0),Math.max(0,possible.length-1));
+    const rule=possible[index];
+    if(!rule){
+      host.innerHTML='<div class="simple-kicker">Économies du ménage</div><h2>Pas encore de résultat fiable</h2>'+
+        '<p>Avec cette réponse, nous ne pouvons pas affirmer que vous bénéficiez d’un tarif particulier. Une demande BIM fondée sur les revenus pourrait toutefois être possible après examen par la mutualité.</p>'+
+        '<div class="guided-actions"><a href="https://www.inami.fgov.be/fr/themes/soins-de-sante-cout-et-remboursement/facilites-financieres/intervention-majoree" target="_blank" rel="noopener noreferrer">Voir les conditions officielles du BIM ↗</a>'+
+        '<button type="button" data-saving-again>Corriger ma réponse</button><button type="button" data-personal-continue>Continuer vers les autres économies</button></div>';
+    }else{
+      host.innerHTML='<div class="simple-kicker">Économies du ménage</div><h2>Une économie potentielle à vérifier</h2>'+
+        '<section class="guided-one-step"><h3>'+esc(rule.title)+'</h3><p>'+esc(rule.note)+'</p>'+
+        '<p><strong>Ce droit n’est pas confirmé par EcoTank.</strong> Votre situation doit être vérifiée par le service compétent.</p>'+
+        '<div class="guided-main-link"><a href="'+esc(rule.url)+'" target="_blank" rel="noopener noreferrer">'+esc(rule.action)+' ↗</a></div>'+
+        '<div class="guided-actions">'+(index+1<possible.length?'<button type="button" data-saving-next>Voir une autre économie possible</button>':'')+
+        '<button type="button" data-saving-again>Corriger ma réponse</button><button type="button" data-personal-continue>Continuer vers les autres économies</button></div></section>';
+    }
     showScreen("simpleEntryDestination");
   }
 
@@ -966,6 +996,7 @@
     state.difficultTopic="";
     state.businessAnswers={};
     state.businessCardIndex=0;
+    state.savingStep=0;
     const host=document.getElementById("entryRouterHost");
     host.innerHTML='<div class="simple-kicker">Trouver le bon parcours</div><h2>On regarde d’abord d’où vous partez.</h2><p>Quelques secondes suffisent pour éviter de vous envoyer vers un formulaire qui ne correspond pas à votre situation.</p>';
     showScreen("simpleEntryRouter");
@@ -977,6 +1008,9 @@
     const opt=event.target.closest("[data-entry-option]");
     if(opt){chooseOption(opt.dataset.entryQuestion,opt.dataset.entryOption);return;}
 
+    const allowance=event.target.closest("[data-saving-allowance]");if(allowance){state.answers.q_qualifying_allowance=allowance.dataset.savingAllowance;state.savingStep=0;renderPersonalCheck();return;}
+    if(event.target.closest("[data-saving-again]")){delete state.answers.q_qualifying_allowance;state.savingStep=0;renderPersonalCheck();return;}
+    if(event.target.closest("[data-saving-next]")){state.savingStep=Number(state.savingStep||0)+1;renderPersonalCheck();return;}
     if(event.target.closest("[data-personal-continue]")){handoffGeneral();return;}
     if(event.target.closest("[data-business-more]")){state.businessCardIndex=Number(state.businessCardIndex||0)+1;renderBusiness(state.destinationId);return;}
     if(event.target.closest("[data-business-refine]")){renderQuestion(state.destinationId==="company"?"q_employer_goal":"q_independent_goal");return;}
