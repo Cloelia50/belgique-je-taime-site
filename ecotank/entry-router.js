@@ -136,6 +136,7 @@
       (qid==="q_entry_situation"?'<div class="entry-choice-grid"><button type="button" class="entry-choice foundation" data-homeless-start>Je suis sans domicile ou sans ressources : trouver une aide humaine</button></div>':"")+
       (qid==="q_entry_situation"?'<button type="button" class="entry-choice foundation" data-kevin-start>Anderlecht · Hébergé chez des proches, dettes ou chômage en difficulté</button>':"")+
       (qid==="q_entry_situation"?'<button type="button" class="entry-choice foundation" data-fatou-start>Molenbeek · Parent seul avec enfants : électricité, pension et aides</button>':"")+
+      (qid==="q_entry_situation"?'<button type="button" class="entry-choice foundation" data-jozef-start>Koekelberg · Pension, carrière à l’étranger ou chambre sans bail</button>':"")+
       controls+
       '<div class="entry-footer"><span></span><button type="button" class="linkish" data-entry-unknown>Je ne sais pas quoi choisir</button></div>';
     showScreen("simpleEntryRouter");
@@ -457,6 +458,23 @@
 
   // Parcours Daniel : aucune saisie personnelle, sortie rapide du questionnaire.
 
+  function jozefGuide(short=false){
+    if(!ensureScreens())return;
+    const h=document.getElementById("entryDifficultHost");
+    const tasks=[
+      ["Pension : carrière aux Pays-Bas","Appelez le Service fédéral des Pensions au 1765, lundi-vendredi 8h30-12h. Expliquez vos années de travail aux Pays-Bas et demandez si elles ont été prises en compte, si un droit néerlandais reste à demander et comment obtenir un rendez-vous physique. Pas besoin de mypension ni d'ordinateur.","https://www.sfpd.fgov.be/fr/"],
+      ["Petit revenu : aide pour personnes âgées","Demandez au Service fédéral des Pensions d'examiner le droit à la garantie de revenus aux personnes âgées (GRAPA), sous réserve des conditions de résidence, de ressources et de situation familiale. Signalez la pension des Pays-Bas.","https://www.sfpd.fgov.be/fr/droit-a-la-pension/grapa"],
+      ["Soins moins chers et énergie","Demandez à la mutualité de vérifier l'intervention majorée (BIM : soins moins chers). Demandez ensuite si le tarif social énergie est applicable à votre situation : une petite pension seule ne suffit pas toujours.","https://www.inami.fgov.be/fr"],
+      ["Chambre louée sans bail et mauvais état","Notez les problèmes concrets (humidité, chauffage, électricité, sécurité). Demandez à un service logement de vérifier vos droits, les preuves de location et la possibilité d'un bail écrit. Ne déclenchez pas une plainte à l'inspection du logement sans examiner les conséquences possibles sur votre hébergement : une interdiction d'occuper peut nécessiter un relogement.","https://be.brussels/fr/logement/location/logement-en-mauvais-etat"],
+      ["Une personne pour vous accompagner à Koekelberg","CPAS de Koekelberg, rue François Delcoigne 39, 1081 Koekelberg. Téléphone : 02 412 16 40. Demandez le service social, un accueil en néerlandais et une aide pour les démarches pension, logement et santé. Faites confirmer l'horaire de permanence avant de venir.","https://koekelberg.be/"]
+    ];
+    h.innerHTML='<div id="jozef-sheet" style="max-width:730px;margin:auto;background:#fff;color:#111;padding:12px"><h2>Pension et chambre louée · Koekelberg</h2><p>Vous pouvez demander un accompagnement sans utiliser Internet chez vous. Cette fiche reste provisoirement en français ; demandez explicitement un accueil en néerlandais.</p>'+
+      (short?tasks.map((x,i)=>'<p style="border-top:1px solid #aaa;padding:8px 0"><strong>'+(i+1)+'. '+esc(x[0])+'</strong> '+esc(x[1])+'</p>').join(''):tasks.map((x,i)=>'<section style="border-top:1px solid #aaa;padding:8px 0;break-inside:avoid"><h3>'+(i+1)+'. '+esc(x[0])+'</h3><p>'+esc(x[1])+'</p><p style="font-size:.85em;overflow-wrap:anywhere">'+esc(x[2])+'</p></section>').join(''))+
+      '<p><strong>Premier contact en personne :</strong> au CPAS, dites « Je suis pensionné, j’ai travaillé aux Pays-Bas et je loue une chambre sans bail. Je souhaite parler à un assistant social en néerlandais et vérifier mes droits. »</p></div>'+
+      '<div class="entry-route-actions"><button type="button" data-jozef-print>Imprimer / PDF</button><button type="button" data-jozef-short>Version courte</button><button type="button" data-jozef-full>Version détaillée</button><button type="button" data-jozef-back>Retour</button></div>';
+    if(!document.getElementById("jozef-print-style")){const st=document.createElement("style");st.id="jozef-print-style";st.textContent='@media print{body *{visibility:hidden!important}#jozef-sheet,#jozef-sheet *{visibility:visible!important}#jozef-sheet{position:absolute;top:0;left:0;width:100%!important;max-width:none!important;color:#000!important;background:#fff!important}@page{size:A4;margin:12mm}}';document.head.appendChild(st);}
+    showScreen("simpleDifficultHelp");
+  }
   function fatouEntry(){
     if(!ensureScreens())return;
     const host=document.getElementById("entryDifficultHost");
@@ -1333,6 +1351,11 @@
     if(event.target.closest("[data-lost-rights-reselect]")){
       state.lostRightsQueue=[];state.lostRightsIndex=0;state.immediateNeed="";renderQuestion("q_lost_rights_goal");return;
     }
+    if(event.target.closest("[data-jozef-start]")){jozefGuide(false);return;}
+    if(event.target.closest("[data-jozef-print]")){window.print();return;}
+    if(event.target.closest("[data-jozef-short]")){jozefGuide(true);return;}
+    if(event.target.closest("[data-jozef-full]")){jozefGuide(false);return;}
+    if(event.target.closest("[data-jozef-back]")){renderQuestion("q_entry_situation");return;}
     if(event.target.closest("[data-fatou-start]")){state.fatouPriority="";fatouEntry();return;}
     const fatouChoice=event.target.closest("[data-fatou-choice]");
     if(fatouChoice){state.fatouPriority=fatouChoice.dataset.fatouChoice;fatouGuide(false);return;}
