@@ -63,15 +63,19 @@
       if(host){
         host.querySelector("[data-multi-banner]")?.remove();
         const names={nothing:"Je n’ai plus aucune ressource",refused:"Une aide a été refusée",stopped:"Mes allocations ont été arrêtées",administrative:"Mes démarches sont bloquées"};
-        const ix=Math.max(0,Number(state.lostRightsIndex||0)),all=state.lostRightsQueue;
+        const order=["nothing","refused","stopped","administrative"];
+        const saved=order.filter(x=>(state.lostRightsSelected||[]).includes(x));
+        const all=saved.length>state.lostRightsQueue.length?saved:state.lostRightsQueue;
+        state.lostRightsQueue=all;
+        const ix=Math.min(Math.max(0,Number(state.lostRightsIndex||0)),all.length-1);
         const next=ix+1<all.length;
         const banner=document.createElement("section");
         banner.setAttribute("data-multi-banner","");
         banner.className="guided-one-step";
         banner.setAttribute("aria-live","polite");
         banner.innerHTML='<p class="guided-step-count">Problème '+(ix+1)+' sur '+all.length+' — '+esc(names[all[ix]]||"Votre situation")+'</p>'+
-          '<p>Vos '+all.length+' difficultés sont conservées. Vous pouvez consulter les premières démarches puis passer à la suivante. Cela ne veut pas dire que le problème est résolu.</p>'+
-          '<div class="guided-actions"><button type="button" data-lost-rights-next>'+(next?"Passer au problème suivant":"Voir le bilan de mes problèmes")+'</button>'+
+          '<p>On avance une situation à la fois, sans perdre les autres.</p>'+
+          '<div class="guided-actions"><button type="button" data-lost-rights-next>'+(next?"Passer à une autre situation":"Revenir à mes choix")+'</button>'+
           '<button type="button" data-lost-rights-reselect>Modifier mes choix</button></div>';
         host.insertBefore(banner,host.firstChild);
       }
@@ -1049,21 +1053,18 @@
       state.lostRightsQueue=[];state.lostRightsIndex=0;renderQuestion("q_lost_rights_goal");return;
     }
     if(event.target.closest("[data-lost-rights-next]")){
-      const queue=state.lostRightsQueue||[];
+      const order=["nothing","refused","stopped","administrative"];
+      const saved=order.filter(x=>(state.lostRightsSelected||[]).includes(x));
+      const queue=saved.length>(state.lostRightsQueue||[]).length?saved:(state.lostRightsQueue||[]);
+      state.lostRightsQueue=queue;
       state.lostRightsIndex=Number(state.lostRightsIndex||0)+1;
       if(state.lostRightsIndex<queue.length){
         const selected=queue[state.lostRightsIndex];
         const topics={nothing:"urgent_income",refused:"refusals",stopped:"urgent_income",administrative:"urgent_access"};
         renderDifficultHelp(topics[selected]);return;
       }
-      const host=document.getElementById("entryDifficultHost");
-      const names={nothing:"Absence de ressources",refused:"Refus d’aide",stopped:"Allocations arrêtées",administrative:"Démarches bloquées"};
-      host.innerHTML='<div class="simple-kicker">Votre bilan</div><h2>Tous les problèmes sélectionnés ont été examinés</h2>'+
-        '<p>Cela ne signifie pas qu’ils sont résolus. Voici les situations que vous avez signalées :</p>'+
-        '<ul>'+queue.map(x=>'<li>'+esc(names[x])+'</li>').join("")+'</ul>'+
-        '<div class="guided-actions"><button type="button" data-lost-rights-restart>Revoir les démarches</button>'+
-        '<button type="button" data-lost-rights-reselect>Modifier mes réponses</button></div>';
-      state.lostRightsQueue=[];showScreen("simpleDifficultHelp");return;
+      state.lostRightsQueue=[];state.lostRightsIndex=0;
+      renderQuestion("q_lost_rights_goal");return;
     }
     if(event.target.closest("[data-lost-rights-restart]")){
       state.lostRightsQueue=["nothing","refused","stopped","administrative"].filter(x=>(state.lostRightsSelected||[]).includes(x));
