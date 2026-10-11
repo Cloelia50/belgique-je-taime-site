@@ -155,17 +155,23 @@
       if(section.querySelector(".ecotank-guided-contact"))return;
       const title=section.querySelector("h3")?.textContent||"Ma démarche";
       const defaultMessage="Bonjour, je souhaite effectuer cette démarche : "+title+". Pouvez-vous m’indiquer la procédure précise, les pièces strictement nécessaires, les délais et la personne à contacter si cela bloque ?";
+      // Identification par sujet, indépendante de l'ordre choisi par l'utilisateur.
       const patterns={
-        "fatou-sheet":[/lectri/i,/pension alimentaire/i,/Allocations pour parent/i,/Logement social/i,/Santé/i,/École/i],
+        "homeless-sheet":[/Aujourd.hui.*repas/i,/aide financière.*adresse/i,/documents.*courrier/i,/couverture santé|soins/i,/compte.*bancaire/i,/chômage/i,/Ensuite|logement durable/i],
+        "kevin-sheet":[/adresse.*courrier/i,/chômage/i,/Dettes.*huissier/i,/complément|aide sociale/i,/Logement.*garantie/i,/Emploi.*formation/i],
+        "fatou-sheet":[/lectri/i,/Pension alimentaire/i,/Allocations pour parent/i,/Logement social/i,/Santé/i,/École/i],
+        "jozef-sheet":[/Pension.*Pays.Bas/i,/Petit revenu|personnes âgées/i,/Soins moins chers/i,/Chambre louée/i,/Une personne|accompagner/i],
+        "samira-sheet":[/URGENT|dettes.*saisie/i,/Huissier/i,/Loyer impayé|humidité/i,/Logement social/i,/Enfants en garde/i,/Emploi.*temps partiel/i],
+        "celine-sheet":[/Allocations familiales/i,/Soins.*remboursement/i,/Crèche/i,/Énergie.*frais scolaires/i],
+        "karim-sheet":[/Reconnaissance de l.affection/i,/Pension de survie/i,/Congé et aménagement/i,/Soutien, transport/i,/Fiscalité/i],
+        "lotte-sheet":[/indemnités/i,/début du repos/i,/crèche/i,/Allocation de naissance/i,/Reconnaissance avant/i,/Congé de naissance/i],
         "beatrice-sheet":[/Enfants fiscalement/i,/Pensions alimentaires/i,/Frais de garde/i,/Allocations familiales/i,/Titres-services/i,/Crédit en indivision/i],
         "thomas-sheet":[/Bail et animaux/i,/Chien, règles/i,/Cotisations provisoires/i,/Pension libre/i,/Frais professionnels/i],
         "jessica-sheet":[/Facture du salon/i,/Frais professionnels/i,/Cotisations sociales/i,/Arrêt, incapacité/i],
-        "pieter-sheet":[/statut complémentaire/i,/Carrière mixte/i,/Loyers :/i,/Frais de consultance/i],
-        "karim-sheet":[/Reconnaissance de l’affection/i,/Pension de survie/i,/Congé et aménagement/i,/Soutien, transport/i,/Fiscalité/i]
+        "pieter-sheet":[/statut complémentaire/i,/Carrière mixte/i,/Loyers :/i,/Frais de consultance/i]
       };
-      const matched=patterns[sheet.id]?.findIndex(re=>re.test(title));
-      const scriptIndex=matched>=0?matched:i;
-      const message=(scripts[scriptIndex]||defaultMessage);
+      const matched=patterns[sheet.id]?.findIndex(re=>re.test(title))??-1;
+      const message=matched>=0&&scripts[matched]?scripts[matched]:defaultMessage;
       const url=section.querySelector('a[href^="https://"]')?.getAttribute("href")||
         Array.from(section.querySelectorAll("p")).map(x=>x.textContent.trim()).find(x=>/^https:\/\/[^\s]+$/.test(x))||"";
       const exactPath=!!url&&/^https:\/\/[^/]+\/[^?#]+/.test(url);
