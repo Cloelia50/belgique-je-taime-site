@@ -134,6 +134,7 @@
       '<h2>'+esc(q.text||"Votre situation")+'</h2>'+
       (q.helper?'<p>'+esc(q.helper)+'</p>':"")+
       (qid==="q_entry_situation"?'<div class="entry-choice-grid"><button type="button" class="entry-choice foundation" data-homeless-start>Je suis sans domicile ou sans ressources : trouver une aide humaine</button></div>':"")+
+      (qid==="q_entry_situation"?'<button type="button" class="entry-choice foundation" data-kevin-start>Je suis hébergé chez des proches, avec des dettes ou un chômage en difficulté</button>':"")+
       controls+
       '<div class="entry-footer"><span></span><button type="button" class="linkish" data-entry-unknown>Je ne sais pas quoi choisir</button></div>';
     showScreen("simpleEntryRouter");
@@ -454,6 +455,33 @@
   }
 
   // Parcours Daniel : aucune saisie personnelle, sortie rapide du questionnaire.
+
+  function kevinGuide(short=false){
+    if(!ensureScreens())return;
+    const host=document.getElementById("entryDifficultHost");
+    const steps=[
+      ["Adresse et courrier","CPAS d’Anderlecht, avenue Raymond Vander Bruggen 62-64. Je suis hébergé provisoirement chez des amis : demander la vérification des conditions d’adresse de référence, ou d’une domiciliation adaptée. Éviter toute promesse automatique. L’aide financière peut être demandée sans attendre la régularisation de l’adresse.","https://www.belgium.be/fr/logement/logement_social/sans-abri"],
+      ["Chômage : date réelle de fin de droits","Contacter la CAPAC ou son syndicat et demander la date de fin des allocations, les décisions et les montants restants. Les changements de 2026 dépendent du dossier ; ne pas calculer la date à partir d’une seule réponse.","https://www.onem.be/reforme-de-la-reglementation-du-chomage"],
+      ["Dettes / huissier : priorité aux délais","Si saisie, vente ou jugement annoncé : faire vérifier le courrier immédiatement. Médiation de dettes CPAS d’Anderlecht, avenue Raymond Vander Bruggen 62-64 ; 02 529 96 10 ou 02 529 96 17 ; med@cpas-anderlecht.brussels. La médiation ne suspend pas automatiquement les procédures.","https://cpas-ocmw.anderlecht.be/aides/mediation-de-dettes/consultation-et-urgence/"],
+      ["Demander un complément ou une aide sociale","Faire examiner rapidement les droits au revenu d’intégration, à une aide complémentaire ou à une autre aide sociale selon les revenus et la situation d’hébergement ; demander un accusé de réception daté. CPAS d’Anderlecht : avenue Raymond Vander Bruggen 62-64. Si exclusion du chômage : HUB square Marie Curie 50, sur rendez-vous, à demander sur place.","https://cpas-ocmw.anderlecht.be/2026/09/18/reforme-chomage-laccueil-temporaire-pour-les-personnes-exclues-du-chomage-demenage/"],
+      ["Logement : garantie et installation","Avant de signer un bail, demander à la cellule Logement du CPAS si une aide à la garantie locative existe. La prime d’installation pour ancien sans-abri dépend de conditions précises, notamment d’un nouveau logement principal et de l’absence de prime reçue auparavant.","https://cpas-ocmw.anderlecht.be/aides/logement-et-energie/logement/"],
+      ["Emploi et formation, ensuite","Une fois les urgences et échéances protégées, demander un accompagnement à Actiris ou à une Mission locale ; explorer Bruxelles Formation. Ne pas refaire une inscription Actiris existante.","https://www.actiris.brussels/fr/citoyens/"]
+    ];
+    const brief=[
+      "1. CPAS avenue Raymond Vander Bruggen 62-64 : demander adresse de référence et aide sociale sans attendre.",
+      "2. CAPAC ou syndicat : date de fin des allocations, décision et courrier.",
+      "3. Huissier : conserver les courriers. Médiation 02 529 96 10 / 17 ; urgence si saisie ou vente.",
+      "4. CPAS : examen aide complémentaire, accusé de réception. Exclusion chômage : HUB square Marie Curie 50 sur rendez-vous.",
+      "5. Cellule Logement CPAS : garantie locative et prime d’installation sous conditions.",
+      "6. Ensuite : Actiris, Mission locale, Bruxelles Formation."
+    ];
+    host.innerHTML='<div id="kevin-sheet" style="max-width:730px;margin:auto;padding:12px;color:#111;background:#fff"><h2>Hébergé chez des amis · Anderlecht</h2><p>Vous n’avez pas besoin de remplir un profil de vingt questions. Le courrier et les dettes sont prioritaires. En cas de saisie ou de vente annoncée, vérifiez immédiatement le délai, même avant les autres démarches.</p>'+
+      (short?brief.map(x=>'<p style="border-top:1px solid #999;padding:7px 0">'+esc(x)+'</p>').join(''):steps.map((x,i)=>'<section style="border-top:1px solid #999;padding:8px 0;break-inside:avoid"><h3>'+(i+1)+'. '+esc(x[0])+'</h3><p>'+esc(x[1])+'</p><p style="overflow-wrap:anywhere;font-size:.85em">'+esc(x[2])+'</p></section>').join(''))+
+      '<p>À dire au CPAS : « Je suis hébergé temporairement, je ne reçois pas mon courrier de façon fiable, et j’ai des dettes. Pouvez-vous enregistrer ma demande, vérifier l’adresse de référence et m’orienter vers un médiateur ? »</p><p>Un courrier d’huissier ne signifie pas nécessairement une saisie immédiate. Il peut néanmoins déclencher des délais : ne l’ignorez pas.</p></div>'+
+      '<div class="entry-route-actions"><button type="button" data-kevin-print>Imprimer / enregistrer PDF</button><button type="button" data-kevin-short>Fiche courte pour capture</button><button type="button" data-kevin-full>Fiche détaillée</button><button type="button" data-kevin-back>Retour</button></div><p>Cette fiche ne demande ni compte, ni adresse, ni téléphone.</p>';
+    if(!document.getElementById("kevin-print-style")){const style=document.createElement("style");style.id="kevin-print-style";style.textContent='@media print{body *{visibility:hidden!important}#kevin-sheet,#kevin-sheet *{visibility:visible!important}#kevin-sheet{position:absolute;top:0;left:0;width:100%!important;max-width:none!important;color:#000!important;background:#fff!important}@page{size:A4;margin:12mm}}';document.head.appendChild(style);}
+    showScreen("simpleDifficultHelp");
+  }
   function homelessEntry(){
     if(!ensureScreens())return;
     const host=document.getElementById("entryDifficultHost");
@@ -1274,6 +1302,11 @@
     if(event.target.closest("[data-lost-rights-reselect]")){
       state.lostRightsQueue=[];state.lostRightsIndex=0;state.immediateNeed="";renderQuestion("q_lost_rights_goal");return;
     }
+    if(event.target.closest("[data-kevin-start]")){kevinGuide(false);return;}
+    if(event.target.closest("[data-kevin-print]")){window.print();return;}
+    if(event.target.closest("[data-kevin-short]")){kevinGuide(true);return;}
+    if(event.target.closest("[data-kevin-full]")){kevinGuide(false);return;}
+    if(event.target.closest("[data-kevin-back]")){renderQuestion("q_entry_situation");return;}
     if(event.target.closest("[data-homeless-start]")){state.homelessOutsideSaintGilles=false;homelessEntry();return;}
     if(event.target.closest("[data-homeless-local]")){state.homelessOutsideSaintGilles=false;homelessGuide(false);return;}
     if(event.target.closest("[data-homeless-other]")){state.homelessOutsideSaintGilles=true;homelessGuide(false);return;}
