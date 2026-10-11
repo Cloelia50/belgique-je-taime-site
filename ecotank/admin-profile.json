@@ -2486,8 +2486,13 @@
         "text": "Quelle situation vous correspond ?",
         "options": [
           {
-            "id": "jobseek",
-            "label": "Je cherche du travail, avec ou sans allocations",
+            "id": "registered",
+            "label": "Je suis inscrit chez Actiris",
+            "next_question_id": "q_actiris_allowance"
+          },
+          {
+            "id": "not_registered",
+            "label": "Je cherche un emploi, sans être inscrit chez Actiris",
             "destination_id": "foundation_recovery"
           },
           {
@@ -2705,6 +2710,29 @@
             "id": "unknown",
             "label": "Je ne sais pas",
             "destination_id": "guided_orientation"
+          }
+        ]
+      },
+      {
+        "id": "q_actiris_allowance",
+        "order": 4,
+        "text": "Recevez-vous des allocations de chômage ?",
+        "helper": "L'inscription chez Actiris et le versement d'allocations sont deux choses différentes.",
+        "options": [
+          {
+            "id": "yes",
+            "label": "Oui, je reçois des allocations",
+            "destination_id": "foundation_recovery"
+          },
+          {
+            "id": "no",
+            "label": "Non, je ne touche aucune allocation de chômage",
+            "destination_id": "foundation_recovery"
+          },
+          {
+            "id": "unknown",
+            "label": "Je ne sais pas ou mes allocations sont interrompues",
+            "destination_id": "foundation_recovery"
           }
         ]
       }
