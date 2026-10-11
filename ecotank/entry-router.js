@@ -137,14 +137,18 @@
     if(!q||!opt)return;
     state.answers[qid]=oid;
     if(qid==="q_entry_situation")state.destinationId=opt.destination_id||"";
-    if(qid==="q_entry_situation"&&oid==="urgent"){state.difficultTopic="";state.helpStep=0;return renderDifficultHelp();}
-    const workTopics={no_income:"no_job",benefits:"employer_aid"};
-    const personalTopics={income:"urgent_income",care:"urgent_care",housing:"urgent_shelter",paperwork:"urgent_access"};
-    const selectedTopic=qid==="q_work_goal"?workTopics[oid]:qid==="q_personal_goal"?personalTopics[oid]:null;
-    if(selectedTopic){state.destinationId="foundation_recovery";return renderDifficultHelp(selectedTopic);}
-    if(qid==="q_independent_goal"){state.answers.q_business_stage=oid==="hiring"?"running":oid;state.businessCardIndex=0;}
-    if(qid==="q_employer_goal"){state.answers.q_company_goal=oid;state.businessCardIndex=0;}
-
+    // EcoTank s'adresse aux particuliers. On ne demande les blocages que dans les branches concernées.
+    const unemployment={jobseek:"no_job"};
+    const blocked={refused:"refusals",stopped:"urgent_income",administrative:"urgent_access",nothing:"urgent_income"};
+    const disability={work:"handicap_employment"};
+    const picked=qid==="q_unemployed_goal"?unemployment[oid]:
+      qid==="q_lost_rights_goal"?blocked[oid]:
+      qid==="q_disability_goal"?disability[oid]:null;
+    if(picked){state.destinationId="foundation_recovery";return renderDifficultHelp(picked);}
+    if(qid==="q_independent_goal"){state.answers.q_business_stage=oid==="hiring"?"hiring":oid;state.businessCardIndex=0;}
+    // Les dépenses du ménage relèvent du moteur général d'économies, pas de la liste administrative.
+    if(qid==="q_household_goal"){state.destinationId="guided_orientation";return handoffGeneral();}
+    if(qid==="q_retired_goal"||qid==="q_student_goal"||qid==="q_employee_goal"){state.destinationId=opt.destination_id||"guided_orientation";return handoffGeneral();}
     const next=opt.next_question_id||q.next_question_id;
     if(next){
       renderQuestion(next);
@@ -852,7 +856,7 @@
     if(!d||!host)return renderDestination("guided_orientation");
     const tokens=priorityTokens();
     const goal=id==="company"?state.answers.q_company_goal:state.answers.q_business_stage;
-    const matchWords={starting:/prime indépendant|lancement|entrepreneuriale|starter|airbag|chèques/i,running:/subsides|digitalisation|franchise|financement|TVA/i,cashflow_problem:/cotisations|paiement|dette|passerelle|trésorerie/i,interruption:/passerelle|cessation|interrompre|arrêt/i,staff:/recrut|engag|premier travailleur|emploi/i,financing:/subsides|primes|investissement|financement/i,cashflow:/paiement|trésorerie|cotisations|dettes/i,administration:/fiscal|TVA|cotisations|obligation/i};
+    const matchWords={starting:/prime indépendant|lancement|entrepreneuriale|starter|airbag|chèques/i,running:/subsides|digitalisation|franchise|financement|TVA/i,cashflow_problem:/cotisations|paiement|dette|passerelle|trésorerie/i,interruption:/passerelle|cessation|interrompre|arrêt/i,hiring:/recrut|engag|premier travailleur|emploi/i,staff:/recrut|engag|premier travailleur|emploi/i,financing:/subsides|primes|investissement|financement/i,cashflow:/paiement|trésorerie|cotisations|dettes/i,administration:/fiscal|TVA|cotisations|obligation/i};
     const preferred=matchWords[goal];
     const cards=(d.resource_cards||[]).filter(isCardCurrent).map(card=>({
       card,
