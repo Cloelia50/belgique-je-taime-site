@@ -1088,4 +1088,8 @@
   highlightUrgentEntry();
   ensureScreens();
   window.EcoTankEntryRouter={start};
+  // Le questionnaire de deux choix est maintenant la véritable page d’entrée.
+  // Attendre la fin du chargement du site historique avant de l’afficher.
+  if(document.readyState==="complete"){start();}
+  else window.addEventListener("load",()=>start(),{once:true});
 })();
