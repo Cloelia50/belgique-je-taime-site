@@ -145,9 +145,12 @@
       qid==="q_lost_rights_goal"?blocked[oid]:
       qid==="q_disability_goal"?disability[oid]:null;
     if(picked){state.destinationId="foundation_recovery";return renderDifficultHelp(picked);}
+    if(qid==="q_worker_type"){state.answers.q_work_class=oid;}
     if(qid==="q_independent_goal"){state.answers.q_business_stage=oid==="hiring"?"hiring":oid;state.businessCardIndex=0;}
     // Les dépenses du ménage relèvent du moteur général d'économies, pas de la liste administrative.
     if(qid==="q_household_goal"){state.destinationId="guided_orientation";return handoffGeneral();}
+    if(qid==="q_home_goal"&&["household","family"].includes(oid)){state.destinationId="guided_orientation";return handoffGeneral();}
+    if(qid==="q_home_goal"&&oid==="job"){state.destinationId="foundation_recovery";return renderDifficultHelp("no_job");}
     if(qid==="q_retired_goal"||qid==="q_student_goal"||qid==="q_employee_goal"){state.destinationId=opt.destination_id||"guided_orientation";return handoffGeneral();}
     const next=opt.next_question_id||q.next_question_id;
     if(next){
