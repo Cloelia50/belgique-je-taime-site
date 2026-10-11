@@ -1087,7 +1087,16 @@
   prioritizeAdminResults();
   highlightUrgentEntry();
   ensureScreens();
-  window.EcoTankEntryRouter={start};
+  function startWithChoice(choice){
+    if(!["working","not_working"].includes(choice))return;
+    if(!ensureScreens())return;
+    state.answers={};state.destinationId="";state.difficultTopic="";state.businessAnswers={};
+    showScreen("simpleEntryRouter");
+    const host=document.getElementById("entryRouterHost");
+    if(host)host.innerHTML='<div class="simple-kicker">EcoTank · Faire des économies</div><p>Préparation de votre parcours…</p>';
+    loadCatalog().then(()=>chooseOption("q_entry_situation",choice)).catch(renderLoadFailure);
+  }
+  window.EcoTankEntryRouter={start,startWithChoice};
   // Le questionnaire de deux choix est maintenant la véritable page d’entrée.
   // Attendre la fin du chargement du site historique avant de l’afficher.
   if(document.readyState==="complete"){start();}
