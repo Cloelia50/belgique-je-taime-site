@@ -486,6 +486,40 @@
     const host=document.getElementById("entryDifficultHost");
     if(!host)return;
     const sources=state.catalog?.official_sources||{};
+    // Blocages cumulés : orienter vers une démarche concrète propre à chaque difficulté.
+    if((state.lostRightsQueue||[]).length){
+      const issue=state.lostRightsQueue[state.lostRightsIndex||0];
+      const tasks={
+        nothing:[
+          ["Chercher une aide alimentaire accessible sans attendre","Vous n’avez déclaré aucun revenu. La première démarche est de trouver un repas ou un colis disponible près de chez vous.","https://www.fdss.be/fr/aide-alimentaire/","Chercher une aide alimentaire"],
+          ["Faire vérifier l’accès aux soins sans couverture","La gratuité ou la prise en charge n'est pas automatique. Un service de soins pour personnes précarisées peut vous orienter.","https://www.medecinsdumonde.be/","Trouver une consultation"],
+          ["Demander un avis indépendant sur les aides encore possibles","Même après un refus, une aide ponctuelle, une nouvelle situation ou un recours peuvent nécessiter un examen individualisé.","https://www.droitsquotidiens.be/fr","Vérifier mes possibilités"]
+        ],
+        refused:[
+          ["Vérifier la date et la raison du refus","Prenez la décision écrite, notez la date de notification et faites vérifier rapidement le délai de recours. Ne recommencez pas une première demande sans examiner le refus.","https://www.droitsquotidiens.be/fr","Examiner les possibilités de recours"],
+          ["Demander un premier avis juridique","Le premier conseil juridique peut être gratuit. Apportez la décision du CPAS ou de l'ONEM et vos documents disponibles.","https://www.avocats.be/fr","Trouver une aide juridique"]
+        ],
+        stopped:[
+          ["Demander la décision d'arrêt et son motif","Identifiez l'organisme qui a arrêté le paiement (ONEM, mutualité ou autre). Demandez la décision datée et vérifiez rapidement les délais de contestation.","https://www.onem.be/","Vérifier les démarches ONEM"],
+          ["Faire examiner l'arrêt de vos allocations","En cas d'arrêt contesté, un service juridique peut vérifier si une révision ou un recours est possible.","https://www.droitsquotidiens.be/fr","Vérifier les recours"]
+        ],
+        administrative:[
+          ["Identifier la démarche qui bloque","Si vous avez une carte eID et son code PIN, certains services permettent de se connecter via CSAM sans itsme. Sinon, demandez une possibilité au guichet ou sur papier.","https://www.csam.be/fr/index.html","Voir les moyens de connexion"],
+          ["Chercher une aide numérique de proximité","Des espaces publics numériques peuvent aider à effectuer les démarches sans imposer l'achat d'un téléphone.","https://www.1890.be/","Chercher une aide"]
+        ]
+      };
+      const all=tasks[issue]||tasks.nothing;
+      const step=Math.min(Math.max(0,Number(state.helpStep||0)),all.length-1);
+      const task=all[step];
+      host.innerHTML='<div class="simple-kicker">Une démarche à la fois</div><h2>'+esc(({nothing:"Je n'ai aucun revenu",refused:"Une aide m'a été refusée",stopped:"Mes allocations ont été arrêtées",administrative:"Une démarche est bloquée"})[issue])+'</h2>'+
+        '<section class="guided-one-step"><p class="guided-step-count">Piste '+(step+1)+' sur '+all.length+'</p><h3>'+esc(task[0])+'</h3><p>'+esc(task[1])+'</p>'+
+        '<div class="guided-main-link"><a href="'+esc(task[2])+'" target="_blank" rel="noopener noreferrer">'+esc(task[3])+' ↗</a></div>'+
+        '<div class="guided-actions">'+(step+1<all.length?'<button type="button" data-help-next>Cette piste ne convient pas — une autre</button>':'')+
+        '<button type="button" data-lost-rights-next>Passer à la situation suivante</button>'+
+        '<button type="button" data-lost-rights-reselect>Modifier mes réponses</button></div></section>';
+      showScreen("simpleDifficultHelp");return;
+    }
+
     // Sources vérifiées manuellement pour les deux refus (CPAS + ONEM).
     // Les liens de la base officielle restent prioritaires pour les autres situations.
     const refusalSources={
@@ -1064,12 +1098,13 @@
       const queue=saved.length>(state.lostRightsQueue||[]).length?saved:(state.lostRightsQueue||[]);
       state.lostRightsQueue=queue;
       state.lostRightsIndex=Number(state.lostRightsIndex||0)+1;
+      state.helpStep=0;
       if(state.lostRightsIndex<queue.length){
         const selected=queue[state.lostRightsIndex];
         const topics={nothing:"urgent_income",refused:"refusals",stopped:"urgent_income",administrative:"urgent_access"};
         renderDifficultHelp(topics[selected]);return;
       }
-      state.lostRightsQueue=[];state.lostRightsIndex=0;
+      state.lostRightsIndex=0;
       renderQuestion("q_lost_rights_goal");return;
     }
     if(event.target.closest("[data-lost-rights-restart]")){
@@ -1105,7 +1140,7 @@
       else renderDestination(state.destinationId);
       return;
     }
-    if(event.target.closest("[data-help-reset]")){state.difficultTopic="";state.helpStep=0;renderDifficultHelp();return;}
+    if(event.target.closest("[data-help-reset]")){state.lostRightsQueue=[];state.difficultTopic="";state.helpStep=0;renderDifficultHelp();return;}
     if(event.target.closest("[data-help-detailed]")){handoffAdmin();return;}
     if(event.target.closest("[data-admin-retry]")){startImmediateHelp();return;}
     if(event.target.closest("[data-admin-immediate-help]")){state.fromAdminHome=true;startImmediateHelp();return;}
