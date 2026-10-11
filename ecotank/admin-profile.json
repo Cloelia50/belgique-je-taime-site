@@ -2783,6 +2783,17 @@
             "source_url": "https://economie-emploi.brussels/quels-subsides",
             "verified_at": "2026-10-06",
             "freshness": "high"
+          },
+          {
+            "id": "self_actiris_prime",
+            "title": "Avant de créer : vérifier la prime indépendant Actiris",
+            "description": "Chercheur d'emploi à Bruxelles ? Faites d'abord analyser votre projet par une structure agréée et obtenir un avis d'opportunité positif. Ne vous inscrivez pas trop tôt comme indépendant.",
+            "action_label": "Conditions et demande de prime",
+            "url": "https://www.actiris.brussels/fr/citoyens/devenir-independant/prime-pour-independant/",
+            "authority": "Actiris",
+            "source_url": "https://www.actiris.brussels/fr/citoyens/devenir-independant/prime-pour-independant/",
+            "verified_at": "2026-10-11",
+            "freshness": "high"
           }
         ],
         "status_focus_axes": [
