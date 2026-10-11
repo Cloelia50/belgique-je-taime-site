@@ -2288,9 +2288,9 @@
     "entry_policy": {
       "required_before_general_aid_catalog": true,
       "default_general_aid_catalog_visibility": "hidden_until_orientation",
-      "max_questions_before_destination": 3,
+      "max_questions_before_destination": 2,
       "allow_skip_to_search": false,
-      "note": "La recherche libre pourra rester disponible plus tard, mais l'accueil EcoTank doit d'abord orienter le profil.",
+      "note": "Deux questions maximum pour choisir un chemin. Les vérifications d'éligibilité viennent après le choix du besoin, et une seule action principale doit être visible.",
       "presentation": {
         "mode": "one_question_per_screen",
         "option_layout": "grouped_cards",
@@ -2305,370 +2305,153 @@
       {
         "id": "q_entry_situation",
         "order": 1,
-        "required": true,
-        "text": "Quelle situation vous correspond le mieux aujourd'hui ?",
-        "helper": "Choisissez simplement la situation principale. On précisera ensuite si nécessaire.",
+        "text": "De quoi avez-vous besoin ?",
+        "helper": "Choisissez votre objectif. Une seule autre question au maximum pour vous orienter.",
         "options": [
           {
-            "id": "start_from_zero",
-            "label": "Je pars de presque zéro / je ne sais plus quels droits ou documents sont encore en ordre",
-            "destination_id": "foundation_recovery",
-            "general_aid_catalog": "hidden",
-            "suggested_profile_ids": [
-              "situation_inconnue"
-            ]
+            "id": "urgent",
+            "label": "J'ai besoin d'aide maintenant",
+            "destination_id": "foundation_recovery"
           },
           {
-            "id": "replacement_income",
-            "label": "Je vis surtout d'un revenu de remplacement ou d'une aide (chômage, CPAS, incapacité, invalidité…)",
-            "next_question_id": "q_replacement_income_type",
-            "destination_id": "social_protection"
-          },
-          {
-            "id": "employee",
-            "label": "Je travaille comme salarié, ouvrier ou employé",
-            "next_question_id": "q_foundations_ok",
-            "destination_id": "employee",
-            "suggested_profile_ids": [
-              "salarie"
-            ]
-          },
-          {
-            "id": "public_worker",
-            "label": "Je travaille dans le secteur public / je suis fonctionnaire ou agent public",
-            "next_question_id": "q_foundations_ok",
-            "destination_id": "public_worker"
-          },
-          {
-            "id": "self_employed",
-            "label": "Je suis indépendant en personne physique / profession libérale",
-            "next_question_id": "q_business_stage",
-            "destination_id": "self_employed",
-            "suggested_profile_ids": [
-              "independant"
-            ]
-          },
-          {
-            "id": "company_director",
-            "label": "Je dirige une société / je suis gérant, administrateur ou chef d'entreprise",
-            "next_question_id": "q_company_stage",
-            "destination_id": "company"
-          },
-          {
-            "id": "student",
-            "label": "Je suis étudiant",
-            "next_question_id": "q_foundations_ok",
-            "destination_id": "student",
-            "suggested_profile_ids": [
-              "etudiant"
-            ]
-          },
-          {
-            "id": "retired",
-            "label": "Je suis pensionné",
-            "next_question_id": "q_foundations_ok",
-            "destination_id": "retired",
-            "suggested_profile_ids": [
-              "pensionne"
-            ]
-          },
-          {
-            "id": "new_arrival_or_residence",
-            "label": "Je viens d’arriver en Belgique / mon séjour, ma protection ou mon titre doit être clarifié",
-            "destination_id": "residence_status",
-            "general_aid_catalog": "hidden"
-          },
-          {
-            "id": "international_special",
-            "label": "J'ai une situation internationale ou un statut spécial (frontalier, détaché, diplomatie, organisation internationale…)",
-            "destination_id": "international_special"
-          },
-          {
-            "id": "other_unknown",
-            "label": "Je ne sais pas / aucune de ces situations ne correspond vraiment",
-            "destination_id": "guided_orientation",
-            "general_aid_catalog": "hidden",
-            "suggested_profile_ids": [
-              "situation_inconnue"
-            ]
-          }
-        ],
-        "groups": [
-          {
-            "id": "fragile",
-            "label": "Je dois d'abord remettre ma situation en ordre",
-            "option_ids": [
-              "start_from_zero",
-              "other_unknown"
-            ]
-          },
-          {
-            "id": "social",
-            "label": "Je vis principalement d'un revenu de remplacement",
-            "option_ids": [
-              "replacement_income"
-            ]
+            "id": "personal",
+            "label": "Mes droits, mes revenus ou mes démarches",
+            "next_question_id": "q_personal_goal"
           },
           {
             "id": "work",
-            "label": "Je travaille",
-            "option_ids": [
-              "employee",
-              "public_worker",
-              "self_employed",
-              "company_director"
-            ]
+            "label": "Trouver un emploi ou améliorer ma situation professionnelle",
+            "next_question_id": "q_work_goal"
           },
           {
-            "id": "other",
-            "label": "Autres situations",
-            "option_ids": [
-              "student",
-              "retired",
-              "new_arrival_or_residence",
-              "international_special"
-            ]
-          }
-        ]
-      },
-      {
-        "id": "q_replacement_income_type",
-        "order": 2,
-        "required_if": {
-          "q_entry_situation": [
-            "replacement_income"
-          ]
-        },
-        "text": "Quel revenu ou statut vous concerne principalement ?",
-        "options": [
-          {
-            "id": "unemployment",
-            "label": "Chômage / allocations ONEM",
-            "profile_ids": [
-              "chomeur"
-            ],
-            "suggested_profile_ids": [
-              "chomeur",
-              "revenu_actif"
-            ]
-          },
-          {
-            "id": "cpas",
-            "label": "CPAS / revenu d'intégration / aide sociale",
-            "tags": [
-              "cpas"
-            ],
-            "suggested_profile_ids": [
-              "beneficiaire_cpas",
-              "revenu_actif"
-            ]
-          },
-          {
-            "id": "incapacity_invalidity",
-            "label": "Incapacité de travail / invalidité",
-            "profile_ids": [
-              "incapacite_invalidite"
-            ],
-            "suggested_profile_ids": [
-              "incapacite_invalidite",
-              "revenu_actif"
-            ]
-          },
-          {
-            "id": "pension_or_grapa",
-            "label": "Pension / GRAPA",
-            "profile_ids": [
-              "pensionne"
-            ],
-            "suggested_profile_ids": [
-              "pensionne",
-              "revenu_actif"
-            ]
-          },
-          {
-            "id": "other_allowance",
-            "label": "Autre allocation ou revenu de remplacement",
-            "tags": [
-              "replacement_income_other"
-            ],
-            "suggested_profile_ids": [
-              "revenu_actif"
-            ]
-          },
-          {
-            "id": "unknown",
-            "label": "Je ne sais pas exactement",
-            "tags": [
-              "replacement_income_unknown"
-            ],
-            "suggested_profile_ids": [
-              "revenu_actif"
-            ]
-          }
-        ],
-        "destination_id": "social_protection"
-      },
-      {
-        "id": "q_foundations_ok",
-        "order": 2,
-        "required_if": {
-          "q_entry_situation": [
-            "employee",
-            "public_worker",
-            "student",
-            "retired"
-          ]
-        },
-        "text": "Vos bases administratives sont-elles globalement en ordre ?",
-        "helper": "Par exemple : identité/séjour, adresse officielle, compte bancaire, mutualité et accès aux courriers administratifs.",
-        "options": [
-          {
-            "id": "yes",
-            "label": "Oui, globalement",
-            "effect": "keep_destination"
-          },
-          {
-            "id": "some_problems",
-            "label": "Il y a quelques problèmes ou démarches en retard",
-            "effect": "add_foundation_check"
-          },
-          {
-            "id": "no_or_unknown",
-            "label": "Non / je ne sais plus ce qui est en ordre",
-            "effect": "foundation_recovery_first",
-            "suggested_profile_ids": [
-              "situation_inconnue"
-            ]
-          }
-        ]
-      },
-      {
-        "id": "q_business_stage",
-        "order": 2,
-        "required_if": {
-          "q_entry_situation": [
-            "self_employed"
-          ]
-        },
-        "text": "Où en est votre activité indépendante ?",
-        "options": [
-          {
-            "id": "starting",
-            "label": "Je démarre ou prépare mon activité"
-          },
-          {
-            "id": "running",
-            "label": "Mon activité fonctionne normalement"
-          },
-          {
-            "id": "cashflow_problem",
-            "label": "J'ai des difficultés de trésorerie ou de paiement"
-          },
-          {
-            "id": "interruption",
-            "label": "Je dois interrompre ou réduire fortement mon activité"
-          },
-          {
-            "id": "closing",
-            "label": "Je cesse ou envisage de cesser mon activité"
-          },
-          {
-            "id": "unknown",
-            "label": "Je ne sais pas encore"
-          }
-        ],
-        "destination_id": "self_employed"
-      },
-      {
-        "id": "q_company_stage",
-        "order": 2,
-        "required_if": {
-          "q_entry_situation": [
-            "company_director"
-          ]
-        },
-        "text": "Quelle est la situation de votre entreprise aujourd'hui ?",
-        "options": [
-          {
-            "id": "starting",
-            "label": "Création / lancement"
-          },
-          {
-            "id": "running",
-            "label": "Activité normale / développement"
+            "id": "independent",
+            "label": "Créer ou gérer mon activité indépendante",
+            "next_question_id": "q_independent_goal"
           },
           {
             "id": "employer",
-            "label": "J'emploie du personnel ou je vais engager"
+            "label": "Mon entreprise : engager, financer ou gérer",
+            "next_question_id": "q_employer_goal"
+          },
+          {
+            "id": "other_unknown",
+            "label": "Je ne sais pas où chercher",
+            "destination_id": "guided_orientation"
+          }
+        ]
+      },
+      {
+        "id": "q_personal_goal",
+        "order": 2,
+        "text": "Quel problème voulez-vous résoudre d'abord ?",
+        "options": [
+          {
+            "id": "income",
+            "label": "Je n'ai plus assez de revenus",
+            "destination_id": "foundation_recovery"
+          },
+          {
+            "id": "care",
+            "label": "Mes soins ou ma mutualité",
+            "destination_id": "foundation_recovery"
+          },
+          {
+            "id": "housing",
+            "label": "Logement, adresse ou hébergement",
+            "destination_id": "foundation_recovery"
+          },
+          {
+            "id": "paperwork",
+            "label": "Documents, itsme ou une décision administrative",
+            "destination_id": "foundation_recovery"
+          }
+        ]
+      },
+      {
+        "id": "q_work_goal",
+        "order": 2,
+        "text": "Qu'est-ce qui vous aiderait le plus ?",
+        "options": [
+          {
+            "id": "no_income",
+            "label": "Je suis sans emploi ou sans allocations",
+            "destination_id": "foundation_recovery"
+          },
+          {
+            "id": "benefits",
+            "label": "Trouver des aides ou attestations qui facilitent mon embauche",
+            "destination_id": "foundation_recovery"
+          },
+          {
+            "id": "student",
+            "label": "Travailler pendant mes études",
+            "destination_id": "student"
+          },
+          {
+            "id": "working",
+            "label": "Mes droits de salarié ou de fonctionnaire",
+            "destination_id": "employee"
+          }
+        ]
+      },
+      {
+        "id": "q_independent_goal",
+        "order": 2,
+        "text": "Où en êtes-vous aujourd'hui ?",
+        "options": [
+          {
+            "id": "starting",
+            "label": "Je veux démarrer ou tester une activité",
+            "destination_id": "self_employed"
+          },
+          {
+            "id": "running",
+            "label": "Je suis déjà indépendant et veux développer mon activité",
+            "destination_id": "self_employed"
           },
           {
             "id": "cashflow_problem",
-            "label": "Trésorerie, dettes ou paiements deviennent difficiles"
+            "label": "Je gagne trop peu ou j'ai des dettes",
+            "destination_id": "self_employed"
           },
           {
-            "id": "restructuring",
-            "label": "Réorganisation / réduction d'activité"
+            "id": "interruption",
+            "label": "Je suis malade, je dois arrêter ou fermer",
+            "destination_id": "self_employed"
           },
           {
-            "id": "closing",
-            "label": "Cessation / liquidation envisagée ou en cours"
-          },
-          {
-            "id": "unknown",
-            "label": "Je ne sais pas encore"
+            "id": "hiring",
+            "label": "Je suis indépendant et veux engager",
+            "destination_id": "company"
           }
-        ],
-        "next_question_id": "q_company_goal",
-        "destination_id": "company"
+        ]
       },
       {
-        "id": "q_company_goal",
-        "order": 3,
-        "required_if": {
-          "q_entry_situation": [
-            "company_director"
-          ]
-        },
-        "text": "Sur quoi voulez-vous être aidé en priorité ?",
+        "id": "q_employer_goal",
+        "order": 2,
+        "text": "Votre priorité comme employeur ?",
         "options": [
           {
-            "id": "cashflow",
-            "label": "Trésorerie, charges, dettes ou délais de paiement"
-          },
-          {
-            "id": "taxes",
-            "label": "Fiscalité, TVA, précomptes ou obligations"
-          },
-          {
-            "id": "social_contributions",
-            "label": "Cotisations sociales et protection du dirigeant"
-          },
-          {
             "id": "staff",
-            "label": "Personnel, embauche ou coûts employeur"
+            "label": "Engager quelqu'un ou réduire les coûts salariaux",
+            "destination_id": "company"
           },
           {
             "id": "financing",
-            "label": "Financement, primes, subsides ou investissements"
+            "label": "Trouver des primes, aides et financements",
+            "destination_id": "company"
           },
           {
-            "id": "energy_premises",
-            "label": "Énergie, locaux ou coûts de fonctionnement"
+            "id": "cashflow",
+            "label": "Paiements, dettes ou trésorerie",
+            "destination_id": "company"
           },
           {
             "id": "administration",
-            "label": "Formalités, guichets et démarches administratives"
-          },
-          {
-            "id": "difficulty",
-            "label": "Entreprise en difficulté / restructuration / cessation"
-          },
-          {
-            "id": "other",
-            "label": "Autre besoin"
+            "label": "Fiscalité, obligations ou autres démarches",
+            "destination_id": "company"
           }
-        ],
-        "destination_id": "company"
+        ]
       }
     ],
     "destinations": [
