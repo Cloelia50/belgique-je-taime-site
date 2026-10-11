@@ -127,9 +127,6 @@
       '<div class="simple-kicker">Trouver le bon parcours</div>'+
       '<h2>'+esc(q.text||"Votre situation")+'</h2>'+
       (q.helper?'<p>'+esc(q.helper)+'</p>':"")+
-      (qid==="q_entry_situation"?
-        '<div class="entry-route-actions entry-fast-help"><button type="button" class="primary" data-entry-fast-help>Mes droits sont coupés ou ma situation est compliquée : voir des premières pistes</button><button type="button" data-entry-access-help>Je ne peux pas me connecter (eID, itsme, GSM, PIN, e-mail…)</button></div>'+
-        '<p class="entry-fast-help-note">Vous pouvez commencer sans répondre à toutes les questions. Vous pourrez préciser votre difficulté ensuite.</p>':"")+
       controls+
       '<div class="entry-footer"><span></span><button type="button" class="linkish" data-entry-unknown>Je ne sais pas quoi choisir</button></div>';
     showScreen("simpleEntryRouter");
