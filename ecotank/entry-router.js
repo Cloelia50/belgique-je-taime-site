@@ -141,6 +141,7 @@
       (qid==="q_entry_situation"?'<button type="button" class="entry-choice foundation" data-celine-start>Ganshoren · Famille nombreuse : quatre économies à vérifier</button>':"")+
       (qid==="q_entry_situation"?'<button type="button" class="entry-choice foundation" data-karim-start>Jette · Parent veuf avec enfant en situation de handicap : droits déjà obtenus</button>':"")+
       ((qid==="q_entry_situation"||qid==="q_employee_goal")?'<button type="button" class="entry-choice foundation" data-lotte-start>Grossesse · Mon contrat se termine avant la naissance</button>':"")+
+      ((qid==="q_entry_situation"||qid==="q_employee_goal")?'<button type="button" class="entry-choice foundation" data-beatrice-start>Famille recomposée · garde alternée, impôts et pensions alimentaires</button>':"")+
       controls+
       '<div class="entry-footer"><span></span><button type="button" class="linkish" data-entry-unknown>Je ne sais pas quoi choisir</button></div>';
     showScreen("simpleEntryRouter");
@@ -491,6 +492,36 @@
   // Parcours Daniel : aucune saisie personnelle, sortie rapide du questionnaire.
 
   // Parcours autonome : n'altère aucun état des autres parcours.
+  function beatriceEntry(){
+    if(!ensureScreens())return;
+    const h=document.getElementById("entryDifficultHost");
+    h.innerHTML='<h2>Famille recomposée : quelle question vous préoccupe ?</h2><p>Aucune date de naissance, aucun avertissement-extrait de rôle ni revenu annuel pour commencer.</p><div class="entry-choice-grid">'+
+      '<button type="button" data-beatrice-topic="tax">Qui peut déclarer les enfants et quelles déductions ?</button>'+
+      '<button type="button" data-beatrice-topic="maintenance">Pension alimentaire et frais de garde</button>'+
+      '<button type="button" data-beatrice-topic="benefits">Qui reçoit les allocations familiales ?</button>'+
+      '<button type="button" data-beatrice-topic="home">Crédit et logement en indivision</button></div><button type="button" data-beatrice-back>Retour</button>';
+    showScreen("simpleDifficultHelp");
+  }
+  function beatriceGuide(short=false){
+    if(!ensureScreens())return;
+    const h=document.getElementById("entryDifficultHost");
+    const steps=[
+      ["tax","Enfants fiscalement à charge et hébergement égalitaire","Ne comptez pas automatiquement cinq enfants à charge parce qu’ils vivent chez vous certaines semaines. Pour chaque enfant, distinguez parent fiscal, domicile, hébergement réellement égalitaire et existence d’un jugement ou d’une convention enregistrée / homologuée. Le partage de l’avantage fiscal requiert des conditions légales. À vérifier en priorité dans la déclaration préremplie et auprès du SPF Finances.","https://finances.belgium.be/fr/particuliers/famille/personnes_a_charge"],
+      ["maintenance","Pensions alimentaires : attention au non-cumul","Une pension alimentaire versée peut être partiellement déductible sous conditions. Pour les versements de 2026, la part déductible est de 60 %. Pour un même enfant et une même période, la coparentalité fiscale avec partage de l’avantage pour enfant à charge ne se cumule pas avec cette déduction. Avant de modifier la déclaration, vérifiez les décisions et paiements effectifs.","https://finances.belgium.be/fr/particuliers/famille/rente_alimentaire/payee"],
+      ["care","Frais de garde : calcul à partir des attestations","La réduction d’impôt normale est de 45 % des dépenses admissibles, plafonnées à 17,30 € par jour et par enfant pour les dépenses 2026. Gardez les attestations de la crèche, garderie ou stages. En coparentalité fiscale, chaque parent peut sous conditions déclarer les frais qu’il a payés : ne recopiez pas les frais de l’ex-partenaire.","https://finances.belgium.be/fr/particuliers/avantages_fiscaux/garde_enfants/parents-isol%C3%A9s"],
+      ["benefits","Allocations familiales : vérifier l’allocataire","La garde alternée ne partage pas automatiquement les allocations. Demandez à la caisse de chaque enfant qui reçoit les versements, si une décision de justice change l’allocataire et si les suppléments sont correctement calculés. Ne supposez pas que tous les enfants recomposés relèvent d’un dossier unique.","https://famiris.brussels/fr/faq/allocations-familiales/que-se-passe-t-il-en-cas-de-separation-des-parents/"],
+      ["leisure","Titres-services, sport et culture","Vérifiez les dispositifs réellement ouverts dans votre commune et les conditions des titres-services bruxellois. Les chèques sport ou culture ne sont pas des droits universels ; n’avancez aucun gain sans dispositif et période confirmés.","https://www.titresservices.brussels/"],
+      ["home","Crédit en indivision : sécuriser la propriété","Si le logement est détenu en indivision, faites examiner par le notaire l’acte de propriété, les parts, le crédit, l’assurance solde restant dû et les possibilités de sortie. Une clause ne s’invente pas après coup et une séparation ne libère pas automatiquement un coemprunteur.","https://www.notaire.be/"]
+    ];
+    const chosen=state.beatriceTopic||"tax";
+    const ordered=steps.filter(x=>x[0]===chosen).concat(steps.filter(x=>x[0]!==chosen));
+    h.innerHTML='<div id="beatrice-sheet" style="max-width:740px;margin:auto;padding:12px;background:#fff;color:#111"><h2>Famille recomposée · Woluwe-Saint-Lambert</h2><p><strong>Première réponse, sans profil fiscal.</strong> On vérifie d’abord la situation de chaque enfant et les éventuels non-cumuls. Aucun AER requis pour comprendre les règles.</p>'+
+      ordered.map((x,i)=>'<section style="border-top:1px solid #aaa;padding:9px 0;break-inside:avoid"><h3>'+(i+1)+'. '+esc(x[1])+'</h3><p>'+esc(x[2])+'</p>'+(short?'':'<p style="overflow-wrap:anywhere;font-size:.85em">'+esc(x[3])+'</p>')+'</section>').join('')+
+      '<p><strong>À préparer uniquement pour un calcul précis :</strong> le nombre d’enfants concernés, le document fixant l’hébergement s’il existe, les attestations de garde réellement payées et les pensions versées. Rien de tout cela n’est nécessaire pour consulter le plan.</p></div>'+
+      '<div class="entry-route-actions"><button type="button" data-beatrice-short>Fiche courte</button><button type="button" data-beatrice-full>Fiche détaillée</button><button type="button" data-beatrice-print>Imprimer / PDF</button><button type="button" data-beatrice-edit>Changer de priorité</button><button type="button" data-beatrice-back>Retour</button></div>';
+    if(!document.getElementById("beatrice-print-style")){const st=document.createElement("style");st.id="beatrice-print-style";st.textContent='@media print{body *{visibility:hidden!important}#beatrice-sheet,#beatrice-sheet *{visibility:visible!important}#beatrice-sheet{position:absolute;top:0;left:0;width:100%!important;max-width:none!important;color:#000!important;background:#fff!important}@page{size:A4;margin:12mm}}';document.head.appendChild(st);}
+    showScreen("simpleDifficultHelp");
+  }
   function lotteEntry(){
     if(!ensureScreens())return;
     const h=document.getElementById("entryDifficultHost");
@@ -1497,6 +1528,13 @@
     if(event.target.closest("[data-lost-rights-reselect]")){
       state.lostRightsQueue=[];state.lostRightsIndex=0;state.immediateNeed="";renderQuestion("q_lost_rights_goal");return;
     }
+    if(event.target.closest("[data-beatrice-start]")){beatriceEntry();return;}
+    const bt=event.target.closest("[data-beatrice-topic]");if(bt){state.beatriceTopic=bt.dataset.beatriceTopic;beatriceGuide(false);return;}
+    if(event.target.closest("[data-beatrice-short]")){beatriceGuide(true);return;}
+    if(event.target.closest("[data-beatrice-full]")){beatriceGuide(false);return;}
+    if(event.target.closest("[data-beatrice-print]")){window.print();return;}
+    if(event.target.closest("[data-beatrice-edit]")){beatriceEntry();return;}
+    if(event.target.closest("[data-beatrice-back]")){renderQuestion("q_entry_situation");return;}
     if(event.target.closest("[data-lotte-start]")){lotteEntry();return;}
     const lc=event.target.closest("[data-lotte-case]");if(lc){state.lotteCase=lc.dataset.lotteCase;lotteGuide(false);return;}
     if(event.target.closest("[data-lotte-short]")){lotteGuide(true);return;}
