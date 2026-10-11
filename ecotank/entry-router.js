@@ -457,6 +457,16 @@
 
   // Parcours Daniel : aucune saisie personnelle, sortie rapide du questionnaire.
 
+  function fatouEntry(){
+    if(!ensureScreens())return;
+    const host=document.getElementById("entryDifficultHost");
+    host.innerHTML='<h2>Quelle est votre urgence ce mois-ci ?</h2><p>Choisissez une réponse. Pas besoin de connaître votre revenu annuel.</p><div class="entry-choice-grid">'+
+      '<button type="button" data-fatou-choice="electricity">L’électricité coupe ou risque de couper</button>'+
+      '<button type="button" data-fatou-choice="maintenance">La pension alimentaire n’est pas payée</button>'+
+      '<button type="button" data-fatou-choice="children">Je manque d’argent pour mes enfants</button>'+
+      '<button type="button" data-fatou-choice="housing">Je risque de perdre mon logement</button></div><button type="button" data-fatou-back>Retour</button>';
+    showScreen("simpleDifficultHelp");
+  }
   function fatouGuide(short=false){
     if(!ensureScreens())return;
     const host=document.getElementById("entryDifficultHost");
@@ -468,8 +478,10 @@
       ["Santé","Contacter la mutualité : demander si les remboursements majorés, souvent appelés BIM, sont appliqués, et comment limiter les frais pour les enfants.","https://www.inami.fgov.be/fr"],
       ["École et repas","Vérifier avec la caisse le supplément d'âge annuel (prime scolaire, payé en août). Demander aux écoles et au CPAS les aides aux repas, fournitures et activités.","https://famiris.brussels/fr/faq/paiements-allocations-familiales/prime-scolaire/"]
     ];
+    const priorities={electricity:[0,1,2,3,4,5],maintenance:[1,0,2,3,4,5],children:[2,0,1,4,5,3],housing:[3,0,1,2,4,5]};
+    const ordered=(priorities[state.fatouPriority]||priorities.electricity).map(i=>steps[i]);
     host.innerHTML='<div id="fatou-sheet" style="max-width:730px;margin:auto;background:#fff;color:#111;padding:12px"><h2>Parent isolé · Molenbeek</h2><p><strong>Urgence : avoir de l’électricité et répondre aux besoins des enfants.</strong> Aucun revenu annuel à calculer pour lire ce plan.</p>'+
-      steps.map((x,i)=>'<section style="border-top:1px solid #aaa;padding:8px 0;break-inside:avoid"><h3>'+(i+1)+'. '+esc(x[0])+'</h3><p>'+esc(x[1])+'</p>'+(short?'':'<p style="overflow-wrap:anywhere;font-size:.83em">'+esc(x[2])+'</p>')+'</section>').join('')+
+      ordered.map((x,i)=>'<section style="border-top:1px solid #aaa;padding:8px 0;break-inside:avoid"><h3>'+(i+1)+'. '+esc(x[0])+'</h3><p>'+esc(x[1])+'</p>'+(short?'':'<p style="overflow-wrap:anywhere;font-size:.83em">'+esc(x[2])+'</p>')+'</section>').join('')+
       '<p><strong>À dire au CPAS :</strong> « Je vis seule avec trois enfants. L’électricité coupe souvent et l’autre parent ne paie pas la pension alimentaire. J’ai besoin d’aide pour le courant aujourd’hui et pour vérifier mes droits. Pouvez-vous m’accompagner oralement ? »</p></div>'+
       '<div class="entry-route-actions"><button type="button" data-fatou-print>Imprimer / enregistrer PDF</button><button type="button" data-fatou-short>Version courte pour capture</button><button type="button" data-fatou-full>Version détaillée</button><button type="button" data-fatou-back>Retour</button></div>';
     if(!document.getElementById("fatou-print-style")){const st=document.createElement("style");st.id="fatou-print-style";st.textContent='@media print{body *{visibility:hidden!important}#fatou-sheet,#fatou-sheet *{visibility:visible!important}#fatou-sheet{position:absolute;top:0;left:0;width:100%!important;max-width:none!important;color:#000!important;background:#fff!important}@page{size:A4;margin:12mm}}';document.head.appendChild(st);}
@@ -1321,7 +1333,9 @@
     if(event.target.closest("[data-lost-rights-reselect]")){
       state.lostRightsQueue=[];state.lostRightsIndex=0;state.immediateNeed="";renderQuestion("q_lost_rights_goal");return;
     }
-    if(event.target.closest("[data-fatou-start]")){fatouGuide(false);return;}
+    if(event.target.closest("[data-fatou-start]")){state.fatouPriority="";fatouEntry();return;}
+    const fatouChoice=event.target.closest("[data-fatou-choice]");
+    if(fatouChoice){state.fatouPriority=fatouChoice.dataset.fatouChoice;fatouGuide(false);return;}
     if(event.target.closest("[data-fatou-short]")){fatouGuide(true);return;}
     if(event.target.closest("[data-fatou-full]")){fatouGuide(false);return;}
     if(event.target.closest("[data-fatou-print]")){window.print();return;}
