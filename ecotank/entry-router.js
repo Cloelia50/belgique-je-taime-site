@@ -490,18 +490,27 @@
        action:"Avec le travailleur social, demandez une recherche de logement stable, puis vérifiez progressivement formation, emploi, tarifs sociaux et économies. Pas de conseils d'énergie domestique tant qu'aucun logement n'est disponible.",
        ask:"Quelle est ma prochaine démarche après l'urgence et les documents ?",url:"https://www.cpas1060.be/"}
     ];
+    const mini=[
+      ["1 · Aujourd'hui","L'Ilot : 73 rue de l'Église Saint-Gilles (repas, douche, travailleur social, semaine). Nuit : Samusocial 0800 99 340, place non garantie."],
+      ["2 · Demander l'aide sans attendre","CPAS : 40 rue Fernand Bernier, matin avant 11h45 les jours ouvrables. Demander aide financière / RIS + adresse de référence + accusé de réception."],
+      ["3 · Papiers et courrier","Avec le travailleur social : identité, éventuelle déclaration de perte, adresse de référence et récupération du courrier."],
+      ["4 · Soins","Vérifier mutuelle / CAAMI, aides aux soins. Les urgences ne doivent pas attendre."],
+      ["5 · Compte","Faire examiner le service bancaire de base et comment recevoir l'aide sans compte."],
+      ["6 · Chômage","CAPAC ou syndicat : vérifier ses droits si l'on a déjà travaillé. Ne pas retarder le CPAS."],
+      ["7 · Après","Logement stable, puis formation, emploi et tarifs sociaux."]
+    ];
     const details=steps.map((item,i)=>{
       return '<section class="homeless-step" style="padding:9px 0;border-top:1px solid #999;break-inside:avoid">'+
         '<h3>'+esc(item.title)+'</h3>'+
-        (short?'<p>'+esc(item.action)+'</p>':'<p>'+esc(item.action)+'</p><p><strong>À demander :</strong> '+esc(item.ask)+'</p><p><small>'+esc(item.url)+'</small></p>')+
+        (short?'<p>'+esc(mini[i][1])+'</p>':'<p>'+esc(item.action)+'</p><p><strong>À demander :</strong> '+esc(item.ask)+'</p><p><small>'+esc(item.url)+'</small></p>')+
         '</section>';
     }).join("");
     host.innerHTML='<div id="homeless-sheet" style="max-width:720px;margin:auto;background:white;color:#111;padding:12px">'+
-      '<h2>Ma feuille de route — Sans domicile · Saint-Gilles</h2>'+
+      '<h2>'+(short?'Mon plan en 7 étapes — Saint-Gilles':'Ma feuille de route — Sans domicile · Saint-Gilles')+'</h2>'+
       '<p><strong>Ne pas commencer par des économies :</strong> se mettre à l’abri, demander des droits, rétablir les moyens de les recevoir. Les étapes 1 et 2 peuvent démarrer le même jour. Pas besoin de régler les papiers avant de demander une aide.</p>'+
       '<section style="border:2px solid #222;padding:12px"><h3>Besoin d’une vraie personne ?</h3><p><strong>Point d’Appui — 40 rue de Bosnie, Saint-Gilles.</strong> Sans rendez-vous lundi-vendredi, 9h-12h et 13h-16h. Aide aux démarches et impression de documents. Ce n’est pas le guichet de dépôt de nouvelles demandes : pour déposer l’aide financière, allez au CPAS, rue Fernand Bernier 40, le matin.</p><p><strong>À dire :</strong> « Je dors dehors, je n’ai pas de smartphone, ni d’e-mail, ni d’adresse pour recevoir du courrier. Pouvez-vous m’aider à faire ces démarches et imprimer ce plan ? »</p></section>'+
       details+
-      '<p><strong>Sans imprimante :</strong> affichez la version courte et prenez une photo avec un appareil disponible, ou demandez au Point d’Appui d’imprimer ce plan. Aucune connexion n’est nécessaire pour consulter ce plan.</p>'+
+      (short?'':'<p><strong>Sans imprimante :</strong> affichez la version courte et prenez une photo avec un appareil disponible, ou demandez au Point d’Appui d’imprimer ce plan. Aucune connexion n’est nécessaire pour consulter ce plan.</p>')+
       '</div><div class="entry-route-actions" data-homeless-controls><button type="button" data-homeless-print>Imprimer / enregistrer PDF</button><button type="button" data-homeless-short>Voir la version courte (capture)</button><button type="button" data-homeless-full>Version détaillée</button><button type="button" data-homeless-close>Retour aux situations</button></div>'+
       '<p><strong>Ordinateur partagé :</strong> cette fiche ne demande aucune donnée personnelle. Pensez à fermer le navigateur ou votre session. Ne sauvegardez pas vos identifiants sur ce poste.</p>';
     if(!document.getElementById("homeless-print-style")){
