@@ -485,6 +485,24 @@
           ["Chercher une aide numérique de proximité","Des espaces publics numériques peuvent aider à effectuer les démarches sans imposer l'achat d'un téléphone.","https://www.1890.be/","Chercher une aide"]
         ]
       };
+      if(issue==="nothing"&&!state.immediateNeed){
+        host.innerHTML='<div class="simple-kicker">Une aide concrète, maintenant</div><h2>Qu’est-ce qui vous manque le plus aujourd’hui ?</h2>'+
+          '<div class="entry-choice-grid"><button type="button" class="entry-choice" data-immediate-need="food">De quoi manger</button>'+
+          '<button type="button" class="entry-choice" data-immediate-need="shelter">Un endroit où dormir</button>'+
+          '<button type="button" class="entry-choice" data-immediate-need="care">Des soins</button>'+
+          '<button type="button" class="entry-choice" data-immediate-need="other">Une autre aide urgente</button></div>'+
+          '<div class="entry-footer"><button type="button" data-lost-rights-reselect>Modifier mes réponses</button></div>';
+        showScreen("simpleDifficultHelp");return;
+      }
+      if(issue==="nothing"&&state.immediateNeed){
+        const need={
+          food:["Chercher une aide alimentaire près de chez vous","Les repas, colis et épiceries ont des conditions différentes. Le répertoire permet d'identifier les lieux et de vérifier comment y accéder.","https://www.fdss.be/fr/aide-alimentaire/","Voir les aides alimentaires"],
+          shelter:["Chercher un accueil pour cette nuit","Consultez les modalités d'accueil et les contacts du Samusocial. Une place n'est jamais garantie.","https://samusocial.be/","Voir les possibilités d'accueil"],
+          care:["Chercher une consultation accessible","Médecins du Monde propose des dispositifs de soins pour les personnes en difficulté d'accès. Vérifiez le centre et ses conditions.","https://www.medecinsdumonde.be/","Trouver des soins"],
+          other:["Demander une orientation pour une nécessité immédiate","Il faut identifier le besoin précis plutôt que vous renvoyer vers une demande de CPAS déjà refusée.","https://www.droitsquotidiens.be/fr","Voir les possibilités d'aide"]
+        };
+        tasks.nothing=[need[state.immediateNeed]];
+      }
       const all=tasks[issue]||tasks.nothing;
       const step=Math.min(Math.max(0,Number(state.helpStep||0)),all.length-1);
       const task=all[step];
@@ -1041,6 +1059,7 @@
     state.fromAdminHome=false;
     state.difficultTopic="";
     state.businessAnswers={};
+    state.immediateNeed="";
     state.lostRightsSelected=[];
     state.lostRightsQueue=[];
     state.lostRightsIndex=0;
@@ -1067,15 +1086,16 @@
       renderDifficultHelp(topic);return;
     }
     if(event.target.closest("[data-lost-rights-reselect]")){
-      state.lostRightsQueue=[];state.lostRightsIndex=0;renderQuestion("q_lost_rights_goal");return;
+      state.lostRightsQueue=[];state.lostRightsIndex=0;state.immediateNeed="";renderQuestion("q_lost_rights_goal");return;
     }
+    const immediate=event.target.closest("[data-immediate-need]");if(immediate){state.immediateNeed=immediate.dataset.immediateNeed;state.helpStep=0;renderDifficultHelp();return;}
     if(event.target.closest("[data-lost-rights-next]")){
       const order=["nothing","refused","stopped","administrative"];
       const saved=order.filter(x=>(state.lostRightsSelected||[]).includes(x));
       const queue=saved.length>(state.lostRightsQueue||[]).length?saved:(state.lostRightsQueue||[]);
       state.lostRightsQueue=queue;
       state.lostRightsIndex=Number(state.lostRightsIndex||0)+1;
-      state.helpStep=0;
+      state.helpStep=0;state.immediateNeed="";
       if(state.lostRightsIndex<queue.length){
         const selected=queue[state.lostRightsIndex];
         const topics={nothing:"urgent_income",refused:"refusals",stopped:"urgent_income",administrative:"urgent_access"};
