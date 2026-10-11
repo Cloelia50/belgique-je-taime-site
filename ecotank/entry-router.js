@@ -487,36 +487,72 @@
       };
       if(issue==="nothing"&&state.immediateNeed==="work"){
         const step=state.workStage||"block";
-        const pick=(items)=>'<div class="entry-choice-grid">'+items.map(x=>'<button type="button" class="entry-choice" data-work-pick="'+x[0]+'">'+esc(x[1])+'</button>').join("")+'</div>';
-        const common='<div class="entry-footer"><button type="button" data-work-back>Retour</button><button type="button" data-lost-rights-reselect>Modifier mes autres difficultés</button></div>';
-        let html='<div class="simple-kicker">Retrouver un emploi</div>';
+        const pick=items=>'<div class="entry-choice-grid">'+items.map(x=>'<button type="button" class="entry-choice" data-work-pick="'+x[0]+'">'+esc(x[1])+'</button>').join("")+'</div>';
+        const common='<div class="entry-footer"><button type="button" data-work-back>← Étape précédente</button><button type="button" data-lost-rights-next>Passer à une autre difficulté</button><button type="button" data-lost-rights-reselect>Modifier mes réponses</button></div>';
+        let html='<div class="simple-kicker">EcoTank · Retrouver un emploi</div>';
         if(step==="block"){
-          html+='<h2>Qu’est-ce qui vous empêche surtout d’avancer ?</h2>'+pick([
-            ["orientation","Je ne sais pas où chercher ni quel métier viser"],
-            ["person","Je veux être accompagné en personne"],
-            ["documents","Mes papiers ou mon accès aux démarches me bloquent"],
-            ["advantages","Je veux connaître mes avantages à l’embauche"],
-            ["applications","Je cherche déjà, mais mes candidatures n’aboutissent pas"]
+          html+='<h2>Qu’est-ce qui vous bloque aujourd’hui ?</h2><p>Vous pouvez chercher un emploi sans percevoir d’allocations et sans être inscrit chez Actiris. On vérifie d’abord ce qui vous manque, avant de vous envoyer vers un organisme.</p>'+pick([
+            ["orientation","Je ne sais pas où chercher ou quel métier viser"],
+            ["person","J’ai besoin d’une personne pour m’aider"],
+            ["documents","Mes papiers ou mon accès numérique me bloquent"],
+            ["advantages","Je veux connaître les aides possibles à l’embauche"],
+            ["applications","J’envoie des candidatures mais ça ne fonctionne pas"],
+            ["offers","Je veux trouver des offres, sans accompagnement"]
           ]);
         }else if(step==="actiris"){
-          html+='<h2>Êtes-vous inscrit auprès d’Actiris ?</h2>'+pick([
-            ["registered","Oui"],["unregistered","Non"],["unsure","Je ne sais pas"]
+          html+='<h2>Êtes-vous déjà inscrit chez Actiris ?</h2><p>Cette question sert uniquement à éviter une inscription inutile et à examiner certaines mesures. Vous pouvez toujours postuler sans inscription.</p>'+pick([["registered","Oui"],["unregistered","Non"],["unsure","Je ne sais plus"]]);
+        }else if(step==="documents"){
+          html+='<h2>Qu’est-ce qui vous empêche de faire les démarches ?</h2>'+pick([
+            ["identity","Carte d’identité, titre de séjour ou droit de travailler"],
+            ["digital","Je n’ai pas accès à itsme, à un GSM ou à Internet"],
+            ["cvdocs","Je n’ai pas de CV, de diplôme ou de justificatifs"],
+            ["travel","Je ne peux pas payer les déplacements"],
+            ["unknown_docs","Je ne sais pas quel papier est nécessaire"]
+          ]);
+        }else if(step==="advantages_detail"){
+          html+='<h2>Que souhaitez-vous vérifier ?</h2>'+pick([
+            ["acs","Une attestation pour un emploi ACS"],
+            ["fpie","Une formation en entreprise avant embauche (FPIE)"],
+            ["article60","Un emploi d’insertion via le CPAS"],
+            ["all_advantages","Je ne sais pas : examiner les pistes accessibles"]
           ]);
         }else if(step==="support"){
           const pages={
-            orientation:["Clarifier un métier avant de chercher","La Cité des métiers propose une orientation sans inscription ni rendez-vous. Vous pouvez aussi demander un entretien à une Mission locale.","https://be.brussels/fr/emploi/un-emploi-bruxelles/ou-chercher-un-emploi","Voir les services d’orientation"],
-            person:["Trouver un accompagnement en face à face","Les Missions locales accompagnent gratuitement les recherches, candidatures et formations. Choisissez celle accessible depuis votre commune.","https://be.brussels/fr/emploi/un-emploi-bruxelles/missions-locales-dinsertion-socio-professionnelle","Trouver une Mission locale"],
-            documents:["Identifier le document réellement bloquant","Préparez seulement le nom du document ou service qui coince. Une Maison de l’Emploi peut orienter vers une solution en personne, y compris pour l’accès aux démarches.","https://www.actiris.brussels/fr/citoyens/maison-de-lemploi/","Trouver une Maison de l’Emploi"],
-            applications:["Améliorer une candidature avec une personne","Une Mission locale peut travailler avec vous le CV, les offres, les candidatures et la préparation à l’entretien.","https://be.brussels/fr/emploi/un-emploi-bruxelles/missions-locales-dinsertion-socio-professionnelle","Trouver un accompagnement"],
-            registered:["Vérifier les attestations réellement accessibles","Puisque vous êtes déjà inscrit, ne recommencez pas l’inscription. Vérifiez avec Actiris une offre ACS/PTP précise ou une FPIE selon votre profil. L’attestation n’est pas automatique.","https://www.actiris.brussels/fr/citoyens/formation-professionnelle-en-entreprise/","Vérifier la FPIE"],
-            unregistered:["Vérifier si l’inscription est nécessaire pour l’aide recherchée","Vous pouvez chercher et postuler sans Actiris. En revanche, certaines aides comme la FPIE exigent une inscription de chercheur d’emploi inoccupé.","https://www.actiris.brussels/fr/citoyens/formation-professionnelle-en-entreprise/","Comprendre les conditions"],
-            unsure:["Faire vérifier votre situation sans tout recommencer","Un accueil Actiris ou une Maison de l’Emploi peut vérifier si vous êtes déjà inscrit et vous expliquer les démarches sans créer de nouvelle inscription inutile.","https://www.actiris.brussels/fr/citoyens/maison-de-lemploi/","Trouver un accueil"]
+            orientation:["Trouver un métier et un accompagnement concret","Commencez par une Cité des métiers ou une Mission locale. Vous pouvez demander un entretien d’orientation et préciser les métiers envisageables, sans devoir déjà disposer d’un CV.","https://www.citedesmetiers.brussels/","Cité des métiers de Bruxelles"],
+            person:["Parler à quelqu’un qui accompagne réellement les recherches","Une Mission locale peut vous aider en personne à définir un projet, chercher des offres, rédiger votre CV et préparer des entretiens. Contactez celle de votre commune et vérifiez ses permanences.","https://be.brussels/fr/emploi/un-emploi-bruxelles/missions-locales-dinsertion-socio-professionnelle","Trouver une Mission locale"],
+            applications:["Revoir une candidature plutôt que recommencer les mêmes envois","Demandez à une Mission locale de revoir avec vous une annonce précise, votre CV et le résultat des candidatures précédentes. Signalez si vous n’avez ni ordinateur ni moyen de déplacement.","https://be.brussels/fr/emploi/un-emploi-bruxelles/missions-locales-dinsertion-socio-professionnelle","Accompagnement en personne"],
+            offers:["Accéder aux offres sans refaire une inscription","Vous pouvez consulter des offres publiques et postuler directement auprès des employeurs. Une inscription chez Actiris peut aider pour certains services, mais n’est pas une condition générale pour rechercher un travail.","https://www.actiris.brussels/fr/citoyens/","Consulter des offres"],
+            identity:["Vérifier le droit au travail avant de postuler inutilement","Les documents et le droit au travail dépendent de votre nationalité et de votre titre de séjour. Faites vérifier les documents existants par un service spécialisé ; ne concluez pas vous-même qu’une carte manquante interdit tout emploi.","https://www.adde.be/","Trouver un conseil sur le séjour et le travail"],
+            digital:["Une démarche sans itsme ni téléphone","Si votre eID, votre code PIN et votre lecteur fonctionnent, essayez l’identification eID via CSAM quand le service l’autorise : elle ne demande pas de SMS. Sinon demandez un guichet ou un accompagnement en présentiel. N’achetez pas un téléphone uniquement pour commencer.","https://www.csam.be/fr/index.html","Méthodes de connexion CSAM"],
+            cvdocs:["Préparer les documents vraiment nécessaires","Une candidature ne nécessite pas toujours un diplôme ou un CV complet. Une Mission locale peut aider à rédiger un CV ou une candidature spontanée ; demandez à l’employeur les pièces exigées pour l’offre précise.","https://be.brussels/fr/emploi/un-emploi-bruxelles/missions-locales-dinsertion-socio-professionnelle","Aide aux candidatures"],
+            travel:["Chercher une aide locale et des entretiens accessibles","Privilégiez une Mission locale proche ou demandez un premier contact à distance. Expliquez que le transport est un obstacle et faites examiner les possibilités de prise en charge AVANT de vous déplacer ; aucun remboursement n’est garanti.","https://be.brussels/fr/emploi/un-emploi-bruxelles/missions-locales-dinsertion-socio-professionnelle","Accompagnement près de chez vous"],
+            unknown_docs:["Faire une liste courte des pièces réellement exigées","Choisissez d’abord un métier ou une offre. Une Mission locale peut vous aider à distinguer ce qui est obligatoire pour postuler de ce qui ne sera nécessaire qu’à l’embauche.","https://be.brussels/fr/emploi/un-emploi-bruxelles/missions-locales-dinsertion-socio-professionnelle","Vérifier avec une Mission locale"],
+            registered:["Ne pas refaire l’inscription","Votre inscription existante suffit pour commencer la vérification. Pour les ACS, l’attestation dépend des conditions d’une offre précise. Pour une FPIE, Bruxelles Formation doit vérifier le dossier avant le début.","https://www.actiris.brussels/fr/citoyens/agents-contractuels-subventionnes/","Vérifier les offres ACS"],
+            unregistered:["Distinguer candidature ordinaire et aide conditionnée","Vous pouvez déjà postuler. Une inscription comme chercheur d’emploi peut être nécessaire pour une mesure ciblée. Si vous décidez de la demander, vérifiez le canal possible, y compris en antenne.","https://www.actiris.brussels/fr/citoyens/comment-minscrire-ou-me-reinscrire/","Conditions d’inscription"],
+            unsure:["Vérifier l’inscription sans recréer de dossier","Une antenne ou Maison de l’Emploi peut vous aider à vérifier votre inscription. Si vous n’avez plus de GSM, signalez-le dès le premier contact.","https://www.actiris.brussels/fr/citoyens/maison-de-lemploi/","Trouver une Maison de l’Emploi"],
+            acs:["ACS : vérifier une offre précise","Les emplois ACS ont des critères liés au poste et au candidat. Il faut repérer une offre ACS puis faire vérifier l’éligibilité et l’attestation par Actiris ; ce n’est pas un statut général ni automatique.","https://www.actiris.brussels/fr/citoyens/agents-contractuels-subventionnes/","Conditions ACS"],
+            fpie:["FPIE : vérifier avant de commencer","La formation professionnelle individuelle en entreprise peut préparer une embauche, sous conditions. Elle se construit avec un employeur et Bruxelles Formation AVANT le démarrage. Ne présentez pas la FPIE comme une prime déjà acquise.","https://www.bruxellesformation.brussels/","Contacter Bruxelles Formation"],
+            article60:["Emploi d’insertion : vérifier d’abord les droits","L’article 60 §7 exige des conditions précises, notamment liées à l’aide sociale et à la situation administrative. En cas de refus CPAS, faites d’abord examiner ce refus ; un renvoi automatique au CPAS serait inutile.","https://www.droitsquotidiens.be/fr","Examiner les conditions et le refus"],
+            all_advantages:["Comparer les mesures avant de parler d’attestation","Vérifiez séparément : ACS (sur offre précise), FPIE (projet avec employeur), emploi d’insertion (conditions CPAS). Certaines réductions ONSS concernent l’employeur lui-même. Aucune éligibilité ne peut être affirmée sur ces seules réponses.","https://www.actiris.brussels/fr/citoyens/agents-contractuels-subventionnes/","Commencer par les conditions ACS"]
           };
-          const task=pages[state.workChoice]||pages.person;
-          html+='<h2>Votre première démarche</h2><section class="guided-one-step"><h3>'+esc(task[0])+'</h3><p>'+esc(task[1])+'</p>'+
-            '<div class="guided-main-link"><a href="'+esc(task[2])+'" target="_blank" rel="noopener noreferrer">'+esc(task[3])+' ↗</a></div>'+
-            '<button type="button" data-work-pick="person">Je préfère voir une personne</button>'+
-            '<button type="button" data-work-pick="advantages">Vérifier aussi les aides à l’embauche</button></section>';
+          const t=pages[state.workChoice]||pages.person;
+          html+='<h2>Une première action adaptée</h2><section class="guided-one-step"><h3>'+esc(t[0])+'</h3><p>'+esc(t[1])+'</p><div class="guided-main-link"><a href="'+esc(t[2])+'" target="_blank" rel="noopener noreferrer">'+esc(t[3])+' ↗</a></div>'+
+            '<p>Cette piste est-elle praticable pour vous ?</p>'+pick([
+              ["cannot_access","Non : impossible d’y accéder (connexion, téléphone, déplacement)"],
+              ["already_tried","Non : j’ai déjà essayé sans résultat"],
+              ["person","Je préfère une aide en personne"],
+              ["advantages","Vérifier aussi les aides à l’embauche"],
+              ["block_again","Explorer un autre obstacle"]
+            ])+'</section>';
+        }else if(step==="obstacle"){
+          html+='<h2>Quelle alternative vous aiderait à avancer ?</h2>'+pick([
+            ["digital","Je n’ai pas de moyen de connexion"],
+            ["travel","Je ne peux pas me déplacer"],
+            ["person","Je souhaite une aide physique et gratuite"],
+            ["orientation","Je veux une autre porte d’entrée"],
+            ["block_again","Revoir les difficultés"]
+          ]);
+          html+='<p>EcoTank ne considérera pas une simple redirection comme une solution.</p>';
         }
         host.innerHTML=html+common;
         showScreen("simpleDifficultHelp");return;
@@ -1129,17 +1165,23 @@
     const work=event.target.closest("[data-work-pick]");
     if(work){
       const choice=work.dataset.workPick;
-      if(choice==="advantages"){state.workStage="actiris";}
-      else if(["registered","unregistered","unsure"].includes(choice)){state.workChoice=choice;state.workStage="support";}
-      else {state.workChoice=choice;state.workStage="support";}
+      if(choice==="advantages"){state.workStage="advantages_detail";state.workChoice="";}
+      else if(choice==="documents"){state.workStage="documents";state.workChoice="";}
+      else if(choice==="block_again"){state.workStage="block";state.workChoice="";}
+      else if(choice==="cannot_access"||choice==="already_tried"){state.workStage="obstacle";state.workChoice=choice;}
+      else if(["acs","fpie","article60","all_advantages"].includes(choice)){state.workStage="actiris";state.workChoice=choice;state.workAid=choice;}
+      else if(["registered","unregistered","unsure"].includes(choice)){state.workStage="support";state.workRegistration=choice;state.workChoice=state.workAid||choice;}
+      else if(["identity","digital","cvdocs","travel","unknown_docs"].includes(choice)){state.workStage="support";state.workChoice=choice;}
+      else {state.workStage="support";state.workChoice=choice;}
       renderDifficultHelp();return;
     }
     if(event.target.closest("[data-work-back]")){
-      if(state.workStage==="support"&&["registered","unregistered","unsure"].includes(state.workChoice))state.workStage="actiris";
+      if(state.workStage==="support"&&state.workAid)state.workStage="actiris";
+      else if(state.workStage==="actiris")state.workStage="advantages_detail";
       else state.workStage="block";
       renderDifficultHelp();return;
     }
-    const immediate=event.target.closest("[data-immediate-need]");if(immediate){state.immediateNeed=immediate.dataset.immediateNeed;state.workStage="block";state.workChoice="";state.helpStep=0;renderDifficultHelp();return;}
+    const immediate=event.target.closest("[data-immediate-need]");if(immediate){state.immediateNeed=immediate.dataset.immediateNeed;state.workStage="block";state.workChoice="";state.workAid="";state.helpStep=0;renderDifficultHelp();return;}
     if(event.target.closest("[data-lost-rights-next]")){
       const order=["nothing","refused","stopped","administrative"];
       const saved=order.filter(x=>(state.lostRightsSelected||[]).includes(x));
