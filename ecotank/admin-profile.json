@@ -2304,20 +2304,21 @@
     "questions": [
       {
         "id": "q_entry_situation",
-        "text": "Travaillez-vous actuellement ?",
+        "text": "Je veux explorer des pistes pour pouvoir faire des économies.",
         "order": 1,
         "options": [
           {
             "id": "working",
-            "label": "Je travaille",
+            "label": "J'ai un emploi",
             "next_question_id": "q_worker_type"
           },
           {
             "id": "not_working",
-            "label": "Je ne travaille pas pour le moment",
+            "label": "Je ne travaille pas",
             "next_question_id": "q_vulnerable_type"
           }
-        ]
+        ],
+        "helper": ""
       },
       {
         "id": "q_worker_type",
