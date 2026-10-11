@@ -167,13 +167,19 @@
     state.answers[qid]=oid;
     if(qid==="q_entry_situation")state.destinationId=opt.destination_id||"";
     // EcoTank s'adresse aux particuliers. On ne demande les blocages que dans les branches concernées.
-    const unemployment={jobseek:"no_job"};
+    const unemployment={not_registered:"no_job"};
     const blocked={refused:"refusals",stopped:"urgent_income",administrative:"urgent_access",nothing:"urgent_income"};
     const disability={work:"handicap_employment"};
     const picked=qid==="q_unemployed_goal"?unemployment[oid]:
       qid==="q_lost_rights_goal"?blocked[oid]:
       qid==="q_disability_goal"?disability[oid]:null;
     if(picked){state.destinationId="foundation_recovery";return renderDifficultHelp(picked);}
+    if(qid==="q_actiris_allowance"){
+      state.destinationId="foundation_recovery";
+      if(oid==="no")return renderDifficultHelp("actiris_no_income");
+      if(oid==="yes")return renderDifficultHelp("employer_aid");
+      return renderDifficultHelp("urgent_income");
+    }
     if(qid==="q_worker_type"){state.answers.q_work_class=oid;}
     if(qid==="q_independent_goal"){state.answers.q_business_stage=oid==="hiring"?"hiring":oid;state.businessCardIndex=0;}
     if(qid==="q_independent_region"){state.businessCardIndex=0;}
