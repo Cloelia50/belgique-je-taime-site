@@ -54,10 +54,127 @@
     return true;
   }
 
+  // Accompagnement commun aux parcours : guide à chaque étape, pas seulement un renvoi.
+  // Les modèles sont éditables et ne sont ni transmis ni enregistrés par EcoTank.
+  const guidedScripts={
+    "homeless-sheet":[
+      "Je suis actuellement sans domicile. Où puis-je manger et être mis à l’abri aujourd’hui ? Pouvez-vous me recevoir sans téléphone ?",
+      "Je souhaite introduire officiellement une demande d’aide sociale et d’adresse de référence. Pouvez-vous me remettre un accusé de réception daté et m’expliquer comment récupérer mon courrier ?",
+      "Je dois vérifier mes documents d’identité et recevoir mon courrier sans domicile stable. Quelle démarche faut-il engager en premier et qui peut m’accompagner ?",
+      "Je ne sais pas si je suis encore couvert pour les soins. Pouvez-vous vérifier mes droits et m’indiquer une solution immédiate si j’ai besoin d’être soigné ?",
+      "Je n’ai pas de compte bancaire utilisable. Quels documents sont requis et comment recevoir une aide financière en attendant ?",
+      "J’ai besoin de savoir si mes droits au chômage existent encore. Pouvez-vous examiner mon dossier, les décisions et leurs délais ?",
+      "Une fois mes urgences prises en charge, qui peut m’accompagner pour trouver un logement stable et reprendre une activité ?"
+    ],
+    "kevin-sheet":[
+      "Je suis hébergé temporairement chez des amis. Pouvez-vous vérifier une adresse de référence ou la domiciliation applicable et les conséquences pour mes hébergeurs ?",
+      "Je suis au chômage et je ne reçois pas toujours mon courrier. Quelle est la date exacte de fin de mes droits ? Ai-je des décisions ou formalités en attente ?",
+      "J’ai reçu des courriers d’huissier. Pouvez-vous vérifier immédiatement les dates limites, me donner un rendez-vous de médiation et me dire quels actes ne peuvent pas attendre ?",
+      "Je suis hébergé de façon précaire et mes revenus sont insuffisants. Je demande l’examen d’une aide sociale et un accusé de réception daté.",
+      "Je cherche un logement sans pouvoir avancer la garantie. Quelles aides existent pour la garantie et l’installation, et faut-il introduire la demande avant de signer ?",
+      "Je souhaite reprendre un emploi. Pouvez-vous vérifier mes droits existants et m’aider concrètement à trouver des offres ou une formation ?"
+    ],
+    "fatou-sheet":[
+      "Je vis seule avec trois enfants. Mon électricité coupe régulièrement. J’ai besoin de savoir aujourd’hui comment rétablir le courant et vérifier mon compteur, le tarif social et les aides urgentes.",
+      "L’autre parent ne verse pas la pension alimentaire. Pouvez-vous vérifier si mon jugement ou accord permet une intervention du SECAL et m’aider à demander les avances éventuelles ?",
+      "J’élève seule trois enfants. Pouvez-vous vérifier les suppléments familiaux que je reçois réellement et les montants manquants éventuels ?",
+      "Je souhaite vérifier mon inscription au logement social et les conditions de l’allocation-loyer, sans présumer que j’y ai droit.",
+      "Pouvez-vous vérifier l’intervention majorée pour moi et mes enfants, et les soins que nous pouvons faire rembourser davantage ?",
+      "Pouvez-vous vérifier la prime scolaire déjà versée et les aides pour repas, activités et matériel scolaire ?"
+    ],
+    "jozef-sheet":[
+      "J’ai travaillé aux Pays-Bas et en Belgique. Pouvez-vous vérifier si toutes mes périodes de carrière et mes droits de pension étrangers sont bien pris en compte ? Je préfère un rendez-vous en personne.",
+      "Ma pension est faible. Pouvez-vous examiner mon droit à la garantie de revenus aux personnes âgées, et me dire exactement quelles preuves manquent ?",
+      "Je souhaite vérifier les remboursements de santé majorés et le tarif social énergétique sans utiliser Internet chez moi.",
+      "Je loue une chambre sans bail écrit avec des problèmes d’habitabilité. Pouvez-vous vérifier mes droits et les risques de relogement avant tout signalement ?",
+      "Je souhaite être reçu par un assistant social et être accompagné dans ma langue pour mes démarches pension, logement et santé."
+    ],
+    "samira-sheet":[
+      "Je travaille à temps partiel et j’ai des arriérés de loyer. Un huissier me contacte. Pouvez-vous examiner mes courriers et les délais de saisie en urgence ?",
+      "Merci de m’adresser un décompte détaillé de ma dette : principal, intérêts, frais et paiements déjà pris en compte, ainsi que le titre invoqué et les échéances en cours. Je souhaite examiner un plan réaliste après vérification.",
+      "Mon logement présente de l’humidité. Je vous demande de constater les désordres et de m’indiquer une date d’intervention. Merci de me répondre par écrit.",
+      "Je souhaite savoir si j’ai droit à une aide au logement et à un accompagnement énergie compte tenu de mes charges.",
+      "Mes enfants sont en garde alternée. Pouvez-vous vérifier l’allocataire, les suppléments et les décisions prises en compte ?",
+      "Je travaille à temps partiel. Puis-je accéder à des heures complémentaires ou à une formation adaptée à mes horaires ?"
+    ],
+    "celine-sheet":[
+      "Nous avons cinq enfants. Pouvez-vous vérifier, sur nos versements actuels, si tous les suppléments familiaux sont appliqués et depuis quand ?",
+      "Nous sommes une famille de sept. Pouvez-vous vérifier si l’intervention majorée s’applique à nos soins et nous préciser les pièces indispensables seulement si une demande est possible ?",
+      "Un enfant fréquente une crèche. Pouvez-vous vérifier une réduction du tarif tenant compte de notre composition familiale et des revenus déjà enregistrés ?",
+      "Nous souhaitons vérifier les aides énergie et les frais scolaires. Quels droits sont possibles et quels montants manquent réellement ?"
+    ],
+    "karim-sheet":[
+      "Mon enfant est autiste. Pouvez-vous vérifier si une évaluation et un supplément d’allocations familiales sont déjà en cours ou accordés, sans me faire recommencer le dossier ?",
+      "Je suis veuf et salarié. Pouvez-vous vérifier mon droit à une pension de survie ou une allocation de transition, et le plafond de cumul applicable à mon salaire ?",
+      "Je m’occupe de mon enfant avec un handicap. Quels congés ou aménagements puis-je demander, et quelle reconnaissance est réellement nécessaire ?",
+      "J’ai besoin de connaître les services de répit, d’aide et de transport adaptés à mon enfant. Qui peut examiner nos besoins concrets ?",
+      "Pouvez-vous distinguer les avantages fiscaux applicables à mon enfant des frais de garde admissibles, sans qualifier automatiquement les thérapies de frais déductibles ?"
+    ],
+    "lotte-sheet":[
+      "Mon CDD se termine avant la naissance. Je souhaite connaître mes droits aux indemnités de maternité au début du repos, les dates importantes et les documents nécessaires avant la fin du contrat.",
+      "Je dois organiser mon repos de maternité alors que mon contrat peut finir. Quel calendrier et quelles attestations dois-je remettre et à qui ?",
+      "Je cherche une place en crèche pour la naissance à venir. Comment introduire et maintenir mon inscription, et quelles échéances respecter ?",
+      "Pouvez-vous vérifier quand et comment demander l’allocation de naissance à Bruxelles ?",
+      "Nous ne sommes pas mariés. Quels documents sont nécessaires à la reconnaissance anticipée de notre enfant ?",
+      "Mon compagnon est indépendant. Comment demander son congé de naissance, quelles sont les conditions et la date limite ?"
+    ],
+    "beatrice-sheet":[
+      "Nous formons une famille recomposée avec garde alternée. Pouvez-vous vérifier enfant par enfant les conditions du partage fiscal selon nos décisions et conventions ?",
+      "Pouvez-vous vérifier la déduction de pensions alimentaires versées et les éventuels non-cumuls avec le partage fiscal ?",
+      "Pour quels frais de garde payés pouvons-nous demander une réduction d’impôt, et quelles attestations sont nécessaires ?",
+      "Pouvez-vous vérifier qui reçoit les allocations de chaque enfant et si les décisions de garde ont bien été prises en compte ?",
+      "Quelles aides sport, culture ou titres-services sont effectivement ouvertes dans notre situation ?",
+      "Notre logement est en indivision. Pouvez-vous faire vérifier les parts, le prêt, l’assurance solde restant dû et la procédure en cas de sortie ?"
+    ],
+    "thomas-sheet":[
+      "Je loue à Ixelles avec un chien et un chat. Le bailleur conteste leur présence. Pouvez-vous vérifier la clause du bail et me conseiller une réponse écrite tenant compte des règles bruxelloises ?",
+      "Existe-t-il une taxe communale concernant mon chien cette année, et quelles garanties de mon assurance familiale couvrent mes animaux ?",
+      "Mes revenus d’indépendant ont changé. Pouvez-vous revoir mes cotisations provisoires et me présenter le risque de régularisation ?",
+      "Je voudrais comparer les frais, plafonds et avantages d’une PLCI avant toute souscription.",
+      "Je suis graphiste indépendant. Quels frais réels puis-je justifier, notamment pour un bureau à domicile, sans créer de problèmes avec mon bailleur ?"
+    ],
+    "jessica-sheet":[
+      "J’exploite un salon de coiffure à Bruxelles. Quelle aide à l’investissement énergétique est effectivement ouverte avant toute commande ? Pouvez-vous me donner la procédure et les critères précis ?",
+      "Je souhaite faire vérifier mes frais professionnels du salon, leur traitement en amortissement et le régime de récupération de TVA, sans confondre dépenses professionnelles et privées.",
+      "Mes revenus baissent et j’ai des difficultés pour payer mes cotisations sociales. Pouvez-vous vérifier un ajustement ou un échelonnement et leurs conséquences ?",
+      "Quels droits personnels puis-je ouvrir ou conserver en cas d’arrêt d’activité, maladie ou maternité, et quels délais dois-je anticiper ?"
+    ],
+    "pieter-sheet":[
+      "Je cumule un emploi communal et une consultance indépendante. Pouvez-vous confirmer par écrit les autorisations nécessaires, puis mes cotisations et leur base de calcul ?",
+      "Pouvez-vous vérifier quelles périodes de mes deux activités créent des droits à la pension et comment obtenir une estimation fiable ?",
+      "Je perçois un loyer. Pouvez-vous vérifier le traitement fiscal selon l’usage privé ou professionnel du bien et les pièces nécessaires ?",
+      "Je suis consultant à titre complémentaire. Quels frais peuvent être admis, comment distinguer les frais mixtes et quelles règles TVA concernent mon activité ?"
+    ]
+  };
+  function enhanceGuidedSheets(){
+    const host=document.getElementById("entryDifficultHost");if(!host||!host.querySelector)return;
+    const sheet=host.querySelector('[id$="-sheet"]');if(!sheet)return;
+    const scripts=guidedScripts[sheet.id]||[];
+    const sections=Array.from(sheet.querySelectorAll("section"));
+    sections.forEach((section,i)=>{
+      if(section.querySelector(".ecotank-guided-contact"))return;
+      const title=section.querySelector("h3")?.textContent||"Ma démarche";
+      const defaultMessage="Bonjour, je souhaite effectuer cette démarche : "+title+". Pouvez-vous m’indiquer la procédure précise, les pièces strictement nécessaires, les délais et la personne à contacter si cela bloque ?";
+      const message=(scripts[i]||defaultMessage);
+      const url=section.querySelector('a[href^="https://"]')?.getAttribute("href")||
+        Array.from(section.querySelectorAll("p")).map(x=>x.textContent.trim()).find(x=>/^https:\/\/[^\s]+$/.test(x))||"";
+      const wrapper=document.createElement("div");wrapper.className="ecotank-guided-contact";
+      wrapper.style.cssText="border:1px solid #aaa;border-radius:8px;padding:12px;margin:12px 0;background:#f6f7f8;color:#161616";
+      wrapper.innerHTML='<h4 style="margin:0 0 8px">Pour passer à l’action</h4>'+
+        '<p><strong>Voici les mots à dire ou à envoyer :</strong></p>'+
+        '<textarea readonly rows="4" style="box-sizing:border-box;width:100%;max-width:100%;padding:8px;background:white;color:black">'+esc("Bonjour,\n\n"+message+"\n\nMerci de me répondre et de préciser les prochaines étapes.\n\nCordialement.")+'</textarea>'+
+        '<button type="button" data-guide-select>Copier / sélectionner le message</button>'+
+        (url?'<p><a href="'+esc(url)+'" target="_blank" rel="noopener noreferrer">Ouvrir la page d’information correspondant à cette démarche ↗</a></p>':'')+
+        '<p><strong>Avant de fournir des pièces :</strong> demandez lesquelles sont indispensables et ce que la vérification permettra d’obtenir.</p>'+
+        '<p><strong>Si la démarche échoue :</strong> notez la date, la réponse et les éventuels délais, puis demandez un interlocuteur ou un recours. Ne supposez pas qu’une demande suspend une saisie ou une échéance.</p>';
+      section.appendChild(wrapper);
+    });
+  }
   function showScreen(id){
     document.body.classList.add("simple-mode");
     document.body.classList.remove("explore-mode","advanced-explore");
     document.querySelectorAll("#simpleApp .simple-screen").forEach(el=>el.classList.toggle("active",el.id===id));
+    if(id==="simpleDifficultHelp")enhanceGuidedSheets();
     window.scrollTo({top:0,behavior:"smooth"});
   }
 
@@ -1625,6 +1742,8 @@
     if(event.target.closest("[data-lost-rights-reselect]")){
       state.lostRightsQueue=[];state.lostRightsIndex=0;state.immediateNeed="";renderQuestion("q_lost_rights_goal");return;
     }
+    const guideSelect=event.target.closest("[data-guide-select]");
+    if(guideSelect){const field=guideSelect.parentElement?.querySelector("textarea");if(field){field.focus();field.select();if(typeof navigator!=="undefined"&&navigator.clipboard?.writeText){navigator.clipboard.writeText(field.value).catch(()=>{});}}return;}
     if(event.target.closest("[data-pieter-start]")){pieterEntry();return;}
     const pt=event.target.closest("[data-pieter-topic]");if(pt){state.pieterTopic=pt.dataset.pieterTopic;pieterGuide(false);return;}
     if(event.target.closest("[data-pieter-short]")){pieterGuide(true);return;}
