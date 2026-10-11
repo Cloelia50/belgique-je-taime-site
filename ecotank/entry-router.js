@@ -143,6 +143,7 @@
       ((qid==="q_entry_situation"||qid==="q_employee_goal")?'<button type="button" class="entry-choice foundation" data-lotte-start>Grossesse · Mon contrat se termine avant la naissance</button>':"")+
       ((qid==="q_entry_situation"||qid==="q_employee_goal")?'<button type="button" class="entry-choice foundation" data-beatrice-start>Famille recomposée · garde alternée, impôts et pensions alimentaires</button>':"")+
       ((qid==="q_entry_situation"||qid==="q_independent_goal")?'<button type="button" class="entry-choice foundation" data-thomas-start>Indépendant · Animaux dans le bail, cotisations et déductions</button>':"")+
+      ((qid==="q_entry_situation"||qid==="q_independent_goal")?'<button type="button" class="entry-choice foundation" data-jessica-start>Indépendant · Dépenses et énergie de mon commerce</button>':"")+
       controls+
       '<div class="entry-footer"><span></span><button type="button" class="linkish" data-entry-unknown>Je ne sais pas quoi choisir</button></div>';
     showScreen("simpleEntryRouter");
@@ -493,6 +494,36 @@
   // Parcours Daniel : aucune saisie personnelle, sortie rapide du questionnaire.
 
   // Parcours autonome : n'altère aucun état des autres parcours.
+  // Orientation professionnelle indépendante : n'utilise ni AER ni données du ménage.
+  function jessicaEntry(){
+    if(!ensureScreens())return;
+    const h=document.getElementById("entryDifficultHost");
+    h.innerHTML='<h2>Indépendante : votre besoin principal ?</h2><p>Vos dépenses du salon ne sont pas des dépenses du ménage. Aucune déclaration fiscale à fournir pour commencer.</p><div class="entry-choice-grid">'+
+      '<button type="button" data-jessica-topic="energy">La facture d’énergie de mon salon augmente</button>'+
+      '<button type="button" data-jessica-topic="deductions">Quels frais du salon puis-je déduire ?</button>'+
+      '<button type="button" data-jessica-topic="cotisations">J’ai du mal à payer mes cotisations</button>'+
+      '<button type="button" data-jessica-topic="social">Maladie, arrêt d’activité ou maternité</button></div><button type="button" data-jessica-back>Retour</button>';
+    showScreen("simpleDifficultHelp");
+  }
+  function jessicaGuide(short=false){
+    if(!ensureScreens())return;
+    const h=document.getElementById("entryDifficultHost");
+    const tasks=[
+      ["energy","Facture du salon et aides à l’investissement","Commencez par distinguer la facture du local commercial de celle du domicile. Le service gratuit 1819 de hub.brussels (tél. 1819, jours ouvrables 9 h–13 h ; mardi aussi 16 h–18 h) peut orienter vers les aides d’entreprise adaptées. Une prime bruxelloise de transition économique peut couvrir certains investissements énergétiques, sous conditions : demande préalable, investissement éligible d’au moins 2 000 euros et siège d’exploitation bruxellois. Ne commandez pas de travaux en présumant que la prime sera octroyée.","https://economie-emploi.brussels/prime-transition-investissements"],
+      ["deductions","Frais professionnels : liste concrète à vérifier","Dans une activité de coiffure réellement exercée à titre professionnel, certains coûts peuvent être déductibles sous conditions : loyer du salon, consommations d’eau et d’électricité, produits capillaires, petit matériel, amortissement du mobilier et des équipements, assurance professionnelle, publicité, logiciel de caisse, comptabilité et cotisations sociales. Il faut des preuves, une ventilation des usages mixtes et tenir compte des règles de TVA et d’amortissement. Une dépense déductible ne signifie pas un remboursement intégral : elle réduit la base imposable. La TVA récupérable est une question distincte et dépend du régime TVA.","https://finances.belgium.be/fr/entreprises"],
+      ["cotisations","Cotisations sociales : demander un plan plutôt que laisser impayé","Contactez votre caisse d’assurances sociales avant l’accumulation des échéances : demandez l’adaptation des cotisations provisoires si les revenus ont baissé, ou un plan d’apurement / des facilités de paiement. En cas de difficultés graves, faites vérifier la dispense éventuelle. Les cotisations définitives peuvent ensuite être régularisées.","https://socialsecurity.belgium.be/fr/octroi-des-droits-sociaux/vos-droits-en-tant-quindependant"],
+      ["social","Arrêt, incapacité et maternité : vos droits personnels","Demandez à votre caisse d’assurances sociales les conditions du droit passerelle en cas de cessation ou d’interruption répondant aux critères ; une simple hausse de la facture n’ouvre pas automatiquement le droit. Vérifiez avec votre mutualité les indemnités d’incapacité et de maternité pour indépendante, les délais et les conditions de cotisations. Vous pouvez préparer ces droits avant d’en avoir besoin.","https://socialsecurity.belgium.be/fr/octroi-des-droits-sociaux/vos-droits-en-tant-quindependant"]
+    ];
+    const priority=state.jessicaTopic||"energy";
+    const ordered=tasks.filter(x=>x[0]===priority).concat(tasks.filter(x=>x[0]!==priority));
+    h.innerHTML='<div id="jessica-sheet" style="max-width:750px;margin:auto;padding:12px;color:#111;background:#fff"><h2>Mon activité indépendante · Bruxelles-Ville</h2><p><strong>EcoTank vise les particuliers :</strong> pour votre salon, cette fiche donne une orientation fiable et des contacts professionnels, pas un simulateur complet de TVA ou de subsides d’entreprise. Elle ne mélange pas facture du salon et aides énergétiques du ménage.</p>'+
+      ordered.map((x,i)=>'<section style="border-top:1px solid #aaa;padding:9px 0;break-inside:avoid"><h3>'+(i+1)+'. '+esc(x[1])+'</h3><p>'+esc(x[2])+'</p>'+(short?'':'<p style="overflow-wrap:anywhere;font-size:.85em">'+esc(x[3])+'</p>')+'</section>').join('')+
+      '<p><strong>Avant de rechercher des pièces :</strong> dites simplement au 1819 que vous exploitez un salon de coiffure à Bruxelles et que vous voulez vérifier les aides à l’économie d’énergie. Demandez quels achats ou travaux sont éligibles avant de dépenser. Pour les frais déductibles, rassemblez uniquement les factures utiles lorsque vous choisissez de faire un calcul avec un comptable.</p></div>'+
+      '<div class="entry-route-actions"><button type="button" data-jessica-short>Fiche courte</button><button type="button" data-jessica-full>Fiche détaillée</button><button type="button" data-jessica-print>Imprimer / PDF</button><button type="button" data-jessica-edit>Autre priorité</button><button type="button" data-jessica-back>Retour</button></div>';
+    if(!document.getElementById("jessica-print-style")){const st=document.createElement("style");st.id="jessica-print-style";st.textContent='@media print{body *{visibility:hidden!important}#jessica-sheet,#jessica-sheet *{visibility:visible!important}#jessica-sheet{position:absolute;top:0;left:0;width:100%!important;max-width:none!important;color:#000!important;background:#fff!important}@page{size:A4;margin:12mm}}';document.head.appendChild(st);}
+    showScreen("simpleDifficultHelp");
+  }
+
   function thomasEntry(){
     if(!ensureScreens())return;
     const h=document.getElementById("entryDifficultHost");
@@ -1557,6 +1588,13 @@
     if(event.target.closest("[data-lost-rights-reselect]")){
       state.lostRightsQueue=[];state.lostRightsIndex=0;state.immediateNeed="";renderQuestion("q_lost_rights_goal");return;
     }
+    if(event.target.closest("[data-jessica-start]")){jessicaEntry();return;}
+    const jt=event.target.closest("[data-jessica-topic]");if(jt){state.jessicaTopic=jt.dataset.jessicaTopic;jessicaGuide(false);return;}
+    if(event.target.closest("[data-jessica-short]")){jessicaGuide(true);return;}
+    if(event.target.closest("[data-jessica-full]")){jessicaGuide(false);return;}
+    if(event.target.closest("[data-jessica-print]")){window.print();return;}
+    if(event.target.closest("[data-jessica-edit]")){jessicaEntry();return;}
+    if(event.target.closest("[data-jessica-back]")){renderQuestion("q_entry_situation");return;}
     if(event.target.closest("[data-thomas-start]")){thomasEntry();return;}
     const tt=event.target.closest("[data-thomas-topic]");if(tt){state.thomasTopic=tt.dataset.thomasTopic;thomasGuide(false);return;}
     if(event.target.closest("[data-thomas-short]")){thomasGuide(true);return;}
