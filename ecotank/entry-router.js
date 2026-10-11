@@ -452,6 +452,38 @@
     showScreen("simpleDifficultHelp");
   }
 
+  // Chaque ressource doit être accompagnée de consignes avant de quitter EcoTank.
+  // Les démarches, coordonnées et conditions sont à revérifier auprès du service.
+  function actionGuide(kind){
+    const instructions={
+      orientation:["Sur place : demandez à l'accueil un entretien d'orientation individuel, et expliquez que vous ne savez pas encore quel métier chercher.","Demandez une liste de deux ou trois métiers possibles, les formations utiles et une prochaine action précise.","Si vous ne pouvez pas vous déplacer, écrivez à info@cdm-bp.brussels en décrivant votre situation et en demandant les possibilités de conseil à distance."],
+      person:["Sur la page de la Région, repérez la Mission locale de votre commune (ou la plus accessible).","Contactez l'accueil et demandez un accompagnement individuel gratuit pour chercher un emploi. Précisez si vous avez besoin d'aide avec votre CV, les offres ou les formalités.","Demandez explicitement les horaires, la nécessité d'un rendez-vous et les pièces réellement utiles avant de vous déplacer."],
+      applications:["Choisissez une offre à laquelle vous avez répondu, si vous en avez une, et conservez votre CV actuel.","Demandez à une Mission locale une relecture de ce CV et de cette candidature ainsi qu'une simulation d'entretien.","Si vous n'avez ni CV ni ordinateur, dites-le lors du premier contact : c'est précisément une des raisons de demander un accompagnement."],
+      offers:["Cherchez d'abord les offres qui vous intéressent : métier, lieu, horaires et expérience demandée.","Ouvrez une offre et relevez le nom de l'employeur, les conditions, la date limite et la manière de postuler.","S'il est impossible de déposer la candidature, revenez à EcoTank et choisissez le blocage qui vous empêche d'avancer."],
+      identity:["Notez quel document manque : carte d'identité, séjour, permis de travail ou autre, sans transmettre de copie à EcoTank.","Sur le site de l'ADDE, cherchez le service de conseil juridique relatif au séjour et à l'accès au travail ; demandez comment vérifier votre situation précise.","Préparez seulement vos documents existants ; ne payez aucune démarche et ne concluez pas à un droit au travail sans vérification."],
+      digital:["Sur le site CSAM, recherchez « se connecter avec eID ». Utilisez la carte, le lecteur et le PIN uniquement si le portail concerné propose cette option.","Si le service impose une autre méthode, notez son nom et demandez à ce service une procédure au guichet ou sur papier.","Ne communiquez jamais votre PIN, vos mots de passe ou vos codes de connexion à un accompagnateur."],
+      cvdocs:["Identifiez une annonce ou un type de poste qui vous attire.","Demandez à la Mission locale un rendez-vous pour construire votre CV ou écrire une candidature, même si vous n'avez aucun document prêt.","Demandez quelles pièces sont exigées pour cette offre, plutôt que de refaire tous vos papiers d'avance."],
+      travel:["Cherchez un accompagnement au plus près de votre commune, puis demandez au service si un premier entretien à distance est possible.","Expliquez que vous ne pouvez pas avancer les frais de déplacement et demandez si une prise en charge est envisageable.","Ne supposez aucun remboursement acquis ; confirmez les conditions avant de vous déplacer."],
+      unknown_docs:["Choisissez l'offre ou la démarche qui vous intéresse et notez ce qu'elle demande réellement.","Demandez à une Mission locale de distinguer les documents indispensables maintenant de ceux nécessaires seulement lors du contrat.","Si une pièce manque, faites préciser l'organisme et la procédure pour l'obtenir."],
+      registered:["Ne recommencez pas votre inscription Actiris.","Si vous visez un emploi ACS, choisissez une offre ACS précise, puis demandez si vous êtes admissible et comment obtenir l'attestation correspondante.","Si vous souhaitez une FPIE, présentez un projet de formation et d'embauche à Bruxelles Formation avant tout début."],
+      unregistered:["Commencez à consulter et à répondre aux offres qui vous intéressent : ce n'est pas réservé aux personnes inscrites.","Si une offre ou une mesure exige une inscription Actiris, lisez la procédure et vérifiez la possibilité d'un rendez-vous en antenne.","Signalez immédiatement si vous ne pouvez pas vous identifier en ligne."],
+      unsure:["Demandez à une Maison de l'Emploi comment vérifier l'existence d'une inscription Actiris déjà ouverte.","Préparez votre identité et la date approximative d'une éventuelle inscription, sans transmettre ces données à EcoTank.","Ne créez pas un deuxième dossier avant d'avoir obtenu la réponse."],
+      acs:["Repérez une offre explicitement indiquée « ACS ». Notez sa référence.","Demandez à Actiris de vérifier les critères de cette offre et la possibilité d'obtenir l'attestation correspondante.","Ne dites pas à l'employeur que vous détenez une attestation tant qu'elle n'est pas délivrée."],
+      fpie:["Identifiez un employeur potentiellement intéressé par une formation suivie d'une embauche.","Demandez à Bruxelles Formation une vérification des conditions FPIE avant de commencer toute formation.","Conservez la réponse et vérifiez l'engagement prévu après la formation."],
+      article60:["Vérifiez si vous percevez une aide du CPAS ou si un refus doit d'abord être examiné.","Demandez un avis sur les conditions de l'emploi d'insertion et sur le refus, s'il existe.","Ne présentez pas l'article 60 comme un droit automatique ni comme une solution certaine sans CPAS."],
+      all_advantages:["Commencez par noter la commune de résidence, la situation Actiris et la nature du poste visé.","Examinez les conditions ACS pour une offre précise, puis la FPIE comme dispositif distinct.","Si le CPAS vous a refusé une aide, vérifiez ce refus avant d'envisager un article 60."],
+      food:["Ouvrez le répertoire d'aide alimentaire et cherchez votre commune ou une commune accessible.","Notez le lieu, le type d'aide (repas, colis, épicerie), les horaires, le contact et les conditions éventuelles.","Avant de vous déplacer, demandez si l'aide est accessible aujourd'hui et quels justificatifs sont réellement nécessaires."],
+      shelter:["Cherchez sur la page officielle les modalités du jour pour demander un hébergement d'urgence.","Relevez le numéro, le créneau d'inscription et le lieu éventuellement indiqué ; une demande ne garantit pas de place.","Si vous êtes sans moyen d'appel ou de connexion, recherchez l'accueil physique ou un service de proximité qui peut effectuer l'appel avec vous."],
+      care:["Cherchez la rubrique des consultations et permanences de Médecins du Monde près de vous.","Vérifiez les jours d'accueil et si un rendez-vous est exigé ; expliquez que vous ne pouvez pas avancer de frais.","En cas de danger médical immédiat, n'attendez pas cette démarche : appelez le 112."],
+      other:["Écrivez en une phrase le besoin immédiat et ce que vous avez déjà tenté.","Utilisez la recherche du site pour trouver la fiche correspondant exactement au besoin.","Si une fiche ne donne pas de démarche praticable, revenez à EcoTank pour choisir une autre priorité."],
+      refused:["Prenez la décision écrite si vous l'avez, puis notez l'organisme, la date de notification et le motif du refus.","Demandez à un service juridique de vérifier les délais de recours et les démarches possibles, même si vous n'avez pas tous les papiers.","Ne déposez pas aveuglément une nouvelle demande identique ; ne laissez pas passer un délai de recours pendant la recherche d'aide."],
+      stopped:["Recherchez la décision écrite d'arrêt des allocations et sa date de réception.","Demandez à l'organisme payeur le motif officiel, la date d'effet et les possibilités de contestation.","Faites rapidement vérifier les délais par une permanence juridique si vous contestez la décision."],
+      administrative:["Notez le nom du service auquel vous ne pouvez plus accéder et le message de blocage, sans enregistrer vos identifiants.","Essayez eID/CSAM seulement si ce service l'accepte ; sinon cherchez sur le site du service les contacts du guichet ou du formulaire papier.","Si une date limite approche, demandez comment prouver votre tentative et déposer dans les temps."],
+    };
+    const steps=instructions[kind]||instructions.other;
+    return '<div class="guided-howto"><h3>Concrètement, que faire ?</h3><ol>'+steps.map(x=>'<li>'+esc(x)+'</li>').join('')+'</ol><p><strong>Avant de quitter EcoTank :</strong> gardez cette page ouverte pour retrouver les étapes. Les horaires et critères peuvent changer.</p></div>';
+  }
+
   // Parcours rapide réservé aux personnes qui rencontrent des blocages.
   // Les autres parcours EcoTank et le questionnaire détaillé restent inchangés.
   function renderDifficultHelp(nextTopic){
@@ -535,9 +567,9 @@
             article60:["Emploi d’insertion : vérifier d’abord les droits","L’article 60 §7 exige des conditions précises, notamment liées à l’aide sociale et à la situation administrative. En cas de refus CPAS, faites d’abord examiner ce refus ; un renvoi automatique au CPAS serait inutile.","https://www.droitsquotidiens.be/fr","Examiner les conditions et le refus"],
             all_advantages:["Comparer les mesures avant de parler d’attestation","Vérifiez séparément : ACS (sur offre précise), FPIE (projet avec employeur), emploi d’insertion (conditions CPAS). Certaines réductions ONSS concernent l’employeur lui-même. Aucune éligibilité ne peut être affirmée sur ces seules réponses.","https://www.actiris.brussels/fr/citoyens/agents-contractuels-subventionnes/","Commencer par les conditions ACS"]
           };
-          const t=pages[state.workChoice]||pages.person;
+          const t=pages[state.workChoice]||pages.person;\n          const howto=actionGuide(state.workChoice);
           html+='<h2>Une première action adaptée</h2><section class="guided-one-step"><h3>'+esc(t[0])+'</h3><p>'+esc(t[1])+'</p><div class="guided-main-link"><a href="'+esc(t[2])+'" target="_blank" rel="noopener noreferrer">'+esc(t[3])+' ↗</a></div>'+
-            '<p>Cette piste est-elle praticable pour vous ?</p>'+pick([
+            howto+'<p>Cette piste est-elle praticable pour vous ?</p>'+pick([
               ["cannot_access","Non : impossible d’y accéder (connexion, téléphone, déplacement)"],
               ["already_tried","Non : j’ai déjà essayé sans résultat"],
               ["person","Je préfère une aide en personne"],
@@ -582,7 +614,7 @@
       const task=all[step];
       host.innerHTML='<div class="simple-kicker">Une démarche à la fois</div><h2>'+esc(({nothing:"Je n'ai aucun revenu",refused:"Une aide m'a été refusée",stopped:"Mes allocations ont été arrêtées",administrative:"Une démarche est bloquée"})[issue])+'</h2>'+
         '<section class="guided-one-step"><p class="guided-step-count">Piste '+(step+1)+' sur '+all.length+'</p><h3>'+esc(task[0])+'</h3><p>'+esc(task[1])+'</p>'+
-        '<div class="guided-main-link"><a href="'+esc(task[2])+'" target="_blank" rel="noopener noreferrer">'+esc(task[3])+' ↗</a></div>'+
+        '<div class="guided-main-link"><a href="'+esc(task[2])+'" target="_blank" rel="noopener noreferrer">'+esc(task[3])+' ↗</a></div>'+\n        actionGuide(issue==="nothing"?(state.immediateNeed||"other"):issue)+
         '<div class="guided-actions">'+(step+1<all.length?'<button type="button" data-help-next>Cette piste ne convient pas — une autre</button>':'')+
         '<button type="button" data-lost-rights-next>'+((state.lostRightsIndex||0)+1<(state.lostRightsQueue||[]).length?'Passer à une autre situation':'Revenir à mes situations')+'</button>'+
         '<button type="button" data-lost-rights-reselect>Modifier mes réponses</button></div></section>';
