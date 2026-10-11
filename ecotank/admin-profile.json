@@ -2860,6 +2860,39 @@
             "authority": "INASTI",
             "verified_at": "2026-10-11",
             "freshness": "medium"
+          },
+          {
+            "id": "self_vat_franchise",
+            "title": "Petite activité : vérifier la franchise de TVA",
+            "description": "Sous le seuil de chiffre d'affaires et hors secteurs exclus, la franchise peut simplifier la TVA. En 2026 le seuil annuel est de 25 000 euros, proratisé en cas de début d'activité en cours d'année. La TVA sur les achats n'est pas récupérable.",
+            "action_label": "Vérifier le régime et les dates",
+            "url": "https://finances.belgium.be/fr/node/1577",
+            "source_url": "https://finances.belgium.be/fr/node/1577",
+            "authority": "SPF Finances",
+            "verified_at": "2026-10-11",
+            "freshness": "high"
+          },
+          {
+            "id": "self_brussels_prime_status",
+            "title": "Bruxelles : attention aux primes suspendues",
+            "description": "Depuis le 12 août 2026, les primes Consultance, Formation, Recrutement et Coworking ne sont plus ouvertes aux nouvelles demandes. Les primes Lancement, Coopérative d'emploi et Digitalisation restent disponibles selon conditions.",
+            "action_label": "Voir les mesures encore ouvertes",
+            "url": "https://economie-emploi.brussels/news-reorientation-primes",
+            "source_url": "https://economie-emploi.brussels/news-reorientation-primes",
+            "authority": "Bruxelles Économie et Emploi",
+            "verified_at": "2026-10-11",
+            "freshness": "high"
+          },
+          {
+            "id": "self_primostarter",
+            "title": "Premières années : vérifier les cotisations primostarter",
+            "description": "Pour les débuts à titre principal, le statut de primostarter peut permettre un calcul réduit des cotisations provisoires si les conditions sont remplies. Faire vérifier auprès de sa caisse sociale.",
+            "action_label": "Vérifier avec l'INASTI",
+            "url": "https://www.inasti.be/fr",
+            "source_url": "https://www.inasti.be/fr",
+            "authority": "INASTI",
+            "verified_at": "2026-10-11",
+            "freshness": "medium"
           }
         ],
         "status_focus_axes": [
