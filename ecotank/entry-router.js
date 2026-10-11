@@ -124,7 +124,7 @@
     }
     host.innerHTML=
       '<div class="entry-topline"><button type="button" class="linkish" data-entry-home>← Accueil</button><span class="entry-step">Étape '+order+' sur '+max+' max.</span></div>'+
-      '<div class="simple-kicker">Trouver le bon parcours</div>'+
+      '<div class="simple-kicker">EcoTank · Faire des économies</div>'+
       '<h2>'+esc(q.text||"Votre situation")+'</h2>'+
       (q.helper?'<p>'+esc(q.helper)+'</p>':"")+
       controls+
@@ -998,7 +998,7 @@
     state.businessCardIndex=0;
     state.savingStep=0;
     const host=document.getElementById("entryRouterHost");
-    host.innerHTML='<div class="simple-kicker">Trouver le bon parcours</div><h2>On regarde d’abord d’où vous partez.</h2><p>Quelques secondes suffisent pour éviter de vous envoyer vers un formulaire qui ne correspond pas à votre situation.</p>';
+    host.innerHTML='<div class="simple-kicker">EcoTank · Faire des économies</div><h2>Je veux explorer des pistes pour pouvoir faire des économies.</h2>';
     showScreen("simpleEntryRouter");
     loadCatalog().then(()=>renderQuestion("q_entry_situation")).catch(renderLoadFailure);
     return true;
