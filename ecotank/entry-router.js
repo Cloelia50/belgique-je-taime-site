@@ -653,7 +653,7 @@
     ];
     const selected=guides[topic]?topic:"overview";
     const cards=guides[selected];
-    const urgentIds=new Set(["urgent_food","urgent_shelter","urgent_care","urgent_income","urgent_refusal","urgent_access","actiris_no_income","no_job","employer_aid","article_60_61","a6_j6","no_status"]);
+    const urgentIds=new Set(["urgent_food","urgent_shelter","urgent_care","urgent_income","urgent_refusal","urgent_access","no_status"]);
     const firstChoices=choices.filter(([id])=>urgentIds.has(id));
     const otherChoices=choices.filter(([id])=>!urgentIds.has(id));
     const title={
