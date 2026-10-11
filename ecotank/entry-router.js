@@ -141,7 +141,7 @@
     state.answers[qid]=oid;
     if(qid==="q_entry_situation")state.destinationId=opt.destination_id||"";
     if(qid==="q_entry_situation"&&oid==="urgent"){state.difficultTopic="";state.helpStep=0;return renderDifficultHelp();}
-    const workTopics={no_income:"actiris_no_income",benefits:"employer_aid"};
+    const workTopics={no_income:"no_job",benefits:"employer_aid"};
     const personalTopics={income:"urgent_income",care:"urgent_care",housing:"urgent_shelter",paperwork:"urgent_access"};
     const selectedTopic=qid==="q_work_goal"?workTopics[oid]:qid==="q_personal_goal"?personalTopics[oid]:null;
     if(selectedTopic){state.destinationId="foundation_recovery";return renderDifficultHelp(selectedTopic);}
@@ -854,10 +854,13 @@
     const d=destination(id),host=document.getElementById("businessHomeHost");
     if(!d||!host)return renderDestination("guided_orientation");
     const tokens=priorityTokens();
+    const goal=id==="company"?state.answers.q_company_goal:state.answers.q_business_stage;
+    const matchWords={starting:/prime indépendant|lancement|entrepreneuriale|starter|airbag|chèques/i,running:/subsides|digitalisation|franchise|financement|TVA/i,cashflow_problem:/cotisations|paiement|dette|passerelle|trésorerie/i,interruption:/passerelle|cessation|interrompre|arrêt/i,staff:/recrut|engag|premier travailleur|emploi/i,financing:/subsides|primes|investissement|financement/i,cashflow:/paiement|trésorerie|cotisations|dettes/i,administration:/fiscal|TVA|cotisations|obligation/i};
+    const preferred=matchWords[goal];
     const cards=(d.resource_cards||[]).filter(isCardCurrent).map(card=>({
       card,
-      priority:(card.priority_for||[]).some(x=>tokens.includes(x))
-    })).sort((a,b)=>Number(b.priority)-Number(a.priority));
+      priority:(preferred&&preferred.test(card.title+" "+card.description)?3:0)+((card.priority_for||[]).some(x=>tokens.includes(x))?1:0)
+    })).sort((a,b)=>b.priority-a.priority);
     const intake=d.intake;
     const index=Math.max(0,Math.min(Number(state.businessCardIndex||0),Math.max(0,cards.length-1)));
     const visibleCards=cards.slice(index,index+2);
@@ -879,7 +882,7 @@
       '<div class="business-safety"><strong>Important :</strong> ces pistes servent à agir et à vérifier. EcoTank ne déduit jamais automatiquement qu’une prime, un plan de paiement ou un autre droit vous est accordé.</div>'+
       '<section><h3>Vos deux premières pistes</h3><div class="business-grid">'+(cards.length?visibleCards.map((x,i)=>resourceCardHtml(x.card,index+i,x.priority)).join(""):'<div class="business-card"><h3>Le parcours se construit</h3><p>Les premières sources officielles sont en cours de raccordement.</p></div>')+'</div></section>'+
       (cards.length>index+2?'<div class="entry-route-actions"><button type="button" data-business-more>Ces pistes ne conviennent pas → Voir deux autres</button></div>':'')+
-      (future?'<section><h3>Ce volet va aussi couvrir</h3><div class="business-future">'+future+'</div></section>':"")+
+
       '<div class="entry-route-actions"><button type="button" data-business-refine>Préciser mon besoin</button><button type="button" data-entry-personal>Je veux aussi vérifier mes droits personnels</button><button type="button" class="linkish" data-entry-home>Accueil</button></div>';
     showScreen("simpleBusinessHome");
   }
