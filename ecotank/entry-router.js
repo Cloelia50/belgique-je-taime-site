@@ -113,6 +113,12 @@
     const order=Math.min(Number(q.order||1),max);
     const optionMap=new Map((q.options||[]).map(o=>[o.id,o]));
     let controls="";
+    if(qid==="q_lost_rights_goal"){
+      const selected=state.lostRightsSelected||[];
+      controls='<div class="entry-choice-grid">'+(q.options||[]).map(opt=>
+        '<label class="entry-choice" style="display:flex;align-items:center;gap:12px;cursor:pointer"><input type="checkbox" data-lost-rights-check="'+esc(opt.id)+'" '+(selected.includes(opt.id)?'checked':'')+'><span>'+esc(opt.label)+'</span></label>'
+      ).join("")+'</div><div class="entry-route-actions"><button type="button" class="primary" data-lost-rights-submit>Continuer</button></div>';
+    }else 
     if(Array.isArray(q.groups)&&q.groups.length){
       controls=q.groups.map(group=>{
         const opts=(group.option_ids||[]).map(id=>optionMap.get(id)).filter(Boolean);
@@ -995,6 +1001,7 @@
     state.fromAdminHome=false;
     state.difficultTopic="";
     state.businessAnswers={};
+    state.lostRightsSelected=[];
     state.businessCardIndex=0;
     state.savingStep=0;
     const host=document.getElementById("entryRouterHost");
@@ -1005,6 +1012,16 @@
   }
 
   document.addEventListener("click",event=>{
+    if(event.target.closest("[data-lost-rights-submit]")){
+      const chosen=[...document.querySelectorAll("[data-lost-rights-check]:checked")].map(e=>e.dataset.lostRightsCheck);
+      state.lostRightsSelected=chosen;state.answers.q_lost_rights_goal=chosen.join(",");
+      if(!chosen.length){const h=document.getElementById("entryRouterHost");h?.querySelector("[data-lost-rights-submit]")?.focus();return;}
+      const order=["nothing","refused","stopped","administrative"];
+      const chosenPriority=order.find(x=>chosen.includes(x));
+      state.destinationId="foundation_recovery";
+      const topic=({nothing:"urgent_income",refused:"refusals",stopped:"urgent_income",administrative:"urgent_access"})[chosenPriority];
+      renderDifficultHelp(topic);return;
+    }
     const opt=event.target.closest("[data-entry-option]");
     if(opt){chooseOption(opt.dataset.entryQuestion,opt.dataset.entryOption);return;}
 
