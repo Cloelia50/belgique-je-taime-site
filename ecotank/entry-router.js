@@ -138,6 +138,7 @@
       (qid==="q_entry_situation"?'<button type="button" class="entry-choice foundation" data-fatou-start>Molenbeek · Parent seul avec enfants : électricité, pension et aides</button>':"")+
       (qid==="q_entry_situation"?'<button type="button" class="entry-choice foundation" data-jozef-start>Koekelberg · Pension, carrière à l’étranger ou chambre sans bail</button>':"")+
       (qid==="q_entry_situation"?'<button type="button" class="entry-choice foundation" data-samira-start>Schaerbeek · Je travaille mais j’ai des dettes, un huissier ou un loyer impayé</button>':"")+
+      (qid==="q_entry_situation"?'<button type="button" class="entry-choice foundation" data-celine-start>Ganshoren · Famille nombreuse : quatre économies à vérifier</button>':"")+
       controls+
       '<div class="entry-footer"><span></span><button type="button" class="linkish" data-entry-unknown>Je ne sais pas quoi choisir</button></div>';
     showScreen("simpleEntryRouter");
@@ -459,6 +460,22 @@
 
   // Parcours Daniel : aucune saisie personnelle, sortie rapide du questionnaire.
 
+  function celineGuide(){
+    if(!ensureScreens())return;
+    const h=document.getElementById("entryDifficultHost");
+    const actions=[
+      ["1. Allocations familiales : vérifier les suppléments","10 à 20 minutes pour contacter la caisse","Gain annuel possible : à calculer à partir des versements actuels. Le supplément social pour une famille avec au moins trois enfants dépend des revenus et de l'âge. Demandez à la caisse de vérifier les cinq enfants et les éventuels suppléments non versés.","https://famiris.brussels/fr/faq/supplement-social/droit-supplement-social/"],
+      ["2. Soins : demander le remboursement majoré","10 à 20 minutes pour contacter la mutualité","Gain annuel possible : variable selon les soins réellement utilisés. Demandez si les sept personnes bénéficient de l'intervention majorée (anciennement appelée Omnio). La mutualité peut demander les revenus fiscaux et les vérifier avec vous : ne les inventez pas.","https://www.inami.fgov.be/fr/themes/soins-de-sante-cout-et-remboursement/facilites-financieres/intervention-majoree"],
+      ["3. Crèche : revoir le tarif si un enfant est accueilli","10 à 20 minutes pour demander une vérification","Gain annuel : différence entre ancien et nouveau tarif journalier × jours réellement facturés. Si un enfant fréquente une crèche subventionnée à tarif selon les revenus, demandez une réévaluation et vérifiez les réductions liées aux familles d'au moins trois enfants. Sinon, passez cette étape.","https://www.one.be/"],
+      ["4. Énergie et frais scolaires : un bilan groupé","20 à 40 minutes pour préparer deux demandes","Gain annuel : impossible à chiffrer sans factures et situation réelle. Faites vérifier le tarif social énergie (non automatique pour une famille nombreuse) et demandez aux écoles / au CPAS les aides pour repas, fournitures et sorties.","https://www.socialenergie.be/"]
+    ];
+    const cards=actions.map(a=>'<section style="padding:12px 0;border-top:1px solid #999;break-inside:avoid"><h3>'+esc(a[0])+'</h3><p><strong>Temps indicatif : </strong>'+esc(a[1])+'</p><p>'+esc(a[2])+'</p><a href="'+esc(a[3])+'" target="_blank" rel="noopener noreferrer">Informations officielles ↗</a></section>').join('');
+    h.innerHTML='<div id="celine-sheet" style="background:white;color:#111;padding:12px;max-width:740px;margin:auto"><h2>Famille nombreuse · Ganshoren</h2><p>Deux adultes et cinq enfants : pas besoin de saisir cinq âges ni d’inventer votre revenu imposable. Voici les quatre vérifications qui méritent votre attention. Les gains exacts ne peuvent être établis qu’après vérification des droits.</p>'+cards+
+      '<p><strong>Pour l’isolation :</strong> si vous êtes locataire, parlez au propriétaire des améliorations possibles. Ne présumez pas de l’existence d’une prime RENOLUTION ouverte en 2026 : le régime a été interrompu pour les nouveaux travaux.</p><p><strong>Montant annuel :</strong> demandez à chaque organisme « Quel supplément ou remboursement manque aujourd’hui et depuis quand ? » puis multipliez les montants mensuels confirmés par 12, sans compter deux fois les aides déjà versées.</p></div>'+
+      '<div class="entry-route-actions"><button type="button" data-celine-print>Imprimer / enregistrer PDF</button><button type="button" data-celine-back>Retour aux situations</button></div>';
+    if(!document.getElementById("celine-print-style")){const st=document.createElement("style");st.id="celine-print-style";st.textContent='@media print{body *{visibility:hidden!important}#celine-sheet,#celine-sheet *{visibility:visible!important}#celine-sheet{position:absolute;top:0;left:0;width:100%!important;max-width:none!important;color:black!important;background:white!important}@page{size:A4;margin:12mm}}';document.head.appendChild(st);}
+    showScreen("simpleDifficultHelp");
+  }
   function samiraGuide(short=false){
     if(!ensureScreens())return;
     const host=document.getElementById("entryDifficultHost");
@@ -1379,6 +1396,9 @@
     if(event.target.closest("[data-lost-rights-reselect]")){
       state.lostRightsQueue=[];state.lostRightsIndex=0;state.immediateNeed="";renderQuestion("q_lost_rights_goal");return;
     }
+    if(event.target.closest("[data-celine-start]")){celineGuide();return;}
+    if(event.target.closest("[data-celine-print]")){window.print();return;}
+    if(event.target.closest("[data-celine-back]")){renderQuestion("q_entry_situation");return;}
     if(event.target.closest("[data-samira-start]")){samiraGuide(false);return;}
     if(event.target.closest("[data-samira-short]")){samiraGuide(true);return;}
     if(event.target.closest("[data-samira-full]")){samiraGuide(false);return;}
