@@ -2288,9 +2288,9 @@
     "entry_policy": {
       "required_before_general_aid_catalog": true,
       "default_general_aid_catalog_visibility": "hidden_until_orientation",
-      "max_questions_before_destination": 2,
+      "max_questions_before_destination": 3,
       "allow_skip_to_search": false,
-      "note": "Deux questions maximum pour choisir un chemin. Les vérifications d'éligibilité viennent après le choix du besoin, et une seule action principale doit être visible.",
+      "note": "EcoTank pour particuliers : départ par profil de ménage/personne. Question suivante sur la priorité, et une troisième uniquement en cas de droits perdus. Aucun parcours public entreprise.",
       "presentation": {
         "mode": "one_question_per_screen",
         "option_layout": "grouped_cards",
@@ -2305,151 +2305,278 @@
       {
         "id": "q_entry_situation",
         "order": 1,
-        "text": "De quoi avez-vous besoin ?",
-        "helper": "Choisissez votre objectif. Une seule autre question au maximum pour vous orienter.",
+        "text": "Pour qui cherchez-vous des économies ?",
         "options": [
           {
-            "id": "urgent",
-            "label": "J'ai besoin d'aide maintenant",
-            "destination_id": "foundation_recovery"
+            "id": "household",
+            "label": "Pour mon ménage ou ma famille",
+            "next_question_id": "q_household_goal"
           },
           {
-            "id": "personal",
-            "label": "Mes droits, mes revenus ou mes démarches",
-            "next_question_id": "q_personal_goal"
+            "id": "employee",
+            "label": "Je suis salarié ou fonctionnaire",
+            "next_question_id": "q_employee_goal"
           },
           {
-            "id": "work",
-            "label": "Trouver un emploi ou améliorer ma situation professionnelle",
-            "next_question_id": "q_work_goal"
+            "id": "unemployed",
+            "label": "Je suis sans emploi",
+            "next_question_id": "q_unemployed_goal"
           },
           {
-            "id": "independent",
-            "label": "Créer ou gérer mon activité indépendante",
+            "id": "self_employed",
+            "label": "Je suis indépendant ou je veux le devenir",
             "next_question_id": "q_independent_goal"
           },
           {
-            "id": "employer",
-            "label": "Mon entreprise : engager, financer ou gérer",
-            "next_question_id": "q_employer_goal"
+            "id": "retired",
+            "label": "Je suis pensionné",
+            "next_question_id": "q_retired_goal"
           },
           {
-            "id": "other_unknown",
-            "label": "Je ne sais pas où chercher",
+            "id": "disability",
+            "label": "Je suis en situation de handicap ou d'incapacité",
+            "next_question_id": "q_disability_goal"
+          },
+          {
+            "id": "student",
+            "label": "Je suis étudiant",
+            "next_question_id": "q_student_goal"
+          },
+          {
+            "id": "unknown",
+            "label": "Je ne sais pas quelle situation choisir",
             "destination_id": "guided_orientation"
           }
         ]
       },
       {
-        "id": "q_personal_goal",
+        "id": "q_household_goal",
         "order": 2,
-        "text": "Quel problème voulez-vous résoudre d'abord ?",
+        "text": "Où aimeriez-vous économiser en premier ?",
         "options": [
           {
-            "id": "income",
-            "label": "Je n'ai plus assez de revenus",
-            "destination_id": "foundation_recovery"
+            "id": "bills",
+            "label": "Factures, énergie, eau ou téléphone",
+            "destination_id": "guided_orientation"
           },
           {
-            "id": "care",
-            "label": "Mes soins ou ma mutualité",
-            "destination_id": "foundation_recovery"
+            "id": "children",
+            "label": "Enfants et famille nombreuse",
+            "destination_id": "guided_orientation"
+          },
+          {
+            "id": "shopping",
+            "label": "Courses, nourriture et dépenses quotidiennes",
+            "destination_id": "guided_orientation"
           },
           {
             "id": "housing",
-            "label": "Logement, adresse ou hébergement",
-            "destination_id": "foundation_recovery"
+            "label": "Logement, loyer ou charges",
+            "destination_id": "guided_orientation"
           },
           {
-            "id": "paperwork",
-            "label": "Documents, itsme ou une décision administrative",
+            "id": "all",
+            "label": "Je veux examiner toutes les économies du ménage",
+            "destination_id": "guided_orientation"
+          }
+        ]
+      },
+      {
+        "id": "q_employee_goal",
+        "order": 2,
+        "text": "Que souhaitez-vous améliorer ?",
+        "options": [
+          {
+            "id": "expenses",
+            "label": "Réduire mes dépenses du ménage",
+            "destination_id": "employee"
+          },
+          {
+            "id": "work",
+            "label": "Mes droits ou frais liés au travail",
+            "destination_id": "employee"
+          },
+          {
+            "id": "family",
+            "label": "Mes droits liés aux enfants",
+            "destination_id": "employee"
+          },
+          {
+            "id": "difficulties",
+            "label": "Je n'arrive plus à payer certaines dépenses",
             "destination_id": "foundation_recovery"
           }
         ]
       },
       {
-        "id": "q_work_goal",
+        "id": "q_unemployed_goal",
         "order": 2,
-        "text": "Qu'est-ce qui vous aiderait le plus ?",
+        "text": "Quelle situation vous correspond ?",
         "options": [
           {
-            "id": "no_income",
-            "label": "Je suis sans emploi ou sans allocations",
+            "id": "jobseek",
+            "label": "Je cherche du travail, avec ou sans allocations",
             "destination_id": "foundation_recovery"
           },
           {
-            "id": "benefits",
-            "label": "Trouver des aides ou attestations qui facilitent mon embauche",
+            "id": "cpas",
+            "label": "Je reçois une aide du CPAS",
+            "destination_id": "social_protection"
+          },
+          {
+            "id": "invalidity",
+            "label": "Je suis en incapacité ou invalidité",
+            "destination_id": "social_protection"
+          },
+          {
+            "id": "lost_rights",
+            "label": "J'ai perdu mes droits ou mes revenus",
+            "next_question_id": "q_lost_rights_goal"
+          },
+          {
+            "id": "unknown",
+            "label": "Je n'ai aucune aide et ne sais pas pourquoi",
+            "next_question_id": "q_lost_rights_goal"
+          }
+        ]
+      },
+      {
+        "id": "q_lost_rights_goal",
+        "order": 3,
+        "text": "Qu'est-ce qui bloque aujourd'hui ?",
+        "options": [
+          {
+            "id": "refused",
+            "label": "Le CPAS ou le chômage a refusé une aide",
             "destination_id": "foundation_recovery"
           },
           {
-            "id": "student",
-            "label": "Travailler pendant mes études",
-            "destination_id": "student"
+            "id": "stopped",
+            "label": "Mes allocations ont été arrêtées",
+            "destination_id": "foundation_recovery"
           },
           {
-            "id": "working",
-            "label": "Mes droits de salarié ou de fonctionnaire",
-            "destination_id": "employee"
+            "id": "administrative",
+            "label": "Je n'arrive pas à faire mes démarches",
+            "destination_id": "foundation_recovery"
+          },
+          {
+            "id": "nothing",
+            "label": "Je n'ai plus aucune ressource",
+            "destination_id": "foundation_recovery"
           }
         ]
       },
       {
         "id": "q_independent_goal",
         "order": 2,
-        "text": "Où en êtes-vous aujourd'hui ?",
+        "text": "Quelle est votre situation d'indépendant ?",
         "options": [
           {
             "id": "starting",
-            "label": "Je veux démarrer ou tester une activité",
+            "label": "Je prépare ou teste mon activité",
             "destination_id": "self_employed"
           },
           {
             "id": "running",
-            "label": "Je suis déjà indépendant et veux développer mon activité",
+            "label": "Je suis indépendant et veux diminuer mes frais",
             "destination_id": "self_employed"
           },
           {
             "id": "cashflow_problem",
-            "label": "Je gagne trop peu ou j'ai des dettes",
+            "label": "Je gagne trop peu ou je ne sais plus payer",
             "destination_id": "self_employed"
           },
           {
             "id": "interruption",
-            "label": "Je suis malade, je dois arrêter ou fermer",
+            "label": "Je dois interrompre, arrêter ou fermer",
             "destination_id": "self_employed"
           },
           {
             "id": "hiring",
-            "label": "Je suis indépendant et veux engager",
-            "destination_id": "company"
+            "label": "Je souhaite engager quelqu'un",
+            "destination_id": "self_employed"
           }
         ]
       },
       {
-        "id": "q_employer_goal",
+        "id": "q_retired_goal",
         "order": 2,
-        "text": "Votre priorité comme employeur ?",
+        "text": "Sur quoi voulez-vous économiser ?",
         "options": [
           {
-            "id": "staff",
-            "label": "Engager quelqu'un ou réduire les coûts salariaux",
-            "destination_id": "company"
+            "id": "income",
+            "label": "Pension, GRAPA ou avantages liés aux revenus",
+            "destination_id": "retired"
           },
           {
-            "id": "financing",
-            "label": "Trouver des primes, aides et financements",
-            "destination_id": "company"
+            "id": "health",
+            "label": "Soins et mutualité",
+            "destination_id": "retired"
           },
           {
-            "id": "cashflow",
-            "label": "Paiements, dettes ou trésorerie",
-            "destination_id": "company"
+            "id": "housing",
+            "label": "Logement, énergie ou factures",
+            "destination_id": "retired"
           },
           {
-            "id": "administration",
-            "label": "Fiscalité, obligations ou autres démarches",
-            "destination_id": "company"
+            "id": "everyday",
+            "label": "Courses, transport et vie quotidienne",
+            "destination_id": "retired"
+          }
+        ]
+      },
+      {
+        "id": "q_disability_goal",
+        "order": 2,
+        "text": "Quel besoin souhaitez-vous examiner ?",
+        "options": [
+          {
+            "id": "support",
+            "label": "Reconnaissance, allocations ou droits",
+            "destination_id": "social_protection"
+          },
+          {
+            "id": "work",
+            "label": "Travailler ou faciliter une embauche",
+            "destination_id": "foundation_recovery"
+          },
+          {
+            "id": "care",
+            "label": "Soins, équipements ou mobilité",
+            "destination_id": "social_protection"
+          },
+          {
+            "id": "bills",
+            "label": "Réductions sur mes dépenses",
+            "destination_id": "social_protection"
+          }
+        ]
+      },
+      {
+        "id": "q_student_goal",
+        "order": 2,
+        "text": "Quelles économies recherchez-vous ?",
+        "options": [
+          {
+            "id": "work",
+            "label": "Job étudiant et revenus",
+            "destination_id": "student"
+          },
+          {
+            "id": "study",
+            "label": "Études, formation ou bourses",
+            "destination_id": "student"
+          },
+          {
+            "id": "housing",
+            "label": "Logement et transport",
+            "destination_id": "student"
+          },
+          {
+            "id": "daily",
+            "label": "Dépenses et aides quotidiennes",
+            "destination_id": "student"
           }
         ]
       }
