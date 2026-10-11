@@ -142,6 +142,7 @@
       (qid==="q_entry_situation"?'<button type="button" class="entry-choice foundation" data-karim-start>Jette · Parent veuf avec enfant en situation de handicap : droits déjà obtenus</button>':"")+
       ((qid==="q_entry_situation"||qid==="q_employee_goal")?'<button type="button" class="entry-choice foundation" data-lotte-start>Grossesse · Mon contrat se termine avant la naissance</button>':"")+
       ((qid==="q_entry_situation"||qid==="q_employee_goal")?'<button type="button" class="entry-choice foundation" data-beatrice-start>Famille recomposée · garde alternée, impôts et pensions alimentaires</button>':"")+
+      ((qid==="q_entry_situation"||qid==="q_independent_goal")?'<button type="button" class="entry-choice foundation" data-thomas-start>Indépendant · Animaux dans le bail, cotisations et déductions</button>':"")+
       controls+
       '<div class="entry-footer"><span></span><button type="button" class="linkish" data-entry-unknown>Je ne sais pas quoi choisir</button></div>';
     showScreen("simpleEntryRouter");
@@ -492,6 +493,34 @@
   // Parcours Daniel : aucune saisie personnelle, sortie rapide du questionnaire.
 
   // Parcours autonome : n'altère aucun état des autres parcours.
+  function thomasEntry(){
+    if(!ensureScreens())return;
+    const h=document.getElementById("entryDifficultHost");
+    h.innerHTML='<h2>Indépendant et locataire avec animaux</h2><p>Quelle question voulez-vous résoudre d’abord ? Aucun revenu annuel, AER ou montant fiscal demandé.</p><div class="entry-choice-grid">'+
+      '<button type="button" data-thomas-topic="pets">Mon propriétaire peut-il interdire mon chien ou mon chat ?</button>'+
+      '<button type="button" data-thomas-topic="tax">Quels frais puis-je déduire comme indépendant ?</button>'+
+      '<button type="button" data-thomas-topic="social">Mes revenus changent : comment adapter mes cotisations ?</button>'+
+      '<button type="button" data-thomas-topic="pension">Comment préparer ma pension complémentaire ?</button></div><button type="button" data-thomas-back>Retour</button>';
+    showScreen("simpleDifficultHelp");
+  }
+  function thomasGuide(short=false){
+    if(!ensureScreens())return;
+    const h=document.getElementById("entryDifficultHost");
+    const tasks=[
+      ["pets","Bail et animaux","À Bruxelles, une clause interdisant purement et simplement les animaux de compagnie est réputée non écrite depuis novembre 2024. Des limites motivées concernant nuisances, espèces ou nombre restent possibles. Gardez le bail et les échanges ; si le bailleur conteste, demandez un conseil juridique locatif avant de répondre. Le locataire reste responsable des dégâts et troubles.","https://be.brussels/fr/logement/modification-de-la-legislation-sur-les-baux-en-novembre-2024"],
+      ["animalcost","Chien, règles locales et assurance","Demandez à la commune d’Ixelles de confirmer l’existence ou non d’une taxe sur les chiens pour l’année en cours : EcoTank ne suppose pas qu’elle existe. Vérifiez la couverture dégâts causés par vos animaux dans votre assurance responsabilité civile familiale et les exclusions. Les dépenses privées des animaux ne sont pas automatiquement des frais professionnels.","https://www.ixelles.be/"],
+      ["social","Cotisations provisoires et revenus variables","Les cotisations définitives sont basées sur le revenu professionnel de l’année concernée, mais les acomptes reposent souvent sur une année antérieure. Contactez votre caisse d’assurances sociales avec une estimation raisonnable des revenus de cette année et des éléments concrets pour demander une réduction, si admissible. Une réduction trop forte peut provoquer régularisation et majorations.","https://www.rsvz-inasti.fgov.be/fr/faq/combien-de-cotisations-sociales-dois-je-payer"],
+      ["pension","Pension libre complémentaire pour indépendants","Demandez à votre caisse ou assureur une simulation de pension libre complémentaire pour indépendants (PLCI), avec coûts, limites de versement, traitement fiscal et couverture éventuelle. Elle est facultative et son intérêt dépend de vos revenus et de votre trésorerie. Ne souscrivez pas simplement pour obtenir une réduction d’impôt supposée.","https://www.inasti.be/fr"],
+      ["tax","Frais professionnels du graphiste","Distinguez les dépenses justifiées réellement professionnelles : matériel, logiciels, abonnement internet et part raisonnable du bureau à domicile, avec ventilation documentable des usages mixtes. Ne déduisez pas automatiquement votre loyer intégral ni les frais du chien ou du chat. Vérifiez avec un comptable le bail et les conséquences fiscales possibles pour le bailleur avant d’imputer une partie du loyer.","https://finances.belgium.be/fr/entreprises/impot_des_societes/declaration/preparation-de-la-declaration/frais-professionnels"]
+    ];
+    const topic=state.thomasTopic||"pets";const rank=[topic,...tasks.map(x=>x[0]).filter(x=>x!==topic)];
+    const ordered=rank.map(k=>tasks.find(x=>x[0]===k)).filter(Boolean);
+    h.innerHTML='<div id="thomas-sheet" style="max-width:740px;margin:auto;padding:12px;background:#fff;color:#111"><h2>Indépendant, chien et chat · Ixelles</h2><p><strong>Votre question en premier.</strong> L’an dernier ne reflète pas forcément vos revenus actuels. Pas d’AER pour lire ces réponses.</p>'+
+      ordered.map((x,i)=>'<section style="border-top:1px solid #aaa;padding:9px 0;break-inside:avoid"><h3>'+(i+1)+'. '+esc(x[1])+'</h3><p>'+esc(x[2])+'</p>'+(short?'':'<p style="overflow-wrap:anywhere;font-size:.84em">'+esc(x[3])+'</p>')+'</section>').join('')+
+      '<p><strong>À conserver si vous voulez affiner :</strong> bail, contrat d’assurance, dernier relevé de cotisations et dépenses professionnelles approximatives. Aucun document requis pour ce premier plan.</p></div><div class="entry-route-actions"><button type="button" data-thomas-short>Fiche courte</button><button type="button" data-thomas-full>Fiche détaillée</button><button type="button" data-thomas-print>Imprimer / PDF</button><button type="button" data-thomas-edit>Changer de question</button><button type="button" data-thomas-back>Retour</button></div>';
+    if(!document.getElementById("thomas-print-style")){const st=document.createElement("style");st.id="thomas-print-style";st.textContent='@media print{body *{visibility:hidden!important}#thomas-sheet,#thomas-sheet *{visibility:visible!important}#thomas-sheet{position:absolute;top:0;left:0;width:100%!important;max-width:none!important;color:#000!important;background:#fff!important}@page{size:A4;margin:12mm}}';document.head.appendChild(st);}
+    showScreen("simpleDifficultHelp");
+  }
   function beatriceEntry(){
     if(!ensureScreens())return;
     const h=document.getElementById("entryDifficultHost");
@@ -1528,6 +1557,13 @@
     if(event.target.closest("[data-lost-rights-reselect]")){
       state.lostRightsQueue=[];state.lostRightsIndex=0;state.immediateNeed="";renderQuestion("q_lost_rights_goal");return;
     }
+    if(event.target.closest("[data-thomas-start]")){thomasEntry();return;}
+    const tt=event.target.closest("[data-thomas-topic]");if(tt){state.thomasTopic=tt.dataset.thomasTopic;thomasGuide(false);return;}
+    if(event.target.closest("[data-thomas-short]")){thomasGuide(true);return;}
+    if(event.target.closest("[data-thomas-full]")){thomasGuide(false);return;}
+    if(event.target.closest("[data-thomas-print]")){window.print();return;}
+    if(event.target.closest("[data-thomas-edit]")){thomasEntry();return;}
+    if(event.target.closest("[data-thomas-back]")){renderQuestion("q_entry_situation");return;}
     if(event.target.closest("[data-beatrice-start]")){beatriceEntry();return;}
     const bt=event.target.closest("[data-beatrice-topic]");if(bt){state.beatriceTopic=bt.dataset.beatriceTopic;beatriceGuide(false);return;}
     if(event.target.closest("[data-beatrice-short]")){beatriceGuide(true);return;}
