@@ -155,7 +155,17 @@
       if(section.querySelector(".ecotank-guided-contact"))return;
       const title=section.querySelector("h3")?.textContent||"Ma démarche";
       const defaultMessage="Bonjour, je souhaite effectuer cette démarche : "+title+". Pouvez-vous m’indiquer la procédure précise, les pièces strictement nécessaires, les délais et la personne à contacter si cela bloque ?";
-      const message=(scripts[i]||defaultMessage);
+      const patterns={
+        "fatou-sheet":[/lectri/i,/pension alimentaire/i,/Allocations pour parent/i,/Logement social/i,/Santé/i,/École/i],
+        "beatrice-sheet":[/Enfants fiscalement/i,/Pensions alimentaires/i,/Frais de garde/i,/Allocations familiales/i,/Titres-services/i,/Crédit en indivision/i],
+        "thomas-sheet":[/Bail et animaux/i,/Chien, règles/i,/Cotisations provisoires/i,/Pension libre/i,/Frais professionnels/i],
+        "jessica-sheet":[/Facture du salon/i,/Frais professionnels/i,/Cotisations sociales/i,/Arrêt, incapacité/i],
+        "pieter-sheet":[/statut complémentaire/i,/Carrière mixte/i,/Loyers :/i,/Frais de consultance/i],
+        "karim-sheet":[/Reconnaissance de l’affection/i,/Pension de survie/i,/Congé et aménagement/i,/Soutien, transport/i,/Fiscalité/i]
+      };
+      const matched=patterns[sheet.id]?.findIndex(re=>re.test(title));
+      const scriptIndex=matched>=0?matched:i;
+      const message=(scripts[scriptIndex]||defaultMessage);
       const url=section.querySelector('a[href^="https://"]')?.getAttribute("href")||
         Array.from(section.querySelectorAll("p")).map(x=>x.textContent.trim()).find(x=>/^https:\/\/[^\s]+$/.test(x))||"";
       const wrapper=document.createElement("div");wrapper.className="ecotank-guided-contact";
