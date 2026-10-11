@@ -400,6 +400,12 @@
       article60_info:{url:"https://www.actiris.brussels/fr/citoyens/contrat-emploi-dinsertion/"},
       article57_law:{url:"https://refli.be/fr/lex/1976D70810"},
       article57_request:{url:"https://www.droitsquotidiens.be/fr/question/comment-demander-laide-sociale-au-cpas"},
+      ale_actiris:{url:"https://www.actiris.brussels/fr/citoyens/contrat-agence-locale-pour-l-emploi/"},
+      phare_aids:{url:"https://www.handicap.brussels/fr/themes/le-travail/le-travail-dans-le-milieu-ordinaire/les-aides-a-lemploi/les-aides-a-lemploi-du-service-phare"},
+      student_at_work:{url:"https://www.studentatwork.be/fr/index.html"},
+      actiris_training:{url:"https://www.actiris.brussels/fr/employeurs/former-pour-recruter/"},
+      job_plus:{url:"https://www.wallonie.be/fr/actualites/job-plus-un-nouvel-incitant-lembauche"},
+      first_hire_onss:{url:"https://emploi.belgique.be/fr/themes/emploi-et-marche-du-travail/mesures-demploi/reduction-premiers-engagements"},
       acs_official:{url:"https://www.actiris.brussels/fr/citoyens/agents-contractuels-subventionnes/"},
       appeal_cpas:{url:"https://www.mi-is.be/sites/default/files/documents/guide_du_recours_contre_la_decision_du_cpas_1_0.pdf"},
       appeal_onem:{url:"https://www.onem.be/index.php/citoyens/chomage-complet/comment-devez-vous-demander-les-allocations-/comment-votre-dossier-sera-t-il-traite"},
@@ -482,6 +488,14 @@
         ["Faire une demande précise d’aide sociale","Demandez au CPAS compétent une aide concrète (par exemple aide alimentaire, médicale ou matérielle), en précisant votre besoin. La demande peut être présentée sur place ou par écrit ; conservez un accusé de réception. CPAS Online est réservé aux premières demandes.",[["article57_request","Comment demander l’aide sociale"]]],
         ["Si le CPAS a déjà refusé","Ne refaites pas automatiquement une première demande. Vérifiez ce qui a été refusé, les motifs et le délai de recours. Une demande concernant un besoin distinct doit être examinée selon les conditions applicables ; l’octroi n’est pas garanti.",[["article57_request","Démarches et suivi"],["legal_aid","Aide juridique"]]]
       ],
+      ale_work:[["Vérifier vos conditions ALE","À Bruxelles, du 1er mars 2026 au 28 février 2027, les chercheurs d'emploi inoccupés inscrits depuis au moins 12 mois (6 mois dès 45 ans) peuvent aussi accéder à l'ALE, même sans allocation, selon les autres conditions applicables. Les règles sont différentes en Wallonie.",[["ale_actiris","ALE : conditions Actiris"]]],["Contacter l'ALE de votre commune","L'ALE propose certaines activités de proximité. Demandez les activités autorisées, l'inscription et les conditions de rémunération ; ce n'est pas un emploi ordinaire ni une prime générale à l'embauche.",[["ale_actiris","Démarche ALE"]]]],
+      handicap_employment:[["Vérifier si une reconnaissance PHARE vous concerne","À Bruxelles, l'admission au Service PHARE peut donner accès à des aides d'emploi sous conditions. Une difficulté de santé n'entraîne pas automatiquement cette reconnaissance. Vous n'avez pas à détailler votre diagnostic à EcoTank.",[["phare_aids","Conditions PHARE"]]],["Demander les aides au poste de travail","Si vous êtes admis au PHARE et domicilié à Bruxelles, votre futur employeur peut notamment examiner une prime d'insertion, un tutorat et une adaptation du poste. La demande relève du formulaire officiel et de la décision du PHARE.",[["phare_aids","Aides à l'emploi et formulaires"]]]],
+      student_job:[["Vérifier vos heures Student at Work","Les 650 premières heures annuelles sous contrat étudiant peuvent bénéficier de cotisations sociales de solidarité réduites, si les conditions sont remplies.",[["student_at_work","Mon quota et mon attestation"]]],["Télécharger une attestation pour un employeur","Student at Work fournit une attestation du solde des heures à transmettre à un futur employeur. La preuve de la qualité d'étudiant reste nécessaire.",[["student_at_work","Obtenir mon attestation"]]]],
+      young_worker:[["Vérifier votre situation à la fin des études","Une inscription comme chercheur d'emploi et le début éventuel du stage d'insertion peuvent être importants. Cela ne signifie pas automatiquement une prime employeur.",[["actiris_register","Vérifier l'inscription"]]],["Examiner Stage First ou la FPIE","À Bruxelles, un stage ou une formation chez l'employeur peut faciliter un recrutement selon âge, expérience et conditions du programme.",[["actiris_training","Formations pour recruter"]]]],
+      senior_worker:[["Vérifier les aides actuellement applicables","Ne présumez pas d'une réduction employeur liée uniquement à l'âge : plusieurs mesures régionales ont changé en juillet 2026. Vérifiez votre région et la date d'engagement.",[["actiris_training","Solutions formation emploi"]]],["Vérifier la FPIE ou l'ALE","À Bruxelles, l'ALE prévoit des conditions de durée d'inscription adaptées dès 45 ans ; la FPIE peut aussi être une piste selon votre situation.",[["ale_actiris","ALE et âge"]]]],
+      long_unemployed:[["Vérifier votre durée d'inscription","La durée d'inscription peut ouvrir certaines mesures, y compris l'ALE bruxelloise en 2026. Le critère varie selon la région et le dispositif.",[["ale_actiris","Vérifier l'ALE"]]],["Demander quelles aides sont liées à votre dossier","Selon la région, vérifier FPIE, emplois ACS ou Job Plus en Wallonie, sans supposer que le seul temps sans emploi suffit.",[["job_plus","Job Plus Wallonie"],["actiris_fpie","FPIE Bruxelles"]]]],
+      first_hire:[["Vérifier si l'entreprise peut bénéficier de la réduction premier engagement","Cette réduction de cotisations concerne l'historique de recrutement de l'employeur, pas un statut personnel du candidat. Elle peut être importante même si vous n'avez aucune attestation particulière.",[["first_hire_onss","Conditions premiers engagements"]]],["Proposer à l'employeur de faire vérifier son éligibilité","Demandez à son secrétariat social de confirmer le rang d'engagement et les autres conditions ONSS avant de compter cet avantage dans le coût du recrutement.",[["first_hire_onss","Procédure ONSS"]]]],
+      no_status:[["Votre absence de statut n'empêche pas toute aide","Commencez par regarder si l'employeur est admissible à la réduction premiers engagements. Cette aide dépend de sa situation, pas de votre âge ou de vos allocations.",[["first_hire_onss","Réduction premiers engagements"]]],["Vérifier votre inscription et votre ancienneté","Si vous êtes inscrit chez Actiris, le nombre de mois d'inscription peut rendre certaines pistes possibles, dont l'ALE en 2026. N'inventez pas une attestation que vous n'avez pas.",[["ale_actiris","Conditions ALE"]]],["Explorer une formation chez l'employeur","Même sans réduction liée au profil, la FPIE peut permettre de se former avant une embauche, sous conditions vérifiées avec Bruxelles Formation.",[["actiris_fpie","Conditions FPIE"]]]],
       employer_aid:[
         ["Vérifier mon éligibilité aux emplois ACS","Si vous êtes domicilié à Bruxelles et inscrit comme chercheur d’emploi inoccupé chez Actiris, regardez les offres ACS. Chaque offre peut avoir des conditions supplémentaires. Actiris vérifie votre éligibilité ; l’attestation ACS est indispensable avant l’entretien et le contrat.",[["acs_official","Actiris : offres ACS et attestation"]]],
         ["Vérifier une FPIE auprès d'un employeur","La FPIE permet à un employeur de vous former avant une embauche. Ce n'est pas une attestation ACS ou Activa ; les conditions sont vérifiées avec Bruxelles Formation avant la formation.",[["actiris_fpie_employer","FPIE : avantages et conditions"]]],
@@ -611,6 +625,14 @@
       ["actiris_no_income","Inscrit chez Actiris, sans emploi ni allocations"],
       ["employer_aid","Ai-je une attestation ou une aide qui facilite mon embauche ?"],
       ["article_60_61","Article 60 / 61 : emploi d’insertion via le CPAS"],
+      ["ale_work","Travailler via une ALE"],
+      ["handicap_employment","Handicap ou limitation de travail"],
+      ["student_job","Je suis étudiant"],
+      ["young_worker","Je suis jeune ou viens de terminer mes études"],
+      ["senior_worker","Je suis plus âgé"],
+      ["long_unemployed","Sans emploi depuis longtemps"],
+      ["first_hire","L'employeur débute ou engage son premier salarié"],
+      ["no_status","Je n'ai aucun statut avantageux"],
       ["a6_j6","A6/J6 : attestation pour une offre ACS"],
       ["article_57","Article 57 : demander une aide sociale"],
       ["no_job","Je n’ai pas d’emploi"],
@@ -631,7 +653,7 @@
     ];
     const selected=guides[topic]?topic:"overview";
     const cards=guides[selected];
-    const urgentIds=new Set(["urgent_food","urgent_shelter","urgent_care","urgent_income","urgent_refusal","urgent_access","actiris_no_income","no_job","employer_aid","article_60_61","a6_j6"]);
+    const urgentIds=new Set(["urgent_food","urgent_shelter","urgent_care","urgent_income","urgent_refusal","urgent_access","actiris_no_income","no_job","employer_aid","article_60_61","a6_j6","no_status"]);
     const firstChoices=choices.filter(([id])=>urgentIds.has(id));
     const otherChoices=choices.filter(([id])=>!urgentIds.has(id));
     const title={
@@ -641,6 +663,14 @@
       urgent_care:"Recevoir des soins sans couverture",
       urgent_income:"Retrouver des ressources sans attendre",
       actiris_no_income:"Inscrit chez Actiris, sans allocations",
+      ale_work:"Travailler via une ALE",
+      handicap_employment:"Handicap ou limitation de travail",
+      student_job:"Je suis étudiant",
+      young_worker:"Je suis jeune ou viens de terminer mes études",
+      senior_worker:"Je suis plus âgé",
+      long_unemployed:"Sans emploi depuis longtemps",
+      first_hire:"L'employeur débute ou engage son premier salarié",
+      no_status:"Je n'ai aucun statut avantageux",
       employer_aid:"Quelles aides à l’embauche pour mon profil ?",
       article_60_61:"Article 60 / 61 : contrat emploi d’insertion",
       a6_j6:"A6/J6 : attestation pour les emplois ACS",
