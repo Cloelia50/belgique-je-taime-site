@@ -1067,7 +1067,7 @@
     }
     if(event.target.closest("[data-lost-rights-restart]")){
       state.lostRightsQueue=["nothing","refused","stopped","administrative"].filter(x=>(state.lostRightsSelected||[]).includes(x));
-      state.lostRightsIndex=0;renderDifficultHelp("urgent_income");return;
+      state.lostRightsIndex=0;const first=(state.lostRightsQueue||[])[0];renderDifficultHelp(({nothing:"urgent_income",refused:"refusals",stopped:"urgent_income",administrative:"urgent_access"})[first]||"urgent_income");return;
     }
     const opt=event.target.closest("[data-entry-option]");
     if(opt){chooseOption(opt.dataset.entryQuestion,opt.dataset.entryOption);return;}
