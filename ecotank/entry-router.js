@@ -175,7 +175,7 @@
       const url=section.querySelector('a[href^="https://"]')?.getAttribute("href")||
         Array.from(section.querySelectorAll("p")).map(x=>x.textContent.trim()).find(x=>/^https:\/\/[^\s]+$/.test(x))||"";
       const exactPath=!!url&&/^https:\/\/[^/]+\/[^?#]+/.test(url);
-      const linkLabel=exactPath?"Ouvrir la page de cette démarche":"Ouvrir le site de l’organisme (accueil général, rubrique à rechercher : "+title+")";
+      const linkLabel=exactPath?"Consulter les informations sur cette démarche (lien à confirmer)":"Ouvrir le site de l’organisme — chercher : "+title;
       const wrapper=document.createElement("div");wrapper.className="ecotank-guided-contact";
       wrapper.style.cssText="border:1px solid #aaa;border-radius:8px;padding:12px;margin:12px 0;background:#f6f7f8;color:#161616";
       wrapper.innerHTML='<h4 style="margin:0 0 8px">Pour passer à l’action</h4>'+
@@ -183,6 +183,7 @@
         '<textarea readonly rows="4" style="box-sizing:border-box;width:100%;max-width:100%;padding:8px;background:white;color:black">'+esc("Bonjour,\n\n"+message+"\n\nMerci de me répondre et de préciser les prochaines étapes.\n\nCordialement.")+'</textarea>'+
         '<button type="button" data-guide-select>Copier / sélectionner le message</button>'+
         (url?'<p><a href="'+esc(url)+'" target="_blank" rel="noopener noreferrer">'+esc(linkLabel)+' ↗</a></p>':'')+
+        '<p><strong>Sur le site :</strong> ouvrez le lien, recherchez le nom de la démarche ci-dessus, puis vérifiez si un bouton « Introduire une demande », un formulaire, un numéro de téléphone ou une rubrique « Contact » est indiqué. Si aucun accès clair n’existe, utilisez le modèle de message auprès de l’organisme ; ne payez pas pour une demande non confirmée.</p>'+
         '<p><strong>Avant de fournir des pièces :</strong> demandez lesquelles sont indispensables et ce que la vérification permettra d’obtenir.</p>'+
         '<p><strong>Si la démarche échoue :</strong> notez la date, la réponse et les éventuels délais, puis demandez un interlocuteur ou un recours. Ne supposez pas qu’une demande suspend une saisie ou une échéance.</p>';
       section.appendChild(wrapper);
