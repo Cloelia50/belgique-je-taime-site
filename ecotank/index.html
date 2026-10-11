@@ -1068,17 +1068,15 @@ nav.index .tab{width:12px;height:22px;border-radius:5px 5px 0 0}
 </div></header><section id="simpleApp" class="simple-app" aria-live="polite">
   <div class="simple-shell">
     <section id="simpleHome" class="simple-screen active">
-      <div class="simple-card simple-home-card"><svg class="home-art" viewBox="0 0 220 196" aria-hidden="true" focusable="false"><g class="coin-float"><circle cx="56" cy="34" r="19" fill="#F2B33D"/><text x="56" y="41.5" text-anchor="middle" font-family="Bricolage Grotesque,Segoe UI,sans-serif" font-weight="700" font-size="21" fill="#0F2247">€</text></g><g class="trend" stroke="#0E6F5C" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"><path d="M132 46 L154 28 L172 38 L200 12"/><path d="M186 12 H200 V26" /></g><g class="twinkle" style="--d:0.0s" transform="translate(190,60) scale(0.9)" stroke="#F2B33D" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z" /> <path d="M20 2v4" /> <path d="M22 4h-4" /> <circle cx="4" cy="20" r="2" /></g><g class="twinkle" style="--d:0.55s" transform="translate(10,14) scale(0.7)" stroke="#F2B33D" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z" /> <path d="M20 2v4" /> <path d="M22 4h-4" /> <circle cx="4" cy="20" r="2" /></g><g class="twinkle" style="--d:1.1s" transform="translate(120,4) scale(0.6)" stroke="#F2B33D" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z" /> <path d="M20 2v4" /> <path d="M22 4h-4" /> <circle cx="4" cy="20" r="2" /></g><path d="M16,190 V107.0 a35.0,35.0 0 0 1 70,0 V190Z" fill="#1FA88B"/><path d="M25,190 V107.0 a26.0,26.0 0 0 1 52,0 V190" fill="none" stroke="#fff" stroke-opacity=".5" stroke-width="2.5"/><path d="M78,190 V62.0 a40.0,40.0 0 0 1 80,0 V190Z" fill="#0E6F5C"/><path d="M87,190 V62.0 a31.0,31.0 0 0 1 62,0 V190" fill="none" stroke="#fff" stroke-opacity=".5" stroke-width="2.5"/><path d="M150,190 V126.0 a30.0,30.0 0 0 1 60,0 V190Z" fill="#8BD6C1"/><path d="M159,190 V126.0 a21.0,21.0 0 0 1 42,0 V190" fill="none" stroke="#fff" stroke-opacity=".5" stroke-width="2.5"/><rect x="0" y="188" width="220" height="8" rx="4" fill="#0F2247" opacity=".12"/></svg>
-        <div class="simple-kicker">Ecotank · Bruxelles</div>
-        <h1>Trouvez ce que vous pouvez économiser.</h1>
-        <p class="simple-lead">Aides, droits, réductions et services utiles : répondez à quelques questions et Ecotank trie plus de 800 pistes à votre place. Vous pouvez toujours passer une question.</p>
-        <div class="simple-home-buttons">
-          <button type="button" class="primary" id="simpleStart">Commencer</button>
-          <button type="button" class="admin-entry" id="simpleAdminStart"><strong>Ma situation administrative est compliquée</strong><span>Nationalité, séjour, réfugié ou protection, fonction publique, diplomatie, sécurité sociale, perte de droits…</span></button>
-          <button type="button" id="simpleMySavings">Mes économies</button>
-          <button type="button" id="simpleExplore">Explorer toutes les pistes</button>
+      <div class="simple-card simple-home-card">
+        <div class="simple-kicker">EcoTank · Faire des économies</div>
+        <h1>Je veux explorer des pistes pour pouvoir faire des économies.</h1>
+        <div class="simple-home-buttons" aria-label="Choisir ma situation">
+          <button type="button" class="primary" onclick="window.EcoTankEntryRouter?.startWithChoice?.('working')">J'ai un emploi</button>
+          <button type="button" onclick="window.EcoTankEntryRouter?.startWithChoice?.('not_working')">Je ne travaille pas</button>
         </div>
-        <div class="simple-home-note" id="simpleHomeNote">Vos réponses restent sur cet appareil. Aucun compte n’est nécessaire.</div>
+        <p class="simple-home-note" id="simpleHomeNote">Vos réponses restent sur cet appareil. Aucun compte n'est nécessaire.</p>
+        <div hidden aria-hidden="true"><button id="simpleStart" type="button">Commencer</button><button id="simpleAdminStart" type="button">Aide administrative</button><button id="simpleMySavings" type="button">Mes économies</button><button id="simpleExplore" type="button">Explorer</button></div>
       </div>
     </section>
 
