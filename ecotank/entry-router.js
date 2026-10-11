@@ -139,6 +139,7 @@
       (qid==="q_entry_situation"?'<button type="button" class="entry-choice foundation" data-jozef-start>Koekelberg · Pension, carrière à l’étranger ou chambre sans bail</button>':"")+
       (qid==="q_entry_situation"?'<button type="button" class="entry-choice foundation" data-samira-start>Schaerbeek · Je travaille mais j’ai des dettes, un huissier ou un loyer impayé</button>':"")+
       (qid==="q_entry_situation"?'<button type="button" class="entry-choice foundation" data-celine-start>Ganshoren · Famille nombreuse : quatre économies à vérifier</button>':"")+
+      (qid==="q_entry_situation"?'<button type="button" class="entry-choice foundation" data-karim-start>Jette · Parent veuf avec enfant en situation de handicap : droits déjà obtenus</button>':"")+
       controls+
       '<div class="entry-footer"><span></span><button type="button" class="linkish" data-entry-unknown>Je ne sais pas quoi choisir</button></div>';
     showScreen("simpleEntryRouter");
@@ -488,6 +489,43 @@
 
   // Parcours Daniel : aucune saisie personnelle, sortie rapide du questionnaire.
 
+  function karimInventory(){
+    if(!ensureScreens())return;
+    const host=document.getElementById("entryDifficultHost");
+    const checks=[
+      ["enfant","Supplément d’allocations familiales pour l’affection de mon enfant"],
+      ["survie","Pension de survie ou allocation de transition après le décès"],
+      ["conge","Congé ou aménagement des horaires pour m’occuper de mon enfant"],
+      ["repit","Aide à domicile, répit ou transport adapté"],
+      ["fiscal","Avantages fiscaux pour enfant à charge et frais de garde"]
+    ];
+    const have=state.karimHave||{};
+    host.innerHTML='<h2>Qu’avez-vous déjà obtenu ?</h2><p>Cochez seulement ce que vous avez déjà. Vous pouvez aussi ne rien cocher. Aucun document, diagnostic détaillé ou revenu annuel n’est demandé.</p>'+
+      checks.map(x=>'<label style="display:block;padding:12px 0;border-bottom:1px solid #aaa"><input type="checkbox" data-karim-have="'+x[0]+'" '+(have[x[0]]?'checked':'')+'> '+esc(x[1])+'</label>').join('')+
+      '<div class="entry-route-actions"><button type="button" data-karim-result>Voir seulement ce qu’il me reste à vérifier</button><button type="button" data-karim-back>Retour</button></div>';
+    showScreen("simpleDifficultHelp");
+  }
+  function karimGuide(short=false){
+    if(!ensureScreens())return;
+    const host=document.getElementById("entryDifficultHost");
+    const have=state.karimHave||{};
+    const steps=[
+      ["enfant","Reconnaissance de l’affection de votre enfant et supplément","Vérifiez auprès de votre caisse d’allocations familiales si un supplément est ouvert pour votre enfant. C’est le Centre d’évaluation de l’autonomie et du handicap d’Iriscare qui évalue les conséquences du handicap : le diagnostic d’autisme ne suffit pas à établir automatiquement les points. Si le supplément est déjà obtenu, demandez simplement si le dossier est à jour ou révisable.","https://famiris.brussels/fr/faq/handicap/comment-demander-un-supplement/"],
+      ["survie","Pension de survie et salaire","Contactez le Service fédéral des Pensions (1765) pour vérifier si une pension de survie ou une allocation de transition a été demandée, selon l’âge lors du décès et les conditions légales. Demandez le plafond de cumul applicable à votre emploi, car le salaire peut modifier le droit ou le montant. Ne devinez pas un plafond universel.","https://www.sfpd.fgov.be/fr/montant-de-la-pension/calcul/types-de-pensions/cumul"],
+      ["conge","Congé et aménagement des horaires","Votre mutualité peut vérifier si vous remplissez les conditions pour être reconnu aidant proche avec droits sociaux ; cette reconnaissance est nécessaire au congé pour aidants proches. Vous pouvez également examiner d’autres congés familiaux et discuter d’horaires adaptés avec votre employeur. Un aménagement demandé n’est pas toujours un droit automatique.","https://www.onem.be/index.php/citoyens/interruption-de-carriere-credit-temps-et-conges-thematiques/conges-thematiques-tous-secteurs/conge-pour-aidants-proches"],
+      ["repit","Soutien, transport et temps de répit","Demandez à un service social à Jette ou à une association spécialisée de faire le point sur les aides à domicile, le répit et les transports adaptés accessibles à votre enfant. Précisez l’âge et le besoin de mobilité seulement au moment de vérifier une offre concrète.","https://www.iriscare.brussels/fr/"],
+      ["fiscal","Fiscalité : ne pas confondre thérapie et frais de garde","Demandez au SPF Finances ou à un service fiscal de vérifier l’avantage pour enfant à charge avec handicap reconnu et, séparément, la réduction pour frais de garde admissibles (sous conditions et avec attestation). Les séances de thérapie ne sont pas automatiquement déductibles comme frais de garde. Ne rassemblez les attestations que pour un avantage applicable.","https://finances.belgium.be/fr/particuliers/avantages_fiscaux/garde_enfants/parents-isol%C3%A9s"]
+    ];
+    const remaining=steps.filter(x=>!have[x[0]]);
+    host.innerHTML='<div id="karim-sheet" style="max-width:730px;margin:auto;padding:12px;background:#fff;color:#111">'+
+      '<h2>Parent veuf avec enfant autiste · Jette</h2><p><strong>Déjà obtenu :</strong> '+(steps.filter(x=>have[x[0]]).map(x=>esc(x[1])).join(' · ')||'Aucun élément indiqué')+'</p>'+
+      '<h3>Ce qu’il vous reste à vérifier ('+remaining.length+')</h3>'+
+      (remaining.length?remaining.map((x,i)=>'<section style="padding:9px 0;border-top:1px solid #aaa;break-inside:avoid"><h3>'+(i+1)+'. '+esc(x[1])+'</h3><p>'+esc(x[2])+'</p>'+(short?'':'<p style="overflow-wrap:anywhere;font-size:.84em">'+esc(x[3])+'</p>')+'</section>').join(''):'<p>Vous avez coché les cinq domaines. Aucun nouveau dossier imposé : vous pouvez simplement vérifier si un droit doit être renouvelé ou révisé.</p>')+
+      '<p>Un organisme qui vous demande un document doit pouvoir vous dire quel droit il permet de vérifier. Ne recherchez pas votre AER pour cette première orientation.</p></div>'+
+      '<div class="entry-route-actions"><button type="button" data-karim-edit>Modifier mon inventaire</button><button type="button" data-karim-print>Imprimer / enregistrer PDF</button><button type="button" data-karim-short>Version courte</button><button type="button" data-karim-full>Version détaillée</button></div>';
+    if(!document.getElementById("karim-print-style")){const st=document.createElement("style");st.id="karim-print-style";st.textContent='@media print{body *{visibility:hidden!important}#karim-sheet,#karim-sheet *{visibility:visible!important}#karim-sheet{position:absolute;top:0;left:0;width:100%!important;max-width:none!important;color:#000!important;background:#fff!important}@page{size:A4;margin:12mm}}';document.head.appendChild(st);}
+    showScreen("simpleDifficultHelp");
+  }
   function celineGuide(){
     if(!ensureScreens())return;
     const h=document.getElementById("entryDifficultHost");
@@ -1424,6 +1462,14 @@
     if(event.target.closest("[data-lost-rights-reselect]")){
       state.lostRightsQueue=[];state.lostRightsIndex=0;state.immediateNeed="";renderQuestion("q_lost_rights_goal");return;
     }
+    if(event.target.closest("[data-karim-start]")){state.karimHave={};karimInventory();return;}
+    const karimTick=event.target.closest("[data-karim-have]");if(karimTick){const k=karimTick.dataset.karimHave;state.karimHave=state.karimHave||{};state.karimHave[k]=!!karimTick.checked;return;}
+    if(event.target.closest("[data-karim-result]")){karimGuide(false);return;}
+    if(event.target.closest("[data-karim-edit]")){karimInventory();return;}
+    if(event.target.closest("[data-karim-short]")){karimGuide(true);return;}
+    if(event.target.closest("[data-karim-full]")){karimGuide(false);return;}
+    if(event.target.closest("[data-karim-print]")){window.print();return;}
+    if(event.target.closest("[data-karim-back]")){renderQuestion("q_entry_situation");return;}
     if(event.target.closest("[data-celine-start]")){celineGuide();return;}
     if(event.target.closest("[data-celine-print]")){window.print();return;}
     if(event.target.closest("[data-celine-back]")){renderQuestion("q_entry_situation");return;}
