@@ -578,7 +578,7 @@
           };
           const t=pages[state.workChoice]||pages.person;
           const howto=actionGuide(state.workChoice);
-          html+='<h2>Une première action adaptée</h2><section class="guided-one-step"><h3>'+esc(t[0])+'</h3><p>'+esc(t[1])+'</p><div class="guided-main-link"><a href="'+esc(t[2])+'" target="_blank" rel="noopener noreferrer">'+esc(t[3])+' ↗</a></div>'+
+          html+='<h2>Une première action adaptée</h2><section class="guided-one-step"><h3>'+esc(t[0])+'</h3><p>'+esc(t[1])+'</p></p>'+feasibleAction('work-'+state.workChoice,t[2],t[3])+'<p>'+
             howto+'<p>Cette piste est-elle praticable pour vous ?</p>'+pick([
               ["cannot_access","Non : impossible d’y accéder (connexion, téléphone, déplacement)"],
               ["already_tried","Non : j’ai déjà essayé sans résultat"],
