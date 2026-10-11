@@ -2546,27 +2546,27 @@
           {
             "id": "starting",
             "label": "Je prépare ou teste mon activité",
-            "destination_id": "self_employed"
+            "next_question_id": "q_independent_region"
           },
           {
             "id": "running",
             "label": "Je suis indépendant et veux diminuer mes frais",
-            "destination_id": "self_employed"
+            "next_question_id": "q_independent_region"
           },
           {
             "id": "cashflow_problem",
             "label": "Je gagne trop peu ou je ne sais plus payer",
-            "destination_id": "self_employed"
+            "next_question_id": "q_independent_region"
           },
           {
             "id": "interruption",
             "label": "Je dois interrompre, arrêter ou fermer",
-            "destination_id": "self_employed"
+            "next_question_id": "q_independent_region"
           },
           {
             "id": "hiring",
             "label": "Je souhaite engager quelqu'un",
-            "destination_id": "self_employed"
+            "next_question_id": "q_independent_region"
           }
         ]
       },
@@ -2648,6 +2648,34 @@
             "id": "daily",
             "label": "Dépenses et aides quotidiennes",
             "destination_id": "student"
+          }
+        ]
+      },
+      {
+        "id": "q_independent_region",
+        "order": 4,
+        "text": "Où votre activité est-elle établie ?",
+        "helper": "Ce renseignement permet d'écarter les primes d'autres régions.",
+        "options": [
+          {
+            "id": "brussels",
+            "label": "Bruxelles",
+            "destination_id": "self_employed"
+          },
+          {
+            "id": "wallonia",
+            "label": "Wallonie",
+            "destination_id": "self_employed"
+          },
+          {
+            "id": "flanders",
+            "label": "Flandre",
+            "destination_id": "self_employed"
+          },
+          {
+            "id": "unknown",
+            "label": "Je ne sais pas ou pas encore",
+            "destination_id": "self_employed"
           }
         ]
       }
