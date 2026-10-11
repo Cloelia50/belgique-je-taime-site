@@ -2794,6 +2794,72 @@
             "source_url": "https://www.actiris.brussels/fr/citoyens/devenir-independant/prime-pour-independant/",
             "verified_at": "2026-10-11",
             "freshness": "high"
+          },
+          {
+            "id": "self_tremplin",
+            "title": "Chômage : vérifier le Tremplin-indépendants",
+            "description": "Si vous percevez des allocations, vérifiez les conditions et déclarez l'activité avant le début. Ne présumez pas que cela s'applique à une personne sans allocations.",
+            "action_label": "Consulter les conditions officielles",
+            "url": "https://www.onem.be/citoyens/chomage-complet/pouvez-vous-travailler-pendant-le-chomage-/pouvez-vous-exercer-une-activite-independante-a-titre-accessoire-pendant-votre-chomage-dans-le-cadre-de-lavantage-tremplin-independants-",
+            "source_url": "https://www.onem.be/citoyens/chomage-complet/pouvez-vous-travailler-pendant-le-chomage-/pouvez-vous-exercer-une-activite-independante-a-titre-accessoire-pendant-votre-chomage-dans-le-cadre-de-lavantage-tremplin-independants-",
+            "authority": "ONEM",
+            "verified_at": "2026-10-11",
+            "freshness": "medium"
+          },
+          {
+            "id": "self_airbag",
+            "title": "Wallonie : vérifier Airbag avant le lancement",
+            "description": "L'aide à la transition vers le statut indépendant principal dépend de critères wallons. Vérifiez les règles actualisées et les délais avant de débuter.",
+            "action_label": "Consulter les conditions officielles",
+            "url": "https://aidesetat.wallonie.be/fr/demandes/2598_solliciter-une-aide-a-la-creation-d-une-activite-d-independant-airbag.html",
+            "source_url": "https://aidesetat.wallonie.be/fr/demandes/2598_solliciter-une-aide-a-la-creation-d-une-activite-d-independant-airbag.html",
+            "authority": "Wallonie",
+            "verified_at": "2026-10-11",
+            "freshness": "medium"
+          },
+          {
+            "id": "self_cheques",
+            "title": "Wallonie : chèques-entreprises",
+            "description": "Pour porteurs de projet, indépendants complémentaires, starters et entreprises répondant aux conditions wallonnes. Vérifier le chèque adapté.",
+            "action_label": "Consulter les conditions officielles",
+            "url": "https://cheques-entreprises.spw.valid.wallonie.be/cheques/?acces-rapide=creation-dentreprise",
+            "source_url": "https://cheques-entreprises.spw.valid.wallonie.be/cheques/?acces-rapide=creation-dentreprise",
+            "authority": "SPW",
+            "verified_at": "2026-10-11",
+            "freshness": "medium"
+          },
+          {
+            "id": "self_cotisations",
+            "title": "Cotisations difficiles : réduire, échelonner ou demander une dispense",
+            "description": "La caisse d'assurances sociales examine les cotisations provisoires et les plans. La dispense suit une procédure distincte et peut réduire les droits à pension.",
+            "action_label": "Consulter les conditions officielles",
+            "url": "https://www.inasti.be/fr/faq/et-si-je-ne-sais-pas-payer-mes-cotisations-sociales",
+            "source_url": "https://www.inasti.be/fr/faq/et-si-je-ne-sais-pas-payer-mes-cotisations-sociales",
+            "authority": "INASTI",
+            "verified_at": "2026-10-11",
+            "freshness": "medium"
+          },
+          {
+            "id": "self_passerelle",
+            "title": "Arrêt forcé : vérifier le droit passerelle",
+            "description": "Si vous devez interrompre ou cesser l'activité, examinez les circonstances ouvrant un droit passerelle, et les délais de demande, avec votre caisse.",
+            "action_label": "Consulter les conditions officielles",
+            "url": "https://www.inasti.be/fr/faq/je-suis-oblige-dinterrompre-mon-activite-ou-de-larreter-cause-de-difficultes-economiques-et",
+            "source_url": "https://www.inasti.be/fr/faq/je-suis-oblige-dinterrompre-mon-activite-ou-de-larreter-cause-de-difficultes-economiques-et",
+            "authority": "INASTI",
+            "verified_at": "2026-10-11",
+            "freshness": "medium"
+          },
+          {
+            "id": "self_student",
+            "title": "Étudiant-indépendant : vérifier le statut",
+            "description": "Un étudiant peut relever d'un statut social spécifique selon l'âge, les études et les revenus. Vérifier auprès de la caisse sociale avant de commencer.",
+            "action_label": "Consulter les conditions officielles",
+            "url": "https://www.inasti.be/fr",
+            "source_url": "https://www.inasti.be/fr",
+            "authority": "INASTI",
+            "verified_at": "2026-10-11",
+            "freshness": "medium"
           }
         ],
         "status_focus_axes": [
@@ -3023,6 +3089,17 @@
             "source_url": "https://economie-emploi.brussels/primes-investissements",
             "verified_at": "2026-10-06",
             "freshness": "high"
+          },
+          {
+            "id": "company_hiring_shared",
+            "title": "Recruter : vérifier FPIE, ACS et réductions ONSS",
+            "description": "Une entreprise, y compris un indépendant employeur, peut avoir accès à des réductions ou aides selon son profil et celui du candidat. Vérifier séparément les dispositifs, sans additionner les montants.",
+            "action_label": "Examiner les aides à l'emploi",
+            "url": "https://www.actiris.brussels/fr/employeurs/",
+            "source_url": "https://www.actiris.brussels/fr/employeurs/",
+            "authority": "Actiris",
+            "verified_at": "2026-10-11",
+            "freshness": "medium"
           }
         ]
       },
