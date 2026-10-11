@@ -134,7 +134,7 @@
       '<h2>'+esc(q.text||"Votre situation")+'</h2>'+
       (q.helper?'<p>'+esc(q.helper)+'</p>':"")+
       (qid==="q_entry_situation"?'<div class="entry-choice-grid"><button type="button" class="entry-choice foundation" data-homeless-start>Je suis sans domicile ou sans ressources : trouver une aide humaine</button></div>':"")+
-      (qid==="q_entry_situation"?'<button type="button" class="entry-choice foundation" data-kevin-start>Je suis hébergé chez des proches, avec des dettes ou un chômage en difficulté</button>':"")+
+      (qid==="q_entry_situation"?'<button type="button" class="entry-choice foundation" data-kevin-start>Anderlecht · Hébergé chez des proches, dettes ou chômage en difficulté</button>':"")+
       controls+
       '<div class="entry-footer"><span></span><button type="button" class="linkish" data-entry-unknown>Je ne sais pas quoi choisir</button></div>';
     showScreen("simpleEntryRouter");
