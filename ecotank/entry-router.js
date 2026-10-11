@@ -866,8 +866,10 @@
       priority:(preferred&&preferred.test(card.title+" "+card.description)?3:0)+((card.priority_for||[]).some(x=>tokens.includes(x))?1:0)
     })).sort((a,b)=>b.priority-a.priority);
     const intake=d.intake;
-    const index=Math.max(0,Math.min(Number(state.businessCardIndex||0),Math.max(0,cards.length-1)));
-    const visibleCards=cards.slice(index,index+2);
+    // Ne pas montrer les fiches sans lien avec le besoin déclaré comme résultats personnalisés.
+    const relevantCards=preferred?cards.filter(x=>x.priority>=3):[];
+    const index=Math.max(0,Math.min(Number(state.businessCardIndex||0),Math.max(0,relevantCards.length-1)));
+    const visibleCards=relevantCards.slice(index,index+2);
     const intakeHtml=intake&&Array.isArray(intake.questions)?(
       '<section class="business-intake"><h3>Pour affiner « Mon entreprise »</h3><p>'+esc(intake.privacy||"Ces réponses restent dans cette page.")+'</p><div class="business-intake-grid">'+
       intake.questions.map(q=>'<label>'+esc(q.label)+'<select data-business-intake="'+esc(q.id)+'"><option value="">Je préfère ne pas préciser</option>'+(q.options||[]).map(o=>'<option value="'+esc(o)+'" '+(state.businessAnswers[q.id]===o?'selected':'')+'>'+esc(o)+'</option>').join("")+'</select></label>').join("")+
@@ -884,8 +886,8 @@
       '<div class="entry-topline"><button type="button" class="linkish" data-entry-restart>← Changer de situation</button></div>'+
       '<div class="business-head"><div class="simple-kicker">EcoTank professionnel</div><h2>'+esc(d.title||routeTitle)+'</h2><p class="business-lead">'+esc(d.intro||"EcoTank adapte ses conseils à votre activité professionnelle.")+'</p><div class="business-context">'+context+'</div></div>'+
       '<div class="business-safety"><strong>Important :</strong> ces pistes servent à agir et à vérifier. EcoTank ne déduit jamais automatiquement qu’une prime, un plan de paiement ou un autre droit vous est accordé.</div>'+
-      '<section><h3>Vos deux premières pistes</h3><div class="business-grid">'+(cards.length?visibleCards.map((x,i)=>resourceCardHtml(x.card,index+i,x.priority)).join(""):'<div class="business-card"><h3>Le parcours se construit</h3><p>Les premières sources officielles sont en cours de raccordement.</p></div>')+'</div></section>'+
-      (cards.length>index+2?'<div class="entry-route-actions"><button type="button" data-business-more>Ces pistes ne conviennent pas → Voir deux autres</button></div>':'')+
+      '<section><h3>Pistes liées à votre besoin, à vérifier</h3><div class="business-grid">'+(relevantCards.length?visibleCards.map((x,i)=>resourceCardHtml(x.card,index+i,x.priority)).join(""):'<div class="business-card"><h3>Le parcours se construit</h3><p>Les premières sources officielles sont en cours de raccordement.</p></div>')+'</div></section>'+
+      (relevantCards.length>index+2?'<div class="entry-route-actions"><button type="button" data-business-more>Ces pistes ne conviennent pas → Voir deux autres</button></div>':'')+
 
       '<div class="entry-route-actions"><button type="button" data-business-refine>Préciser mon besoin</button><button type="button" data-entry-personal>Je veux aussi vérifier mes droits personnels</button><button type="button" class="linkish" data-entry-home>Accueil</button></div>';
     showScreen("simpleBusinessHome");
