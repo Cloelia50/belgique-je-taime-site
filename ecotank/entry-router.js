@@ -258,7 +258,35 @@
     window.ECOTANK_ENTRY_EMPLOYMENT=employment;
   }
 
+  function renderNoDocsSuggestions(){
+    const host=document.getElementById("entryDestinationHost");if(!host)return;
+    const cards=[
+      ["Allocations familiales","Vérifiez auprès de votre caisse les montants versés et les suppléments qui pourraient manquer. Vous n’avez pas besoin d’un AER pour poser la question.","https://famiris.brussels/fr/"],
+      ["Soins moins chers","Demandez à votre mutualité si vous bénéficiez de l’intervention majorée et quels justificatifs seraient nécessaires pour l’examiner.","https://www.inami.fgov.be/fr"],
+      ["Énergie","Vérifiez si un tarif social ou une aide énergie s’applique à votre situation. Une facture récente peut être utile, mais n’est pas obligatoire pour commencer cette vérification.","https://www.socialenergie.be/"],
+      ["Logement et dépenses importantes","Si le loyer, les dettes ou le logement posent problème, demandez un accompagnement ciblé au service social de votre commune plutôt qu’une liste de petites primes.","https://be.brussels/fr"]
+    ];
+    host.innerHTML='<div class="simple-kicker">Économies sans documents</div><h2>Quatre démarches à explorer sans AER</h2><p>Voici une première orientation, et non un calcul personnalisé ou la confirmation d’un droit. Ne recherchez des pièces fiscales que lorsque le service vous indique ce qu’elles changent.</p>'+
+      cards.map(x=>'<section class="guided-one-step"><h3>'+esc(x[0])+'</h3><p>'+esc(x[1])+'</p><a target="_blank" rel="noopener noreferrer" href="'+esc(x[2])+'">Voir le service ↗</a></section>').join('')+
+      '<div class="guided-actions"><button type="button" data-general-detailed>Affiner si cela en vaut la peine</button><button type="button" data-entry-restart>Changer de situation</button></div>';
+    showScreen("simpleEntryDestination");
+  }
   function handoffGeneral(){
+    // Montrer la contrepartie AVANT de demander une information fiscale difficile à trouver.
+    if(!ensureScreens())return;
+    const host=document.getElementById("entryDestinationHost");
+    host.innerHTML='<div class="simple-kicker">EcoTank · Vos économies</div>'+
+      '<h2>Commencez sans sortir vos documents</h2>'+
+      '<p>Vous pouvez explorer des aides et leurs conditions sans chercher votre avertissement-extrait de rôle (AER), donner votre revenu annuel ni indiquer des informations intimes.</p>'+
+      '<section class="guided-one-step"><h3>Ce que vous pouvez obtenir maintenant</h3>'+
+      '<p>Une première liste de démarches à vérifier : allocations familiales et suppléments, remboursements de soins, logement, énergie ou emploi selon votre situation. Aucun montant ni droit n’est garanti sans vérification.</p>'+
+      '<p><strong>Pourquoi demander éventuellement des documents plus tard ?</strong> Seulement pour départager les aides soumises à plafonds ou chiffrer un gain qui ne peut pas être estimé autrement. Avant chaque demande, EcoTank doit expliquer ce qu’elle permettra de calculer.</p>'+
+      '<div class="guided-actions"><button type="button" class="primary" data-general-skip-docs>Explorer les pistes sans AER</button>'+
+      '<button type="button" data-general-detailed>Je souhaite affiner avec mes informations</button>'+
+      '<button type="button" data-entry-restart>Choisir une autre situation</button></div></section>';
+    showScreen("simpleEntryDestination");
+  }
+  function handoffGeneralProceed(){
     prefillEmployment();
     hideCustomScreens();
     state.bypassStart=true;
@@ -1475,6 +1503,8 @@
     const allowance=event.target.closest("[data-saving-allowance]");if(allowance){state.answers.q_qualifying_allowance=allowance.dataset.savingAllowance;state.savingStep=0;renderPersonalCheck();return;}
     if(event.target.closest("[data-saving-again]")){delete state.answers.q_qualifying_allowance;state.savingStep=0;renderPersonalCheck();return;}
     if(event.target.closest("[data-saving-next]")){state.savingStep=Number(state.savingStep||0)+1;renderPersonalCheck();return;}
+    if(event.target.closest("[data-general-skip-docs]")){state.skipSensitiveProfile=true;renderNoDocsSuggestions();return;}
+    if(event.target.closest("[data-general-detailed]")){handoffGeneralProceed();return;}
     if(event.target.closest("[data-personal-continue]")){handoffGeneral();return;}
     if(event.target.closest("[data-business-more]")){state.businessCardIndex=Number(state.businessCardIndex||0)+1;renderBusiness(state.destinationId);return;}
     if(event.target.closest("[data-business-refine]")){renderQuestion(state.destinationId==="company"?"q_employer_goal":"q_independent_goal");return;}
