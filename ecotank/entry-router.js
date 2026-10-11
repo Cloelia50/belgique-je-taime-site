@@ -151,9 +151,9 @@
     if(qid==="q_household_region"){state.destinationId="guided_orientation";return renderPersonalCheck();}
     // Les dépenses du ménage relèvent du moteur général d'économies, pas de la liste administrative.
     if(qid==="q_household_goal"){state.destinationId="guided_orientation";return handoffGeneral();}
-    if(qid==="q_home_goal"&&["household","family"].includes(oid)){state.destinationId="guided_orientation";return handoffGeneral();}
+    if(qid==="q_home_goal"&&!opt.next_question_id&&["household","family"].includes(oid)){state.destinationId="guided_orientation";return handoffGeneral();}
     if(qid==="q_home_goal"&&oid==="job"){state.destinationId="foundation_recovery";return renderDifficultHelp("no_job");}
-    if(qid==="q_retired_goal"||qid==="q_student_goal"||qid==="q_employee_goal"){state.destinationId=opt.destination_id||"guided_orientation";return handoffGeneral();}
+    if((qid==="q_retired_goal"||qid==="q_student_goal"||qid==="q_employee_goal")&&!opt.next_question_id){state.destinationId=opt.destination_id||"guided_orientation";return handoffGeneral();}
     const next=opt.next_question_id||q.next_question_id;
     if(next){
       renderQuestion(next);
