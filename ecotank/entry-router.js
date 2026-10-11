@@ -463,6 +463,16 @@
         ["Préserver les besoins essentiels en attendant","Pour manger immédiatement, cherchez distribution ou restaurant social dans le répertoire FDSS. Les organismes vérifient eux-mêmes les critères et les capacités.",[["fdss_food","Trouver une aide alimentaire"]]],
         ["Si CPAS et chômage ont déjà dit non","N'introduisez pas une nouvelle première demande CPAS sans vérifier votre situation. Faites étudier les refus, leur date et les possibilités de recours ; le parcours « CPAS et chômage : deux refus » détaille les autres droits.",[["legal_aid","Aide juridique indépendante"],["appeal_court","Recours sociaux"]]]
       ],
+      actiris_no_income:[
+        ["Vérifier si une FPIE peut faciliter votre embauche","La FPIE permet à une entreprise de vous former 4 semaines à 6 mois, avec engagement ensuite sous conditions. Vous devez notamment être inscrit comme chercheur d’emploi inoccupé. Contactez Bruxelles Formation avant de commencer.",[["actiris_fpie","Vérifier les conditions FPIE"]]],
+        ["Présenter la FPIE à un employeur","Vous pouvez parler de la FPIE lors d'un entretien. L'employeur peut former un candidat en versant une indemnité de formation plutôt qu'un salaire habituel pendant la formation. Une prime spécifique peut exister pour un candidat bruxellois non indemnisé, de diplôme au plus CESS. Ce n'est pas une attestation Activa.",[["actiris_fpie_employer","FPIE : informations pour l'employeur"]]],
+        ["Si la FPIE ne convient pas","Votre inscription Actiris reste valable. Vérifiez d'autres possibilités de stages et formations adaptées à votre situation ; le dispositif Activa pour nouveaux engagements est supprimé depuis le 15 juillet 2026.",[["actiris_activa_end","Activa supprimé : annonce officielle"],["actiris_register","Services Actiris"]]]
+      ],
+      no_job:[
+        ["Vérifier votre inscription comme chercheur d'emploi","L'inscription chez Actiris permet d'accéder aux offres, formations et accompagnements même sans toucher d'allocations.",[["actiris_register","M'inscrire ou vérifier mon inscription"]]],
+        ["Examiner une formation directement chez un employeur","La FPIE peut ouvrir un chemin vers un emploi si vous remplissez les conditions et trouvez une entreprise intéressée.",[["actiris_fpie","Conditions FPIE"]]],
+        ["Trouver un autre accompagnement à l'emploi","Actiris donne accès à des services d'accompagnement, aux offres et aux formations. L'ancienne mesure Activa n'est plus accessible aux nouveaux engagements.",[["actiris_register","Services Actiris"]]]
+      ],
       urgent_refusal:[
         ["Repérer la date limite du recours","Rassemblez la décision écrite, sa date de notification et le motif du refus. Les recours devant le tribunal du travail sont généralement possibles dans les 3 mois ; faites contrôler le délai propre à votre décision.",[["appeal_court","Recours devant le tribunal du travail"]]],
         ["Accéder à un avis juridique gratuit","Un premier avis juridique est gratuit ; un avocat peut être désigné gratuitement ou à faible coût selon les ressources. Apportez les refus du CPAS, chômage ou autres institutions.",[["legal_aid","Demander une aide juridique"]]],
@@ -574,6 +584,8 @@
       ["urgent_shelter","Dormir en sécurité"],
       ["urgent_care","Me soigner"],
       ["urgent_income","Revenus ou emploi"],
+      ["actiris_no_income","Inscrit chez Actiris, sans emploi ni allocations"],
+      ["no_job","Je n’ai pas d’emploi"],
       ["urgent_refusal","Contester un refus"],
       ["urgent_access","Débloquer une démarche"],
       ["urgent_asylum","Protection internationale : sans accueil"],
@@ -591,7 +603,7 @@
     ];
     const selected=guides[topic]?topic:"overview";
     const cards=guides[selected];
-    const urgentIds=new Set(["urgent_food","urgent_shelter","urgent_care","urgent_income","urgent_refusal","urgent_access"]);
+    const urgentIds=new Set(["urgent_food","urgent_shelter","urgent_care","urgent_income","urgent_refusal","urgent_access","actiris_no_income","no_job"]);
     const firstChoices=choices.filter(([id])=>urgentIds.has(id));
     const otherChoices=choices.filter(([id])=>!urgentIds.has(id));
     const title={
@@ -600,6 +612,8 @@
       urgent_shelter:"Trouver un hébergement pour cette nuit",
       urgent_care:"Recevoir des soins sans couverture",
       urgent_income:"Retrouver des ressources sans attendre",
+      actiris_no_income:"Inscrit chez Actiris, sans allocations",
+      no_job:"Je cherche un emploi",
       urgent_refusal:"Un refus : vérifier mes recours",
       urgent_access:"Faire une démarche sans itsme ni GSM",
       urgent_asylum:"Protection internationale : accueil et soins",
@@ -628,6 +642,8 @@
       urgent_shelter:["Demandez une place au Samusocial pour cette nuit. Place non garantie.","Sans GSM, consultez la procédure avec un téléphone emprunté.","Si aucune place, demandez au Samusocial une réorientation."],
       urgent_care:["Demandez une consultation au centre Athéna.","Prenez contact avec le CASO pour un rendez-vous.","Vérifiez vos droits auprès de votre ancienne mutuelle ou de la CAAMI."],
       urgent_refusal:["Repérez la date de notification du refus. Vérifiez vite le délai de recours.","Demandez un avis juridique avec la décision.","Si le refus est oral, demandez une décision écrite et datée."],
+      actiris_no_income:["Vérifiez les conditions de la FPIE pour travailler en entreprise.","Présentez la FPIE à un employeur potentiel.","Si la FPIE ne convient pas, explorez une autre formation Actiris."],
+      no_job:["Vérifiez votre inscription chez Actiris.","Examinez la FPIE pour vous former chez un employeur.","Consultez les autres possibilités de formation et d’accompagnement."],
       urgent_access:["Essayez l'eID et le lecteur via CSAM, sans itsme.","Si vous avez un e-mail, vérifiez la clé CSAM par e-mail.","Sans accès numérique, demandez une procédure papier ou un guichet."]
     };
     const choicesHtml=list=>list.map(([id,label])=>'<button type="button" class="entry-choice" data-help-topic="'+id+'">'+esc(label)+'</button>').join("");
