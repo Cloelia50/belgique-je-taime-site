@@ -58,29 +58,6 @@
     document.body.classList.add("simple-mode");
     document.body.classList.remove("explore-mode","advanced-explore");
     document.querySelectorAll("#simpleApp .simple-screen").forEach(el=>el.classList.toggle("active",el.id===id));
-    if(id==="simpleDifficultHelp"&&Array.isArray(state.lostRightsQueue)&&state.lostRightsQueue.length){
-      const host=document.getElementById("entryDifficultHost");
-      if(host){
-        host.querySelector("[data-multi-banner]")?.remove();
-        const names={nothing:"Je n’ai plus aucune ressource",refused:"Une aide a été refusée",stopped:"Mes allocations ont été arrêtées",administrative:"Mes démarches sont bloquées"};
-        const order=["nothing","refused","stopped","administrative"];
-        const saved=order.filter(x=>(state.lostRightsSelected||[]).includes(x));
-        const all=saved.length>state.lostRightsQueue.length?saved:state.lostRightsQueue;
-        state.lostRightsQueue=all;
-        const ix=Math.min(Math.max(0,Number(state.lostRightsIndex||0)),all.length-1);
-        const next=ix+1<all.length;
-        const banner=document.createElement("section");
-        banner.setAttribute("data-multi-banner","");
-        banner.className="guided-one-step";
-        banner.setAttribute("aria-live","polite");
-        banner.innerHTML='<p class="guided-step-count">Problème '+(ix+1)+' sur '+all.length+' — '+esc(names[all[ix]]||"Votre situation")+'</p>'+
-          '<p>On avance une situation à la fois, sans perdre les autres.</p>'+
-          '<div class="guided-actions"><button type="button" data-lost-rights-next>'+(next?"Passer à une autre situation":"Revenir à mes choix")+'</button>'+
-          '<button type="button" data-lost-rights-reselect>Modifier mes choix</button></div>';
-        host.insertBefore(banner,host.firstChild);
-      }
-    }
-
     window.scrollTo({top:0,behavior:"smooth"});
   }
 
@@ -515,7 +492,7 @@
         '<section class="guided-one-step"><p class="guided-step-count">Piste '+(step+1)+' sur '+all.length+'</p><h3>'+esc(task[0])+'</h3><p>'+esc(task[1])+'</p>'+
         '<div class="guided-main-link"><a href="'+esc(task[2])+'" target="_blank" rel="noopener noreferrer">'+esc(task[3])+' ↗</a></div>'+
         '<div class="guided-actions">'+(step+1<all.length?'<button type="button" data-help-next>Cette piste ne convient pas — une autre</button>':'')+
-        '<button type="button" data-lost-rights-next>Passer à la situation suivante</button>'+
+        '<button type="button" data-lost-rights-next>'+((state.lostRightsIndex||0)+1<(state.lostRightsQueue||[]).length?'Passer à une autre situation':'Revenir à mes situations')+'</button>'+
         '<button type="button" data-lost-rights-reselect>Modifier mes réponses</button></div></section>';
       showScreen("simpleDifficultHelp");return;
     }
