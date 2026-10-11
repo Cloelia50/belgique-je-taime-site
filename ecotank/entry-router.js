@@ -148,6 +148,7 @@
     if(qid==="q_worker_type"){state.answers.q_work_class=oid;}
     if(qid==="q_independent_goal"){state.answers.q_business_stage=oid==="hiring"?"hiring":oid;state.businessCardIndex=0;}
     if(qid==="q_independent_region"){state.businessCardIndex=0;}
+    if(qid==="q_household_region"){state.destinationId="guided_orientation";return renderPersonalCheck();}
     // Les dépenses du ménage relèvent du moteur général d'économies, pas de la liste administrative.
     if(qid==="q_household_goal"){state.destinationId="guided_orientation";return handoffGeneral();}
     if(qid==="q_home_goal"&&["household","family"].includes(oid)){state.destinationId="guided_orientation";return handoffGeneral();}
@@ -159,6 +160,19 @@
       return;
     }
     routeToDestination(opt.destination_id||q.destination_id||currentDestinationFromFirst());
+  }
+
+  function renderPersonalCheck(){
+    const host=document.getElementById("entryDestinationHost");if(!host)return;
+    const a=state.answers,region=a.q_household_region||"unknown";
+    const kinds=[["q_employee_goal","Travail et ménage"],["q_retired_goal","Pension et ménage"],["q_student_goal","Études et ménage"],["q_home_goal","Foyer et ménage"],["q_disability_goal","Handicap et ménage"]];
+    const kind=kinds.find(([k])=>a[k])?.[1]||"Votre ménage";
+    host.innerHTML='<div class="simple-kicker">Économies adaptées</div><h2>'+esc(kind)+'</h2>'+
+      '<section class="guided-one-step"><h3>Une précision est encore nécessaire</h3>'+
+      '<p>Votre région : '+esc(({brussels:"Bruxelles",wallonia:"Wallonie",flanders:"Flandre",unknown:"non précisée"})[region])+'. Les réductions peuvent aussi dépendre du revenu du ménage, de sa composition et du tarif déjà appliqué.</p>'+
+      '<p><strong>Aucune économie ne peut encore être annoncée comme personnellement applicable.</strong> Vous pouvez poursuivre la vérification détaillée.</p>'+
+      '<div class="guided-actions"><button type="button" data-personal-continue>Vérifier les droits et les économies</button><button type="button" data-entry-restart>Changer de situation</button></div></section>';
+    showScreen("simpleEntryDestination");
   }
 
   function routeToDestination(id){
@@ -963,6 +977,7 @@
     const opt=event.target.closest("[data-entry-option]");
     if(opt){chooseOption(opt.dataset.entryQuestion,opt.dataset.entryOption);return;}
 
+    if(event.target.closest("[data-personal-continue]")){handoffGeneral();return;}
     if(event.target.closest("[data-business-more]")){state.businessCardIndex=Number(state.businessCardIndex||0)+1;renderBusiness(state.destinationId);return;}
     if(event.target.closest("[data-business-refine]")){renderQuestion(state.destinationId==="company"?"q_employer_goal":"q_independent_goal");return;}
     if(event.target.closest("[data-entry-home]")){hideCustomScreens();document.getElementById("simpleHome")?.classList.add("active");window.scrollTo({top:0,behavior:"smooth"});return;}
