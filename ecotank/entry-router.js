@@ -147,6 +147,7 @@
     if(picked){state.destinationId="foundation_recovery";return renderDifficultHelp(picked);}
     if(qid==="q_worker_type"){state.answers.q_work_class=oid;}
     if(qid==="q_independent_goal"){state.answers.q_business_stage=oid==="hiring"?"hiring":oid;state.businessCardIndex=0;}
+    if(qid==="q_independent_region"){state.businessCardIndex=0;}
     // Les dépenses du ménage relèvent du moteur général d'économies, pas de la liste administrative.
     if(qid==="q_household_goal"){state.destinationId="guided_orientation";return handoffGeneral();}
     if(qid==="q_home_goal"&&["household","family"].includes(oid)){state.destinationId="guided_orientation";return handoffGeneral();}
@@ -867,9 +868,27 @@
     })).sort((a,b)=>b.priority-a.priority);
     const intake=d.intake;
     // Ne pas montrer les fiches sans lien avec le besoin déclaré comme résultats personnalisés.
-    const relevantCards=preferred?cards.filter(x=>x.priority>=3):[];
+    const region=state.answers.q_independent_region||"unknown";
+    // Catalogue contrôlé : une fiche n'est admissible que pour l'objectif choisi et la région.
+    // Une réponse manquante bloque les aides régionales et ne devient jamais un droit confirmé.
+    const allowedByGoal={
+      starting:["self_1819","self_actiris_prime","self_tremplin","self_airbag","self_cheques","self_primostarter","self_student"],
+      running:["self_subsidies","self_vat_franchise","self_cheques","self_1819","self_brussels_prime_status"],
+      cashflow_problem:["self_social_contributions","self_cotisations","self_passerelle","self_1819"],
+      interruption:["self_passerelle","self_cotisations","self_1819"],
+      hiring:["company_hiring_shared","self_1819"]
+    };
+    const regionById={
+      self_1819:"brussels",self_actiris_prime:"brussels",self_subsidies:"brussels",
+      self_brussels_prime_status:"brussels",self_airbag:"wallonia",self_cheques:"wallonia"
+    };
+    const ids=allowedByGoal[goal]||[];
+    const relevantCards=id==="self_employed" ? cards.filter(x=>
+      ids.includes(x.card.id)&&(!regionById[x.card.id]||regionById[x.card.id]===region)
+    ) : [];
+
     const index=Math.max(0,Math.min(Number(state.businessCardIndex||0),Math.max(0,relevantCards.length-1)));
-    const visibleCards=relevantCards.slice(index,index+2);
+    const visibleCards=relevantCards.slice(index,index+1);
     const intakeHtml=intake&&Array.isArray(intake.questions)?(
       '<section class="business-intake"><h3>Pour affiner « Mon entreprise »</h3><p>'+esc(intake.privacy||"Ces réponses restent dans cette page.")+'</p><div class="business-intake-grid">'+
       intake.questions.map(q=>'<label>'+esc(q.label)+'<select data-business-intake="'+esc(q.id)+'"><option value="">Je préfère ne pas préciser</option>'+(q.options||[]).map(o=>'<option value="'+esc(o)+'" '+(state.businessAnswers[q.id]===o?'selected':'')+'>'+esc(o)+'</option>').join("")+'</select></label>').join("")+
@@ -886,8 +905,8 @@
       '<div class="entry-topline"><button type="button" class="linkish" data-entry-restart>← Changer de situation</button></div>'+
       '<div class="business-head"><div class="simple-kicker">EcoTank professionnel</div><h2>'+esc(d.title||routeTitle)+'</h2><p class="business-lead">'+esc(d.intro||"EcoTank adapte ses conseils à votre activité professionnelle.")+'</p><div class="business-context">'+context+'</div></div>'+
       '<div class="business-safety"><strong>Important :</strong> ces pistes servent à agir et à vérifier. EcoTank ne déduit jamais automatiquement qu’une prime, un plan de paiement ou un autre droit vous est accordé.</div>'+
-      '<section><h3>Pistes liées à votre besoin, à vérifier</h3><div class="business-grid">'+(relevantCards.length?visibleCards.map((x,i)=>resourceCardHtml(x.card,index+i,x.priority)).join(""):'<div class="business-card"><h3>Le parcours se construit</h3><p>Les premières sources officielles sont en cours de raccordement.</p></div>')+'</div></section>'+
-      (relevantCards.length>index+2?'<div class="entry-route-actions"><button type="button" data-business-more>Ces pistes ne conviennent pas → Voir deux autres</button></div>':'')+
+      '<section><h3>Première économie ou démarche à vérifier</h3><div class="business-grid">'+(relevantCards.length?visibleCards.map((x,i)=>resourceCardHtml(x.card,index+i,x.priority)).join(""):'<div class="business-card"><h3>Le parcours se construit</h3><p>Les premières sources officielles sont en cours de raccordement.</p></div>')+'</div></section>'+
+      (relevantCards.length>index+1?'<div class="entry-route-actions"><button type="button" data-business-more>Cela ne me concerne pas → Autre piste</button></div>':'')+
 
       '<div class="entry-route-actions"><button type="button" data-business-refine>Préciser mon besoin</button><button type="button" data-entry-personal>Je veux aussi vérifier mes droits personnels</button><button type="button" class="linkish" data-entry-home>Accueil</button></div>';
     showScreen("simpleBusinessHome");
@@ -944,7 +963,7 @@
     const opt=event.target.closest("[data-entry-option]");
     if(opt){chooseOption(opt.dataset.entryQuestion,opt.dataset.entryOption);return;}
 
-    if(event.target.closest("[data-business-more]")){state.businessCardIndex=Number(state.businessCardIndex||0)+2;renderBusiness(state.destinationId);return;}
+    if(event.target.closest("[data-business-more]")){state.businessCardIndex=Number(state.businessCardIndex||0)+1;renderBusiness(state.destinationId);return;}
     if(event.target.closest("[data-business-refine]")){renderQuestion(state.destinationId==="company"?"q_employer_goal":"q_independent_goal");return;}
     if(event.target.closest("[data-entry-home]")){hideCustomScreens();document.getElementById("simpleHome")?.classList.add("active");window.scrollTo({top:0,behavior:"smooth"});return;}
     if(event.target.closest("[data-entry-restart]")){state.answers={};state.destinationId="";renderQuestion("q_entry_situation");return;}
