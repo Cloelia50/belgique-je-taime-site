@@ -2288,9 +2288,9 @@
     "entry_policy": {
       "required_before_general_aid_catalog": true,
       "default_general_aid_catalog_visibility": "hidden_until_orientation",
-      "max_questions_before_destination": 3,
+      "max_questions_before_destination": 4,
       "allow_skip_to_search": false,
-      "note": "EcoTank pour particuliers : départ par profil de ménage/personne. Question suivante sur la priorité, et une troisième uniquement en cas de droits perdus. Aucun parcours public entreprise.",
+      "note": "EcoTank particulier : premier choix de situation, puis sous-type (travail ou foyer/sans emploi), puis besoin concret; au maximum quatre questions seulement dans la branche droits perdus.",
       "presentation": {
         "mode": "one_question_per_screen",
         "option_layout": "grouped_cards",
@@ -2305,37 +2305,27 @@
       {
         "id": "q_entry_situation",
         "order": 1,
-        "text": "Pour qui cherchez-vous des économies ?",
+        "text": "Quelle est votre situation aujourd'hui ?",
         "options": [
           {
+            "id": "working",
+            "label": "Je travaille : employé, ouvrier ou indépendant",
+            "next_question_id": "q_worker_type"
+          },
+          {
+            "id": "home_vulnerable",
+            "label": "Je suis au foyer, sans emploi, en situation de handicap ou sans revenu",
+            "next_question_id": "q_vulnerable_type"
+          },
+          {
             "id": "household",
-            "label": "Pour mon ménage ou ma famille",
+            "label": "Je cherche des économies pour mon ménage ou ma famille",
             "next_question_id": "q_household_goal"
-          },
-          {
-            "id": "employee",
-            "label": "Je suis salarié ou fonctionnaire",
-            "next_question_id": "q_employee_goal"
-          },
-          {
-            "id": "unemployed",
-            "label": "Je suis sans emploi",
-            "next_question_id": "q_unemployed_goal"
-          },
-          {
-            "id": "self_employed",
-            "label": "Je suis indépendant ou je veux le devenir",
-            "next_question_id": "q_independent_goal"
           },
           {
             "id": "retired",
             "label": "Je suis pensionné",
             "next_question_id": "q_retired_goal"
-          },
-          {
-            "id": "disability",
-            "label": "Je suis en situation de handicap ou d'incapacité",
-            "next_question_id": "q_disability_goal"
           },
           {
             "id": "student",
@@ -2344,8 +2334,99 @@
           },
           {
             "id": "unknown",
-            "label": "Je ne sais pas quelle situation choisir",
+            "label": "Je ne sais pas où me situer",
             "destination_id": "guided_orientation"
+          }
+        ]
+      },
+      {
+        "id": "q_worker_type",
+        "order": 2,
+        "text": "Comment travaillez-vous ?",
+        "options": [
+          {
+            "id": "employee",
+            "label": "Je suis employé ou salarié",
+            "next_question_id": "q_employee_goal"
+          },
+          {
+            "id": "worker",
+            "label": "Je suis ouvrier",
+            "next_question_id": "q_employee_goal"
+          },
+          {
+            "id": "self_employed",
+            "label": "Je suis indépendant",
+            "next_question_id": "q_independent_goal"
+          },
+          {
+            "id": "starting",
+            "label": "Je voudrais devenir indépendant",
+            "next_question_id": "q_independent_goal"
+          },
+          {
+            "id": "public",
+            "label": "Je travaille dans le secteur public",
+            "next_question_id": "q_employee_goal"
+          }
+        ]
+      },
+      {
+        "id": "q_vulnerable_type",
+        "order": 2,
+        "text": "Quelle situation vous correspond le mieux ?",
+        "options": [
+          {
+            "id": "homemaker",
+            "label": "Je suis au foyer, sans activité rémunérée",
+            "next_question_id": "q_home_goal"
+          },
+          {
+            "id": "unemployed",
+            "label": "Je suis sans emploi",
+            "next_question_id": "q_unemployed_goal"
+          },
+          {
+            "id": "disability",
+            "label": "Je vis avec un handicap, une incapacité ou une invalidité",
+            "next_question_id": "q_disability_goal"
+          },
+          {
+            "id": "no_income",
+            "label": "Je ne reçois aucun revenu",
+            "next_question_id": "q_lost_rights_goal"
+          },
+          {
+            "id": "mixed",
+            "label": "Plusieurs situations me concernent",
+            "next_question_id": "q_unemployed_goal"
+          }
+        ]
+      },
+      {
+        "id": "q_home_goal",
+        "order": 2,
+        "text": "Où voulez-vous faire des économies ?",
+        "options": [
+          {
+            "id": "household",
+            "label": "Dépenses du ménage et factures",
+            "destination_id": "guided_orientation"
+          },
+          {
+            "id": "family",
+            "label": "Enfants, famille et avantages",
+            "destination_id": "guided_orientation"
+          },
+          {
+            "id": "own_rights",
+            "label": "Vérifier mes droits personnels",
+            "destination_id": "social_protection"
+          },
+          {
+            "id": "job",
+            "label": "Reprendre une activité ou trouver un revenu",
+            "destination_id": "foundation_recovery"
           }
         ]
       },
