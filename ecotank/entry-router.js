@@ -135,6 +135,7 @@
       (q.helper?'<p>'+esc(q.helper)+'</p>':"")+
       (qid==="q_entry_situation"?'<div class="entry-choice-grid"><button type="button" class="entry-choice foundation" data-homeless-start>Je suis sans domicile ou sans ressources : trouver une aide humaine</button></div>':"")+
       (qid==="q_entry_situation"?'<button type="button" class="entry-choice foundation" data-kevin-start>Anderlecht · Hébergé chez des proches, dettes ou chômage en difficulté</button>':"")+
+      (qid==="q_entry_situation"?'<button type="button" class="entry-choice foundation" data-fatou-start>Molenbeek · Parent seul avec enfants : électricité, pension et aides</button>':"")+
       controls+
       '<div class="entry-footer"><span></span><button type="button" class="linkish" data-entry-unknown>Je ne sais pas quoi choisir</button></div>';
     showScreen("simpleEntryRouter");
@@ -456,6 +457,24 @@
 
   // Parcours Daniel : aucune saisie personnelle, sortie rapide du questionnaire.
 
+  function fatouGuide(short=false){
+    if(!ensureScreens())return;
+    const host=document.getElementById("entryDifficultHost");
+    const steps=[
+      ["Électricité coupée ou menacée","Contacter rapidement le service énergie du CPAS de Molenbeek. Dire que trois enfants vivent au foyer et que les coupures sont répétées. Demander une aide urgente, une vérification du compteur à prépaiement, du contrat et du tarif social. Le statut de client protégé est distinct et soumis à conditions, notamment dette et mise en demeure.","https://brugel.brussels/page/client-protege"],
+      ["Pension alimentaire impayée","Demander au SECAL la récupération des impayés et vérifier la possibilité d'avances si un titre exécutoire prévoit une pension. Sinon, demander comment établir ce droit. Les avances ne sont pas automatiques.","https://finances.belgium.be/fr/particuliers/famille/rente_alimentaire/secal/je_suis_creancier_d_aliments"],
+      ["Allocations pour parent isolé","Contacter la caisse qui paie les allocations familiales. Pour trois enfants de 3, 7 et 11 ans, demander de vérifier le supplément social et le supplément monoparental selon les conditions de revenus et de ménage.","https://famiris.brussels/fr/faq/supplement-social/supplement-famille-monoparentale/"],
+      ["Logement social et loyer","Vérifier l'inscription au logement social. L'allocation-loyer bruxelloise exige notamment une inscription sur liste d'attente et un bail de résidence principale ; elle n'est pas automatique.","https://be.brussels/fr/logement/location/aides-la-location/aides-financieres/allocation-loyer"],
+      ["Santé","Contacter la mutualité : demander si les remboursements majorés, souvent appelés BIM, sont appliqués, et comment limiter les frais pour les enfants.","https://www.inami.fgov.be/fr"],
+      ["École et repas","Vérifier avec la caisse le supplément d'âge annuel (prime scolaire, payé en août). Demander aux écoles et au CPAS les aides aux repas, fournitures et activités.","https://famiris.brussels/fr/faq/paiements-allocations-familiales/prime-scolaire/"]
+    ];
+    host.innerHTML='<div id="fatou-sheet" style="max-width:730px;margin:auto;background:#fff;color:#111;padding:12px"><h2>Parent isolé · Molenbeek</h2><p><strong>Urgence : avoir de l’électricité et répondre aux besoins des enfants.</strong> Aucun revenu annuel à calculer pour lire ce plan.</p>'+
+      steps.map((x,i)=>'<section style="border-top:1px solid #aaa;padding:8px 0;break-inside:avoid"><h3>'+(i+1)+'. '+esc(x[0])+'</h3><p>'+esc(x[1])+'</p>'+(short?'':'<p style="overflow-wrap:anywhere;font-size:.83em">'+esc(x[2])+'</p>')+'</section>').join('')+
+      '<p><strong>À dire au CPAS :</strong> « Je vis seule avec trois enfants. L’électricité coupe souvent et l’autre parent ne paie pas la pension alimentaire. J’ai besoin d’aide pour le courant aujourd’hui et pour vérifier mes droits. Pouvez-vous m’accompagner oralement ? »</p></div>'+
+      '<div class="entry-route-actions"><button type="button" data-fatou-print>Imprimer / enregistrer PDF</button><button type="button" data-fatou-short>Version courte pour capture</button><button type="button" data-fatou-full>Version détaillée</button><button type="button" data-fatou-back>Retour</button></div>';
+    if(!document.getElementById("fatou-print-style")){const st=document.createElement("style");st.id="fatou-print-style";st.textContent='@media print{body *{visibility:hidden!important}#fatou-sheet,#fatou-sheet *{visibility:visible!important}#fatou-sheet{position:absolute;top:0;left:0;width:100%!important;max-width:none!important;color:#000!important;background:#fff!important}@page{size:A4;margin:12mm}}';document.head.appendChild(st);}
+    showScreen("simpleDifficultHelp");
+  }
   function kevinGuide(short=false){
     if(!ensureScreens())return;
     const host=document.getElementById("entryDifficultHost");
@@ -1302,6 +1321,11 @@
     if(event.target.closest("[data-lost-rights-reselect]")){
       state.lostRightsQueue=[];state.lostRightsIndex=0;state.immediateNeed="";renderQuestion("q_lost_rights_goal");return;
     }
+    if(event.target.closest("[data-fatou-start]")){fatouGuide(false);return;}
+    if(event.target.closest("[data-fatou-short]")){fatouGuide(true);return;}
+    if(event.target.closest("[data-fatou-full]")){fatouGuide(false);return;}
+    if(event.target.closest("[data-fatou-print]")){window.print();return;}
+    if(event.target.closest("[data-fatou-back]")){renderQuestion("q_entry_situation");return;}
     if(event.target.closest("[data-kevin-start]")){kevinGuide(false);return;}
     if(event.target.closest("[data-kevin-print]")){window.print();return;}
     if(event.target.closest("[data-kevin-short]")){kevinGuide(true);return;}
