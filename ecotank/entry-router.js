@@ -133,6 +133,7 @@
       '<div class="simple-kicker">EcoTank · Faire des économies</div>'+
       '<h2>'+esc(q.text||"Votre situation")+'</h2>'+
       (q.helper?'<p>'+esc(q.helper)+'</p>':"")+
+      (qid==="q_entry_situation"?'<div class="entry-choice-grid"><button type="button" class="entry-choice foundation" data-homeless-start>Je suis sans domicile ou sans ressources : trouver une aide humaine</button></div>':"")+
       controls+
       '<div class="entry-footer"><span></span><button type="button" class="linkish" data-entry-unknown>Je ne sais pas quoi choisir</button></div>';
     showScreen("simpleEntryRouter");
@@ -449,6 +450,31 @@
       '<div class="resource-actions">'+service[3].map(link).join("")+'</div></section>'+
       '<div class="entry-route-actions"><button type="button" class="linkish" data-access-reset>Recommencer le choix</button>'+
       '<button type="button" data-access-back>Retour aux aides et droits</button></div>';
+    showScreen("simpleDifficultHelp");
+  }
+
+  function homelessGuide(short=false){
+    if(!ensureScreens())return;
+    const host=document.getElementById("entryDifficultHost");
+    const steps=[
+      ["1. Aujourd’hui : repas et mise à l’abri","L’Ilot, 73 rue de l’Église Saint-Gilles : accueil de jour, repas, douche et permanence sociale (en semaine, horaires à vérifier). Pour une demande de nuit au Samusocial : 0800 99 340, éventuellement avec un travailleur social. Une place n’est pas garantie."],
+      ["2. Demander une aide financière et une adresse de référence","Au CPAS compétent pour le lieu de séjour habituel. À Saint-Gilles : 40 rue Fernand Bernier. Demander sans attendre l’enregistrement d’une demande d’aide financière / revenu d’intégration, un accusé de réception daté et l’examen d’une adresse de référence. L’adresse officielle n’est pas une condition préalable à la demande de RIS."],
+      ["3. Réparer les documents et la réception du courrier","Avec le travailleur social, identifier les papiers existants, la perte éventuelle de la carte d’identité ou du titre de séjour, les démarches auprès de la commune et un lieu où relever le courrier. Ne pas présumer qu’une déclaration de perte suffit à tous les titres."],
+      ["4. Rouvrir l’accès aux soins","Faire vérifier la couverture santé auprès de la mutualité, de la CAAMI ou du CPAS. Les soins urgents ne doivent pas attendre toutes les formalités."],
+      ["5. Préparer un compte pour les paiements","Faire vérifier avec un accompagnateur les conditions et documents du service bancaire de base et demander au CPAS les modalités de paiement si aucun compte n’est encore accessible."],
+      ["6. Examiner un éventuel droit au chômage","Si la personne a déjà travaillé, faire vérifier le dossier par son organisme de paiement (syndicat ou CAPAC), ainsi que les décisions et délais. Cette démarche ne doit pas retarder l’aide sociale."],
+      ["7. Ensuite : logement durable, formation et économies","Demander un accompagnement logement et, lorsque les prérequis sont en cours, explorer l’emploi, les formations et les tarifs sociaux."]
+    ];
+    const chosen=short?steps.map(x=>[x[0],x[1].split(". ")[0]+"."]):steps;
+    host.innerHTML='<div id="homeless-sheet" style="max-width:720px"><h2>Ma feuille de route — sans domicile, Saint-Gilles</h2><p><strong>Une démarche à la fois, dans le bon ordre.</strong> Les demandes du point 2 peuvent commencer sans attendre la résolution du point 3. Aucun revenu annuel, numéro de téléphone ou identifiant n’est demandé.</p><p><strong>Aide humaine, accès aux démarches et impression :</strong> Point d’Appui du CPAS, 40 rue de Bosnie, Saint-Gilles. Accueil sans rendez-vous lundi–vendredi 9h–12h et 13h–16h (horaires à confirmer). Demander aussi une aide pour imprimer cette feuille.</p>'+
+      chosen.map(x=>'<section style="border-top:1px solid #999;padding:8px 0;break-inside:avoid"><h3>'+esc(x[0])+'</h3><p>'+esc(x[1])+'</p></section>').join('')+
+      '<p><strong>Phrase à utiliser :</strong> « Je n’ai pas de domicile stable, pas de téléphone ni de moyen fiable de recevoir du courrier. Je souhaite déposer une demande d’aide aujourd’hui, obtenir une preuve écrite et être accompagné pour ces étapes. »</p></div>'+
+      '<div data-homeless-controls class="entry-route-actions"><button type="button" data-homeless-print>Imprimer / enregistrer PDF</button><button type="button" data-homeless-short>Version courte pour capture d’écran</button><button type="button" data-homeless-full>Version détaillée</button><button type="button" data-homeless-close>Revenir aux situations</button></div><p>Ordinateur partagé : ne renseignez pas de données personnelles dans un formulaire, et fermez votre session après utilisation.</p>';
+    if(!document.getElementById("homeless-print-style")){
+      const style=document.createElement("style");style.id="homeless-print-style";
+      style.textContent='@media print{body *{visibility:hidden!important}#homeless-sheet,#homeless-sheet *{visibility:visible!important}#homeless-sheet{position:absolute;top:0;left:0;width:100%;font-size:11pt;color:black;background:white}@page{size:A4;margin:12mm}}';
+      document.head.appendChild(style);
+    }
     showScreen("simpleDifficultHelp");
   }
 
@@ -1205,6 +1231,11 @@
     if(event.target.closest("[data-lost-rights-reselect]")){
       state.lostRightsQueue=[];state.lostRightsIndex=0;state.immediateNeed="";renderQuestion("q_lost_rights_goal");return;
     }
+    if(event.target.closest("[data-homeless-start]")){homelessGuide(false);return;}
+    if(event.target.closest("[data-homeless-print]")){window.print();return;}
+    if(event.target.closest("[data-homeless-short]")){homelessGuide(true);return;}
+    if(event.target.closest("[data-homeless-full]")){homelessGuide(false);return;}
+    if(event.target.closest("[data-homeless-close]")){renderQuestion("q_entry_situation");return;}
     const feasible=event.target.closest("[data-feasible]");
     if(feasible){state.feasibility=state.feasibility||{};const k=feasible.dataset.feasibleKey;if(feasible.dataset.feasible==="reset")delete state.feasibility[k];else state.feasibility[k]=feasible.dataset.feasible;renderDifficultHelp();return;}
     const work=event.target.closest("[data-work-pick]");
