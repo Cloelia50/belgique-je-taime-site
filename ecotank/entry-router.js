@@ -453,26 +453,50 @@
     showScreen("simpleDifficultHelp");
   }
 
+  // Parcours Daniel : aucune saisie personnelle, sortie rapide du questionnaire.
   function homelessGuide(short=false){
     if(!ensureScreens())return;
     const host=document.getElementById("entryDifficultHost");
     const steps=[
-      ["1. Aujourd’hui : repas et mise à l’abri","L’Ilot, 73 rue de l’Église Saint-Gilles : accueil de jour, repas, douche et permanence sociale (en semaine, horaires à vérifier). Pour une demande de nuit au Samusocial : 0800 99 340, éventuellement avec un travailleur social. Une place n’est pas garantie."],
-      ["2. Demander une aide financière et une adresse de référence","Au CPAS compétent pour le lieu de séjour habituel. À Saint-Gilles : 40 rue Fernand Bernier. Demander sans attendre l’enregistrement d’une demande d’aide financière / revenu d’intégration, un accusé de réception daté et l’examen d’une adresse de référence. L’adresse officielle n’est pas une condition préalable à la demande de RIS."],
-      ["3. Réparer les documents et la réception du courrier","Avec le travailleur social, identifier les papiers existants, la perte éventuelle de la carte d’identité ou du titre de séjour, les démarches auprès de la commune et un lieu où relever le courrier. Ne pas présumer qu’une déclaration de perte suffit à tous les titres."],
-      ["4. Rouvrir l’accès aux soins","Faire vérifier la couverture santé auprès de la mutualité, de la CAAMI ou du CPAS. Les soins urgents ne doivent pas attendre toutes les formalités."],
-      ["5. Préparer un compte pour les paiements","Faire vérifier avec un accompagnateur les conditions et documents du service bancaire de base et demander au CPAS les modalités de paiement si aucun compte n’est encore accessible."],
-      ["6. Examiner un éventuel droit au chômage","Si la personne a déjà travaillé, faire vérifier le dossier par son organisme de paiement (syndicat ou CAPAC), ainsi que les décisions et délais. Cette démarche ne doit pas retarder l’aide sociale."],
-      ["7. Ensuite : logement durable, formation et économies","Demander un accompagnement logement et, lorsque les prérequis sont en cours, explorer l’emploi, les formations et les tarifs sociaux."]
+      {title:"1 — Aujourd'hui : manger, se laver, demander une mise à l'abri",
+       action:"Allez si possible au centre de jour L'Ilot, 73 rue de l'Église Saint-Gilles, 1060 Bruxelles. Repas, douches, repos et permanence sociale, du lundi au vendredi (lundi et mercredi-vendredi 8h30-17h ; mardi 8h30-13h30). Fermé le week-end. Pour la nuit, demandez à un travailleur social de vous aider à contacter le Samusocial au 0800 99 340. La place n'est pas garantie.",
+       ask:"Je suis à la rue. Pouvez-vous m'aider aujourd'hui pour manger, dormir et rencontrer un travailleur social ?",url:"https://ilot.be/accueil-durgence/"},
+      {title:"2 — Dès que possible : déposer une demande d'aide ET d'adresse de référence",
+       action:"CPAS de Saint-Gilles : 40 rue Fernand Bernier, 1060 Bruxelles. Pour une première demande, privilégiez la matinée : le site du CPAS indique l'accueil des nouvelles demandes sans rendez-vous de 8h à 11h45 les jours ouvrables. Demandez une preuve datée du dépôt. Demandez l'examen du revenu d'intégration ou de toute autre aide sociale adaptée ET de l'adresse de référence. On peut demander le RIS même sans domicile officiel. La compétence du CPAS dépend du lieu de séjour effectif et de certaines exceptions.",
+       ask:"Je souhaite déposer aujourd'hui une demande d'aide sociale et demander une adresse de référence. Pouvez-vous enregistrer la demande et me remettre un accusé de réception daté ?",url:"https://www.cpas1060.be/"},
+      {title:"3 — Papiers et courrier : avec l'assistant social",
+       action:"Faites vérifier quel document d'identité existe encore et la procédure de perte ou de renouvellement applicable. Une adresse de référence peut permettre de recevoir du courrier selon les conditions légales ; convenez de la fréquence et du lieu de retrait. N'attendez pas le renouvellement de la carte pour déposer la demande d'aide.",
+       ask:"Quel document faut-il refaire d'abord, où puis-je récupérer le courrier et qui peut m'accompagner ?",url:"https://www.belgium.be/fr/logement/logement_social/sans-abri"},
+      {title:"4 — Soins et mutualité",
+       action:"Demandez au CPAS et à une mutualité ou à la CAAMI de vérifier votre couverture et les possibilités de soins. Une situation médicale urgente ne doit pas attendre les papiers.",
+       ask:"Je ne sais pas si je suis encore couvert. Qui peut vérifier mes droits et m'aider à recevoir des soins ?",url:"https://www.caami-hziv.fgov.be/fr"},
+      {title:"5 — Compte bancaire et versement",
+       action:"Avec un professionnel, vérifiez les justificatifs exigés pour un compte et l'éventuel service bancaire de base. Si vous n'avez pas encore de compte, demandez au CPAS comment recevoir une aide pendant ce délai.",
+       ask:"De quoi ai-je besoin pour ouvrir un compte, et comment recevoir l'aide en attendant ?",url:"https://economie.fgov.be/fr/themes/services-financiers/services-de-paiement/service-bancaire-de-base"},
+      {title:"6 — Vérifier le chômage s'il y a eu un emploi",
+       action:"Si vous avez travaillé ou reçu une allocation, demandez à un organisme de paiement (CAPAC ou syndicat) de vérifier votre dossier et les délais. Cette vérification ne doit pas retarder la demande au CPAS.",
+       ask:"Pouvez-vous vérifier si j'ai encore des droits et m'expliquer toute décision écrite ?",url:"https://www.onem.be/"},
+      {title:"7 — Ensuite : stabilisation et avenir",
+       action:"Avec le travailleur social, demandez une recherche de logement stable, puis vérifiez progressivement formation, emploi, tarifs sociaux et économies. Pas de conseils d'énergie domestique tant qu'aucun logement n'est disponible.",
+       ask:"Quelle est ma prochaine démarche après l'urgence et les documents ?",url:"https://www.cpas1060.be/"}
     ];
-    const chosen=short?steps.map(x=>[x[0],x[1].split(". ")[0]+"."]):steps;
-    host.innerHTML='<div id="homeless-sheet" style="max-width:720px"><h2>Ma feuille de route — sans domicile, Saint-Gilles</h2><p><strong>Une démarche à la fois, dans le bon ordre.</strong> Les demandes du point 2 peuvent commencer sans attendre la résolution du point 3. Aucun revenu annuel, numéro de téléphone ou identifiant n’est demandé.</p><p><strong>Aide humaine, accès aux démarches et impression :</strong> Point d’Appui du CPAS, 40 rue de Bosnie, Saint-Gilles. Accueil sans rendez-vous lundi–vendredi 9h–12h et 13h–16h (horaires à confirmer). Demander aussi une aide pour imprimer cette feuille.</p>'+
-      chosen.map(x=>'<section style="border-top:1px solid #999;padding:8px 0;break-inside:avoid"><h3>'+esc(x[0])+'</h3><p>'+esc(x[1])+'</p></section>').join('')+
-      '<p><strong>Phrase à utiliser :</strong> « Je n’ai pas de domicile stable, pas de téléphone ni de moyen fiable de recevoir du courrier. Je souhaite déposer une demande d’aide aujourd’hui, obtenir une preuve écrite et être accompagné pour ces étapes. »</p></div>'+
-      '<div data-homeless-controls class="entry-route-actions"><button type="button" data-homeless-print>Imprimer / enregistrer PDF</button><button type="button" data-homeless-short>Version courte pour capture d’écran</button><button type="button" data-homeless-full>Version détaillée</button><button type="button" data-homeless-close>Revenir aux situations</button></div><p>Ordinateur partagé : ne renseignez pas de données personnelles dans un formulaire, et fermez votre session après utilisation.</p>';
+    const details=steps.map((item,i)=>{
+      return '<section class="homeless-step" style="padding:9px 0;border-top:1px solid #999;break-inside:avoid">'+
+        '<h3>'+esc(item.title)+'</h3>'+
+        (short?'<p>'+esc(item.ask)+'</p>':'<p>'+esc(item.action)+'</p><p><strong>À demander :</strong> '+esc(item.ask)+'</p><p><small>'+esc(item.url)+'</small></p>')+
+        '</section>';
+    }).join("");
+    host.innerHTML='<div id="homeless-sheet" style="max-width:720px;margin:auto;background:white;color:#111;padding:12px">'+
+      '<h2>Ma feuille de route — Sans domicile · Saint-Gilles</h2>'+
+      '<p><strong>Ne pas commencer par des économies :</strong> se mettre à l’abri, demander des droits, rétablir les moyens de les recevoir. Les étapes 1 et 2 peuvent démarrer le même jour. Pas besoin de régler les papiers avant de demander une aide.</p>'+
+      '<section style="border:2px solid #222;padding:12px"><h3>Besoin d’une vraie personne ?</h3><p><strong>Point d’Appui — 40 rue de Bosnie, Saint-Gilles.</strong> Sans rendez-vous lundi-vendredi, 9h-12h et 13h-16h. Aide aux démarches et impression de documents. Ce n’est pas le guichet de dépôt de nouvelles demandes : pour déposer l’aide financière, allez au CPAS, rue Fernand Bernier 40, le matin.</p><p><strong>À dire :</strong> « Je dors dehors, je n’ai pas de smartphone, ni d’e-mail, ni d’adresse pour recevoir du courrier. Pouvez-vous m’aider à faire ces démarches et imprimer ce plan ? »</p></section>'+
+      details+
+      '<p><strong>Sans imprimante :</strong> affichez la version courte et prenez une photo avec un appareil disponible, ou demandez au Point d’Appui d’imprimer ce plan. Aucune connexion n’est nécessaire pour consulter ce plan.</p>'+
+      '</div><div class="entry-route-actions" data-homeless-controls><button type="button" data-homeless-print>Imprimer / enregistrer PDF</button><button type="button" data-homeless-short>Voir la version courte (capture)</button><button type="button" data-homeless-full>Version détaillée</button><button type="button" data-homeless-close>Retour aux situations</button></div>'+
+      '<p><strong>Ordinateur partagé :</strong> cette fiche ne demande aucune donnée personnelle. Pensez à fermer le navigateur ou votre session. Ne sauvegardez pas vos identifiants sur ce poste.</p>';
     if(!document.getElementById("homeless-print-style")){
       const style=document.createElement("style");style.id="homeless-print-style";
-      style.textContent='@media print{body *{visibility:hidden!important}#homeless-sheet,#homeless-sheet *{visibility:visible!important}#homeless-sheet{position:absolute;top:0;left:0;width:100%;font-size:11pt;color:black;background:white}@page{size:A4;margin:12mm}}';
+      style.textContent='@media print{body *{visibility:hidden!important}#homeless-sheet,#homeless-sheet *{visibility:visible!important}#homeless-sheet{position:absolute;top:0;left:0;width:100%!important;max-width:none!important;font-size:10pt;color:#000!important;background:#fff!important;padding:0!important}#homeless-sheet .homeless-step{break-inside:avoid!important}@page{size:A4;margin:12mm}}';
       document.head.appendChild(style);
     }
     showScreen("simpleDifficultHelp");
