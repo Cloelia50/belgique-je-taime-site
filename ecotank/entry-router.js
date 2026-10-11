@@ -397,6 +397,7 @@
     // Sources vérifiées manuellement pour les deux refus (CPAS + ONEM).
     // Les liens de la base officielle restent prioritaires pour les autres situations.
     const refusalSources={
+      article60_info:{url:"https://www.actiris.brussels/fr/citoyens/contrat-emploi-dinsertion/"},
       acs_official:{url:"https://www.actiris.brussels/fr/citoyens/agents-contractuels-subventionnes/"},
       appeal_cpas:{url:"https://www.mi-is.be/sites/default/files/documents/guide_du_recours_contre_la_decision_du_cpas_1_0.pdf"},
       appeal_onem:{url:"https://www.onem.be/index.php/citoyens/chomage-complet/comment-devez-vous-demander-les-allocations-/comment-votre-dossier-sera-t-il-traite"},
@@ -463,6 +464,11 @@
         ["Chercher un emploi même sans allocations","L'inscription comme demandeur d'emploi chez Actiris ne suppose pas de toucher le chômage. Pour certains candidats, la FPIE peut aider un employeur à former puis engager ; contactez Bruxelles Formation AVANT de commencer.",[["actiris_register","Inscription Actiris et antennes"],["actiris_fpie","FPIE : conditions"]]],
         ["Préserver les besoins essentiels en attendant","Pour manger immédiatement, cherchez distribution ou restaurant social dans le répertoire FDSS. Les organismes vérifient eux-mêmes les critères et les capacités.",[["fdss_food","Trouver une aide alimentaire"]]],
         ["Si CPAS et chômage ont déjà dit non","N'introduisez pas une nouvelle première demande CPAS sans vérifier votre situation. Faites étudier les refus, leur date et les possibilités de recours ; le parcours « CPAS et chômage : deux refus » détaille les autres droits.",[["legal_aid","Aide juridique indépendante"],["appeal_court","Recours sociaux"]]]
+      ],
+      article_60_61:[
+        ["Vérifier si l’emploi d’insertion vous concerne","À Bruxelles, le contrat emploi d’insertion exige notamment le RIS ou une aide financière équivalente, une inscription au registre de la population ou des étrangers et l’absence de droit au chômage complet. Le CPAS est l’employeur juridique ; être inscrit chez Actiris ne suffit pas.",[["article60_info","Conditions officielles Actiris"]]],
+        ["Si vous remplissez les conditions, demander le service emploi du CPAS","Demandez au département emploi de votre CPAS de vérifier la possibilité d’un contrat emploi d’insertion article 60 §7. Le CPAS peut vous employer ou vous mettre à disposition d’un partenaire, parfois dans le cadre de l’article 61. Ce n’est pas un droit automatique.",[["article60_info","Comment faire la demande"]]],
+        ["Si vous avez reçu un refus CPAS","Ne recommencez pas une première demande. Demandez les motifs écrits et vérifiez les recours possibles. Si l’article 60 n’est pas accessible, explorez séparément ACS et FPIE.",[["article60_info","Conditions article 60"],["legal_aid","Aide juridique"]]]
       ],
       employer_aid:[
         ["Vérifier mon éligibilité aux emplois ACS","Si vous êtes domicilié à Bruxelles et inscrit comme chercheur d’emploi inoccupé chez Actiris, regardez les offres ACS. Chaque offre peut avoir des conditions supplémentaires. Actiris vérifie votre éligibilité ; l’attestation ACS est indispensable avant l’entretien et le contrat.",[["acs_official","Actiris : offres ACS et attestation"]]],
@@ -592,6 +598,7 @@
       ["urgent_income","Revenus ou emploi"],
       ["actiris_no_income","Inscrit chez Actiris, sans emploi ni allocations"],
       ["employer_aid","Ai-je une attestation ou une aide qui facilite mon embauche ?"],
+      ["article_60_61","Article 60 / 61 : emploi d’insertion via le CPAS"],
       ["no_job","Je n’ai pas d’emploi"],
       ["urgent_refusal","Contester un refus"],
       ["urgent_access","Débloquer une démarche"],
@@ -610,7 +617,7 @@
     ];
     const selected=guides[topic]?topic:"overview";
     const cards=guides[selected];
-    const urgentIds=new Set(["urgent_food","urgent_shelter","urgent_care","urgent_income","urgent_refusal","urgent_access","actiris_no_income","no_job","employer_aid"]);
+    const urgentIds=new Set(["urgent_food","urgent_shelter","urgent_care","urgent_income","urgent_refusal","urgent_access","actiris_no_income","no_job","employer_aid","article_60_61"]);
     const firstChoices=choices.filter(([id])=>urgentIds.has(id));
     const otherChoices=choices.filter(([id])=>!urgentIds.has(id));
     const title={
@@ -621,6 +628,7 @@
       urgent_income:"Retrouver des ressources sans attendre",
       actiris_no_income:"Inscrit chez Actiris, sans allocations",
       employer_aid:"Quelles aides à l’embauche pour mon profil ?",
+      article_60_61:"Article 60 / 61 : contrat emploi d’insertion",
       no_job:"Je cherche un emploi",
       urgent_refusal:"Un refus : vérifier mes recours",
       urgent_access:"Faire une démarche sans itsme ni GSM",
@@ -650,6 +658,7 @@
       urgent_shelter:["Demandez une place au Samusocial pour cette nuit. Place non garantie.","Sans GSM, consultez la procédure avec un téléphone emprunté.","Si aucune place, demandez au Samusocial une réorientation."],
       urgent_care:["Demandez une consultation au centre Athéna.","Prenez contact avec le CASO pour un rendez-vous.","Vérifiez vos droits auprès de votre ancienne mutuelle ou de la CAAMI."],
       urgent_refusal:["Repérez la date de notification du refus. Vérifiez vite le délai de recours.","Demandez un avis juridique avec la décision.","Si le refus est oral, demandez une décision écrite et datée."],
+      article_60_61:["Vérifiez les conditions de l’emploi d’insertion auprès d’Actiris.","Si elles sont remplies, contactez le service emploi de votre CPAS.","En cas de refus, vérifiez le motif avant toute nouvelle démarche."],
       employer_aid:["Vérifiez si vous pouvez obtenir une attestation ACS sur My Actiris.","Vérifiez les conditions d’une FPIE à présenter à un employeur.","Certaines réductions dépendent uniquement de l’employeur."],
       actiris_no_income:["Vérifiez les conditions de la FPIE pour travailler en entreprise.","Présentez la FPIE à un employeur potentiel.","Si la FPIE ne convient pas, explorez une autre formation Actiris."],
       no_job:["Vérifiez votre inscription chez Actiris.","Examinez la FPIE pour vous former chez un employeur.","Consultez les autres possibilités de formation et d’accompagnement."],
