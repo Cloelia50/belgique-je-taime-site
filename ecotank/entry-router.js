@@ -490,6 +490,7 @@
           '<div class="entry-choice-grid"><button type="button" class="entry-choice" data-immediate-need="food">De quoi manger</button>'+
           '<button type="button" class="entry-choice" data-immediate-need="shelter">Un endroit où dormir</button>'+
           '<button type="button" class="entry-choice" data-immediate-need="care">Des soins</button>'+
+          '<button type="button" class="entry-choice" data-immediate-need="work">Retrouver un travail</button>'+ 
           '<button type="button" class="entry-choice" data-immediate-need="other">Une autre aide urgente</button></div>'+
           '<div class="entry-footer"><button type="button" data-lost-rights-reselect>Modifier mes réponses</button></div>';
         showScreen("simpleDifficultHelp");return;
@@ -499,6 +500,7 @@
           food:["Chercher une aide alimentaire près de chez vous","Les repas, colis et épiceries ont des conditions différentes. Le répertoire permet d'identifier les lieux et de vérifier comment y accéder.","https://www.fdss.be/fr/aide-alimentaire/","Voir les aides alimentaires"],
           shelter:["Chercher un accueil pour cette nuit","Consultez les modalités d'accueil et les contacts du Samusocial. Une place n'est jamais garantie.","https://samusocial.be/","Voir les possibilités d'accueil"],
           care:["Chercher une consultation accessible","Médecins du Monde propose des dispositifs de soins pour les personnes en difficulté d'accès. Vérifiez le centre et ses conditions.","https://www.medecinsdumonde.be/","Trouver des soins"],
+          work:["Faire le point sur les aides qui facilitent une embauche","Vous pouvez chercher du travail même sans allocations. Si vous êtes déjà inscrit chez Actiris, il n'est pas nécessaire de recommencer cette inscription. Vérifiez les dispositifs ACS, FPIE et les offres adaptées à votre situation.","https://www.actiris.brussels/fr/citoyens/","Chercher un emploi et des aides à l'embauche"],
           other:["Demander une orientation pour une nécessité immédiate","Il faut identifier le besoin précis plutôt que vous renvoyer vers une demande de CPAS déjà refusée.","https://www.droitsquotidiens.be/fr","Voir les possibilités d'aide"]
         };
         tasks.nothing=[need[state.immediateNeed]];
