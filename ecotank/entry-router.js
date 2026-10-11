@@ -398,6 +398,8 @@
     // Les liens de la base officielle restent prioritaires pour les autres situations.
     const refusalSources={
       article60_info:{url:"https://www.actiris.brussels/fr/citoyens/contrat-emploi-dinsertion/"},
+      article57_law:{url:"https://refli.be/fr/lex/1976D70810"},
+      article57_request:{url:"https://www.droitsquotidiens.be/fr/question/comment-demander-laide-sociale-au-cpas"},
       acs_official:{url:"https://www.actiris.brussels/fr/citoyens/agents-contractuels-subventionnes/"},
       appeal_cpas:{url:"https://www.mi-is.be/sites/default/files/documents/guide_du_recours_contre_la_decision_du_cpas_1_0.pdf"},
       appeal_onem:{url:"https://www.onem.be/index.php/citoyens/chomage-complet/comment-devez-vous-demander-les-allocations-/comment-votre-dossier-sera-t-il-traite"},
@@ -469,6 +471,16 @@
         ["Vérifier si l’emploi d’insertion vous concerne","À Bruxelles, le contrat emploi d’insertion exige notamment le RIS ou une aide financière équivalente, une inscription au registre de la population ou des étrangers et l’absence de droit au chômage complet. Le CPAS est l’employeur juridique ; être inscrit chez Actiris ne suffit pas.",[["article60_info","Conditions officielles Actiris"]]],
         ["Si vous remplissez les conditions, demander le service emploi du CPAS","Demandez au département emploi de votre CPAS de vérifier la possibilité d’un contrat emploi d’insertion article 60 §7. Le CPAS peut vous employer ou vous mettre à disposition d’un partenaire, parfois dans le cadre de l’article 61. Ce n’est pas un droit automatique.",[["article60_info","Comment faire la demande"]]],
         ["Si vous avez reçu un refus CPAS","Ne recommencez pas une première demande. Demandez les motifs écrits et vérifiez les recours possibles. Si l’article 60 n’est pas accessible, explorez séparément ACS et FPIE.",[["article60_info","Conditions article 60"],["legal_aid","Aide juridique"]]]
+      ],
+      a6_j6:[
+        ["Trouver l’offre ACS concernée","L’appellation A6/J6 apparaît notamment dans d’anciennes procédures administratives des emplois ACS. Aujourd’hui, Actiris demande une attestation d’éligibilité liée à l’offre. Elle n’est pas un statut général donnant droit à une prime pour toute embauche.",[["acs_official","Actiris : conditions des offres ACS"]]],
+        ["Demander la vérification à Actiris","Si vous habitez Bruxelles et êtes inscrit comme chercheur d’emploi inoccupé, contactez Actiris au sujet de l’offre ACS précise. Actiris vérifie les conditions supplémentaires et place, si vous êtes éligible, l’attestation dans My Actiris.",[["acs_official","Attestation dans My Actiris"]]],
+        ["Si vous n'êtes pas éligible à cette offre","Demandez quel critère bloque l’attestation. D’autres offres ACS peuvent avoir des conditions différentes ; explorez la FPIE séparément.",[["acs_official","Autres offres ACS"],["actiris_fpie","FPIE"]]]
+      ],
+      article_57:[
+        ["Identifier l’aide dont vous avez besoin","L’article 57 de la loi organique des CPAS définit la mission générale d’aide sociale : aide matérielle, médicale, sociale ou psychologique. Ce n’est pas une attestation d’embauche ni une allocation unique à obtenir.",[["article57_law","Texte légal de l’article 57"]]],
+        ["Faire une demande précise d’aide sociale","Demandez au CPAS compétent une aide concrète (par exemple aide alimentaire, médicale ou matérielle), en précisant votre besoin. La demande peut être présentée sur place ou par écrit ; conservez un accusé de réception. CPAS Online est réservé aux premières demandes.",[["article57_request","Comment demander l’aide sociale"]]],
+        ["Si le CPAS a déjà refusé","Ne refaites pas automatiquement une première demande. Vérifiez ce qui a été refusé, les motifs et le délai de recours. Une demande concernant un besoin distinct doit être examinée selon les conditions applicables ; l’octroi n’est pas garanti.",[["article57_request","Démarches et suivi"],["legal_aid","Aide juridique"]]]
       ],
       employer_aid:[
         ["Vérifier mon éligibilité aux emplois ACS","Si vous êtes domicilié à Bruxelles et inscrit comme chercheur d’emploi inoccupé chez Actiris, regardez les offres ACS. Chaque offre peut avoir des conditions supplémentaires. Actiris vérifie votre éligibilité ; l’attestation ACS est indispensable avant l’entretien et le contrat.",[["acs_official","Actiris : offres ACS et attestation"]]],
@@ -599,6 +611,8 @@
       ["actiris_no_income","Inscrit chez Actiris, sans emploi ni allocations"],
       ["employer_aid","Ai-je une attestation ou une aide qui facilite mon embauche ?"],
       ["article_60_61","Article 60 / 61 : emploi d’insertion via le CPAS"],
+      ["a6_j6","A6/J6 : attestation pour une offre ACS"],
+      ["article_57","Article 57 : demander une aide sociale"],
       ["no_job","Je n’ai pas d’emploi"],
       ["urgent_refusal","Contester un refus"],
       ["urgent_access","Débloquer une démarche"],
@@ -617,7 +631,7 @@
     ];
     const selected=guides[topic]?topic:"overview";
     const cards=guides[selected];
-    const urgentIds=new Set(["urgent_food","urgent_shelter","urgent_care","urgent_income","urgent_refusal","urgent_access","actiris_no_income","no_job","employer_aid","article_60_61"]);
+    const urgentIds=new Set(["urgent_food","urgent_shelter","urgent_care","urgent_income","urgent_refusal","urgent_access","actiris_no_income","no_job","employer_aid","article_60_61","a6_j6"]);
     const firstChoices=choices.filter(([id])=>urgentIds.has(id));
     const otherChoices=choices.filter(([id])=>!urgentIds.has(id));
     const title={
@@ -629,6 +643,8 @@
       actiris_no_income:"Inscrit chez Actiris, sans allocations",
       employer_aid:"Quelles aides à l’embauche pour mon profil ?",
       article_60_61:"Article 60 / 61 : contrat emploi d’insertion",
+      a6_j6:"A6/J6 : attestation pour les emplois ACS",
+      article_57:"Article 57 : demander une aide sociale",
       no_job:"Je cherche un emploi",
       urgent_refusal:"Un refus : vérifier mes recours",
       urgent_access:"Faire une démarche sans itsme ni GSM",
@@ -658,6 +674,8 @@
       urgent_shelter:["Demandez une place au Samusocial pour cette nuit. Place non garantie.","Sans GSM, consultez la procédure avec un téléphone emprunté.","Si aucune place, demandez au Samusocial une réorientation."],
       urgent_care:["Demandez une consultation au centre Athéna.","Prenez contact avec le CASO pour un rendez-vous.","Vérifiez vos droits auprès de votre ancienne mutuelle ou de la CAAMI."],
       urgent_refusal:["Repérez la date de notification du refus. Vérifiez vite le délai de recours.","Demandez un avis juridique avec la décision.","Si le refus est oral, demandez une décision écrite et datée."],
+      a6_j6:["Repérez une offre ACS qui vous intéresse.","Demandez à Actiris de vérifier votre éligibilité pour cette offre.","Si ce n’est pas possible, explorez d’autres offres ou la FPIE."],
+      article_57:["Précisez l’aide sociale dont vous avez besoin.","Introduisez une demande précise au CPAS compétent.","En cas de refus déjà reçu, vérifiez les voies de recours."],
       article_60_61:["Vérifiez les conditions de l’emploi d’insertion auprès d’Actiris.","Si elles sont remplies, contactez le service emploi de votre CPAS.","En cas de refus, vérifiez le motif avant toute nouvelle démarche."],
       employer_aid:["Vérifiez si vous pouvez obtenir une attestation ACS sur My Actiris.","Vérifiez les conditions d’une FPIE à présenter à un employeur.","Certaines réductions dépendent uniquement de l’employeur."],
       actiris_no_income:["Vérifiez les conditions de la FPIE pour travailler en entreprise.","Présentez la FPIE à un employeur potentiel.","Si la FPIE ne convient pas, explorez une autre formation Actiris."],
