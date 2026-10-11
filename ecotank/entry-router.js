@@ -485,6 +485,42 @@
           ["Chercher une aide numérique de proximité","Des espaces publics numériques peuvent aider à effectuer les démarches sans imposer l'achat d'un téléphone.","https://www.1890.be/","Chercher une aide"]
         ]
       };
+      if(issue==="nothing"&&state.immediateNeed==="work"){
+        const step=state.workStage||"block";
+        const pick=(items)=>'<div class="entry-choice-grid">'+items.map(x=>'<button type="button" class="entry-choice" data-work-pick="'+x[0]+'">'+esc(x[1])+'</button>').join("")+'</div>';
+        const common='<div class="entry-footer"><button type="button" data-work-back>Retour</button><button type="button" data-lost-rights-reselect>Modifier mes autres difficultés</button></div>';
+        let html='<div class="simple-kicker">Retrouver un emploi</div>';
+        if(step==="block"){
+          html+='<h2>Qu’est-ce qui vous empêche surtout d’avancer ?</h2>'+pick([
+            ["orientation","Je ne sais pas où chercher ni quel métier viser"],
+            ["person","Je veux être accompagné en personne"],
+            ["documents","Mes papiers ou mon accès aux démarches me bloquent"],
+            ["advantages","Je veux connaître mes avantages à l’embauche"],
+            ["applications","Je cherche déjà, mais mes candidatures n’aboutissent pas"]
+          ]);
+        }else if(step==="actiris"){
+          html+='<h2>Êtes-vous inscrit auprès d’Actiris ?</h2>'+pick([
+            ["registered","Oui"],["unregistered","Non"],["unsure","Je ne sais pas"]
+          ]);
+        }else if(step==="support"){
+          const pages={
+            orientation:["Clarifier un métier avant de chercher","La Cité des métiers propose une orientation sans inscription ni rendez-vous. Vous pouvez aussi demander un entretien à une Mission locale.","https://be.brussels/fr/emploi/un-emploi-bruxelles/ou-chercher-un-emploi","Voir les services d’orientation"],
+            person:["Trouver un accompagnement en face à face","Les Missions locales accompagnent gratuitement les recherches, candidatures et formations. Choisissez celle accessible depuis votre commune.","https://be.brussels/fr/emploi/un-emploi-bruxelles/missions-locales-dinsertion-socio-professionnelle","Trouver une Mission locale"],
+            documents:["Identifier le document réellement bloquant","Préparez seulement le nom du document ou service qui coince. Une Maison de l’Emploi peut orienter vers une solution en personne, y compris pour l’accès aux démarches.","https://www.actiris.brussels/fr/citoyens/maison-de-lemploi/","Trouver une Maison de l’Emploi"],
+            applications:["Améliorer une candidature avec une personne","Une Mission locale peut travailler avec vous le CV, les offres, les candidatures et la préparation à l’entretien.","https://be.brussels/fr/emploi/un-emploi-bruxelles/missions-locales-dinsertion-socio-professionnelle","Trouver un accompagnement"],
+            registered:["Vérifier les attestations réellement accessibles","Puisque vous êtes déjà inscrit, ne recommencez pas l’inscription. Vérifiez avec Actiris une offre ACS/PTP précise ou une FPIE selon votre profil. L’attestation n’est pas automatique.","https://www.actiris.brussels/fr/citoyens/formation-professionnelle-en-entreprise/","Vérifier la FPIE"],
+            unregistered:["Vérifier si l’inscription est nécessaire pour l’aide recherchée","Vous pouvez chercher et postuler sans Actiris. En revanche, certaines aides comme la FPIE exigent une inscription de chercheur d’emploi inoccupé.","https://www.actiris.brussels/fr/citoyens/formation-professionnelle-en-entreprise/","Comprendre les conditions"],
+            unsure:["Faire vérifier votre situation sans tout recommencer","Un accueil Actiris ou une Maison de l’Emploi peut vérifier si vous êtes déjà inscrit et vous expliquer les démarches sans créer de nouvelle inscription inutile.","https://www.actiris.brussels/fr/citoyens/maison-de-lemploi/","Trouver un accueil"]
+          };
+          const task=pages[state.workChoice]||pages.person;
+          html+='<h2>Votre première démarche</h2><section class="guided-one-step"><h3>'+esc(task[0])+'</h3><p>'+esc(task[1])+'</p>'+
+            '<div class="guided-main-link"><a href="'+esc(task[2])+'" target="_blank" rel="noopener noreferrer">'+esc(task[3])+' ↗</a></div>'+
+            '<button type="button" data-work-pick="person">Je préfère voir une personne</button>'+
+            '<button type="button" data-work-pick="advantages">Vérifier aussi les aides à l’embauche</button></section>';
+        }
+        host.innerHTML=html+common;
+        showScreen("simpleDifficultHelp");return;
+      }
       if(issue==="nothing"&&!state.immediateNeed){
         host.innerHTML='<div class="simple-kicker">Une aide concrète, maintenant</div><h2>Qu’est-ce qui vous manque le plus aujourd’hui ?</h2>'+
           '<div class="entry-choice-grid"><button type="button" class="entry-choice" data-immediate-need="food">De quoi manger</button>'+
@@ -1090,14 +1126,27 @@
     if(event.target.closest("[data-lost-rights-reselect]")){
       state.lostRightsQueue=[];state.lostRightsIndex=0;state.immediateNeed="";renderQuestion("q_lost_rights_goal");return;
     }
-    const immediate=event.target.closest("[data-immediate-need]");if(immediate){state.immediateNeed=immediate.dataset.immediateNeed;state.helpStep=0;renderDifficultHelp();return;}
+    const work=event.target.closest("[data-work-pick]");
+    if(work){
+      const choice=work.dataset.workPick;
+      if(choice==="advantages"){state.workStage="actiris";}
+      else if(["registered","unregistered","unsure"].includes(choice)){state.workChoice=choice;state.workStage="support";}
+      else {state.workChoice=choice;state.workStage="support";}
+      renderDifficultHelp();return;
+    }
+    if(event.target.closest("[data-work-back]")){
+      if(state.workStage==="support"&&["registered","unregistered","unsure"].includes(state.workChoice))state.workStage="actiris";
+      else state.workStage="block";
+      renderDifficultHelp();return;
+    }
+    const immediate=event.target.closest("[data-immediate-need]");if(immediate){state.immediateNeed=immediate.dataset.immediateNeed;state.workStage="block";state.workChoice="";state.helpStep=0;renderDifficultHelp();return;}
     if(event.target.closest("[data-lost-rights-next]")){
       const order=["nothing","refused","stopped","administrative"];
       const saved=order.filter(x=>(state.lostRightsSelected||[]).includes(x));
       const queue=saved.length>(state.lostRightsQueue||[]).length?saved:(state.lostRightsQueue||[]);
       state.lostRightsQueue=queue;
       state.lostRightsIndex=Number(state.lostRightsIndex||0)+1;
-      state.helpStep=0;state.immediateNeed="";
+      state.helpStep=0;state.immediateNeed="";state.workStage="block";
       if(state.lostRightsIndex<queue.length){
         const selected=queue[state.lostRightsIndex];
         const topics={nothing:"urgent_income",refused:"refusals",stopped:"urgent_income",administrative:"urgent_access"};
