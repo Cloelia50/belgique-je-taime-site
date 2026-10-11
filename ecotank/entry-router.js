@@ -454,9 +454,19 @@
   }
 
   // Parcours Daniel : aucune saisie personnelle, sortie rapide du questionnaire.
+  function homelessEntry(){
+    if(!ensureScreens())return;
+    const host=document.getElementById("entryDifficultHost");
+    host.innerHTML='<div class="simple-kicker">EcoTank · Aide pour vivre sans domicile</div><h2>Où êtes-vous actuellement ?</h2><p>Une seule question, pour éviter de vous envoyer au mauvais CPAS. Aucun nom, numéro de téléphone ou identifiant n’est demandé.</p><div class="entry-choice-grid"><button type="button" data-homeless-local>Saint-Gilles (Bruxelles)</button><button type="button" data-homeless-other>Une autre commune</button></div><button type="button" data-homeless-close>Retour aux situations</button>';
+    showScreen("simpleDifficultHelp");
+  }
   function homelessGuide(short=false){
     if(!ensureScreens())return;
     const host=document.getElementById("entryDifficultHost");
+    if(!short && state.homelessOutsideSaintGilles){
+      host.innerHTML='<h2>Un accueil près de vous</h2><p>Les adresses détaillées de cette fiche concernent Saint-Gilles. Ne vous rendez pas à ces guichets sans vérifier leur compétence territoriale. Pour une aide sociale, contactez le CPAS de votre lieu de séjour habituel ; pour une nuit d’urgence à Bruxelles, le Samusocial peut orienter, sous réserve de disponibilité.</p><p>Si vous êtes effectivement à Saint-Gilles, vous pouvez ouvrir le parcours local.</p><div class="entry-choice-grid"><button type="button" data-homeless-local>Je suis à Saint-Gilles</button><button type="button" data-homeless-close>Retour</button></div>';
+      showScreen("simpleDifficultHelp");return;
+    }
     const steps=[
       {title:"1 — Aujourd'hui : manger, se laver, demander une mise à l'abri",
        action:"Allez si possible au centre de jour L'Ilot, 73 rue de l'Église Saint-Gilles, 1060 Bruxelles. Repas, douches, repos et permanence sociale, du lundi au vendredi (lundi et mercredi-vendredi 8h30-17h ; mardi 8h30-13h30). Fermé le week-end. Pour la nuit, demandez à un travailleur social de vous aider à contacter le Samusocial au 0800 99 340. La place n'est pas garantie.",
@@ -483,7 +493,7 @@
     const details=steps.map((item,i)=>{
       return '<section class="homeless-step" style="padding:9px 0;border-top:1px solid #999;break-inside:avoid">'+
         '<h3>'+esc(item.title)+'</h3>'+
-        (short?'<p>'+esc(item.ask)+'</p>':'<p>'+esc(item.action)+'</p><p><strong>À demander :</strong> '+esc(item.ask)+'</p><p><small>'+esc(item.url)+'</small></p>')+
+        (short?'<p>'+esc(item.action)+'</p>':'<p>'+esc(item.action)+'</p><p><strong>À demander :</strong> '+esc(item.ask)+'</p><p><small>'+esc(item.url)+'</small></p>')+
         '</section>';
     }).join("");
     host.innerHTML='<div id="homeless-sheet" style="max-width:720px;margin:auto;background:white;color:#111;padding:12px">'+
@@ -1255,7 +1265,9 @@
     if(event.target.closest("[data-lost-rights-reselect]")){
       state.lostRightsQueue=[];state.lostRightsIndex=0;state.immediateNeed="";renderQuestion("q_lost_rights_goal");return;
     }
-    if(event.target.closest("[data-homeless-start]")){homelessGuide(false);return;}
+    if(event.target.closest("[data-homeless-start]")){state.homelessOutsideSaintGilles=false;homelessEntry();return;}
+    if(event.target.closest("[data-homeless-local]")){state.homelessOutsideSaintGilles=false;homelessGuide(false);return;}
+    if(event.target.closest("[data-homeless-other]")){state.homelessOutsideSaintGilles=true;homelessGuide(false);return;}
     if(event.target.closest("[data-homeless-print]")){window.print();return;}
     if(event.target.closest("[data-homeless-short]")){homelessGuide(true);return;}
     if(event.target.closest("[data-homeless-full]")){homelessGuide(false);return;}
