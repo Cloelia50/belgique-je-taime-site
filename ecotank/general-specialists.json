@@ -2,13 +2,15 @@
   "version": "2026-10-12",
   "categories": {
     "dettes": {
-      "name": "Médiation de dettes agréée",
+      "name": "Centre d’Appui — orientation vers une médiation de dettes",
       "url": "https://www.mediationdedettes.be/trouver-un-service-de-mediations-de-dette/",
-      "page": "Trouver un service de médiation de dettes → liste des CPAS ou ASBL → service correspondant à la commune ; vérifier l’accueil des nouveaux dossiers",
-      "phrase": "Bonjour, je vis à [commune], j'ai une difficulté de dettes et je souhaite un rendez-vous avec un médiateur de dettes. Acceptez-vous de nouvelles demandes et quels documents apporter ?",
+      "page": "Pour les particuliers : orientation vers le service territorialement compétent, par téléphone ou e-mail du lundi au vendredi de 9 h à 17 h. Le Centre d’Appui n’est pas lui-même un service de médiation de dettes et n’offre pas de permanence juridique de première ligne.",
+      "phrase": "Bonjour, j’habite [commune] et je cherche un service de médiation de dettes qui reçoit de nouveaux dossiers. Pouvez-vous m’orienter vers le service compétent et m’indiquer comment le joindre ?",
       "documents": "Courriers, avis de saisie ou d'huissier, dettes, revenus et charges",
       "phone": "02 217 88 05",
-      "email": "info@mediationdedettes.be"
+      "email": "info@mediationdedettes.be",
+      "sourceChecked": "2026-10-12",
+      "sourceUrl": "https://www.mediationdedettes.be/Contact/"
     },
     "logement": {
       "name": "Bruxelles Logement",
