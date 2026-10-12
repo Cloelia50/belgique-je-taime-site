@@ -287,7 +287,19 @@
     const selected=state.generalBarriers||[];
     return selected.length?'<section aria-label="Démarches accessibles"><h3>Comment agir malgré ces obstacles ?</h3><ul>'+selected.map(k=>'<li>'+esc(advice[k])+'</li>').join("")+'</ul><p><strong>Phrase à montrer :</strong> « Je voudrais demander de l’aide, mais je ne peux pas suivre la procédure habituelle. Pouvez-vous m’orienter vers un accueil humain et préciser les délais ? »</p></section>':'';
   }
+  const animalPrimeGuidance={
+    "Auderghem":{name:"Vétochèques d’Auderghem",url:"https://www.auderghem.be/primes-vetocheques",email:"animaux@auderghem.brussels",phone:"02 435 26 84",detail:"Primes pour stérilisation, identification, certains soins vétérinaires et conseil avant adoption. Certaines prestations sont soumises à un plafond de revenus. Demande dans les 12 mois avec facture et attestation vétérinaire ; maximum 5 primes par ménage et par an, selon budget."},
+    "Evere":{name:"Vétochèques 2026 à Evere",url:"https://evere.brussels/fr/vivre-a-evere/bien-etre-animal/vetocheques-2026",detail:"Primes vétérinaires et de stérilisation annoncées pour 2026. Consultez le formulaire communal et ses pièces justificatives avant toute demande."},
+    "Bruxelles-Ville":{name:"Prime vaccination chiens et chats — Ville de Bruxelles",url:"https://www.bruxelles.be/prime-vaccination-des-chats-et-des-chiens",email:"urb.primes@brucity.be",phone:"02 279 33 10",detail:"Prime de vaccination pour ménages à faibles revenus : jusqu’à 50 € pour un chien ou 60 € pour un chat, sans dépasser la facture. Demande dans les 3 mois suivant la visite ; maximum 3 primes par ménage et par an."}
+  };
+  function showAnimalPrimes(){
+    const h=document.getElementById("entryRouterHost");if(!h)return;
+    const place=state.generalCommune||"",entry=animalPrimeGuidance[place];
+    h.innerHTML='<div class="entry-topline"><button type="button" data-general-flow-back>← Retour</button><span class="entry-step">Aides pour les animaux</span></div><h2>Primes pour les soins de vos animaux</h2><p>Ces aides dépendent souvent de votre commune et du soin effectué. Il n’est pas nécessaire d’être sans emploi pour se renseigner.</p><label for="animal-prime-commune">Dans quelle commune habitez-vous ?</label><select id="animal-prime-commune"><option value="">Choisir ma commune</option>'+generalCommunes.map(c=>'<option value="'+esc(c)+'" '+(place===c?'selected':'')+'>'+esc(c)+'</option>').join("")+'</select>'+(entry?'<section><h3>'+esc(entry.name)+'</h3><p>'+esc(entry.detail)+'</p>'+(entry.phone?'<p><a href="tel:'+esc(entry.phone.replaceAll(" ",""))+'">'+esc(entry.phone)+'</a></p>':'')+(entry.email?'<p><a href="mailto:'+esc(entry.email)+'">'+esc(entry.email)+'</a></p>':'')+'<p><a target="_blank" rel="noopener noreferrer" href="'+esc(entry.url)+'">Conditions et formulaire officiels ↗</a></p></section>':place?'<p>Je n’ai pas encore de prime vétérinaire communale confirmée dans ce répertoire pour '+esc(place)+'. Cela ne signifie pas qu’aucune aide n’existe : consultez le service Bien-être animal de votre commune.</p>':'<p>Choisissez votre commune pour connaître les aides recensées.</p>')+'<p><button type="button" data-general-flow-back>Explorer d’autres aides</button></p>';
+    showScreen("simpleEntryRouter");
+  }
   const generalGroups=[
+    ["aides","Primes, chèques et avantages",["famille","soins","logement","handicap","autre"]],
     ["finances","Mon budget et mes droits",["dettes","pension","achat"]],
     ["profession","Travail, emploi et formation",["travail","insertion","independant","etudiant"]],
     ["vie","Logement et vie quotidienne",["logement","famille","soins","handicap"]],
@@ -303,6 +315,7 @@
     if(phase===0){
       h.innerHTML=header+'<h2>Qu’aimeriez-vous explorer ?</h2><p>Choisissez ce qui vous intéresse aujourd’hui. Vous pourrez ajouter d’autres sujets ensuite.</p><div class="entry-choice-grid">'+generalGroups.map(g=>'<button type="button" class="entry-choice" data-general-group="'+g[0]+'">'+esc(g[1])+'</button>').join("")+'</div>';
     }else if(phase===1){
+      if(state.generalFlowGroup==="aides"){h.innerHTML=header+'<h2>Quel type d’aide recherchez-vous ?</h2><div class="entry-choice-grid"><button type="button" class="entry-choice" data-animal-primes>Vétochèques et primes pour les animaux</button><button type="button" class="entry-choice" data-general-aid-other>Autres primes et avantages</button></div>'+foot;showScreen("simpleEntryRouter");return;}
       h.innerHTML=header+'<h2>Qu’aimeriez-vous examiner plus précisément ?</h2><p>Vous pouvez sélectionner plusieurs réponses.</p><div class="entry-choice-grid">'+generalNeeds.filter(n=>state.generalFlowGroup==="all"||group[2].includes(n[0])).map(n=>'<label class="entry-choice" style="display:flex;gap:12px;align-items:center"><input type="checkbox" data-combined-select="'+esc(n[0])+'" '+(selected.includes(n[0])?'checked':'')+'><span>'+esc(n[1])+'</span></label>').join("")+'</div><p><button type="button" class="primary" data-general-flow-next>Continuer</button></p><p><button type="button" data-general-flow-all>Voir tous les autres sujets</button></p>'+foot+'<p role="status" id="combined-error"></p>';
     }else if(phase===2){
       h.innerHTML=header+'<h2>Y a-t-il une date importante à respecter ?</h2><p>Cette question nous aide à classer vos démarches. Vous pouvez aussi ne pas savoir.</p><div class="entry-choice-grid">'+[["none","Non, pas de délai connu"],["48h","Oui, dans les 48 heures"],["7d","Oui, dans les 7 jours"],["danger","Il y a un danger immédiat"]].map(x=>'<button type="button" class="entry-choice" data-general-urgency="'+x[0]+'">'+esc(x[1])+'</button>').join("")+'</div>'+foot;
@@ -2627,13 +2640,17 @@
     return true;
   }
 
+  document.addEventListener("change",event=>{if(event.target.id==="animal-prime-commune"){state.generalCommune=event.target.value;combinedPersist();showAnimalPrimes();}});
   document.addEventListener("click",event=>{
+    if(event.target.closest("[data-animal-primes]")){state.generalFlowStep=1;showAnimalPrimes();return;}
+    if(event.target.closest("[data-general-aid-other]")){state.generalFlowGroup="vie";generalNeedHome(1);return;}
     const grp=event.target.closest("[data-general-group]");if(grp){state.generalFlowGroup=grp.dataset.generalGroup;generalNeedHome(1);return;}
     if(event.target.closest("[data-general-flow-all]")){state.generalFlowGroup="all";generalNeedHome(1);return;}
     if(event.target.closest("[data-general-flow-next]")){const marked=[...document.querySelectorAll("[data-combined-select]:checked")].map(x=>x.dataset.combinedSelect);const others=combinedSelected().filter(x=>!generalGroups.find(g=>g[0]===state.generalFlowGroup)?.[2].includes(x));state.generalSelections=[...new Set([...others,...marked])];if(!state.generalSelections.length){document.getElementById("combined-error").textContent="Choisissez un sujet pour continuer.";return;}combinedPersist();generalNeedHome(2);return;}
     const urgencyChoice=event.target.closest("[data-general-urgency]");if(urgencyChoice){state.generalUrgency=urgencyChoice.dataset.generalUrgency;combinedPersist();generalNeedHome(["48h","7d"].includes(state.generalUrgency)?3:4);return;}
     const deadlineChoice=event.target.closest("[data-general-deadline]");if(deadlineChoice){state.generalDeadlineNeed=deadlineChoice.dataset.generalDeadline;combinedPersist();generalNeedHome(4);return;}
     if(event.target.closest("[data-general-flow-back]")){generalNeedHome(state.generalFlowStep===4&&!["48h","7d"].includes(state.generalUrgency)?2:Math.max(0,(state.generalFlowStep||0)-1));return;}
+    const animalPlace=event.target.closest("#animal-prime-commune");
     const go=event.target.closest("[data-combined-go]");if(go){state.generalBarriers=[...document.querySelectorAll("[data-combined-barrier]:checked")].map(x=>x.dataset.combinedBarrier);combinedPersist();combinedJourney();return;}
     const open=event.target.closest("[data-combined-open]");if(open){state.generalNeed=open.dataset.combinedOpen;generalNeedGuide();return;}
     const done=event.target.closest("[data-combined-done]");if(done){state.generalCompleted=state.generalCompleted||{};state.generalCompleted[done.dataset.combinedDone]=!state.generalCompleted[done.dataset.combinedDone];combinedPersist();combinedJourney();return;}
