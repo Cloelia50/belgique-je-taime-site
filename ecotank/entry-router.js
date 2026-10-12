@@ -300,7 +300,7 @@
   }
   const generalGroups=[
     ["aides","Primes, chèques et avantages",["famille","soins","logement","handicap","autre"]],
-    ["finances","Gérer mon budget et mes dépenses",["pension","achat","dettes"]],
+    ["finances","Gérer mon budget et mes dépenses",["pension","achat","logement","autre"]],
     ["profession","Travail, emploi et formation",["travail","insertion","independant","etudiant"]],
     ["vie","Logement et vie quotidienne",["logement","famille","soins","handicap"]],
     ["administratif","Papiers et démarches",["nouvel-arrivant","autre"]],
