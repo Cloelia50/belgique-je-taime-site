@@ -126,6 +126,28 @@
       "documents": "Attestation d’inscription et références du dossier, situation familiale et revenus selon demande officielle.",
       "scope": "orientation_communaute",
       "sourceChecked": "2026-10-12"
+    },
+    "achat": {
+      "name": "Fonds du Logement de la Région de Bruxelles-Capitale — premier achat",
+      "phone": "02 504 32 11",
+      "address": "Rue de l’Été 73, 1050 Ixelles",
+      "url": "https://fonds.brussels/fr",
+      "page": "Chercher la rubrique Devenir propriétaire ou les crédits hypothécaires. Vérifier les conditions d'accès, les rendez-vous et les documents sur le site avant de se déplacer. Un entretien ne garantit pas l'octroi du crédit.",
+      "phrase": "Bonjour, je vis à [commune] et souhaite acheter un premier logement. Pourriez-vous me préciser les conditions actuelles de vos crédits, les critères de revenus, les frais et comment prendre rendez-vous ?",
+      "documents": "Estimation du budget, revenus, charges et épargne disponible. Ne pas signer d'offre sans examen des conditions.",
+      "scope": "service_regional_sous_conditions",
+      "sourceChecked": "2026-10-12",
+      "sourceUrl": "https://fonds.brussels/fr"
+    },
+    "autre": {
+      "name": "CPAS de la commune — accueil social général",
+      "url": "https://be.brussels/fr/propos-de-la-region/structure-et-organisation/cpas-communes-et-pouvoirs-locaux/les-centres-publics-daction-sociale-cpas",
+      "page": "Chaque commune dispose d'un CPAS. Sélectionnez votre commune dans le parcours : sa fiche locale fournit le contact d'accueil social lorsqu'il figure dans notre répertoire. Si vous ne pouvez pas accéder au service, demandez une orientation vers un service social ou Bruxelles Social.",
+      "phrase": "Bonjour, je séjourne à [commune] et je rencontre une difficulté que je ne sais pas classer. Je souhaite déposer une demande d'aide sociale ou obtenir une orientation humaine. Quels sont les moyens de contact et les horaires d'accueil ?",
+      "documents": "Documents disponibles concernant la difficulté et les ressources ; expliquer si une pièce manque. Demander comment déposer une demande et conserver la preuve de dépôt.",
+      "scope": "accueil_local_selon_commune",
+      "sourceChecked": "2026-10-12",
+      "sourceUrl": "https://be.brussels/fr/propos-de-la-region/structure-et-organisation/cpas-communes-et-pouvoirs-locaux/les-centres-publics-daction-sociale-cpas"
     }
   },
   "mediationLocale": {
