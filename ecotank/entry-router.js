@@ -738,6 +738,7 @@
       '<h3>Courrier prêt à adapter</h3><p>Remplacez les champs entre crochets. Le modèle ne transmet rien automatiquement.</p><textarea id="philippe-action-message" rows="9" style="width:100%;box-sizing:border-box">'+esc(p.letter)+'</textarea><p>Conservez une preuve de dépôt, la réponse et les délais. Un message informel ne remplace pas un recours formel.</p></div>'+
       '<div class="entry-route-actions">'+Object.keys(procedures).map(k=>'<button type="button" data-philippe-procedure="'+k+'">'+esc(procedures[k].name.split(" :")[0])+'</button>').join('')+
       '<button type="button" data-philippe-copy>Copier le courrier</button><button type="button" data-philippe-print>Imprimer</button><button type="button" data-philippe-edit>Retour</button></div>';
+    if(!document.getElementById("philippe-action-print-style")){const st=document.createElement("style");st.id="philippe-action-print-style";st.textContent='@media print{body *{visibility:hidden!important}#philippe-action-sheet,#philippe-action-sheet *{visibility:visible!important}#philippe-action-sheet{position:absolute;left:0;top:0;width:100%!important;max-width:none!important;background:#fff!important;color:#000!important}@page{size:A4;margin:12mm}}';document.head.appendChild(st);}
     showScreen("simpleDifficultHelp");
   }
   function philippeGuide(short=false){
