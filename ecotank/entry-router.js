@@ -298,6 +298,7 @@
       ((qid==="q_entry_situation"||qid==="q_employee_goal"||qid==="q_independent_goal")?'<button type="button" class="entry-choice foundation" data-pieter-start>Je suis salarié ou fonctionnaire ET indépendant complémentaire</button>':"")+
       ((qid==="q_entry_situation"||qid==="q_independent_goal")?'<button type="button" class="entry-choice foundation" data-yassine-start>Je débute comme indépendant : obligations, TVA et provisions</button>':"")+
       ((qid==="q_entry_situation"||qid==="q_employee_goal"||qid==="q_independent_goal")?'<button type="button" class="entry-choice foundation" data-philippe-start>J’ai des biens locatifs ou une société patrimoniale : cadastre, précompte et fiscalité</button>':"")+
+      ((qid==="q_entry_situation"||qid==="q_employee_goal")?'<button type="button" class="entry-choice foundation" data-helene-start>Ma rémunération : plan cafétéria, pension, warrants et voiture</button>':"")+
       controls+
       '<div class="entry-footer"><span></span><button type="button" class="linkish" data-entry-unknown>Je ne sais pas quoi choisir</button></div>';
     showScreen("simpleEntryRouter");
@@ -650,6 +651,31 @@
   // Parcours autonome : n'altère aucun état des autres parcours.
   // Orientation professionnelle indépendante : n'utilise ni AER ni données du ménage.
   // Double activité : seul ce parcours utilise ces réponses.
+  function heleneEntry(){
+    if(!ensureScreens())return;
+    const host=document.getElementById("entryDifficultHost");
+    const choices=[["pension","Épargne-pension et pension de groupe"],["benefits","Plan cafétéria et avantages déjà obtenus"],["children","Enfants étudiants et pensions alimentaires"],["warrants","Warrants et voiture de société"]];
+    host.innerHTML='<h2>Vérifier les avantages de ma rémunération</h2><p>Un contrôle ciblé de votre package : pas de déclaration de revenus, ni de liste de primes sous plafonds.</p><p><strong>Quel domaine souhaitez-vous vérifier ?</strong></p><div class="entry-choice-grid">'+choices.map(x=>'<button type="button" data-helene-topic="'+x[0]+'">'+esc(x[1])+'</button>').join("")+'</div><button type="button" data-helene-back>Retour</button>';
+    showScreen("simpleDifficultHelp");
+  }
+  function heleneGuide(short=false){
+    if(!ensureScreens())return;
+    const host=document.getElementById("entryDifficultHost");
+    const cards=[
+      ["pension","Épargne-pension et pension complémentaire","Sur MyPension, ouvrez « Pension complémentaire » et contrôlez les réserves et plans de groupe enregistrés. L'épargne-pension individuelle n'y figure pas : comparez séparément les attestations bancaires et la déclaration fiscale. Pour les versements en 2026, les plafonds publiés sont 1 050 € à 30 % ou 1 350 € à 25 % ; le second choix n'est fiscalement plus favorable qu'au-delà de 1 260 €. Vérifiez les contrats déjà ouverts avant tout versement.","https://finances.belgium.be/fr/particuliers/avantages_fiscaux/epargne-pension/","Bonjour, pouvez-vous me confirmer les cotisations et réserves de pension complémentaire de mon employeur, la couverture en cas de départ, les frais et la différence avec mon épargne-pension individuelle ?"],
+      ["benefits","Plan cafétéria : comparer le net réel","Demandez aux ressources humaines le règlement du plan, le budget disponible, le coût salarial brut/net, les options encore ouvertes et leur incidence sur les droits sociaux, le pécule de vacances et la pension. Distinguez les avantages exonérés sous conditions des avantages de toute nature imposables. Un plan cafétéria n'implique pas automatiquement une économie.","https://finances.belgium.be/fr/entreprises/personnel_et_remuneration/avantages_toute_nature/definition","Bonjour, pourrais-je recevoir le règlement et une simulation écrite comparant mes choix de plan cafétéria, avec coût net, avantages imposables, effet sur la pension et sur les droits sociaux ?"],
+      ["children","Enfants étudiants et pensions alimentaires : éviter les fausses déductions","Études supérieures ou frais de scolarité ne sont pas, en eux-mêmes, une déduction fiscale générale pour les parents. Vérifiez plutôt si un étudiant peut rester à charge, compte tenu du domicile, des revenus et des règles de l'année. Une pension alimentaire versée à un enfant qui n'est plus à charge peut relever d'un régime distinct, sous conditions et avec incompatibilités. Les frais de garde ont leurs propres conditions d'âge et de paiement.","https://finances.belgium.be/fr/particuliers/famille/personnes_a_charge","Bonjour, pouvez-vous vérifier enfant par enfant les conditions de personne à charge, les ressources prises en compte et les règles applicables aux pensions alimentaires, sans assimiler les frais d'études à une déduction automatique ?"],
+      ["warrants","Warrants et voiture : contrôler la fiche fiscale","Demandez à la paie les documents d'attribution des warrants ou options, leurs dates et les valeurs retenues, puis faites confirmer le régime fiscal applicable. Pour la voiture, vérifiez la valeur catalogue, la motorisation, les émissions, l'ancienneté et l'avantage de toute nature figurant sur la fiche 281.10. Le calcul dépend du barème 2026 et ne peut être déduit de la seule marque de voiture.","https://finances.belgium.be/fr/entreprises/impot_des_societes/avantages_toute_nature/voitures_de_societe","Bonjour, merci de me communiquer le détail des warrants ou options accordés, les bases de valorisation, ainsi que le calcul de l'avantage de toute nature de la voiture, et de confirmer les montants déclarés sur ma fiche fiscale."]
+    ];
+    const order=cards.filter(x=>x[0]===(state.heleneTopic||"pension")).concat(cards.filter(x=>x[0]!==state.heleneTopic));
+    const selected=cards.find(x=>x[0]===(state.heleneTopic||"pension"))||cards[0];
+    host.innerHTML='<div id="helene-sheet" style="max-width:750px;margin:auto;padding:12px;background:white;color:#111"><h2>Check-up de rémunération · Woluwe-Saint-Pierre</h2><p><strong>On part de ce que vous possédez déjà.</strong> Pour chaque sujet, cochez mentalement : déjà contrôlé, à vérifier, ou sans objet. Ne transmettez aucun bulletin de paie dans ce formulaire.</p>'+
+      order.map((x,i)=>'<section style="border-top:1px solid #bbb;padding:10px 0"><h3>'+(i+1)+'. '+esc(x[1])+'</h3><p>'+esc(x[2])+'</p>'+(short?'':'<p><a href="'+esc(x[3])+'" target="_blank" rel="noopener noreferrer">Consulter la règle officielle ↗</a></p>')+'</section>').join("")+
+      '<h3>Demande prête à envoyer pour votre priorité</h3><textarea readonly rows="5" style="box-sizing:border-box;width:100%">'+esc(selected[4])+'</textarea><p><strong>Étape suivante :</strong> obtenez une simulation chiffrée écrite des éléments encore non vérifiés, avec coûts, échéance de choix et incidence sur votre revenu net. Si le document manque, demandez un interlocuteur RH ou fiscal précis.</p></div>'+
+      '<div class="entry-route-actions"><button type="button" data-helene-short>Version courte</button><button type="button" data-helene-full>Version détaillée</button><button type="button" data-helene-print>Imprimer / PDF</button><button type="button" data-helene-edit>Changer de priorité</button><button type="button" data-helene-back>Retour</button></div>';
+    if(!document.getElementById("helene-print-style")){const st=document.createElement("style");st.id="helene-print-style";st.textContent='@media print{body *{visibility:hidden!important}#helene-sheet,#helene-sheet *{visibility:visible!important}#helene-sheet{position:absolute;top:0;left:0;width:100%!important;max-width:none!important;background:white!important;color:black!important}@page{size:A4;margin:12mm}}';document.head.appendChild(st);}
+    showScreen("simpleDifficultHelp");
+  }
   function philippeEntry(){
     if(!ensureScreens())return;
     const h=document.getElementById("entryDifficultHost");
@@ -1977,6 +2003,13 @@
     const philippeProcedureButton=event.target.closest("[data-philippe-procedure]");
     if(philippeProcedureButton){state.philippeProcedure=philippeProcedureButton.dataset.philippeProcedure;philippeProcedure();return;}
     if(event.target.closest("[data-philippe-copy]")){const field=document.getElementById("philippe-action-message");if(field){field.select();if(typeof navigator!=="undefined"&&navigator.clipboard?.writeText)navigator.clipboard.writeText(field.value).catch(()=>{});}return;}
+    if(event.target.closest("[data-helene-start]")){heleneEntry();return;}
+    const ht=event.target.closest("[data-helene-topic]");if(ht){state.heleneTopic=ht.dataset.heleneTopic;heleneGuide(false);return;}
+    if(event.target.closest("[data-helene-short]")){heleneGuide(true);return;}
+    if(event.target.closest("[data-helene-full]")){heleneGuide(false);return;}
+    if(event.target.closest("[data-helene-print]")){window.print();return;}
+    if(event.target.closest("[data-helene-edit]")){heleneEntry();return;}
+    if(event.target.closest("[data-helene-back]")){renderQuestion("q_entry_situation");return;}
     if(event.target.closest("[data-philippe-start]")){philippeEntry();return;}
     const ph=event.target.closest("[data-philippe-topic]");if(ph){state.philippeTopic=ph.dataset.philippeTopic;philippeGuide(false);return;}
     if(event.target.closest("[data-philippe-short]")){philippeGuide(true);return;}
