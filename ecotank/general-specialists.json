@@ -353,13 +353,13 @@
       },
       "logement": {
         "primary": {
-          "name": "Bruxelles Logement",
-          "phone": "0800 40 400",
+          "name": "Union des Locataires d’Anderlecht-Cureghem — service social logement",
+          "phone": "02 520 21 29",
           "email": "",
-          "address": "",
-          "url": "https://be.brussels/fr/propos-de-la-region/structure-et-organisation/apercu-des-administrations-et-institutions-de-la-region/bruxelles-logement/contacter-bruxelles-logement"
+          "address": "Chaussée de Mons 213, 1070 Anderlecht",
+          "url": "https://www.ulac-huvak.be/service-social-logement/"
         },
-        "contact_type": "service_regional_ou_federal",
+        "contact_type": "service_local",
         "local_relay": {
           "name": "CPAS d’Anderlecht",
           "phone": "02 529 41 20",
@@ -368,8 +368,8 @@
           "url": "https://anderlecht.be/fr/node/177"
         },
         "availability": "a_confirmer",
-        "local_service_verified": false,
-        "verification_note": "Le relais CPAS peut orienter, mais n’est pas nécessairement compétent pour traiter directement ce besoin.",
+        "local_service_verified": true,
+        "verification_note": "Information logement, accompagnement des locataires, litiges locatifs et demandes de logements sociaux ; rendez-vous uniquement, prise de rendez-vous par téléphone.",
         "housing_directory": {
           "name": "Associations d'insertion par le logement (AIPL) — annuaire régional",
           "url": "https://be.brussels/fr/logement/location/aides-la-location/associations-daide-au-logement",
@@ -381,6 +381,41 @@
           "name": "Sociétés de logement social (SISP)",
           "url": "https://slrb-bghm.brussels/fr/societes-immobilieres-de-service-public/toutes-les-sisp",
           "note": "Choisir l'organisme selon le patrimoine et les règles d'inscription ; ce n'est pas une garantie de logement disponible."
+        },
+        "sources": [
+          {
+            "url": "https://www.ulac-huvak.be/service-social-logement/",
+            "checked_at": "2026-10-12",
+            "source_type": "site_du_service"
+          }
+        ],
+        "specialized_options": [
+          {
+            "name": "FéBUL — permanence juridique logement (régionale)",
+            "phone": "02 201 03 60",
+            "email": "info@febul.be",
+            "address": "Rue du Progrès 333, 1030 Schaerbeek",
+            "url": "https://www.febul.be/contact.html",
+            "scope": "Conseils juridiques sur le droit au logement et les problèmes locatifs ; contacter la permanence pour modalités d'accueil.",
+            "hours_historical": "Mercredi 9 h 30–12 h 30, à confirmer",
+            "checked_at": "2026-10-12"
+          },
+          {
+            "name": "Syndicat des Locataires — permanence juridique",
+            "phone": "02 522 98 69",
+            "email": "",
+            "address": "Square Albert Ier 22, 1070 Anderlecht",
+            "url": "https://www.syndicatdeslocataires.be/",
+            "scope": "Questions sur les droits des locataires à Bruxelles ; vérifier que la permanence correspond au cas.",
+            "hours_historical": "Téléphone en semaine 14 h–17 h, à confirmer",
+            "checked_at": "2026-10-12"
+          }
+        ],
+        "urgent_eviction": {
+          "name": "CPAS de la commune où se situe le logement",
+          "url": "https://be.brussels/fr/logement/location/expulsion-locative/procedure-dexpulsion",
+          "note": "En cas de procédure d’expulsion, contacter sans tarder le CPAS de la commune du logement, qui reçoit normalement les avis de procédure. Ne pas supposer que la demande suspend les délais.",
+          "checked_at": "2026-10-12"
         }
       },
       "famille": {
@@ -669,6 +704,34 @@
           "name": "Sociétés de logement social (SISP)",
           "url": "https://slrb-bghm.brussels/fr/societes-immobilieres-de-service-public/toutes-les-sisp",
           "note": "Choisir l'organisme selon le patrimoine et les règles d'inscription ; ce n'est pas une garantie de logement disponible."
+        },
+        "specialized_options": [
+          {
+            "name": "FéBUL — permanence juridique logement (régionale)",
+            "phone": "02 201 03 60",
+            "email": "info@febul.be",
+            "address": "Rue du Progrès 333, 1030 Schaerbeek",
+            "url": "https://www.febul.be/contact.html",
+            "scope": "Conseils juridiques sur le droit au logement et les problèmes locatifs ; contacter la permanence pour modalités d'accueil.",
+            "hours_historical": "Mercredi 9 h 30–12 h 30, à confirmer",
+            "checked_at": "2026-10-12"
+          },
+          {
+            "name": "Syndicat des Locataires — permanence juridique",
+            "phone": "02 522 98 69",
+            "email": "",
+            "address": "Square Albert Ier 22, 1070 Anderlecht",
+            "url": "https://www.syndicatdeslocataires.be/",
+            "scope": "Questions sur les droits des locataires à Bruxelles ; vérifier que la permanence correspond au cas.",
+            "hours_historical": "Téléphone en semaine 14 h–17 h, à confirmer",
+            "checked_at": "2026-10-12"
+          }
+        ],
+        "urgent_eviction": {
+          "name": "CPAS de la commune où se situe le logement",
+          "url": "https://be.brussels/fr/logement/location/expulsion-locative/procedure-dexpulsion",
+          "note": "En cas de procédure d’expulsion, contacter sans tarder le CPAS de la commune du logement, qui reçoit normalement les avis de procédure. Ne pas supposer que la demande suspend les délais.",
+          "checked_at": "2026-10-12"
         }
       },
       "famille": {
@@ -957,6 +1020,34 @@
           "name": "Sociétés de logement social (SISP)",
           "url": "https://slrb-bghm.brussels/fr/societes-immobilieres-de-service-public/toutes-les-sisp",
           "note": "Choisir l'organisme selon le patrimoine et les règles d'inscription ; ce n'est pas une garantie de logement disponible."
+        },
+        "specialized_options": [
+          {
+            "name": "FéBUL — permanence juridique logement (régionale)",
+            "phone": "02 201 03 60",
+            "email": "info@febul.be",
+            "address": "Rue du Progrès 333, 1030 Schaerbeek",
+            "url": "https://www.febul.be/contact.html",
+            "scope": "Conseils juridiques sur le droit au logement et les problèmes locatifs ; contacter la permanence pour modalités d'accueil.",
+            "hours_historical": "Mercredi 9 h 30–12 h 30, à confirmer",
+            "checked_at": "2026-10-12"
+          },
+          {
+            "name": "Syndicat des Locataires — permanence juridique",
+            "phone": "02 522 98 69",
+            "email": "",
+            "address": "Square Albert Ier 22, 1070 Anderlecht",
+            "url": "https://www.syndicatdeslocataires.be/",
+            "scope": "Questions sur les droits des locataires à Bruxelles ; vérifier que la permanence correspond au cas.",
+            "hours_historical": "Téléphone en semaine 14 h–17 h, à confirmer",
+            "checked_at": "2026-10-12"
+          }
+        ],
+        "urgent_eviction": {
+          "name": "CPAS de la commune où se situe le logement",
+          "url": "https://be.brussels/fr/logement/location/expulsion-locative/procedure-dexpulsion",
+          "note": "En cas de procédure d’expulsion, contacter sans tarder le CPAS de la commune du logement, qui reçoit normalement les avis de procédure. Ne pas supposer que la demande suspend les délais.",
+          "checked_at": "2026-10-12"
         }
       },
       "famille": {
@@ -1251,6 +1342,34 @@
           "name": "Sociétés de logement social (SISP)",
           "url": "https://slrb-bghm.brussels/fr/societes-immobilieres-de-service-public/toutes-les-sisp",
           "note": "Choisir l'organisme selon le patrimoine et les règles d'inscription ; ce n'est pas une garantie de logement disponible."
+        },
+        "specialized_options": [
+          {
+            "name": "FéBUL — permanence juridique logement (régionale)",
+            "phone": "02 201 03 60",
+            "email": "info@febul.be",
+            "address": "Rue du Progrès 333, 1030 Schaerbeek",
+            "url": "https://www.febul.be/contact.html",
+            "scope": "Conseils juridiques sur le droit au logement et les problèmes locatifs ; contacter la permanence pour modalités d'accueil.",
+            "hours_historical": "Mercredi 9 h 30–12 h 30, à confirmer",
+            "checked_at": "2026-10-12"
+          },
+          {
+            "name": "Syndicat des Locataires — permanence juridique",
+            "phone": "02 522 98 69",
+            "email": "",
+            "address": "Square Albert Ier 22, 1070 Anderlecht",
+            "url": "https://www.syndicatdeslocataires.be/",
+            "scope": "Questions sur les droits des locataires à Bruxelles ; vérifier que la permanence correspond au cas.",
+            "hours_historical": "Téléphone en semaine 14 h–17 h, à confirmer",
+            "checked_at": "2026-10-12"
+          }
+        ],
+        "urgent_eviction": {
+          "name": "CPAS de la commune où se situe le logement",
+          "url": "https://be.brussels/fr/logement/location/expulsion-locative/procedure-dexpulsion",
+          "note": "En cas de procédure d’expulsion, contacter sans tarder le CPAS de la commune du logement, qui reçoit normalement les avis de procédure. Ne pas supposer que la demande suspend les délais.",
+          "checked_at": "2026-10-12"
         }
       },
       "famille": {
@@ -1539,6 +1658,34 @@
           "name": "Sociétés de logement social (SISP)",
           "url": "https://slrb-bghm.brussels/fr/societes-immobilieres-de-service-public/toutes-les-sisp",
           "note": "Choisir l'organisme selon le patrimoine et les règles d'inscription ; ce n'est pas une garantie de logement disponible."
+        },
+        "specialized_options": [
+          {
+            "name": "FéBUL — permanence juridique logement (régionale)",
+            "phone": "02 201 03 60",
+            "email": "info@febul.be",
+            "address": "Rue du Progrès 333, 1030 Schaerbeek",
+            "url": "https://www.febul.be/contact.html",
+            "scope": "Conseils juridiques sur le droit au logement et les problèmes locatifs ; contacter la permanence pour modalités d'accueil.",
+            "hours_historical": "Mercredi 9 h 30–12 h 30, à confirmer",
+            "checked_at": "2026-10-12"
+          },
+          {
+            "name": "Syndicat des Locataires — permanence juridique",
+            "phone": "02 522 98 69",
+            "email": "",
+            "address": "Square Albert Ier 22, 1070 Anderlecht",
+            "url": "https://www.syndicatdeslocataires.be/",
+            "scope": "Questions sur les droits des locataires à Bruxelles ; vérifier que la permanence correspond au cas.",
+            "hours_historical": "Téléphone en semaine 14 h–17 h, à confirmer",
+            "checked_at": "2026-10-12"
+          }
+        ],
+        "urgent_eviction": {
+          "name": "CPAS de la commune où se situe le logement",
+          "url": "https://be.brussels/fr/logement/location/expulsion-locative/procedure-dexpulsion",
+          "note": "En cas de procédure d’expulsion, contacter sans tarder le CPAS de la commune du logement, qui reçoit normalement les avis de procédure. Ne pas supposer que la demande suspend les délais.",
+          "checked_at": "2026-10-12"
         }
       },
       "famille": {
@@ -1827,6 +1974,34 @@
           "name": "Sociétés de logement social (SISP)",
           "url": "https://slrb-bghm.brussels/fr/societes-immobilieres-de-service-public/toutes-les-sisp",
           "note": "Choisir l'organisme selon le patrimoine et les règles d'inscription ; ce n'est pas une garantie de logement disponible."
+        },
+        "specialized_options": [
+          {
+            "name": "FéBUL — permanence juridique logement (régionale)",
+            "phone": "02 201 03 60",
+            "email": "info@febul.be",
+            "address": "Rue du Progrès 333, 1030 Schaerbeek",
+            "url": "https://www.febul.be/contact.html",
+            "scope": "Conseils juridiques sur le droit au logement et les problèmes locatifs ; contacter la permanence pour modalités d'accueil.",
+            "hours_historical": "Mercredi 9 h 30–12 h 30, à confirmer",
+            "checked_at": "2026-10-12"
+          },
+          {
+            "name": "Syndicat des Locataires — permanence juridique",
+            "phone": "02 522 98 69",
+            "email": "",
+            "address": "Square Albert Ier 22, 1070 Anderlecht",
+            "url": "https://www.syndicatdeslocataires.be/",
+            "scope": "Questions sur les droits des locataires à Bruxelles ; vérifier que la permanence correspond au cas.",
+            "hours_historical": "Téléphone en semaine 14 h–17 h, à confirmer",
+            "checked_at": "2026-10-12"
+          }
+        ],
+        "urgent_eviction": {
+          "name": "CPAS de la commune où se situe le logement",
+          "url": "https://be.brussels/fr/logement/location/expulsion-locative/procedure-dexpulsion",
+          "note": "En cas de procédure d’expulsion, contacter sans tarder le CPAS de la commune du logement, qui reçoit normalement les avis de procédure. Ne pas supposer que la demande suspend les délais.",
+          "checked_at": "2026-10-12"
         }
       },
       "famille": {
@@ -2115,6 +2290,34 @@
           "name": "Sociétés de logement social (SISP)",
           "url": "https://slrb-bghm.brussels/fr/societes-immobilieres-de-service-public/toutes-les-sisp",
           "note": "Choisir l'organisme selon le patrimoine et les règles d'inscription ; ce n'est pas une garantie de logement disponible."
+        },
+        "specialized_options": [
+          {
+            "name": "FéBUL — permanence juridique logement (régionale)",
+            "phone": "02 201 03 60",
+            "email": "info@febul.be",
+            "address": "Rue du Progrès 333, 1030 Schaerbeek",
+            "url": "https://www.febul.be/contact.html",
+            "scope": "Conseils juridiques sur le droit au logement et les problèmes locatifs ; contacter la permanence pour modalités d'accueil.",
+            "hours_historical": "Mercredi 9 h 30–12 h 30, à confirmer",
+            "checked_at": "2026-10-12"
+          },
+          {
+            "name": "Syndicat des Locataires — permanence juridique",
+            "phone": "02 522 98 69",
+            "email": "",
+            "address": "Square Albert Ier 22, 1070 Anderlecht",
+            "url": "https://www.syndicatdeslocataires.be/",
+            "scope": "Questions sur les droits des locataires à Bruxelles ; vérifier que la permanence correspond au cas.",
+            "hours_historical": "Téléphone en semaine 14 h–17 h, à confirmer",
+            "checked_at": "2026-10-12"
+          }
+        ],
+        "urgent_eviction": {
+          "name": "CPAS de la commune où se situe le logement",
+          "url": "https://be.brussels/fr/logement/location/expulsion-locative/procedure-dexpulsion",
+          "note": "En cas de procédure d’expulsion, contacter sans tarder le CPAS de la commune du logement, qui reçoit normalement les avis de procédure. Ne pas supposer que la demande suspend les délais.",
+          "checked_at": "2026-10-12"
         }
       },
       "famille": {
@@ -2403,6 +2606,34 @@
           "name": "Sociétés de logement social (SISP)",
           "url": "https://slrb-bghm.brussels/fr/societes-immobilieres-de-service-public/toutes-les-sisp",
           "note": "Choisir l'organisme selon le patrimoine et les règles d'inscription ; ce n'est pas une garantie de logement disponible."
+        },
+        "specialized_options": [
+          {
+            "name": "FéBUL — permanence juridique logement (régionale)",
+            "phone": "02 201 03 60",
+            "email": "info@febul.be",
+            "address": "Rue du Progrès 333, 1030 Schaerbeek",
+            "url": "https://www.febul.be/contact.html",
+            "scope": "Conseils juridiques sur le droit au logement et les problèmes locatifs ; contacter la permanence pour modalités d'accueil.",
+            "hours_historical": "Mercredi 9 h 30–12 h 30, à confirmer",
+            "checked_at": "2026-10-12"
+          },
+          {
+            "name": "Syndicat des Locataires — permanence juridique",
+            "phone": "02 522 98 69",
+            "email": "",
+            "address": "Square Albert Ier 22, 1070 Anderlecht",
+            "url": "https://www.syndicatdeslocataires.be/",
+            "scope": "Questions sur les droits des locataires à Bruxelles ; vérifier que la permanence correspond au cas.",
+            "hours_historical": "Téléphone en semaine 14 h–17 h, à confirmer",
+            "checked_at": "2026-10-12"
+          }
+        ],
+        "urgent_eviction": {
+          "name": "CPAS de la commune où se situe le logement",
+          "url": "https://be.brussels/fr/logement/location/expulsion-locative/procedure-dexpulsion",
+          "note": "En cas de procédure d’expulsion, contacter sans tarder le CPAS de la commune du logement, qui reçoit normalement les avis de procédure. Ne pas supposer que la demande suspend les délais.",
+          "checked_at": "2026-10-12"
         }
       },
       "famille": {
@@ -2663,13 +2894,13 @@
       },
       "logement": {
         "primary": {
-          "name": "Bruxelles Logement",
-          "phone": "0800 40 400",
+          "name": "Service Logement de la commune d’Ixelles",
+          "phone": "",
           "email": "",
           "address": "",
-          "url": "https://be.brussels/fr/propos-de-la-region/structure-et-organisation/apercu-des-administrations-et-institutions-de-la-region/bruxelles-logement/contacter-bruxelles-logement"
+          "url": "https://www.ixelles.be/site/83-Aide-aux-locataires-ou-aux-proprietaires-de-logements-prives"
         },
-        "contact_type": "service_regional_ou_federal",
+        "contact_type": "service_local",
         "local_relay": {
           "name": "CPAS d’Ixelles",
           "phone": "02 247 65 88",
@@ -2678,8 +2909,8 @@
           "url": "https://cpasixelles.brussels/"
         },
         "availability": "a_confirmer",
-        "local_service_verified": false,
-        "verification_note": "Le relais CPAS peut orienter, mais n’est pas nécessairement compétent pour traiter directement ce besoin.",
+        "local_service_verified": true,
+        "verification_note": "Droits et obligations, conflits bailleur-locataire, insalubrité et risque d’expulsion pour les habitants d’Ixelles ; ce service ne recherche pas de logement à leur place.",
         "housing_directory": {
           "name": "Associations d'insertion par le logement (AIPL) — annuaire régional",
           "url": "https://be.brussels/fr/logement/location/aides-la-location/associations-daide-au-logement",
@@ -2691,6 +2922,41 @@
           "name": "Sociétés de logement social (SISP)",
           "url": "https://slrb-bghm.brussels/fr/societes-immobilieres-de-service-public/toutes-les-sisp",
           "note": "Choisir l'organisme selon le patrimoine et les règles d'inscription ; ce n'est pas une garantie de logement disponible."
+        },
+        "sources": [
+          {
+            "url": "https://www.ixelles.be/site/83-Aide-aux-locataires-ou-aux-proprietaires-de-logements-prives",
+            "checked_at": "2026-10-12",
+            "source_type": "site_du_service"
+          }
+        ],
+        "specialized_options": [
+          {
+            "name": "FéBUL — permanence juridique logement (régionale)",
+            "phone": "02 201 03 60",
+            "email": "info@febul.be",
+            "address": "Rue du Progrès 333, 1030 Schaerbeek",
+            "url": "https://www.febul.be/contact.html",
+            "scope": "Conseils juridiques sur le droit au logement et les problèmes locatifs ; contacter la permanence pour modalités d'accueil.",
+            "hours_historical": "Mercredi 9 h 30–12 h 30, à confirmer",
+            "checked_at": "2026-10-12"
+          },
+          {
+            "name": "Syndicat des Locataires — permanence juridique",
+            "phone": "02 522 98 69",
+            "email": "",
+            "address": "Square Albert Ier 22, 1070 Anderlecht",
+            "url": "https://www.syndicatdeslocataires.be/",
+            "scope": "Questions sur les droits des locataires à Bruxelles ; vérifier que la permanence correspond au cas.",
+            "hours_historical": "Téléphone en semaine 14 h–17 h, à confirmer",
+            "checked_at": "2026-10-12"
+          }
+        ],
+        "urgent_eviction": {
+          "name": "CPAS de la commune où se situe le logement",
+          "url": "https://be.brussels/fr/logement/location/expulsion-locative/procedure-dexpulsion",
+          "note": "En cas de procédure d’expulsion, contacter sans tarder le CPAS de la commune du logement, qui reçoit normalement les avis de procédure. Ne pas supposer que la demande suspend les délais.",
+          "checked_at": "2026-10-12"
         }
       },
       "famille": {
@@ -2979,6 +3245,34 @@
           "name": "Sociétés de logement social (SISP)",
           "url": "https://slrb-bghm.brussels/fr/societes-immobilieres-de-service-public/toutes-les-sisp",
           "note": "Choisir l'organisme selon le patrimoine et les règles d'inscription ; ce n'est pas une garantie de logement disponible."
+        },
+        "specialized_options": [
+          {
+            "name": "FéBUL — permanence juridique logement (régionale)",
+            "phone": "02 201 03 60",
+            "email": "info@febul.be",
+            "address": "Rue du Progrès 333, 1030 Schaerbeek",
+            "url": "https://www.febul.be/contact.html",
+            "scope": "Conseils juridiques sur le droit au logement et les problèmes locatifs ; contacter la permanence pour modalités d'accueil.",
+            "hours_historical": "Mercredi 9 h 30–12 h 30, à confirmer",
+            "checked_at": "2026-10-12"
+          },
+          {
+            "name": "Syndicat des Locataires — permanence juridique",
+            "phone": "02 522 98 69",
+            "email": "",
+            "address": "Square Albert Ier 22, 1070 Anderlecht",
+            "url": "https://www.syndicatdeslocataires.be/",
+            "scope": "Questions sur les droits des locataires à Bruxelles ; vérifier que la permanence correspond au cas.",
+            "hours_historical": "Téléphone en semaine 14 h–17 h, à confirmer",
+            "checked_at": "2026-10-12"
+          }
+        ],
+        "urgent_eviction": {
+          "name": "CPAS de la commune où se situe le logement",
+          "url": "https://be.brussels/fr/logement/location/expulsion-locative/procedure-dexpulsion",
+          "note": "En cas de procédure d’expulsion, contacter sans tarder le CPAS de la commune du logement, qui reçoit normalement les avis de procédure. Ne pas supposer que la demande suspend les délais.",
+          "checked_at": "2026-10-12"
         }
       },
       "famille": {
@@ -3267,6 +3561,34 @@
           "name": "Sociétés de logement social (SISP)",
           "url": "https://slrb-bghm.brussels/fr/societes-immobilieres-de-service-public/toutes-les-sisp",
           "note": "Choisir l'organisme selon le patrimoine et les règles d'inscription ; ce n'est pas une garantie de logement disponible."
+        },
+        "specialized_options": [
+          {
+            "name": "FéBUL — permanence juridique logement (régionale)",
+            "phone": "02 201 03 60",
+            "email": "info@febul.be",
+            "address": "Rue du Progrès 333, 1030 Schaerbeek",
+            "url": "https://www.febul.be/contact.html",
+            "scope": "Conseils juridiques sur le droit au logement et les problèmes locatifs ; contacter la permanence pour modalités d'accueil.",
+            "hours_historical": "Mercredi 9 h 30–12 h 30, à confirmer",
+            "checked_at": "2026-10-12"
+          },
+          {
+            "name": "Syndicat des Locataires — permanence juridique",
+            "phone": "02 522 98 69",
+            "email": "",
+            "address": "Square Albert Ier 22, 1070 Anderlecht",
+            "url": "https://www.syndicatdeslocataires.be/",
+            "scope": "Questions sur les droits des locataires à Bruxelles ; vérifier que la permanence correspond au cas.",
+            "hours_historical": "Téléphone en semaine 14 h–17 h, à confirmer",
+            "checked_at": "2026-10-12"
+          }
+        ],
+        "urgent_eviction": {
+          "name": "CPAS de la commune où se situe le logement",
+          "url": "https://be.brussels/fr/logement/location/expulsion-locative/procedure-dexpulsion",
+          "note": "En cas de procédure d’expulsion, contacter sans tarder le CPAS de la commune du logement, qui reçoit normalement les avis de procédure. Ne pas supposer que la demande suspend les délais.",
+          "checked_at": "2026-10-12"
         }
       },
       "famille": {
@@ -3555,6 +3877,34 @@
           "name": "Sociétés de logement social (SISP)",
           "url": "https://slrb-bghm.brussels/fr/societes-immobilieres-de-service-public/toutes-les-sisp",
           "note": "Choisir l'organisme selon le patrimoine et les règles d'inscription ; ce n'est pas une garantie de logement disponible."
+        },
+        "specialized_options": [
+          {
+            "name": "FéBUL — permanence juridique logement (régionale)",
+            "phone": "02 201 03 60",
+            "email": "info@febul.be",
+            "address": "Rue du Progrès 333, 1030 Schaerbeek",
+            "url": "https://www.febul.be/contact.html",
+            "scope": "Conseils juridiques sur le droit au logement et les problèmes locatifs ; contacter la permanence pour modalités d'accueil.",
+            "hours_historical": "Mercredi 9 h 30–12 h 30, à confirmer",
+            "checked_at": "2026-10-12"
+          },
+          {
+            "name": "Syndicat des Locataires — permanence juridique",
+            "phone": "02 522 98 69",
+            "email": "",
+            "address": "Square Albert Ier 22, 1070 Anderlecht",
+            "url": "https://www.syndicatdeslocataires.be/",
+            "scope": "Questions sur les droits des locataires à Bruxelles ; vérifier que la permanence correspond au cas.",
+            "hours_historical": "Téléphone en semaine 14 h–17 h, à confirmer",
+            "checked_at": "2026-10-12"
+          }
+        ],
+        "urgent_eviction": {
+          "name": "CPAS de la commune où se situe le logement",
+          "url": "https://be.brussels/fr/logement/location/expulsion-locative/procedure-dexpulsion",
+          "note": "En cas de procédure d’expulsion, contacter sans tarder le CPAS de la commune du logement, qui reçoit normalement les avis de procédure. Ne pas supposer que la demande suspend les délais.",
+          "checked_at": "2026-10-12"
         }
       },
       "famille": {
@@ -3843,6 +4193,34 @@
           "name": "Sociétés de logement social (SISP)",
           "url": "https://slrb-bghm.brussels/fr/societes-immobilieres-de-service-public/toutes-les-sisp",
           "note": "Choisir l'organisme selon le patrimoine et les règles d'inscription ; ce n'est pas une garantie de logement disponible."
+        },
+        "specialized_options": [
+          {
+            "name": "FéBUL — permanence juridique logement (régionale)",
+            "phone": "02 201 03 60",
+            "email": "info@febul.be",
+            "address": "Rue du Progrès 333, 1030 Schaerbeek",
+            "url": "https://www.febul.be/contact.html",
+            "scope": "Conseils juridiques sur le droit au logement et les problèmes locatifs ; contacter la permanence pour modalités d'accueil.",
+            "hours_historical": "Mercredi 9 h 30–12 h 30, à confirmer",
+            "checked_at": "2026-10-12"
+          },
+          {
+            "name": "Syndicat des Locataires — permanence juridique",
+            "phone": "02 522 98 69",
+            "email": "",
+            "address": "Square Albert Ier 22, 1070 Anderlecht",
+            "url": "https://www.syndicatdeslocataires.be/",
+            "scope": "Questions sur les droits des locataires à Bruxelles ; vérifier que la permanence correspond au cas.",
+            "hours_historical": "Téléphone en semaine 14 h–17 h, à confirmer",
+            "checked_at": "2026-10-12"
+          }
+        ],
+        "urgent_eviction": {
+          "name": "CPAS de la commune où se situe le logement",
+          "url": "https://be.brussels/fr/logement/location/expulsion-locative/procedure-dexpulsion",
+          "note": "En cas de procédure d’expulsion, contacter sans tarder le CPAS de la commune du logement, qui reçoit normalement les avis de procédure. Ne pas supposer que la demande suspend les délais.",
+          "checked_at": "2026-10-12"
         }
       },
       "famille": {
@@ -4131,6 +4509,34 @@
           "name": "Sociétés de logement social (SISP)",
           "url": "https://slrb-bghm.brussels/fr/societes-immobilieres-de-service-public/toutes-les-sisp",
           "note": "Choisir l'organisme selon le patrimoine et les règles d'inscription ; ce n'est pas une garantie de logement disponible."
+        },
+        "specialized_options": [
+          {
+            "name": "FéBUL — permanence juridique logement (régionale)",
+            "phone": "02 201 03 60",
+            "email": "info@febul.be",
+            "address": "Rue du Progrès 333, 1030 Schaerbeek",
+            "url": "https://www.febul.be/contact.html",
+            "scope": "Conseils juridiques sur le droit au logement et les problèmes locatifs ; contacter la permanence pour modalités d'accueil.",
+            "hours_historical": "Mercredi 9 h 30–12 h 30, à confirmer",
+            "checked_at": "2026-10-12"
+          },
+          {
+            "name": "Syndicat des Locataires — permanence juridique",
+            "phone": "02 522 98 69",
+            "email": "",
+            "address": "Square Albert Ier 22, 1070 Anderlecht",
+            "url": "https://www.syndicatdeslocataires.be/",
+            "scope": "Questions sur les droits des locataires à Bruxelles ; vérifier que la permanence correspond au cas.",
+            "hours_historical": "Téléphone en semaine 14 h–17 h, à confirmer",
+            "checked_at": "2026-10-12"
+          }
+        ],
+        "urgent_eviction": {
+          "name": "CPAS de la commune où se situe le logement",
+          "url": "https://be.brussels/fr/logement/location/expulsion-locative/procedure-dexpulsion",
+          "note": "En cas de procédure d’expulsion, contacter sans tarder le CPAS de la commune du logement, qui reçoit normalement les avis de procédure. Ne pas supposer que la demande suspend les délais.",
+          "checked_at": "2026-10-12"
         }
       },
       "famille": {
@@ -4419,6 +4825,34 @@
           "name": "Sociétés de logement social (SISP)",
           "url": "https://slrb-bghm.brussels/fr/societes-immobilieres-de-service-public/toutes-les-sisp",
           "note": "Choisir l'organisme selon le patrimoine et les règles d'inscription ; ce n'est pas une garantie de logement disponible."
+        },
+        "specialized_options": [
+          {
+            "name": "FéBUL — permanence juridique logement (régionale)",
+            "phone": "02 201 03 60",
+            "email": "info@febul.be",
+            "address": "Rue du Progrès 333, 1030 Schaerbeek",
+            "url": "https://www.febul.be/contact.html",
+            "scope": "Conseils juridiques sur le droit au logement et les problèmes locatifs ; contacter la permanence pour modalités d'accueil.",
+            "hours_historical": "Mercredi 9 h 30–12 h 30, à confirmer",
+            "checked_at": "2026-10-12"
+          },
+          {
+            "name": "Syndicat des Locataires — permanence juridique",
+            "phone": "02 522 98 69",
+            "email": "",
+            "address": "Square Albert Ier 22, 1070 Anderlecht",
+            "url": "https://www.syndicatdeslocataires.be/",
+            "scope": "Questions sur les droits des locataires à Bruxelles ; vérifier que la permanence correspond au cas.",
+            "hours_historical": "Téléphone en semaine 14 h–17 h, à confirmer",
+            "checked_at": "2026-10-12"
+          }
+        ],
+        "urgent_eviction": {
+          "name": "CPAS de la commune où se situe le logement",
+          "url": "https://be.brussels/fr/logement/location/expulsion-locative/procedure-dexpulsion",
+          "note": "En cas de procédure d’expulsion, contacter sans tarder le CPAS de la commune du logement, qui reçoit normalement les avis de procédure. Ne pas supposer que la demande suspend les délais.",
+          "checked_at": "2026-10-12"
         }
       },
       "famille": {
@@ -4707,6 +5141,34 @@
           "name": "Sociétés de logement social (SISP)",
           "url": "https://slrb-bghm.brussels/fr/societes-immobilieres-de-service-public/toutes-les-sisp",
           "note": "Choisir l'organisme selon le patrimoine et les règles d'inscription ; ce n'est pas une garantie de logement disponible."
+        },
+        "specialized_options": [
+          {
+            "name": "FéBUL — permanence juridique logement (régionale)",
+            "phone": "02 201 03 60",
+            "email": "info@febul.be",
+            "address": "Rue du Progrès 333, 1030 Schaerbeek",
+            "url": "https://www.febul.be/contact.html",
+            "scope": "Conseils juridiques sur le droit au logement et les problèmes locatifs ; contacter la permanence pour modalités d'accueil.",
+            "hours_historical": "Mercredi 9 h 30–12 h 30, à confirmer",
+            "checked_at": "2026-10-12"
+          },
+          {
+            "name": "Syndicat des Locataires — permanence juridique",
+            "phone": "02 522 98 69",
+            "email": "",
+            "address": "Square Albert Ier 22, 1070 Anderlecht",
+            "url": "https://www.syndicatdeslocataires.be/",
+            "scope": "Questions sur les droits des locataires à Bruxelles ; vérifier que la permanence correspond au cas.",
+            "hours_historical": "Téléphone en semaine 14 h–17 h, à confirmer",
+            "checked_at": "2026-10-12"
+          }
+        ],
+        "urgent_eviction": {
+          "name": "CPAS de la commune où se situe le logement",
+          "url": "https://be.brussels/fr/logement/location/expulsion-locative/procedure-dexpulsion",
+          "note": "En cas de procédure d’expulsion, contacter sans tarder le CPAS de la commune du logement, qui reçoit normalement les avis de procédure. Ne pas supposer que la demande suspend les délais.",
+          "checked_at": "2026-10-12"
         }
       },
       "famille": {
@@ -4995,6 +5457,34 @@
           "name": "Sociétés de logement social (SISP)",
           "url": "https://slrb-bghm.brussels/fr/societes-immobilieres-de-service-public/toutes-les-sisp",
           "note": "Choisir l'organisme selon le patrimoine et les règles d'inscription ; ce n'est pas une garantie de logement disponible."
+        },
+        "specialized_options": [
+          {
+            "name": "FéBUL — permanence juridique logement (régionale)",
+            "phone": "02 201 03 60",
+            "email": "info@febul.be",
+            "address": "Rue du Progrès 333, 1030 Schaerbeek",
+            "url": "https://www.febul.be/contact.html",
+            "scope": "Conseils juridiques sur le droit au logement et les problèmes locatifs ; contacter la permanence pour modalités d'accueil.",
+            "hours_historical": "Mercredi 9 h 30–12 h 30, à confirmer",
+            "checked_at": "2026-10-12"
+          },
+          {
+            "name": "Syndicat des Locataires — permanence juridique",
+            "phone": "02 522 98 69",
+            "email": "",
+            "address": "Square Albert Ier 22, 1070 Anderlecht",
+            "url": "https://www.syndicatdeslocataires.be/",
+            "scope": "Questions sur les droits des locataires à Bruxelles ; vérifier que la permanence correspond au cas.",
+            "hours_historical": "Téléphone en semaine 14 h–17 h, à confirmer",
+            "checked_at": "2026-10-12"
+          }
+        ],
+        "urgent_eviction": {
+          "name": "CPAS de la commune où se situe le logement",
+          "url": "https://be.brussels/fr/logement/location/expulsion-locative/procedure-dexpulsion",
+          "note": "En cas de procédure d’expulsion, contacter sans tarder le CPAS de la commune du logement, qui reçoit normalement les avis de procédure. Ne pas supposer que la demande suspend les délais.",
+          "checked_at": "2026-10-12"
         }
       },
       "famille": {
@@ -5283,6 +5773,34 @@
           "name": "Sociétés de logement social (SISP)",
           "url": "https://slrb-bghm.brussels/fr/societes-immobilieres-de-service-public/toutes-les-sisp",
           "note": "Choisir l'organisme selon le patrimoine et les règles d'inscription ; ce n'est pas une garantie de logement disponible."
+        },
+        "specialized_options": [
+          {
+            "name": "FéBUL — permanence juridique logement (régionale)",
+            "phone": "02 201 03 60",
+            "email": "info@febul.be",
+            "address": "Rue du Progrès 333, 1030 Schaerbeek",
+            "url": "https://www.febul.be/contact.html",
+            "scope": "Conseils juridiques sur le droit au logement et les problèmes locatifs ; contacter la permanence pour modalités d'accueil.",
+            "hours_historical": "Mercredi 9 h 30–12 h 30, à confirmer",
+            "checked_at": "2026-10-12"
+          },
+          {
+            "name": "Syndicat des Locataires — permanence juridique",
+            "phone": "02 522 98 69",
+            "email": "",
+            "address": "Square Albert Ier 22, 1070 Anderlecht",
+            "url": "https://www.syndicatdeslocataires.be/",
+            "scope": "Questions sur les droits des locataires à Bruxelles ; vérifier que la permanence correspond au cas.",
+            "hours_historical": "Téléphone en semaine 14 h–17 h, à confirmer",
+            "checked_at": "2026-10-12"
+          }
+        ],
+        "urgent_eviction": {
+          "name": "CPAS de la commune où se situe le logement",
+          "url": "https://be.brussels/fr/logement/location/expulsion-locative/procedure-dexpulsion",
+          "note": "En cas de procédure d’expulsion, contacter sans tarder le CPAS de la commune du logement, qui reçoit normalement les avis de procédure. Ne pas supposer que la demande suspend les délais.",
+          "checked_at": "2026-10-12"
         }
       },
       "famille": {
@@ -5571,6 +6089,34 @@
           "name": "Sociétés de logement social (SISP)",
           "url": "https://slrb-bghm.brussels/fr/societes-immobilieres-de-service-public/toutes-les-sisp",
           "note": "Choisir l'organisme selon le patrimoine et les règles d'inscription ; ce n'est pas une garantie de logement disponible."
+        },
+        "specialized_options": [
+          {
+            "name": "FéBUL — permanence juridique logement (régionale)",
+            "phone": "02 201 03 60",
+            "email": "info@febul.be",
+            "address": "Rue du Progrès 333, 1030 Schaerbeek",
+            "url": "https://www.febul.be/contact.html",
+            "scope": "Conseils juridiques sur le droit au logement et les problèmes locatifs ; contacter la permanence pour modalités d'accueil.",
+            "hours_historical": "Mercredi 9 h 30–12 h 30, à confirmer",
+            "checked_at": "2026-10-12"
+          },
+          {
+            "name": "Syndicat des Locataires — permanence juridique",
+            "phone": "02 522 98 69",
+            "email": "",
+            "address": "Square Albert Ier 22, 1070 Anderlecht",
+            "url": "https://www.syndicatdeslocataires.be/",
+            "scope": "Questions sur les droits des locataires à Bruxelles ; vérifier que la permanence correspond au cas.",
+            "hours_historical": "Téléphone en semaine 14 h–17 h, à confirmer",
+            "checked_at": "2026-10-12"
+          }
+        ],
+        "urgent_eviction": {
+          "name": "CPAS de la commune où se situe le logement",
+          "url": "https://be.brussels/fr/logement/location/expulsion-locative/procedure-dexpulsion",
+          "note": "En cas de procédure d’expulsion, contacter sans tarder le CPAS de la commune du logement, qui reçoit normalement les avis de procédure. Ne pas supposer que la demande suspend les délais.",
+          "checked_at": "2026-10-12"
         }
       },
       "famille": {
@@ -5823,7 +6369,13 @@
         "https://www.bruxelles.be/guichet-logement",
         "https://be.brussels/fr/logement/location/aides-la-location/associations-daide-au-logement",
         "https://slrb-bghm.brussels/fr/societes-immobilieres-de-service-public/toutes-les-sisp"
-      ]
+      ],
+      "directLocalServices": 3,
+      "addedDirectServices": [
+        "Anderlecht",
+        "Ixelles"
+      ],
+      "regionwideSpecialistOptions": 2
     }
   }
 }
