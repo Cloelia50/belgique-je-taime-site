@@ -691,18 +691,19 @@
   function purchaseLoad(){try{return JSON.parse(localStorage.getItem("ecotank-premier-achat-v1")||"{}")||{};}catch(e){return {};}}
   function purchaseSave(k,v){const p=purchaseLoad();p[k]=v;try{localStorage.setItem("ecotank-premier-achat-v1",JSON.stringify(p));}catch(e){}}
   function purchaseCalc(){
-    const p=purchaseLoad(),n=k=>Math.max(0,Number(p[k])||0),price=n("price"),apport=n("apport"),reserve=n("reserve"),costs=n("costs"),loan=p.loan!==undefined&&p.loan!==""?n("loan"):Math.max(0,price+costs+n("price")*.125-apport),rate=n("rate"),years=n("years")||25;
-    const r=rate/1200,period=years*12,monthly=loan>0?(r?loan*r/(1-Math.pow(1+r,-period)):loan/period):0;
+    const p=purchaseLoad(),n=k=>Math.max(0,Number(p[k])||0),price=n("price"),apport=n("apport"),reserve=n("reserve"),costs=n("costs"),rate=n("rate"),years=n("years")||25;
+    const r=rate/1200,period=years*12;
     const eligibility=p.abat==="yes"&&price>0&&price<=600000,registration=price>0?Math.max(0,price-(eligibility?200000:0))*.125:0;
-    const net=n("income1")+n("income2"),debts=n("debts"),regular=n("regular"),housing=n("housing"),available=Math.max(0,net-debts-regular-reserve),guide=Math.max(0,net*n("ratio")/100-debts);
-    const chosen=Math.min(available,guide),maxloan=chosen>0?chosen*(r?((1-Math.pow(1+r,-period))/r):period):0;
+    const net=n("income1")+n("income2"),debts=n("debts"),regular=n("regular"),housing=n("housing"),available=Math.max(0,net-debts-regular-reserve),guide=Math.max(0,net*(p.ratio!==undefined&&p.ratio!==""?n("ratio"):30)/100-debts);
+    const chosen=Math.min(available,guide),monthly=loan>0?(r?loan*r/(1-Math.pow(1+r,-period)):loan/period):0,maxloan=chosen>0?chosen*(r?((1-Math.pow(1+r,-period))/r):period):0;
     const funding=Math.max(0,price+registration+costs-apport);
-    const required=p.loan!==undefined&&p.loan!==""?loan:funding;
+    const loan=p.loan!==undefined&&p.loan!==""?n("loan"):funding;
+    const required=loan;
     const ratio=price>0?required/price*100:0;
     const fmt=x=>x.toLocaleString("fr-BE",{maximumFractionDigits:0});
     const el=document.getElementById("purchase-result");if(!el)return;
     if(!price){el.textContent="Indiquez d’abord le prix du logement.";return;}
-    el.textContent="Droits d’enregistrement estimés : "+fmt(registration)+" € ; besoin de financement (prix + droits + frais estimés − apport) : "+fmt(funding)+" € ; mensualité simulée : "+fmt(monthly)+" € ; financement / prix : "+ratio.toFixed(1)+" %. "+(net>0&&n("ratio")>0?"Avec vos revenus et charges, le plafond de mensualité choisi pour cet exercice est "+fmt(chosen)+" € et le capital théorique correspondant "+fmt(maxloan)+" €. ":"Renseignez revenus et charges pour évaluer une mensualité supportable. ")+(monthly>chosen&&net>0&&n("ratio")>0?"La mensualité envisagée dépasse votre plafond choisi. ":"")+"Il s’agit d’une estimation sans approbation bancaire ; vos frais et assurances doivent être chiffrés par le notaire. L’abattement est appliqué uniquement si vous indiquez son admissibilité confirmée.";
+    el.textContent="Droits d’enregistrement estimés : "+fmt(registration)+" € ; besoin de financement (prix + droits + frais estimés − apport) : "+fmt(funding)+" € ; mensualité simulée : "+fmt(monthly)+" € ; financement / prix : "+ratio.toFixed(1)+" %. "+(net>0?"Avec vos revenus et charges, le plafond de mensualité choisi pour cet exercice est "+fmt(chosen)+" € et le capital théorique correspondant "+fmt(maxloan)+" €. ":"Renseignez revenus et charges pour évaluer une mensualité supportable. ")+(monthly>chosen&&net>0&&n("ratio")>0?"La mensualité envisagée dépasse votre plafond choisi. ":"")+"Il s’agit d’une estimation sans approbation bancaire ; vos frais et assurances doivent être chiffrés par le notaire. L’abattement est appliqué uniquement si vous indiquez son admissibilité confirmée.";
   }
   function purchaseEntry(){
     const h=document.getElementById("entryDifficultHost");if(!h)return;const p=purchaseLoad();
