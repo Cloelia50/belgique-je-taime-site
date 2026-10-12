@@ -369,7 +369,19 @@
         },
         "availability": "a_confirmer",
         "local_service_verified": false,
-        "verification_note": "Le relais CPAS peut orienter, mais n’est pas nécessairement compétent pour traiter directement ce besoin."
+        "verification_note": "Le relais CPAS peut orienter, mais n’est pas nécessairement compétent pour traiter directement ce besoin.",
+        "housing_directory": {
+          "name": "Associations d'insertion par le logement (AIPL) — annuaire régional",
+          "url": "https://be.brussels/fr/logement/location/aides-la-location/associations-daide-au-logement",
+          "commune_listed": true,
+          "note": "Des structures sont référencées dans cette commune : identifier l'association adaptée et vérifier les conditions.",
+          "checked_at": "2026-10-12"
+        },
+        "social_housing_directory": {
+          "name": "Sociétés de logement social (SISP)",
+          "url": "https://slrb-bghm.brussels/fr/societes-immobilieres-de-service-public/toutes-les-sisp",
+          "note": "Choisir l'organisme selon le patrimoine et les règles d'inscription ; ce n'est pas une garantie de logement disponible."
+        }
       },
       "famille": {
         "primary": {
@@ -645,7 +657,19 @@
         },
         "availability": "a_confirmer",
         "local_service_verified": false,
-        "verification_note": "Le relais CPAS peut orienter, mais n’est pas nécessairement compétent pour traiter directement ce besoin."
+        "verification_note": "Le relais CPAS peut orienter, mais n’est pas nécessairement compétent pour traiter directement ce besoin.",
+        "housing_directory": {
+          "name": "Associations d'insertion par le logement (AIPL) — annuaire régional",
+          "url": "https://be.brussels/fr/logement/location/aides-la-location/associations-daide-au-logement",
+          "commune_listed": false,
+          "note": "Aucune AIPL explicitement répertoriée sous cette commune dans cet annuaire ; consulter les acteurs actifs à l'échelle régionale.",
+          "checked_at": "2026-10-12"
+        },
+        "social_housing_directory": {
+          "name": "Sociétés de logement social (SISP)",
+          "url": "https://slrb-bghm.brussels/fr/societes-immobilieres-de-service-public/toutes-les-sisp",
+          "note": "Choisir l'organisme selon le patrimoine et les règles d'inscription ; ce n'est pas une garantie de logement disponible."
+        }
       },
       "famille": {
         "primary": {
@@ -921,7 +945,19 @@
         },
         "availability": "a_confirmer",
         "local_service_verified": false,
-        "verification_note": "Le relais CPAS peut orienter, mais n’est pas nécessairement compétent pour traiter directement ce besoin."
+        "verification_note": "Le relais CPAS peut orienter, mais n’est pas nécessairement compétent pour traiter directement ce besoin.",
+        "housing_directory": {
+          "name": "Associations d'insertion par le logement (AIPL) — annuaire régional",
+          "url": "https://be.brussels/fr/logement/location/aides-la-location/associations-daide-au-logement",
+          "commune_listed": false,
+          "note": "Aucune AIPL explicitement répertoriée sous cette commune dans cet annuaire ; consulter les acteurs actifs à l'échelle régionale.",
+          "checked_at": "2026-10-12"
+        },
+        "social_housing_directory": {
+          "name": "Sociétés de logement social (SISP)",
+          "url": "https://slrb-bghm.brussels/fr/societes-immobilieres-de-service-public/toutes-les-sisp",
+          "note": "Choisir l'organisme selon le patrimoine et les règles d'inscription ; ce n'est pas une garantie de logement disponible."
+        }
       },
       "famille": {
         "primary": {
@@ -1181,13 +1217,13 @@
       },
       "logement": {
         "primary": {
-          "name": "Bruxelles Logement",
-          "phone": "0800 40 400",
+          "name": "Guichet logement — Ville de Bruxelles",
+          "phone": "",
           "email": "",
-          "address": "",
-          "url": "https://be.brussels/fr/propos-de-la-region/structure-et-organisation/apercu-des-administrations-et-institutions-de-la-region/bruxelles-logement/contacter-bruxelles-logement"
+          "address": "Brucity, rue des Halles 4, 1000 Bruxelles",
+          "url": "https://www.bruxelles.be/guichet-logement"
         },
-        "contact_type": "service_regional_ou_federal",
+        "contact_type": "service_local",
         "local_relay": {
           "name": "Antenne CPAS Béguinage",
           "phone": "02 563 19 01",
@@ -1196,8 +1232,26 @@
           "url": "https://cpasbxl.brussels/"
         },
         "availability": "a_confirmer",
-        "local_service_verified": false,
-        "verification_note": "Le relais CPAS peut orienter, mais n’est pas nécessairement compétent pour traiter directement ce besoin."
+        "local_service_verified": true,
+        "verification_note": "Guichet municipal d'information et d'orientation sur le logement pour les habitants de la Ville. Vérifier les horaires avant déplacement ; aucune disponibilité de rendez-vous garantie.",
+        "sources": [
+          {
+            "url": "https://www.bruxelles.be/guichet-logement",
+            "checked_at": "2026-10-12"
+          }
+        ],
+        "housing_directory": {
+          "name": "Associations d'insertion par le logement (AIPL) — annuaire régional",
+          "url": "https://be.brussels/fr/logement/location/aides-la-location/associations-daide-au-logement",
+          "commune_listed": true,
+          "note": "Des structures sont référencées dans cette commune : identifier l'association adaptée et vérifier les conditions.",
+          "checked_at": "2026-10-12"
+        },
+        "social_housing_directory": {
+          "name": "Sociétés de logement social (SISP)",
+          "url": "https://slrb-bghm.brussels/fr/societes-immobilieres-de-service-public/toutes-les-sisp",
+          "note": "Choisir l'organisme selon le patrimoine et les règles d'inscription ; ce n'est pas une garantie de logement disponible."
+        }
       },
       "famille": {
         "primary": {
@@ -1473,7 +1527,19 @@
         },
         "availability": "a_confirmer",
         "local_service_verified": false,
-        "verification_note": "Le relais CPAS peut orienter, mais n’est pas nécessairement compétent pour traiter directement ce besoin."
+        "verification_note": "Le relais CPAS peut orienter, mais n’est pas nécessairement compétent pour traiter directement ce besoin.",
+        "housing_directory": {
+          "name": "Associations d'insertion par le logement (AIPL) — annuaire régional",
+          "url": "https://be.brussels/fr/logement/location/aides-la-location/associations-daide-au-logement",
+          "commune_listed": true,
+          "note": "Des structures sont référencées dans cette commune : identifier l'association adaptée et vérifier les conditions.",
+          "checked_at": "2026-10-12"
+        },
+        "social_housing_directory": {
+          "name": "Sociétés de logement social (SISP)",
+          "url": "https://slrb-bghm.brussels/fr/societes-immobilieres-de-service-public/toutes-les-sisp",
+          "note": "Choisir l'organisme selon le patrimoine et les règles d'inscription ; ce n'est pas une garantie de logement disponible."
+        }
       },
       "famille": {
         "primary": {
@@ -1749,7 +1815,19 @@
         },
         "availability": "a_confirmer",
         "local_service_verified": false,
-        "verification_note": "Le relais CPAS peut orienter, mais n’est pas nécessairement compétent pour traiter directement ce besoin."
+        "verification_note": "Le relais CPAS peut orienter, mais n’est pas nécessairement compétent pour traiter directement ce besoin.",
+        "housing_directory": {
+          "name": "Associations d'insertion par le logement (AIPL) — annuaire régional",
+          "url": "https://be.brussels/fr/logement/location/aides-la-location/associations-daide-au-logement",
+          "commune_listed": false,
+          "note": "Aucune AIPL explicitement répertoriée sous cette commune dans cet annuaire ; consulter les acteurs actifs à l'échelle régionale.",
+          "checked_at": "2026-10-12"
+        },
+        "social_housing_directory": {
+          "name": "Sociétés de logement social (SISP)",
+          "url": "https://slrb-bghm.brussels/fr/societes-immobilieres-de-service-public/toutes-les-sisp",
+          "note": "Choisir l'organisme selon le patrimoine et les règles d'inscription ; ce n'est pas une garantie de logement disponible."
+        }
       },
       "famille": {
         "primary": {
@@ -2025,7 +2103,19 @@
         },
         "availability": "a_confirmer",
         "local_service_verified": false,
-        "verification_note": "Le relais CPAS peut orienter, mais n’est pas nécessairement compétent pour traiter directement ce besoin."
+        "verification_note": "Le relais CPAS peut orienter, mais n’est pas nécessairement compétent pour traiter directement ce besoin.",
+        "housing_directory": {
+          "name": "Associations d'insertion par le logement (AIPL) — annuaire régional",
+          "url": "https://be.brussels/fr/logement/location/aides-la-location/associations-daide-au-logement",
+          "commune_listed": true,
+          "note": "Des structures sont référencées dans cette commune : identifier l'association adaptée et vérifier les conditions.",
+          "checked_at": "2026-10-12"
+        },
+        "social_housing_directory": {
+          "name": "Sociétés de logement social (SISP)",
+          "url": "https://slrb-bghm.brussels/fr/societes-immobilieres-de-service-public/toutes-les-sisp",
+          "note": "Choisir l'organisme selon le patrimoine et les règles d'inscription ; ce n'est pas une garantie de logement disponible."
+        }
       },
       "famille": {
         "primary": {
@@ -2301,7 +2391,19 @@
         },
         "availability": "a_confirmer",
         "local_service_verified": false,
-        "verification_note": "Le relais CPAS peut orienter, mais n’est pas nécessairement compétent pour traiter directement ce besoin."
+        "verification_note": "Le relais CPAS peut orienter, mais n’est pas nécessairement compétent pour traiter directement ce besoin.",
+        "housing_directory": {
+          "name": "Associations d'insertion par le logement (AIPL) — annuaire régional",
+          "url": "https://be.brussels/fr/logement/location/aides-la-location/associations-daide-au-logement",
+          "commune_listed": false,
+          "note": "Aucune AIPL explicitement répertoriée sous cette commune dans cet annuaire ; consulter les acteurs actifs à l'échelle régionale.",
+          "checked_at": "2026-10-12"
+        },
+        "social_housing_directory": {
+          "name": "Sociétés de logement social (SISP)",
+          "url": "https://slrb-bghm.brussels/fr/societes-immobilieres-de-service-public/toutes-les-sisp",
+          "note": "Choisir l'organisme selon le patrimoine et les règles d'inscription ; ce n'est pas une garantie de logement disponible."
+        }
       },
       "famille": {
         "primary": {
@@ -2577,7 +2679,19 @@
         },
         "availability": "a_confirmer",
         "local_service_verified": false,
-        "verification_note": "Le relais CPAS peut orienter, mais n’est pas nécessairement compétent pour traiter directement ce besoin."
+        "verification_note": "Le relais CPAS peut orienter, mais n’est pas nécessairement compétent pour traiter directement ce besoin.",
+        "housing_directory": {
+          "name": "Associations d'insertion par le logement (AIPL) — annuaire régional",
+          "url": "https://be.brussels/fr/logement/location/aides-la-location/associations-daide-au-logement",
+          "commune_listed": true,
+          "note": "Des structures sont référencées dans cette commune : identifier l'association adaptée et vérifier les conditions.",
+          "checked_at": "2026-10-12"
+        },
+        "social_housing_directory": {
+          "name": "Sociétés de logement social (SISP)",
+          "url": "https://slrb-bghm.brussels/fr/societes-immobilieres-de-service-public/toutes-les-sisp",
+          "note": "Choisir l'organisme selon le patrimoine et les règles d'inscription ; ce n'est pas une garantie de logement disponible."
+        }
       },
       "famille": {
         "primary": {
@@ -2853,7 +2967,19 @@
         },
         "availability": "a_confirmer",
         "local_service_verified": false,
-        "verification_note": "Le relais CPAS peut orienter, mais n’est pas nécessairement compétent pour traiter directement ce besoin."
+        "verification_note": "Le relais CPAS peut orienter, mais n’est pas nécessairement compétent pour traiter directement ce besoin.",
+        "housing_directory": {
+          "name": "Associations d'insertion par le logement (AIPL) — annuaire régional",
+          "url": "https://be.brussels/fr/logement/location/aides-la-location/associations-daide-au-logement",
+          "commune_listed": false,
+          "note": "Aucune AIPL explicitement répertoriée sous cette commune dans cet annuaire ; consulter les acteurs actifs à l'échelle régionale.",
+          "checked_at": "2026-10-12"
+        },
+        "social_housing_directory": {
+          "name": "Sociétés de logement social (SISP)",
+          "url": "https://slrb-bghm.brussels/fr/societes-immobilieres-de-service-public/toutes-les-sisp",
+          "note": "Choisir l'organisme selon le patrimoine et les règles d'inscription ; ce n'est pas une garantie de logement disponible."
+        }
       },
       "famille": {
         "primary": {
@@ -3129,7 +3255,19 @@
         },
         "availability": "a_confirmer",
         "local_service_verified": false,
-        "verification_note": "Le relais CPAS peut orienter, mais n’est pas nécessairement compétent pour traiter directement ce besoin."
+        "verification_note": "Le relais CPAS peut orienter, mais n’est pas nécessairement compétent pour traiter directement ce besoin.",
+        "housing_directory": {
+          "name": "Associations d'insertion par le logement (AIPL) — annuaire régional",
+          "url": "https://be.brussels/fr/logement/location/aides-la-location/associations-daide-au-logement",
+          "commune_listed": false,
+          "note": "Aucune AIPL explicitement répertoriée sous cette commune dans cet annuaire ; consulter les acteurs actifs à l'échelle régionale.",
+          "checked_at": "2026-10-12"
+        },
+        "social_housing_directory": {
+          "name": "Sociétés de logement social (SISP)",
+          "url": "https://slrb-bghm.brussels/fr/societes-immobilieres-de-service-public/toutes-les-sisp",
+          "note": "Choisir l'organisme selon le patrimoine et les règles d'inscription ; ce n'est pas une garantie de logement disponible."
+        }
       },
       "famille": {
         "primary": {
@@ -3405,7 +3543,19 @@
         },
         "availability": "a_confirmer",
         "local_service_verified": false,
-        "verification_note": "Le relais CPAS peut orienter, mais n’est pas nécessairement compétent pour traiter directement ce besoin."
+        "verification_note": "Le relais CPAS peut orienter, mais n’est pas nécessairement compétent pour traiter directement ce besoin.",
+        "housing_directory": {
+          "name": "Associations d'insertion par le logement (AIPL) — annuaire régional",
+          "url": "https://be.brussels/fr/logement/location/aides-la-location/associations-daide-au-logement",
+          "commune_listed": true,
+          "note": "Des structures sont référencées dans cette commune : identifier l'association adaptée et vérifier les conditions.",
+          "checked_at": "2026-10-12"
+        },
+        "social_housing_directory": {
+          "name": "Sociétés de logement social (SISP)",
+          "url": "https://slrb-bghm.brussels/fr/societes-immobilieres-de-service-public/toutes-les-sisp",
+          "note": "Choisir l'organisme selon le patrimoine et les règles d'inscription ; ce n'est pas une garantie de logement disponible."
+        }
       },
       "famille": {
         "primary": {
@@ -3681,7 +3831,19 @@
         },
         "availability": "a_confirmer",
         "local_service_verified": false,
-        "verification_note": "Le relais CPAS peut orienter, mais n’est pas nécessairement compétent pour traiter directement ce besoin."
+        "verification_note": "Le relais CPAS peut orienter, mais n’est pas nécessairement compétent pour traiter directement ce besoin.",
+        "housing_directory": {
+          "name": "Associations d'insertion par le logement (AIPL) — annuaire régional",
+          "url": "https://be.brussels/fr/logement/location/aides-la-location/associations-daide-au-logement",
+          "commune_listed": true,
+          "note": "Des structures sont référencées dans cette commune : identifier l'association adaptée et vérifier les conditions.",
+          "checked_at": "2026-10-12"
+        },
+        "social_housing_directory": {
+          "name": "Sociétés de logement social (SISP)",
+          "url": "https://slrb-bghm.brussels/fr/societes-immobilieres-de-service-public/toutes-les-sisp",
+          "note": "Choisir l'organisme selon le patrimoine et les règles d'inscription ; ce n'est pas une garantie de logement disponible."
+        }
       },
       "famille": {
         "primary": {
@@ -3957,7 +4119,19 @@
         },
         "availability": "a_confirmer",
         "local_service_verified": false,
-        "verification_note": "Le relais CPAS peut orienter, mais n’est pas nécessairement compétent pour traiter directement ce besoin."
+        "verification_note": "Le relais CPAS peut orienter, mais n’est pas nécessairement compétent pour traiter directement ce besoin.",
+        "housing_directory": {
+          "name": "Associations d'insertion par le logement (AIPL) — annuaire régional",
+          "url": "https://be.brussels/fr/logement/location/aides-la-location/associations-daide-au-logement",
+          "commune_listed": true,
+          "note": "Des structures sont référencées dans cette commune : identifier l'association adaptée et vérifier les conditions.",
+          "checked_at": "2026-10-12"
+        },
+        "social_housing_directory": {
+          "name": "Sociétés de logement social (SISP)",
+          "url": "https://slrb-bghm.brussels/fr/societes-immobilieres-de-service-public/toutes-les-sisp",
+          "note": "Choisir l'organisme selon le patrimoine et les règles d'inscription ; ce n'est pas une garantie de logement disponible."
+        }
       },
       "famille": {
         "primary": {
@@ -4233,7 +4407,19 @@
         },
         "availability": "a_confirmer",
         "local_service_verified": false,
-        "verification_note": "Le relais CPAS peut orienter, mais n’est pas nécessairement compétent pour traiter directement ce besoin."
+        "verification_note": "Le relais CPAS peut orienter, mais n’est pas nécessairement compétent pour traiter directement ce besoin.",
+        "housing_directory": {
+          "name": "Associations d'insertion par le logement (AIPL) — annuaire régional",
+          "url": "https://be.brussels/fr/logement/location/aides-la-location/associations-daide-au-logement",
+          "commune_listed": true,
+          "note": "Des structures sont référencées dans cette commune : identifier l'association adaptée et vérifier les conditions.",
+          "checked_at": "2026-10-12"
+        },
+        "social_housing_directory": {
+          "name": "Sociétés de logement social (SISP)",
+          "url": "https://slrb-bghm.brussels/fr/societes-immobilieres-de-service-public/toutes-les-sisp",
+          "note": "Choisir l'organisme selon le patrimoine et les règles d'inscription ; ce n'est pas une garantie de logement disponible."
+        }
       },
       "famille": {
         "primary": {
@@ -4509,7 +4695,19 @@
         },
         "availability": "a_confirmer",
         "local_service_verified": false,
-        "verification_note": "Le relais CPAS peut orienter, mais n’est pas nécessairement compétent pour traiter directement ce besoin."
+        "verification_note": "Le relais CPAS peut orienter, mais n’est pas nécessairement compétent pour traiter directement ce besoin.",
+        "housing_directory": {
+          "name": "Associations d'insertion par le logement (AIPL) — annuaire régional",
+          "url": "https://be.brussels/fr/logement/location/aides-la-location/associations-daide-au-logement",
+          "commune_listed": true,
+          "note": "Des structures sont référencées dans cette commune : identifier l'association adaptée et vérifier les conditions.",
+          "checked_at": "2026-10-12"
+        },
+        "social_housing_directory": {
+          "name": "Sociétés de logement social (SISP)",
+          "url": "https://slrb-bghm.brussels/fr/societes-immobilieres-de-service-public/toutes-les-sisp",
+          "note": "Choisir l'organisme selon le patrimoine et les règles d'inscription ; ce n'est pas une garantie de logement disponible."
+        }
       },
       "famille": {
         "primary": {
@@ -4785,7 +4983,19 @@
         },
         "availability": "a_confirmer",
         "local_service_verified": false,
-        "verification_note": "Le relais CPAS peut orienter, mais n’est pas nécessairement compétent pour traiter directement ce besoin."
+        "verification_note": "Le relais CPAS peut orienter, mais n’est pas nécessairement compétent pour traiter directement ce besoin.",
+        "housing_directory": {
+          "name": "Associations d'insertion par le logement (AIPL) — annuaire régional",
+          "url": "https://be.brussels/fr/logement/location/aides-la-location/associations-daide-au-logement",
+          "commune_listed": true,
+          "note": "Des structures sont référencées dans cette commune : identifier l'association adaptée et vérifier les conditions.",
+          "checked_at": "2026-10-12"
+        },
+        "social_housing_directory": {
+          "name": "Sociétés de logement social (SISP)",
+          "url": "https://slrb-bghm.brussels/fr/societes-immobilieres-de-service-public/toutes-les-sisp",
+          "note": "Choisir l'organisme selon le patrimoine et les règles d'inscription ; ce n'est pas une garantie de logement disponible."
+        }
       },
       "famille": {
         "primary": {
@@ -5061,7 +5271,19 @@
         },
         "availability": "a_confirmer",
         "local_service_verified": false,
-        "verification_note": "Le relais CPAS peut orienter, mais n’est pas nécessairement compétent pour traiter directement ce besoin."
+        "verification_note": "Le relais CPAS peut orienter, mais n’est pas nécessairement compétent pour traiter directement ce besoin.",
+        "housing_directory": {
+          "name": "Associations d'insertion par le logement (AIPL) — annuaire régional",
+          "url": "https://be.brussels/fr/logement/location/aides-la-location/associations-daide-au-logement",
+          "commune_listed": false,
+          "note": "Aucune AIPL explicitement répertoriée sous cette commune dans cet annuaire ; consulter les acteurs actifs à l'échelle régionale.",
+          "checked_at": "2026-10-12"
+        },
+        "social_housing_directory": {
+          "name": "Sociétés de logement social (SISP)",
+          "url": "https://slrb-bghm.brussels/fr/societes-immobilieres-de-service-public/toutes-les-sisp",
+          "note": "Choisir l'organisme selon le patrimoine et les règles d'inscription ; ce n'est pas une garantie de logement disponible."
+        }
       },
       "famille": {
         "primary": {
@@ -5337,7 +5559,19 @@
         },
         "availability": "a_confirmer",
         "local_service_verified": false,
-        "verification_note": "Le relais CPAS peut orienter, mais n’est pas nécessairement compétent pour traiter directement ce besoin."
+        "verification_note": "Le relais CPAS peut orienter, mais n’est pas nécessairement compétent pour traiter directement ce besoin.",
+        "housing_directory": {
+          "name": "Associations d'insertion par le logement (AIPL) — annuaire régional",
+          "url": "https://be.brussels/fr/logement/location/aides-la-location/associations-daide-au-logement",
+          "commune_listed": false,
+          "note": "Aucune AIPL explicitement répertoriée sous cette commune dans cet annuaire ; consulter les acteurs actifs à l'échelle régionale.",
+          "checked_at": "2026-10-12"
+        },
+        "social_housing_directory": {
+          "name": "Sociétés de logement social (SISP)",
+          "url": "https://slrb-bghm.brussels/fr/societes-immobilieres-de-service-public/toutes-les-sisp",
+          "note": "Choisir l'organisme selon le patrimoine et les règles d'inscription ; ce n'est pas une garantie de logement disponible."
+        }
       },
       "famille": {
         "primary": {
@@ -5580,6 +5814,16 @@
     "size": 266,
     "method": "Matrice des orientations existantes; les relais CPAS ne valent pas validation de 266 services spécialisés locaux.",
     "source": "generalCpasDirectory and categories/mediationLocale",
-    "localResearchPending": true
+    "localResearchPending": true,
+    "housingResearch": {
+      "date": "2026-10-12",
+      "localCounter": 1,
+      "regionalAiplAreas": 11,
+      "sources": [
+        "https://www.bruxelles.be/guichet-logement",
+        "https://be.brussels/fr/logement/location/aides-la-location/associations-daide-au-logement",
+        "https://slrb-bghm.brussels/fr/societes-immobilieres-de-service-public/toutes-les-sisp"
+      ]
+    }
   }
 }
