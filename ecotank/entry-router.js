@@ -661,6 +661,85 @@
       '<button type="button" data-philippe-back>Retour</button>';
     showScreen("simpleDifficultHelp");
   }
+
+  function philippeProcedure(){
+    if(!ensureScreens())return;
+    const h=document.getElementById("entryDifficultHost");
+    const kind=state.philippeProcedure||"cadastre";
+    const procedures={
+      cadastre:{
+        name:"Revenu cadastral : vérifier et agir",
+        url:"https://finances.belgium.be/fr/particuliers/habitation/cadastre/revenu-cadastral",
+        steps:[
+          "Ouvrez MyMinfin et consultez Mes biens immobiliers. Relevez pour chaque bien le revenu cadastral non indexé, les références et le titulaire.",
+          "Comparez la notification officielle à la réalité du bien. S'il s'agit d'une nouvelle notification, vérifiez la date limite : en principe deux mois pour réclamer, par lettre recommandée avec contre-proposition chiffrée.",
+          "Si le délai est passé, demandez une vérification pour erreur matérielle ou circonstances nouvelles et permanentes : un simple désaccord tardif n'ouvre pas un nouveau recours ordinaire.",
+          "Conservez les pièces et la preuve d'envoi. En cas de refus, demandez les étapes de conciliation, d'arbitrage ou de recours applicables, sans présumer qu'elles sont toutes ouvertes."
+        ],
+        letter:"OBJET : Vérification du revenu cadastral — [adresse et parcelle]\n\nMadame, Monsieur,\nJe souhaite contrôler les données cadastrales du bien indiqué, dont je suis propriétaire. Le point à vérifier est : [décrire]. Les faits et pièces disponibles sont : [décrire]. Merci de préciser la date de la dernière notification, la voie ouverte (réclamation, correction ou réévaluation) et ses délais.\n\nATTENTION : ce courrier de renseignement n'est pas une réclamation formelle. Pour une nouvelle notification contestée, la réclamation exige notamment une contre-proposition chiffrée et un envoi recommandé dans le délai indiqué."
+      },
+      precompte:{
+        name:"Précompte immobilier : vérifier l'avis et introduire une réclamation",
+        url:"https://fiscalite.brussels/fr/le-precompte-immobilier",
+        steps:[
+          "Sur MyTax, retrouvez l'avertissement-extrait de rôle pour le bien, puis notez l'exercice, l'article de rôle, la date d'envoi et la valeur cadastrale retenue.",
+          "Vérifiez le redevable, le bien, les additionnels et les éventuelles réductions. Le revenu cadastral contesté en lui-même relève du SPF Finances fédéral.",
+          "Ouvrez la procédure Réclamation de Bruxelles Fiscalité ; en règle générale pour les exercices depuis 2022, le délai est de 193 jours à partir de l'envoi de l'avis, sous réserve du calcul légal exact.",
+          "Introduisez une réclamation motivée via MyTax ou le canal officiel prévu, avec l'article de rôle et vos preuves. Conservez l'accusé. Le recours ne suspend pas automatiquement le paiement.",
+          "Contrôlez la décision reçue et les voies de recours qu'elle indique. Ne laissez pas passer une échéance en attendant une réponse informelle."
+        ],
+        letter:"OBJET : RÉCLAMATION — précompte immobilier [exercice et article de rôle]\n\nÀ Bruxelles Fiscalité,\nJe conteste l'avertissement-extrait de rôle concernant [bien et adresse], article de rôle [numéro], exercice [année], envoyé le [date].\nMotifs précis de la contestation : [faits et base juridique].\nCorrection demandée : [préciser].\nPièces jointes : [liste].\nJe demande un accusé de réception et une décision motivée.\n\n[Nom, date et signature si nécessaire]."
+      },
+      fiscal:{
+        name:"Audit fiscal des biens : mission définie et résultat mesurable",
+        url:"https://www.itaa.be/fr/",
+        steps:[
+          "Dressez un inventaire par bien : mode de détention (personne ou société), type de location, revenu cadastral, loyers, crédit et dépenses.",
+          "Cherchez un expert-comptable ou conseiller fiscal inscrit à l'ITAA, puis demandez un devis limité aux sujets immobiliers et sociétaires.",
+          "Demandez une note écrite avec anomalies, obligations à corriger, optimisations permises, gains nets estimés, honoraires et délais.",
+          "Si une déclaration antérieure est incorrecte, faites identifier la procédure légale de correction ou réclamation plutôt que de la modifier au hasard."
+        ],
+        letter:"OBJET : Devis pour audit fiscal immobilier et société patrimoniale\n\nBonjour,\nJe possède quatre biens locatifs et souhaite un bilan fiscal ciblé : revenus immobiliers, distinction privé/société, frais admis et éventuelles régularisations. Merci de préciser le coût, les livrables écrits, les délais et la liste minimale des documents."
+      },
+      company:{
+        name:"Dirigeant : comparer légalement salaire et dividendes",
+        url:"https://www.itaa.be/fr/",
+        steps:[
+          "Demandez à votre comptable une simulation comparant plusieurs répartitions de rémunération et de dividendes.",
+          "Exigez des résultats après impôt des sociétés, précompte mobilier, cotisations, frais et incidence sur la pension.",
+          "Vérifiez avec votre société les conditions de distribution avant toute décision. Obtenez une recommandation chiffrée et documentée."
+        ],
+        letter:"OBJET : Simulations rémunération / dividendes\n\nBonjour,\nPouvez-vous me présenter deux scénarios légaux comparables avec les gains nets, taxes, cotisations, conditions, risques et honoraires ? Merci de prévoir une conclusion écrite avant tout changement."
+      },
+      planning:{
+        name:"Pension et dons : vérifier les conditions et le gain net",
+        url:"https://finances.belgium.be/fr/particuliers/avantages_fiscaux/dons",
+        steps:[
+          "Pour un engagement individuel de pension, demandez une simulation intégrant la règle des 80 %, les réserves constituées, les frais et la fiscalité finale.",
+          "Pour les dons, vérifiez l'agrément de l'organisme, l'attestation et la réduction applicable à l'année concernée.",
+          "Comparez le coût réel et l'avantage fiscal, sans présumer d'un remboursement intégral ni engager une donation sur cette seule base."
+        ],
+        letter:"OBJET : Vérification pension complémentaire et avantages fiscaux\n\nBonjour,\nJe souhaite une simulation documentée de pension complémentaire de dirigeant avec plafonds, frais, fiscalité, réserves existantes et résultat net. Merci de préciser les justificatifs nécessaires."
+      },
+      notaire:{
+        name:"Notaire : patrimoine et transmission",
+        url:"https://www.notaire.be/",
+        steps:[
+          "Réunissez la liste des biens, parts de propriété, crédits et objectifs de transmission, sans saisir ces données privées dans EcoTank.",
+          "Demandez au notaire un devis pour une comparaison succession, donation, indivision et détention en société.",
+          "Demandez une explication écrite des droits, frais, risques et conséquences familiales avant toute signature."
+        ],
+        letter:"OBJET : Consultation patrimoniale et devis\n\nBonjour,\nJe souhaite préparer une consultation relative à quatre biens immobiliers et à une société patrimoniale. Pourriez-vous préciser les documents strictement nécessaires, les scénarios examinables et les frais de conseil avant tout acte ?"
+      }
+    };
+    const p=procedures[kind]||procedures.cadastre;
+    h.innerHTML='<div id="philippe-action-sheet" style="background:white;color:#111;max-width:760px;margin:auto;padding:12px"><h2>'+esc(p.name)+'</h2><p>Traitez chaque bien séparément si les références, exercices et délais diffèrent.</p><p><a href="'+esc(p.url)+'" target="_blank" rel="noopener noreferrer">Procédure officielle ou annuaire professionnel ↗</a></p>'+
+      p.steps.map((v,i)=>'<section style="border-top:1px solid #bbb;padding:8px 0"><h3>Étape '+(i+1)+'</h3><p>'+esc(v)+'</p></section>').join('')+
+      '<h3>Courrier prêt à adapter</h3><p>Remplacez les champs entre crochets. Le modèle ne transmet rien automatiquement.</p><textarea id="philippe-action-message" rows="9" style="width:100%;box-sizing:border-box">'+esc(p.letter)+'</textarea><p>Conservez une preuve de dépôt, la réponse et les délais. Un message informel ne remplace pas un recours formel.</p></div>'+
+      '<div class="entry-route-actions">'+Object.keys(procedures).map(k=>'<button type="button" data-philippe-procedure="'+k+'">'+esc(procedures[k].name.split(" :")[0])+'</button>').join('')+
+      '<button type="button" data-philippe-copy>Copier le courrier</button><button type="button" data-philippe-print>Imprimer</button><button type="button" data-philippe-edit>Retour</button></div>';
+    showScreen("simpleDifficultHelp");
+  }
   function philippeGuide(short=false){
     if(!ensureScreens())return;
     const h=document.getElementById("entryDifficultHost");
@@ -682,6 +761,13 @@
     };
     h.innerHTML='<div id="philippe-sheet" style="max-width:760px;margin:auto;padding:12px;background:white;color:#111"><h2>Patrimoine immobilier · Uccle</h2><p><strong>Pas de primes hors sujet.</strong> On distingue clairement le cadastre fédéral, la taxe régionale et les choix patrimoniaux qui nécessitent un professionnel. Ne dissimulez ni loyers ni biens : l’objectif est une conformité et une optimisation légales.</p>'+
       order.map((j,i)=>{const x=tasks[j];return '<section style="border-top:1px solid #aaa;padding:10px 0;break-inside:avoid"><h3>'+(i+1)+'. '+esc(x[1])+'</h3><p>'+esc(x[2])+'</p>'+(short?'':'<p><a href="'+esc(x[3])+'" target="_blank" rel="noopener noreferrer">Page officielle ou organisme concerné ↗</a></p>')+'</section>'}).join('')+
+      '<h3>Effectuer la démarche</h3><p>Choisissez une procédure pour obtenir les étapes, le courrier et les suites.</p><div class="entry-choice-grid">'+
+      '<button type="button" data-philippe-procedure="cadastre">Contester ou corriger le revenu cadastral</button>'+
+      '<button type="button" data-philippe-procedure="precompte">Réclamer sur le précompte</button>'+
+      '<button type="button" data-philippe-procedure="fiscal">Préparer l’audit fiscal</button>'+
+      '<button type="button" data-philippe-procedure="company">Comparer les dividendes</button>'+
+      '<button type="button" data-philippe-procedure="planning">Pension et dons</button>'+
+      '<button type="button" data-philippe-procedure="notaire">Préparer le notaire</button></div>'+
       '<h3>Message prêt à utiliser</h3><textarea readonly rows="5" style="box-sizing:border-box;width:100%">'+esc(scripts[topic])+'</textarea><p>Copiez ce texte dans votre courriel ou utilisez-le pour préparer un appel. Le modèle ne remplace pas une réclamation formelle dans les délais.</p></div>'+
       '<div class="entry-route-actions"><button type="button" data-philippe-short>Fiche courte</button><button type="button" data-philippe-full>Fiche détaillée</button><button type="button" data-philippe-print>Imprimer / PDF</button><button type="button" data-philippe-edit>Changer de priorité</button><button type="button" data-philippe-back>Retour</button></div>';
     if(!document.getElementById("philippe-print-style")){const st=document.createElement("style");st.id="philippe-print-style";st.textContent='@media print{body *{visibility:hidden!important}#philippe-sheet,#philippe-sheet *{visibility:visible!important}#philippe-sheet{position:absolute;left:0;top:0;width:100%!important;max-width:none!important;background:white!important;color:#000!important}@page{size:A4;margin:12mm}}';document.head.appendChild(st);}
@@ -1887,6 +1973,9 @@
     }
     const guideSelect=event.target.closest("[data-guide-select]");
     if(guideSelect){const field=guideSelect.parentElement?.querySelector("textarea");if(field){field.focus();field.select();if(typeof navigator!=="undefined"&&navigator.clipboard?.writeText){navigator.clipboard.writeText(field.value).catch(()=>{});}}return;}
+    const philippeProcedureButton=event.target.closest("[data-philippe-procedure]");
+    if(philippeProcedureButton){state.philippeProcedure=philippeProcedureButton.dataset.philippeProcedure;philippeProcedure();return;}
+    if(event.target.closest("[data-philippe-copy]")){const field=document.getElementById("philippe-action-message");if(field){field.select();if(typeof navigator!=="undefined"&&navigator.clipboard?.writeText)navigator.clipboard.writeText(field.value).catch(()=>{});}return;}
     if(event.target.closest("[data-philippe-start]")){philippeEntry();return;}
     const ph=event.target.closest("[data-philippe-topic]");if(ph){state.philippeTopic=ph.dataset.philippeTopic;philippeGuide(false);return;}
     if(event.target.closest("[data-philippe-short]")){philippeGuide(true);return;}
