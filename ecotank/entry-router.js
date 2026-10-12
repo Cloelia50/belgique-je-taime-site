@@ -297,6 +297,7 @@
       ((qid==="q_entry_situation"||qid==="q_independent_goal")?'<button type="button" class="entry-choice foundation" data-jessica-start>Indépendant · Dépenses et énergie de mon commerce</button>':"")+
       ((qid==="q_entry_situation"||qid==="q_employee_goal"||qid==="q_independent_goal")?'<button type="button" class="entry-choice foundation" data-pieter-start>Je suis salarié ou fonctionnaire ET indépendant complémentaire</button>':"")+
       ((qid==="q_entry_situation"||qid==="q_independent_goal")?'<button type="button" class="entry-choice foundation" data-yassine-start>Je débute comme indépendant : obligations, TVA et provisions</button>':"")+
+      ((qid==="q_entry_situation"||qid==="q_employee_goal"||qid==="q_independent_goal")?'<button type="button" class="entry-choice foundation" data-philippe-start>J’ai des biens locatifs ou une société patrimoniale : cadastre, précompte et fiscalité</button>':"")+
       controls+
       '<div class="entry-footer"><span></span><button type="button" class="linkish" data-entry-unknown>Je ne sais pas quoi choisir</button></div>';
     showScreen("simpleEntryRouter");
@@ -649,6 +650,43 @@
   // Parcours autonome : n'altère aucun état des autres parcours.
   // Orientation professionnelle indépendante : n'utilise ni AER ni données du ménage.
   // Double activité : seul ce parcours utilise ces réponses.
+  function philippeEntry(){
+    if(!ensureScreens())return;
+    const h=document.getElementById("entryDifficultHost");
+    h.innerHTML='<h2>Patrimoine immobilier et société : par quoi commencer ?</h2><p>Propriétaire-bailleur, administrateur ou associé : les aides sous plafonds ne sont pas la réponse à votre demande. Aucun montant de revenu ni AER à saisir ici.</p><div class="entry-choice-grid">'+
+      '<button type="button" data-philippe-topic="cadastre">Vérifier le revenu cadastral et le précompte de mes biens</button>'+
+      '<button type="button" data-philippe-topic="fiscal">Faire contrôler ma fiscalité immobilière</button>'+
+      '<button type="button" data-philippe-topic="company">Rémunération, dividendes et société patrimoniale</button>'+
+      '<button type="button" data-philippe-topic="planning">Pension complémentaire, dons et transmission</button></div>'+
+      '<button type="button" data-philippe-back>Retour</button>';
+    showScreen("simpleDifficultHelp");
+  }
+  function philippeGuide(short=false){
+    if(!ensureScreens())return;
+    const h=document.getElementById("entryDifficultHost");
+    const tasks=[
+      ["cadastre","Revenu cadastral : demander d’abord quelle valeur est contestable","Pour chaque bien, notez l’adresse, le titulaire, le revenu cadastral non indexé et la date du dernier événement (construction, transformation, notification). Consultez les données via MyMinfin, rubrique « Mes biens immobiliers ». Le revenu cadastral n’est pas une estimation du prix de vente. En cas de NOUVELLE notification du revenu cadastral, le délai de réclamation est de deux mois et la contestation doit contenir une contre-proposition chiffrée, envoyée selon les modalités de notification. Un simple désaccord sur un ancien revenu cadastral n’ouvre pas automatiquement ce recours. Demandez au SPF Finances si une correction de données ou une réévaluation est appropriée.","https://finances.belgium.be/fr/particuliers/habitation/cadastre/revenu-cadastral"],
+      ["precompte","Précompte immobilier : contrôler puis réclamer dans le bon délai","Pour chaque bien bruxellois, ouvrez le détail du précompte sur MyTax, comparez la base cadastrale, le redevable au 1er janvier, les biens visés et les exonérations / réductions éventuellement applicables. Si le montant est contesté, ouvrez MyTax > « Mes demandes » et introduisez une réclamation motivée avec le numéro de l’avertissement-extrait de rôle. Pour les exercices depuis 2022, le délai est de 186 jours à compter du 7e jour suivant l’envoi de l’AER (présenté également comme 193 jours depuis l’envoi). Une réclamation ne suspend pas le paiement. Ne confondez pas ce recours avec une contestation du revenu cadastral fédéral.","https://fisc.brussels/mytax/fr/contact"],
+      ["fiscal","Faire un audit fiscal, ciblé plutôt qu’un rendez-vous vague","Préparez un tableau distinct par bien : propriétaire personne physique ou société, usage privé ou professionnel, loyer, revenu cadastral, emprunt, précompte et principaux travaux. Demandez à un expert-comptable inscrit à l’ITAA une lettre de mission chiffrée pour vérifier l’imposition des revenus immobiliers, les charges fiscalement admises et les interactions avec la société patrimoniale. Les frais d’immeubles privés ne sont pas tous librement déductibles : ne transférez pas des dépenses entre personne et société sans fondement.","https://www.itaa.be/fr/"],
+      ["company","Rémunération et dividendes : examen légal avec la société","Demandez à votre comptable de comparer plusieurs répartitions entre rémunération de dirigeant et dividendes, en intégrant impôt des sociétés, cotisations, précompte mobilier, bénéfices distribuables et tests légaux applicables. Pour une société patrimoniale, vérifiez les contrats, la substance économique, la fiscalité des biens et les conflits d’intérêts. EcoTank ne promet ni montage fiscal ni taux réduit sans conditions.","https://www.itaa.be/fr/"],
+      ["planning","Pension complémentaire et dons : contrôler les plafonds","Demandez une simulation d’engagement individuel de pension (EIP) si votre rémunération et les conditions de la société le permettent ; vérifiez les règles, notamment la limite de 80 %, les réserves existantes et les coûts. Pour les dons, utilisez uniquement les organismes agréés et contrôlez le régime de réduction fiscale applicable à l’année du don, plutôt qu’un taux ancien. Demandez un calcul écrit du gain après coûts.","https://finances.belgium.be/fr/particuliers/avantages_fiscaux/dons"],
+      ["notaire","Patrimoine et succession : planifier la structure avec un notaire","Avant tout transfert de propriété ou donation, demandez au notaire un état des lieux de l’indivision éventuelle, des dettes, des droits de succession, des réserves héréditaires et de la situation de la société patrimoniale. Comparez les frais, impôts et conséquences pour les proches. N’effectuez pas une donation ou un transfert uniquement sur une simulation non vérifiée.","https://www.notaire.be/"]
+    ];
+    const topic=state.philippeTopic||"cadastre";
+    const order=topic==="fiscal"?[2,0,1,3,4,5]:topic==="company"?[3,2,0,1,4,5]:topic==="planning"?[4,5,2,0,1,3]:[0,1,2,3,4,5];
+    const scripts={
+      cadastre:"Bonjour, je souhaite vérifier les données cadastrales de plusieurs biens. Pouvez-vous me confirmer les revenus cadastraux enregistrés, les dates de notification et m’indiquer si une réclamation ou une demande de correction est encore possible pour chacun ? Merci de préciser la procédure et les délais.",
+      fiscal:"Bonjour, je souhaite un devis pour un audit fiscal ciblé de quatre biens locatifs, détenus en personne physique et/ou via société. Je voudrais une analyse des revenus immobiliers, des charges admises, du précompte et des risques de double imposition. Pouvez-vous détailler vos honoraires et les pièces indispensables ?",
+      company:"Bonjour, je suis administrateur et je souhaite une comparaison documentée des options légales de rémunération et dividendes, avec coûts, conditions, risques et conséquences sur les droits sociaux. Pouvez-vous proposer une mission limitée avec devis ?",
+      planning:"Bonjour, je souhaite examiner la pension complémentaire de dirigeant, les dons ouvrant un avantage fiscal et la transmission de mon patrimoine. Pourriez-vous m’indiquer les simulations réalisables, les frais et les points à faire contrôler par un notaire ?"
+    };
+    h.innerHTML='<div id="philippe-sheet" style="max-width:760px;margin:auto;padding:12px;background:white;color:#111"><h2>Patrimoine immobilier · Uccle</h2><p><strong>Pas de primes hors sujet.</strong> On distingue clairement le cadastre fédéral, la taxe régionale et les choix patrimoniaux qui nécessitent un professionnel. Ne dissimulez ni loyers ni biens : l’objectif est une conformité et une optimisation légales.</p>'+
+      order.map((j,i)=>{const x=tasks[j];return '<section style="border-top:1px solid #aaa;padding:10px 0;break-inside:avoid"><h3>'+(i+1)+'. '+esc(x[1])+'</h3><p>'+esc(x[2])+'</p>'+(short?'':'<p><a href="'+esc(x[3])+'" target="_blank" rel="noopener noreferrer">Page officielle ou organisme concerné ↗</a></p>')+'</section>'}).join('')+
+      '<h3>Message prêt à utiliser</h3><textarea readonly rows="5" style="box-sizing:border-box;width:100%">'+esc(scripts[topic])+'</textarea><p>Copiez ce texte dans votre courriel ou utilisez-le pour préparer un appel. Le modèle ne remplace pas une réclamation formelle dans les délais.</p></div>'+
+      '<div class="entry-route-actions"><button type="button" data-philippe-short>Fiche courte</button><button type="button" data-philippe-full>Fiche détaillée</button><button type="button" data-philippe-print>Imprimer / PDF</button><button type="button" data-philippe-edit>Changer de priorité</button><button type="button" data-philippe-back>Retour</button></div>';
+    if(!document.getElementById("philippe-print-style")){const st=document.createElement("style");st.id="philippe-print-style";st.textContent='@media print{body *{visibility:hidden!important}#philippe-sheet,#philippe-sheet *{visibility:visible!important}#philippe-sheet{position:absolute;left:0;top:0;width:100%!important;max-width:none!important;background:white!important;color:#000!important}@page{size:A4;margin:12mm}}';document.head.appendChild(st);}
+    showScreen("simpleDifficultHelp");
+  }
   function yassineEntry(){
     if(!ensureScreens())return;
     const h=document.getElementById("entryDifficultHost");
@@ -1849,6 +1887,13 @@
     }
     const guideSelect=event.target.closest("[data-guide-select]");
     if(guideSelect){const field=guideSelect.parentElement?.querySelector("textarea");if(field){field.focus();field.select();if(typeof navigator!=="undefined"&&navigator.clipboard?.writeText){navigator.clipboard.writeText(field.value).catch(()=>{});}}return;}
+    if(event.target.closest("[data-philippe-start]")){philippeEntry();return;}
+    const ph=event.target.closest("[data-philippe-topic]");if(ph){state.philippeTopic=ph.dataset.philippeTopic;philippeGuide(false);return;}
+    if(event.target.closest("[data-philippe-short]")){philippeGuide(true);return;}
+    if(event.target.closest("[data-philippe-full]")){philippeGuide(false);return;}
+    if(event.target.closest("[data-philippe-print]")){window.print();return;}
+    if(event.target.closest("[data-philippe-edit]")){philippeEntry();return;}
+    if(event.target.closest("[data-philippe-back]")){renderQuestion("q_entry_situation");return;}
     if(event.target.closest("[data-yassine-start]")){yassineEntry();return;}
     const yt=event.target.closest("[data-yassine-topic]");if(yt){state.yassineTopic=yt.dataset.yassineTopic;yassineGuide(false);return;}
     if(event.target.closest("[data-yassine-short]")){yassineGuide(true);return;}
