@@ -1,0 +1,57 @@
+{
+  "version": "2026-10-12",
+  "categories": {
+    "dettes": {
+      "name": "Médiation de dettes agréée",
+      "url": "https://www.mediationdedettes.be/trouver-un-service-de-mediations-de-dette/",
+      "page": "Trouver un Service de Médiations de Dettes → chercher la commune",
+      "phrase": "Bonjour, je vis à [commune], j'ai une difficulté de dettes et je souhaite un rendez-vous avec un médiateur de dettes. Acceptez-vous de nouvelles demandes et quels documents apporter ?",
+      "documents": "Courriers, avis de saisie ou d'huissier, dettes, revenus et charges"
+    },
+    "logement": {
+      "name": "Bruxelles Logement",
+      "phone": "0800 40 400",
+      "url": "https://be.brussels/fr/propos-de-la-region/structure-et-organisation/apercu-des-administrations-et-institutions-de-la-region/bruxelles-logement/contacter-bruxelles-logement",
+      "page": "Contacter Bruxelles Logement → téléphone ou service concerné",
+      "phrase": "Bonjour, je suis locataire à [commune] et j'ai un problème de [garantie, loyer, discrimination, logement insalubre]. Pouvez-vous m'indiquer le service spécialisé ?",
+      "documents": "Bail, quittances, échanges et justificatifs. Permanence téléphonique lundi, mercredi et vendredi de 9h à 12h"
+    },
+    "famille": {
+      "name": "Famiris, caisse publique d'allocations familiales",
+      "phone": "0800 35 950",
+      "email": "info@famiris.brussels",
+      "address": "Rue de Trèves 70, 1000 Bruxelles",
+      "url": "https://famiris.brussels/fr/contact/",
+      "page": "Contactez-nous → numéro gratuit, formulaire de contact et accueil",
+      "phrase": "Bonjour, ma situation familiale a changé, j'habite à [commune]. Je voudrais vérifier mes allocations familiales et le complément éventuel. Si mon dossier est dans une autre caisse, pouvez-vous m'indiquer la marche à suivre ?",
+      "documents": "Courriers de votre caisse, référence du dossier, jugement de garde s'il existe, justificatifs de composition de ménage"
+    }
+  },
+  "mediationLocale": {
+    "Auderghem": {
+      "phone": "02 679 94 31",
+      "address": "Avenue de Paepedelle 87, 1160 Auderghem"
+    },
+    "Berchem-Sainte-Agathe": {
+      "phone": "02 482 16 13",
+      "address": "Avenue de Selliers de Moranville 91, 1082 Berchem-Sainte-Agathe"
+    },
+    "Bruxelles-Ville": {
+      "phone": "02 563 53 11",
+      "address": "Rue de la Sablonnière 2, 1000 Bruxelles"
+    },
+    "Etterbeek": {
+      "phone": "02 627 22 84",
+      "address": "Rue Beckers 4, 1040 Etterbeek"
+    },
+    "Saint-Josse-ten-Noode": {
+      "phone": "0800 35 254",
+      "address": "Rue Verbist 88, 1210 Saint-Josse-ten-Noode"
+    },
+    "Watermael-Boitsfort": {
+      "phone": "0800 35 195",
+      "email": "mediationdedettes@cpas1170.brussels",
+      "address": "Boulevard du Souverain 68, 1170 Watermael-Boitsfort"
+    }
+  }
+}
