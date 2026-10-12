@@ -1097,13 +1097,45 @@
           ["Chercher une aide numérique de proximité","Des espaces publics numériques peuvent aider à effectuer les démarches sans imposer l'achat d'un téléphone.","https://www.1890.be/","Chercher une aide"]
         ]
       };
+  function workOnlineHub(){
+    const mode=state.workOnlineMode||"menu";
+    const button=(id,label)=>'<button type="button" class="entry-choice" data-work-online="'+id+'">'+esc(label)+'</button>';
+    const nav='<div class="entry-footer">'+button("menu","← Changer de méthode")+button("advantages","Vérifier mes aides à l’embauche")+'</div>';
+    if(mode==="menu")return '<h2>Comment voulez-vous avancer ?</h2><p>Choisissez une action. Tout peut commencer en ligne, gratuitement.</p><div class="entry-choice-grid">'+[
+      ["offers","Chercher des offres adaptées à mon profil"],["keywords","Trouver les bons mots-clés"],["cv","Créer ou améliorer mon CV"],["orientation","Trouver un métier ou me réorienter"],["aid","Vérifier les aides à l’embauche"],["human","Un conseiller, à distance ou sur place"]
+    ].map(x=>button(x[0],x[1])).join('')+'</div>';
+    if(mode==="offers"&&!state.workProfile)return '<h2>Quel type de postes cherchez-vous ?</h2><p>Ce choix sert uniquement à afficher les sites pertinents.</p><div class="entry-choice-grid">'+[
+      ["manual","Métiers manuels, logistique, nettoyage, horeca"],["office","Administration, vente, services"],["creative","Art, spectacle, médias, création"],["qualified","Diplômé, cadre, ingénierie, informatique"],["unsure","Je ne sais pas encore"]
+    ].map(x=>button("profile:"+x[0],x[1])).join('')+'</div>'+nav;
+    if(mode==="offers"){
+      const sites={
+        manual:[["Actiris — offres","https://www.actiris.brussels/fr/citoyens/offres-demploi/"],["Le Forem — offres","https://www.leforem.be/recherche-offres/"],["VDAB — offres","https://www.vdab.be/vindeenjob/vacatures"]],
+        office:[["Actiris — offres","https://www.actiris.brussels/fr/citoyens/offres-demploi/"],["Selor / Travaillerpour.be","https://travaillerpour.be/fr/jobs"],["Le Forem — offres","https://www.leforem.be/recherche-offres/"]],
+        creative:[["Actiris — culture","https://panorama.actiris.brussels/fr/recherche/culture-tourisme-et-loisirs/offres-demploi-secteur"],["Mediarte — emplois","https://www.mediarte.be/fr/emplois"],["Actiris — toutes les offres","https://www.actiris.brussels/fr/citoyens/offres-demploi/"]],
+        qualified:[["Actiris — offres","https://www.actiris.brussels/fr/citoyens/offres-demploi/"],["Travaillerpour.be — emplois publics","https://travaillerpour.be/fr/jobs"],["Actiris — informatique","https://panorama.actiris.brussels/fr/recherche/informatique-et-telecommunications/offres-demploi-secteur"]],
+        unsure:[["Actiris — toutes les offres","https://www.actiris.brussels/fr/citoyens/offres-demploi/"],["Conseil orientation et bilan","https://www.bruxellesformation.brussels/catalogue-de-formations/le-bilan-de-competences-et-dorientation-professionnelle-pour-qui-quand-et-pourquoi/"]]
+      };
+      return '<h2>Vos sites pour chercher un emploi</h2><p>Ouvrez un moteur d’offres, saisissez un métier, choisissez Bruxelles ou votre commune, puis filtrez par temps de travail et date. Ouvrez une annonce pour consulter ses conditions et le canal de candidature.</p>'+
+       (sites[state.workProfile]||sites.unsure).map(x=>'<p><a href="'+esc(x[1])+'" target="_blank" rel="noopener noreferrer">'+esc(x[0])+' ↗</a></p>').join('')+
+       '<div class="entry-choice-grid">'+button("keywords","Je ne sais pas quels mots taper")+button("cv","Vérifier mon CV")+button("profile-reset","Changer de secteur")+'</div>'+nav;
+    }
+    if(mode==="keywords")return '<h2>Rechercher avec les bons mots</h2><p>Commencez par <strong>un métier concret</strong>, pas par « je cherche du travail ». Essayez ses synonymes, le secteur et une compétence.</p><p><strong>Exemples :</strong> nettoyage → technicien de surface, aide-ménager ; logistique → préparateur de commandes, magasinier ; création → graphiste, infographiste, assistant de production ; diplômé → chargé de projet, analyste, coordinateur.</p><p>Sur <a href="https://www.actiris.brussels/fr/citoyens/offres-demploi/" target="_blank" rel="noopener noreferrer">la recherche d’offres Actiris</a>, remplissez « Mot-clé dans le titre », puis « Lieu » et « Régime horaire ». Si rien ne sort : retirez un mot, testez un synonyme ou élargissez la commune.</p>'+button("offers","Choisir maintenant mes sites")+nav;
+    if(mode==="cv")return '<h2>Mon CV : par où commencer ?</h2><div class="entry-choice-grid">'+button("cv-none","Je n’ai pas de CV")+button("cv-existing","J’ai un CV mais peu de réponses")+button("cv-check","Je veux une checklist de qualité")+'</div>'+nav;
+    if(mode.startsWith("cv-"))return '<h2>Un CV utilisable pour postuler</h2><p><strong>Plan simple :</strong> intitulé du poste visé, moyen de contact accessible, 3 compétences liées à l’annonce, expériences concrètes, formations utiles et langues. Une page claire suffit souvent. Évitez les détails personnels inutiles.</p><p><strong>Contrôle :</strong> le titre correspond-il au métier ? les mots importants de l’offre figurent-ils naturellement ? les expériences donnent-elles des preuves ? le document s’ouvre-t-il sur téléphone ?</p><p>Si vous n’avez pas de CV, préparez ces cinq rubriques dans un document simple. Si vous en avez un, comparez-le à une offre réelle et adaptez le titre et les compétences avant chaque candidature. Vous pouvez ensuite demander une relecture gratuite auprès d’une Mission locale.</p>'+button("keywords","Chercher les mots-clés de l’annonce")+button("offers","Voir où postuler")+nav;
+    if(mode==="orientation")return '<h2>Trouver un métier autrement</h2><p>Commencez en ligne : notez 3 activités que vous aimez, 3 compétences déjà utilisées et 2 contraintes (horaires, mobilité, santé). Comparez-les aux familles de métiers et aux offres réelles.</p><p><a href="https://www.bruxellesformation.brussels/catalogue-de-formations/le-bilan-de-competences-et-dorientation-professionnelle-pour-qui-quand-et-pourquoi/" target="_blank" rel="noopener noreferrer">Bilan de compétences et d’orientation — informations et inscriptions ↗</a></p><p><a href="https://www.bruxellesformation.brussels/centres-et-partenaires/cite-des-metiers/" target="_blank" rel="noopener noreferrer">Conseil de la Cité des métiers, y compris à distance via Miti ↗</a></p><p>Si le premier dispositif n’accepte plus d’inscriptions, demandez un autre bilan ou une séance d’orientation, plutôt que de refaire la même tentative.</p>'+button("keywords","Explorer les métiers par mots-clés")+button("offers","Voir les offres pour tester une piste")+nav;
+    if(mode==="human")return '<h2>Parler à un conseiller, sans obligation de déplacement</h2><p><a href="https://www.bruxellesformation.brussels/centres-et-partenaires/cite-des-metiers/" target="_blank" rel="noopener noreferrer">Cité des métiers : conseil en ligne Miti et horaires ↗</a></p><p>Vous pouvez aussi appeler Bruxelles Formation au <strong>0800 555 66</strong> pour demander un bilan ou une orientation. Si vous souhaitez un suivi CV et candidatures, demandez une Mission locale dans votre commune.</p><p><strong>Phrase à utiliser :</strong> « Je cherche un accompagnement professionnel concret, à distance si possible. J’ai besoin d’identifier des métiers, de vérifier mon CV et de faire un plan de candidatures. »</p>'+button("cv","Commencer moi-même avec mon CV")+nav;
+    if(mode==="aid")return '<h2>Aides à l’embauche : vérification proactive</h2><p>Même sans en faire la demande, pensez à vérifier avec Actiris l’éligibilité à une offre ACS, à une FPIE et aux autres mesures liées à votre statut. L’âge, la durée d’inscription et le type de poste peuvent compter ; une réponse automatique sans dossier serait trompeuse.</p><p><a href="https://www.actiris.brussels/fr/citoyens/agents-contractuels-subventionnes/" target="_blank" rel="noopener noreferrer">Conditions des offres ACS ↗</a></p><p>Pour une FPIE, contactez Bruxelles Formation avant le début d’une formation chez un employeur. Pour les autres mesures, demandez à Actiris une vérification des attestations disponibles.</p>'+button("offers","Chercher des offres compatibles")+nav;
+    return button("menu","Autres démarches");
+  }
       if(issue==="nothing"&&state.immediateNeed==="work"){
         const step=state.workStage||"block";
         const pick=items=>'<div class="entry-choice-grid">'+items.map(x=>'<button type="button" class="entry-choice" data-work-pick="'+x[0]+'">'+esc(x[1])+'</button>').join("")+'</div>';
         const common='<div class="entry-footer"><button type="button" data-work-back>← Étape précédente</button><button type="button" data-lost-rights-next>Passer à une autre difficulté</button><button type="button" data-lost-rights-reselect>Modifier mes réponses</button></div>';
         let html='<div class="simple-kicker">EcoTank · Retrouver un emploi</div>';
-        if(step==="block"){
+        if(step==="online"){html+=workOnlineHub();}
+        else if(step==="block"){
           html+='<h2>Qu’est-ce qui vous bloque aujourd’hui ?</h2><p>Vous pouvez chercher un emploi sans percevoir d’allocations et sans être inscrit chez Actiris. On vérifie d’abord ce qui vous manque, avant de vous envoyer vers un organisme.</p>'+pick([
+            ["online","Je veux essayer des méthodes en ligne (offres, CV, orientation)"],
             ["orientation","Je ne sais pas où chercher ou quel métier viser"],
             ["person","J’ai besoin d’une personne pour m’aider"],
             ["documents","Mes papiers ou mon accès numérique me bloquent"],
@@ -1155,14 +1187,14 @@
               ["already_tried","Non : j’ai déjà essayé sans résultat"],
               ["person","Je préfère une aide en personne"],
               ["advantages","Vérifier aussi les aides à l’embauche"],
-              ["block_again","Explorer un autre obstacle"]
+              ["online","Essayer une autre méthode en ligne"],["block_again","Explorer un autre obstacle"]
             ])+'</section>';
         }else if(step==="obstacle"){
           html+='<h2>Quelle alternative vous aiderait à avancer ?</h2>'+pick([
             ["digital","Je n’ai pas de moyen de connexion"],
             ["travel","Je ne peux pas me déplacer"],
             ["person","Je souhaite une aide physique et gratuite"],
-            ["orientation","Je veux une autre porte d’entrée"],
+            ["online","Explorer les méthodes en ligne plutôt que retourner au même conseil"],
             ["block_again","Revoir les difficultés"]
           ]);
           html+='<p>EcoTank ne considérera pas une simple redirection comme une solution.</p>';
@@ -1855,10 +1887,22 @@
     if(event.target.closest("[data-homeless-close]")){renderQuestion("q_entry_situation");return;}
     const feasible=event.target.closest("[data-feasible]");
     if(feasible){state.feasibility=state.feasibility||{};const k=feasible.dataset.feasibleKey;if(feasible.dataset.feasible==="reset")delete state.feasibility[k];else state.feasibility[k]=feasible.dataset.feasible;renderDifficultHelp();return;}
+    const online=event.target.closest("[data-work-online]");
+    if(online){
+      const choice=online.dataset.workOnline;
+      state.workStage="online";
+      if(choice.startsWith("profile:")){state.workProfile=choice.slice(8);state.workOnlineMode="offers";}
+      else if(choice==="profile-reset"){state.workProfile="";state.workOnlineMode="offers";}
+      else if(choice==="menu"){state.workOnlineMode="menu";}
+      else if(choice==="advantages"){state.workOnlineMode="aid";}
+      else{state.workOnlineMode=choice;}
+      renderDifficultHelp();return;
+    }
     const work=event.target.closest("[data-work-pick]");
     if(work){
       const choice=work.dataset.workPick;
-      if(choice==="advantages"){state.workStage="advantages_detail";state.workChoice="";}
+      if(choice==="online"){state.workStage="online";state.workOnlineMode="menu";}
+      else if(choice==="advantages"){state.workStage="advantages_detail";state.workChoice="";}
       else if(choice==="documents"){state.workStage="documents";state.workChoice="";}
       else if(choice==="block_again"){state.workStage="block";state.workChoice="";}
       else if(choice==="cannot_access"||choice==="already_tried"){state.workStage="obstacle";state.workChoice=choice;}
@@ -1871,6 +1915,7 @@
     if(event.target.closest("[data-work-back]")){
       if(state.workStage==="support"&&state.workAid)state.workStage="actiris";
       else if(state.workStage==="actiris")state.workStage="advantages_detail";
+      else if(state.workStage==="online")state.workOnlineMode="menu";
       else state.workStage="block";
       renderDifficultHelp();return;
     }
