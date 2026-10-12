@@ -683,7 +683,7 @@
 
 
   const pensionPrimes2026={"Anderlecht":150,"Etterbeek":100,"Evere":150,"Forest":212.24,"Ixelles":100,"Koekelberg":163,"Saint-Gilles":120,"Saint-Josse-ten-Noode":150,"Schaerbeek":150,"Bruxelles":100};
-  const pensionCommunes=[...brusselsCommunes];
+  const pensionCommunes=["Anderlecht","Auderghem","Berchem-Sainte-Agathe","Bruxelles","Etterbeek","Evere","Forest","Ganshoren","Ixelles","Jette","Koekelberg","Molenbeek-Saint-Jean","Saint-Gilles","Saint-Josse-ten-Noode","Schaerbeek","Uccle","Watermael-Boitsfort","Woluwe-Saint-Lambert","Woluwe-Saint-Pierre"];
   const pensionOfficial="https://be.brussels/fr/node/2629";
 
   // Parcours étudiants : niveau de pouvoir (fédéral / communautaire / régional / établissement) conservé.
