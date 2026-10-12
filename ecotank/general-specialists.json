@@ -4,9 +4,11 @@
     "dettes": {
       "name": "Médiation de dettes agréée",
       "url": "https://www.mediationdedettes.be/trouver-un-service-de-mediations-de-dette/",
-      "page": "Trouver un Service de Médiations de Dettes → chercher la commune",
+      "page": "Trouver un service de médiation de dettes → liste des CPAS ou ASBL → service correspondant à la commune ; vérifier l’accueil des nouveaux dossiers",
       "phrase": "Bonjour, je vis à [commune], j'ai une difficulté de dettes et je souhaite un rendez-vous avec un médiateur de dettes. Acceptez-vous de nouvelles demandes et quels documents apporter ?",
-      "documents": "Courriers, avis de saisie ou d'huissier, dettes, revenus et charges"
+      "documents": "Courriers, avis de saisie ou d'huissier, dettes, revenus et charges",
+      "phone": "02 217 88 05",
+      "email": "info@mediationdedettes.be"
     },
     "logement": {
       "name": "Bruxelles Logement",
@@ -28,30 +30,182 @@
     }
   },
   "mediationLocale": {
+    "Anderlecht": {
+      "name": "CPAS d’Anderlecht — médiation de dettes",
+      "phone": "02 529 96 10",
+      "address": "Square Marie Curie 50, 1070 Anderlecht",
+      "note": "Délai indicatif annoncé de 2 mois en juillet 2026.",
+      "url": "https://www.mediationdedettes.be/trouver-un-service-de-mediations-de-dette/",
+      "verifiedAt": "2026-10-12",
+      "sourceNote": "Centre d’Appui aux Services de Médiation de Dettes, annuaire consulté le 12 octobre 2026 ; délais et permanences historiquement relevés en juillet."
+    },
     "Auderghem": {
+      "name": "CPAS d’Auderghem — médiation de dettes",
       "phone": "02 679 94 31",
-      "address": "Avenue de Paepedelle 87, 1160 Auderghem"
+      "address": "Avenue de Paepedelle 87 (4e étage), 1160 Auderghem",
+      "note": "Permanence jeudi 9 h–11 h (annuaire juillet 2026).",
+      "url": "https://www.mediationdedettes.be/trouver-un-service-de-mediations-de-dette/",
+      "verifiedAt": "2026-10-12",
+      "sourceNote": "Centre d’Appui aux Services de Médiation de Dettes, annuaire consulté le 12 octobre 2026 ; délais et permanences historiquement relevés en juillet."
     },
     "Berchem-Sainte-Agathe": {
+      "name": "CPAS de Berchem-Sainte-Agathe — médiation de dettes",
       "phone": "02 482 16 13",
-      "address": "Avenue de Selliers de Moranville 91, 1082 Berchem-Sainte-Agathe"
+      "address": "Avenue de Selliers de Moranville 91, 1082 Berchem-Sainte-Agathe",
+      "note": "Permanences lundi et vendredi 8 h 30–11 h 30, mercredi 13 h–15 h (annuaire juillet 2026).",
+      "url": "https://www.mediationdedettes.be/trouver-un-service-de-mediations-de-dette/",
+      "verifiedAt": "2026-10-12",
+      "sourceNote": "Centre d’Appui aux Services de Médiation de Dettes, annuaire consulté le 12 octobre 2026 ; délais et permanences historiquement relevés en juillet."
     },
     "Bruxelles-Ville": {
+      "name": "CPAS de Bruxelles — médiation de dettes",
       "phone": "02 563 53 11",
-      "address": "Rue de la Sablonnière 2, 1000 Bruxelles"
+      "address": "Rue de la Sablonnière 2, 1000 Bruxelles",
+      "note": "Délai indicatif d’une semaine en janvier 2026.",
+      "url": "https://www.mediationdedettes.be/trouver-un-service-de-mediations-de-dette/",
+      "verifiedAt": "2026-10-12",
+      "sourceNote": "Centre d’Appui aux Services de Médiation de Dettes, annuaire consulté le 12 octobre 2026 ; délais et permanences historiquement relevés en juillet."
     },
     "Etterbeek": {
+      "name": "CPAS d’Etterbeek — médiation de dettes",
       "phone": "02 627 22 84",
-      "address": "Rue Beckers 4, 1040 Etterbeek"
+      "address": "Rue Beckers 4, 1040 Etterbeek",
+      "note": "Délai indicatif d’un mois en juillet 2026.",
+      "url": "https://www.mediationdedettes.be/trouver-un-service-de-mediations-de-dette/",
+      "verifiedAt": "2026-10-12",
+      "sourceNote": "Centre d’Appui aux Services de Médiation de Dettes, annuaire consulté le 12 octobre 2026 ; délais et permanences historiquement relevés en juillet."
+    },
+    "Evere": {
+      "name": "Maison sociale d’Evere — médiation de dettes",
+      "phone": "02 240 60 70",
+      "address": "Avenue Henri Conscience 83, 1140 Evere",
+      "note": "Permanences mardi 17 h–20 h et mercredi 8 h 30–12 h (annuaire juillet 2026).",
+      "url": "https://www.mediationdedettes.be/trouver-un-service-de-mediations-de-dette/",
+      "verifiedAt": "2026-10-12",
+      "sourceNote": "Centre d’Appui aux Services de Médiation de Dettes, annuaire consulté le 12 octobre 2026 ; délais et permanences historiquement relevés en juillet."
+    },
+    "Forest": {
+      "name": "CPAS de Forest — médiation de dettes",
+      "phone": "02 533 18 80",
+      "address": "Rue Roosendael 175, 1190 Forest",
+      "note": "En juillet 2026, liste d’attente suspendue, reprise annoncée le 10 août : vérifier la disponibilité avant déplacement.",
+      "capacity": "unknown",
+      "url": "https://www.mediationdedettes.be/trouver-un-service-de-mediations-de-dette/",
+      "verifiedAt": "2026-10-12",
+      "sourceNote": "Centre d’Appui aux Services de Médiation de Dettes, annuaire consulté le 12 octobre 2026 ; délais et permanences historiquement relevés en juillet."
+    },
+    "Ixelles": {
+      "name": "CPAS d’Ixelles — médiation de dettes",
+      "phone": "02 641 55 43",
+      "address": "Rue Jean Paquot 65A, 1050 Ixelles",
+      "note": "Délai indicatif de 1 à 2 mois en juillet 2026.",
+      "url": "https://www.mediationdedettes.be/trouver-un-service-de-mediations-de-dette/",
+      "verifiedAt": "2026-10-12",
+      "sourceNote": "Centre d’Appui aux Services de Médiation de Dettes, annuaire consulté le 12 octobre 2026 ; délais et permanences historiquement relevés en juillet."
+    },
+    "Koekelberg": {
+      "name": "Armée du Salut — médiation de dettes",
+      "phone": "02 414 19 16",
+      "address": "Rue de l’Église Sainte-Anne 102, 1081 Koekelberg",
+      "note": "Service associatif situé à Koekelberg ; demander les critères d’accueil et les rendez-vous.",
+      "url": "https://www.mediationdedettes.be/trouver-un-service-de-mediations-de-dette/",
+      "verifiedAt": "2026-10-12",
+      "sourceNote": "Centre d’Appui aux Services de Médiation de Dettes, annuaire consulté le 12 octobre 2026 ; délais et permanences historiquement relevés en juillet."
+    },
+    "Molenbeek-Saint-Jean": {
+      "name": "CPAS de Molenbeek-Saint-Jean — médiation de dettes",
+      "phone": "02 412 47 86",
+      "address": "Rue de l’Indépendance 56, 1080 Molenbeek-Saint-Jean",
+      "note": "Délai indicatif de 2 mois en juillet 2026.",
+      "url": "https://www.mediationdedettes.be/trouver-un-service-de-mediations-de-dette/",
+      "verifiedAt": "2026-10-12",
+      "sourceNote": "Centre d’Appui aux Services de Médiation de Dettes, annuaire consulté le 12 octobre 2026 ; délais et permanences historiquement relevés en juillet."
+    },
+    "Saint-Gilles": {
+      "name": "CAFA — médiation de dettes",
+      "phone": "02 600 57 43",
+      "address": "Rue du Fort 25, 1060 Saint-Gilles",
+      "note": "En juillet 2026, plus de nouvelles demandes ; liste d’attente maintenue. Appeler pour réévaluation ou autre service.",
+      "capacity": "unknown",
+      "url": "https://www.mediationdedettes.be/trouver-un-service-de-mediations-de-dette/",
+      "verifiedAt": "2026-10-12",
+      "sourceNote": "Centre d’Appui aux Services de Médiation de Dettes, annuaire consulté le 12 octobre 2026 ; délais et permanences historiquement relevés en juillet."
     },
     "Saint-Josse-ten-Noode": {
+      "name": "CPAS de Saint-Josse — médiation de dettes",
       "phone": "0800 35 254",
-      "address": "Rue Verbist 88, 1210 Saint-Josse-ten-Noode"
+      "address": "Rue Verbist 88, 1210 Saint-Josse-ten-Noode",
+      "note": "Permanence lundi à jeudi 9 h–12 h (annuaire juillet 2026).",
+      "url": "https://www.mediationdedettes.be/trouver-un-service-de-mediations-de-dette/",
+      "verifiedAt": "2026-10-12",
+      "sourceNote": "Centre d’Appui aux Services de Médiation de Dettes, annuaire consulté le 12 octobre 2026 ; délais et permanences historiquement relevés en juillet."
+    },
+    "Schaerbeek": {
+      "name": "CPAS de Schaerbeek — médiation de dettes",
+      "phone": "02 435 50 40",
+      "address": "Boulevard Auguste Reyers 70, 1030 Schaerbeek",
+      "note": "Permanences lundi et vendredi 8 h–10 h ; mardi 13 h–15 h (annuaire juillet 2026).",
+      "url": "https://www.mediationdedettes.be/trouver-un-service-de-mediations-de-dette/",
+      "verifiedAt": "2026-10-12",
+      "sourceNote": "Centre d’Appui aux Services de Médiation de Dettes, annuaire consulté le 12 octobre 2026 ; délais et permanences historiquement relevés en juillet."
+    },
+    "Uccle": {
+      "name": "CPAS d’Uccle — médiation de dettes",
+      "phone": "02 370 74 64",
+      "address": "Chaussée d’Alsemberg 860, 1180 Uccle",
+      "note": "Délai indicatif d’un mois en juillet 2026.",
+      "url": "https://www.mediationdedettes.be/trouver-un-service-de-mediations-de-dette/",
+      "verifiedAt": "2026-10-12",
+      "sourceNote": "Centre d’Appui aux Services de Médiation de Dettes, annuaire consulté le 12 octobre 2026 ; délais et permanences historiquement relevés en juillet."
     },
     "Watermael-Boitsfort": {
-      "phone": "0800 35 195",
+      "name": "CPAS de Watermael-Boitsfort — médiation de dettes",
+      "phone": "02 663 08 68",
+      "alternativePhone": "02 663 08 69",
       "email": "mediationdedettes@cpas1170.brussels",
-      "address": "Boulevard du Souverain 68, 1170 Watermael-Boitsfort"
+      "address": "Boulevard du Souverain 68, 1170 Watermael-Boitsfort",
+      "note": "Permanence jeudi 9 h–11 h (annuaire juillet 2026).",
+      "url": "https://www.mediationdedettes.be/trouver-un-service-de-mediations-de-dette/",
+      "verifiedAt": "2026-10-12",
+      "sourceNote": "Centre d’Appui aux Services de Médiation de Dettes, annuaire consulté le 12 octobre 2026 ; délais et permanences historiquement relevés en juillet."
+    },
+    "Woluwe-Saint-Lambert": {
+      "name": "CPAS de Woluwe-Saint-Lambert — médiation de dettes",
+      "phone": "02 777 75 31",
+      "address": "Gulledelle 98, 1200 Woluwe-Saint-Lambert",
+      "note": "Permanence mardi 9 h–12 h (annuaire juillet 2026).",
+      "url": "https://www.mediationdedettes.be/trouver-un-service-de-mediations-de-dette/",
+      "verifiedAt": "2026-10-12",
+      "sourceNote": "Centre d’Appui aux Services de Médiation de Dettes, annuaire consulté le 12 octobre 2026 ; délais et permanences historiquement relevés en juillet."
+    },
+    "Woluwe-Saint-Pierre": {
+      "name": "CPAS de Woluwe-Saint-Pierre — médiation de dettes",
+      "phone": "0490 47 70 72",
+      "address": "Drève des Shetlands 15, 1150 Woluwe-Saint-Pierre",
+      "note": "Permanence mardi 9 h–12 h (annuaire juillet 2026).",
+      "url": "https://www.mediationdedettes.be/trouver-un-service-de-mediations-de-dette/",
+      "verifiedAt": "2026-10-12",
+      "sourceNote": "Centre d’Appui aux Services de Médiation de Dettes, annuaire consulté le 12 octobre 2026 ; délais et permanences historiquement relevés en juillet."
+    },
+    "Ganshoren": {
+      "name": "Centre d’Appui aux Services de Médiation de Dettes (orientation régionale)",
+      "phone": "02 217 88 05",
+      "email": "info@mediationdedettes.be",
+      "address": "Boulevard du Jubilé 153–155, 1080 Bruxelles",
+      "note": "Aucun service local avec contact direct confirmé pour cette commune dans l’annuaire consulté. Demander au Centre d’Appui une orientation vers un service accessible.",
+      "url": "https://www.mediationdedettes.be/trouver-un-service-de-mediations-de-dette/",
+      "verifiedAt": "2026-10-12",
+      "sourceNote": "Centre d’Appui aux Services de Médiation de Dettes, annuaire consulté le 12 octobre 2026 ; délais et permanences historiquement relevés en juillet."
+    },
+    "Jette": {
+      "name": "Centre d’Appui aux Services de Médiation de Dettes (orientation régionale)",
+      "phone": "02 217 88 05",
+      "email": "info@mediationdedettes.be",
+      "address": "Boulevard du Jubilé 153–155, 1080 Bruxelles",
+      "note": "Aucun service local avec contact direct confirmé pour cette commune dans l’annuaire consulté. Demander au Centre d’Appui une orientation vers un service accessible.",
+      "url": "https://www.mediationdedettes.be/trouver-un-service-de-mediations-de-dette/",
+      "verifiedAt": "2026-10-12",
+      "sourceNote": "Centre d’Appui aux Services de Médiation de Dettes, annuaire consulté le 12 octobre 2026 ; délais et permanences historiquement relevés en juillet."
     }
   }
 }
