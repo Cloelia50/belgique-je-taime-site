@@ -296,6 +296,7 @@
       ((qid==="q_entry_situation"||qid==="q_independent_goal")?'<button type="button" class="entry-choice foundation" data-thomas-start>Indépendant · Animaux dans le bail, cotisations et déductions</button>':"")+
       ((qid==="q_entry_situation"||qid==="q_independent_goal")?'<button type="button" class="entry-choice foundation" data-jessica-start>Indépendant · Dépenses et énergie de mon commerce</button>':"")+
       ((qid==="q_entry_situation"||qid==="q_employee_goal"||qid==="q_independent_goal")?'<button type="button" class="entry-choice foundation" data-pieter-start>Je suis salarié ou fonctionnaire ET indépendant complémentaire</button>':"")+
+      ((qid==="q_entry_situation"||qid==="q_independent_goal")?'<button type="button" class="entry-choice foundation" data-yassine-start>Je débute comme indépendant : obligations, TVA et provisions</button>':"")+
       controls+
       '<div class="entry-footer"><span></span><button type="button" class="linkish" data-entry-unknown>Je ne sais pas quoi choisir</button></div>';
     showScreen("simpleEntryRouter");
@@ -648,6 +649,44 @@
   // Parcours autonome : n'altère aucun état des autres parcours.
   // Orientation professionnelle indépendante : n'utilise ni AER ni données du ménage.
   // Double activité : seul ce parcours utilise ces réponses.
+  function yassineEntry(){
+    if(!ensureScreens())return;
+    const h=document.getElementById("entryDifficultHost");
+    h.innerHTML='<h2>Je débute comme indépendant : ne rien oublier</h2><p>Développeur, chez vos parents ou ailleurs : inutile de donner un revenu fiscal de l’an dernier. Il n’existe pas encore si vous démarrez.</p><p><strong>Quel est le point à vérifier en premier ?</strong></p><div class="entry-choice-grid">'+
+      '<button type="button" data-yassine-topic="start">Je veux la checklist complète de démarrage</button>'+
+      '<button type="button" data-yassine-topic="tva">Je facture un client étranger ou je pense à la franchise TVA</button>'+
+      '<button type="button" data-yassine-topic="money">Combien réserver pour cotisations et impôts ?</button>'+
+      '<button type="button" data-yassine-topic="risk">Comment me protéger en cas d’arrêt d’activité ?</button></div>'+
+      '<button type="button" data-yassine-back>Retour</button>';
+    showScreen("simpleDifficultHelp");
+  }
+  function yassineGuide(short=false){
+    if(!ensureScreens())return;
+    const h=document.getElementById("entryDifficultHost");
+    const tasks=[
+      ["start","1 · Assurances sociales et mutualité","Vérifiez que vous êtes affilié à une caisse d’assurances sociales depuis avant votre début d’activité, et affilié à une mutualité. Demandez à la caisse votre statut (principal, complémentaire ou étudiant), les appels trimestriels, le montant provisoire et les conditions d'une éventuelle adaptation. Les cotisations définitives de 2026 seront régularisées selon le revenu professionnel réel de 2026, même si vous n’avez pas de déclaration fiscale antérieure.","https://www.inasti.be/fr/obligations-legales-pour-les-independants"],
+      ["money","2 · Constituer des provisions sans inventer un impôt","Sur chaque facture encaissée, séparez d’abord la TVA éventuellement due (elle n’est pas votre revenu), les frais professionnels puis une réserve pour cotisations et impôt sur les revenus. Un taux forfaitaire universel serait trompeur : cela dépend du statut, des bénéfices, des autres revenus et de la situation familiale. Demandez une simulation de versements anticipés à un comptable ou au SPF Finances ; ajustez votre réserve chaque trimestre. L’absence d’avertissement-extrait de rôle antérieur ne bloque pas cette démarche.","https://finances.belgium.be/fr/particuliers/declaration_impot/versements_anticipes"],
+      ["tva","3 · TVA et factures à des clients étrangers","Si vous envisagez la franchise belge de TVA, le seuil normal est de 25 000 € de chiffre d’affaires hors TVA par année civile, réduit au prorata au début de l’activité en 2026. La franchise exige une option / déclaration e604 via MyMinfin, pas seulement une case sur EcoTank. Pour un client étranger, distinguez entreprise avec numéro de TVA (B2B) et particulier (B2C), pays UE ou hors UE, et type précis de service ; la localisation, l’autoliquidation et les relevés intracommunautaires varient. Demandez une validation avant la première facture étrangère. Depuis 2026, vérifiez également les règles de facturation électronique structurée pour les opérations B2B belges concernées.","https://finances.belgium.be/fr/node/1577"],
+      ["risk","4 · Arrêt d’activité : droits et protections","Il n’existe pas d’assurance faillite universelle obligatoire pour tout indépendant. Examinez le droit passerelle sous ses conditions légales et vérifiez une assurance privée facultative de revenu garanti ou d’incapacité en comparant couverture, exclusions et prix. Ne supposez jamais qu’une difficulté ordinaire ouvre automatiquement le droit passerelle.","https://www.inasti.be/fr"],
+      ["regional","5 · Accompagnement starter bruxellois","Contactez gratuitement le 1819 de hub.brussels (jours ouvrables de 9 h à 13 h, mardi aussi de 16 h à 18 h ; info@hub.brussels). Dites que vous avez déjà débuté l’activité, car les primes « candidat entrepreneur » exigent généralement de ne pas encore avoir de numéro d’entreprise. Demandez les aides et accompagnements encore ouverts aux indépendants déjà inscrits.","https://hub.brussels/fr/services/information-entreprendre/"]
+    ];
+    const order=state.yassineTopic==="tva"?[2,0,1,3,4]:state.yassineTopic==="money"?[1,0,2,3,4]:state.yassineTopic==="risk"?[3,0,1,2,4]:[0,1,2,3,4];
+    const ordered=order.map(i=>tasks[i]);
+    const scripts={
+      start:"Je viens de commencer une activité indépendante de développement informatique. Confirmez ma date d’affiliation, mon statut, mes cotisations provisoires et les échéances à payer. Dites-moi également quel document vous manque, si nécessaire.",
+      money:"Je démarre mon activité cette année sans revenus fiscaux antérieurs. Pouvez-vous m’expliquer les versements anticipés, les échéances et les données nécessaires pour estimer ma provision d’impôts et de cotisations ?",
+      tva:"Je vais facturer des services informatiques à un client situé à l’étranger. Pouvez-vous vérifier, avant l’émission de la facture, le régime de TVA, l’autoliquidation éventuelle, la mention à inscrire et mes déclarations obligatoires ?",
+      risk:"Je souhaite vérifier ce que couvre réellement le droit passerelle et comparer les assurances facultatives en cas d’incapacité ou d’interruption de mon activité."
+    };
+    const first=state.yassineTopic||"start";
+    h.innerHTML='<div id="yassine-sheet" style="max-width:750px;margin:auto;padding:12px;background:white;color:#111">'+
+      '<h2>Nouvel indépendant · Saint-Josse</h2><p><strong>Objectif : éviter les mauvaises surprises.</strong> Ni AER, ni revenus imposables antérieurs, ni informations sur vos parents nécessaires à cette première vérification.</p>'+
+      ordered.map((x,i)=>'<section style="border-top:1px solid #aaa;padding:10px 0;break-inside:avoid"><h3>'+(i+1)+'. '+esc(x[1].replace(/^\\d+ · /,""))+'</h3><p>'+esc(x[2])+'</p>'+(short?'':'<p><a href="'+esc(x[3])+'" target="_blank" rel="noopener noreferrer">Consulter la procédure / les conditions officielles ↗</a></p>')+'</section>').join('')+
+      '<h3>Message prêt à envoyer pour votre priorité</h3><textarea readonly style="box-sizing:border-box;width:100%;max-width:100%;min-height:120px">'+esc("Bonjour,\n\n"+(scripts[first]||scripts.start)+"\n\nMerci de me préciser la prochaine étape et les délais.\n\nCordialement.")+'</textarea><p>Copiez ce texte ou lisez-le au téléphone. Ne préparez que les justificatifs réellement demandés.</p></div>'+
+      '<div class="entry-route-actions"><button type="button" data-yassine-short>Fiche courte</button><button type="button" data-yassine-full>Fiche détaillée</button><button type="button" data-yassine-print>Imprimer / PDF</button><button type="button" data-yassine-edit>Changer de priorité</button><button type="button" data-yassine-back>Retour</button></div>';
+    if(!document.getElementById("yassine-print-style")){const st=document.createElement("style");st.id="yassine-print-style";st.textContent='@media print{body *{visibility:hidden!important}#yassine-sheet,#yassine-sheet *{visibility:visible!important}#yassine-sheet{position:absolute;left:0;top:0;width:100%!important;max-width:none!important;background:white!important;color:#000!important}@page{size:A4;margin:12mm}}';document.head.appendChild(st);}
+    showScreen("simpleDifficultHelp");
+  }
   function pieterEntry(){
     if(!ensureScreens())return;
     const h=document.getElementById("entryDifficultHost");
@@ -1810,6 +1849,13 @@
     }
     const guideSelect=event.target.closest("[data-guide-select]");
     if(guideSelect){const field=guideSelect.parentElement?.querySelector("textarea");if(field){field.focus();field.select();if(typeof navigator!=="undefined"&&navigator.clipboard?.writeText){navigator.clipboard.writeText(field.value).catch(()=>{});}}return;}
+    if(event.target.closest("[data-yassine-start]")){yassineEntry();return;}
+    const yt=event.target.closest("[data-yassine-topic]");if(yt){state.yassineTopic=yt.dataset.yassineTopic;yassineGuide(false);return;}
+    if(event.target.closest("[data-yassine-short]")){yassineGuide(true);return;}
+    if(event.target.closest("[data-yassine-full]")){yassineGuide(false);return;}
+    if(event.target.closest("[data-yassine-print]")){window.print();return;}
+    if(event.target.closest("[data-yassine-edit]")){yassineEntry();return;}
+    if(event.target.closest("[data-yassine-back]")){renderQuestion("q_entry_situation");return;}
     if(event.target.closest("[data-pieter-start]")){pieterEntry();return;}
     const pt=event.target.closest("[data-pieter-topic]");if(pt){state.pieterTopic=pt.dataset.pieterTopic;pieterGuide(false);return;}
     if(event.target.closest("[data-pieter-short]")){pieterGuide(true);return;}
