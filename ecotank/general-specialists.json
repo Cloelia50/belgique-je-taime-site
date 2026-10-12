@@ -73,6 +73,59 @@
       "documents": "Courriers médicaux ou administratifs pertinents, décisions antérieures si disponibles ; ne pas envoyer de données médicales par e-mail ordinaire sans consigne sécurisée.",
       "sourceChecked": "2026-10-12",
       "scope": "orientation_regionale"
+    },
+    "urgence": {
+      "name": "Samusocial Bruxelles — aide et hébergement d’urgence sociale",
+      "phone": "0800 99 340",
+      "url": "https://samusocial.be/missions-et-dispositifs/la-permanence-telephonique-le-numero-vert-0800-99-340/",
+      "page": "Permanence téléphonique 24 h/24 pour demandes d’hébergement, aide et signalement de détresse sociale. Une place d’hébergement n’est pas garantie. En cas de danger immédiat pour une personne : 112.",
+      "phrase": "Bonjour, je suis actuellement à [commune], sans solution sûre pour cette nuit. J’ai besoin d’une évaluation urgente de ma situation et d’une orientation. Je peux préciser où je me trouve.",
+      "documents": "Ne retardez pas une demande de mise à l’abri pour réunir des documents.",
+      "scope": "urgence_regionale",
+      "sourceChecked": "2026-10-12"
+    },
+    "soins": {
+      "name": "INAMI — Service Center Santé (questions générales)",
+      "phone": "02 524 97 97",
+      "url": "https://www.inami.fgov.be/fr/l-inami/nous-contacter",
+      "page": "Pour une indemnité, un remboursement ou un dossier individuel, contacter d’abord sa mutualité ; le Service Center répond aux questions générales. Pour urgence médicale immédiate, 112.",
+      "phrase": "Bonjour, j’habite [commune]. Je rencontre des difficultés avec l’accès aux soins ou un dossier d’indemnités. Pouvez-vous me dire si je dois d’abord joindre ma mutualité et comment obtenir une aide sans Internet ?",
+      "documents": "Correspondances mutualité, décisions et dates utiles, si disponibles.",
+      "scope": "orientation_federale",
+      "sourceChecked": "2026-10-12"
+    },
+    "travail": {
+      "name": "SPF Emploi — orientation en droit du travail",
+      "phone": "02 233 41 11",
+      "email": "spf@emploi.belgique.be",
+      "url": "https://emploi.belgique.be/fr/contact",
+      "page": "Numéro général du SPF Emploi, orientation vers l’inspection ou le service compétent. Accueil du public uniquement sur rendez-vous. Un contact n’interrompt pas les délais de recours.",
+      "phrase": "Bonjour, je vis à [commune] et j’ai une question urgente sur mon contrat, une rupture ou mes conditions de travail. Pouvez-vous me communiquer le service compétent et les démarches à effectuer avant ma date limite ?",
+      "documents": "Contrat, fiches de paie, notifications, échanges et dates de recours.",
+      "scope": "orientation_federale",
+      "sourceChecked": "2026-10-12"
+    },
+    "nouvel-arrivant": {
+      "name": "BAPA BXL — accueil des primo-arrivants (sous conditions)",
+      "phone": "02 279 49 70",
+      "email": "info.bapabxl@brucity.be",
+      "address": "Boulevard Pacheco 34 (5e étage), 1000 Bruxelles",
+      "url": "https://www.bapabxl.be/fr/accueil",
+      "page": "Accueil et accompagnement en langue comprise ; vérifier les critères de séjour, de durée et d’inscription. Ce bureau ne remplace ni la commune ni un avocat en droit des étrangers.",
+      "phrase": "Bonjour, je réside à [commune] et je voudrais savoir si je peux bénéficier du parcours d’accueil et d’une aide pour mes démarches. Si je ne remplis pas les conditions, où puis-je être orienté ?",
+      "documents": "Titre ou preuve de séjour et inscription communale si disponibles ; demander une orientation même si les pièces manquent.",
+      "scope": "accueil_sous_conditions",
+      "sourceChecked": "2026-10-12"
+    },
+    "etudiant": {
+      "name": "Fédération Wallonie-Bruxelles — Allocations d’études",
+      "phone": "0800 11 869",
+      "url": "https://allocations-etudes.cfwb.be/a-propos-de-nous/contacts",
+      "page": "Centre d’appel de la Direction des Allocations d’Études, lundi à jeudi 9 h–12 h. Pour logement, garde ou difficulté urgente, contacter aussi le service social de l’établissement.",
+      "phrase": "Bonjour, je suis étudiant(e) à [commune] et je souhaite vérifier si je peux demander une allocation d’études. Comment déposer une demande sans itsme ou obtenir de l’aide pour le formulaire ?",
+      "documents": "Attestation d’inscription et références du dossier, situation familiale et revenus selon demande officielle.",
+      "scope": "orientation_communaute",
+      "sourceChecked": "2026-10-12"
     }
   },
   "mediationLocale": {
