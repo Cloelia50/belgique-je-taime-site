@@ -2621,7 +2621,9 @@
     const host=document.getElementById("entryRouterHost");
     host.innerHTML='<div class="simple-kicker">EcoTank · Faire des économies</div><h2>Je veux explorer des pistes pour pouvoir faire des économies.</h2>';
     showScreen("simpleEntryRouter");
-    loadCatalog().then(()=>renderQuestion("q_entry_situation")).catch(renderLoadFailure);
+    state.generalFlowStep=0;
+    state.generalFlowGroup="";
+    generalNeedHome(0);
     return true;
   }
 
@@ -3019,7 +3021,10 @@
     showScreen("simpleEntryRouter");
     const host=document.getElementById("entryRouterHost");
     if(host)host.innerHTML='<div class="simple-kicker">EcoTank · Faire des économies</div><p>Préparation de votre parcours…</p>';
-    loadCatalog().then(()=>chooseOption("q_entry_situation",choice)).catch(renderLoadFailure);
+    // Les deux boutons utilisent le même nouveau parcours, sans dépendre de l'ancien catalogue.
+    state.generalEmployment=choice;
+    state.answers.q_entry_situation=choice;
+    generalNeedHome(0);
   }
   window.EcoTankEntryRouter={start,startWithChoice};
   // Le questionnaire de deux choix est maintenant la véritable page d’entrée.
