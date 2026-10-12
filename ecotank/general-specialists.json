@@ -29,6 +29,50 @@
       "page": "Contactez-nous → numéro gratuit, formulaire de contact et accueil",
       "phrase": "Bonjour, ma situation familiale a changé, j'habite à [commune]. Je voudrais vérifier mes allocations familiales et le complément éventuel. Si mon dossier est dans une autre caisse, pouvez-vous m'indiquer la marche à suivre ?",
       "documents": "Courriers de votre caisse, référence du dossier, jugement de garde s'il existe, justificatifs de composition de ménage"
+    },
+    "insertion": {
+      "name": "Actiris — recherche d’emploi et formation",
+      "phone": "0800 35 123",
+      "url": "https://www.actiris.brussels/fr/citoyens/nos-points-de-contact/",
+      "page": "Nos points de contact : téléphone, formulaire et antennes. Inscription en antenne généralement sur rendez-vous ; vérifier l’accueil approprié.",
+      "phrase": "Bonjour, j’habite [commune], je cherche un emploi ou une formation et je voudrais vérifier mon inscription, mes convocations et mes droits. Comment obtenir un rendez-vous si je n’ai pas accès à My Actiris ?",
+      "documents": "Carte d’identité si disponible, attestations et convocations. Ne retardez pas une demande uniquement parce qu’une pièce manque.",
+      "sourceChecked": "2026-10-12",
+      "scope": "orientation_regionale"
+    },
+    "independant": {
+      "name": "INASTI — information sur le statut indépendant",
+      "phone": "0800 12 018",
+      "email": "info@rsvz-inasti.fgov.be",
+      "address": "Quai de Willebroeck 35, 1000 Bruxelles (accueil sur rendez-vous)",
+      "url": "https://www.inasti.be/fr/contact",
+      "page": "Contact : conseil sur le statut ; pour cotisations en difficulté, contacter aussi sa propre caisse d’assurances sociales.",
+      "phrase": "Bonjour, je suis indépendant à [commune] et je rencontre une difficulté avec mes cotisations ou mon statut. Pouvez-vous m’orienter vers ma caisse et m’expliquer les démarches et délais applicables ?",
+      "documents": "Courriers de la caisse, trimestres concernés, revenus estimés et notifications.",
+      "sourceChecked": "2026-10-12",
+      "scope": "orientation_federale"
+    },
+    "pension": {
+      "name": "Service fédéral des Pensions — renseignements",
+      "phone": "1765",
+      "url": "https://www.mypension.be/fr",
+      "page": "Consulter la carrière et les coordonnées de contact ; pour une carrière indépendante, vérifier également les canaux de l’INASTI.",
+      "phrase": "Bonjour, j’habite [commune] et je souhaite vérifier ma pension, ma carrière ou un droit éventuel à la GRAPA. Je n’ai pas nécessairement accès à Internet : comment avoir une aide humaine ?",
+      "documents": "Courriers de pension, périodes de carrière, références du dossier si disponibles.",
+      "sourceChecked": "2026-10-12",
+      "scope": "orientation_federale"
+    },
+    "handicap": {
+      "name": "Iriscare — orientation autonomie et handicap à Bruxelles",
+      "phone": "0800 35 499",
+      "email": "autonomie-handicap@iriscare.brussels",
+      "address": "Rue de Trèves 70 boîte 2, 1000 Bruxelles (CEAH)",
+      "url": "https://www.myiriscare.brussels/fr/contactez-nous-afm/",
+      "page": "Centre d’évaluation de l’autonomie et du handicap : numéro gratuit, option 2 ; ce contact ne remplace pas la DG Personnes handicapées pour toutes les allocations.",
+      "phrase": "Bonjour, j’habite [commune] et j’ai besoin d’informations sur l’autonomie ou le handicap. Pouvez-vous vérifier si ma demande relève de votre service ou m’indiquer l’organisme compétent ?",
+      "documents": "Courriers médicaux ou administratifs pertinents, décisions antérieures si disponibles ; ne pas envoyer de données médicales par e-mail ordinaire sans consigne sécurisée.",
+      "sourceChecked": "2026-10-12",
+      "scope": "orientation_regionale"
     }
   },
   "mediationLocale": {
