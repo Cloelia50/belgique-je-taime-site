@@ -300,20 +300,20 @@
   }
   const generalGroups=[
     ["aides","Primes, chèques et avantages",["famille","soins","logement","handicap","autre"]],
-    ["finances","Mon budget et mes droits",["dettes","pension","achat"]],
+    ["finances","Gérer mon budget et mes dépenses",["pension","achat","dettes"]],
     ["profession","Travail, emploi et formation",["travail","insertion","independant","etudiant"]],
     ["vie","Logement et vie quotidienne",["logement","famille","soins","handicap"]],
     ["administratif","Papiers et démarches",["nouvel-arrivant","autre"]],
-    ["urgent","J’ai besoin d’aide rapidement",["urgence","logement","dettes","soins","autre"]]
+    ["urgent","Je rencontre une difficulté urgente",["urgence","logement","dettes","soins","autre"]]
   ];
   function generalNeedHome(step){
     const h=document.getElementById("entryRouterHost");if(!h)return;
     if(Number.isInteger(step))state.generalFlowStep=step;
     const phase=state.generalFlowStep??0, selected=combinedSelected(),group=generalGroups.find(g=>g[0]===state.generalFlowGroup)||generalGroups[0];
-    const header='<div class="entry-topline"><button type="button" data-entry-home>← Accueil</button><span class="entry-step">Étape '+(phase+1)+' sur 5</span></div>';
+    const header='<div class="entry-topline"><button type="button" data-entry-home>← Accueil</button><span class="entry-step">'+(phase===0?'Choisir un sujet':phase===1?'Préciser ma recherche':'Démarches adaptées')+'</span></div>';
     const foot='<p><button type="button" data-general-flow-back>← Précédent</button></p>';
     if(phase===0){
-      h.innerHTML=header+'<h2>Qu’aimeriez-vous explorer ?</h2><p>Choisissez ce qui vous intéresse aujourd’hui. Vous pourrez ajouter d’autres sujets ensuite.</p><div class="entry-choice-grid">'+generalGroups.map(g=>'<button type="button" class="entry-choice" data-general-group="'+g[0]+'">'+esc(g[1])+'</button>').join("")+'</div>';
+      h.innerHTML=header+'<h2>Comment pouvons-nous vous faire économiser ?</h2><p>Découvrez les primes, réductions, avantages et droits auxquels vous pourriez avoir accès, quel que soit votre niveau de revenus.</p><div class="entry-choice-grid">'+generalGroups.map(g=>'<button type="button" class="entry-choice" data-general-group="'+g[0]+'">'+esc(g[1])+'</button>').join("")+(state.generalEmployment==="not_working"?'<button type="button" class="entry-choice" data-general-no-income>Je n’ai actuellement aucun revenu</button>':'')+'</div>';
     }else if(phase===1){
       if(state.generalFlowGroup==="aides"){h.innerHTML=header+'<h2>Quel type d’aide recherchez-vous ?</h2><div class="entry-choice-grid"><button type="button" class="entry-choice" data-animal-primes>Vétochèques et primes pour les animaux</button><button type="button" class="entry-choice" data-general-aid-other>Autres primes et avantages</button></div>'+foot;showScreen("simpleEntryRouter");return;}
       h.innerHTML=header+'<h2>Qu’aimeriez-vous examiner plus précisément ?</h2><p>Vous pouvez sélectionner plusieurs réponses.</p><div class="entry-choice-grid">'+(state.generalFlowGroup==="finances"?'<button type="button" class="entry-choice" data-animal-primes>Vétochèques et primes pour les animaux</button>':'')+generalNeeds.filter(n=>state.generalFlowGroup==="all"||group[2].includes(n[0])).map(n=>'<label class="entry-choice" style="display:flex;gap:12px;align-items:center"><input type="checkbox" data-combined-select="'+esc(n[0])+'" '+(selected.includes(n[0])?'checked':'')+'><span>'+esc(n[1])+'</span></label>').join("")+'</div><p><button type="button" class="primary" data-general-flow-next>Continuer</button></p><p><button type="button" data-general-flow-all>Voir tous les autres sujets</button></p>'+foot+'<p role="status" id="combined-error"></p>';
@@ -2644,9 +2644,10 @@
   document.addEventListener("click",event=>{
     if(event.target.closest("[data-animal-primes]")){state.generalFlowStep=1;showAnimalPrimes();return;}
     if(event.target.closest("[data-general-aid-other]")){state.generalFlowGroup="vie";generalNeedHome(1);return;}
-    const grp=event.target.closest("[data-general-group]");if(grp){state.generalFlowGroup=grp.dataset.generalGroup;generalNeedHome(1);return;}
+    if(event.target.closest("[data-general-no-income]")){state.generalNoIncome=true;state.generalFlowGroup="urgent";state.generalSelections=["insertion","autre"];combinedPersist();generalNeedHome(2);return;}
+    const grp=event.target.closest("[data-general-group]");if(grp){state.generalFlowGroup=grp.dataset.generalGroup;state.generalNoIncome=false;generalNeedHome(1);return;}
     if(event.target.closest("[data-general-flow-all]")){state.generalFlowGroup="all";generalNeedHome(1);return;}
-    if(event.target.closest("[data-general-flow-next]")){const marked=[...document.querySelectorAll("[data-combined-select]:checked")].map(x=>x.dataset.combinedSelect);const others=combinedSelected().filter(x=>!generalGroups.find(g=>g[0]===state.generalFlowGroup)?.[2].includes(x));state.generalSelections=[...new Set([...others,...marked])];if(!state.generalSelections.length){document.getElementById("combined-error").textContent="Choisissez un sujet pour continuer.";return;}combinedPersist();generalNeedHome(2);return;}
+    if(event.target.closest("[data-general-flow-next]")){const marked=[...document.querySelectorAll("[data-combined-select]:checked")].map(x=>x.dataset.combinedSelect);const others=combinedSelected().filter(x=>!generalGroups.find(g=>g[0]===state.generalFlowGroup)?.[2].includes(x));state.generalSelections=[...new Set([...others,...marked])];if(!state.generalSelections.length){document.getElementById("combined-error").textContent="Choisissez un sujet pour continuer.";return;}combinedPersist();if(state.generalFlowGroup==="urgent"||state.generalNoIncome){generalNeedHome(2);}else{state.generalUrgency="none";state.generalDeadlineNeed="";combinedPersist();combinedJourney();}return;}
     const urgencyChoice=event.target.closest("[data-general-urgency]");if(urgencyChoice){state.generalUrgency=urgencyChoice.dataset.generalUrgency;combinedPersist();generalNeedHome(["48h","7d"].includes(state.generalUrgency)?3:4);return;}
     const deadlineChoice=event.target.closest("[data-general-deadline]");if(deadlineChoice){state.generalDeadlineNeed=deadlineChoice.dataset.generalDeadline;combinedPersist();generalNeedHome(4);return;}
     if(event.target.closest("[data-general-flow-back]")){generalNeedHome(state.generalFlowStep===4&&!["48h","7d"].includes(state.generalUrgency)?2:Math.max(0,(state.generalFlowStep||0)-1));return;}
@@ -3034,7 +3035,7 @@
   function startWithChoice(choice){
     if(!["working","not_working"].includes(choice))return;
     if(!ensureScreens())return;
-    state.answers={};state.destinationId="";state.difficultTopic="";state.businessAnswers={};state.generalFlowStep=0;state.generalFlowGroup="";
+    state.answers={};state.destinationId="";state.difficultTopic="";state.businessAnswers={};state.generalFlowStep=0;state.generalFlowGroup="";state.generalNoIncome=false;
     showScreen("simpleEntryRouter");
     const host=document.getElementById("entryRouterHost");
     if(host)host.innerHTML='<div class="simple-kicker">EcoTank · Faire des économies</div><p>Préparation de votre parcours…</p>';
