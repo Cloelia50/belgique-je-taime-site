@@ -337,7 +337,7 @@
     const header='<div class="entry-topline"><button type="button" data-entry-home>← Accueil</button><span class="entry-step">'+(phase===0?'Choisir un sujet':phase===1?'Préciser ma recherche':'Démarches adaptées')+'</span></div>';
     const foot='<p><button type="button" data-general-flow-back>← Précédent</button></p>';
     if(phase===0){
-      h.innerHTML=header+'<h2>Comment pouvons-nous vous faire économiser ?</h2><p>Découvrez les primes, réductions, avantages et droits auxquels vous pourriez avoir accès, quel que soit votre niveau de revenus.</p><div class="entry-choice-grid"><button type="button" class="entry-choice foundation" data-entry-fast-help>J’ai besoin d’une aide immédiate, sans questionnaire</button>'+generalGroups.map(g=>'<button type="button" class="entry-choice" data-general-group="'+g[0]+'">'+esc(g[1])+'</button>').join("")+(state.generalEmployment==="not_working"?'<button type="button" class="entry-choice" data-general-no-income>Je n’ai actuellement aucun revenu</button>':'')+'</div>';
+      h.innerHTML=header+'<h2>Comment pouvons-nous vous faire économiser ?</h2><p>Découvrez les primes, réductions, avantages et droits auxquels vous pourriez avoir accès, quel que soit votre niveau de revenus.</p><div class="entry-choice-grid">'+generalGroups.map(g=>'<button type="button" class="entry-choice" data-general-group="'+g[0]+'">'+esc(g[1])+'</button>').join("")+(state.generalEmployment==="not_working"?'<button type="button" class="entry-choice" data-general-no-income>Je n’ai actuellement aucun revenu</button>':'')+'</div>';
     }else if(phase===1){
       if(state.generalFlowGroup==="aides"||state.generalFlowGroup==="finances"){savingsHome();return;}
       if(state.generalFlowGroup==="aides"){h.innerHTML=header+'<h2>Quel type d’aide recherchez-vous ?</h2><div class="entry-choice-grid"><button type="button" class="entry-choice" data-animal-primes>Vétochèques et primes pour les animaux</button><button type="button" class="entry-choice" data-general-aid-other>Autres primes et avantages</button></div>'+foot;showScreen("simpleEntryRouter");return;}
@@ -427,7 +427,6 @@
       '<div class="simple-kicker">EcoTank · Faire des économies</div>'+
       '<h2>'+esc(q.text||"Votre situation")+'</h2>'+
       (q.helper?'<p>'+esc(q.helper)+'</p>':"")+
-      (qid==="q_entry_situation"?'<div class="entry-choice-grid"><button type="button" class="entry-choice foundation" data-entry-fast-help>J’ai besoin d’aide maintenant — voir les premières pistes sans questionnaire</button></div>':"")+
       (qid==="q_entry_situation"?'<div class="entry-choice-grid"><button type="button" class="entry-choice foundation" data-homeless-start>Je suis sans domicile ou sans ressources : trouver une aide humaine</button></div>':"")+
       (qid==="q_entry_situation"?'<button type="button" class="entry-choice foundation" data-kevin-start>Anderlecht · Hébergé chez des proches, dettes ou chômage en difficulté</button>':"")+
       (qid==="q_entry_situation"?'<button type="button" class="entry-choice foundation" data-fatou-start>Molenbeek · Parent seul avec enfants : électricité, pension et aides</button>':"")+
