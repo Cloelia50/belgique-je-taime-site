@@ -2631,7 +2631,7 @@
     if(event.target.closest("[data-general-flow-next]")){const marked=[...document.querySelectorAll("[data-combined-select]:checked")].map(x=>x.dataset.combinedSelect);const others=combinedSelected().filter(x=>!generalGroups.find(g=>g[0]===state.generalFlowGroup)?.[2].includes(x));state.generalSelections=[...new Set([...others,...marked])];if(!state.generalSelections.length){document.getElementById("combined-error").textContent="Choisissez un sujet pour continuer.";return;}combinedPersist();generalNeedHome(2);return;}
     const urgencyChoice=event.target.closest("[data-general-urgency]");if(urgencyChoice){state.generalUrgency=urgencyChoice.dataset.generalUrgency;combinedPersist();generalNeedHome(["48h","7d"].includes(state.generalUrgency)?3:4);return;}
     const deadlineChoice=event.target.closest("[data-general-deadline]");if(deadlineChoice){state.generalDeadlineNeed=deadlineChoice.dataset.generalDeadline;combinedPersist();generalNeedHome(4);return;}
-    if(event.target.closest("[data-general-flow-back]")){generalNeedHome(Math.max(0,(state.generalFlowStep||0)-1));return;}
+    if(event.target.closest("[data-general-flow-back]")){generalNeedHome(state.generalFlowStep===4&&!["48h","7d"].includes(state.generalUrgency)?2:Math.max(0,(state.generalFlowStep||0)-1));return;}
     const go=event.target.closest("[data-combined-go]");if(go){state.generalBarriers=[...document.querySelectorAll("[data-combined-barrier]:checked")].map(x=>x.dataset.combinedBarrier);combinedPersist();combinedJourney();return;}
     const open=event.target.closest("[data-combined-open]");if(open){state.generalNeed=open.dataset.combinedOpen;generalNeedGuide();return;}
     const done=event.target.closest("[data-combined-done]");if(done){state.generalCompleted=state.generalCompleted||{};state.generalCompleted[done.dataset.combinedDone]=!state.generalCompleted[done.dataset.combinedDone];combinedPersist();combinedJourney();return;}
@@ -3015,7 +3015,7 @@
   function startWithChoice(choice){
     if(!["working","not_working"].includes(choice))return;
     if(!ensureScreens())return;
-    state.answers={};state.destinationId="";state.difficultTopic="";state.businessAnswers={};
+    state.answers={};state.destinationId="";state.difficultTopic="";state.businessAnswers={};state.generalFlowStep=0;state.generalFlowGroup="";
     showScreen("simpleEntryRouter");
     const host=document.getElementById("entryRouterHost");
     if(host)host.innerHTML='<div class="simple-kicker">EcoTank · Faire des économies</div><p>Préparation de votre parcours…</p>';
