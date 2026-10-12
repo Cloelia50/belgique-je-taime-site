@@ -19,3 +19,29 @@ jobs:
           python-version: '3.12'
       - name: Vérifier le socle public
         run: python scripts/site_quality.py
+      - name: Prévol statique sur les fichiers du dépôt public
+        if: github.event_name == 'pull_request' && startsWith(github.head_ref, 'audit/prevol-publication')
+        run: |
+          python scripts/preflight_publication.py --report /tmp/bjt-public-preflight.json
+          python - <<'PY'
+          import json,sys
+          report=json.load(open('/tmp/bjt-public-preflight.json'))
+          errors=report['blocking_errors']
+          if errors:
+              print('PUBLICATION BLOQUÉE :',len(errors),'erreurs')
+              sys.exit(1)
+          print('Aucune erreur bloquante. Avertissements :',len(report['warnings']))
+          PY
+      - name: Prévol navigateur Activikids — filtres temporels visibles
+        if: github.event_name == 'pull_request' && startsWith(github.head_ref, 'audit/prevol-publication')
+        run: |
+          python -m pip install selenium==4.36.0
+          python scripts/preflight_browser_activikids.py
+      - name: Conserver le rapport de prévol sans publication
+        if: always() && github.event_name == 'pull_request' && startsWith(github.head_ref, 'audit/prevol-publication')
+        uses: actions/upload-artifact@v7
+        with:
+          name: prevol-site-public-sans-publication
+          path: /tmp/bjt-public-preflight.json
+          retention-days: 5
+          if-no-files-found: warn
