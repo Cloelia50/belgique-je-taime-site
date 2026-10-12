@@ -326,7 +326,7 @@
     const localDebt=item[0]==="dettes"?state.generalSpecialistData?.mediationLocale?.[place]:null;
     const spPhone=localDebt?.phone||sp?.phone||"";
     const spEmail=localDebt?.email||sp?.email||"";
-    const spContact=sp?'<section><h3>Service ou relais spécialisé — vérifier les conditions d’accueil</h3><p><strong>'+esc(localDebt?.name||sp.name)+'</strong></p>'+(spPhone?'<p><a href="tel:'+esc(spPhone.replaceAll(" ",""))+'">'+esc(spPhone)+'</a></p>':"")+(spEmail?'<p><a href="mailto:'+esc(spEmail)+'">'+esc(spEmail)+'</a></p>':"")+(localDebt?.address||sp.address?'<p>'+esc(localDebt?.address||sp.address)+'</p>':"")+'<p><a href="'+esc(sp.url)+'" target="_blank" rel="noopener noreferrer">Page officielle ↗</a></p><p><strong>Sur cette page :</strong> '+esc(sp.page)+'</p></section>':"";
+    const spContact=sp?'<section><h3>Service ou relais spécialisé — vérifier les conditions d’accueil</h3><p><strong>'+esc(localDebt?.name||sp.name)+'</strong></p>'+(spPhone?'<p><a href="tel:'+esc(spPhone.replaceAll(" ",""))+'">'+esc(spPhone)+'</a></p>':"")+(spEmail?'<p><a href="mailto:'+esc(spEmail)+'">'+esc(spEmail)+'</a></p>':"")+(localDebt?.address||sp.address?'<p>'+esc(localDebt?.address||sp.address)+'</p>':"")+'<p><a href="'+esc(sp.url)+'" target="_blank" rel="noopener noreferrer">Page officielle ↗</a></p><p><strong>Sur cette page :</strong> '+esc(sp.page)+'</p>'+(localDebt?.note?'<p><strong>Données historiques, accueil à confirmer :</strong> '+esc(localDebt.note)+'</p>':'')+'</section>':"";
     const barrierInfo=generalBarrierAdvice();
     const socialTopic=["urgence","dettes","logement","famille","autre"].includes(item[0]);
     const recipient=sp?(spEmail||""):socialTopic&&local?(item[0]==="dettes"&&local.debtEmail?local.debtEmail:local.email):"";
