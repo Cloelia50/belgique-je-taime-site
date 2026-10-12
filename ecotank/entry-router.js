@@ -287,12 +287,30 @@
     const selected=state.generalBarriers||[];
     return selected.length?'<section aria-label="Démarches accessibles"><h3>Comment agir malgré ces obstacles ?</h3><ul>'+selected.map(k=>'<li>'+esc(advice[k])+'</li>').join("")+'</ul><p><strong>Phrase à montrer :</strong> « Je voudrais demander de l’aide, mais je ne peux pas suivre la procédure habituelle. Pouvez-vous m’orienter vers un accueil humain et préciser les délais ? »</p></section>':'';
   }
-  function generalNeedHome(){
+  const generalGroups=[
+    ["finances","Mon budget et mes droits",["dettes","pension","achat"]],
+    ["profession","Travail, emploi et formation",["travail","insertion","independant","etudiant"]],
+    ["vie","Logement et vie quotidienne",["logement","famille","soins","handicap"]],
+    ["administratif","Papiers et démarches",["nouvel-arrivant","autre"]],
+    ["urgent","J’ai besoin d’aide rapidement",["urgence","logement","dettes","soins","autre"]]
+  ];
+  function generalNeedHome(step){
     const h=document.getElementById("entryRouterHost");if(!h)return;
-    const selected=combinedSelected();
-    const employed=state.generalEmployment==="working";
-    const sortedNeeds=employed?[...generalNeeds].sort((a,b)=>{const order=["travail","independant","dettes","logement","soins","famille","handicap","pension","achat","etudiant","autre","insertion","nouvel-arrivant","urgence"];return order.indexOf(a[0])-order.indexOf(b[0]);}):generalNeeds;
-    h.innerHTML='<div class="entry-topline"><button type="button" data-entry-home>← Accueil</button><span class="entry-step">Mes besoins</span></div><h2>'+(employed?'Vous travaillez : que souhaitez-vous vérifier ou améliorer ?':'De quoi avez-vous besoin aujourd’hui ?')+'</h2><p>'+(employed?'Votre emploi est pris en compte. Choisissez librement les thèmes qui vous concernent. Les autres aides restent accessibles, y compris en cas d’urgence.':'Vous pouvez sélectionner plusieurs problèmes en même temps. Nous vous montrerons le premier geste prioritaire puis les suivants.')+'</p><div class="entry-choice-grid">'+sortedNeeds.map(t=>'<label class="entry-choice" style="display:flex;gap:12px;align-items:center"><input type="checkbox" data-combined-select="'+esc(t[0])+'" '+(selected.includes(t[0])?"checked":"")+'><span>'+esc(t[1])+'</span></label>').join("")+'</div><p><label for="combined-urgency">Y a-t-il un danger ou une échéance urgente ?</label><select id="combined-urgency"><option value="none" '+((state.generalUrgency||"none")==="none"?"selected":"")+'>Pas d’urgence immédiate / je ne sais pas</option><option value="danger" '+(state.generalUrgency==="danger"?"selected":"")+'>Danger immédiat pour une personne</option><option value="48h" '+(state.generalUrgency==="48h"?"selected":"")+'>Expulsion, saisie ou délai dans les 48 heures</option><option value="7d" '+(state.generalUrgency==="7d"?"selected":"")+'>Échéance dans les 7 prochains jours</option></select></p><p><label for="combined-deadline-need">Quel besoin est concerné par l’échéance ?</label><select id="combined-deadline-need"><option value="">Aucun ou je ne sais pas</option>'+[["logement","Logement / expulsion"],["dettes","Dettes / saisie"],["travail","Travail / recours"],["soins","Soins / rendez-vous"],["autre","Autre"]].map(x=>'<option value="'+x[0]+'" '+(state.generalDeadlineNeed===x[0]?"selected":"")+'>'+x[1]+'</option>').join("")+'</select></p><fieldset><legend>Ce qui complique mes démarches (facultatif)</legend>'+generalBarrierChoices.map(x=>'<label style="display:block;margin:8px 0"><input type="checkbox" data-combined-barrier="'+x[0]+'" '+((state.generalBarriers||[]).includes(x[0])?"checked":"")+'> '+esc(x[1])+'</label>').join("")+'</fieldset><p><button type="button" class="primary" data-combined-go>Voir mes premières démarches</button> <button type="button" data-general-old>Questionnaire détaillé existant</button></p><p role="status" id="combined-error"></p>';
+    if(Number.isInteger(step))state.generalFlowStep=step;
+    const phase=state.generalFlowStep??0, selected=combinedSelected(),group=generalGroups.find(g=>g[0]===state.generalFlowGroup)||generalGroups[0];
+    const header='<div class="entry-topline"><button type="button" data-entry-home>← Accueil</button><span class="entry-step">Étape '+(phase+1)+' sur 5</span></div>';
+    const foot='<p><button type="button" data-general-flow-back>← Précédent</button></p>';
+    if(phase===0){
+      h.innerHTML=header+'<h2>Qu’aimeriez-vous explorer ?</h2><p>Choisissez ce qui vous intéresse aujourd’hui. Vous pourrez ajouter d’autres sujets ensuite.</p><div class="entry-choice-grid">'+generalGroups.map(g=>'<button type="button" class="entry-choice" data-general-group="'+g[0]+'">'+esc(g[1])+'</button>').join("")+'</div>';
+    }else if(phase===1){
+      h.innerHTML=header+'<h2>Qu’aimeriez-vous examiner plus précisément ?</h2><p>Vous pouvez sélectionner plusieurs réponses.</p><div class="entry-choice-grid">'+generalNeeds.filter(n=>state.generalFlowGroup==="all"||group[2].includes(n[0])).map(n=>'<label class="entry-choice" style="display:flex;gap:12px;align-items:center"><input type="checkbox" data-combined-select="'+esc(n[0])+'" '+(selected.includes(n[0])?'checked':'')+'><span>'+esc(n[1])+'</span></label>').join("")+'</div><p><button type="button" class="primary" data-general-flow-next>Continuer</button></p><p><button type="button" data-general-flow-all>Voir tous les autres sujets</button></p>'+foot+'<p role="status" id="combined-error"></p>';
+    }else if(phase===2){
+      h.innerHTML=header+'<h2>Y a-t-il une date importante à respecter ?</h2><p>Cette question nous aide à classer vos démarches. Vous pouvez aussi ne pas savoir.</p><div class="entry-choice-grid">'+[["none","Non, pas de délai connu"],["48h","Oui, dans les 48 heures"],["7d","Oui, dans les 7 jours"],["danger","Il y a un danger immédiat"]].map(x=>'<button type="button" class="entry-choice" data-general-urgency="'+x[0]+'">'+esc(x[1])+'</button>').join("")+'</div>'+foot;
+    }else if(phase===3){
+      h.innerHTML=header+'<h2>Quel sujet concerne cette échéance ?</h2><div class="entry-choice-grid">'+[["","Je ne sais pas"],["logement","Logement"],["dettes","Dettes"],["travail","Travail"],["soins","Soins"],["autre","Autre"]].map(x=>'<button type="button" class="entry-choice" data-general-deadline="'+x[0]+'">'+esc(x[1])+'</button>').join("")+'</div>'+foot;
+    }else{
+      h.innerHTML=header+'<h2>Y a-t-il quelque chose qui complique vos démarches ?</h2><p>Cette étape est facultative.</p><div class="entry-choice-grid">'+generalBarrierChoices.map(x=>'<label class="entry-choice" style="display:flex;gap:12px"><input type="checkbox" data-combined-barrier="'+x[0]+'" '+((state.generalBarriers||[]).includes(x[0])?'checked':'')+'><span>'+esc(x[1])+'</span></label>').join("")+'</div><p><button type="button" class="primary" data-combined-go>Voir mon plan</button></p>'+foot;
+    }
     showScreen("simpleEntryRouter");
   }
   function combinedJourney(){
@@ -2608,7 +2626,13 @@
   }
 
   document.addEventListener("click",event=>{
-    const go=event.target.closest("[data-combined-go]");if(go){const marked=[...document.querySelectorAll("[data-combined-select]:checked")].map(x=>x.dataset.combinedSelect);if(!marked.length){const n=document.getElementById("combined-error");if(n)n.textContent="Choisissez au moins un besoin.";return;}state.generalSelections=marked;state.generalBarriers=[...document.querySelectorAll("[data-combined-barrier]:checked")].map(x=>x.dataset.combinedBarrier);combinedPersist();combinedJourney();return;}
+    const grp=event.target.closest("[data-general-group]");if(grp){state.generalFlowGroup=grp.dataset.generalGroup;generalNeedHome(1);return;}
+    if(event.target.closest("[data-general-flow-all]")){state.generalFlowGroup="all";generalNeedHome(1);return;}
+    if(event.target.closest("[data-general-flow-next]")){const marked=[...document.querySelectorAll("[data-combined-select]:checked")].map(x=>x.dataset.combinedSelect);const others=combinedSelected().filter(x=>!generalGroups.find(g=>g[0]===state.generalFlowGroup)?.[2].includes(x));state.generalSelections=[...new Set([...others,...marked])];if(!state.generalSelections.length){document.getElementById("combined-error").textContent="Choisissez un sujet pour continuer.";return;}combinedPersist();generalNeedHome(2);return;}
+    const urgencyChoice=event.target.closest("[data-general-urgency]");if(urgencyChoice){state.generalUrgency=urgencyChoice.dataset.generalUrgency;combinedPersist();generalNeedHome(["48h","7d"].includes(state.generalUrgency)?3:4);return;}
+    const deadlineChoice=event.target.closest("[data-general-deadline]");if(deadlineChoice){state.generalDeadlineNeed=deadlineChoice.dataset.generalDeadline;combinedPersist();generalNeedHome(4);return;}
+    if(event.target.closest("[data-general-flow-back]")){generalNeedHome(Math.max(0,(state.generalFlowStep||0)-1));return;}
+    const go=event.target.closest("[data-combined-go]");if(go){state.generalBarriers=[...document.querySelectorAll("[data-combined-barrier]:checked")].map(x=>x.dataset.combinedBarrier);combinedPersist();combinedJourney();return;}
     const open=event.target.closest("[data-combined-open]");if(open){state.generalNeed=open.dataset.combinedOpen;generalNeedGuide();return;}
     const done=event.target.closest("[data-combined-done]");if(done){state.generalCompleted=state.generalCompleted||{};state.generalCompleted[done.dataset.combinedDone]=!state.generalCompleted[done.dataset.combinedDone];combinedPersist();combinedJourney();return;}
     const backPlan=event.target.closest("[data-combined-plan]");if(backPlan){combinedJourney();return;}
