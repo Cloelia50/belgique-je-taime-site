@@ -676,11 +676,38 @@
     h.innerHTML='<div style="max-width:750px;margin:auto"><h2>J’ai plus de 65 ans et je préfère être aidé(e)</h2><p>Une maison peut avoir de la valeur sans laisser assez d’argent pour vivre. Vous pouvez demander une aide humaine sans devoir vendre votre logement.</p><div class="entry-choice-grid"><button type="button" data-odette-topic="human">Je préfère parler à quelqu’un</button><button type="button" data-odette-topic="home">J’ai besoin d’aide chez moi</button><button type="button" data-odette-topic="apa">Allocation autonomie (APA)</button><button type="button" data-odette-topic="grapa">Vérifier ma pension (GRAPA)</button><button type="button" data-odette-topic="renov">Travaux dans ma maison</button><button type="button" data-odette-topic="tax">Précompte immobilier</button><button type="button" data-odette-topic="patrimony">Questions sur ma maison et mon patrimoine</button></div><p>Un proche peut remplir cette page avec vous. Aucun revenu précis ni acte de propriété à saisir.</p><button type="button" data-odette-back>Retour</button></div>';
     showScreen("simpleDifficultHelp");
   }
+  const odetteContactDetails={
+    human:["serviceaffairessociales@forest.brussels","02 370 22 76","Décrivez les difficultés rencontrées et indiquez comment être recontacté."],
+    home:["saf.cpas.forest@cpas1190.brussels","02 211 02 10","Listez les tâches pour lesquelles une aide est nécessaire."],
+    apa:["apa-thab@iriscare.brussels","0800 35 499","Demandez la liste des preuves d'autonomie et de ressources attendues."],
+    grapa:["","02 225 17 65","Préparez le dernier courrier de pension et demandez les pièces nécessaires."],
+    renov:["","02 349 82 40","Décrivez les travaux prioritaires et les devis éventuels."],
+    tax:["","","Gardez votre avertissement-extrait de rôle à portée de main."],
+    patrimony:["","","Listez vos questions et demandez un avis indépendant avant toute signature."]
+  };
+  function odetteSaved(){try{return JSON.parse(localStorage.getItem("ecotank-odette-v1")||"{}")||{};}catch(e){return {};}}
   function odetteGuide(){
     if(!ensureScreens())return;
     const h=document.getElementById("entryDifficultHost"),key=state.odetteTopic||"human";
-    const t=odetteTasks.find(v=>v[0]===key)||odetteTasks[0];
-    h.innerHTML='<div id="odette-sheet" style="max-width:740px;margin:auto;padding:16px;background:#fff;color:#111;font-size:1.08em;line-height:1.6"><h2>'+esc(t[1])+'</h2><p><strong>Pour parler à quelqu’un :</strong> '+esc(t[2])+'</p><p><a href="'+esc(t[3])+'" target="_blank" rel="noopener noreferrer">Coordonnées et démarches officielles ↗</a></p><h3>Que faire ?</h3><p>'+esc(t[4])+'</p><h3>À dire au téléphone ou à envoyer par courriel</h3><textarea readonly rows="7" style="font-size:1em;width:100%;box-sizing:border-box">'+esc(t[5])+'</textarea><h3>Si cela ne fonctionne pas</h3><p>'+esc(t[6])+'</p><p>Le site ne téléphone pas à votre place. Un rappel ou une visite doit être confirmé par le service contacté.</p></div><div class="entry-route-actions"><button type="button" data-odette-home>Autre démarche</button><button type="button" data-odette-print>Imprimer cette page</button><button type="button" data-odette-back>Retour</button></div>';
+    const t=odetteTasks.find(v=>v[0]===key)||odetteTasks[0],c=odetteContactDetails[key]||odetteContactDetails.human;
+    const progress=odetteSaved()[key]||"todo";
+    const subject="Demande d'accompagnement : "+t[1];
+    const msg="Bonjour,\n\n"+t[5]+"\n\nPourriez-vous m'indiquer les pièces nécessaires, les solutions sans internet et la prochaine étape ?\n\nMerci d'avance.\nCordialement";
+    const full="À : "+(c[0]||"adresse à vérifier auprès du service")+"\nObjet : "+subject+"\n\n"+msg;
+    const url=c[0]?"mailto:"+c[0]+"?subject="+encodeURIComponent(subject)+"&body="+encodeURIComponent(msg):"";
+    const statuses=[["todo","À faire"],["contacted","J'ai contacté"],["waiting","J'attends"],["blocked","Je suis bloqué(e)"],["done","Réponse obtenue"]];
+    const next=progress==="waiting"?"Relancez avec la date de votre demande et réclamez un délai de réponse.":progress==="blocked"?"Demandez le motif écrit du blocage, une autre façon de fournir les justificatifs ou un contact humain. "+t[6]:progress==="done"?"Conservez la réponse écrite et les prochaines échéances ; en cas de refus, demandez les recours.":progress==="contacted"?"Notez la date, le nom du service contacté et ce qu'il a promis.":"Commencez par cette seule démarche. Un proche peut vous assister.";
+    h.innerHTML='<div id="odette-sheet" style="max-width:740px;margin:auto;padding:16px;background:#fff;color:#111;font-size:1.08em;line-height:1.6"><h2>'+esc(t[1])+'</h2><p>'+esc(t[4])+'</p>'+
+      '<p><strong>Téléphone :</strong> '+esc(c[1]||"numéro direct à vérifier")+'</p>'+
+      '<p><strong>Courriel :</strong> '+esc(c[0]||"adresse directe non vérifiée : consulter le lien officiel")+'</p>'+
+      '<p><a href="'+esc(t[3])+'" target="_blank" rel="noopener noreferrer">Vérifier les coordonnées officielles ↗</a></p>'+
+      '<h3>1. Ce que je dis au téléphone</h3><textarea id="odette-call" readonly rows="6" style="width:100%;font-size:1em;box-sizing:border-box">'+esc(t[5])+'</textarea><p><button type="button" data-odette-copy="odette-call">Copier le texte</button></p>'+
+      '<h3>2. Mon courriel déjà préparé</h3><textarea id="odette-email" readonly rows="9" style="width:100%;font-size:1em;box-sizing:border-box">'+esc(full)+'</textarea><p><button type="button" data-odette-copy="odette-email">Copier le courriel</button> '+(url?'<a href="'+esc(url)+'">Ouvrir ma messagerie avec ce courriel ↗</a>':'<span>Vérifiez l’adresse avant tout envoi.</span>')+'</p>'+
+      '<p><strong>À préparer :</strong> '+esc(c[2])+'</p>'+
+      '<h3>3. Suivre ma démarche</h3><div class="entry-choice-grid">'+statuses.map(x=>'<button type="button" data-odette-progress="'+x[0]+'" aria-pressed="'+(progress===x[0]?'true':'false')+'">'+esc(x[1])+'</button>').join('')+'</div>'+
+      '<p role="status"><strong>Ma prochaine étape :</strong> '+esc(next)+'</p><h3>Si cela ne fonctionne pas</h3><p>'+esc(t[6])+'</p>'+
+      '<p>Votre suivi reste enregistré sur cet appareil seulement. EcoTank ne téléphone pas et n’envoie aucun courriel à votre place.</p></div>'+
+      '<div class="entry-route-actions"><button type="button" data-odette-home>Autre démarche</button><button type="button" data-odette-print>Imprimer</button><button type="button" data-odette-clear>Effacer mon suivi</button><button type="button" data-odette-back>Retour</button></div>';
     showScreen("simpleDifficultHelp");
   }
   const antoineItems=[["statut","Clarifier le statut et l'impôt UE","https://eur-lex.europa.eu/eli/arrang/2016/350/oj/fra","Demandez au service RH de votre institution si les articles 12 et 13 du protocole s'appliquent à votre contrat et à votre domicile fiscal. L'exonération nationale concerne les traitements de l'Union, pas automatiquement les autres revenus.","Merci de confirmer mon statut au titre des articles 12 et 13, le traitement imposé par l'Union, ma résidence fiscale pertinente et les justificatifs disponibles."],["logement","Impôts belges du logement","https://www.belgium.be/fr/logement/achat_et_vente/precompte_immobilier","Propriétaire occupant : vérifiez l'avis de précompte immobilier auprès de Bruxelles Fiscalité. L'habitation propre est normalement exonérée à l'IPP. Pour un autre bien ou des loyers, faites vérifier la déclaration en tenant compte de la résidence fiscale.","Merci de préciser, selon mon statut européen et la nature de mon bien, les obligations de déclaration des revenus immobiliers et le précompte immobilier applicable."],["sante","Assurance maladie RCAM / JSIS","https://commission.europa.eu/about/careers/working-european-commission/pay-benefits-and-working-conditions_en","Demandez à votre administration la confirmation de la couverture RCAM / JSIS, des bénéficiaires et des formalités de remboursement. Certains contrats, experts détachés et stagiaires ont d'autres conditions.","Merci de confirmer ma couverture RCAM/JSIS, celle de mes ayants droit, les remboursements et les formalités de soins en Belgique."],["aides","Aides et avantages liés au logement","https://environnement.brussels/citoyen/services-et-demandes/primes-et-aides-financieres/les-primes-renolution","Vérifiez les critères propres à chaque dispositif, et les justificatifs acceptés si vous ne disposez pas d'un avertissement-extrait de rôle belge. Les primes RENOLUTION sont suspendues au 12 octobre 2026.","Pour le dispositif [nom], pouvez-vous confirmer les conditions applicables à un agent de l'Union et les justificatifs de revenus ou de résidence recevables ?"]];
@@ -2243,6 +2270,9 @@
     if(event.target.closest("[data-antoine-clear]")){state.antoineAnswers={};state.antoineProgress={};state.antoineReason={};antoineLocalSave();antoineEntry();return;}
     if(event.target.closest("[data-odette-start]")){odetteEntry();return;}
     const ot=event.target.closest("[data-odette-topic]");if(ot){state.odetteTopic=ot.dataset.odetteTopic;odetteGuide();return;}
+    const odcopy=event.target.closest("[data-odette-copy]");if(odcopy){const el=document.getElementById(odcopy.dataset.odetteCopy);if(el){el.select();if(navigator.clipboard?.writeText)navigator.clipboard.writeText(el.value).catch(()=>document.execCommand("copy"));else document.execCommand("copy");}return;}
+    const odprogress=event.target.closest("[data-odette-progress]");if(odprogress){const p=odetteSaved();p[state.odetteTopic||"human"]=odprogress.dataset.odetteProgress;try{localStorage.setItem("ecotank-odette-v1",JSON.stringify(p));}catch(e){}odetteGuide();return;}
+    if(event.target.closest("[data-odette-clear]")){try{localStorage.removeItem("ecotank-odette-v1");}catch(e){}odetteGuide();return;}
     if(event.target.closest("[data-odette-home]")){odetteEntry();return;}
     if(event.target.closest("[data-odette-print]")){window.print();return;}
     if(event.target.closest("[data-odette-back]")){renderQuestion("q_entry_situation");return;}
