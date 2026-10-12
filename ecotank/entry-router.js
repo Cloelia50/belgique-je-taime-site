@@ -679,6 +679,36 @@
       '<button type="button" data-antoine-guide>Mes démarches personnelles</button> <button type="button" data-antoine-back>Retour</button>';
     showScreen("simpleDifficultHelp");
   }
+  const antoineActionDetail={
+    statut:{
+      ready:"Demandez une attestation de statut, le fondement du traitement soumis à l'impôt UE, et la position de l'administration sur le domicile fiscal au jour d'entrée en service. Conservez le contrat et la réponse.",
+      waiting:"Après votre demande RH, relancez avec sa date et sollicitez le service des pensions/fiscalité du personnel, pas simplement le service de paie.",
+      blocked:"Si les RH ne déterminent pas l'application du protocole, demandez une réponse du service juridique ou fiscal de l'institution ; pour le fisc belge, demandez un avis écrit au SPF Finances. Ne déclarez pas le salaire communautaire comme salaire belge par précaution sans examen du statut.",
+      done:"Vérifiez que la réponse écrite précise catégorie de contrat, rémunérations couvertes, domicile fiscal et conséquences éventuelles des autres revenus.",
+      link:"https://eur-lex.europa.eu/eli/treaty/tfeu_2012/pro_7/oj/fra"
+    },
+    logement:{
+      ready:"Locataire : vérifiez d'abord si une demande porte réellement sur un impôt dont vous êtes redevable. Propriétaire : ouvrez MyTax, récupérez l'avis de précompte, vérifiez exercice, bien, revenu cadastral et réductions éventuelles. Pour l'IPP ou l'INR, vérifiez séparément la résidence fiscale et les autres revenus immobiliers.",
+      waiting:"Conservez l'avis et la date d'envoi, même si le fisc doit confirmer votre statut. Une demande d'information ne suspend aucun délai de paiement ou de réclamation.",
+      blocked:"Si le montant du précompte est contesté, introduisez une réclamation motivée via MyTax dans le délai de 193 jours de l'envoi de l'avis, selon les modalités officielles. Le recours ne suspend pas le paiement. Si le problème concerne la déclaration fédérale ou la résidence fiscale, adressez-le au SPF Finances, pas à Bruxelles Fiscalité.",
+      done:"Vérifiez l'avis définitif, le paiement ou la décision de réclamation ; distinguez bien cet impôt régional de la déclaration fédérale éventuellement requise.",
+      link:"https://fisc.brussels/mytax/fr/contact"
+    },
+    sante:{
+      ready:"Vérifiez auprès de votre administration votre droit au RCAM/JSIS, les personnes couvertes et les démarches de remboursement. Demandez aussi la procédure en cas de refus de soins.",
+      waiting:"Conservez la référence de la demande et consultez le bureau de liquidation JSIS. Pour une question complexe à Bruxelles, prenez rendez-vous auprès du PMO.",
+      blocked:"Contactez le PMO JSIS : +32 2 29 11111, menu JSIS, puis droits d'affiliation ou remboursements selon le problème. Pour une situation complexe, demandez un rendez-vous à PMO-RCAM-BRU-RDV@ec.europa.eu. Pour contester une décision, réclamez les voies de révision ou de recours et leurs délais.",
+      done:"Ne clôturez qu'avec la confirmation de couverture, les conditions des ayants droit et le canal de remboursement ou la décision sur la demande.",
+      link:"https://ec.europa.eu/assets/pmo/hr-pmo-a3-contacts.html"
+    },
+    aides:{
+      ready:"Identifiez une aide précise avant de demander l'éligibilité. Vérifiez sa date d'ouverture, la catégorie de bénéficiaire, les conditions de résidence et de propriété et la nature des revenus à produire. N'utilisez pas une absence d'AER belge comme preuve de faibles revenus.",
+      waiting:"Après un dossier déposé, conservez l'accusé et demandez à l'organisme la liste des pièces manquantes et le délai d'instruction annoncé.",
+      blocked:"En cas de refus lié au statut UE ou à l'absence d'AER, demandez la règle écrite, les justificatifs alternatifs acceptés et les voies de réexamen propres à l'aide. Si le dispositif est suspendu, ne présentez pas cette suspension comme un refus personnel ouvrant un recours.",
+      done:"Ne classez une aide comme obtenue que sur notification d'octroi officielle ; sinon, conservez la réponse motivée et vérifiez les alternatives réellement ouvertes.",
+      link:"https://environnement.brussels/citoyen/services-et-demandes/primes-et-aides-financieres/les-primes-renolution"
+    }
+  };
   function antoineGuide(){
     if(!ensureScreens())return;
     state.antoineProgress=state.antoineProgress||{};
@@ -692,7 +722,7 @@
     const follow={pending:"Suivez la démarche décrite et conservez les pièces.",waiting:"Conservez la date et relancez le service compétent. Vérifiez indépendamment les délais de paiement et de recours.",blocked:"Demandez les motifs écrits et la voie de recours propre à la décision : administration UE, Bruxelles Fiscalité ou SPF Finances. Ne présumez pas que tout litige relève du même service.",done:"Conservez la confirmation écrite, puis vérifiez les obligations et échéances restantes."};
     h.innerHTML='<div id="antoine-sheet" style="background:#fff;color:#111;max-width:760px;margin:auto;padding:12px"><h2>Mon statut UE et mon logement belge</h2>'+
       '<p>Le traitement payé par l Union peut relever de l impôt communautaire, sans exemption automatique des impôts immobiliers belges.</p>'+warnings.map(w=>'<p><strong>Attention :</strong> '+esc(w)+'</p>').join('')+
-      antoineItems.map((t,i)=>{const st=state.antoineProgress[t[0]]||"pending";return '<section style="border-top:1px solid #aaa;padding:12px"><h3>'+(i+1)+'. '+esc(t[1])+'</h3><p>'+esc(t[3])+'</p><p><a href="'+esc(t[2])+'" target="_blank" rel="noopener noreferrer">Consulter la source officielle ↗</a></p><p><strong>Demande prête à adapter :</strong></p><textarea readonly rows="4" style="width:100%;box-sizing:border-box">'+esc(t[4])+'</textarea><p><strong>Suivi :</strong> '+esc(follow[st])+'</p><div class="entry-choice-grid">'+[["pending","À faire"],["waiting","En attente"],["blocked","Bloqué"],["done","Confirmé"]].map(p=>'<button type="button" data-antoine-status="'+t[0]+'" data-antoine-value="'+p[0]+'" aria-pressed="'+(p[0]===st?'true':'false')+'">'+p[1]+'</button>').join('')+'</div></section>'}).join('')+
+      antoineItems.map((t,i)=>{const st=state.antoineProgress[t[0]]||"pending";return '<section style="border-top:1px solid #aaa;padding:12px"><h3>'+(i+1)+'. '+esc(t[1])+'</h3><p>'+esc(t[3])+'</p><p><a href="'+esc(t[2])+'" target="_blank" rel="noopener noreferrer">Consulter la source officielle ↗</a></p><p><strong>Demande prête à adapter :</strong></p><textarea readonly rows="4" style="width:100%;box-sizing:border-box">'+esc(t[4])+'</textarea><p><strong>Suivi :</strong> '+esc(antoineActionDetail[t[0]][st])+'</p><div class="entry-choice-grid">'+[["pending","À faire"],["waiting","En attente"],["blocked","Bloqué"],["done","Confirmé"]].map(p=>'<button type="button" data-antoine-status="'+t[0]+'" data-antoine-value="'+p[0]+'" aria-pressed="'+(p[0]===st?'true':'false')+'">'+p[1]+'</button>').join('')+'</div></section>'}).join('')+
       '</div><button type="button" data-antoine-edit>Modifier mon profil</button><button type="button" data-antoine-back>Retour</button>';
     showScreen("simpleDifficultHelp");
   }
