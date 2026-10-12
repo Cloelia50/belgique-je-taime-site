@@ -299,6 +299,7 @@
       ((qid==="q_entry_situation"||qid==="q_independent_goal")?'<button type="button" class="entry-choice foundation" data-yassine-start>Je débute comme indépendant : obligations, TVA et provisions</button>':"")+
       ((qid==="q_entry_situation"||qid==="q_employee_goal"||qid==="q_independent_goal")?'<button type="button" class="entry-choice foundation" data-philippe-start>J’ai des biens locatifs ou une société patrimoniale : cadastre, précompte et fiscalité</button>':"")+
       ((qid==="q_entry_situation"||qid==="q_employee_goal")?'<button type="button" class="entry-choice foundation" data-helene-start>Ma rémunération : plan cafétéria, pension, warrants et voiture</button>':"")+
+      ((qid==="q_entry_situation"||qid==="q_pension_goal")?'<button type="button" class="entry-choice foundation" data-georges-start>Préparer ma succession et transmettre mon patrimoine</button>':"")+
       controls+
       '<div class="entry-footer"><span></span><button type="button" class="linkish" data-entry-unknown>Je ne sais pas quoi choisir</button></div>';
     showScreen("simpleEntryRouter");
@@ -661,6 +662,56 @@
     ["students","Enfants étudiants fiscalement à charge","SPF Finances","https://finances.belgium.be/fr/particuliers/famille/personnes_a_charge","Contrôlez pour chaque enfant la situation au 1er janvier de l'exercice concerné, la composition du ménage et les ressources nettes. Des frais universitaires ne deviennent pas automatiquement déductibles. Ne demandez des revenus précis que si une vérification est nécessaire.","Bonjour, pourriez-vous vérifier enfant par enfant si les conditions de personne à charge sont réunies et quelles ressources et périodes il faut examiner ? Je souhaite éviter de confondre frais d'études et déduction fiscale.","Famille"],
     ["maintenance","Pensions alimentaires versées","SPF Finances","https://finances.belgium.be/fr/particuliers/famille/rente_alimentaire/payee","Vérifiez le jugement ou l'accord, le bénéficiaire, la preuve de paiement, le régime légal applicable à l'année et les incompatibilités éventuelles avec les personnes à charge. Les pensions ne sont pas automatiquement intégralement déductibles.","Bonjour, merci de vérifier le traitement fiscal des pensions alimentaires effectivement versées, les justificatifs requis, le pourcentage applicable et les règles de non-cumul avec les enfants à charge.","Famille"]
   ];
+
+  // Transmission du patrimoine : parcours autonome, sans collecte de montants.
+  const georgesSteps=[
+    ["notaire","Préparer un bilan avec un notaire","https://www.notaire.be/notaire/recherchez",
+      "Sur l'annuaire, entrez Auderghem ou 1160, puis sélectionnez une étude et ses coordonnées. Demandez un premier rendez-vous de planification successorale et un devis avant tout acte.",
+      "Préparez seulement une liste des catégories de biens (maison, comptes, placements, assurances), leur propriétaire, les dettes et les donations antérieures. Les montants et actes ne sont à communiquer qu'à l'étude, de façon sécurisée.",
+      "Bonjour, je suis veuf et souhaite organiser sereinement la transmission à mes enfants tout en conservant les moyens nécessaires pour mon logement, ma santé et mes dépenses futures. Pourriez-vous proposer un premier bilan patrimonial, préciser son prix et les documents nécessaires ? Je voudrais comparer les options sans prendre d'engagement irréversible.",
+      "Obtenir une date de rendez-vous, un devis et la liste précise des pièces. Si l'étude ne répond pas, contacter une autre étude via l'annuaire."],
+    ["donation","Comparer donations mobilières et immobilières","https://finances.belgium.be/fr/particuliers/famille/donations/bruxelles",
+      "Consultez les rubriques « biens mobiliers », « biens immobiliers » et « Région de Bruxelles-Capitale ». Pour une donation immobilière, un acte notarié et l'enregistrement sont obligatoires. Pour certains dons mobiliers, l'enregistrement est facultatif, mais l'absence d'enregistrement comporte un risque successoral.",
+      "À Bruxelles, pour une donation mobilière non enregistrée effectuée à partir du 1er janvier 2026, le délai de risque en cas de décès est de cinq ans. Les donations antérieures restent soumises aux dispositions transitoires. Demandez la confirmation de la règle au notaire selon la date exacte, le domicile fiscal et les biens.",
+      "Bonjour, pourriez-vous comparer, pour les biens que je souhaite éventuellement transmettre, un don bancaire enregistré, un don non enregistré et une donation notariée ? Merci d'indiquer le coût, les droits, les délais, les possibilités de réserve d'usufruit et les risques pour ma sécurité financière.",
+      "Recevoir un tableau comparatif et une recommandation écrite avant tout virement ou signature. Un don peut être irrévocable."],
+    ["testament","Testament et pacte successoral","https://www.notaire.be/heritage-et-donations/planifier-sa-succession/le-pacte-successoral",
+      "Expliquez au notaire vos souhaits pour chacun de vos enfants et les donations déjà réalisées. Le testament exprime vos volontés, tandis qu'un pacte successoral peut sécuriser des accords familiaux strictement encadrés.",
+      "Les enfants disposent ensemble d'une réserve héréditaire correspondant à la moitié du patrimoine successoral. Un pacte successoral exige un notaire et des délais de réflexion. Ne rédigez pas un accord familial présenté comme un pacte sans lui.",
+      "Bonjour, pourriez-vous vérifier si un testament ou un pacte successoral est utile dans ma situation, en tenant compte de la réserve de mes enfants et des donations passées ? Merci d'indiquer les frais, les délais, les parties devant intervenir et les possibilités de modification ultérieure.",
+      "Recevoir une proposition adaptée, avec les droits de chacun expliqués. Ne signer qu'après lecture et temps de réflexion."],
+    ["insurance","Vérifier les assurances-vie existantes","https://www.notaire.be/heritage-et-donations",
+      "Faites l'inventaire des contrats et bénéficiaires avec l'assureur, sans les communiquer à EcoTank. Demandez quelles conséquences aurait un changement de bénéficiaire ou un versement supplémentaire.",
+      "L'assurance-vie ne contourne pas automatiquement les droits successoraux ni la réserve des héritiers ; la fiscalité varie selon les contrats et les faits. Faites vérifier la clause bénéficiaire avec votre notaire et votre assureur.",
+      "Bonjour, merci de me transmettre la liste de mes contrats d'assurance-vie, leurs bénéficiaires, les primes versées, les garanties et les conditions de rachat ou de modification. Je voudrais préparer une revue successorale avec mon notaire.",
+      "Obtenir les attestations et une analyse écrite du notaire avant toute modification de contrat."],
+    ["reserve","Protéger d'abord mon confort et ma santé","https://www.notaire.be/heritage-et-donations/heritage/les-heritiers-reservataires",
+      "Avant de donner, faites un budget prudent : revenus de pension, charges du logement, soins, aide à domicile, entretien des biens et réserve pour dépenses imprévues. Gardez un droit d'usage ou un usufruit si cela convient, après examen notarial.",
+      "N'effectuez aucun transfert qui vous priverait d'argent disponible ou de la maîtrise de votre logement. Évaluez les coûts de santé et de dépendance futurs, pas seulement les impôts des héritiers.",
+      "Bonjour, avant toute proposition de donation, je souhaite déterminer avec vous une réserve financière pour mon logement, mes soins et mon autonomie. Pouvez-vous me présenter les risques d'irrévocabilité, les protections possibles et leurs limites ?",
+      "Ne prendre une décision qu'après un scénario de sécurité financière écrit et compris."]
+  ];
+  function georgesEntry(){
+    if(!ensureScreens())return;
+    const h=document.getElementById("entryDifficultHost");
+    h.innerHTML='<h2>Organiser ma transmission en toute sécurité</h2><p>Vous pouvez préparer votre succession légalement, même si vous avez un patrimoine important. Aucun montant, AER ou revenu familial n’est demandé ici.</p>'+
+      '<div class="entry-choice-grid">'+georgesSteps.map(x=>'<button type="button" data-georges-topic="'+x[0]+'">'+esc(x[1])+'</button>').join('')+'</div>'+
+      '<p>Une donation n’est pas toujours la meilleure solution : conserver votre logement, votre autonomie et vos ressources reste prioritaire.</p>'+
+      '<button type="button" data-georges-back>Retour</button>';
+    showScreen("simpleDifficultHelp");
+  }
+  function georgesGuide(compact=false){
+    if(!ensureScreens())return;
+    const h=document.getElementById("entryDifficultHost"),chosen=state.georgesTopic||"notaire";
+    const tasks=georgesSteps.filter(x=>x[0]===chosen).concat(georgesSteps.filter(x=>x[0]!==chosen));
+    h.innerHTML='<div id="georges-sheet" style="max-width:760px;margin:auto;padding:12px;background:#fff;color:#111"><h2>Votre plan de transmission · Auderghem</h2><p><strong>Première priorité :</strong> '+esc(tasks[0][1])+'. Les cinq étapes restent disponibles, sans vous pousser à donner immédiatement.</p>'+
+      tasks.map((x,i)=>'<section style="border-top:1px solid #aaa;padding:12px 0;break-inside:avoid"><h3>'+(i+1)+'. '+esc(x[1])+'</h3><p><strong>Où aller :</strong> <a href="'+esc(x[2])+'" target="_blank" rel="noopener noreferrer">Ouvrir la page concernant cette étape ↗</a></p><p><strong>Comment procéder :</strong> '+esc(x[3])+'</p>'+
+      (compact?'':'<p><strong>Points à vérifier :</strong> '+esc(x[4])+'</p><p><strong>Message prêt à copier :</strong></p><textarea readonly rows="5" style="width:100%;box-sizing:border-box;padding:8px">'+esc(x[5])+'</textarea><p><strong>Comment savoir que l’étape est aboutie :</strong> '+esc(x[6])+'</p>')+'</section>').join('')+
+      '<p><strong>Important :</strong> le site ne transmet aucun courrier, ne constitue pas un acte notarié et ne garantit pas une économie fiscale. Les montants et choix irréversibles se vérifient en consultation.</p></div>'+
+      '<div class="entry-route-actions"><button type="button" data-georges-short>Version courte</button><button type="button" data-georges-full>Étapes détaillées</button><button type="button" data-georges-print>Imprimer / PDF</button><button type="button" data-georges-edit>Changer de priorité</button><button type="button" data-georges-back>Retour</button></div>';
+    if(!document.getElementById("georges-print-style")){const st=document.createElement("style");st.id="georges-print-style";st.textContent='@media print{body *{visibility:hidden!important}#georges-sheet,#georges-sheet *{visibility:visible!important}#georges-sheet{position:absolute;top:0;left:0;width:100%!important;max-width:none!important;color:#000!important;background:#fff!important}@page{size:A4;margin:12mm}}';document.head.appendChild(st);}
+    showScreen("simpleDifficultHelp");
+  }
   function heleneEntry(){
     if(!ensureScreens())return;
     state.heleneAudit=state.heleneAudit||{};
@@ -2021,6 +2072,13 @@
     const hs=event.target.closest("[data-helene-status]");if(hs){state.heleneAudit=state.heleneAudit||{};state.heleneAudit[hs.dataset.heleneStatus]=hs.dataset.heleneValue;heleneEntry();return;}
     if(event.target.closest("[data-helene-audit]")){heleneGuide(false);return;}
     const hm=event.target.closest("[data-helene-mark]");if(hm){state.heleneAudit=state.heleneAudit||{};state.heleneAudit[hm.dataset.heleneMark]="verified";heleneGuide(false);return;}
+    if(event.target.closest("[data-georges-start]")){georgesEntry();return;}
+    const gt=event.target.closest("[data-georges-topic]");if(gt){state.georgesTopic=gt.dataset.georgesTopic;georgesGuide(false);return;}
+    if(event.target.closest("[data-georges-short]")){georgesGuide(true);return;}
+    if(event.target.closest("[data-georges-full]")){georgesGuide(false);return;}
+    if(event.target.closest("[data-georges-print]")){window.print();return;}
+    if(event.target.closest("[data-georges-edit]")){georgesEntry();return;}
+    if(event.target.closest("[data-georges-back]")){renderQuestion("q_entry_situation");return;}
     if(event.target.closest("[data-helene-start]")){heleneEntry();return;}
 
     if(event.target.closest("[data-helene-short]")){heleneGuide(true);return;}
