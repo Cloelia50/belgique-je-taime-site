@@ -700,14 +700,56 @@
       '<button type="button" data-georges-back>Retour</button>';
     showScreen("simpleDifficultHelp");
   }
+
+  const georgesNext={
+    notaire:{
+      ready:"Dans l'annuaire des notaires, choisissez « Par localisation », saisissez « 1160 » ou « Auderghem », ouvrez l'étude et contactez-la. Demandez le prix du premier conseil, son délai, et une liste de documents avant le rendez-vous.",
+      waiting:"Vous avez demandé un rendez-vous : conservez sa date, le destinataire et une copie du message. En l'absence de réponse, relancez l'étude par téléphone ou sélectionnez une autre étude dans l'annuaire.",
+      blocked:"Si le prix est un obstacle, demandez un devis détaillé et limitez la première consultation à un bilan. Vous pouvez comparer plusieurs études ; ne signez aucun acte tant que le prix et les conséquences ne sont pas clairs.",
+      done:"L'étape préparatoire est complète si vous avez reçu le devis, une date et la liste des documents. Après l'entretien, exigez un comparatif écrit des options, frais et risques avant toute décision irréversible."
+    },
+    donation:{
+      ready:"Commencez par choisir : argent ou placements (donation mobilière), ou immeuble. Pour l'immeuble, prenez rendez-vous chez un notaire AVANT toute donation. Pour un don mobilier déjà réalisé, la page SPF Finances explique comment enregistrer le document : MyMinfin → Mes interactions → Soumettre un document ou répondre à un courrier → Je n'ai pas de code de service → Donation de biens meubles. Un simple projet de don n'est pas un acte à enregistrer.",
+      waiting:"Si vous avez déjà soumis un document, consultez MyMinfin → Mes documents et votre eBox. En Région bruxelloise, l'enregistrement intervient en principe après perception des droits. Conservez la preuve officielle ; la seule demande ne prouve pas l'enregistrement.",
+      blocked:"Si le document a été refusé, lisez les motifs, complétez les données demandées et soumettez à nouveau selon la procédure officielle. La date d'enregistrement peut changer. Si les conditions ou la propriété sont complexes, consultez un notaire avant toute transmission.",
+      done:"L'étape est complète seulement après réception de la preuve d'enregistrement pour un don enregistré, ou après conseil notarial écrit expliquant les risques d'un don non enregistré. Le don lui-même est distinct de ce suivi."
+    },
+    testament:{
+      ready:"Listez ce que vous voulez transmettre et ce que chaque enfant a déjà reçu. Consultez la page sur le pacte successoral puis demandez au notaire s'il vaut mieux un testament personnel ou un pacte. Le pacte successoral implique les parties concernées et un calendrier notarial encadré.",
+      waiting:"Si le projet est en cours, demandez au notaire le projet écrit, les droits des héritiers, les convocations et le calendrier de réflexion. Gardez la possibilité d'obtenir des explications indépendantes avant de signer.",
+      blocked:"Si un enfant n'est pas d'accord ou si des donations antérieures sont contestées, expliquez-le au notaire et demandez les options juridiquement possibles. Ne signez pas un simple accord familial présenté comme un pacte successoral.",
+      done:"Une consultation n'est pas un acte : demandez confirmation de la forme définitive du testament ou de l'acte et de sa conservation ou de son enregistrement lorsqu'il est requis."
+    },
+    insurance:{
+      ready:"Contactez chacun de vos assureurs pour demander un relevé des contrats, bénéficiaires, primes, frais, conditions de rachat et garanties. Confrontez ces relevés au projet successoral avec le notaire.",
+      waiting:"Relancez l'assureur avec le numéro du contrat et la date de la demande. Demandez une réponse écrite et une confirmation des bénéficiaires actuels.",
+      blocked:"Si les documents manquent ou si le bénéficiaire est litigieux, demandez au service de plaintes de l'assureur la marche à suivre et consultez le notaire avant toute modification.",
+      done:"Une revue est complète lorsque les clauses ont été confirmées par écrit et que les conséquences civiles et fiscales des changements envisagés ont été vérifiées."
+    },
+    reserve:{
+      ready:"Établissez un budget annuel simple : pension, logement, entretien, soins, aide à domicile, imprévus et dépenses de confort. Testez une hausse durable des dépenses de santé et conservez une réserve liquide avant de promettre un don.",
+      waiting:"Si vous attendez le bilan notarial ou financier, ne réalisez aucun transfert. Demandez un tableau distinguant argent immédiatement accessible, actifs immobiliers et revenus futurs.",
+      blocked:"Si le projet de donation laisse une réserve insuffisante, réduisez ou reportez le don et faites examiner l'usufruit ou le droit d'usage avec le notaire, sans présumer qu'ils suffisent à tout financer.",
+      done:"Cette étape n'est validée que lorsqu'un budget prudent a été relu et que vous conservez des ressources suffisantes, notamment pour la santé et la dépendance."
+    }
+  };
   function georgesGuide(compact=false){
     if(!ensureScreens())return;
+    state.georgesProgress=state.georgesProgress||{};
     const h=document.getElementById("entryDifficultHost"),chosen=state.georgesTopic||"notaire";
     const tasks=georgesSteps.filter(x=>x[0]===chosen).concat(georgesSteps.filter(x=>x[0]!==chosen));
-    h.innerHTML='<div id="georges-sheet" style="max-width:760px;margin:auto;padding:12px;background:#fff;color:#111"><h2>Votre plan de transmission · Auderghem</h2><p><strong>Première priorité :</strong> '+esc(tasks[0][1])+'. Les cinq étapes restent disponibles, sans vous pousser à donner immédiatement.</p>'+
-      tasks.map((x,i)=>'<section style="border-top:1px solid #aaa;padding:12px 0;break-inside:avoid"><h3>'+(i+1)+'. '+esc(x[1])+'</h3><p><strong>Où aller :</strong> <a href="'+esc(x[2])+'" target="_blank" rel="noopener noreferrer">Ouvrir la page concernant cette étape ↗</a></p><p><strong>Comment procéder :</strong> '+esc(x[3])+'</p>'+
-      (compact?'':'<p><strong>Points à vérifier :</strong> '+esc(x[4])+'</p><p><strong>Message prêt à copier :</strong></p><textarea readonly rows="5" style="width:100%;box-sizing:border-box;padding:8px">'+esc(x[5])+'</textarea><p><strong>Comment savoir que l’étape est aboutie :</strong> '+esc(x[6])+'</p>')+'</section>').join('')+
-      '<p><strong>Important :</strong> le site ne transmet aucun courrier, ne constitue pas un acte notarié et ne garantit pas une économie fiscale. Les montants et choix irréversibles se vérifient en consultation.</p></div>'+
+    const statusName={ready:"À faire",waiting:"En attente de réponse",blocked:"Bloqué / refus",done:"Démarche vérifiée"};
+    const statusList=[["ready","Pas commencée"],["waiting","Demande envoyée / en attente"],["blocked","Un problème ou un refus"],["done","J'ai reçu le résultat attendu"]];
+    h.innerHTML='<div id="georges-sheet" style="max-width:760px;margin:auto;padding:12px;background:#fff;color:#111"><h2>Transmission · plan suivi étape par étape</h2><p>Un résultat administratif ou notarial n’est jamais garanti. Les états ci-dessous concernent votre progression déclarée et restent dans cette session.</p>'+
+      '<p><strong>Votre avancement :</strong> '+georgesSteps.filter(x=>state.georgesProgress[x[0]]==="done").length+' étape(s) vérifiée(s) sur cinq.</p>'+
+      tasks.map((x,i)=>{const status=state.georgesProgress[x[0]]||"ready",next=georgesNext[x[0]][status];return '<section style="border-top:1px solid #aaa;padding:12px 0;break-inside:avoid"><h3>'+(i+1)+'. '+esc(x[1])+'</h3><p><strong>Situation :</strong> '+esc(statusName[status])+'</p>'+
+      '<p><strong>Page concernée :</strong> <a href="'+esc(x[2])+'" target="_blank" rel="noopener noreferrer">'+esc(x[1])+' ↗</a></p>'+
+      '<p><strong>Première démarche :</strong> '+esc(x[3])+'</p>'+
+      (compact?'':'<p><strong>Ce qu’il faut savoir :</strong> '+esc(x[4])+'</p><p><strong>Message à adresser à l’organisme :</strong></p><textarea readonly rows="5" style="box-sizing:border-box;width:100%;padding:8px">'+esc(x[5])+'</textarea>')+
+      '<p><strong>Que faire maintenant :</strong> '+esc(next)+'</p>'+
+      '<p><strong>Résultat attendu :</strong> '+esc(x[6])+'</p>'+
+      '<p><strong>Où en êtes-vous ?</strong></p><div class="entry-choice-grid">'+statusList.map(y=>'<button type="button" data-georges-status="'+esc(x[0])+'" data-georges-value="'+y[0]+'" aria-pressed="'+(status===y[0]?'true':'false')+'">'+esc(y[1])+'</button>').join('')+'</div></section>'}).join('')+
+      '<p><strong>Confidentialité :</strong> ne communiquez les montants, titres de propriété, contrats et données familiales qu’au notaire ou à l’organisme identifié. EcoTank ne dépose aucun acte à votre place.</p></div>'+
       '<div class="entry-route-actions"><button type="button" data-georges-short>Version courte</button><button type="button" data-georges-full>Étapes détaillées</button><button type="button" data-georges-print>Imprimer / PDF</button><button type="button" data-georges-edit>Changer de priorité</button><button type="button" data-georges-back>Retour</button></div>';
     if(!document.getElementById("georges-print-style")){const st=document.createElement("style");st.id="georges-print-style";st.textContent='@media print{body *{visibility:hidden!important}#georges-sheet,#georges-sheet *{visibility:visible!important}#georges-sheet{position:absolute;top:0;left:0;width:100%!important;max-width:none!important;color:#000!important;background:#fff!important}@page{size:A4;margin:12mm}}';document.head.appendChild(st);}
     showScreen("simpleDifficultHelp");
@@ -2072,6 +2114,7 @@
     const hs=event.target.closest("[data-helene-status]");if(hs){state.heleneAudit=state.heleneAudit||{};state.heleneAudit[hs.dataset.heleneStatus]=hs.dataset.heleneValue;heleneEntry();return;}
     if(event.target.closest("[data-helene-audit]")){heleneGuide(false);return;}
     const hm=event.target.closest("[data-helene-mark]");if(hm){state.heleneAudit=state.heleneAudit||{};state.heleneAudit[hm.dataset.heleneMark]="verified";heleneGuide(false);return;}
+    const gs=event.target.closest("[data-georges-status]");if(gs){state.georgesProgress=state.georgesProgress||{};state.georgesProgress[gs.dataset.georgesStatus]=gs.dataset.georgesValue;georgesGuide(false);return;}
     if(event.target.closest("[data-georges-start]")){georgesEntry();return;}
     const gt=event.target.closest("[data-georges-topic]");if(gt){state.georgesTopic=gt.dataset.georgesTopic;georgesGuide(false);return;}
     if(event.target.closest("[data-georges-short]")){georgesGuide(true);return;}
