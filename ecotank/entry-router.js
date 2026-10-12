@@ -298,6 +298,30 @@
     h.innerHTML='<div class="entry-topline"><button type="button" data-general-flow-back>← Retour</button><span class="entry-step">Aides pour les animaux</span></div><h2>Primes pour les soins de vos animaux</h2><p>Ces aides dépendent souvent de votre commune et du soin effectué. Il n’est pas nécessaire d’être sans emploi pour se renseigner.</p><label for="animal-prime-commune">Dans quelle commune habitez-vous ?</label><select id="animal-prime-commune"><option value="">Choisir ma commune</option>'+generalCommunes.map(c=>'<option value="'+esc(c)+'" '+(place===c?'selected':'')+'>'+esc(c)+'</option>').join("")+'</select>'+(entry?'<section><h3>'+esc(entry.name)+'</h3><p>'+esc(entry.detail)+'</p>'+(entry.phone?'<p><a href="tel:'+esc(entry.phone.replaceAll(" ",""))+'">'+esc(entry.phone)+'</a></p>':'')+(entry.email?'<p><a href="mailto:'+esc(entry.email)+'">'+esc(entry.email)+'</a></p>':'')+'<p><a target="_blank" rel="noopener noreferrer" href="'+esc(entry.url)+'">Conditions et formulaire officiels ↗</a></p></section>':place?'<p>Je n’ai pas encore de prime vétérinaire communale confirmée dans ce répertoire pour '+esc(place)+'. Cela ne signifie pas qu’aucune aide n’existe : consultez le service Bien-être animal de votre commune.</p>':'<p>Choisissez votre commune pour connaître les aides recensées.</p>')+'<p><button type="button" data-general-flow-back>Explorer d’autres aides</button></p>';
     showScreen("simpleEntryRouter");
   }
+  // Découverte ordinaire : pistes publiques, sans présumer une précarité ni une éligibilité.
+  const savingsThemes=[
+    ["animaux","Animaux : soins et vétochèques","Consulter les primes de sa commune et leurs conditions.", "https://www.auderghem.be/primes-vetocheques"],
+    ["energie","Énergie et eau","Comparer ses contrats, vérifier les primes travaux et les dispositifs énergétiques.", "https://environnement.brussels/citoyen"],
+    ["transports","Transports et mobilité","Examiner abonnements, tarifs et avantages selon le trajet.", "https://www.stib-mivb.be/"],
+    ["enfants","Enfants et famille","Allocations, activités, accueil et avantages familiaux.", "https://www.iriscare.brussels/fr/citoyens/familles-avec-enfants/"],
+    ["sante","Santé et mutualité","Examiner les remboursements et avantages complémentaires de sa mutualité.", "https://www.inami.fgov.be/fr"],
+    ["logement","Logement et rénovation","Explorer les aides au logement et les primes aux travaux.", "https://renolution.brussels/fr"],
+    ["fiscalite","Impôts et avantages fiscaux","Vérifier les réductions applicables à votre situation.", "https://finances.belgium.be/fr/particuliers"],
+    ["loisirs","Culture, loisirs et sport","Rechercher les réductions et tarifs proposés par les organisateurs.", "https://www.visit.brussels/fr/visiteurs"]
+  ];
+  function savingsHome(){
+    const h=document.getElementById("entryRouterHost");if(!h)return;
+    h.innerHTML='<div class="entry-topline"><button type="button" data-general-flow-back>← Retour</button><span class="entry-step">Mes économies</span></div><h2>Sur quoi aimeriez-vous économiser ?</h2><p>Choisissez un sujet. Aucune information sur vos revenus n’est nécessaire pour commencer.</p><div class="entry-choice-grid">'+savingsThemes.map(t=>'<button type="button" class="entry-choice" data-savings-topic="'+t[0]+'">'+esc(t[1])+'</button>').join("")+'</div>';
+    showScreen("simpleEntryRouter");
+  }
+  function savingsGuide(topic){
+    const h=document.getElementById("entryRouterHost");if(!h)return;
+    const t=savingsThemes.find(x=>x[0]===topic);if(!t){savingsHome();return;}
+    state.savingsTopic=topic;
+    if(topic==="animaux"){showAnimalPrimes();return;}
+    h.innerHTML='<div class="entry-topline"><button type="button" data-savings-back>← Tous les sujets</button><span class="entry-step">Mes économies</span></div><h2>'+esc(t[1])+'</h2><p>'+esc(t[2])+'</p><p><a href="'+esc(t[3])+'" target="_blank" rel="noopener noreferrer">Consulter la source publique ↗</a></p><p>Les conditions, les montants et les possibilités varient selon la situation et la date. Cette rubrique rassemble des pistes à explorer ; elle ne promet pas une prime.</p><p><button type="button" data-savings-back>Explorer un autre sujet</button></p>';
+    showScreen("simpleEntryRouter");
+  }
   const generalGroups=[
     ["aides","Primes, chèques et avantages",["famille","soins","logement","handicap","autre"]],
     ["finances","Gérer mon budget et mes dépenses",["pension","achat","logement","autre"]],
@@ -315,6 +339,7 @@
     if(phase===0){
       h.innerHTML=header+'<h2>Comment pouvons-nous vous faire économiser ?</h2><p>Découvrez les primes, réductions, avantages et droits auxquels vous pourriez avoir accès, quel que soit votre niveau de revenus.</p><div class="entry-choice-grid">'+generalGroups.map(g=>'<button type="button" class="entry-choice" data-general-group="'+g[0]+'">'+esc(g[1])+'</button>').join("")+(state.generalEmployment==="not_working"?'<button type="button" class="entry-choice" data-general-no-income>Je n’ai actuellement aucun revenu</button>':'')+'</div>';
     }else if(phase===1){
+      if(state.generalFlowGroup==="aides"||state.generalFlowGroup==="finances"){savingsHome();return;}
       if(state.generalFlowGroup==="aides"){h.innerHTML=header+'<h2>Quel type d’aide recherchez-vous ?</h2><div class="entry-choice-grid"><button type="button" class="entry-choice" data-animal-primes>Vétochèques et primes pour les animaux</button><button type="button" class="entry-choice" data-general-aid-other>Autres primes et avantages</button></div>'+foot;showScreen("simpleEntryRouter");return;}
       h.innerHTML=header+'<h2>Qu’aimeriez-vous examiner plus précisément ?</h2><p>Vous pouvez sélectionner plusieurs réponses.</p><div class="entry-choice-grid">'+(state.generalFlowGroup==="finances"?'<button type="button" class="entry-choice" data-animal-primes>Vétochèques et primes pour les animaux</button>':'')+generalNeeds.filter(n=>state.generalFlowGroup==="all"||group[2].includes(n[0])).map(n=>'<label class="entry-choice" style="display:flex;gap:12px;align-items:center"><input type="checkbox" data-combined-select="'+esc(n[0])+'" '+(selected.includes(n[0])?'checked':'')+'><span>'+esc(n[1])+'</span></label>').join("")+'</div><p><button type="button" class="primary" data-general-flow-next>Continuer</button></p><p><button type="button" data-general-flow-all>Voir tous les autres sujets</button></p>'+foot+'<p role="status" id="combined-error"></p>';
     }else if(phase===2){
@@ -2645,6 +2670,8 @@
     if(event.target.closest("[data-animal-primes]")){state.generalFlowStep=1;showAnimalPrimes();return;}
     if(event.target.closest("[data-general-aid-other]")){state.generalFlowGroup="vie";generalNeedHome(1);return;}
     if(event.target.closest("[data-general-no-income]")){state.generalNoIncome=true;state.generalFlowGroup="urgent";state.generalSelections=["insertion","autre"];combinedPersist();generalNeedHome(2);return;}
+    const savingsTopic=event.target.closest("[data-savings-topic]");if(savingsTopic){savingsGuide(savingsTopic.dataset.savingsTopic);return;}
+    if(event.target.closest("[data-savings-back]")){savingsHome();return;}
     const grp=event.target.closest("[data-general-group]");if(grp){state.generalFlowGroup=grp.dataset.generalGroup;state.generalNoIncome=false;generalNeedHome(1);return;}
     if(event.target.closest("[data-general-flow-all]")){state.generalFlowGroup="all";generalNeedHome(1);return;}
     if(event.target.closest("[data-general-flow-next]")){const marked=[...document.querySelectorAll("[data-combined-select]:checked")].map(x=>x.dataset.combinedSelect);const others=combinedSelected().filter(x=>!generalGroups.find(g=>g[0]===state.generalFlowGroup)?.[2].includes(x));state.generalSelections=[...new Set([...others,...marked])];if(!state.generalSelections.length){document.getElementById("combined-error").textContent="Choisissez un sujet pour continuer.";return;}combinedPersist();if(state.generalFlowGroup==="urgent"||state.generalNoIncome){generalNeedHome(2);}else{state.generalUrgency="none";state.generalDeadlineNeed="";combinedPersist();combinedJourney();}return;}
