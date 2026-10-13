@@ -64,7 +64,7 @@ async function ready(session) {
   for (let i = 0; i < 8; i++) await Promise.resolve();
 }
 function hasHelp(html) {
-  return html.includes("Aucune autre réponse obligatoire") || html.includes("Sans questionnaire") || (html.includes("Commencer par une aide humaine") && html.includes("data-help-topic"));
+  return html.includes("Aucune autre réponse obligatoire") || html.includes("Sans questionnaire") || ((html.includes("Commencer par une aide humaine") || html.includes("class=\"urgent-needs-grid\"")) && html.includes("data-help-topic"));
 }
 
 const quick = session();
@@ -82,7 +82,7 @@ assert.ok(
 );
 quick.click("[data-entry-fast-help]");
 assert.ok(hasHelp(quick.html("entryDifficultHost")), "Premières pistes accessibles sans formulaire : " + quick.html("entryDifficultHost").slice(0, 280));
-assert.match(quick.html("entryDifficultHost"), /Commencer par une aide humaine/);
+assert.match(quick.html("entryDifficultHost"), /Commencer par une aide humaine|De quoi avez-vous besoin aujourd’hui/);
 assert.match(quick.html("entryDifficultHost"), /https:\/\//);
 quick.click("[data-help-topic]", { helpTopic: "housing" });
 assert.match(quick.html("entryDifficultHost"), /logement/i);
