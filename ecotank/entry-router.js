@@ -2461,7 +2461,7 @@
       showScreen("simpleDifficultHelp");return;
     }
     if(selected==="overview"){
-      host.innerHTML='<div class="simple-kicker">EcoTank vous guide</div><h2>De quoi avez-vous besoin aujourd’hui ?</h2><p>Un choix, une démarche à la fois.</p>'+choose+'<p class="business-safety">Danger médical immédiat : 112.</p>';
+      host.innerHTML='<div class="simple-kicker">EcoTank vous guide</div><h2>De quoi avez-vous besoin aujourd’hui ?</h2><p>Un choix, une démarche à la fois.</p>'+choose+'<p class="guided-main-link"><strong>Commencer par une aide humaine :</strong> <a href="https://www.fdss.be/fr/aide-alimentaire/" target="_blank" rel="noopener noreferrer">Chercher une aide alimentaire ↗</a> · <a href="https://www.droitsquotidiens.be/fr" target="_blank" rel="noopener noreferrer">Comprendre mes droits ↗</a></p><p class="business-safety">Danger médical immédiat : 112.</p>';
     }else{
       const n=Math.min(Number(state.helpStep||0),Math.max(0,cards.length-1)),card=cards[n];
       const instruction=(compact[selected]||[])[n]||card[1].split(/[.!?] /)[0].slice(0,145)+'.';
