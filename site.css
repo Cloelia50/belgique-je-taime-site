@@ -35,6 +35,7 @@ h1{font-size:clamp(2.55rem,7vw,5.1rem);line-height:1.02;letter-spacing:-.055em;m
 .ecotank .card-top{background:#d7f0e8}.ecotank .cta{background:#176b5b}
 .cogito .card-top{background:#e6e0ea}.cogito .cta{background:#4d3e58}
 .belveillance .card-top{background:#e8f1df}.belveillance .cta{background:#55734b}
+.volet6 .card-top{background:#e6ebe6}.volet6 .cta{background:#365e53}
 .card .cta-disabled{cursor:default;opacity:.72}
 .site-summary{max-width:920px;margin:30px auto 38px;text-align:center;color:var(--muted);font-size:1.06rem;line-height:1.65}
 .transparency{margin:0 0 28px;padding:18px 22px;border:1px solid var(--line);border-radius:20px;background:rgba(255,255,255,.72);color:var(--muted);font-size:.92rem}
