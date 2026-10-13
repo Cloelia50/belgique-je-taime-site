@@ -35,5 +35,7 @@ jobs:
         run: node scripts/test_activikids_booking_guard.mjs
       - name: Vérifier les correctifs Cogito et les identifiants
         run: node scripts/test_cogito_curations.mjs
+      - name: Vérifier la page Belveillance et sa barrière de publication
+        run: node scripts/test_belveillance.mjs
       - name: Vérifier l'accueil, les guides et les permanents
         run: node scripts/verify_public_release.mjs
