@@ -10,6 +10,7 @@ required = [
     "404.html", "signaler.html", "robots.txt", "sitemap.xml", "analytics.js", "site.css",
     "activikids/index.html", "ecotank/index.html", "cogito/index.html",
     "lirabelge/index.html", "lirabelge/ligne-editoriale.html",
+    "belveillance/index.html", "belveillance/catalogue.json",
 ]
 for rel in required:
     if not (ROOT / rel).exists():
@@ -26,7 +27,7 @@ for p in ROOT.rglob("*"):
         errors.append(f"private_review_path:{rel}")
 
 home = (ROOT / "index.html").read_text(encoding="utf-8")
-for target in ("activikids/", "ecotank/", "cogito/", "lirabelge/"):
+for target in ("activikids/", "ecotank/", "cogito/", "lirabelge/", "belveillance/"):
     if f'href="{target}"' not in home:
         errors.append(f"home_missing_door:{target}")
 if len(re.findall(r"<h1\b", home, re.I)) != 1:
@@ -67,6 +68,20 @@ for rel in ("index.html", "a-propos.html", "methodologie.html", "confidentialite
         errors.append(f"canonical_missing_or_wrong:{rel}")
     if rel != "signaler.html" and 'href="signaler.html"' not in text:
         errors.append(f"report_link_missing:{rel}")
+
+# Belveillance must not expose the private scouting registers.
+belveillance = (ROOT / "belveillance/index.html").read_text(encoding="utf-8")
+for label in ("En solo, au calme", "En solo, mais envie de sociabiliser", "En couple", "Entre amis"):
+    if label not in belveillance:
+        errors.append("belveillance_missing_mode:" + label)
+if '<link rel="canonical" href="' + BASE + 'belveillance/">' not in belveillance:
+    errors.append("belveillance_canonical_invalid")
+import json
+with (ROOT / "belveillance/catalogue.json").open(encoding="utf-8") as fh:
+    listings=json.load(fh)
+for item in listings.get("items",[]):
+    if item.get("publication_status") != "Autorisé" or item.get("verified") is not True:
+        errors.append("belveillance_unverified_listing")
 
 sitemap = (ROOT / "sitemap.xml").read_text(encoding="utf-8")
 if BASE + "signaler.html" not in sitemap:
