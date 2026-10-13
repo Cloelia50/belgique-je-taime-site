@@ -13,7 +13,7 @@ Ce dépôt est **public** : il contient les pages destinées aux visiteurs et le
 | **Cogito** | [`/cogito/`](cogito/) | Conférences, débats et culture intellectuelle. La page conserve les événements intégrés et peut lire le flux additionnel [`cogito/canonical.json`](cogito/canonical.json). |
 | **Belveillance** | [`/belveillance/`](belveillance/) | Sorties adultes, filtrées par « En solo, au calme », « En solo, mais envie de sociabiliser », « En couple », « Entre amis ». Le catalogue vérifié est dans [`belveillance/catalogue.json`](belveillance/catalogue.json), complété par les événements de Cogito. |
 | **Lirabelge** | [`/lirabelge/`](lirabelge/) | Livres et auteurs belges, avec [ligne éditoriale](lirabelge/ligne-editoriale.html). |
-| **Volet 6** | **Non déployé** | Projet artisans belges, seconde main et troc ; ne pas présenter comme un moteur public achevé. |
+| **Volet 6** | [\`/volet6/\`](volet6/) | Première page publique sourcée : marchés vintage et lieux vérifiables, avec recherche et filtres. **Pilote partiel**, artisans et troc gratuit sans fiches confirmées ; robot autonome non validé. |
 
 Le dossier `sorties-permanentes/` offre des ressources complémentaires ; **il n'est pas un sixième moteur livré**.
 
