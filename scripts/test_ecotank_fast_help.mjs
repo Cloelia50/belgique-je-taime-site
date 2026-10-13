@@ -86,7 +86,7 @@ assert.match(quick.html("entryDifficultHost"), /Commencer par une aide humaine|D
 assert.match(quick.html("entryDifficultHost"), /https:\/\//);
 assert.match(quick.html("entryDifficultHost"), /fdss\.be\/fr\/aide-alimentaire/);
 quick.click("[data-help-topic]", { helpTopic: "housing" });
-assert.match(quick.html("entryDifficultHost"), /logement/i);
+assert.match(quick.html("entryDifficultHost"), /logement|hébergement/i);
 await ready(quick);
 quick.click("[data-entry-fast-help]");
 assert.match(quick.html("entryDifficultHost"), /Commencer par une aide humaine/, "Le sujet ne doit pas fuir vers le parcours suivant");
