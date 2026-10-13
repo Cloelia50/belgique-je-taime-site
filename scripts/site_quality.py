@@ -98,7 +98,7 @@ else:
         ids.add(key)
         if item.get("category") not in {"vintage","lieu","artisan","troc"}:
             errors.append("volet6_unknown_category")
-        if not re.match(r"^https://[^@\\s]+$",str(item.get("source_url","")),re.I):
+        if not re.match(r"^https://[^@\s]+$",str(item.get("source_url","")),re.I):
             errors.append("volet6_unverified_source")
         if any(field in item for field in ("email","telephone","phone","private_notes")):
             errors.append("volet6_private_field")
