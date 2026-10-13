@@ -1,0 +1,44 @@
+{
+  "schema": "bjt-volet6-public-v1",
+  "engine": "VOLET6",
+  "updated_at": "2026-10-13",
+  "registry": "VOLET 6 — Registre de veille — Artisans belges, créations, seconde main et troc",
+  "verification_note": "Sélection éditoriale issue du registre du 11 octobre 2026 ; horaires, lieux et prochaines éditions à revérifier auprès des sources officielles.",
+  "items": [
+    {
+      "id": "V6-LIEU-0002-2026-11-01",
+      "title": "Brussels Vintage Market — édition du 1er novembre",
+      "category": "vintage",
+      "date": "2026-11-01",
+      "city": "Bruxelles",
+      "location": "Halles Saint-Géry · Place Saint-Géry 1",
+      "description": "Marché de seconde main et de pièces vintage animé par des exposants. Vente de biens d’occasion, sans promesse de troc gratuit.",
+      "source_url": "https://brusselsvintagemarket.be/agenda/",
+      "editorial_status": "Édition annoncée dans le registre au 11/10/2026 ; vérifier sa tenue avant déplacement.",
+      "last_checked": "2026-10-11"
+    },
+    {
+      "id": "V6-LIEU-0002-2026-12-06",
+      "title": "Brussels Vintage Market — édition du 6 décembre",
+      "category": "vintage",
+      "date": "2026-12-06",
+      "city": "Bruxelles",
+      "location": "Halles Saint-Géry · Place Saint-Géry 1",
+      "description": "Édition annoncée du marché vintage bruxellois. Vente d’occasion ; ni fabrication belge de chaque produit ni échange gratuit ne sont établis.",
+      "source_url": "https://brusselsvintagemarket.be/agenda/",
+      "editorial_status": "Édition annoncée dans le registre au 11/10/2026 ; vérifier sa tenue avant déplacement.",
+      "last_checked": "2026-10-11"
+    },
+    {
+      "id": "V6-LIEU-0003",
+      "title": "Halles Saint-Géry",
+      "category": "lieu",
+      "city": "Bruxelles",
+      "location": "Place Saint-Géry 1 · 1000 Bruxelles",
+      "description": "Lieu culturel qui accueille différents marchés et événements. Consultez son agenda officiel pour connaître la programmation réelle. Ce lieu n’est pas, à lui seul, un magasin d’artisanat.",
+      "source_url": "https://hallessaintgery.be/evenements/",
+      "editorial_status": "Lieu et agenda officiel identifiés le 11/10/2026 ; événements et horaires à vérifier.",
+      "last_checked": "2026-10-11"
+    }
+  ]
+}
