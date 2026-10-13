@@ -333,7 +333,7 @@ function timeOf(x){const s=String(x.start||''),m=s.match(/T(\d{2}):(\d{2})/);if(
 /* Gratuit : jamais sur la seule foi d'un indicateur quand un montant figure dans le libellé */
 function freeOf(x){const l=String(x.price_label||''),amounts=(l.match(/\d+(?:[.,]\d+)?/g)||[]).filter(n=>parseFloat(n.replace(',','.'))>0);return(x.is_free===true||/gratuit/i.test(l)||/^0\s?€/.test(l))&&!amounts.length}
 function priceOf(x){const l=String(x.price_label||'').trim();if(!l||l[0]==='['||l[0]==='?'||l.length>40||!/\d/.test(l))return '';return l}
-function cogKind(x){const k=familyOf(x);if(k!=='culture')return k;return /exposition|\bexpo\b|concert|musee|cinema|film|spectacle|theatre|festival|danse|opera|vernissage|projection|nocturne|musique|bozar|state of cinema/.test(fold([x.title,x.category,x.subject,x.format,x.organizer].join(' ')))?'culture':'conference'}
+function cogKind(x){return familyOf(x)}
 function normalizeBel(x){return {...x,date:dateOnly(x.date),city:x.commune,source:'Belveillance',link:x.url,kind:familyOf(x),modes:x.modes||[],time:timeOf(x),free:freeOf(x),price:priceOf(x)}}
 function normalizeCog(x){return {id:'cog:'+x.id,title:x.title,date:dateOnly(x.start||x.date),time:timeOf(x),city:x.city||x.location,location:x.location,region:regionGuess(x),category:x.category,subject:x.subject,format:x.format,description:x.description||x.subject||'',link:x.registration_url||x.ticketing_url||x.official_url,price_label:x.price_label,price:priceOf(x),free:freeOf(x),source:'Cogito',kind:cogKind(x),modes:[],dateEnd:x.end||'',mode:x.mode}}
 function text(tag,value,cls){let e=document.createElement(tag);e.textContent=value||'';if(cls)e.className=cls;return e}
@@ -394,10 +394,10 @@ function card(e){
  return article;
 }
 /* Cogito seul : conferences, debats, colloques et seminaires. Les donnees canoniques restent intactes. */
-function isCogitoOnly(e){const x=fold([e.title,e.category,e.format,e.subject,e.description].join(' '));return /\bconference(s)?\b|\bcolloque(s)?\b|\bseminaire(s)?\b|\bwebinaire(s)?\b|\bdebat(s)?\b|cine[\s-]?debat|cinema[\s-]?debat|\bpoesie\b|\bpoetique(s)?\b|\bpoete(s)?\b|slam poetique|table ronde|\bsymposium\b/.test(x)}
+function isCogitoOnly(e){const x=fold([e.title,e.format].join(' '));return /\bconference(s)?\b|\bcolloque(s)?\b|\bseminaire(s)?\b|\bwebinaire(s)?\b|\bdebat(s)?\b|cine[\s-]?debat|cinema[\s-]?debat|\bpoesie\b|\bpoetique(s)?\b|\bpoete(s)?\b|slam poetique|table ronde|\bsymposium\b/.test(x)}
 function filtered(){
  const q=fold($('query').value),city=fold($('city').value),modes=getChecked('modes'),dates=getChecked('dates'),regions=getChecked('regions'),cats=getChecked('categories'),onlyFree=getChecked('budget').includes('free');
- const selected=events.filter(e=>{if(e.kind==='conference'||isCogitoOnly(e))return false;if(!e.date||!(daydiff(e.date,dateBE())>=0))return false;if(q&&!fold([e.title,e.description,e.category,e.city].join(' ')).includes(q))return false;if(city&&!fold(e.city).includes(city))return false;if(dates.length&&!dates.some(d=>periodMatch(e.date,d)))return false;if(regions.length&&!regions.includes(regionGuess(e)))return false;if(cats.length&&!cats.includes(e.kind))return false;if(modes.length&&Array.isArray(e.modes)&&e.modes.length&&!modes.some(m=>e.modes.includes(m)))return false;if(onlyFree&&!e.free)return false;return true});
+ const selected=events.filter(e=>{if(isCogitoOnly(e))return false;if(!e.date||!(daydiff(e.date,dateBE())>=0))return false;if(q&&!fold([e.title,e.description,e.category,e.city].join(' ')).includes(q))return false;if(city&&!fold(e.city).includes(city))return false;if(dates.length&&!dates.some(d=>periodMatch(e.date,d)))return false;if(regions.length&&!regions.includes(regionGuess(e)))return false;if(cats.length&&!cats.includes(e.kind))return false;if(modes.length&&Array.isArray(e.modes)&&e.modes.length&&!modes.some(m=>e.modes.includes(m)))return false;if(onlyFree&&!e.free)return false;return true});
  selected.sort((a,b)=>a.date.localeCompare(b.date)||(a.time||'').localeCompare(b.time||'')||a.title.localeCompare(b.title,'fr'));return selected}
 function emptyState(msg){
  const box=text('div','','bv-empty');
