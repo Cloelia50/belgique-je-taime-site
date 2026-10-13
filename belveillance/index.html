@@ -394,7 +394,7 @@ function card(e){
  return article;
 }
 /* Cogito seul : conferences, debats, colloques et seminaires. Les donnees canoniques restent intactes. */
-function isCogitoOnly(e){const x=fold([e.title,e.category,e.format].join(' '));return /\\bconference\\b|\\bcolloque\\b|\\bseminaire\\b|\\bwebinaire\\b|\\bdebat\\b|table ronde|\\bsymposium\\b/.test(x)}
+function isCogitoOnly(e){const x=fold([e.title,e.category,e.format,e.subject,e.description].join(' '));return /\bconference(s)?\b|\bcolloque(s)?\b|\bseminaire(s)?\b|\bwebinaire(s)?\b|\bdebat(s)?\b|cine[\s-]?debat|cinema[\s-]?debat|\bpoesie\b|\bpoetique(s)?\b|\bpoete(s)?\b|slam poetique|table ronde|\bsymposium\b/.test(x)}
 function filtered(){
  const q=fold($('query').value),city=fold($('city').value),modes=getChecked('modes'),dates=getChecked('dates'),regions=getChecked('regions'),cats=getChecked('categories'),onlyFree=getChecked('budget').includes('free');
  const selected=events.filter(e=>{if(e.kind==='conference'||isCogitoOnly(e))return false;if(!e.date||!(daydiff(e.date,dateBE())>=0))return false;if(q&&!fold([e.title,e.description,e.category,e.city].join(' ')).includes(q))return false;if(city&&!fold(e.city).includes(city))return false;if(dates.length&&!dates.some(d=>periodMatch(e.date,d)))return false;if(regions.length&&!regions.includes(regionGuess(e)))return false;if(cats.length&&!cats.includes(e.kind))return false;if(modes.length&&Array.isArray(e.modes)&&e.modes.length&&!modes.some(m=>e.modes.includes(m)))return false;if(onlyFree&&!e.free)return false;return true});
