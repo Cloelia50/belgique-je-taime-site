@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="fr-BE">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#f7f6f0">
+<meta name="robots" content="index,follow">
+<meta name="description" content="Belveillance : trouver des idées d'activités pour adultes en Belgique, seul au calme, seul pour sociabiliser, en couple ou entre amis. Gratuit, sans compte.">
+<title>Belveillance — Sortir à sa façon, en Belgique</title>
+<link rel="canonical" href="https://cloelia50.github.io/belgique-je-taime-site/belveillance/">
+<link rel="stylesheet" href="../site.css">
+<style>
+:root{--pine:#255747;--moss:#547d63;--wash:#eff2e8;--leaf:#dfe9d8;--ink:#263c37;--dim:#5d6d68;--hair:#dbe2d8;--warm:#fbfaf6;--focus:#155b4b}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}body{background:var(--warm);color:var(--ink)}
+.shell{max-width:1160px}.topbar{border-bottom:1px solid var(--hair)}
+.topnav a:hover{text-decoration:underline;text-underline-offset:4px}
+.bv-main{padding-bottom:76px}
+.bv-hero{position:relative;isolation:isolate;padding:64px 0 48px;overflow:hidden}
+.bv-hero::after{content:"";position:absolute;z-index:-1;right:1%;top:22px;width:min(34vw,340px);aspect-ratio:1;border-radius:43% 57% 60% 40%;background:radial-gradient(circle at 35% 35%,#e1eccf 0,#cddfc7 45%,#e8ece2 100%);transform:rotate(-16deg)}
+.bv-hero::before{content:"✳";position:absolute;right:7.5%;top:90px;font-size:clamp(7rem,17vw,14rem);line-height:1;color:rgba(37,87,71,.20);transform:rotate(-20deg)}
+.bv-kicker{display:inline-flex;align-items:center;gap:10px;text-transform:uppercase;letter-spacing:.14em;font-weight:850;color:var(--pine);font-size:.77rem}
+.bv-kicker::before{content:"";display:inline-block;width:9px;height:9px;background:#809965;border-radius:50%}
+.bv-hero h1{font-family:Georgia,"Times New Roman",serif;font-weight:500;font-size:clamp(3.1rem,8.1vw,6.7rem);letter-spacing:-.058em;line-height:.98;max-width:780px;margin:19px 0 24px;color:#26463c}
+.bv-hero p{max-width:660px;color:var(--dim);font-size:clamp(1.08rem,2vw,1.26rem);line-height:1.62;margin:0}
+.bv-hero .under{display:flex;flex-wrap:wrap;gap:12px 24px;color:var(--pine);font-size:.9rem;font-weight:750;margin:24px 0 0}
+.bv-hero .under span::before{content:"✓";margin-right:7px}
+.bv-step{margin:0 0 18px;display:flex;gap:14px;align-items:center}
+.bv-stepnum{display:inline-grid;place-items:center;min-width:38px;height:38px;border-radius:50%;border:1px solid #94ad96;color:var(--pine);font-size:.85rem;font-weight:900}
+.bv-step h2{font-size:clamp(1.4rem,3.2vw,2rem);margin:0;line-height:1.18;letter-spacing:-.03em}
+.bv-step p{margin:4px 0 0;color:var(--dim);font-size:.94rem}
+.bv-choices{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:13px;margin:0 0 32px}
+.bv-mode{min-width:0;text-align:left;display:flex;flex-direction:column;align-items:flex-start;gap:12px;min-height:210px;padding:22px 19px 18px;border:1.5px solid var(--hair);border-radius:20px;background:#fff;color:var(--ink);cursor:pointer;transition:border-color .15s,box-shadow .15s,transform .15s;font:inherit}
+.bv-mode:hover{border-color:#8ca68b;transform:translateY(-2px);box-shadow:0 10px 24px #274d3d14}
+.bv-mode[aria-pressed="true"]{background:#eaf2e6;border-color:var(--pine);box-shadow:inset 0 0 0 1px var(--pine)}
+.bv-mode:focus-visible{outline:3px solid var(--focus);outline-offset:4px}
+.bv-symbol{font-family:Georgia,serif;font-size:2.4rem;line-height:1;color:#62866b;height:48px}
+.bv-mode strong{font-size:1.1rem;line-height:1.28}
+.bv-mode small{color:var(--dim);font-size:.88rem;line-height:1.48}
+.bv-mode[aria-pressed="true"]::after{content:"Sélectionné ✓";color:var(--pine);font-size:.74rem;font-weight:800;margin-top:auto}
+.bv-panel{display:none;border:1px solid var(--hair);border-radius:24px;background:#fff;padding:26px 28px;margin-bottom:30px}
+.bv-panel.active{display:block}
+.bv-filters{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px;align-items:end}
+.bv-field{display:flex;flex-direction:column;gap:7px}
+.bv-field label{font-size:.85rem;font-weight:800;color:var(--pine)}
+.bv-field input,.bv-field select{height:45px;width:100%;padding:10px 12px;background:#fff;border:1px solid #bfcfc0;border-radius:11px;font:inherit;color:var(--ink);min-width:0}
+.bv-field input:focus-visible,.bv-field select:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+.bv-note{font-size:.83rem;color:var(--dim);margin:14px 0 0;line-height:1.55}
+.bv-summary{display:flex;gap:16px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin:15px 0}
+.bv-summary p{color:var(--dim);margin:0}
+.bv-summary button{border:0;background:none;text-decoration:underline;color:var(--pine);font-weight:750;cursor:pointer;font:inherit}
+.bv-results{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px}
+.bv-card{border:1px solid var(--hair);background:white;border-radius:18px;padding:22px;display:flex;flex-direction:column;gap:8px;min-width:0;box-shadow:0 4px 13px #1e42310b}
+.bv-card .eyeline{font-size:.77rem;color:var(--pine);font-weight:900;text-transform:uppercase;letter-spacing:.08em}
+.bv-card h3{font-family:Georgia,serif;font-weight:500;font-size:1.45rem;line-height:1.2;margin:0}
+.bv-card .meta{font-size:.84rem;color:var(--dim);margin:1px 0}
+.bv-card p{font-size:.92rem;line-height:1.6;color:#576660;margin:0 0 4px}
+.bv-card a{margin-top:auto;font-weight:800;color:var(--pine);text-underline-offset:3px}
+.bv-card .tag-row{display:flex;gap:6px;flex-wrap:wrap;margin-top:4px}
+.bv-chip{border-radius:99px;padding:4px 10px;background:var(--wash);font-size:.75rem;color:#486851;font-weight:700}
+.bv-empty{border:1px dashed #a2baa3;border-radius:18px;padding:22px;background:#f6f8f2;color:var(--dim);grid-column:1/-1}
+.bv-empty strong{display:block;color:var(--ink);font-size:1.05rem;margin-bottom:7px}
+.bv-inspire{margin:50px 0 30px;padding:28px 0;border-top:1px solid var(--hair)}
+.bv-inspire h2{font-family:Georgia,serif;font-size:clamp(1.8rem,3vw,2.5rem);font-weight:500;line-height:1.12;margin:0 0 12px}
+.bv-inspire>p{color:var(--dim);margin:0 0 21px;max-width:760px;line-height:1.65}
+.bv-ideas{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.bv-idea{border:1px solid var(--hair);border-radius:15px;padding:20px;background:linear-gradient(135deg,#fff,#f1f5ee)}
+.bv-idea .index{color:#6d8c6e;font:500 1.4rem Georgia,serif}
+.bv-idea h3{font-size:1.13rem;margin:10px 0 7px;line-height:1.25}
+.bv-idea p{font-size:.9rem;line-height:1.58;color:var(--dim);margin:0}
+.bv-discover{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin:28px 0}
+.bv-discover article{background:#e4eddf;border-radius:20px;padding:24px}
+.bv-discover article:nth-child(2){background:#ede8e3}
+.bv-discover h3{font-family:Georgia,serif;font-size:1.5rem;font-weight:500;margin:0 0 8px}
+.bv-discover p{font-size:.92rem;color:var(--dim);line-height:1.6}
+.bv-discover a{font-weight:850;color:var(--pine)}
+.bv-method{display:flex;gap:12px;flex-wrap:wrap;align-items:flex-start;border-top:1px solid var(--hair);padding:24px 0 6px}
+.bv-method p{flex:1;min-width:270px;font-size:.9rem;color:var(--dim);line-height:1.65;margin:0}
+.bv-method strong{color:var(--ink)}
+.bv-method a{color:var(--pine);font-weight:800}
+.bv-muted{color:var(--dim)}
+[hidden]{display:none!important}
+@media(max-width:1000px){.bv-choices{grid-template-columns:repeat(2,minmax(0,1fr))}.bv-results,.bv-ideas{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:660px){.bv-hero{padding:42px 0 34px}.bv-hero::before,.bv-hero::after{opacity:.37}.bv-choices,.bv-results,.bv-ideas,.bv-discover,.bv-filters{grid-template-columns:1fr}.bv-mode{min-height:0;padding:19px}.bv-mode[aria-pressed="true"]::after{margin-top:0}.bv-panel{padding:19px}.bv-hero h1{font-size:clamp(3.2rem,14vw,4.5rem)}}
+@media(prefers-reduced-motion:reduce){.bv-mode{transition:none}.bv-mode:hover{transform:none}}
+</style>
+</head>
+<body>
+<a class="skip" href="#contenu">Aller au contenu</a>
+<div class="shell">
+<header class="topbar">
+<a class="brand" href="../" aria-label="Belgique, je t’aime — accueil"><span class="heart">♥</span> Belgique, je t’aime</a>
+<nav class="topnav" aria-label="Navigation principale"><a href="../">Accueil</a><a href="../activikids/">Avec les enfants</a><a href="../cogito/">Culture &amp; idées</a><a href="../lirabelge/">Lire belge</a><a href="../a-propos.html">À propos</a></nav>
+</header>
+<main id="contenu" class="bv-main">
+<section class="bv-hero" aria-labelledby="titre">
+<span class="bv-kicker">Belveillance · Les activités des adultes</span>
+<h1 id="titre">Sortir à<br>sa façon.</h1>
+<p>Une envie de calme, de découvrir quelque chose, de passer du temps ensemble ou de voir du monde&nbsp;? Choisissez d’abord <strong>comment vous avez envie de sortir</strong>. Le reste vient ensuite.</p>
+<div class="under"><span>Partout en Belgique</span><span>Sans compte</span><span>Gratuit et indépendant</span></div>
+</section>
+<section aria-labelledby="mode-title">
+<div class="bv-step"><span class="bv-stepnum" aria-hidden="true">01</span><div><h2 id="mode-title">Aujourd’hui, vous avez envie de…</h2><p>Choisissez une manière de participer. Vous pourrez changer d’avis à tout moment.</p></div></div>
+<div class="bv-choices" role="group" aria-label="Choisir son mode de participation">
+<button class="bv-mode" type="button" data-mode="solo_calme" aria-pressed="false"><span class="bv-symbol" aria-hidden="true">◌</span><strong>En solo, au calme</strong><small>Prendre du temps pour soi, sans devoir discuter ni rencontrer quelqu’un.</small></button>
+<button class="bv-mode" type="button" data-mode="solo_sociable" aria-pressed="false"><span class="bv-symbol" aria-hidden="true">✳</span><strong>En solo, mais envie de sociabiliser</strong><small>Venir seul·e et partager une activité avec d’autres, sans pression.</small></button>
+<button class="bv-mode" type="button" data-mode="couple" aria-pressed="false"><span class="bv-symbol" aria-hidden="true">♡</span><strong>En couple</strong><small>Vivre quelque chose à deux, simplement ou pour une occasion.</small></button>
+<button class="bv-mode" type="button" data-mode="amis" aria-pressed="false"><span class="bv-symbol" aria-hidden="true">✧</span><strong>Entre amis</strong><small>Se retrouver autour d’une activité, d’une découverte ou d’un moment convivial.</small></button>
+</div>
+</section>
+<section class="bv-panel" id="explorer" aria-labelledby="explorer-title">
+<div class="bv-step"><span class="bv-stepnum" aria-hidden="true">02</span><div><h2 id="explorer-title">Affinons votre envie.</h2><p id="mode-copy">Choisissez les activités qui vous correspondent.</p></div></div>
+<div class="bv-filters">
+<div class="bv-field"><label for="query">Un mot, une activité</label><input id="query" type="search" autocomplete="off" placeholder="Poterie, théâtre, forêt…"></div>
+<div class="bv-field"><label for="category">Type d’activité</label><select id="category"><option value="">Toutes les envies</option><option value="Culture et découvertes">Culture et découvertes</option><option value="Ateliers et créativité">Ateliers et créativité</option><option value="Nature et plein air">Nature et plein air</option><option value="Bien-être et détente">Bien-être et détente</option><option value="Jeux et convivialité">Jeux et convivialité</option><option value="Rencontres et participation">Rencontres et participation</option></select></div>
+<div class="bv-field"><label for="region">Région des fiches vérifiées</label><select id="region"><option value="">Toute la Belgique</option><option value="Bruxelles">Bruxelles</option><option value="Wallonie">Wallonie</option><option value="Flandre">Flandre</option></select></div>
+</div>
+<p class="bv-note">Les filtres portent sur les fiches publiées. Les inspirations proposées plus bas ne sont pas des réservations ni des événements confirmés.</p>
+<div class="bv-summary"><p id="count" role="status" aria-live="polite">Chargement du catalogue…</p><button id="reset" type="button">Effacer les filtres</button></div>
+<div class="bv-results" id="results" aria-label="Activités vérifiées correspondant à votre choix"></div>
+</section>
+<section class="bv-inspire" id="idees" aria-labelledby="ideas-title">
+<h2 id="ideas-title">Quelques pistes pour se lancer</h2>
+<p id="ideas-intro">Une activité n’a pas besoin d’être spectaculaire pour faire du bien. Commencez par choisir votre manière de participer, et nous vous proposerons des idées adaptées.</p>
+<div class="bv-ideas" id="ideas-list" aria-live="polite"></div>
+</section>
+<section class="bv-discover" aria-label="D'autres façons de découvrir la Belgique">
+<article><h3>Envie d’une conférence ou d’une rencontre culturelle&nbsp;?</h3><p>Parcourez les événements culturels déjà publiés dans Cogito, avec leurs dates et leurs sources.</p><a href="../cogito/" data-bjt-action="section_open" data-bjt-key="cogito">Explorer Cogito →</a></article>
+<article><h3>Plutôt une visite sans date imposée&nbsp;?</h3><p>Un autre catalogue du site rassemble des lieux ouverts à la visite. Certaines sorties sont familiales&nbsp;: vérifiez le public et les conditions.</p><a href="../sorties-permanentes/">Explorer les lieux →</a></article>
+</section>
+<div class="bv-method"><p><strong>Comment les fiches sont-elles sélectionnées&nbsp;?</strong> Nous surveillons des lieux et organisateurs belges, mais les informations en préproduction ne sont pas affichées comme des sorties confirmées. Les prochaines fiches paraîtront avec leur source officielle et leur mode de participation vérifié. Pas de compte, pas de questionnaire envoyé à un serveur.</p><p><a href="../methodologie.html">Notre méthode</a> · <a href="../signaler.html">Proposer une activité ou signaler une erreur</a> · <a href="../confidentialite.html">Vie privée</a></p></div>
+</main>
+<footer><div class="footer-row"><div><strong>Belgique, je t’aime</strong><div class="small">Pensé et réalisé en Belgique par une femme. Gratuit et indépendant.</div></div><div class="footer-links"><a href="../">Accueil</a><a href="../a-propos.html">À propos</a><a href="../signaler.html">Signaler une erreur</a></div></div></footer>
+</div>
+<script>
+(function(){
+"use strict";
+const $=id=>document.getElementById(id);
+const MODES=["solo_calme","solo_sociable","couple","amis"];
+const ideas={
+  solo_calme:[
+    ["Visiter une exposition à son rythme","Culture et découvertes","Une heure dans un musée ou une galerie, sans visite guidée obligatoire."],
+    ["S’installer dans un café-librairie","Culture et découvertes","Lire, feuilleter, prendre une boisson et simplement profiter du lieu."],
+    ["Prendre l’air dans un jardin","Nature et plein air","Une promenade, un banc, un carnet ou un moment pour ne rien faire."],
+    ["Découvrir un espace de détente","Bien-être et détente","Une séance de relaxation ou un moment dans un espace thermal, selon les conditions."],
+    ["Tester un atelier créatif individuel","Ateliers et créativité","Dessiner, modeler, écrire ou apprendre un geste à son rythme."],
+    ["Choisir une séance de cinéma","Culture et découvertes","Une séance qui vous intéresse, sans obligation d’être accompagné·e."]
+  ],
+  solo_sociable:[
+    ["Participer à un café-jeux","Jeux et convivialité","Chercher une table ouverte ou une animation où l’on peut venir seul·e."],
+    ["Essayer une chorale ou un atelier collectif","Rencontres et participation","Faire quelque chose ensemble, avec un cadre clair et sans conversation forcée."],
+    ["Rejoindre un atelier de poterie","Ateliers et créativité","Apprendre un geste en groupe, chacun·e avançant à son rythme."],
+    ["Découvrir un café littéraire","Culture et découvertes","Écouter et, si l’envie vient, prendre part à une discussion autour des livres."],
+    ["Participer à un Repair Café","Rencontres et participation","Donner un coup de main ou apprendre à réparer en compagnie d’autres personnes."],
+    ["Faire une balade en groupe","Nature et plein air","Choisir une sortie collective où l’on partage le parcours sans obligation de parler."]
+  ],
+  couple:[
+    ["Découvrir un atelier à deux","Ateliers et créativité","Cuisine, céramique, photographie : essayer quelque chose de nouveau ensemble."],
+    ["Prendre une pause bien-être","Bien-être et détente","Comparer les espaces qui accueillent deux personnes et vérifier les conditions."],
+    ["Visiter un lieu culturel","Culture et découvertes","Une exposition, un château, une visite guidée ou une découverte inattendue."],
+    ["Marcher dans un parc ou un domaine","Nature et plein air","Prendre le temps de se retrouver, même pour une courte promenade."],
+    ["Tester un café-jeux à deux","Jeux et convivialité","Choisir un jeu coopératif ou faire découvrir un classique à l’autre."],
+    ["Aller voir un spectacle","Culture et découvertes","Théâtre, danse, concert ou cinéma : choisir selon vos goûts à tous les deux."]
+  ],
+  amis:[
+    ["Se retrouver autour d’un jeu","Jeux et convivialité","Soirée jeux de société, quiz ou jeu de piste, selon l’ambiance du groupe."],
+    ["Organiser un atelier créatif","Ateliers et créativité","Céramique, dessin, cuisine ou artisanat à partager avec des proches."],
+    ["Découvrir une adresse gourmande","Jeux et convivialité","Une dégustation ou une pause conviviale, après vérification du programme."],
+    ["Partir en balade","Nature et plein air","Un itinéraire adapté au groupe, avec un arrêt agréable en chemin."],
+    ["Choisir une sortie culturelle","Culture et découvertes","Exposition, concert, théâtre ou événement ponctuel à découvrir ensemble."],
+    ["Tester une expérience détente","Bien-être et détente","Un spa ou un rituel collectif, si les conditions d’accueil le permettent."]
+  ]
+};
+let selection="",catalogue=[],state="loading";
+function fold(s){return String(s||"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase().trim()}
+function el(tag,text,cls){const x=document.createElement(tag);if(text!==undefined)x.textContent=text;if(cls)x.className=cls;return x}
+function validUrl(value){try{const x=new URL(value);return x.protocol==="https:"&&x.hostname&& !x.username&&!x.password?x.href:null}catch{return null}}
+function getApproved(items){return items.filter(x=>x&&typeof x==="object"&&x.publication_status==="Autorisé"&&x.verified===true&&Array.isArray(x.modes)&&x.modes.some(v=>MODES.includes(v))&&x.title&&validUrl(x.url))}
+function card(item){const a=el("article",undefined,"bv-card");a.append(el("span",item.category||"Activité","eyeline"),el("h3",item.title));const meta=[item.commune,item.region,item.date].filter(Boolean).join(" · ");if(meta)a.append(el("p",meta,"meta"));if(item.description)a.append(el("p",item.description));const tags=el("div",undefined,"tag-row");if(item.price_label)tags.append(el("span",item.price_label,"bv-chip"));if(item.format_label)tags.append(el("span",item.format_label,"bv-chip"));if(tags.children.length)a.append(tags);const link=el("a","Consulter la source officielle ↗");link.href=validUrl(item.url);link.target="_blank";link.rel="noopener noreferrer";a.append(link);return a}
+function drawIdeas(){const root=$("ideas-list");root.replaceChildren();if(!selection){$("ideas-intro").textContent="Une activité n’a pas besoin d’être spectaculaire pour faire du bien. Choisissez d’abord l’un des quatre modes ci-dessus.";return}
+ const q=fold($("query").value),cat=$("category").value;
+ const filtered=ideas[selection].filter(x=>(!cat||x[1]===cat)&&(!q||fold(x.join(" ")).includes(q)));
+ const names={solo_calme:"pour profiter de votre temps en solo",solo_sociable:"pour venir seul·e et participer avec d’autres",couple:"à essayer à deux",amis:"à partager entre amis"};
+ $("ideas-intro").textContent="Des inspirations "+names[selection]+". Ce sont des types d’activités, pas des séances confirmées ni des offres de réservation.";
+ if(!filtered.length){root.append(el("p","Aucune idée ne correspond à ces critères. Essayez une autre catégorie.","bv-empty"));return}
+ filtered.forEach((idea,i)=>{const box=el("article",undefined,"bv-idea");box.append(el("span",String(i+1).padStart(2,"0"),"index"),el("h3",idea[0]),el("p",idea[2]));root.append(box)})
+}
+function update(){
+ if(!selection)return;
+ const q=fold($("query").value),category=$("category").value,region=$("region").value;
+ const filtered=catalogue.filter(x=>x.modes.includes(selection)&&(!q||fold([x.title,x.description,x.commune,x.category].join(" ")).includes(q))&&(!category||x.category===category)&&(!region||x.region===region));
+ $("results").replaceChildren();
+ filtered.slice(0,60).forEach(x=>$("results").append(card(x)));
+ const label=filtered.length?filtered.length+" activité"+(filtered.length>1?"s":"")+" vérifiée"+(filtered.length>1?"s":"")+" correspondante"+(filtered.length>1?"s":""):state==="error"?"Le catalogue ne peut pas être chargé pour le moment.":"Aucune fiche vérifiée publiée pour cette sélection pour le moment.";
+ $("count").textContent=label;
+ if(filtered.length===0){const empty=el("div",undefined,"bv-empty");empty.append(el("strong","Le moteur prend forme."),el("span","Notre veille prépare des fiches, mais elles ne sont pas publiées avant vérification. En attendant, explorez les inspirations ci-dessous ou les événements déjà disponibles dans Cogito."));$("results").append(empty)}
+ drawIdeas()
+}
+function choose(mode){if(!MODES.includes(mode))return;selection=mode;document.querySelectorAll("[data-mode]").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.mode===mode)));$("explorer").classList.add("active");$("mode-copy").textContent=({solo_calme:"Privilégions les expériences sans sociabilisation attendue.",solo_sociable:"Cherchons des activités où venir seul·e est naturel.",couple:"Cherchons des idées à vivre à deux.",amis:"Cherchons des expériences à partager en groupe."})[mode];update()}
+document.querySelectorAll("[data-mode]").forEach(b=>b.addEventListener("click",()=>choose(b.dataset.mode)));
+["query"].forEach(id=>$(id).addEventListener("input",update));["category","region"].forEach(id=>$(id).addEventListener("change",update));
+$("reset").addEventListener("click",()=>{$("query").value="";$("category").value="";$("region").value="";update();});
+fetch("./catalogue.json",{cache:"no-store",credentials:"omit"}).then(r=>{if(!r.ok)throw Error("not found");return r.json()}).then(d=>{if(d.schema_version!==1||!Array.isArray(d.items))throw Error("invalid catalogue");catalogue=getApproved(d.items);state="ready";update()}).catch(()=>{state="error";update()});
+})();
+</script>
+</body>
+</html>
