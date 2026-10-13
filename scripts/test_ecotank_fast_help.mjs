@@ -81,7 +81,7 @@ assert.ok(
   "L'aide urgente doit être visible AVANT les choix, même sur petit écran"
 );
 quick.click("[data-entry-fast-help]");
-assert.ok(hasHelp(quick.html("entryDifficultHost")), "Premières pistes accessibles sans formulaire");
+assert.ok(hasHelp(quick.html("entryDifficultHost")), "Premières pistes accessibles sans formulaire : " + quick.html("entryDifficultHost").slice(0, 280));
 assert.match(quick.html("entryDifficultHost"), /Commencer par une aide humaine/);
 assert.match(quick.html("entryDifficultHost"), /https:\/\//);
 quick.click("[data-help-topic]", { helpTopic: "housing" });
