@@ -11,6 +11,7 @@ required = [
     "activikids/index.html", "ecotank/index.html", "cogito/index.html",
     "lirabelge/index.html", "lirabelge/ligne-editoriale.html",
     "belveillance/index.html", "belveillance/catalogue.json",
+    "volet6/index.html", "volet6/catalogue.json",
 ]
 for rel in required:
     if not (ROOT / rel).exists():
@@ -27,7 +28,7 @@ for p in ROOT.rglob("*"):
         errors.append(f"private_review_path:{rel}")
 
 home = (ROOT / "index.html").read_text(encoding="utf-8")
-for target in ("activikids/", "ecotank/", "cogito/", "lirabelge/", "belveillance/"):
+for target in ("activikids/", "ecotank/", "cogito/", "lirabelge/", "belveillance/", "volet6/"):
     if f'href="{target}"' not in home:
         errors.append(f"home_missing_door:{target}")
 if len(re.findall(r"<h1\b", home, re.I)) != 1:
@@ -83,7 +84,32 @@ for item in listings.get("items",[]):
     if item.get("publication_status") != "Autorisé" or item.get("verified") is not True:
         errors.append("belveillance_unverified_listing")
 
+# Volet 6 starts with a small, public-only registry. Never promote unverified shops.
+import json
+v6 = json.loads((ROOT / "volet6/catalogue.json").read_text(encoding="utf-8"))
+if v6.get("schema") != "bjt-volet6-public-v1" or not isinstance(v6.get("items"), list):
+    errors.append("volet6_catalogue_schema_invalid")
+else:
+    ids=set()
+    for item in v6["items"]:
+        key=item.get("id")
+        if not key or key in ids:
+            errors.append("volet6_missing_or_duplicate_id")
+        ids.add(key)
+        if item.get("category") not in {"vintage","lieu","artisan","troc"}:
+            errors.append("volet6_unknown_category")
+        if not re.match(r"^https://[^@\\s]+$",str(item.get("source_url","")),re.I):
+            errors.append("volet6_unverified_source")
+        if any(field in item for field in ("email","telephone","phone","private_notes")):
+            errors.append("volet6_private_field")
+if "Troc Forest" in (ROOT / "volet6/catalogue.json").read_text(encoding="utf-8"):
+    errors.append("volet6_unconfirmed_forest_opening")
+if '<link rel="canonical" href="' + BASE + 'volet6/">' not in (ROOT / "volet6/index.html").read_text(encoding="utf-8"):
+    errors.append("volet6_canonical_missing")
+
 sitemap = (ROOT / "sitemap.xml").read_text(encoding="utf-8")
+if BASE + "volet6/" not in sitemap:
+    errors.append("sitemap_missing:volet6")
 if BASE + "signaler.html" not in sitemap:
     errors.append("sitemap_missing:signaler.html")
 
