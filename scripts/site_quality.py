@@ -9,6 +9,7 @@ required = [
     "index.html", "a-propos.html", "methodologie.html", "confidentialite.html",
     "404.html", "signaler.html", "robots.txt", "sitemap.xml", "analytics.js", "site.css",
     "activikids/index.html", "ecotank/index.html", "cogito/index.html",
+    "lirabelge/index.html", "lirabelge/ligne-editoriale.html",
 ]
 for rel in required:
     if not (ROOT / rel).exists():
@@ -25,7 +26,7 @@ for p in ROOT.rglob("*"):
         errors.append(f"private_review_path:{rel}")
 
 home = (ROOT / "index.html").read_text(encoding="utf-8")
-for target in ("activikids/", "ecotank/", "cogito/"):
+for target in ("activikids/", "ecotank/", "cogito/", "lirabelge/"):
     if f'href="{target}"' not in home:
         errors.append(f"home_missing_door:{target}")
 if len(re.findall(r"<h1\b", home, re.I)) != 1:
