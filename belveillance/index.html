@@ -295,7 +295,7 @@ a{color:var(--green)}
 <hr class="bv-line">
 <fieldset class="bv-group" id="categories"><legend><svg class="ic" aria-hidden="true"><use href="#i-sparkle"/></svg>Mes envies</legend>
 <label class="bv-check" style="--ci:#ee7b5f"><input type="checkbox" value="culture"><svg class="ic" aria-hidden="true"><use href="#i-ticket"/></svg>Culture, expositions, spectacles</label>
-<label class="bv-check" style="--ci:#8d6bb5"><input type="checkbox" value="conference"><svg class="ic" aria-hidden="true"><use href="#i-mic"/></svg>Conférences et rencontres</label>
+
 <label class="bv-check" style="--ci:#e9a91f"><input type="checkbox" value="atelier"><svg class="ic" aria-hidden="true"><use href="#i-palette"/></svg>Ateliers et créativité</label>
 <label class="bv-check" style="--ci:#4f9a78"><input type="checkbox" value="nature"><svg class="ic" aria-hidden="true"><use href="#i-leaf"/></svg>Nature et balades</label>
 <label class="bv-check" style="--ci:#4aa3cf"><input type="checkbox" value="jeux"><svg class="ic" aria-hidden="true"><use href="#i-dice"/></svg>Jeux et convivialité</label>
@@ -393,9 +393,11 @@ function card(e){
  if(href){let a=text('a','Voir les détails','bv-go');a.append(icon('i-arrow'));a.href=href;a.rel='noopener noreferrer';a.target='_blank';article.append(a)}
  return article;
 }
+/* Cogito seul : conferences, debats, colloques et seminaires. Les donnees canoniques restent intactes. */
+function isCogitoOnly(e){const x=fold([e.title,e.category,e.format].join(' '));return /\\bconference\\b|\\bcolloque\\b|\\bseminaire\\b|\\bwebinaire\\b|\\bdebat\\b|table ronde|\\bsymposium\\b/.test(x)}
 function filtered(){
  const q=fold($('query').value),city=fold($('city').value),modes=getChecked('modes'),dates=getChecked('dates'),regions=getChecked('regions'),cats=getChecked('categories'),onlyFree=getChecked('budget').includes('free');
- const selected=events.filter(e=>{if(!e.date||!(daydiff(e.date,dateBE())>=0))return false;if(q&&!fold([e.title,e.description,e.category,e.city].join(' ')).includes(q))return false;if(city&&!fold(e.city).includes(city))return false;if(dates.length&&!dates.some(d=>periodMatch(e.date,d)))return false;if(regions.length&&!regions.includes(regionGuess(e)))return false;if(cats.length&&!cats.includes(e.kind))return false;if(modes.length&&Array.isArray(e.modes)&&e.modes.length&&!modes.some(m=>e.modes.includes(m)))return false;if(onlyFree&&!e.free)return false;return true});
+ const selected=events.filter(e=>{if(e.kind==='conference'||isCogitoOnly(e))return false;if(!e.date||!(daydiff(e.date,dateBE())>=0))return false;if(q&&!fold([e.title,e.description,e.category,e.city].join(' ')).includes(q))return false;if(city&&!fold(e.city).includes(city))return false;if(dates.length&&!dates.some(d=>periodMatch(e.date,d)))return false;if(regions.length&&!regions.includes(regionGuess(e)))return false;if(cats.length&&!cats.includes(e.kind))return false;if(modes.length&&Array.isArray(e.modes)&&e.modes.length&&!modes.some(m=>e.modes.includes(m)))return false;if(onlyFree&&!e.free)return false;return true});
  selected.sort((a,b)=>a.date.localeCompare(b.date)||(a.time||'').localeCompare(b.time||'')||a.title.localeCompare(b.title,'fr'));return selected}
 function emptyState(msg){
  const box=text('div','','bv-empty');
