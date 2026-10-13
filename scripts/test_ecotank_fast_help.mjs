@@ -84,6 +84,7 @@ quick.click("[data-entry-fast-help]");
 assert.ok(hasHelp(quick.html("entryDifficultHost")), "Premières pistes accessibles sans formulaire : " + quick.html("entryDifficultHost").slice(0, 280));
 assert.match(quick.html("entryDifficultHost"), /Commencer par une aide humaine|De quoi avez-vous besoin aujourd’hui/);
 assert.match(quick.html("entryDifficultHost"), /https:\/\//);
+assert.match(quick.html("entryDifficultHost"), /fdss\.be\/fr\/aide-alimentaire/);
 quick.click("[data-help-topic]", { helpTopic: "housing" });
 assert.match(quick.html("entryDifficultHost"), /logement/i);
 await ready(quick);
