@@ -1,206 +1,76 @@
 <!doctype html>
 <html lang="fr-BE">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#f7f6f0">
-<meta name="robots" content="index,follow">
-<meta name="description" content="Belveillance : trouver des idées d'activités pour adultes en Belgique, seul au calme, seul pour sociabiliser, en couple ou entre amis. Gratuit, sans compte.">
-<title>Belveillance — Sortir à sa façon, en Belgique</title>
-<link rel="canonical" href="https://cloelia50.github.io/belgique-je-taime-site/belveillance/">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Belveillance : l'agenda belge des sorties et événements pour adultes. Résultats immédiats, filtres instantanés.">
+<title>Belveillance — Trouver une sortie en Belgique</title>
 <link rel="stylesheet" href="../site.css">
 <style>
-:root{--pine:#255747;--moss:#547d63;--wash:#eff2e8;--leaf:#dfe9d8;--ink:#263c37;--dim:#5d6d68;--hair:#dbe2d8;--warm:#fbfaf6;--focus:#155b4b}
-*,*::before,*::after{box-sizing:border-box}
-html{scroll-behavior:smooth}body{background:var(--warm);color:var(--ink)}
-.shell{max-width:1160px}.topbar{border-bottom:1px solid var(--hair)}
-.topnav a:hover{text-decoration:underline;text-underline-offset:4px}
-.bv-main{padding-bottom:76px}
-.bv-hero{position:relative;isolation:isolate;padding:64px 0 48px;overflow:hidden}
-.bv-hero::after{content:"";position:absolute;z-index:-1;right:1%;top:22px;width:min(34vw,340px);aspect-ratio:1;border-radius:43% 57% 60% 40%;background:radial-gradient(circle at 35% 35%,#e1eccf 0,#cddfc7 45%,#e8ece2 100%);transform:rotate(-16deg)}
-.bv-hero::before{content:"✳";position:absolute;right:7.5%;top:90px;font-size:clamp(7rem,17vw,14rem);line-height:1;color:rgba(37,87,71,.20);transform:rotate(-20deg)}
-.bv-kicker{display:inline-flex;align-items:center;gap:10px;text-transform:uppercase;letter-spacing:.14em;font-weight:850;color:var(--pine);font-size:.77rem}
-.bv-kicker::before{content:"";display:inline-block;width:9px;height:9px;background:#809965;border-radius:50%}
-.bv-hero h1{font-family:Georgia,"Times New Roman",serif;font-weight:500;font-size:clamp(3.1rem,8.1vw,6.7rem);letter-spacing:-.058em;line-height:.98;max-width:780px;margin:19px 0 24px;color:#26463c}
-.bv-hero p{max-width:660px;color:var(--dim);font-size:clamp(1.08rem,2vw,1.26rem);line-height:1.62;margin:0}
-.bv-hero .under{display:flex;flex-wrap:wrap;gap:12px 24px;color:var(--pine);font-size:.9rem;font-weight:750;margin:24px 0 0}
-.bv-hero .under span::before{content:"✓";margin-right:7px}
-.bv-step{margin:0 0 18px;display:flex;gap:14px;align-items:center}
-.bv-stepnum{display:inline-grid;place-items:center;min-width:38px;height:38px;border-radius:50%;border:1px solid #94ad96;color:var(--pine);font-size:.85rem;font-weight:900}
-.bv-step h2{font-size:clamp(1.4rem,3.2vw,2rem);margin:0;line-height:1.18;letter-spacing:-.03em}
-.bv-step p{margin:4px 0 0;color:var(--dim);font-size:.94rem}
-.bv-choices{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:13px;margin:0 0 32px}
-.bv-mode{min-width:0;text-align:left;display:flex;flex-direction:column;align-items:flex-start;gap:12px;min-height:210px;padding:22px 19px 18px;border:1.5px solid var(--hair);border-radius:20px;background:#fff;color:var(--ink);cursor:pointer;transition:border-color .15s,box-shadow .15s,transform .15s;font:inherit}
-.bv-mode:hover{border-color:#8ca68b;transform:translateY(-2px);box-shadow:0 10px 24px #274d3d14}
-.bv-mode[aria-pressed="true"]{background:#eaf2e6;border-color:var(--pine);box-shadow:inset 0 0 0 1px var(--pine)}
-.bv-mode:focus-visible{outline:3px solid var(--focus);outline-offset:4px}
-.bv-symbol{font-family:Georgia,serif;font-size:2.4rem;line-height:1;color:#62866b;height:48px}
-.bv-mode strong{font-size:1.1rem;line-height:1.28}
-.bv-mode small{color:var(--dim);font-size:.88rem;line-height:1.48}
-.bv-mode[aria-pressed="true"]::after{content:"Sélectionné ✓";color:var(--pine);font-size:.74rem;font-weight:800;margin-top:auto}
-.bv-panel{display:block;border:1px solid var(--hair);border-radius:24px;background:#fff;padding:26px 28px;margin-bottom:30px}
-.bv-panel.active{display:block}
-.bv-filters{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px;align-items:end}
-.bv-field{display:flex;flex-direction:column;gap:7px}
-.bv-field label{font-size:.85rem;font-weight:800;color:var(--pine)}
-.bv-field input,.bv-field select{height:45px;width:100%;padding:10px 12px;background:#fff;border:1px solid #bfcfc0;border-radius:11px;font:inherit;color:var(--ink);min-width:0}
-.bv-field input:focus-visible,.bv-field select:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
-.bv-note{font-size:.83rem;color:var(--dim);margin:14px 0 0;line-height:1.55}
-.bv-summary{display:flex;gap:16px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin:15px 0}
-.bv-summary p{color:var(--dim);margin:0}
-.bv-summary button{border:0;background:none;text-decoration:underline;color:var(--pine);font-weight:750;cursor:pointer;font:inherit}
-.bv-results{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px}
-.bv-card{border:1px solid var(--hair);background:white;border-radius:18px;padding:22px;display:flex;flex-direction:column;gap:8px;min-width:0;box-shadow:0 4px 13px #1e42310b}
-.bv-card .eyeline{font-size:.77rem;color:var(--pine);font-weight:900;text-transform:uppercase;letter-spacing:.08em}
-.bv-card h3{font-family:Georgia,serif;font-weight:500;font-size:1.45rem;line-height:1.2;margin:0}
-.bv-card .meta{font-size:.84rem;color:var(--dim);margin:1px 0}
-.bv-card p{font-size:.92rem;line-height:1.6;color:#576660;margin:0 0 4px}
-.bv-card a{margin-top:auto;font-weight:800;color:var(--pine);text-underline-offset:3px}
-.bv-card .tag-row{display:flex;gap:6px;flex-wrap:wrap;margin-top:4px}
-.bv-chip{border-radius:99px;padding:4px 10px;background:var(--wash);font-size:.75rem;color:#486851;font-weight:700}
-.bv-empty{border:1px dashed #a2baa3;border-radius:18px;padding:22px;background:#f6f8f2;color:var(--dim);grid-column:1/-1}
-.bv-empty strong{display:block;color:var(--ink);font-size:1.05rem;margin-bottom:7px}
-.bv-inspire{margin:50px 0 30px;padding:28px 0;border-top:1px solid var(--hair)}
-.bv-inspire h2{font-family:Georgia,serif;font-size:clamp(1.8rem,3vw,2.5rem);font-weight:500;line-height:1.12;margin:0 0 12px}
-.bv-inspire>p{color:var(--dim);margin:0 0 21px;max-width:760px;line-height:1.65}
-.bv-ideas{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
-.bv-idea{border:1px solid var(--hair);border-radius:15px;padding:20px;background:linear-gradient(135deg,#fff,#f1f5ee)}
-.bv-idea .index{color:#6d8c6e;font:500 1.4rem Georgia,serif}
-.bv-idea h3{font-size:1.13rem;margin:10px 0 7px;line-height:1.25}
-.bv-idea p{font-size:.9rem;line-height:1.58;color:var(--dim);margin:0}
-.bv-discover{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin:28px 0}
-.bv-discover article{background:#e4eddf;border-radius:20px;padding:24px}
-.bv-discover article:nth-child(2){background:#ede8e3}
-.bv-discover h3{font-family:Georgia,serif;font-size:1.5rem;font-weight:500;margin:0 0 8px}
-.bv-discover p{font-size:.92rem;color:var(--dim);line-height:1.6}
-.bv-discover a{font-weight:850;color:var(--pine)}
-.bv-method{display:flex;gap:12px;flex-wrap:wrap;align-items:flex-start;border-top:1px solid var(--hair);padding:24px 0 6px}
-.bv-method p{flex:1;min-width:270px;font-size:.9rem;color:var(--dim);line-height:1.65;margin:0}
-.bv-method strong{color:var(--ink)}
-.bv-method a{color:var(--pine);font-weight:800}
-.bv-muted{color:var(--dim)}
-[hidden]{display:none!important}
-@media(max-width:1000px){.bv-choices{grid-template-columns:repeat(2,minmax(0,1fr))}.bv-results,.bv-ideas{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media(max-width:660px){.bv-hero{padding:42px 0 34px}.bv-hero::before,.bv-hero::after{opacity:.37}.bv-choices,.bv-results,.bv-ideas,.bv-discover,.bv-filters{grid-template-columns:1fr}.bv-mode{min-height:0;padding:19px}.bv-mode[aria-pressed="true"]::after{margin-top:0}.bv-panel{padding:19px}.bv-hero h1{font-size:clamp(3.2rem,14vw,4.5rem)}}
-@media(prefers-reduced-motion:reduce){.bv-mode{transition:none}.bv-mode:hover{transform:none}}
-</style>
-</head>
-<body>
-<a class="skip" href="#contenu">Aller au contenu</a>
-<div class="shell">
-<header class="topbar">
-<a class="brand" href="../" aria-label="Belgique, je t’aime — accueil"><span class="heart">♥</span> Belgique, je t’aime</a>
-<nav class="topnav" aria-label="Navigation principale"><a href="../">Accueil</a><a href="../activikids/">Avec les enfants</a><a href="../cogito/">Culture &amp; idées</a><a href="../lirabelge/">Lire belge</a><a href="../a-propos.html">À propos</a></nav>
-</header>
-<main id="contenu" class="bv-main">
-<section class="bv-hero" aria-labelledby="titre">
-<span class="bv-kicker">Belveillance · Les activités des adultes</span>
-<h1 id="titre">Sortir à<br>sa façon.</h1>
-<p>Une envie de calme, de découvrir quelque chose, de passer du temps ensemble ou de voir du monde&nbsp;? Choisissez d’abord <strong>comment vous avez envie de sortir</strong>. Le reste vient ensuite.</p>
-<div class="under"><span>Partout en Belgique</span><span>Sans compte</span><span>Gratuit et indépendant</span></div>
-</section>
-<section aria-labelledby="mode-title">
-<div class="bv-step"><span class="bv-stepnum" aria-hidden="true">01</span><div><h2 id="mode-title">Aujourd’hui, vous avez envie de…</h2><p>Choisissez une manière de participer. Vous pourrez changer d’avis à tout moment.</p></div></div>
-<div class="bv-choices" role="group" aria-label="Choisir son mode de participation">
-<button class="bv-mode" type="button" data-mode="solo_calme" aria-pressed="false"><span class="bv-symbol" aria-hidden="true">◌</span><strong>En solo, au calme</strong><small>Prendre du temps pour soi, sans devoir discuter ni rencontrer quelqu’un.</small></button>
-<button class="bv-mode" type="button" data-mode="solo_sociable" aria-pressed="false"><span class="bv-symbol" aria-hidden="true">✳</span><strong>En solo, mais envie de sociabiliser</strong><small>Venir seul·e et partager une activité avec d’autres, sans pression.</small></button>
-<button class="bv-mode" type="button" data-mode="couple" aria-pressed="false"><span class="bv-symbol" aria-hidden="true">♡</span><strong>En couple</strong><small>Vivre quelque chose à deux, simplement ou pour une occasion.</small></button>
-<button class="bv-mode" type="button" data-mode="amis" aria-pressed="false"><span class="bv-symbol" aria-hidden="true">✧</span><strong>Entre amis</strong><small>Se retrouver autour d’une activité, d’une découverte ou d’un moment convivial.</small></button>
-</div>
-</section>
-<section class="bv-panel active" id="explorer" aria-labelledby="explorer-title">
-<div class="bv-step"><span class="bv-stepnum" aria-hidden="true">02</span><div><h2 id="explorer-title">Les prochains événements</h2><p id="mode-copy">Tous les événements disponibles, à filtrer immédiatement.</p></div></div>
-<div class="bv-filters"><div class="bv-field"><label for="period">Quand ?</label><select id="period"><option value="">Toutes les dates</option><option value="today">Aujourd’hui</option><option value="tomorrow">Demain</option><option value="weekend">Ce week-end</option><option value="week">7 prochains jours</option><option value="month">30 prochains jours</option></select></div>
-<div class="bv-field"><label for="query">Un mot, une activité</label><input id="query" type="search" autocomplete="off" placeholder="Poterie, théâtre, forêt…"></div>
-<div class="bv-field"><label for="category">Type d’activité</label><select id="category"><option value="">Toutes les envies</option><option value="Culture et découvertes">Culture et découvertes</option><option value="Ateliers et créativité">Ateliers et créativité</option><option value="Nature et plein air">Nature et plein air</option><option value="Bien-être et détente">Bien-être et détente</option><option value="Jeux et convivialité">Jeux et convivialité</option><option value="Rencontres et participation">Rencontres et participation</option></select></div>
-<div class="bv-field"><label for="region">Région</label><select id="region"><option value="">Toute la Belgique</option><option value="Bruxelles">Bruxelles</option><option value="Wallonie">Wallonie</option><option value="Flandre">Flandre</option></select></div>
-</div>
-<p class="bv-note">Résultats issus du calendrier commun à Activikids, Cogito et Belveillance. Les événements s’affichent après validation et autorisation de publication.</p>
-<div class="bv-summary"><p id="count" role="status" aria-live="polite">Chargement du catalogue…</p><button id="reset" type="button">Effacer les filtres</button></div>
-<div class="bv-results" id="results" aria-label="Activités vérifiées correspondant à votre choix"></div>
-</section>
-<section class="bv-inspire" id="idees" hidden aria-labelledby="ideas-title">
-<h2 id="ideas-title">Quelques pistes pour se lancer</h2>
-<p id="ideas-intro">Une activité n’a pas besoin d’être spectaculaire pour faire du bien. Commencez par choisir votre manière de participer, et nous vous proposerons des idées adaptées.</p>
-<div class="bv-ideas" id="ideas-list" aria-live="polite"></div>
-</section>
-<section class="bv-discover" aria-label="D'autres façons de découvrir la Belgique">
-<article><h3>Envie d’une conférence ou d’une rencontre culturelle&nbsp;?</h3><p>Parcourez les événements culturels déjà publiés dans Cogito, avec leurs dates et leurs sources.</p><a href="../cogito/" data-bjt-action="section_open" data-bjt-key="cogito">Explorer Cogito →</a></article>
-<article><h3>Plutôt une visite sans date imposée&nbsp;?</h3><p>Un autre catalogue du site rassemble des lieux ouverts à la visite. Certaines sorties sont familiales&nbsp;: vérifiez le public et les conditions.</p><a href="../sorties-permanentes/">Explorer les lieux →</a></article>
-</section>
-<div class="bv-method"><p><strong>Comment les fiches sont-elles sélectionnées&nbsp;?</strong> Nous surveillons des lieux et organisateurs belges, mais les informations en préproduction ne sont pas affichées comme des sorties confirmées. Les prochaines fiches paraîtront avec leur source officielle et leur mode de participation vérifié. Pas de compte, pas de questionnaire envoyé à un serveur.</p><p><a href="../methodologie.html">Notre méthode</a> · <a href="../signaler.html">Proposer une activité ou signaler une erreur</a> · <a href="../confidentialite.html">Vie privée</a></p></div>
-</main>
-<footer><div class="footer-row"><div><strong>Belgique, je t’aime</strong><div class="small">Pensé et réalisé en Belgique par une femme. Gratuit et indépendant.</div></div><div class="footer-links"><a href="../">Accueil</a><a href="../a-propos.html">À propos</a><a href="../signaler.html">Signaler une erreur</a></div></div></footer>
-</div>
+:root{--green:#245748;--pale:#eaf0e6;--ink:#263c37;--muted:#65716d;--line:#d9e3dc}
+*{box-sizing:border-box}body{background:#f8f8f4;color:var(--ink)}button,input,select{font:inherit}
+.bv-wrap{max-width:1200px;margin:auto;padding:0 22px 75px}.bv-header{display:flex;align-items:center;justify-content:space-between;gap:15px;padding:20px 0;border-bottom:1px solid var(--line)}.bv-header a{color:var(--green)}
+.bv-brand{font-size:1.2rem;font-weight:850;text-decoration:none}.bv-nav{display:flex;gap:17px;flex-wrap:wrap;font-size:.9rem}.bv-hero{padding:28px 0 18px}.bv-label{font-size:.8rem;text-transform:uppercase;letter-spacing:.17em;color:var(--green);font-weight:900}.bv-hero h1{font:normal clamp(2.5rem,6vw,4.8rem)/1 Georgia,serif;letter-spacing:-.055em;margin:12px 0}.bv-hero p{margin:0;color:var(--muted);line-height:1.6;max-width:760px}
+.bv-layout{display:grid;grid-template-columns:270px minmax(0,1fr);gap:22px;align-items:start;margin-top:18px}
+.bv-filters{position:sticky;top:16px;background:white;border:1px solid var(--line);border-radius:20px;padding:21px;display:grid;gap:17px}.bv-filterhead{display:flex;justify-content:space-between;align-items:center;gap:8px}.bv-filters h2{font-size:1.18rem;margin:0}.bv-reset{background:none;color:var(--green);border:0;cursor:pointer;text-decoration:underline;font-size:.8rem}.bv-group{border:0;margin:0;padding:0;display:grid;gap:8px}.bv-group legend{font-weight:850;margin-bottom:9px;font-size:.91rem;color:var(--ink)}.bv-check{display:flex;align-items:center;gap:9px;cursor:pointer;font-size:.9rem;line-height:1.35}.bv-check input{accent-color:var(--green);width:18px;height:18px;flex:none}.bv-field{display:grid;gap:7px}.bv-field label{font-size:.88rem;font-weight:850}.bv-field input,.bv-field select{width:100%;min-width:0;border:1px solid #b6c9bf;border-radius:10px;padding:10px 12px;background:#fff;color:var(--ink)}.bv-line{border-top:1px solid var(--line)}
+.bv-resulthead{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;margin:0 0 12px}.bv-resulthead h2{font-size:1.2rem;margin:0}.bv-resulthead span{color:var(--muted);font-size:.88rem}.bv-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.bv-card{background:white;border:1px solid var(--line);border-radius:17px;padding:18px;display:flex;flex-direction:column;gap:9px;min-height:210px}.bv-card h3{font:normal 1.37rem/1.2 Georgia,serif;margin:0}.bv-card .bv-date{color:var(--green);font-size:.86rem;font-weight:900}.bv-card .bv-meta{color:var(--muted);font-size:.87rem;line-height:1.45}.bv-card .bv-tags{display:flex;gap:6px;flex-wrap:wrap}.bv-pill{background:var(--pale);border-radius:40px;padding:4px 9px;font-size:.73rem;color:var(--green)}.bv-card a{color:var(--green);font-weight:800;margin-top:auto}.bv-empty{padding:26px;background:white;border:1px dashed #a4b6a9;border-radius:16px;grid-column:1/-1}.bv-foot{color:var(--muted);font-size:.83rem;line-height:1.6;margin-top:22px}.bv-more{border:1px solid var(--green);border-radius:12px;padding:12px 25px;background:white;color:var(--green);font-weight:800;cursor:pointer;margin:20px auto;display:block}.bv-mobile{display:none}.bv-switch{background:var(--pale);color:var(--green);border:1px solid var(--line);border-radius:10px;padding:10px 15px;font-weight:800}
+@media(max-width:850px){.bv-layout{grid-template-columns:1fr}.bv-filters{position:static}.bv-mobile{display:block}.bv-filters.collapsed .bv-filterbody{display:none}.bv-nav{font-size:.8rem}.bv-hero{padding-top:20px}}@media(max-width:550px){.bv-list{grid-template-columns:1fr}.bv-wrap{padding-left:14px;padding-right:14px}.bv-header{align-items:flex-start;flex-direction:column}}
+</style></head>
+<body><div class="bv-wrap">
+<header class="bv-header"><a class="bv-brand" href="../">♥ Belgique, je t’aime <span style="font-weight:400">/ Belveillance</span></a><nav class="bv-nav"><a href="../activikids/">Activikids</a><a href="../cogito/">Cogito</a><a href="../lirabelge/">Lirabelge</a></nav></header>
+<main><section class="bv-hero"><span class="bv-label">L’agenda des adultes</span><h1>Qu’est-ce qu’on fait ?</h1><p>Des événements à découvrir immédiatement. Cochez ce qui vous plaît : les résultats changent au fur et à mesure, sans bouton « Rechercher ».</p></section>
+<div class="bv-layout">
+<aside class="bv-filters" id="filters"><div class="bv-filterhead"><h2>Filtrer les sorties</h2><button class="bv-reset" id="reset" type="button">Tout effacer</button><button class="bv-mobile bv-switch" type="button" id="toggle" aria-expanded="true">Filtres ▾</button></div><div class="bv-filterbody">
+<div class="bv-field"><label for="query">Je cherche…</label><input type="search" id="query" placeholder="Concert, poterie, littérature…"></div>
+<hr class="bv-line">
+<fieldset class="bv-group" id="modes"><legend>Avec qui ?</legend>
+<label class="bv-check"><input type="checkbox" value="solo_calme">En solo, au calme</label>
+<label class="bv-check"><input type="checkbox" value="solo_sociable">En solo, mais envie de sociabiliser</label>
+<label class="bv-check"><input type="checkbox" value="couple">En couple</label>
+<label class="bv-check"><input type="checkbox" value="amis">Entre amis</label>
+</fieldset><hr class="bv-line">
+<fieldset class="bv-group" id="dates"><legend>Quand ?</legend>
+<label class="bv-check"><input type="checkbox" value="today">Aujourd’hui</label>
+<label class="bv-check"><input type="checkbox" value="tomorrow">Demain</label>
+<label class="bv-check"><input type="checkbox" value="weekend">Ce week-end</label>
+<label class="bv-check"><input type="checkbox" value="week">7 prochains jours</label>
+<label class="bv-check"><input type="checkbox" value="month">30 prochains jours</label>
+</fieldset><hr class="bv-line">
+<fieldset class="bv-group" id="regions"><legend>Où ?</legend>
+<label class="bv-check"><input type="checkbox" value="Bruxelles">Bruxelles</label>
+<label class="bv-check"><input type="checkbox" value="Wallonie">Wallonie</label>
+<label class="bv-check"><input type="checkbox" value="Flandre">Flandre</label>
+<label class="bv-check"><input type="checkbox" value="En ligne">En ligne</label>
+</fieldset><hr class="bv-line">
+<div class="bv-field"><label for="city">Ville ou commune</label><input id="city" placeholder="Ex. Auderghem"></div>
+<fieldset class="bv-group" id="categories"><legend>Mes envies</legend>
+<label class="bv-check"><input type="checkbox" value="culture">Culture, expositions, spectacles</label>
+<label class="bv-check"><input type="checkbox" value="conference">Conférences et rencontres</label>
+<label class="bv-check"><input type="checkbox" value="atelier">Ateliers et créativité</label>
+<label class="bv-check"><input type="checkbox" value="nature">Nature et balades</label>
+<label class="bv-check"><input type="checkbox" value="jeux">Jeux et convivialité</label>
+</fieldset></div></aside>
+<section aria-label="Agenda et résultats"><div class="bv-resulthead"><h2>Les prochains événements</h2><span id="count" role="status" aria-live="polite">Chargement de l’agenda…</span></div><div id="results" class="bv-list"></div><button class="bv-more" type="button" id="more" hidden>Afficher plus d’événements</button><p class="bv-foot" id="source-note">Même réseau de sources que Cogito et Activikids. Les dates, disponibilités et tarifs sont à confirmer sur le site de l’organisateur.</p></section>
+</div></main><footer class="bv-foot">Pensé et réalisé en Belgique par une femme · Gratuit et indépendant · <a href="../signaler.html">Signaler une erreur</a></footer></div>
 <script>
-(function(){
-"use strict";
-const $=id=>document.getElementById(id);
-const MODES=["solo_calme","solo_sociable","couple","amis"];
-const ideas={
-  solo_calme:[
-    ["Visiter une exposition à son rythme","Culture et découvertes","Une heure dans un musée ou une galerie, sans visite guidée obligatoire."],
-    ["S’installer dans un café-librairie","Culture et découvertes","Lire, feuilleter, prendre une boisson et simplement profiter du lieu."],
-    ["Prendre l’air dans un jardin","Nature et plein air","Une promenade, un banc, un carnet ou un moment pour ne rien faire."],
-    ["Découvrir un espace de détente","Bien-être et détente","Une séance de relaxation ou un moment dans un espace thermal, selon les conditions."],
-    ["Tester un atelier créatif individuel","Ateliers et créativité","Dessiner, modeler, écrire ou apprendre un geste à son rythme."],
-    ["Choisir une séance de cinéma","Culture et découvertes","Une séance qui vous intéresse, sans obligation d’être accompagné·e."]
-  ],
-  solo_sociable:[
-    ["Participer à un café-jeux","Jeux et convivialité","Chercher une table ouverte ou une animation où l’on peut venir seul·e."],
-    ["Essayer une chorale ou un atelier collectif","Rencontres et participation","Faire quelque chose ensemble, avec un cadre clair et sans conversation forcée."],
-    ["Rejoindre un atelier de poterie","Ateliers et créativité","Apprendre un geste en groupe, chacun·e avançant à son rythme."],
-    ["Découvrir un café littéraire","Culture et découvertes","Écouter et, si l’envie vient, prendre part à une discussion autour des livres."],
-    ["Participer à un Repair Café","Rencontres et participation","Donner un coup de main ou apprendre à réparer en compagnie d’autres personnes."],
-    ["Faire une balade en groupe","Nature et plein air","Choisir une sortie collective où l’on partage le parcours sans obligation de parler."]
-  ],
-  couple:[
-    ["Découvrir un atelier à deux","Ateliers et créativité","Cuisine, céramique, photographie : essayer quelque chose de nouveau ensemble."],
-    ["Prendre une pause bien-être","Bien-être et détente","Comparer les espaces qui accueillent deux personnes et vérifier les conditions."],
-    ["Visiter un lieu culturel","Culture et découvertes","Une exposition, un château, une visite guidée ou une découverte inattendue."],
-    ["Marcher dans un parc ou un domaine","Nature et plein air","Prendre le temps de se retrouver, même pour une courte promenade."],
-    ["Tester un café-jeux à deux","Jeux et convivialité","Choisir un jeu coopératif ou faire découvrir un classique à l’autre."],
-    ["Aller voir un spectacle","Culture et découvertes","Théâtre, danse, concert ou cinéma : choisir selon vos goûts à tous les deux."]
-  ],
-  amis:[
-    ["Se retrouver autour d’un jeu","Jeux et convivialité","Soirée jeux de société, quiz ou jeu de piste, selon l’ambiance du groupe."],
-    ["Organiser un atelier créatif","Ateliers et créativité","Céramique, dessin, cuisine ou artisanat à partager avec des proches."],
-    ["Découvrir une adresse gourmande","Jeux et convivialité","Une dégustation ou une pause conviviale, après vérification du programme."],
-    ["Partir en balade","Nature et plein air","Un itinéraire adapté au groupe, avec un arrêt agréable en chemin."],
-    ["Choisir une sortie culturelle","Culture et découvertes","Exposition, concert, théâtre ou événement ponctuel à découvrir ensemble."],
-    ["Tester une expérience détente","Bien-être et détente","Un spa ou un rituel collectif, si les conditions d’accueil le permettent."]
-  ]
-};
-let selection="",catalogue=[],state="loading";
-function fold(s){return String(s||"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase().trim()}
-function el(tag,text,cls){const x=document.createElement(tag);if(text!==undefined)x.textContent=text;if(cls)x.className=cls;return x}
-function validUrl(value){try{const x=new URL(value);return x.protocol==="https:"&&x.hostname&& !x.username&&!x.password?x.href:null}catch{return null}}
-function getApproved(items){return items.filter(x=>x&&typeof x==="object"&&x.publication_status==="Autorisé"&&x.verified===true&&Array.isArray(x.modes)&&x.modes.some(v=>MODES.includes(v))&&x.title&&validUrl(x.url))}
-function card(item){const a=el("article",undefined,"bv-card");a.append(el("span",item.category||"Activité","eyeline"),el("h3",item.title));const meta=[item.commune,item.region,item.date].filter(Boolean).join(" · ");if(meta)a.append(el("p",meta,"meta"));if(item.description)a.append(el("p",item.description));const tags=el("div",undefined,"tag-row");if(item.price_label)tags.append(el("span",item.price_label,"bv-chip"));if(item.format_label)tags.append(el("span",item.format_label,"bv-chip"));if(tags.children.length)a.append(tags);const link=el("a","Consulter la source officielle ↗");link.href=validUrl(item.url);link.target="_blank";link.rel="noopener noreferrer";a.append(link);return a}
-function drawIdeas(){const root=$("ideas-list");root.replaceChildren();if(!selection){$("ideas-intro").textContent="Une activité n’a pas besoin d’être spectaculaire pour faire du bien. Choisissez d’abord l’un des quatre modes ci-dessus.";return}
- const q=fold($("query").value),cat=$("category").value;
- const filtered=ideas[selection].filter(x=>(!cat||x[1]===cat)&&(!q||fold(x.join(" ")).includes(q)));
- const names={solo_calme:"pour profiter de votre temps en solo",solo_sociable:"pour venir seul·e et participer avec d’autres",couple:"à essayer à deux",amis:"à partager entre amis"};
- $("ideas-intro").textContent="Des inspirations "+names[selection]+". Ce sont des types d’activités, pas des séances confirmées ni des offres de réservation.";
- if(!filtered.length){root.append(el("p","Aucune idée ne correspond à ces critères. Essayez une autre catégorie.","bv-empty"));return}
- filtered.forEach((idea,i)=>{const box=el("article",undefined,"bv-idea");box.append(el("span",String(i+1).padStart(2,"0"),"index"),el("h3",idea[0]),el("p",idea[2]));root.append(box)})
-}
-function update(){
- const q=fold($("query").value),category=$("category").value,region=$("region").value;
- const period=$("period").value;const today=new Date().toLocaleDateString("sv-SE",{timeZone:"Europe/Brussels"});const dateOK=x=>{if(!x.date)return true;const delta=Math.round((Date.parse(x.date+"T12:00:00")-Date.parse(today+"T12:00:00"))/86400000);if(delta<0)return false;if(period==="today")return delta===0;if(period==="tomorrow")return delta===1;if(period==="week")return delta<7;if(period==="month")return delta<30;if(period==="weekend"){const dow=new Date(today+"T12:00:00").getDay();const saturday=(6-dow+7)%7;return delta===saturday||delta===saturday+1;}return true};const filtered=catalogue.filter(x=>(!selection||x.modes.includes(selection))&&dateOK(x)&&(!q||fold([x.title,x.description,x.commune,x.category].join(" ")).includes(q))&&(!category||x.category===category)&&(!region||x.region===region));
- $("results").replaceChildren();
- filtered.slice(0,60).forEach(x=>$("results").append(card(x)));
- const label=filtered.length?filtered.length+" événement"+(filtered.length>1?"s":"")+" correspondant"+(filtered.length>1?"s":""):state==="error"?"Le catalogue ne peut pas être chargé pour le moment.":"Aucune fiche vérifiée publiée pour cette sélection pour le moment.";
- $("count").textContent=label;
- if(filtered.length===0){const empty=el("div",undefined,"bv-empty");empty.append(el("strong","Aucun événement pour ces filtres."),el("span","Le calendrier partagé ne contient pas encore de fiche Belveillance autorisée correspondant à votre recherche. Les événements validés apparaîtront ici automatiquement."));$("results").append(empty)}
- drawIdeas()
-}
-function choose(mode){if(!MODES.includes(mode))return;selection=selection===mode?"":mode;document.querySelectorAll("[data-mode]").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.mode===selection)));$("explorer").classList.add("active");$("mode-copy").textContent=selection?({solo_calme:"Privilégions les expériences sans sociabilisation attendue.",solo_sociable:"Cherchons des activités où venir seul·e est naturel.",couple:"Cherchons des idées à vivre à deux.",amis:"Cherchons des expériences à partager en groupe."})[mode]:"Tous les événements disponibles, à filtrer immédiatement.";update()}
-document.querySelectorAll("[data-mode]").forEach(b=>b.addEventListener("click",()=>choose(b.dataset.mode)));
-["query"].forEach(id=>$(id).addEventListener("input",update));["category","region","period"].forEach(id=>$(id).addEventListener("change",update));
-$("reset").addEventListener("click",()=>{$("query").value="";$("category").value="";$("region").value="";$("period").value="";selection="";document.querySelectorAll("[data-mode]").forEach(b=>b.setAttribute("aria-pressed","false"));update();});
-fetch("./catalogue.json",{cache:"no-store",credentials:"omit"}).then(r=>{if(!r.ok)throw Error("not found");return r.json()}).then(d=>{if(d.schema_version!==1||!Array.isArray(d.items))throw Error("invalid catalogue");catalogue=getApproved(d.items);state="ready";update()}).catch(()=>{state="error";update()});
+(()=>{"use strict";
+const $=id=>document.getElementById(id), fold=s=>String(s||"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase();
+let events=[],shown=36,failed=0;
+const getChecked=id=>[...$(id).querySelectorAll('input:checked')].map(e=>e.value);
+const dateBE=()=>new Intl.DateTimeFormat('en-CA',{timeZone:'Europe/Brussels',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date());
+const daydiff=(a,b)=>Math.round((Date.parse(a+'T12:00:00')-Date.parse(b+'T12:00:00'))/86400000);
+function periodMatch(d,period){const today=dateBE(),delta=daydiff(d,today);if(delta<0)return false;let dow=new Date(today+'T12:00:00').getDay(),sat=(6-dow+7)%7;return period==='today'?delta===0:period==='tomorrow'?delta===1:period==='weekend'?(delta===sat||delta===sat+1):period==='week'?delta<7:period==='month'?delta<30:true}
+function regionGuess(e){let s=fold([e.city,e.location,e.region].join(' '));if(/online|en ligne|webinar|virtuel/.test(s)||e.mode==='En ligne')return 'En ligne';if(/brux|ixelles|etterbeek|auderghem|woluwe|uccle|schaerbeek|molenbeek|anderlecht|jette|forest|saint-gilles/.test(s))return 'Bruxelles';if(/wallon|liege|liège|namur|mons|charleroi|wavre|tournai|arlon|nivelles|ottignies|louva(in|in-la-neuve)/.test(s))return 'Wallonie';if(/flandr|vlaand|antwerp|antwerpen|gent|gand|brug|leuven|hasselt|mechelen|kortrijk/.test(s))return 'Flandre';return e.region||''}
+function familyOf(e){let x=fold([e.title,e.category,e.subject,e.format].join(' '));if(/conference|débat|debat|colloque|seminaire|litteraire|littéraire|philosophi|rencontre/.test(x))return 'conference';if(/atelier|poterie|ceramique|créativ|dessin|peinture/.test(x))return 'atelier';if(/randon|balade|nature|jardin|foret|forêt/.test(x))return 'nature';if(/jeux|quiz|soirée|soiree|dîner|diner/.test(x))return 'jeux';return 'culture'}
+function normalizeBel(x){return {...x,city:x.commune,source:'Belveillance',link:x.url,datestr:x.date,kind:familyOf(x),modes:x.modes||[]}}
+function normalizeCog(x){return {id:'cog:'+x.id,title:x.title,date:x.start||x.date,city:x.city||x.location,location:x.location,region:regionGuess(x),category:x.category,description:x.description||x.subject||'',link:x.registration_url||x.ticketing_url||x.official_url,price_label:x.price_label,source:'Cogito',kind:familyOf(x),modes:[],dateEnd:x.end||''}}
+function text(tag,value,cls){let e=document.createElement(tag);e.textContent=value||'';if(cls)e.className=cls;return e}
+function safeLink(url){try{let u=new URL(url,location.href);return /^https?:$/.test(u.protocol)?u.href:null}catch{return null}}
+function card(e){let article=text('article','','bv-card'),date=new Date(e.date+'T12:00:00');article.append(text('div',new Intl.DateTimeFormat('fr-BE',{dateStyle:'full'}).format(date),'bv-date'),text('h3',e.title));article.append(text('div',[e.city||'Lieu à préciser',e.category||'Sortie culturelle'].filter(Boolean).join(' · '),'bv-meta'));if(e.description)article.append(text('div',e.description.length>150?e.description.slice(0,147)+'…':e.description,'bv-meta'));let tags=text('div','','bv-tags');if(e.price_label)tags.append(text('span',e.price_label,'bv-pill'));tags.append(text('span',e.source==='Cogito'?'Agenda Cogito':'Agenda Belveillance','bv-pill'));article.append(tags);let href=safeLink(e.link);if(href){let a=text('a','Voir l’événement ↗');a.href=href;a.rel='noopener noreferrer';a.target='_blank';article.append(a)}return article}
+function render(){const q=fold($('query').value),city=fold($('city').value),modes=getChecked('modes'),dates=getChecked('dates'),regions=getChecked('regions'),cats=getChecked('categories');let selected=events.filter(e=>{if(!e.date||daydiff(e.date,dateBE())<0)return false;if(q&&!fold([e.title,e.description,e.category,e.city].join(' ')).includes(q))return false;if(city&&!fold(e.city).includes(city))return false;if(dates.length&&!dates.some(d=>periodMatch(e.date,d)))return false;if(regions.length&&!regions.includes(regionGuess(e)))return false;if(cats.length&&!cats.includes(e.kind))return false;if(modes.length&&!modes.some(m=>e.modes.includes(m)))return false;return true});selected.sort((a,b)=>a.date.localeCompare(b.date)||a.title.localeCompare(b.title,'fr'));$('count').textContent=selected.length+' événement'+(selected.length>1?'s':'');$('results').replaceChildren(...selected.slice(0,shown).map(card));$('more').hidden=selected.length<=shown;if(!selected.length){let msg=failed?'Le catalogue ne répond pas pour le moment. Réessayez plus tard.':'Aucun événement pour ces critères. Décochez un filtre pour élargir la recherche.';$('results').append(text('div',msg,'bv-empty'))}}
+document.querySelectorAll('input').forEach(e=>e.addEventListener('input',()=>{shown=36;render()}));$('reset').addEventListener('click',()=>{document.querySelectorAll('input').forEach(e=>{if(e.type==='checkbox')e.checked=false;else e.value=''});shown=36;render()});$('more').addEventListener('click',()=>{shown+=36;render()});$('toggle').addEventListener('click',()=>{let v=$('filters').classList.toggle('collapsed');$('toggle').setAttribute('aria-expanded',String(!v))});
+async function load(){let own=[];try{let response=await fetch('./catalogue.json',{cache:'no-store'});if(!response.ok)throw Error('catalogue');let d=await response.json();own=(d.items||[]).filter(x=>x.verified===true&&x.publication_status==='Autorisé'&&x.date&&x.title).map(normalizeBel)}catch{failed++}
+let cultural=[];try{let response=await fetch('../cogito/index.html',{cache:'no-store'});if(!response.ok)throw Error('cogito');let html=await response.text();let match=html.match(/<script[^>]*id=["']cogito-data["'][^>]*>([\s\S]*?)<\/script>/);if(!match)throw Error('data');let d=JSON.parse(match[1]);cultural=(d.events||[]).filter(x=>x.title&&(x.start||x.date)&&safeLink(x.official_url)).map(normalizeCog)}catch{failed++}
+let known=new Set();events=[...own,...cultural].filter(e=>{let key=fold(e.title)+'|'+e.date+'|'+fold(e.city);if(known.has(key))return false;known.add(key);return true});$('source-note').textContent='Événements publiés dans les agendas Belveillance et Cogito, issus du réseau commun de veille. Les dates, tarifs et disponibilités restent à vérifier auprès de chaque organisateur.';render()}
+load();
 })();
-</script>
-</body>
-</html>
+</script></body></html>
