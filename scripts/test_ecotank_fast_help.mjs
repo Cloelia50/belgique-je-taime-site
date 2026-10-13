@@ -91,28 +91,32 @@ await ready(quick);
 quick.click("[data-entry-fast-help]");
 assert.match(quick.html("entryDifficultHost"), /Commencer par une aide humaine/, "Le sujet ne doit pas fuir vers le parcours suivant");
 
-const journeys = [
-  ["sans droits ni documents", [["q_entry_situation", "start_from_zero"]], true],
-  ["situation inconnue", [["q_entry_situation", "other_unknown"]], true],
-  ["séjour à clarifier", [["q_entry_situation", "new_arrival_or_residence"]], true],
-  ["statut international", [["q_entry_situation", "international_special"]], true],
-  ["salarié avec bases administratives perdues", [["q_entry_situation", "employee"], ["q_foundations_ok", "no_or_unknown"]], true],
-  ["étudiant avec difficultés administratives", [["q_entry_situation", "student"], ["q_foundations_ok", "some_problems"]], true],
-  ["salarié sans difficultés déclarées", [["q_entry_situation", "employee"], ["q_foundations_ok", "yes"]], false],
-  ["allocation existante sans difficultés déclarées", [["q_entry_situation", "replacement_income"], ["q_replacement_income_type", "unemployment"]], false]
-];
-for (const [name, answers, expectHelp] of journeys) {
-  const s = session();
-  await ready(s);
-  for (const [question, option] of answers) s.choose(question, option);
-  const destination = s.html("entryDestinationHost");
-  assert.ok(destination, name + " : aucune orientation");
-  const available = destination.includes("data-entry-admin");
-  assert.equal(available, expectHelp, name + " : parcours ordinaire modifié ou aide inaccessible");
-  if (available) {
-    s.click("[data-entry-admin]");
-    assert.ok(hasHelp(s.html("entryDifficultHost")), name + " : pas de conseils");
-  }
+// Depuis octobre 2026, l'écran de départ propose des sujets, et non plus
+// l'ancien questionnaire q_entry_situation. Tester le parcours réellement visible.
+const general = session();
+await ready(general);
+const choices = general.html("entryRouterHost");
+for (const label of ["Primes, chèques et avantages", "Gérer mon budget et mes dépenses",
+                    "Travail, emploi et formation", "Logement et vie quotidienne",
+                    "Papiers et démarches", "Je rencontre une difficulté urgente"]) {
+  assert.ok(choices.includes(label), "Sujet absent de l'accueil : " + label);
+}
+general.click("[data-general-group]", { generalGroup: "administratif" });
+assert.match(general.html("entryRouterHost"), /Qu’aimeriez-vous examiner plus précisément/);
+general.click("[data-general-flow-back]");
+assert.match(general.html("entryRouterHost"), /Comment pouvons-nous vous faire économiser/);
+const emergency = session();
+await ready(emergency);
+emergency.click("[data-entry-fast-help]");
+assert.ok(hasHelp(emergency.html("entryDifficultHost")), "L'aide immédiate est inaccessible");
+emergency.click("[data-help-topic]", { helpTopic: "housing" });
+assert.match(emergency.html("entryDifficultHost"), /logement/i);
+// Les destinations administratives anciennes restent présentes dans les données,
+// mais elles ne sont pas décrites comme le parcours principal actif.
+const entryChoices = profile.entry_router?.questions?.find(q => q.id === "q_entry_situation")?.options || [];
+for (const id of ["start_from_zero", "other_unknown", "new_arrival_or_residence",
+                  "international_special", "employee", "student", "replacement_income"]) {
+  assert(entryChoices.some(option => option.id === id), "Orientation historique perdue : " + id);
 }
 
 // Chaque identifiant de source des premières pistes existe dans le catalogue officiel.
