@@ -381,7 +381,7 @@ function dayHeading(d){
 function card(e){
  const k=KINDS[e.kind]||KINDS.culture,article=text('article','','bv-card k-'+e.kind);
  const top=text('div','','bv-cardtop'),bubble=text('span','','bv-bubble');bubble.append(icon(k.icon));top.append(bubble,text('span',k.label,'bv-kind'));article.append(top);
- if(e.time){const t=text('span','','bv-time');t.append(icon('i-clock'),document.createTextNode(e.time));article.append(t)}
+ if(e.time||!e.date){const t=text('span','','bv-time');t.append(icon('i-clock'),document.createTextNode(e.time||e.availability||'Horaires à consulter'));article.append(t)}
  article.append(text('h4',e.title));
  const meta=text('div','','bv-meta');meta.append(icon('i-pin'),text('span',[e.city||'Lieu à préciser',e.category&&fold(e.category)!=='autres savoirs'?e.category:''].filter(Boolean).join(' · ')));article.append(meta);
  article.append(text('p',synopsis(e),'bv-synopsis'));
@@ -397,8 +397,8 @@ function card(e){
 function isCogitoOnly(e){const x=fold([e.title,e.format].join(' '));return /\bconference(s)?\b|\bcolloque(s)?\b|\bseminaire(s)?\b|\bwebinaire(s)?\b|\bdebat(s)?\b|cine[\s-]?debat|cinema[\s-]?debat|\bpoesie\b|\bpoetique(s)?\b|\bpoete(s)?\b|slam poetique|table ronde|\bsymposium\b/.test(x)}
 function filtered(){
  const q=fold($('query').value),city=fold($('city').value),modes=getChecked('modes'),dates=getChecked('dates'),regions=getChecked('regions'),cats=getChecked('categories'),onlyFree=getChecked('budget').includes('free');
- const selected=events.filter(e=>{if(isCogitoOnly(e))return false;if(!e.date||!(daydiff(e.date,dateBE())>=0))return false;if(q&&!fold([e.title,e.description,e.category,e.city].join(' ')).includes(q))return false;if(city&&!fold(e.city).includes(city))return false;if(dates.length&&!dates.some(d=>periodMatch(e.date,d)))return false;if(regions.length&&!regions.includes(regionGuess(e)))return false;if(cats.length&&!cats.includes(e.kind))return false;if(modes.length&&Array.isArray(e.modes)&&e.modes.length&&!modes.some(m=>e.modes.includes(m)))return false;if(onlyFree&&!e.free)return false;return true});
- selected.sort((a,b)=>a.date.localeCompare(b.date)||(a.time||'').localeCompare(b.time||'')||a.title.localeCompare(b.title,'fr'));return selected}
+ const selected=events.filter(e=>{if(isCogitoOnly(e))return false;if(e.date&&daydiff(e.date,dateBE())<0)return false;if(!e.date&&dates.length)return false;if(q&&!fold([e.title,e.description,e.category,e.city].join(' ')).includes(q))return false;if(city&&!fold(e.city).includes(city))return false;if(dates.length&&!dates.some(d=>periodMatch(e.date,d)))return false;if(regions.length&&!regions.includes(regionGuess(e)))return false;if(cats.length&&!cats.includes(e.kind))return false;if(modes.length&&Array.isArray(e.modes)&&e.modes.length&&!modes.some(m=>e.modes.includes(m)))return false;if(onlyFree&&!e.free)return false;return true});
+ selected.sort((a,b)=>(a.date||'9999-12-31').localeCompare(b.date||'9999-12-31')||(a.time||'').localeCompare(b.time||'')||a.title.localeCompare(b.title,'fr'));return selected}
 function emptyState(msg){
  const box=text('div','','bv-empty');
  box.innerHTML='<svg viewBox="0 0 120 90" fill="none" aria-hidden="true"><circle cx="60" cy="46" r="34" fill="#fff0c4"/><circle cx="48" cy="40" r="3.4" fill="#8a5d00"/><circle cx="72" cy="40" r="3.4" fill="#8a5d00"/><path d="M47 62c8-7 18-7 26 0" stroke="#8a5d00" stroke-width="4" stroke-linecap="round"/><path d="M96 14l3 8 8 3-8 3-3 8-3-8-8-3 8-3z" fill="#ee7b5f"/><path d="M16 24l2 6 6 2-6 2-2 6-2-6-6-2 6-2z" fill="#8d6bb5"/></svg>';
@@ -409,7 +409,7 @@ function render(){
  $('count').textContent=selected.length+' sortie'+(selected.length>1?'s':'')+' à découvrir';
  const nodes=[],spot=$('results').querySelector('.bv-spot');if(spot&&!spot.hidden)nodes.push(spot);
  let lastDay='';
- for(const e of selected.slice(0,shown)){if(e.date!==lastDay){nodes.push(dayHeading(e.date));lastDay=e.date}nodes.push(card(e))}
+ for(const e of selected.slice(0,shown)){if(e.date!==lastDay){nodes.push(e.date?dayHeading(e.date):text('h3','Activités permanentes ou sur réservation','bv-day'));lastDay=e.date}nodes.push(card(e))}
  if(!selected.length){const msg=failed?'Réessayez dans quelques instants.':'Décochez quelques cases ou cliquez sur « Tout effacer » pour retrouver toutes les sorties.';nodes.push(emptyState(msg))}
  $('results').replaceChildren(...nodes);$('more').hidden=selected.length<=shown}
 /* Surprise */
@@ -436,7 +436,7 @@ $('more').addEventListener('click',()=>{shown+=36;render()});
 $('surprise').addEventListener('click',spotlight);
 $('toggle').addEventListener('click',()=>{const c=$('filters').classList.toggle('collapsed');$('toggle').setAttribute('aria-expanded',String(!c))});
 let embedded={a:[],b:[]};
-async function load(){let own=[],ownOk=true;try{let response=await fetch('./catalogue.json',{cache:'no-store'});if(!response.ok)throw Error('catalogue');let d=await response.json();own=(d.items||[]).filter(x=>x.verified===true&&x.publication_status==='Autorisé'&&x.date&&x.title).map(normalizeBel)}catch{failed++;ownOk=false}
+async function load(){let own=[],ownOk=true;try{let response=await fetch('./catalogue.json',{cache:'no-store'});if(!response.ok)throw Error('catalogue');let d=await response.json();own=(d.items||[]) .filter(x=>x.verified===true&&x.publication_status==='Autorisé'&&x.title).map(normalizeBel)}catch{failed++;ownOk=false}
 let cultural=[];try{let response=await fetch('../cogito/index.html',{cache:'no-store'});if(!response.ok)throw Error('cogito');let html=await response.text();let match=html.match(/<script[^>]*id=["']cogito-data["'][^>]*>([\s\S]*?)<\/script>/);if(!match)throw Error('data');let d=JSON.parse(match[1]);cultural=(d.events||[]).filter(x=>x.title&&(x.start||x.date)&&safeLink(x.official_url)).map(normalizeCog)}catch{failed++}
 if(!cultural.length&&events.length){render();return}
 if(!ownOk)own=embedded.a;
