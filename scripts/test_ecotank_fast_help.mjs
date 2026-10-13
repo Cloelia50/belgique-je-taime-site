@@ -64,7 +64,7 @@ async function ready(session) {
   for (let i = 0; i < 8; i++) await Promise.resolve();
 }
 function hasHelp(html) {
-  return html.includes("Aucune autre réponse obligatoire") || html.includes("Sans questionnaire");
+  return html.includes("Aucune autre réponse obligatoire") || html.includes("Sans questionnaire") || (html.includes("Commencer par une aide humaine") && html.includes("data-help-topic"));
 }
 
 const quick = session();
