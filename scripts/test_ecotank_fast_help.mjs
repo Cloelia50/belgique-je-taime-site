@@ -26,7 +26,7 @@ function session() {
     getElementById: id => elements.get(id) ?? null,
     createElement: () => element(),
     querySelectorAll: () => [...elements.values()].filter(item => item.className === "simple-screen"),
-    addEventListener: (type, handler) => { listeners[type] = handler; }
+    addEventListener: (type, handler) => { (listeners[type] ||= []).push(handler); }
   };
   elements.set("simpleHome", element("simpleHome"));
   const windowListeners = {};
@@ -46,13 +46,13 @@ function session() {
       return event;
     },
     click(selector, dataset = {}) {
-      listeners.click({ target: { closest: current => current === selector ? { dataset } : null } });
+      for (const handler of listeners.click || []) handler({ target: { closest: current => current === selector ? { dataset } : null }, preventDefault() {}, stopPropagation() {} });
     },
     choose(question, option) {
       this.click("[data-entry-option]", { entryQuestion: question, entryOption: option });
     },
     change(selector, value) {
-      listeners.change({ target: { value, closest: current => current === selector ? { value } : null } });
+      for (const handler of listeners.change || []) handler({ target: { value, closest: current => current === selector ? { value } : null }, preventDefault() {}, stopPropagation() {} });
     },
     html(id) {
       return elements.get(id)?.innerHTML ?? "";
