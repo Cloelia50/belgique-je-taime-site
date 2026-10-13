@@ -72,10 +72,13 @@ await ready(quick);
 assert.match(quick.html("entryRouterHost"), /data-entry-fast-help/);
 assert.match(quick.html("entryRouterHost"), /data-entry-access-help/);
 assert.match(quick.html("entryRouterHost"), /Je suis bloqué·e dans une démarche/);
+const initialHtml = quick.html("entryRouterHost");
+const firstChoice = initialHtml.indexOf("data-general-group") >= 0
+  ? initialHtml.indexOf("data-general-group")
+  : initialHtml.indexOf("data-entry-option");
 assert.ok(
-  quick.html("entryRouterHost").indexOf('data-entry-fast-help') <
-    quick.html("entryRouterHost").indexOf('data-entry-option'),
-  "L'aide urgente doit être visible AVANT la liste de situations, même sur petit écran"
+  firstChoice >= 0 && initialHtml.indexOf("data-entry-fast-help") < firstChoice,
+  "L'aide urgente doit être visible AVANT les choix, même sur petit écran"
 );
 quick.click("[data-entry-fast-help]");
 assert.ok(hasHelp(quick.html("entryDifficultHost")), "Premières pistes accessibles sans formulaire");
