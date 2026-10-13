@@ -1,6 +1,6 @@
 # Belgique, je t’aime
 
-Site public unique avec **quatre volets présents dans le dépôt** : **EcoTank**, **Activikids**, **Cogito** et **Lirabelge**. La cible de six moteurs inclut aussi **Belveillance** et **Volet 6**, dont les pages publiques dédiées ne sont pas encore déployées.
+Site public unique avec **quatre volets présents dans le dépôt** : **EcoTank**, **Activikids**, **Cogito** et **Lirabelge**. **Belveillance** dispose maintenant de sa page publique avec quatre parcours adultes et un catalogue qui ne publie que les fiches vérifiées. **Volet 6** reste à déployer.
 
 - `/ecotank/` : moteur de droits, primes, aides et économies possibles en Belgique.
 - `/activikids/` : agenda familial et sorties pour enfants.
