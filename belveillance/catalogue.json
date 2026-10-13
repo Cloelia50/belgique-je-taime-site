@@ -4,6 +4,39 @@
   "source": "BJT_CALENDRIER_OFFICIEL",
   "updated_at": "2026-10-13",
   "publication_policy": "Only individually verified and publication-authorized entries with an explicitly confirmed participation mode.",
-  "status": "catalogue_initial_non_verifie",
-  "items": []
+  "status": "fiches_validees_disponibles",
+  "items": [
+    {
+      "id": "EVT-X-8F3B0A82AF62A2:2026-12-24",
+      "title": "Lily’s — Christmas Eve",
+      "commune": "Bruxelles",
+      "region": "Bruxelles",
+      "category": "Culture et découvertes",
+      "date": "2026-12-24",
+      "modes": [
+        "couple",
+        "amis"
+      ],
+      "price_label": "",
+      "url": "https://www.lilys.be/fr/agenda/",
+      "verified": true,
+      "publication_status": "Autorisé"
+    },
+    {
+      "id": "EVT-X-8AAE33C659EE9F:2026-12-31",
+      "title": "Lily’s — New Year's Eve",
+      "commune": "Bruxelles",
+      "region": "Bruxelles",
+      "category": "Culture et découvertes",
+      "date": "2026-12-31",
+      "modes": [
+        "couple",
+        "amis"
+      ],
+      "price_label": "",
+      "url": "https://www.lilys.be/fr/agenda/",
+      "verified": true,
+      "publication_status": "Autorisé"
+    }
+  ]
 }
