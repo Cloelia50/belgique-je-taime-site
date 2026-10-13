@@ -68,7 +68,7 @@ function text(tag,value,cls){let e=document.createElement(tag);e.textContent=val
 function safeLink(url){try{let u=new URL(url,location.href);return /^https?:$/.test(u.protocol)?u.href:null}catch{return null}}
 const MODE_LABELS={solo_calme:"En solo, au calme",solo_sociable:"En solo, envie de sociabiliser",couple:"En couple",amis:"Entre amis"};
 function synopsis(e){
- let raw=String(e.description||'').replace(/<[^>]*>/g,' ').replace(/\\s+/g,' ').trim();
+ let raw=String(e.description||'').replace(/<[^>]*>/g,' ').replace(/\s+/g,' ').trim();
  if(raw&&raw!==e.category&&raw!==e.title&&raw.length>20)return raw.slice(0,170)+(raw.length>170?'…':'');
  const t=fold([e.title,e.category,e.subject,e.format].join(' ')),theme=String(e.subject||e.category||'').trim();
  if(/atelier|initiation|stage|workshop/.test(t))return "Un atelier pour découvrir une pratique et participer à une activité créative ou collective.";
