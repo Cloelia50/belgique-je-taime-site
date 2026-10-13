@@ -70,6 +70,8 @@ function hasHelp(html) {
 const quick = session();
 await ready(quick);
 assert.match(quick.html("entryRouterHost"), /data-entry-fast-help/);
+assert.match(quick.html("entryRouterHost"), /data-entry-access-help/);
+assert.match(quick.html("entryRouterHost"), /Je suis bloqué·e dans une démarche/);
 assert.ok(
   quick.html("entryRouterHost").indexOf('data-entry-fast-help') <
     quick.html("entryRouterHost").indexOf('data-entry-option'),
