@@ -1,5 +1,6 @@
 name: Contrôles SEO — dépôt public (sans quota privé)
 on:
+  workflow_dispatch:
   pull_request:
   push:
     branches: [main]
@@ -8,6 +9,8 @@ on:
       - 'guides/**'
       - 'evenements/**'
       - 'sorties-permanentes/**'
+      - 'ecotank/entry-router.js'
+      - 'ecotank/admin-profile.json'
       - 'index.html'
       - 'sitemap.xml'
       - '.github/workflows/public-seo-quality.yml'
