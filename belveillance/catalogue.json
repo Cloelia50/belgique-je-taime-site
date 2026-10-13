@@ -13,6 +13,7 @@
       "region": "Bruxelles",
       "category": "Culture et découvertes",
       "date": "2026-12-24",
+      "availability": "Date annoncée",
       "modes": [
         "couple",
         "amis"
@@ -29,12 +30,29 @@
       "region": "Bruxelles",
       "category": "Culture et découvertes",
       "date": "2026-12-31",
+      "availability": "Date annoncée",
       "modes": [
         "couple",
         "amis"
       ],
       "price_label": "",
       "url": "https://www.lilys.be/fr/agenda/",
+      "verified": true,
+      "publication_status": "Autorisé"
+    },
+    {
+      "id": "EVT-X-325AD9DBE85CB1:permanent",
+      "title": "Spa privatif et dîner 3 services",
+      "commune": "Ramillies",
+      "region": "",
+      "category": "Bien-être et détente",
+      "date": "",
+      "availability": "Horaires à consulter",
+      "modes": [
+        "couple"
+      ],
+      "price_label": "115 à 230 € selon option",
+      "url": "https://www.koru-hotel.be/produit/spa-privatif-1h30-et-menu-3-services-au-restaurant/",
       "verified": true,
       "publication_status": "Autorisé"
     }
