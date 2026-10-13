@@ -1,0 +1,9 @@
+{
+  "schema_version": 1,
+  "engine": "BELVEILLANCE",
+  "source": "BJT_CALENDRIER_OFFICIEL",
+  "updated_at": "2026-10-13",
+  "publication_policy": "Only individually verified and publication-authorized entries with an explicitly confirmed participation mode.",
+  "status": "catalogue_initial_non_verifie",
+  "items": []
+}
