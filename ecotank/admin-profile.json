@@ -1291,7 +1291,12 @@
       {
         "id": "first_cpas_request",
         "label": "Introduire une première demande au CPAS",
-        "when_profiles_any": [],
+        "when_profiles_any": [
+          "rupture_droits_zero_revenu",
+          "droit_en_attente",
+          "situation_inconnue",
+          "sejour_irregulier"
+        ],
         "when_readiness": {},
         "source_refs": [
           "cpas_online",
@@ -1312,8 +1317,7 @@
           ],
           "url": "https://pcswonline.socialsecurity.be/unsecured/fr/helpRequestForm.html"
         },
-        "note": "Ne jamais proposer une nouvelle première demande à partir du seul fait d'avoir zéro revenu ou un dossier en attente. Voir la voie CPAS initiale du parcours rapide si réellement première demande.",
-        "needs_explicit_first_request": true
+        "note": "Réservé à une première demande d’aide. Si la personne reçoit déjà une aide ou a déjà un dossier, elle doit contacter directement son CPAS."
       },
       {
         "id": "recover_eid_pin",
@@ -1338,7 +1342,12 @@
         "id": "activate_itsme",
         "label": "Activer ou réactiver itsme",
         "when_profiles_any": [],
-        "when_readiness": {},
+        "when_readiness": {
+          "itsme": [
+            "à activer",
+            "bloqué / nouveau téléphone ou numéro"
+          ]
+        },
         "source_refs": [
           "itsme_activate",
           "itsme_support_eid"
@@ -1351,8 +1360,7 @@
           "label": "Utiliser eID/CSAM ou une démarche non authentifiée",
           "source_ref": "brussels_digital_help"
         },
-        "note": "Ne jamais proposer d'activer itsme en cas de perte du numéro ou sans SMS. Voir les alternatives eID, CSAM et guichet dans le guide rapide.",
-        "needs_explicit_sms_access": true
+        "note": null
       },
       {
         "id": "open_bank_account",
@@ -1876,7 +1884,7 @@
   },
   "support_layer": {
     "version": 1,
-    "updated_at": "2026-10-06",
+    "updated_at": "2026-10-12",
     "purpose": "Couche EcoTank d'accompagnement humain, local et opérationnel. Elle complète le GPS administratif sans interrompre l'accompagnement numérique.",
     "principles": [
       "Un relais humain est toujours proposé en renfort, jamais comme condition pour continuer EcoTank.",
@@ -2270,6 +2278,42 @@
         },
         "source_url": "https://www.espace-ecrivain-public.be/permanences/bruxelles/",
         "verified_at": "2026-10-06"
+      },
+      {
+        "id": "centre-prevention-suicide-belgique-francophone",
+        "name": "Centre de Prévention du Suicide — Belgique francophone",
+        "category_ids": [
+          "mental_health",
+          "social_generalist"
+        ],
+        "geography": {
+          "country": "BE",
+          "region": "Brussels-Capital",
+          "municipality": "Ixelles",
+          "service_area": "Belgique francophone"
+        },
+        "jurisdiction_basis": "accessible_regardless_of_municipality",
+        "contacts": {
+          "phone": [
+            "0800 32 123",
+            "0476 53 00 84"
+          ],
+          "email": "cps@preventionsuicide.be",
+          "website": "https://www.preventionsuicide.be/",
+          "volunteering_url": "https://www.preventionsuicide.be/je-souhaite-devenir-benevole",
+          "volunteering_email": "benevolat@preventionsuicide.be",
+          "volunteering_phone": "0499 88 32 70"
+        },
+        "can_help_with": [
+          "écoute anonyme de détresse ou pensées suicidaires 24h/24 7j/7",
+          "orientation vers consultations et ressources d'aide",
+          "information pour les proches"
+        ],
+        "safety_note": "Le 0800 32 123 n'est pas le service d'urgence : danger immédiat appeler le 112. Le recrutement de bénévoles relève de BELVEILLANCE et non d'une aide ECOTANK.",
+        "phone_script": "Bonjour, je traverse une période difficile et j'aurais besoin d'être écouté ou orienté vers un soutien. Pouvez-vous m'aider à identifier la prochaine démarche ?",
+        "source_url": "https://www.preventionsuicide.be/la-ligne-decoute-0800-32-123",
+        "verified_at": "2026-10-12",
+        "email_template": "Bonjour, je souhaiterais obtenir des informations sur les possibilités d'accompagnement et les contacts adaptés à ma situation. Pouvez-vous m'indiquer vers quel service me tourner ? Merci."
       }
     ]
   },
@@ -2288,9 +2332,9 @@
     "entry_policy": {
       "required_before_general_aid_catalog": true,
       "default_general_aid_catalog_visibility": "hidden_until_orientation",
-      "max_questions_before_destination": 4,
+      "max_questions_before_destination": 3,
       "allow_skip_to_search": false,
-      "note": "Accueil strictement deux réponses travailler/ne pas travailler. Une seule question de situation ensuite, puis besoin d'économies. Les particularités familiales sont des critères transversaux posés seulement au moment opportun.",
+      "note": "La recherche libre pourra rester disponible plus tard, mais l'accueil EcoTank doit d'abord orienter le profil.",
       "presentation": {
         "mode": "one_question_per_screen",
         "option_layout": "grouped_cards",
@@ -2304,437 +2348,371 @@
     "questions": [
       {
         "id": "q_entry_situation",
-        "text": "Je veux explorer des pistes pour pouvoir faire des économies.",
         "order": 1,
+        "required": true,
+        "text": "Quelle situation vous correspond le mieux aujourd'hui ?",
+        "helper": "Choisissez simplement la situation principale. On précisera ensuite si nécessaire.",
         "options": [
           {
-            "id": "working",
-            "label": "J'ai un emploi",
-            "next_question_id": "q_worker_type"
+            "id": "start_from_zero",
+            "label": "Je pars de presque zéro / je ne sais plus quels droits ou documents sont encore en ordre",
+            "destination_id": "foundation_recovery",
+            "general_aid_catalog": "hidden",
+            "suggested_profile_ids": [
+              "situation_inconnue"
+            ]
           },
           {
-            "id": "not_working",
-            "label": "Je ne travaille pas",
-            "next_question_id": "q_vulnerable_type"
-          }
-        ],
-        "helper": ""
-      },
-      {
-        "id": "q_worker_type",
-        "text": "Quelle est votre situation professionnelle ?",
-        "order": 2,
-        "options": [
-          {
-            "id": "worker",
-            "label": "Je suis ouvrier",
-            "next_question_id": "q_employee_goal"
-          },
-          {
-            "id": "public",
-            "label": "Je travaille dans la fonction publique",
-            "next_question_id": "q_employee_goal"
+            "id": "replacement_income",
+            "label": "Je vis surtout d'un revenu de remplacement ou d'une aide (chômage, CPAS, incapacité, invalidité…)",
+            "next_question_id": "q_replacement_income_type",
+            "destination_id": "social_protection"
           },
           {
             "id": "employee",
-            "label": "Je suis salarié ou employé",
-            "next_question_id": "q_employee_goal"
+            "label": "Je travaille comme salarié, ouvrier ou employé",
+            "next_question_id": "q_foundations_ok",
+            "destination_id": "employee",
+            "suggested_profile_ids": [
+              "salarie"
+            ]
           },
           {
-            "id": "director",
-            "label": "Je suis chef d'entreprise",
-            "next_question_id": "q_independent_goal"
+            "id": "public_worker",
+            "label": "Je travaille dans le secteur public / je suis fonctionnaire ou agent public",
+            "next_question_id": "q_foundations_ok",
+            "destination_id": "public_worker"
           },
           {
             "id": "self_employed",
-            "label": "Je suis indépendant",
-            "next_question_id": "q_independent_goal"
+            "label": "Je suis indépendant en personne physique / profession libérale",
+            "next_question_id": "q_business_stage",
+            "destination_id": "self_employed",
+            "suggested_profile_ids": [
+              "independant"
+            ]
+          },
+          {
+            "id": "company_director",
+            "label": "Je dirige une société / je suis gérant, administrateur ou chef d'entreprise",
+            "next_question_id": "q_company_stage",
+            "destination_id": "company"
           },
           {
             "id": "student",
-            "label": "Je suis étudiant et je travaille",
-            "next_question_id": "q_student_goal"
-          }
-        ]
-      },
-      {
-        "id": "q_vulnerable_type",
-        "text": "Quelle est votre situation ?",
-        "order": 2,
-        "options": [
+            "label": "Je suis étudiant",
+            "next_question_id": "q_foundations_ok",
+            "destination_id": "student",
+            "suggested_profile_ids": [
+              "etudiant"
+            ]
+          },
           {
             "id": "retired",
             "label": "Je suis pensionné",
-            "next_question_id": "q_retired_goal"
+            "next_question_id": "q_foundations_ok",
+            "destination_id": "retired",
+            "suggested_profile_ids": [
+              "pensionne"
+            ]
           },
           {
-            "id": "disability",
-            "label": "Je suis en situation de handicap, d'incapacité ou d'invalidité",
-            "next_question_id": "q_disability_goal"
+            "id": "new_arrival_or_residence",
+            "label": "Je viens d’arriver en Belgique / mon séjour, ma protection ou mon titre doit être clarifié",
+            "destination_id": "residence_status",
+            "general_aid_catalog": "hidden"
           },
           {
-            "id": "unemployed",
-            "label": "Je suis sans emploi",
-            "next_question_id": "q_unemployed_goal"
+            "id": "international_special",
+            "label": "J'ai une situation internationale ou un statut spécial (frontalier, détaché, diplomatie, organisation internationale…)",
+            "destination_id": "international_special"
           },
           {
-            "id": "no_income",
-            "label": "Je suis sans revenu",
-            "next_question_id": "q_lost_rights_goal"
-          },
-          {
-            "id": "homemaker",
-            "label": "Je suis au foyer",
-            "next_question_id": "q_home_goal"
-          },
-          {
-            "id": "student",
-            "label": "Je suis étudiant et je ne travaille pas",
-            "next_question_id": "q_student_goal"
+            "id": "other_unknown",
+            "label": "Je ne sais pas / aucune de ces situations ne correspond vraiment",
+            "destination_id": "guided_orientation",
+            "general_aid_catalog": "hidden",
+            "suggested_profile_ids": [
+              "situation_inconnue"
+            ]
           }
-        ]
-      },
-      {
-        "id": "q_home_goal",
-        "order": 2,
-        "text": "Où voulez-vous faire des économies ?",
-        "options": [
+        ],
+        "groups": [
           {
-            "id": "household",
-            "label": "Dépenses du ménage et factures",
-            "next_question_id": "q_household_region"
+            "id": "fragile",
+            "label": "Je dois d'abord remettre ma situation en ordre",
+            "option_ids": [
+              "start_from_zero",
+              "other_unknown"
+            ]
           },
           {
-            "id": "family",
-            "label": "Enfants, famille et avantages",
-            "next_question_id": "q_household_region"
-          },
-          {
-            "id": "own_rights",
-            "label": "Vérifier mes droits personnels",
-            "destination_id": "social_protection"
-          },
-          {
-            "id": "job",
-            "label": "Reprendre une activité ou trouver un revenu",
-            "destination_id": "foundation_recovery"
-          }
-        ]
-      },
-      {
-        "id": "q_household_goal",
-        "order": 2,
-        "text": "Où aimeriez-vous économiser en premier ?",
-        "options": [
-          {
-            "id": "bills",
-            "label": "Factures, énergie, eau ou téléphone",
-            "destination_id": "guided_orientation"
-          },
-          {
-            "id": "children",
-            "label": "Enfants et famille nombreuse",
-            "destination_id": "guided_orientation"
-          },
-          {
-            "id": "shopping",
-            "label": "Courses, nourriture et dépenses quotidiennes",
-            "destination_id": "guided_orientation"
-          },
-          {
-            "id": "housing",
-            "label": "Logement, loyer ou charges",
-            "destination_id": "guided_orientation"
-          },
-          {
-            "id": "all",
-            "label": "Je veux examiner toutes les économies du ménage",
-            "destination_id": "guided_orientation"
-          }
-        ]
-      },
-      {
-        "id": "q_employee_goal",
-        "order": 2,
-        "text": "Que souhaitez-vous améliorer ?",
-        "options": [
-          {
-            "id": "expenses",
-            "label": "Réduire mes dépenses du ménage",
-            "next_question_id": "q_household_region"
+            "id": "social",
+            "label": "Je vis principalement d'un revenu de remplacement",
+            "option_ids": [
+              "replacement_income"
+            ]
           },
           {
             "id": "work",
-            "label": "Mes droits ou frais liés au travail",
-            "next_question_id": "q_household_region"
+            "label": "Je travaille",
+            "option_ids": [
+              "employee",
+              "public_worker",
+              "self_employed",
+              "company_director"
+            ]
           },
           {
-            "id": "family",
-            "label": "Mes droits liés aux enfants",
-            "next_question_id": "q_household_region"
-          },
-          {
-            "id": "difficulties",
-            "label": "Je n'arrive plus à payer certaines dépenses",
-            "next_question_id": "q_household_region"
+            "id": "other",
+            "label": "Autres situations",
+            "option_ids": [
+              "student",
+              "retired",
+              "new_arrival_or_residence",
+              "international_special"
+            ]
           }
         ]
       },
       {
-        "id": "q_unemployed_goal",
+        "id": "q_replacement_income_type",
         "order": 2,
-        "text": "Quelle situation vous correspond ?",
+        "required_if": {
+          "q_entry_situation": [
+            "replacement_income"
+          ]
+        },
+        "text": "Quel revenu ou statut vous concerne principalement ?",
         "options": [
           {
-            "id": "registered",
-            "label": "Je suis inscrit chez Actiris",
-            "next_question_id": "q_actiris_allowance"
-          },
-          {
-            "id": "not_registered",
-            "label": "Je cherche un emploi, sans être inscrit chez Actiris",
-            "destination_id": "foundation_recovery"
+            "id": "unemployment",
+            "label": "Chômage / allocations ONEM",
+            "profile_ids": [
+              "chomeur"
+            ],
+            "suggested_profile_ids": [
+              "chomeur",
+              "revenu_actif"
+            ]
           },
           {
             "id": "cpas",
-            "label": "Je reçois une aide du CPAS",
-            "destination_id": "social_protection"
+            "label": "CPAS / revenu d'intégration / aide sociale",
+            "tags": [
+              "cpas"
+            ],
+            "suggested_profile_ids": [
+              "beneficiaire_cpas",
+              "revenu_actif"
+            ]
           },
           {
-            "id": "invalidity",
-            "label": "Je suis en incapacité ou invalidité",
-            "destination_id": "social_protection"
+            "id": "incapacity_invalidity",
+            "label": "Incapacité de travail / invalidité",
+            "profile_ids": [
+              "incapacite_invalidite"
+            ],
+            "suggested_profile_ids": [
+              "incapacite_invalidite",
+              "revenu_actif"
+            ]
           },
           {
-            "id": "lost_rights",
-            "label": "J'ai perdu mes droits ou mes revenus",
-            "next_question_id": "q_lost_rights_goal"
+            "id": "pension_or_grapa",
+            "label": "Pension / GRAPA",
+            "profile_ids": [
+              "pensionne"
+            ],
+            "suggested_profile_ids": [
+              "pensionne",
+              "revenu_actif"
+            ]
           },
           {
-            "id": "unknown",
-            "label": "Je n'ai aucune aide et ne sais pas pourquoi",
-            "next_question_id": "q_lost_rights_goal"
-          }
-        ]
-      },
-      {
-        "id": "q_lost_rights_goal",
-        "order": 3,
-        "text": "Qu'est-ce qui bloque aujourd'hui ?",
-        "options": [
-          {
-            "id": "refused",
-            "label": "Le CPAS ou le chômage a refusé une aide",
-            "destination_id": "foundation_recovery"
-          },
-          {
-            "id": "stopped",
-            "label": "Mes allocations ont été arrêtées",
-            "destination_id": "foundation_recovery"
-          },
-          {
-            "id": "administrative",
-            "label": "Je n'arrive pas à faire mes démarches",
-            "destination_id": "foundation_recovery"
-          },
-          {
-            "id": "nothing",
-            "label": "Je n'ai plus aucune ressource",
-            "destination_id": "foundation_recovery"
-          }
-        ]
-      },
-      {
-        "id": "q_independent_goal",
-        "order": 2,
-        "text": "Quelle est votre situation d'indépendant ?",
-        "options": [
-          {
-            "id": "starting",
-            "label": "Je prépare ou teste mon activité",
-            "next_question_id": "q_independent_region"
-          },
-          {
-            "id": "running",
-            "label": "Je suis indépendant et veux diminuer mes frais",
-            "next_question_id": "q_independent_region"
-          },
-          {
-            "id": "cashflow_problem",
-            "label": "Je gagne trop peu ou je ne sais plus payer",
-            "next_question_id": "q_independent_region"
-          },
-          {
-            "id": "interruption",
-            "label": "Je dois interrompre, arrêter ou fermer",
-            "next_question_id": "q_independent_region"
-          },
-          {
-            "id": "hiring",
-            "label": "Je souhaite engager quelqu'un",
-            "next_question_id": "q_independent_region"
-          }
-        ]
-      },
-      {
-        "id": "q_retired_goal",
-        "order": 2,
-        "text": "Sur quoi voulez-vous économiser ?",
-        "options": [
-          {
-            "id": "income",
-            "label": "Pension, GRAPA ou avantages liés aux revenus",
-            "next_question_id": "q_household_region"
-          },
-          {
-            "id": "health",
-            "label": "Soins et mutualité",
-            "next_question_id": "q_household_region"
-          },
-          {
-            "id": "housing",
-            "label": "Logement, énergie ou factures",
-            "next_question_id": "q_household_region"
-          },
-          {
-            "id": "everyday",
-            "label": "Courses, transport et vie quotidienne",
-            "next_question_id": "q_household_region"
-          }
-        ]
-      },
-      {
-        "id": "q_disability_goal",
-        "order": 2,
-        "text": "Quel besoin souhaitez-vous examiner ?",
-        "options": [
-          {
-            "id": "support",
-            "label": "Reconnaissance, allocations ou droits",
-            "next_question_id": "q_household_region"
-          },
-          {
-            "id": "work",
-            "label": "Travailler ou faciliter une embauche",
-            "destination_id": "foundation_recovery"
-          },
-          {
-            "id": "care",
-            "label": "Soins, équipements ou mobilité",
-            "next_question_id": "q_household_region"
-          },
-          {
-            "id": "bills",
-            "label": "Réductions sur mes dépenses",
-            "next_question_id": "q_household_region"
-          }
-        ]
-      },
-      {
-        "id": "q_student_goal",
-        "order": 2,
-        "text": "Quelles économies recherchez-vous ?",
-        "options": [
-          {
-            "id": "work",
-            "label": "Job étudiant et revenus",
-            "next_question_id": "q_household_region"
-          },
-          {
-            "id": "study",
-            "label": "Études, formation ou bourses",
-            "next_question_id": "q_household_region"
-          },
-          {
-            "id": "housing",
-            "label": "Logement et transport",
-            "next_question_id": "q_household_region"
-          },
-          {
-            "id": "daily",
-            "label": "Dépenses et aides quotidiennes",
-            "next_question_id": "q_household_region"
-          }
-        ]
-      },
-      {
-        "id": "q_independent_region",
-        "order": 4,
-        "text": "Où votre activité est-elle établie ?",
-        "helper": "Ce renseignement permet d'écarter les primes d'autres régions.",
-        "options": [
-          {
-            "id": "brussels",
-            "label": "Bruxelles",
-            "destination_id": "self_employed"
-          },
-          {
-            "id": "wallonia",
-            "label": "Wallonie",
-            "destination_id": "self_employed"
-          },
-          {
-            "id": "flanders",
-            "label": "Flandre",
-            "destination_id": "self_employed"
+            "id": "other_allowance",
+            "label": "Autre allocation ou revenu de remplacement",
+            "tags": [
+              "replacement_income_other"
+            ],
+            "suggested_profile_ids": [
+              "revenu_actif"
+            ]
           },
           {
             "id": "unknown",
-            "label": "Je ne sais pas ou pas encore",
-            "destination_id": "self_employed"
+            "label": "Je ne sais pas exactement",
+            "tags": [
+              "replacement_income_unknown"
+            ],
+            "suggested_profile_ids": [
+              "revenu_actif"
+            ]
           }
-        ]
+        ],
+        "destination_id": "social_protection"
       },
       {
-        "id": "q_household_region",
-        "order": 4,
-        "text": "Dans quelle Région habitez-vous ?",
-        "helper": "Les tarifs et avantages diffèrent selon la Région. La suite ne montrera aucun droit comme acquis.",
-        "options": [
-          {
-            "id": "brussels",
-            "label": "Bruxelles",
-            "destination_id": "guided_orientation"
-          },
-          {
-            "id": "wallonia",
-            "label": "Wallonie",
-            "destination_id": "guided_orientation"
-          },
-          {
-            "id": "flanders",
-            "label": "Flandre",
-            "destination_id": "guided_orientation"
-          },
-          {
-            "id": "unknown",
-            "label": "Je ne sais pas",
-            "destination_id": "guided_orientation"
-          }
-        ]
-      },
-      {
-        "id": "q_actiris_allowance",
-        "order": 4,
-        "text": "Recevez-vous des allocations de chômage ?",
-        "helper": "L'inscription chez Actiris et le versement d'allocations sont deux choses différentes.",
+        "id": "q_foundations_ok",
+        "order": 2,
+        "required_if": {
+          "q_entry_situation": [
+            "employee",
+            "public_worker",
+            "student",
+            "retired"
+          ]
+        },
+        "text": "Vos bases administratives sont-elles globalement en ordre ?",
+        "helper": "Par exemple : identité/séjour, adresse officielle, compte bancaire, mutualité et accès aux courriers administratifs.",
         "options": [
           {
             "id": "yes",
-            "label": "Oui, je reçois des allocations",
-            "destination_id": "foundation_recovery"
+            "label": "Oui, globalement",
+            "effect": "keep_destination"
           },
           {
-            "id": "no",
-            "label": "Non, je ne touche aucune allocation de chômage",
-            "destination_id": "foundation_recovery"
+            "id": "some_problems",
+            "label": "Il y a quelques problèmes ou démarches en retard",
+            "effect": "add_foundation_check"
+          },
+          {
+            "id": "no_or_unknown",
+            "label": "Non / je ne sais plus ce qui est en ordre",
+            "effect": "foundation_recovery_first",
+            "suggested_profile_ids": [
+              "situation_inconnue"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "q_business_stage",
+        "order": 2,
+        "required_if": {
+          "q_entry_situation": [
+            "self_employed"
+          ]
+        },
+        "text": "Où en est votre activité indépendante ?",
+        "options": [
+          {
+            "id": "starting",
+            "label": "Je démarre ou prépare mon activité"
+          },
+          {
+            "id": "running",
+            "label": "Mon activité fonctionne normalement"
+          },
+          {
+            "id": "cashflow_problem",
+            "label": "J'ai des difficultés de trésorerie ou de paiement"
+          },
+          {
+            "id": "interruption",
+            "label": "Je dois interrompre ou réduire fortement mon activité"
+          },
+          {
+            "id": "closing",
+            "label": "Je cesse ou envisage de cesser mon activité"
           },
           {
             "id": "unknown",
-            "label": "Je ne sais pas ou mes allocations sont interrompues",
-            "destination_id": "foundation_recovery"
+            "label": "Je ne sais pas encore"
           }
-        ]
+        ],
+        "destination_id": "self_employed"
+      },
+      {
+        "id": "q_company_stage",
+        "order": 2,
+        "required_if": {
+          "q_entry_situation": [
+            "company_director"
+          ]
+        },
+        "text": "Quelle est la situation de votre entreprise aujourd'hui ?",
+        "options": [
+          {
+            "id": "starting",
+            "label": "Création / lancement"
+          },
+          {
+            "id": "running",
+            "label": "Activité normale / développement"
+          },
+          {
+            "id": "employer",
+            "label": "J'emploie du personnel ou je vais engager"
+          },
+          {
+            "id": "cashflow_problem",
+            "label": "Trésorerie, dettes ou paiements deviennent difficiles"
+          },
+          {
+            "id": "restructuring",
+            "label": "Réorganisation / réduction d'activité"
+          },
+          {
+            "id": "closing",
+            "label": "Cessation / liquidation envisagée ou en cours"
+          },
+          {
+            "id": "unknown",
+            "label": "Je ne sais pas encore"
+          }
+        ],
+        "next_question_id": "q_company_goal",
+        "destination_id": "company"
+      },
+      {
+        "id": "q_company_goal",
+        "order": 3,
+        "required_if": {
+          "q_entry_situation": [
+            "company_director"
+          ]
+        },
+        "text": "Sur quoi voulez-vous être aidé en priorité ?",
+        "options": [
+          {
+            "id": "cashflow",
+            "label": "Trésorerie, charges, dettes ou délais de paiement"
+          },
+          {
+            "id": "taxes",
+            "label": "Fiscalité, TVA, précomptes ou obligations"
+          },
+          {
+            "id": "social_contributions",
+            "label": "Cotisations sociales et protection du dirigeant"
+          },
+          {
+            "id": "staff",
+            "label": "Personnel, embauche ou coûts employeur"
+          },
+          {
+            "id": "financing",
+            "label": "Financement, primes, subsides ou investissements"
+          },
+          {
+            "id": "energy_premises",
+            "label": "Énergie, locaux ou coûts de fonctionnement"
+          },
+          {
+            "id": "administration",
+            "label": "Formalités, guichets et démarches administratives"
+          },
+          {
+            "id": "difficulty",
+            "label": "Entreprise en difficulté / restructuration / cessation"
+          },
+          {
+            "id": "other",
+            "label": "Autre besoin"
+          }
+        ],
+        "destination_id": "company"
       }
     ],
     "destinations": [
@@ -2849,116 +2827,6 @@
             "source_url": "https://economie-emploi.brussels/quels-subsides",
             "verified_at": "2026-10-06",
             "freshness": "high"
-          },
-          {
-            "id": "self_actiris_prime",
-            "title": "Avant de créer : vérifier la prime indépendant Actiris",
-            "description": "Chercheur d'emploi à Bruxelles ? Faites d'abord analyser votre projet par une structure agréée et obtenir un avis d'opportunité positif. Ne vous inscrivez pas trop tôt comme indépendant.",
-            "action_label": "Conditions et demande de prime",
-            "url": "https://www.actiris.brussels/fr/citoyens/devenir-independant/prime-pour-independant/",
-            "authority": "Actiris",
-            "source_url": "https://www.actiris.brussels/fr/citoyens/devenir-independant/prime-pour-independant/",
-            "verified_at": "2026-10-11",
-            "freshness": "high"
-          },
-          {
-            "id": "self_tremplin",
-            "title": "Chômage : vérifier le Tremplin-indépendants",
-            "description": "Si vous percevez des allocations, vérifiez les conditions et déclarez l'activité avant le début. Ne présumez pas que cela s'applique à une personne sans allocations.",
-            "action_label": "Consulter les conditions officielles",
-            "url": "https://www.onem.be/citoyens/chomage-complet/pouvez-vous-travailler-pendant-le-chomage-/pouvez-vous-exercer-une-activite-independante-a-titre-accessoire-pendant-votre-chomage-dans-le-cadre-de-lavantage-tremplin-independants-",
-            "source_url": "https://www.onem.be/citoyens/chomage-complet/pouvez-vous-travailler-pendant-le-chomage-/pouvez-vous-exercer-une-activite-independante-a-titre-accessoire-pendant-votre-chomage-dans-le-cadre-de-lavantage-tremplin-independants-",
-            "authority": "ONEM",
-            "verified_at": "2026-10-11",
-            "freshness": "medium"
-          },
-          {
-            "id": "self_airbag",
-            "title": "Wallonie : vérifier Airbag avant le lancement",
-            "description": "L'aide à la transition vers le statut indépendant principal dépend de critères wallons. Vérifiez les règles actualisées et les délais avant de débuter.",
-            "action_label": "Consulter les conditions officielles",
-            "url": "https://aidesetat.wallonie.be/fr/demandes/2598_solliciter-une-aide-a-la-creation-d-une-activite-d-independant-airbag.html",
-            "source_url": "https://aidesetat.wallonie.be/fr/demandes/2598_solliciter-une-aide-a-la-creation-d-une-activite-d-independant-airbag.html",
-            "authority": "Wallonie",
-            "verified_at": "2026-10-11",
-            "freshness": "medium"
-          },
-          {
-            "id": "self_cheques",
-            "title": "Wallonie : chèques-entreprises",
-            "description": "Pour porteurs de projet, indépendants complémentaires, starters et entreprises répondant aux conditions wallonnes. Vérifier le chèque adapté.",
-            "action_label": "Consulter les conditions officielles",
-            "url": "https://cheques-entreprises.spw.valid.wallonie.be/cheques/?acces-rapide=creation-dentreprise",
-            "source_url": "https://cheques-entreprises.spw.valid.wallonie.be/cheques/?acces-rapide=creation-dentreprise",
-            "authority": "SPW",
-            "verified_at": "2026-10-11",
-            "freshness": "medium"
-          },
-          {
-            "id": "self_cotisations",
-            "title": "Cotisations difficiles : réduire, échelonner ou demander une dispense",
-            "description": "La caisse d'assurances sociales examine les cotisations provisoires et les plans. La dispense suit une procédure distincte et peut réduire les droits à pension.",
-            "action_label": "Consulter les conditions officielles",
-            "url": "https://www.inasti.be/fr/faq/et-si-je-ne-sais-pas-payer-mes-cotisations-sociales",
-            "source_url": "https://www.inasti.be/fr/faq/et-si-je-ne-sais-pas-payer-mes-cotisations-sociales",
-            "authority": "INASTI",
-            "verified_at": "2026-10-11",
-            "freshness": "medium"
-          },
-          {
-            "id": "self_passerelle",
-            "title": "Arrêt forcé : vérifier le droit passerelle",
-            "description": "Si vous devez interrompre ou cesser l'activité, examinez les circonstances ouvrant un droit passerelle, et les délais de demande, avec votre caisse.",
-            "action_label": "Consulter les conditions officielles",
-            "url": "https://www.inasti.be/fr/faq/je-suis-oblige-dinterrompre-mon-activite-ou-de-larreter-cause-de-difficultes-economiques-et",
-            "source_url": "https://www.inasti.be/fr/faq/je-suis-oblige-dinterrompre-mon-activite-ou-de-larreter-cause-de-difficultes-economiques-et",
-            "authority": "INASTI",
-            "verified_at": "2026-10-11",
-            "freshness": "medium"
-          },
-          {
-            "id": "self_student",
-            "title": "Étudiant-indépendant : vérifier le statut",
-            "description": "Un étudiant peut relever d'un statut social spécifique selon l'âge, les études et les revenus. Vérifier auprès de la caisse sociale avant de commencer.",
-            "action_label": "Consulter les conditions officielles",
-            "url": "https://www.inasti.be/fr",
-            "source_url": "https://www.inasti.be/fr",
-            "authority": "INASTI",
-            "verified_at": "2026-10-11",
-            "freshness": "medium"
-          },
-          {
-            "id": "self_vat_franchise",
-            "title": "Petite activité : vérifier la franchise de TVA",
-            "description": "Sous le seuil de chiffre d'affaires et hors secteurs exclus, la franchise peut simplifier la TVA. En 2026 le seuil annuel est de 25 000 euros, proratisé en cas de début d'activité en cours d'année. La TVA sur les achats n'est pas récupérable.",
-            "action_label": "Vérifier le régime et les dates",
-            "url": "https://finances.belgium.be/fr/node/1577",
-            "source_url": "https://finances.belgium.be/fr/node/1577",
-            "authority": "SPF Finances",
-            "verified_at": "2026-10-11",
-            "freshness": "high"
-          },
-          {
-            "id": "self_brussels_prime_status",
-            "title": "Bruxelles : attention aux primes suspendues",
-            "description": "Depuis le 12 août 2026, les primes Consultance, Formation, Recrutement et Coworking ne sont plus ouvertes aux nouvelles demandes. Les primes Lancement, Coopérative d'emploi et Digitalisation restent disponibles selon conditions.",
-            "action_label": "Voir les mesures encore ouvertes",
-            "url": "https://economie-emploi.brussels/news-reorientation-primes",
-            "source_url": "https://economie-emploi.brussels/news-reorientation-primes",
-            "authority": "Bruxelles Économie et Emploi",
-            "verified_at": "2026-10-11",
-            "freshness": "high"
-          },
-          {
-            "id": "self_primostarter",
-            "title": "Premières années : vérifier les cotisations primostarter",
-            "description": "Pour les débuts à titre principal, le statut de primostarter peut permettre un calcul réduit des cotisations provisoires si les conditions sont remplies. Faire vérifier auprès de sa caisse sociale.",
-            "action_label": "Vérifier avec l'INASTI",
-            "url": "https://www.inasti.be/fr",
-            "source_url": "https://www.inasti.be/fr",
-            "authority": "INASTI",
-            "verified_at": "2026-10-11",
-            "freshness": "medium"
           }
         ],
         "status_focus_axes": [
@@ -3188,17 +3056,6 @@
             "source_url": "https://economie-emploi.brussels/primes-investissements",
             "verified_at": "2026-10-06",
             "freshness": "high"
-          },
-          {
-            "id": "company_hiring_shared",
-            "title": "Recruter : vérifier FPIE, ACS et réductions ONSS",
-            "description": "Une entreprise, y compris un indépendant employeur, peut avoir accès à des réductions ou aides selon son profil et celui du candidat. Vérifier séparément les dispositifs, sans additionner les montants.",
-            "action_label": "Examiner les aides à l'emploi",
-            "url": "https://www.actiris.brussels/fr/employeurs/",
-            "source_url": "https://www.actiris.brussels/fr/employeurs/",
-            "authority": "Actiris",
-            "verified_at": "2026-10-11",
-            "freshness": "medium"
           }
         ]
       },
