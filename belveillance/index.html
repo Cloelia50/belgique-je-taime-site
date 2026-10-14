@@ -329,7 +329,7 @@ const dateOnly=s=>String(s||'').slice(0,10);
 const daydiff=(a,b)=>Math.round((Date.parse(a+'T12:00:00')-Date.parse(b+'T12:00:00'))/86400000);
 function periodMatch(d,period){const today=dateBE(),delta=daydiff(d,today);if(delta<0)return false;let dow=new Date(today+'T12:00:00').getDay(),sat=(6-dow+7)%7;return period==='today'?delta===0:period==='tomorrow'?delta===1:period==='weekend'?(delta===sat||delta===sat+1):period==='week'?delta<7:period==='month'?delta<30:true}
 function regionGuess(e){let s=fold([e.city,e.location,e.region].join(' '));if(/online|en ligne|webinar|virtuel/.test(s)||e.mode==='En ligne')return 'En ligne';if(/brux|ixelles|etterbeek|auderghem|woluwe|uccle|schaerbeek|molenbeek|anderlecht|jette|forest|saint-gilles/.test(s))return 'Bruxelles';if(/wallon|liege|namur|mons|charleroi|wavre|tournai|arlon|nivelles|ottignies|louvain/.test(s))return 'Wallonie';if(/flandr|vlaand|antwerp|antwerpen|gent|gand|brug|leuven|hasselt|mechelen|kortrijk/.test(s))return 'Flandre';return e.region||''}
-function familyOf(e){const x=fold([e.title,e.category,e.subject,e.format].join(' '));if(/massage|spa|hammam|wellness|bien.etre|thermes|sauna|meditation|relaxation/.test(x))return 'bienetre';if(/sport|fitness|yoga|pilates|escalade|natation|course a pied|tennis|badminton|volley|football|danse sportive/.test(x))return 'sport';if(/jeux|ludotheque|ludique|societe|board.?game|quiz|escape/.test(x))return 'jeux';if(/atelier|poterie|ceramique|creativ|dessin|peinture|bijou|couture|tissage|tricot/.test(x))return 'atelier';if(/randon|balade|nature|jardin|foret|promenade/.test(x))return 'nature';if(/brunch|soiree|diner|cafe.?rencontre|sortie entre|convivial|speed.?friending/.test(x))return 'rencontres';return 'culture'}
+function familyOf(e){const x=fold([e.title,e.category,e.subject,e.format].join(' '));if(/massage|spa|hammam|wellness|bien.etre|thermes|sauna|meditation|relaxation/.test(x))return 'bienetre';if(/sport|fitness|yoga|pilates|escalade|natation|course a pied|tennis|badminton|volley|football|danse sportive/.test(x))return 'sport';if(/jeux|ludotheque|ludique|societe|board.?game|quiz|escape/.test(x))return 'jeux';if(/atelier|poterie|ceramique|creativ|dessin|peinture|bijou|couture|tissage|tricot/.test(x))return 'atelier';if(/randon|balade|nature|jardin|foret|promenade/.test(x))return 'nature';if(/cercle de femmes|women.?s circle|vrouwencirkel|sororite|cercle de parole|arpentage|table de discussion|brunch|soiree|diner|cafe.?rencontre|sortie entre|convivial|speed.?friending/.test(x))return 'rencontres';return 'culture'}
 
 const KINDS={culture:{label:'Culture et spectacles',icon:'i-ticket'},conference:{label:'Conférence et rencontre',icon:'i-mic'},atelier:{label:'Atelier et créativité',icon:'i-palette'},nature:{label:'Nature et balade',icon:'i-leaf'},jeux:{label:'Jeux et convivialité',icon:'i-dice'},sport:{label:'Sport ensemble',icon:'i-leaf'},bienetre:{label:'Bien-être et détente',icon:'i-sparkle'},rencontres:{label:'Sorties conviviales',icon:'i-dice'}};
 /* Heure : uniquement quand elle est fiable (datetime explicite, ou heure « ronde » au quart d'heure) */
@@ -338,7 +338,7 @@ function timeOf(x){const s=String(x.start||''),m=s.match(/T(\d{2}):(\d{2})/);if(
 function freeOf(x){const l=String(x.price_label||''),amounts=(l.match(/\d+(?:[.,]\d+)?/g)||[]).filter(n=>parseFloat(n.replace(',','.'))>0);return(x.is_free===true||/gratuit/i.test(l)||/^0\s?€/.test(l))&&!amounts.length}
 function priceOf(x){const l=String(x.price_label||'').trim();if(!l||l[0]==='['||l[0]==='?'||l.length>40||!/\d/.test(l))return '';return l}
 function cogKind(x){return familyOf(x)}
-function normalizeBel(x){return {...x,date:dateOnly(x.date),city:x.commune,source:'Belveillance',link:x.url,kind:familyOf(x),modes:x.modes||[],time:timeOf(x),free:freeOf(x),price:priceOf(x)}}
+function normalizeBel(x){return {...x,date:dateOnly(x.date),dateEnd:dateOnly(x.date_end||x.dateEnd||x.date),city:x.commune,source:'Belveillance',link:x.url,kind:familyOf(x),modes:x.modes||[],time:timeOf(x),free:freeOf(x),price:priceOf(x)}}
 function normalizeCog(x){return {id:'cog:'+x.id,title:x.title,date:dateOnly(x.start||x.date),time:timeOf(x),city:x.city||x.location,location:x.location,region:regionGuess(x),category:x.category,subject:x.subject,format:x.format,description:x.description||x.subject||'',link:x.registration_url||x.ticketing_url||x.official_url,price_label:x.price_label,price:priceOf(x),free:freeOf(x),source:'Cogito',kind:cogKind(x),modes:[],dateEnd:x.end||'',mode:x.mode}}
 function text(tag,value,cls){let e=document.createElement(tag);e.textContent=value||'';if(cls)e.className=cls;return e}
 function icon(id,cls){const s=document.createElementNS('http://www.w3.org/2000/svg','svg');s.setAttribute('class','ic'+(cls?' '+cls:''));s.setAttribute('aria-hidden','true');const u=document.createElementNS('http://www.w3.org/2000/svg','use');u.setAttribute('href','#'+id);s.append(u);return s}
@@ -386,6 +386,7 @@ function card(e){
  const k=KINDS[e.kind]||KINDS.culture,article=text('article','','bv-card k-'+e.kind);
  const top=text('div','','bv-cardtop'),bubble=text('span','','bv-bubble');bubble.append(icon(k.icon));top.append(bubble,text('span',k.label,'bv-kind'));article.append(top);
  if(e.time||!e.date){const t=text('span','','bv-time');t.append(icon('i-clock'),document.createTextNode(e.time||e.availability||'Horaires à consulter'));article.append(t)}
+ if(e.date&&e.dateEnd&&e.dateEnd!==e.date&&daydiff(e.date,dateBE())<0)article.append(text('span','Jusqu’au '+e.dateEnd.slice(8,10)+'/'+e.dateEnd.slice(5,7),'bv-time'));
  article.append(text('h4',e.title));
  const meta=text('div','','bv-meta');meta.append(icon('i-pin'),text('span',[e.city||'Lieu à préciser',e.category&&fold(e.category)!=='autres savoirs'?e.category:''].filter(Boolean).join(' · ')));article.append(meta);
  article.append(text('p',synopsis(e),'bv-synopsis'));
@@ -399,9 +400,22 @@ function card(e){
 }
 /* Cogito seul : conferences, debats, colloques et seminaires. Les donnees canoniques restent intactes. */
 function isCogitoOnly(e){const x=fold([e.title,e.format].join(' '));return /\bconference(s)?\b|\bcolloque(s)?\b|\bseminaire(s)?\b|\bwebinaire(s)?\b|\bdebat(s)?\b|cine[\s-]?debat|cinema[\s-]?debat|\bpoesie\b|\bpoetique(s)?\b|\bpoete(s)?\b|slam poetique|table ronde|\bsymposium\b/.test(x)}
+/* A multi-day exhibit remains visitable after opening, until the verified end date. */
+function occurrenceMatch(e,period){
+ if(!e.date)return false;
+ const today=dateBE(),start=e.date>today?e.date:today,end=e.dateEnd&&e.dateEnd>=e.date?e.dateEnd:e.date;
+ if(start>end)return false;
+ let current=new Date(start+'T12:00:00');
+ for(let i=0;i<36;i++){
+  const day=current.toISOString().slice(0,10);if(day>end)break;
+  if(periodMatch(day,period))return true;
+  current.setDate(current.getDate()+1);
+ }
+ return false;
+}
 function filtered(){
  const q=fold($('query').value),city=fold($('city').value),modes=getChecked('modes'),dates=getChecked('dates'),regions=getChecked('regions'),cats=getChecked('categories'),onlyFree=getChecked('budget').includes('free');
- const selected=events.filter(e=>{if(isCogitoOnly(e))return false;if(e.date&&daydiff(e.date,dateBE())<0)return false;if(!e.date&&dates.length)return false;if(q&&!fold([e.title,e.description,e.category,e.city].join(' ')).includes(q))return false;if(city&&!fold(e.city).includes(city))return false;if(dates.length&&!dates.some(d=>periodMatch(e.date,d)))return false;if(regions.length&&!regions.includes(regionGuess(e)))return false;if(cats.length&&!cats.includes(e.kind))return false;if(modes.length&&Array.isArray(e.modes)&&e.modes.length&&!modes.some(m=>e.modes.includes(m)))return false;if(onlyFree&&!e.free)return false;return true});
+ const selected=events.filter(e=>{if(isCogitoOnly(e))return false;if(e.date&&daydiff(e.dateEnd||e.date,dateBE())<0)return false;if(!e.date&&dates.length)return false;if(q&&!fold([e.title,e.description,e.category,e.city].join(' ')).includes(q))return false;if(city&&!fold(e.city).includes(city))return false;if(dates.length&&!dates.some(d=>occurrenceMatch(e,d)))return false;if(regions.length&&!regions.includes(regionGuess(e)))return false;if(cats.length&&!cats.includes(e.kind))return false;if(modes.length&&Array.isArray(e.modes)&&e.modes.length&&!modes.some(m=>e.modes.includes(m)))return false;if(onlyFree&&!e.free)return false;return true});
  selected.sort((a,b)=>(a.date||'9999-12-31').localeCompare(b.date||'9999-12-31')||(a.time||'').localeCompare(b.time||'')||a.title.localeCompare(b.title,'fr'));return selected}
 function emptyState(msg){
  const box=text('div','','bv-empty');
@@ -413,7 +427,7 @@ function render(){
  $('count').textContent=selected.length+' sortie'+(selected.length>1?'s':'')+' à découvrir';
  const nodes=[],spot=$('results').querySelector('.bv-spot');if(spot&&!spot.hidden)nodes.push(spot);
  let lastDay='';
- for(const e of selected.slice(0,shown)){if(e.date!==lastDay){nodes.push(e.date?dayHeading(e.date):text('h3','Activités permanentes ou sur réservation','bv-day'));lastDay=e.date}nodes.push(card(e))}
+ for(const e of selected.slice(0,shown)){const group=e.date&&daydiff(e.date,dateBE())<0?'en-cours':e.date||'permanent';if(group!==lastDay){nodes.push(group==='en-cours'?text('h3','Expositions et activités en cours','bv-day'):group==='permanent'?text('h3','Activités permanentes ou sur réservation','bv-day'):dayHeading(e.date));lastDay=group}nodes.push(card(e))}
  if(!selected.length){const msg=failed?'Réessayez dans quelques instants.':'Décochez quelques cases ou cliquez sur « Tout effacer » pour retrouver toutes les sorties.';nodes.push(emptyState(msg))}
  $('results').replaceChildren(...nodes);$('more').hidden=selected.length<=shown}
 /* Surprise */
