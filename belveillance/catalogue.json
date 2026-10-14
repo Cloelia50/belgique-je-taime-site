@@ -2,10 +2,330 @@
   "schema_version": 1,
   "engine": "BELVEILLANCE",
   "source": "BJT_CALENDRIER_OFFICIEL",
-  "updated_at": "2026-10-13",
+  "updated_at": "2026-10-14",
   "publication_policy": "Only individually verified and publication-authorized entries with an explicitly confirmed participation mode.",
   "status": "fiches_validees_disponibles",
   "items": [
+    {
+      "id": "ED-BV26-N5-3",
+      "title": "Atelier de réveil corporel — Maison des Femmes",
+      "commune": "Schaerbeek",
+      "region": "Bruxelles",
+      "category": "Ateliers et créativité",
+      "date": "2026-10-15",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_sociable"
+      ],
+      "price_label": "",
+      "url": "https://www.1030.be/fr/agenda/atelier-reveil-corporel",
+      "verified": true,
+      "publication_status": "Autorisé"
+    },
+    {
+      "id": "ED-BV26-N7-2",
+      "title": "Board Game Monkeys — Join & Play",
+      "commune": "Bruxelles",
+      "region": "Bruxelles",
+      "category": "Jeux et convivialité",
+      "date": "2026-10-15",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_sociable"
+      ],
+      "price_label": "Jeux gratuits, consommation sur place",
+      "url": "https://www.meetup.com/fr-fr/boardgame-monkeys-brussels/",
+      "verified": true,
+      "publication_status": "Autorisé"
+    },
+    {
+      "id": "ED-BV26-N5-1",
+      "title": "Bricoladies — initiation à la foreuse",
+      "commune": "Schaerbeek",
+      "region": "Bruxelles",
+      "category": "Ateliers et créativité",
+      "date": "2026-10-15",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_sociable"
+      ],
+      "price_label": "",
+      "url": "https://www.1030.be/fr/agenda/bricoladies-0",
+      "verified": true,
+      "publication_status": "Autorisé"
+    },
+    {
+      "id": "EVT-BV26-14OCT-EEKLO-2026-10-23:2026-10-23",
+      "title": "Dochters in een cirkel — cercle de femmes à Eeklo",
+      "commune": "Eeklo",
+      "region": "Flandre",
+      "category": "Rencontres et participation",
+      "date": "2026-10-23",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_sociable"
+      ],
+      "price_label": "35 €",
+      "url": "https://www.eeklo.be/activiteiten/detail/7116/dochters-in-een-cirkel-vrouwencirkel",
+      "verified": true,
+      "publication_status": "Autorisé"
+    },
+    {
+      "id": "ED-BV26-N4-1",
+      "title": "Inspiratiedag — méditation et réflexion collective",
+      "commune": "Maasmechelen",
+      "region": "Flandre",
+      "category": "Bien-être et détente",
+      "date": "2026-10-24",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_sociable"
+      ],
+      "price_label": "77 €",
+      "url": "https://www.theantara.be/activiteiten/inspiratiedag-24-oktober-2026",
+      "verified": true,
+      "publication_status": "Autorisé"
+    },
+    {
+      "id": "ED-BV26-N3-3",
+      "title": "Cercle de femmes — L'Univers d'Achaiah (26 octobre)",
+      "commune": "Sint-Pieters-Leeuw",
+      "region": "Flandre",
+      "category": "Rencontres et participation",
+      "date": "2026-10-26",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_sociable"
+      ],
+      "price_label": "25 €",
+      "url": "https://www.l-univers-d-achaiah.be/cercle-de-femmes/",
+      "verified": true,
+      "publication_status": "Autorisé"
+    },
+    {
+      "id": "ED-BV26-N3-1",
+      "title": "Vrouwencirkel — Verbindend Leven (26 octobre)",
+      "commune": "Lier",
+      "region": "Flandre",
+      "category": "Bien-être et détente",
+      "date": "2026-10-26",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_sociable"
+      ],
+      "price_label": "30 €",
+      "url": "https://verbindendleven.be/product/vrouwencirkel/",
+      "verified": true,
+      "publication_status": "Autorisé"
+    },
+    {
+      "id": "EVT-BV26-14OCT-5R-20261027:2026-10-27",
+      "title": "5Rhythms — danse libre avec Natalie Poole",
+      "commune": "Ixelles",
+      "region": "Bruxelles",
+      "category": "Sport et activités collectives",
+      "date": "2026-10-27",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_sociable"
+      ],
+      "price_label": "20 € sur place",
+      "url": "https://www.5rhythms.com/classes/WeeklyDropInWaveSessionwithGuestTeacherNataliePoole-299422",
+      "verified": true,
+      "publication_status": "Autorisé"
+    },
+    {
+      "id": "EVT-BV26-14OCT-5R-20261103:2026-11-03",
+      "title": "5Rhythms — danse libre avec deux enseignantes",
+      "commune": "Ixelles",
+      "region": "Bruxelles",
+      "category": "Sport et activités collectives",
+      "date": "2026-11-03",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_sociable"
+      ],
+      "price_label": "Tarif à vérifier",
+      "url": "https://www.5rhythms.com/teachers/Cecile%2BKlefstad",
+      "verified": true,
+      "publication_status": "Autorisé"
+    },
+    {
+      "id": "ED-BV26-N7-3",
+      "title": "Board Game Monkeys — Join & Play",
+      "commune": "Bruxelles",
+      "region": "Bruxelles",
+      "category": "Jeux et convivialité",
+      "date": "2026-11-05",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_sociable"
+      ],
+      "price_label": "",
+      "url": "https://www.wanna-play.be/fr/o/board-game-monkeys/",
+      "verified": true,
+      "publication_status": "Autorisé"
+    },
+    {
+      "id": "ED-BV26-N5-2",
+      "title": "Bricoladies — scie sauteuse",
+      "commune": "Schaerbeek",
+      "region": "Bruxelles",
+      "category": "Ateliers et créativité",
+      "date": "2026-11-05",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_sociable"
+      ],
+      "price_label": "",
+      "url": "https://www.1030.be/fr/agenda/bricoladies-0",
+      "verified": true,
+      "publication_status": "Autorisé"
+    },
+    {
+      "id": "ED-BV26-N2-1",
+      "title": "Vrouwencirkel Stilte — THEANTARA",
+      "commune": "Maasmechelen",
+      "region": "Flandre",
+      "category": "Rencontres et participation",
+      "date": "2026-11-05",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_sociable"
+      ],
+      "price_label": "22 €",
+      "url": "https://www.theantara.be/agenda",
+      "verified": true,
+      "publication_status": "Autorisé"
+    },
+    {
+      "id": "ED-BV26-N3-4",
+      "title": "Cercle de femmes — L'Univers d'Achaiah (9 novembre)",
+      "commune": "Sint-Pieters-Leeuw",
+      "region": "Flandre",
+      "category": "Rencontres et participation",
+      "date": "2026-11-09",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_sociable"
+      ],
+      "price_label": "25 €",
+      "url": "https://www.l-univers-d-achaiah.be/cercle-de-femmes/",
+      "verified": true,
+      "publication_status": "Autorisé"
+    },
+    {
+      "id": "EVT-BV26-14OCT-EEKLO-2026-11-20:2026-11-20",
+      "title": "Dochters in een cirkel — cercle de femmes à Eeklo",
+      "commune": "Eeklo",
+      "region": "Flandre",
+      "category": "Rencontres et participation",
+      "date": "2026-11-20",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_sociable"
+      ],
+      "price_label": "35 €",
+      "url": "https://www.eeklo.be/activiteiten/detail/7116/dochters-in-een-cirkel-vrouwencirkel",
+      "verified": true,
+      "publication_status": "Autorisé"
+    },
+    {
+      "id": "ED-BV26-N3-2",
+      "title": "Vrouwencirkel — Verbindend Leven (24 novembre)",
+      "commune": "Lier",
+      "region": "Flandre",
+      "category": "Bien-être et détente",
+      "date": "2026-11-24",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_sociable"
+      ],
+      "price_label": "30 €",
+      "url": "https://verbindendleven.be/product/vrouwencirkel/",
+      "verified": true,
+      "publication_status": "Autorisé"
+    },
+    {
+      "id": "ED-BV26-N7-6",
+      "title": "Apéros féministes joyeux — Liège",
+      "commune": "Liège",
+      "region": "Wallonie",
+      "category": "Rencontres et participation",
+      "date": "2026-11-26",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_sociable"
+      ],
+      "price_label": "Gratuit",
+      "url": "https://www.activites-solidaris.be/event/groupe-a-liege-les-aperos-feministes-joyeux/2026-11-26/",
+      "verified": true,
+      "publication_status": "Autorisé"
+    },
+    {
+      "id": "EVT-BV26-14OCT-5R-20261201:2026-12-01",
+      "title": "5Rhythms — danse libre avec Pauline van Hezik",
+      "commune": "Ixelles",
+      "region": "Bruxelles",
+      "category": "Sport et activités collectives",
+      "date": "2026-12-01",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_sociable"
+      ],
+      "price_label": "20 € sur place",
+      "url": "https://www.5rhythms.com/nl//classes/WeeklyDropInWaveSessionGuestTeacherPaulineVanHezik-299421",
+      "verified": true,
+      "publication_status": "Autorisé"
+    },
+    {
+      "id": "ED-BV26-N2-2",
+      "title": "Vrouwencirkel Loslaten — THEANTARA",
+      "commune": "Maasmechelen",
+      "region": "Flandre",
+      "category": "Rencontres et participation",
+      "date": "2026-12-03",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_sociable"
+      ],
+      "price_label": "22 €",
+      "url": "https://www.theantara.be/agenda",
+      "verified": true,
+      "publication_status": "Autorisé"
+    },
+    {
+      "id": "EVT-BV26-14OCT-EEKLO-2026-12-18:2026-12-18",
+      "title": "Dochters in een cirkel — cercle de femmes à Eeklo",
+      "commune": "Eeklo",
+      "region": "Flandre",
+      "category": "Rencontres et participation",
+      "date": "2026-12-18",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_sociable"
+      ],
+      "price_label": "35 €",
+      "url": "https://www.eeklo.be/activiteiten/detail/7116/dochters-in-een-cirkel-vrouwencirkel",
+      "verified": true,
+      "publication_status": "Autorisé"
+    },
+    {
+      "id": "EVT-BV26-N1-4:2026-12-23",
+      "title": "Muntpunt Schaakclub — échecs pour tous",
+      "commune": "Bruxelles",
+      "region": "Bruxelles",
+      "category": "Jeux et convivialité",
+      "date": "2026-12-23",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_sociable"
+      ],
+      "price_label": "Gratuit",
+      "url": "https://www.visit.brussels/fr/visiteurs/evenement.Muntpunt-Schaakclub.587307",
+      "verified": true,
+      "publication_status": "Autorisé"
+    },
     {
       "id": "EVT-X-8F3B0A82AF62A2:2026-12-24",
       "title": "Lily’s — Christmas Eve",
@@ -41,6 +361,201 @@
       "publication_status": "Autorisé"
     },
     {
+      "id": "EVT-BV26-N4-2:permanent",
+      "title": "Arpentage féministe — Maison des Femmes",
+      "commune": "Schaerbeek",
+      "region": "Bruxelles",
+      "category": "Culture et découvertes",
+      "date": "",
+      "availability": "Horaires à consulter",
+      "modes": [
+        "solo_sociable"
+      ],
+      "price_label": "",
+      "url": "https://www.1030.be/fr/agenda/arpentage-feministe-3",
+      "verified": true,
+      "publication_status": "Autorisé"
+    },
+    {
+      "id": "EVT-BV26-N7-1:permanent",
+      "title": "Aux 3D — café-jeux où venir seul",
+      "commune": "Namur",
+      "region": "Wallonie",
+      "category": "Jeux et convivialité",
+      "date": "",
+      "availability": "Horaires à consulter",
+      "modes": [
+        "solo_sociable"
+      ],
+      "price_label": "Consommation sur place",
+      "url": "https://aux3d.be/",
+      "verified": true,
+      "publication_status": "Autorisé"
+    },
+    {
+      "id": "EVT-BV26-14OCT-TOOTS-CHESS:permanent",
+      "title": "Blitz convivial — Ixelles Chess Club au Toots",
+      "commune": "Bruxelles",
+      "region": "Bruxelles",
+      "category": "Jeux et convivialité",
+      "date": "",
+      "availability": "Horaires à consulter",
+      "modes": [
+        "solo_sociable"
+      ],
+      "price_label": "Prix libre (conseillé 5 €); consommation obligatoire",
+      "url": "https://www.toots.brussels/fr/about",
+      "verified": true,
+      "publication_status": "Autorisé"
+    },
+    {
+      "id": "EVT-BV26-N1-1:permanent",
+      "title": "Cercle de femmes — Maison des Femmes Schaerbeek",
+      "commune": "Schaerbeek",
+      "region": "Bruxelles",
+      "category": "Rencontres et participation",
+      "date": "",
+      "availability": "Horaires à consulter",
+      "modes": [
+        "solo_sociable"
+      ],
+      "price_label": "Prix libre",
+      "url": "https://www.1030.be/fr/agenda/cercle-femmes-0",
+      "verified": true,
+      "publication_status": "Autorisé"
+    },
+    {
+      "id": "EVT-BV26-14OCT-ARTSCADE-CHOEUR:permanent",
+      "title": "Chorale ArtsCade — chanter ensemble en 2026-2027",
+      "commune": "Etterbeek",
+      "region": "Bruxelles",
+      "category": "Rencontres et participation",
+      "date": "",
+      "availability": "Horaires à consulter",
+      "modes": [
+        "solo_sociable"
+      ],
+      "price_label": "Tarif dégressif selon séances restantes",
+      "url": "https://www.artscade.be/chorale",
+      "verified": true,
+      "publication_status": "Autorisé"
+    },
+    {
+      "id": "EVT-BV26-14OCT-CHOEURSUD-UCCLE:permanent",
+      "title": "Le Chœur du Sud — chanter ensemble à Uccle",
+      "commune": "Uccle",
+      "region": "Bruxelles",
+      "category": "Rencontres et participation",
+      "date": "",
+      "availability": "Horaires à consulter",
+      "modes": [
+        "solo_sociable"
+      ],
+      "price_label": "Tarif à vérifier",
+      "url": "https://lechoeurdusud.fr/chorale/bruxelle",
+      "verified": true,
+      "publication_status": "Autorisé"
+    },
+    {
+      "id": "EVT-BV26-14OCT-TOOTS-PIANO:permanent",
+      "title": "Piano-bar After Work — Toots Jazz Club",
+      "commune": "Bruxelles",
+      "region": "Bruxelles",
+      "category": "Culture et découvertes",
+      "date": "",
+      "availability": "Horaires à consulter",
+      "modes": [
+        "solo_calme",
+        "couple",
+        "amis"
+      ],
+      "price_label": "Entrée libre (piano-bar)",
+      "url": "https://www.toots.brussels/fr/about",
+      "verified": true,
+      "publication_status": "Autorisé"
+    },
+    {
+      "id": "EVT-BV26-N5-4:permanent",
+      "title": "Place aux Cheffes — cuisine partagée",
+      "commune": "Schaerbeek",
+      "region": "",
+      "category": "Rencontres et participation",
+      "date": "",
+      "availability": "Horaires à consulter",
+      "modes": [
+        "solo_sociable"
+      ],
+      "price_label": "Atelier gratuit; tables d'hôtes contre ingrédients",
+      "url": "https://www.1030.be/fr/agenda/place-aux-cheffes",
+      "verified": true,
+      "publication_status": "Autorisé"
+    },
+    {
+      "id": "EVT-BV26-14OCT-PLEIN-UCCLE:permanent",
+      "title": "Plein le Chœur — chorale participative à Uccle",
+      "commune": "Uccle",
+      "region": "Bruxelles",
+      "category": "Rencontres et participation",
+      "date": "",
+      "availability": "Horaires à consulter",
+      "modes": [
+        "solo_sociable"
+      ],
+      "price_label": "Tarif à vérifier",
+      "url": "https://pleinlechoeur.be/uccle",
+      "verified": true,
+      "publication_status": "Autorisé"
+    },
+    {
+      "id": "EVT-BV26-14OCT-TOOTS-JAM:permanent",
+      "title": "Pump Up the Jam — jam jazz du mercredi",
+      "commune": "Bruxelles",
+      "region": "Bruxelles",
+      "category": "Culture et découvertes",
+      "date": "",
+      "availability": "Horaires à consulter",
+      "modes": [
+        "couple",
+        "amis"
+      ],
+      "price_label": "Entrée libre, contribution volontaire",
+      "url": "https://www.toots.brussels/fr/about",
+      "verified": true,
+      "publication_status": "Autorisé"
+    },
+    {
+      "id": "EVT-BV26-N5-5:permanent",
+      "title": "Séances bien-être — Maison des Femmes",
+      "commune": "Schaerbeek",
+      "region": "",
+      "category": "Bien-être et détente",
+      "date": "",
+      "availability": "Horaires à consulter",
+      "modes": [
+        "solo_calme"
+      ],
+      "price_label": "10 € le cours",
+      "url": "https://www.1030.be/fr/agenda/seances-bien-etre",
+      "verified": true,
+      "publication_status": "Autorisé"
+    },
+    {
+      "id": "EVT-BV26-14OCT-CUBITUS-CHESS:permanent",
+      "title": "Soirée échecs — Chez Cubitus XL",
+      "commune": "Ixelles",
+      "region": "Bruxelles",
+      "category": "Jeux et convivialité",
+      "date": "",
+      "availability": "Horaires à consulter",
+      "modes": [
+        "solo_sociable"
+      ],
+      "price_label": "Participation aux jeux : 5 €",
+      "url": "https://chezcubitus.be/evenements/",
+      "verified": true,
+      "publication_status": "Autorisé"
+    },
+    {
       "id": "EVT-X-325AD9DBE85CB1:permanent",
       "title": "Spa privatif et dîner 3 services",
       "commune": "Ramillies",
@@ -53,6 +568,72 @@
       ],
       "price_label": "115 à 230 € selon option",
       "url": "https://www.koru-hotel.be/produit/spa-privatif-1h30-et-menu-3-services-au-restaurant/",
+      "verified": true,
+      "publication_status": "Autorisé"
+    },
+    {
+      "id": "EVT-BV26-14OCT-CUBITUS-WOLUWE:permanent",
+      "title": "Tables ouvertes — jouer avec des inconnus à Chez Cubitus Woluwe",
+      "commune": "Woluwe-Saint-Lambert",
+      "region": "Bruxelles",
+      "category": "Jeux et convivialité",
+      "date": "",
+      "availability": "Horaires à consulter",
+      "modes": [
+        "solo_sociable",
+        "amis"
+      ],
+      "price_label": "Participation aux jeux : 5 €",
+      "url": "https://chezcubitus.be/evenements/",
+      "verified": true,
+      "publication_status": "Autorisé"
+    },
+    {
+      "id": "EVT-BV26-14OCT-CUBITUS-XL:permanent",
+      "title": "Tables ouvertes — jouer avec des inconnus à Chez Cubitus XL",
+      "commune": "Ixelles",
+      "region": "Bruxelles",
+      "category": "Jeux et convivialité",
+      "date": "",
+      "availability": "Horaires à consulter",
+      "modes": [
+        "solo_sociable",
+        "amis"
+      ],
+      "price_label": "Participation aux jeux : 5 €",
+      "url": "https://chezcubitus.be/evenements/",
+      "verified": true,
+      "publication_status": "Autorisé"
+    },
+    {
+      "id": "EVT-BV26-N1-3:permanent",
+      "title": "Tricothé — tricot et crochet entre femmes",
+      "commune": "Schaerbeek",
+      "region": "Bruxelles",
+      "category": "Ateliers et créativité",
+      "date": "",
+      "availability": "Horaires à consulter",
+      "modes": [
+        "solo_sociable"
+      ],
+      "price_label": "Gratuit",
+      "url": "https://www.1030.be/fr/agenda/atelier-tricothe",
+      "verified": true,
+      "publication_status": "Autorisé"
+    },
+    {
+      "id": "EVT-BV26-N1-2:permanent",
+      "title": "Yoga doux — Maison des Femmes Schaerbeek",
+      "commune": "Schaerbeek",
+      "region": "Bruxelles",
+      "category": "Bien-être et détente",
+      "date": "",
+      "availability": "Horaires à consulter",
+      "modes": [
+        "solo_sociable"
+      ],
+      "price_label": "",
+      "url": "https://www.1030.be/fr/agenda/yoga-doux/",
       "verified": true,
       "publication_status": "Autorisé"
     }
