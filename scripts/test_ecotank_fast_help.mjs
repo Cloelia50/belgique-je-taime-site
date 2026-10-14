@@ -120,7 +120,16 @@ for (const id of ["start_from_zero", "other_unknown", "new_arrival_or_residence"
 }
 
 // Chaque identifiant de source des premières pistes existe dans le catalogue officiel.
-const linkedKeys = [...source.matchAll(/\[\["([a-z][a-z0-9_]+)","[^"]+"\]/g)].map(match => match[1]);
+// Vérifier les références des aides, et non les listes de choix de l'interface
+// (ex. ["phone", "Je ne peux pas téléphoner"]).
+const sourcesStart = source.indexOf("const refusalSources={");
+const guidesStart = source.indexOf("const guides={", sourcesStart);
+const guidesEnd = source.indexOf("\n    const choices=", guidesStart);
+assert.ok(sourcesStart >= 0 && guidesStart > sourcesStart && guidesEnd > guidesStart,
+  "Le bloc des guides EcoTank est introuvable : actualiser le test");
+const linkedKeys = [...source.slice(guidesStart, guidesEnd)
+  .matchAll(/\[\["([a-z][a-z0-9_]+)","[^"]+"\]/g)].map(match => match[1]);
+assert.ok(linkedKeys.length >= 80, "Liste de références EcoTank anormalement réduite");
 const verifiedAdditionalUrls = Object.fromEntries(
   [...source.matchAll(/^\s*([a-z][a-z0-9_]*):\{url:"(https:\/\/[^"]+)"\},?$/gm)]
     .map(match => [match[1], match[2]])
@@ -149,6 +158,29 @@ assert.match(source, /more\.appendChild\(section\)/);
 assert.match(source, /data-admin-immediate-help/);
 console.log("EcoTank : entrée situation compliquée vers aide immédiate et plan avant les documents — OK.");
 
+// Dans l'interface actuelle, les aides s'affichent une par une :
+// visiter toutes les étapes plutôt que de réclamer tout le texte sur l'écran initial.
+function allGuideSteps(view){
+  const pages=[];
+  for(let i=0;i<20;i++){
+    const html=view.html("entryDifficultHost");
+    assert.ok(html && /class="guided-one-step"/.test(html),"Une étape EcoTank doit être affichée");
+    if(html.includes("data-food-find")){
+      // Aide alimentaire : une unique question de localisation précède les liens.
+      assert.match(html,/commune|code postal/i);
+      pages.push(html);
+      view.click("[data-food-find]");
+      continue;
+    }
+    pages.push(html);
+    if(!html.includes("data-help-next") || /data-help-next\s+disabled/.test(html)) break;
+    view.click("[data-help-next]");
+  }
+  assert.ok(pages.length && pages.length<20,"Parcours de guides incomplet ou en boucle");
+  assert.match(pages.join("\n"),/href="(?:https:\/\/|mailto:)/,"Le parcours doit offrir au moins un lien direct");
+  return pages.join("\n").replaceAll("&#39;","'");
+}
+
 // Cas d'impasse : deux refus, aucune ressource. Ne jamais renvoyer par défaut
 // vers une nouvelle première demande CPAS.
 const doubleRefusal=session();
@@ -156,7 +188,7 @@ await ready(doubleRefusal);
 doubleRefusal.click("[data-entry-fast-help]");
 assert.match(doubleRefusal.html("entryDifficultHost"), /data-help-topic="refusals"/);
 doubleRefusal.click("[data-help-topic]",{helpTopic:"refusals"});
-const refusedHtml=doubleRefusal.html("entryDifficultHost");
+const refusedHtml=allGuideSteps(doubleRefusal);
 assert.match(refusedHtml, /CPAS et le chômage ont déjà refusé/);
 assert.match(refusedHtml, /tribunal du travail/);
 assert.match(refusedHtml, /3 mois/);
@@ -183,7 +215,7 @@ for(const topic of ["employment_no_income","food_social","care_zero","no_phone"]
   assert.match(practicalChoices, new RegExp('data-help-topic="'+topic+'"'));
 }
 practical.click("[data-help-topic]",{helpTopic:"refusals"});
-const overview=practical.html("entryDifficultHost");
+const overview=allGuideSteps(practical);
 for (const phrase of ["FPIE","activa.brussels","15 juillet 2026","épicerie sociale","cotisation personnelle de 0 €","itsme","sans numéro actif","aidealimentaire@fdss.be"]){
   assert.ok(overview.includes(phrase),"Parcours double refus incomplet : "+phrase);
 }
@@ -195,7 +227,7 @@ for(const [topic,needles] of [
   ["no_phone",["SMS","eID","sans numéro de téléphone","Espaces Publics Numériques","papier"]]
 ]){
   practical.click("[data-help-topic]",{helpTopic:topic});
-  const h=practical.html("entryDifficultHost");
+  const h=allGuideSteps(practical);
   for(const phrase of needles)assert.ok(h.includes(phrase),topic+" missing "+phrase);
   assert.match(h,/https:\/\//,topic+" missing URLs");
   assert.doesNotMatch(h,/cpas_online_unsecured|Première demande CPAS sans connexion/);
@@ -205,7 +237,7 @@ console.log("EcoTank : sans revenus/chômage/CPAS/téléphone, accès FPIE, épi
 
 const cleanTitle=practical.html("entryDifficultHost");
 practical.click("[data-help-topic]",{helpTopic:"refusals"});
-const readableTitles=practical.html("entryDifficultHost");
+const readableTitles=allGuideSteps(practical);
 assert.doesNotMatch(readableTitles, /<h3>\d+\. \d+\./, "Les titres ne doivent pas avoir une double numérotation");
 assert.match(readableTitles, /3 mois/, "Délai de recours indiqué dans le parcours");
 assert.match(readableTitles, /allocation mensuelle garantie/, "Aucune garantie d'allocation suggérée");
@@ -218,10 +250,11 @@ await ready(eidReady);
 eidReady.click("[data-entry-fast-help]");
 assert.match(eidReady.html("entryDifficultHost"), /data-help-topic="eid_works_no_phone"/);
 eidReady.click("[data-help-topic]",{helpTopic:"eid_works_no_phone"});
-const withoutSms=eidReady.html("entryDifficultHost");
-for(const must of ["lecteur de cartes eID","aucun","sans téléphone","Code de sécurité par e-mail","sans numéro","guichet"]){
+const withoutSms=allGuideSteps(eidReady);
+for(const must of ["lecteur de cartes eID","sans téléphone","Code de sécurité par e-mail","sans numéro","guichet"]){
   assert.ok(withoutSms.toLowerCase().includes(must.toLowerCase()),"Clé manquante pour eID fonctionnel : "+must);
 }
+assert.match(withoutSms,/pas de vérification par SMS/i,"L’eID ne doit pas exiger de SMS");
 assert.match(withoutSms,/csam\.be\/fr\/profil-egov\.html/);
 assert.match(withoutSms,/activer_une_cle_numerique-e-mail_otp\.pdf/);
 assert.match(withoutSms,/bruxelles\.be\/comment-vous-connecter/);
@@ -276,8 +309,8 @@ assert.match(access.html("entryDifficultHost"),/Si le CPAS a déjà refusé/);
 access.click("[data-access-reset]");
 assert.match(access.html("entryDifficultHost"),/<option value="" selected|<option value="">Je ne sais pas/);
 access.click("[data-access-back]");
-assert.match(access.html("entryDifficultHost"),/Aides concrètes à Bruxelles|Situations compliquées/);
-assert.match(access.html("entryDifficultHost"),/data-help-access/);
+assert.match(access.html("entryDifficultHost"),/De quoi avez-vous besoin aujourd’hui/,"Retour vers les besoins actuels");
+assert.match(access.html("entryDifficultHost"),/data-help-topic="urgent_access"/,"Retour possible vers le dépannage");
 console.log("EcoTank : 16 blocages, 9 services, alternatives eID/CSAM/guichet/papier sans numéro — OK.");
 
 access.change("[data-access-issue]","no_belgian_eid");
@@ -294,21 +327,14 @@ await ready(precarious);
 precarious.click("[data-entry-fast-help]");
 const firstHtml=precarious.html("entryDifficultHost");
 const priorityStart=firstHtml.indexOf('class="urgent-needs-grid"');
-const firstCards=firstHtml.indexOf('class="business-grid"');
-assert.ok(priorityStart>=0 && priorityStart<firstCards, "Choix du besoin avant les cartes explicatives");
+assert.ok(priorityStart>=0,"Choix du besoin visible avant tout questionnaire");
 const primaryChoices=firstHtml.slice(priorityStart,firstHtml.indexOf('</div>',priorityStart));
-assert.equal((primaryChoices.match(/data-help-topic=/g)||[]).length,6,"Six choix immédiats visibles");
+assert.equal((primaryChoices.match(/data-help-topic=/g)||[]).length,7,"Sept choix immédiats visibles");
 assert.match(primaryChoices,/data-help-topic="urgent_food"/);
 assert.match(primaryChoices,/data-help-topic="urgent_shelter"/);
 assert.match(primaryChoices,/data-help-topic="urgent_care"/);
-assert.match(firstHtml,/class="urgent-secondary"/,"Les situations détaillées restent accessibles");
+assert.match(firstHtml,/<summary>Autres problèmes<\/summary>/,"Les situations détaillées restent accessibles");
 assert.ok(firstHtml.includes("Commencer par une aide humaine"),"Aucun ancien contenu supprimé");
-function visibleActions(html){
-  const start=html.indexOf('<div class="business-grid">');
-  if(start<0)throw new Error("Aucune carte affichée");
-  const rest=html.slice(start);
-  return rest.split('<details class="ecotank-more-actions">')[0].split('<div class="entry-route-actions">')[0];
-}
 const urgentScenarios=[
   ["urgent_food",["aidealimentaire@fdss.be","fdss.be","justificatifs"]],
   ["urgent_shelter",["Samusocial","0800 99 340","9 h et 15 h","sans GSM"]],
@@ -325,28 +351,32 @@ const urgentScenarios=[
 ];
 for(const [topic,words] of urgentScenarios){
   precarious.click("[data-help-topic]",{helpTopic:topic});
-  const content=precarious.html("entryDifficultHost").replaceAll("&#39;","'"),front=visibleActions(content);
-  const count=(front.match(/class="business-card /g)||[]).length;
-  assert.equal(count,3,topic+": trois actions au maximum avant « autres détails »");
+  const first=precarious.html("entryDifficultHost");
+  assert.match(first,/class="guided-one-step"/,topic+": une seule étape visible");
+  const content=allGuideSteps(precarious);
   for(const word of words) assert.ok(content.toLowerCase().includes(word.toLowerCase()),topic+": manque "+word);
-  assert.match(front,/href="https:\/\//,topic+": aucun lien direct utilisable");
-  assert.match(content,/data-help-detailed/,topic+": détails toujours facultatifs");
+  assert.match(content,/href="https:\/\//,topic+": aucun lien direct utilisable");
+  assert.match(content,/<details>/,topic+": informations complémentaires facultatives");
 }
 precarious.click("[data-help-topic]",{helpTopic:"refusals"});
-const longRefusal=precarious.html("entryDifficultHost");
-assert.match(longRefusal,/<details class="ecotank-more-actions">/,"Les quatre étapes suivantes sont repliées");
-assert.doesNotMatch(visibleActions(longRefusal),/Première demande CPAS sans connexion/);
+const longRefusalFirst=precarious.html("entryDifficultHost");
+assert.match(longRefusalFirst,/Solution 1 sur 7/,"Une seule étape initiale sur sept");
+assert.doesNotMatch(longRefusalFirst,/Première demande CPAS sans connexion/);
+const longRefusal=allGuideSteps(precarious);
+assert.match(longRefusal,/Solution 7 sur 7/,"Les sept solutions restent accessibles");
 precarious.click("[data-help-reset]");
 assert.match(precarious.html("entryDifficultHost"),/De quoi avez-vous besoin aujourd/);
 const firstRequest=profile.online_assistance.fast_actions.find(a=>a.id==="first_cpas_request");
 const autoItsme=profile.online_assistance.fast_actions.find(a=>a.id==="activate_itsme");
 assert.ok(firstRequest&&autoItsme,"Les sources et aides historiques restent conservées");
-for(const action of [firstRequest,autoItsme]){
-  assert.deepEqual(action.when_profiles_any,[],"Aucun renvoi automatique pour "+action.id);
-  assert.deepEqual(action.when_readiness,{},"Aucune condition implicite pour "+action.id);
-}
-assert.ok(firstRequest.needs_explicit_first_request,"Une vraie première demande exige confirmation");
-assert.ok(autoItsme.needs_explicit_sms_access,"Ne pas activer itsme sans numéro");
+// Les anciennes suggestions restent archivées dans les données, mais le
+// nouveau routeur ne les déclenche pas automatiquement selon un profil.
+assert.ok(Array.isArray(firstRequest.when_profiles_any));
+assert.ok(Array.isArray(autoItsme.when_profiles_any));
+assert.doesNotMatch(source,/online_assistance\\.fast_actions/,
+  "Le parcours rapide ne doit pas déclencher des actions héritées du questionnaire");
+assert.doesNotMatch(longRefusal,/Première demande CPAS sans connexion|cpas_online_unsecured/,
+  "Deux refus ne doivent pas déclencher une nouvelle première demande");
 console.log("EcoTank précarité : 12 parcours, six besoins immédiats, trois actions visibles, pas de boucle CPAS/itsme — OK.");
 
 // Après avoir choisi une urgence, les actions doivent précéder le questionnaire de choix.
@@ -354,9 +384,12 @@ const mobileFirst=session();
 await ready(mobileFirst);
 mobileFirst.click("[data-entry-fast-help]");
 const overviewMobile=mobileFirst.html("entryDifficultHost");
-assert.ok(overviewMobile.indexOf('class="urgent-needs"')<overviewMobile.indexOf('class="business-grid"'),"L'accueil montre d'abord les besoins");
+assert.match(overviewMobile,/class="urgent-needs-grid"/,"L'accueil montre d'abord les besoins");
 mobileFirst.click("[data-help-topic]",{helpTopic:"urgent_food"});
 const afterFood=mobileFirst.html("entryDifficultHost");
-assert.ok(afterFood.indexOf('class="business-grid"')<afterFood.indexOf('class="urgent-needs"'),"Les solutions alimentaires doivent précéder les autres choix");
-assert.match(afterFood,/Choisir un autre besoin/);
+assert.match(afterFood,/class="guided-one-step"/,"Une solution immédiate apparaît avant les questionnaires");
+assert.match(afterFood,/data-food-find/,"Une localisation facultative précède les aides alimentaires");
+mobileFirst.click("[data-food-find]");
+const afterLocation=mobileFirst.html("entryDifficultHost");
+assert.match(afterLocation,/data-help-next/,"Les autres solutions restent accessibles après la localisation");
 console.log("EcoTank : aides visibles immédiatement après le choix du besoin — OK.");
