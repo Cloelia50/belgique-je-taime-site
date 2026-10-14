@@ -302,7 +302,7 @@ access.click("[data-access-reset]");
 assert.match(access.html("entryDifficultHost"),/<option value="" selected|<option value="">Je ne sais pas/);
 access.click("[data-access-back]");
 assert.match(access.html("entryDifficultHost"),/De quoi avez-vous besoin aujourd’hui/,"Retour vers les besoins actuels");
-assert.match(access.html("entryDifficultHost"),/data-help-access/);
+assert.match(access.html("entryDifficultHost"),/data-help-topic="urgent_access"/,"Retour possible vers le dépannage");
 console.log("EcoTank : 16 blocages, 9 services, alternatives eID/CSAM/guichet/papier sans numéro — OK.");
 
 access.change("[data-access-issue]","no_belgian_eid");
