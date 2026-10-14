@@ -265,6 +265,57 @@
       "publication_status": "Autorisé"
     },
     {
+      "id": "ED-BV26-14OCT-NEW-FABRICA-20261015",
+      "title": "Fabricauserie — couture, tricot et échanges",
+      "commune": "Court-Saint-Étienne",
+      "region": "Wallonie",
+      "category": "Ateliers et créativité",
+      "date": "2026-10-15",
+      "date_end": "2026-10-15",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_sociable"
+      ],
+      "price_label": "",
+      "url": "https://quatrequarts.coop/event/fabricauserie-4/2026-10-15/",
+      "verified": true,
+      "publication_status": "Autorisé"
+    },
+    {
+      "id": "ED-BV26-14OCT-NEW-AIGUILLES-20261015",
+      "title": "À vos aiguilles ! À vos crochets ! — Quatre Quarts",
+      "commune": "Court-Saint-Étienne",
+      "region": "Wallonie",
+      "category": "Culture et découvertes",
+      "date": "2026-10-15",
+      "date_end": "2026-10-15",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_sociable"
+      ],
+      "price_label": "Gratuit",
+      "url": "https://quatrequarts.coop/agenda/mois/2026-10/",
+      "verified": true,
+      "publication_status": "Autorisé"
+    },
+    {
+      "id": "ED-BV26-14OCT-NEW-AUTH-20261020",
+      "title": "Cercle de femmes — Authentika à Auderghem",
+      "commune": "Auderghem",
+      "region": "Bruxelles",
+      "category": "Culture et découvertes",
+      "date": "2026-10-20",
+      "date_end": "2026-10-20",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_sociable"
+      ],
+      "price_label": "",
+      "url": "https://authentikasoi.com/",
+      "verified": true,
+      "publication_status": "Autorisé"
+    },
+    {
       "id": "EVT-BV26-14OCT-EEKLO-2026-10-23:2026-10-23",
       "title": "Dochters in een cirkel — cercle de femmes à Eeklo",
       "commune": "Eeklo",
@@ -286,7 +337,7 @@
       "title": "Inspiratiedag — méditation et réflexion collective",
       "commune": "Maasmechelen",
       "region": "Flandre",
-      "category": "Bien-être et détente",
+      "category": "Culture et découvertes",
       "date": "2026-10-24",
       "date_end": "2026-10-24",
       "availability": "Date annoncée",
@@ -320,7 +371,7 @@
       "title": "Vrouwencirkel — Verbindend Leven (26 octobre)",
       "commune": "Lier",
       "region": "Flandre",
-      "category": "Bien-être et détente",
+      "category": "Culture et découvertes",
       "date": "2026-10-26",
       "date_end": "2026-10-26",
       "availability": "Date annoncée",
@@ -457,6 +508,23 @@
       "publication_status": "Autorisé"
     },
     {
+      "id": "ED-BV26-14OCT-NEW-FABRICA-20261105",
+      "title": "Fabricauserie — couture, tricot et échanges",
+      "commune": "Court-Saint-Étienne",
+      "region": "Wallonie",
+      "category": "Ateliers et créativité",
+      "date": "2026-11-05",
+      "date_end": "2026-11-05",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_sociable"
+      ],
+      "price_label": "",
+      "url": "https://quatrequarts.coop/event/fabricauserie-5/2026-11-05/",
+      "verified": true,
+      "publication_status": "Autorisé"
+    },
+    {
       "id": "ED-BV26-N2-1",
       "title": "Vrouwencirkel Stilte — THEANTARA",
       "commune": "Maasmechelen",
@@ -470,6 +538,41 @@
       ],
       "price_label": "22 €",
       "url": "https://www.theantara.be/agenda",
+      "verified": true,
+      "publication_status": "Autorisé"
+    },
+    {
+      "id": "ED-BV26-14OCT-NEW-AIGUILLES-20261105",
+      "title": "À vos aiguilles ! À vos crochets ! — Quatre Quarts",
+      "commune": "Court-Saint-Étienne",
+      "region": "Wallonie",
+      "category": "Culture et découvertes",
+      "date": "2026-11-05",
+      "date_end": "2026-11-05",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_sociable"
+      ],
+      "price_label": "Gratuit",
+      "url": "https://quatrequarts.coop/agenda/mois/2026-11/",
+      "verified": true,
+      "publication_status": "Autorisé"
+    },
+    {
+      "id": "ED-BV26-14OCT-NEW-JAM-20261106",
+      "title": "JAM ! — scène participative Quatre Quarts",
+      "commune": "Court-Saint-Étienne",
+      "region": "Wallonie",
+      "category": "Culture et découvertes",
+      "date": "2026-11-06",
+      "date_end": "2026-11-06",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_sociable",
+        "amis"
+      ],
+      "price_label": "Gratuit",
+      "url": "https://quatrequarts.coop/event/jam-2-5-4/2026-11-06/",
       "verified": true,
       "publication_status": "Autorisé"
     },
@@ -527,6 +630,41 @@
       "publication_status": "Autorisé"
     },
     {
+      "id": "ED-BV26-14OCT-NEW-ENGLISH-20261111",
+      "title": "Table de conversation en anglais — Quatre Quarts",
+      "commune": "Court-Saint-Étienne",
+      "region": "Wallonie",
+      "category": "Culture et découvertes",
+      "date": "2026-11-11",
+      "date_end": "2026-11-11",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_sociable",
+        "amis"
+      ],
+      "price_label": "Gratuit",
+      "url": "https://quatrequarts.coop/event/table-de-conversation-en-anglais-4/2026-11-11/",
+      "verified": true,
+      "publication_status": "Autorisé"
+    },
+    {
+      "id": "ED-BV26-14OCT-NEW-BRICO-20261112",
+      "title": "Bricoladies — cloison légère",
+      "commune": "Schaerbeek",
+      "region": "Bruxelles",
+      "category": "Culture et découvertes",
+      "date": "2026-11-12",
+      "date_end": "2026-11-12",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_sociable"
+      ],
+      "price_label": "",
+      "url": "https://www.1030.be/fr/agenda/bricoladies-0",
+      "verified": true,
+      "publication_status": "Autorisé"
+    },
+    {
       "id": "EVT-X-41FE318C698090:2026-11-12",
       "title": "UNLONELY",
       "commune": "Ixelles",
@@ -542,6 +680,74 @@
       ],
       "price_label": "",
       "url": "https://alicebxl.com/exhibitions",
+      "verified": true,
+      "publication_status": "Autorisé"
+    },
+    {
+      "id": "ED-BV26-14OCT-NEW-ARP-20261117",
+      "title": "Arpentage féministe — Qui a peur des vieilles ?",
+      "commune": "Schaerbeek",
+      "region": "Bruxelles",
+      "category": "Culture et découvertes",
+      "date": "2026-11-17",
+      "date_end": "2026-11-17",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_sociable"
+      ],
+      "price_label": "",
+      "url": "https://www.1030.be/fr/agenda/arpentage-feministe-5",
+      "verified": true,
+      "publication_status": "Autorisé"
+    },
+    {
+      "id": "ED-BV26-14OCT-NEW-AUTH-20261117",
+      "title": "Cercle de femmes — Authentika à Auderghem",
+      "commune": "Auderghem",
+      "region": "Bruxelles",
+      "category": "Culture et découvertes",
+      "date": "2026-11-17",
+      "date_end": "2026-11-17",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_sociable"
+      ],
+      "price_label": "",
+      "url": "https://authentikasoi.com/",
+      "verified": true,
+      "publication_status": "Autorisé"
+    },
+    {
+      "id": "ED-BV26-14OCT-NEW-BRICO-20261119",
+      "title": "Bricoladies — isolation",
+      "commune": "Schaerbeek",
+      "region": "Bruxelles",
+      "category": "Culture et découvertes",
+      "date": "2026-11-19",
+      "date_end": "2026-11-19",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_sociable"
+      ],
+      "price_label": "",
+      "url": "https://www.1030.be/fr/agenda/bricoladies-0",
+      "verified": true,
+      "publication_status": "Autorisé"
+    },
+    {
+      "id": "ED-BV26-14OCT-NEW-FABRICA-20261119",
+      "title": "Fabricauserie — couture, tricot et échanges",
+      "commune": "Court-Saint-Étienne",
+      "region": "Wallonie",
+      "category": "Ateliers et créativité",
+      "date": "2026-11-19",
+      "date_end": "2026-11-19",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_sociable"
+      ],
+      "price_label": "",
+      "url": "https://quatrequarts.coop/series/fabricauserie/",
       "verified": true,
       "publication_status": "Autorisé"
     },
@@ -584,6 +790,23 @@
       "publication_status": "Autorisé"
     },
     {
+      "id": "ED-BV26-14OCT-NEW-AIGUILLES-20261119",
+      "title": "À vos aiguilles ! À vos crochets ! — Quatre Quarts",
+      "commune": "Court-Saint-Étienne",
+      "region": "Wallonie",
+      "category": "Culture et découvertes",
+      "date": "2026-11-19",
+      "date_end": "2026-11-19",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_sociable"
+      ],
+      "price_label": "Gratuit",
+      "url": "https://quatrequarts.coop/agenda/mois/2026-11/",
+      "verified": true,
+      "publication_status": "Autorisé"
+    },
+    {
       "id": "EVT-BV26-14OCT-EEKLO-2026-11-20:2026-11-20",
       "title": "Dochters in een cirkel — cercle de femmes à Eeklo",
       "commune": "Eeklo",
@@ -605,7 +828,7 @@
       "title": "Vrouwencirkel — Verbindend Leven (24 novembre)",
       "commune": "Lier",
       "region": "Flandre",
-      "category": "Bien-être et détente",
+      "category": "Culture et découvertes",
       "date": "2026-11-24",
       "date_end": "2026-11-24",
       "availability": "Date annoncée",
@@ -635,11 +858,28 @@
       "publication_status": "Autorisé"
     },
     {
+      "id": "ED-BV26-14OCT-NEW-BRICO-20261126",
+      "title": "Bricoladies — réparations sanitaires",
+      "commune": "Schaerbeek",
+      "region": "Bruxelles",
+      "category": "Culture et découvertes",
+      "date": "2026-11-26",
+      "date_end": "2026-11-26",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_sociable"
+      ],
+      "price_label": "",
+      "url": "https://www.1030.be/fr/agenda/bricoladies-0",
+      "verified": true,
+      "publication_status": "Autorisé"
+    },
+    {
       "id": "ED-BV26-N7-5",
       "title": "Cercles de femmes — Centre Odonata",
       "commune": "Liège",
       "region": "",
-      "category": "Rencontres et participation",
+      "category": "Culture et découvertes",
       "date": "2026-11-27",
       "date_end": "2026-11-27",
       "availability": "Date annoncée",
@@ -705,6 +945,24 @@
       "publication_status": "Autorisé"
     },
     {
+      "id": "ED-BV26-14OCT-NEW-GAREAUXJEUX-20261128",
+      "title": "Gare aux jeux — soirée jeux de société avec animateur",
+      "commune": "Court-Saint-Étienne",
+      "region": "Wallonie",
+      "category": "Jeux et convivialité",
+      "date": "2026-11-28",
+      "date_end": "2026-11-28",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_sociable",
+        "amis"
+      ],
+      "price_label": "Prix libre (contribution souhaitée)",
+      "url": "https://quatrequarts.coop/agenda/mois/2026-11/",
+      "verified": true,
+      "publication_status": "Autorisé"
+    },
+    {
       "id": "EVT-BV26-14OCT-5R-20261201:2026-12-01",
       "title": "5Rhythms — danse libre avec Pauline van Hezik",
       "commune": "Ixelles",
@@ -740,6 +998,40 @@
       "publication_status": "Autorisé"
     },
     {
+      "id": "ED-BV26-14OCT-NEW-BRICO-20261203",
+      "title": "Bricoladies — visseuse-foreuse",
+      "commune": "Schaerbeek",
+      "region": "Bruxelles",
+      "category": "Culture et découvertes",
+      "date": "2026-12-03",
+      "date_end": "2026-12-03",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_sociable"
+      ],
+      "price_label": "",
+      "url": "https://www.1030.be/fr/agenda/bricoladies-0",
+      "verified": true,
+      "publication_status": "Autorisé"
+    },
+    {
+      "id": "ED-BV26-14OCT-NEW-FABRICA-20261203",
+      "title": "Fabricauserie — couture, tricot et échanges",
+      "commune": "Court-Saint-Étienne",
+      "region": "Wallonie",
+      "category": "Ateliers et créativité",
+      "date": "2026-12-03",
+      "date_end": "2026-12-03",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_sociable"
+      ],
+      "price_label": "",
+      "url": "https://quatrequarts.coop/event/fabricauserie-5/2026-12-03/",
+      "verified": true,
+      "publication_status": "Autorisé"
+    },
+    {
       "id": "ED-BV26-N2-2",
       "title": "Vrouwencirkel Loslaten — THEANTARA",
       "commune": "Maasmechelen",
@@ -753,6 +1045,76 @@
       ],
       "price_label": "22 €",
       "url": "https://www.theantara.be/agenda",
+      "verified": true,
+      "publication_status": "Autorisé"
+    },
+    {
+      "id": "ED-BV26-14OCT-NEW-AIGUILLES-20261203",
+      "title": "À vos aiguilles ! À vos crochets ! — Quatre Quarts",
+      "commune": "Court-Saint-Étienne",
+      "region": "Wallonie",
+      "category": "Culture et découvertes",
+      "date": "2026-12-03",
+      "date_end": "2026-12-03",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_sociable"
+      ],
+      "price_label": "Gratuit",
+      "url": "https://quatrequarts.coop/agenda/mois/2026-12/",
+      "verified": true,
+      "publication_status": "Autorisé"
+    },
+    {
+      "id": "ED-BV26-14OCT-NEW-JAM-20261204",
+      "title": "JAM ! — scène participative Quatre Quarts",
+      "commune": "Court-Saint-Étienne",
+      "region": "Wallonie",
+      "category": "Culture et découvertes",
+      "date": "2026-12-04",
+      "date_end": "2026-12-04",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_sociable",
+        "amis"
+      ],
+      "price_label": "Gratuit",
+      "url": "https://quatrequarts.coop/event/jam-2-5-4/2026-12-04/",
+      "verified": true,
+      "publication_status": "Autorisé"
+    },
+    {
+      "id": "ED-BV26-14OCT-NEW-ENGLISH-20261209",
+      "title": "Table de conversation en anglais — Quatre Quarts",
+      "commune": "Court-Saint-Étienne",
+      "region": "Wallonie",
+      "category": "Culture et découvertes",
+      "date": "2026-12-09",
+      "date_end": "2026-12-09",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_sociable",
+        "amis"
+      ],
+      "price_label": "Gratuit",
+      "url": "https://quatrequarts.coop/event/table-de-conversation-en-anglais-4/2026-12-09/",
+      "verified": true,
+      "publication_status": "Autorisé"
+    },
+    {
+      "id": "ED-BV26-14OCT-NEW-BRICO-20261210",
+      "title": "Bricoladies — carrelages et joints",
+      "commune": "Schaerbeek",
+      "region": "Bruxelles",
+      "category": "Culture et découvertes",
+      "date": "2026-12-10",
+      "date_end": "2026-12-10",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_sociable"
+      ],
+      "price_label": "",
+      "url": "https://www.1030.be/fr/agenda/bricoladies-0",
       "verified": true,
       "publication_status": "Autorisé"
     },
@@ -771,6 +1133,75 @@
       ],
       "price_label": "",
       "url": "https://www.bruxelles.be/soiree-jeux-de-societe-noh",
+      "verified": true,
+      "publication_status": "Autorisé"
+    },
+    {
+      "id": "ED-BV26-14OCT-NEW-AUTH-20261216",
+      "title": "Cercle de femmes — Authentika à Auderghem",
+      "commune": "Auderghem",
+      "region": "Bruxelles",
+      "category": "Culture et découvertes",
+      "date": "2026-12-16",
+      "date_end": "2026-12-16",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_sociable"
+      ],
+      "price_label": "",
+      "url": "https://authentikasoi.com/",
+      "verified": true,
+      "publication_status": "Autorisé"
+    },
+    {
+      "id": "ED-BV26-14OCT-NEW-ENGLISH-20261216",
+      "title": "Table de conversation en anglais — Quatre Quarts",
+      "commune": "Court-Saint-Étienne",
+      "region": "Wallonie",
+      "category": "Culture et découvertes",
+      "date": "2026-12-16",
+      "date_end": "2026-12-16",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_sociable",
+        "amis"
+      ],
+      "price_label": "Gratuit",
+      "url": "https://quatrequarts.coop/event/table-de-conversation-en-anglais-4/2026-12-16/",
+      "verified": true,
+      "publication_status": "Autorisé"
+    },
+    {
+      "id": "ED-BV26-14OCT-NEW-FABRICA-20261217",
+      "title": "Fabricauserie — couture, tricot et échanges",
+      "commune": "Court-Saint-Étienne",
+      "region": "Wallonie",
+      "category": "Ateliers et créativité",
+      "date": "2026-12-17",
+      "date_end": "2026-12-17",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_sociable"
+      ],
+      "price_label": "",
+      "url": "https://quatrequarts.coop/series/fabricauserie/",
+      "verified": true,
+      "publication_status": "Autorisé"
+    },
+    {
+      "id": "ED-BV26-14OCT-NEW-AIGUILLES-20261217",
+      "title": "À vos aiguilles ! À vos crochets ! — Quatre Quarts",
+      "commune": "Court-Saint-Étienne",
+      "region": "Wallonie",
+      "category": "Culture et découvertes",
+      "date": "2026-12-17",
+      "date_end": "2026-12-17",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_sociable"
+      ],
+      "price_label": "Gratuit",
+      "url": "https://quatrequarts.coop/agenda/mois/2026-12/",
       "verified": true,
       "publication_status": "Autorisé"
     },
@@ -1021,7 +1452,7 @@
       "id": "EVT-BV26-14OCT-TOOTS-LATEJAM:permanent",
       "title": "Late jam de jazz — Toots Jazz Club",
       "commune": "Bruxelles",
-      "region": "",
+      "region": "Bruxelles",
       "category": "Culture et découvertes",
       "date": "",
       "date_end": "",
@@ -1125,23 +1556,6 @@
       "publication_status": "Autorisé"
     },
     {
-      "id": "EVT-BV26-N5-5:permanent",
-      "title": "Séances bien-être — Maison des Femmes",
-      "commune": "Schaerbeek",
-      "region": "",
-      "category": "Sport et activités collectives",
-      "date": "",
-      "date_end": "",
-      "availability": "Horaires à consulter",
-      "modes": [
-        "solo_calme"
-      ],
-      "price_label": "10 € le cours",
-      "url": "https://www.1030.be/fr/agenda/seances-bien-etre",
-      "verified": true,
-      "publication_status": "Autorisé"
-    },
-    {
       "id": "EVT-BV26-14OCT-CUBITUS-CHESS:permanent",
       "title": "Soirée échecs — Chez Cubitus XL",
       "commune": "Ixelles",
@@ -1172,6 +1586,23 @@
       ],
       "price_label": "115 à 230 € selon option",
       "url": "https://www.koru-hotel.be/produit/spa-privatif-1h30-et-menu-3-services-au-restaurant/",
+      "verified": true,
+      "publication_status": "Autorisé"
+    },
+    {
+      "id": "EVT-BV26-N5-5:permanent",
+      "title": "Séances bien-être — Maison des Femmes",
+      "commune": "Schaerbeek",
+      "region": "",
+      "category": "Sport et activités collectives",
+      "date": "",
+      "date_end": "",
+      "availability": "Horaires à consulter",
+      "modes": [
+        "solo_calme"
+      ],
+      "price_label": "10 € le cours",
+      "url": "https://www.1030.be/fr/agenda/seances-bien-etre",
       "verified": true,
       "publication_status": "Autorisé"
     },
