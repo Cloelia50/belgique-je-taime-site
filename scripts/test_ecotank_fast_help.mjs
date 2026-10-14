@@ -120,7 +120,16 @@ for (const id of ["start_from_zero", "other_unknown", "new_arrival_or_residence"
 }
 
 // Chaque identifiant de source des premières pistes existe dans le catalogue officiel.
-const linkedKeys = [...source.matchAll(/\[\["([a-z][a-z0-9_]+)","[^"]+"\]/g)].map(match => match[1]);
+// Vérifier les références des aides, et non les listes de choix de l'interface
+// (ex. ["phone", "Je ne peux pas téléphoner"]).
+const sourcesStart = source.indexOf("const refusalSources={");
+const guidesStart = source.indexOf("const guides={", sourcesStart);
+const guidesEnd = source.indexOf("\n    const choices=", guidesStart);
+assert.ok(sourcesStart >= 0 && guidesStart > sourcesStart && guidesEnd > guidesStart,
+  "Le bloc des guides EcoTank est introuvable : actualiser le test");
+const linkedKeys = [...source.slice(guidesStart, guidesEnd)
+  .matchAll(/\[\["([a-z][a-z0-9_]+)","[^"]+"\]/g)].map(match => match[1]);
+assert.ok(linkedKeys.length >= 80, "Liste de références EcoTank anormalement réduite");
 const verifiedAdditionalUrls = Object.fromEntries(
   [...source.matchAll(/^\s*([a-z][a-z0-9_]*):\{url:"(https:\/\/[^"]+)"\},?$/gm)]
     .map(match => [match[1], match[2]])
