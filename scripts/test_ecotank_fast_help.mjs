@@ -243,9 +243,10 @@ eidReady.click("[data-entry-fast-help]");
 assert.match(eidReady.html("entryDifficultHost"), /data-help-topic="eid_works_no_phone"/);
 eidReady.click("[data-help-topic]",{helpTopic:"eid_works_no_phone"});
 const withoutSms=allGuideSteps(eidReady);
-for(const must of ["lecteur de cartes eID","aucun","sans téléphone","Code de sécurité par e-mail","sans numéro","guichet"]){
+for(const must of ["lecteur de cartes eID","sans téléphone","Code de sécurité par e-mail","sans numéro","guichet"]){
   assert.ok(withoutSms.toLowerCase().includes(must.toLowerCase()),"Clé manquante pour eID fonctionnel : "+must);
 }
+assert.match(withoutSms,/pas de vérification par SMS/i,"L’eID ne doit pas exiger de SMS");
 assert.match(withoutSms,/csam\.be\/fr\/profil-egov\.html/);
 assert.match(withoutSms,/activer_une_cle_numerique-e-mail_otp\.pdf/);
 assert.match(withoutSms,/bruxelles\.be\/comment-vous-connecter/);
