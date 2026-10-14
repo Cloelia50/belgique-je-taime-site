@@ -1,6 +1,7 @@
 name: Site public — garde-fous qualité
 
 on:
+  workflow_dispatch:
   pull_request:
   push:
     branches: [main]
@@ -19,3 +20,29 @@ jobs:
           python-version: '3.12'
       - name: Vérifier le socle public
         run: python scripts/site_quality.py
+  r65-browser:
+    # One-time browser proof on this PR only; no cron and no job on main.
+    if: github.event_name == 'workflow_dispatch' || (github.event_name == 'pull_request' && github.head_ref == 'tests/r65-three-engines-browser-20261014')
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.12'
+      - name: Préparer Chrome et Selenium existants
+        run: |
+          google-chrome --version
+          python -m pip install --disable-pip-version-check 'selenium>=4.25,<5'
+      - name: Tester les 3 moteurs (JS, JSON, panne réseau, Pages)
+        run: python scripts/audit_three_engines_browser.py
+      - name: Archiver la preuve navigateur et captures d'échecs
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: robots-r65-browser
+          path: reports/r65-browser/
+          retention-days: 14
+          if-no-files-found: warn
