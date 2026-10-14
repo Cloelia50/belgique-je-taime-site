@@ -388,5 +388,8 @@ assert.match(overviewMobile,/class="urgent-needs-grid"/,"L'accueil montre d'abor
 mobileFirst.click("[data-help-topic]",{helpTopic:"urgent_food"});
 const afterFood=mobileFirst.html("entryDifficultHost");
 assert.match(afterFood,/class="guided-one-step"/,"Une solution immédiate apparaît avant les questionnaires");
-assert.match(afterFood,/data-help-next/,"Les autres solutions restent accessibles");
+assert.match(afterFood,/data-food-find/,"Une localisation facultative précède les aides alimentaires");
+mobileFirst.click("[data-food-find]");
+const afterLocation=mobileFirst.html("entryDifficultHost");
+assert.match(afterLocation,/data-help-next/,"Les autres solutions restent accessibles après la localisation");
 console.log("EcoTank : aides visibles immédiatement après le choix du besoin — OK.");
