@@ -164,7 +164,15 @@ function allGuideSteps(view){
   const pages=[];
   for(let i=0;i<20;i++){
     const html=view.html("entryDifficultHost");
-    assert.ok(html && html.includes("https://"),"Une étape EcoTank doit contenir une source HTTPS");
+    assert.ok(html && /class="guided-one-step"/.test(html),"Une étape EcoTank doit être affichée");
+    if(html.includes("data-food-find")){
+      // Aide alimentaire : une unique question de localisation précède les liens.
+      assert.match(html,/commune|code postal/i);
+      pages.push(html);
+      view.click("[data-food-find]");
+      continue;
+    }
+    assert.match(html,/href="(?:https:\/\/|mailto:)/,"Une démarche doit fournir un lien direct");
     pages.push(html);
     if(!html.includes("data-help-next") || /data-help-next\s+disabled/.test(html)) break;
     view.click("[data-help-next]");
