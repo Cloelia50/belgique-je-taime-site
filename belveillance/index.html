@@ -208,7 +208,8 @@ a{color:var(--green)}
  .bv-hero h1{font-size:clamp(2.4rem,12vw,3.2rem)}
 }
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
-</style></head>
+</style><link rel="canonical" href="https://cloelia50.github.io/belgique-je-taime-site/belveillance/">
+</head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs>
 <symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 20.5s-7.5-4.6-7.5-10.4A4.2 4.2 0 0 1 12 7.6a4.2 4.2 0 0 1 7.5 2.5c0 5.8-7.5 10.4-7.5 10.4z"/></symbol>
@@ -269,7 +270,7 @@ a{color:var(--green)}
 <div class="bv-twocol">
 <fieldset class="bv-qgroup" id="modes"><legend><svg class="ic" aria-hidden="true"><use href="#i-heart"/></svg>Avec qui ?</legend><div class="bv-chips">
 <label class="bv-chip" style="--chip:#4f9a78"><input type="checkbox" value="solo_calme"><span><svg class="ic" aria-hidden="true"><use href="#i-cup"/></svg>En solo, au calme</span></label>
-<label class="bv-chip" style="--chip:#e9a91f"><input type="checkbox" value="solo_sociable"><span><svg class="ic" aria-hidden="true"><use href="#i-chat"/></svg>En solo, envie de sociabiliser</span></label>
+<label class="bv-chip" style="--chip:#e9a91f"><input type="checkbox" value="solo_sociable"><span><svg class="ic" aria-hidden="true"><use href="#i-chat"/></svg>En solo, mais envie de sociabiliser</span></label>
 <label class="bv-chip" style="--chip:#ee7b5f"><input type="checkbox" value="couple"><span><svg class="ic" aria-hidden="true"><use href="#i-heart"/></svg>En couple</span></label>
 <label class="bv-chip" style="--chip:#8d6bb5"><input type="checkbox" value="amis"><span><svg class="ic" aria-hidden="true"><use href="#i-friends"/></svg>Entre amis</span></label>
 </div></fieldset>
@@ -310,7 +311,7 @@ a{color:var(--green)}
 </div></aside>
 <section aria-label="Agenda et résultats">
 <div class="bv-resulthead"><h2>Les prochaines sorties</h2><span class="bv-count" id="count" role="status" aria-live="polite">Chargement de l’agenda…</span></div>
-<div id="results" class="bv-list"><div class="bv-skel"></div><div class="bv-skel"></div><div class="bv-skel"></div><div class="bv-skel"></div></div>
+<div id="results" class="bv-list" role="status" aria-live="polite"><div class="bv-skel"></div><div class="bv-skel"></div><div class="bv-skel"></div><div class="bv-skel"></div></div>
 <noscript><p class="bv-foot">Cette page a besoin de JavaScript pour afficher l’agenda.</p></noscript>
 <button class="bv-more" type="button" id="more" hidden>Afficher plus de sorties<svg class="ic" aria-hidden="true"><use href="#i-down"/></svg></button>
 <p class="bv-foot" id="source-note">Même réseau de sources que Cogito et Activikids. Les dates, disponibilités et tarifs sont à confirmer sur le site de l’organisateur.</p>
@@ -343,7 +344,7 @@ function normalizeCog(x){return {id:'cog:'+x.id,title:x.title,date:dateOnly(x.st
 function text(tag,value,cls){let e=document.createElement(tag);e.textContent=value||'';if(cls)e.className=cls;return e}
 function icon(id,cls){const s=document.createElementNS('http://www.w3.org/2000/svg','svg');s.setAttribute('class','ic'+(cls?' '+cls:''));s.setAttribute('aria-hidden','true');const u=document.createElementNS('http://www.w3.org/2000/svg','use');u.setAttribute('href','#'+id);s.append(u);return s}
 function safeLink(url){try{let u=new URL(url,location.href);return /^https?:$/.test(u.protocol)?u.href:null}catch{return null}}
-const MODE_LABELS={solo_calme:"En solo, au calme",solo_sociable:"En solo, envie de sociabiliser",couple:"En couple",amis:"Entre amis"};
+const MODE_LABELS={solo_calme:"En solo, au calme",solo_sociable:"En solo, mais envie de sociabiliser",couple:"En couple",amis:"Entre amis"};
 const decoder=document.createElement('textarea');
 function decode(s){decoder.innerHTML=s;return decoder.value}
 function cleanDescription(e){
@@ -415,7 +416,7 @@ function occurrenceMatch(e,period){
 }
 function filtered(){
  const q=fold($('query').value),city=fold($('city').value),modes=getChecked('modes'),dates=getChecked('dates'),regions=getChecked('regions'),cats=getChecked('categories'),onlyFree=getChecked('budget').includes('free');
- const selected=events.filter(e=>{if(isCogitoOnly(e))return false;if(e.date&&daydiff(e.dateEnd||e.date,dateBE())<0)return false;if(!e.date&&dates.length)return false;if(q&&!fold([e.title,e.description,e.category,e.city].join(' ')).includes(q))return false;if(city&&!fold(e.city).includes(city))return false;if(dates.length&&!dates.some(d=>occurrenceMatch(e,d)))return false;if(regions.length&&!regions.includes(regionGuess(e)))return false;if(cats.length&&!cats.includes(e.kind))return false;if(modes.length&&Array.isArray(e.modes)&&e.modes.length&&!modes.some(m=>e.modes.includes(m)))return false;if(onlyFree&&!e.free)return false;return true});
+ const selected=events.filter(e=>{if(isCogitoOnly(e))return false;if(e.date&&daydiff(e.dateEnd||e.date,dateBE())<0)return false;if(!e.date&&dates.length)return false;if(q&&!fold([e.title,e.description,e.category,e.city].join(' ')).includes(q))return false;if(city&&!fold(e.city).includes(city))return false;if(dates.length&&!dates.some(d=>occurrenceMatch(e,d)))return false;if(regions.length&&!regions.includes(regionGuess(e)))return false;if(cats.length&&!cats.includes(e.kind))return false;if(modes.length&&(!Array.isArray(e.modes)||!modes.some(m=>e.modes.includes(m))))return false;if(onlyFree&&!e.free)return false;return true});
  selected.sort((a,b)=>(a.date||'9999-12-31').localeCompare(b.date||'9999-12-31')||(a.time||'').localeCompare(b.time||'')||a.title.localeCompare(b.title,'fr'));return selected}
 function emptyState(msg){
  const box=text('div','','bv-empty');
