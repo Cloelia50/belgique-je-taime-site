@@ -120,7 +120,12 @@ for (const id of ["start_from_zero", "other_unknown", "new_arrival_or_residence"
 }
 
 // Chaque identifiant de source des premières pistes existe dans le catalogue officiel.
-const linkedKeys = [...source.matchAll(/\[\["([a-z][a-z0-9_]+)","[^"]+"\]/g)].map(match => match[1]);
+// Only the immediate-help guide's references denote source identifiers.
+// Scanning the entire router also matches unrelated choice IDs such as "phone".
+const guidesStart = source.lastIndexOf("const guides={");
+assert(guidesStart >= 0, "Sources des guides d'aide immédiate introuvables");
+const guideSource = source.slice(guidesStart);
+const linkedKeys = [...guideSource.matchAll(/\[\["([a-z][a-z0-9_]+)","[^"]+"\]/g)].map(match => match[1]);
 const verifiedAdditionalUrls = Object.fromEntries(
   [...source.matchAll(/^\s*([a-z][a-z0-9_]*):\{url:"(https:\/\/[^"]+)"\},?$/gm)]
     .map(match => [match[1], match[2]])
