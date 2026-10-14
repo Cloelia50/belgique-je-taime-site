@@ -17,13 +17,14 @@ const modes={
   amis:"Entre amis",
 };
 
-const first=page.indexOf('<fieldset class="bv-group" id="modes">');
+const first=page.search(/<fieldset\\b[^>]*\\bid="modes"/);
 const next=page.indexOf("</fieldset>",first);
-assert(first>0&&next>first,"Primary mode filters missing");
+assert(first>=0&&next>first,"Primary mode filters missing");
 const modeMarkup=page.slice(first,next);
-const found=[...modeMarkup.matchAll(/<label class="bv-check"><input type="checkbox" value="([^"]+)">([^<]+)<\/label>/g)];
+const found=[...modeMarkup.matchAll(/<label\\b[^>]*>[\\s\\S]*?<input\\b[^>]*type="checkbox"[^>]*value="([^"]+)"[^>]*>([\\s\\S]*?)<\\/label>/g)]
+  .map(m=>[m[1],m[2].replace(/<[^>]*>/g,"").trim()]);
 assert.equal(found.length,4,"Exactly four initial mode checkboxes expected");
-assert.deepEqual(Object.fromEntries(found.map(m=>[m[1],m[2].trim()])),modes,
+assert.deepEqual(Object.fromEntries(found),modes,
   "Unexpected participation mode identifier or text");
 const otherFilters=["id=\"dates\"","id=\"regions\"","id=\"categories\""];
 for(const id of otherFilters){let pos=page.indexOf(id);if(pos>=0)assert(pos>next,"Participation modes must precede "+id)}
