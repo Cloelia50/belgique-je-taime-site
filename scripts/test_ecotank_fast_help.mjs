@@ -166,7 +166,7 @@ function allGuideSteps(view){
     const html=view.html("entryDifficultHost");
     assert.ok(html && html.includes("https://"),"Une étape EcoTank doit contenir une source HTTPS");
     pages.push(html);
-    if(!html.includes("data-help-next")) break;
+    if(!html.includes("data-help-next") || /data-help-next\s+disabled/.test(html)) break;
     view.click("[data-help-next]");
   }
   assert.ok(pages.length && pages.length<20,"Parcours de guides incomplet ou en boucle");
