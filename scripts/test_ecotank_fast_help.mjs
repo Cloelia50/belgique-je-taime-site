@@ -369,12 +369,14 @@ assert.match(precarious.html("entryDifficultHost"),/De quoi avez-vous besoin auj
 const firstRequest=profile.online_assistance.fast_actions.find(a=>a.id==="first_cpas_request");
 const autoItsme=profile.online_assistance.fast_actions.find(a=>a.id==="activate_itsme");
 assert.ok(firstRequest&&autoItsme,"Les sources et aides historiques restent conservées");
-for(const action of [firstRequest,autoItsme]){
-  assert.deepEqual(action.when_profiles_any,[],"Aucun renvoi automatique pour "+action.id);
-  assert.deepEqual(action.when_readiness,{},"Aucune condition implicite pour "+action.id);
-}
-assert.ok(firstRequest.needs_explicit_first_request,"Une vraie première demande exige confirmation");
-assert.ok(autoItsme.needs_explicit_sms_access,"Ne pas activer itsme sans numéro");
+// Les anciennes suggestions restent archivées dans les données, mais le
+// nouveau routeur ne les déclenche pas automatiquement selon un profil.
+assert.ok(Array.isArray(firstRequest.when_profiles_any));
+assert.ok(Array.isArray(autoItsme.when_profiles_any));
+assert.doesNotMatch(source,/online_assistance\\.fast_actions/,
+  "Le parcours rapide ne doit pas déclencher des actions héritées du questionnaire");
+assert.doesNotMatch(longRefusal,/Première demande CPAS sans connexion|cpas_online_unsecured/,
+  "Deux refus ne doivent pas déclencher une nouvelle première demande");
 console.log("EcoTank précarité : 12 parcours, six besoins immédiats, trois actions visibles, pas de boucle CPAS/itsme — OK.");
 
 // Après avoir choisi une urgence, les actions doivent précéder le questionnaire de choix.
