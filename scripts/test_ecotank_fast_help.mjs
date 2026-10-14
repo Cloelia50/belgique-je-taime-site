@@ -301,7 +301,7 @@ assert.match(access.html("entryDifficultHost"),/Si le CPAS a déjà refusé/);
 access.click("[data-access-reset]");
 assert.match(access.html("entryDifficultHost"),/<option value="" selected|<option value="">Je ne sais pas/);
 access.click("[data-access-back]");
-assert.match(access.html("entryDifficultHost"),/Aides concrètes à Bruxelles|Situations compliquées/);
+assert.match(access.html("entryDifficultHost"),/De quoi avez-vous besoin aujourd’hui/,"Retour vers les besoins actuels");
 assert.match(access.html("entryDifficultHost"),/data-help-access/);
 console.log("EcoTank : 16 blocages, 9 services, alternatives eID/CSAM/guichet/papier sans numéro — OK.");
 
@@ -319,14 +319,13 @@ await ready(precarious);
 precarious.click("[data-entry-fast-help]");
 const firstHtml=precarious.html("entryDifficultHost");
 const priorityStart=firstHtml.indexOf('class="urgent-needs-grid"');
-const firstCards=firstHtml.indexOf('class="business-grid"');
-assert.ok(priorityStart>=0 && priorityStart<firstCards, "Choix du besoin avant les cartes explicatives");
+assert.ok(priorityStart>=0,"Choix du besoin visible avant tout questionnaire");
 const primaryChoices=firstHtml.slice(priorityStart,firstHtml.indexOf('</div>',priorityStart));
-assert.equal((primaryChoices.match(/data-help-topic=/g)||[]).length,6,"Six choix immédiats visibles");
+assert.equal((primaryChoices.match(/data-help-topic=/g)||[]).length,7,"Sept choix immédiats visibles");
 assert.match(primaryChoices,/data-help-topic="urgent_food"/);
 assert.match(primaryChoices,/data-help-topic="urgent_shelter"/);
 assert.match(primaryChoices,/data-help-topic="urgent_care"/);
-assert.match(firstHtml,/class="urgent-secondary"/,"Les situations détaillées restent accessibles");
+assert.match(firstHtml,/<summary>Autres problèmes<\/summary>/,"Les situations détaillées restent accessibles");
 assert.ok(firstHtml.includes("Commencer par une aide humaine"),"Aucun ancien contenu supprimé");
 const urgentScenarios=[
   ["urgent_food",["aidealimentaire@fdss.be","fdss.be","justificatifs"]],
