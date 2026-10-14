@@ -45,6 +45,101 @@
       "publication_status": "Autorisé"
     },
     {
+      "id": "EVT-X-07A8515910A1BA:2026-09-10",
+      "title": "Hard Edge, Soft Core",
+      "commune": "Bruxelles",
+      "region": "",
+      "category": "Culture et découvertes",
+      "date": "2026-09-10",
+      "date_end": "2026-10-31",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme",
+        "couple",
+        "amis"
+      ],
+      "price_label": "",
+      "url": "https://www.ericmouchet.com/expositions/",
+      "verified": true,
+      "publication_status": "Autorisé"
+    },
+    {
+      "id": "EVT-X-6C440E13AE8A30:2026-09-10",
+      "title": "In Shape of a Heart",
+      "commune": "Bruxelles",
+      "region": "",
+      "category": "Culture et découvertes",
+      "date": "2026-09-10",
+      "date_end": "2026-11-20",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme",
+        "couple",
+        "amis"
+      ],
+      "price_label": "",
+      "url": "https://www.damienandtheloveguru.com/exhibitions/mathias-toubro-in-shape-of-a-heart-brussels",
+      "verified": true,
+      "publication_status": "Autorisé"
+    },
+    {
+      "id": "EVT-X-1584AF79DC8167:2026-09-10",
+      "title": "ON A SHELF",
+      "commune": "Bruxelles",
+      "region": "",
+      "category": "Culture et découvertes",
+      "date": "2026-09-10",
+      "date_end": "2026-10-31",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme",
+        "couple",
+        "amis"
+      ],
+      "price_label": "",
+      "url": "https://galeriegretameert.com/exhibitions/",
+      "verified": true,
+      "publication_status": "Autorisé"
+    },
+    {
+      "id": "EVT-X-F6B3E4A7B81F49:2026-09-10",
+      "title": "The Wave(s) or Newton’s Rings",
+      "commune": "Bruxelles",
+      "region": "",
+      "category": "Culture et découvertes",
+      "date": "2026-09-10",
+      "date_end": "2026-10-31",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme",
+        "couple",
+        "amis"
+      ],
+      "price_label": "",
+      "url": "https://galeriegretameert.com/exhibitions/",
+      "verified": true,
+      "publication_status": "Autorisé"
+    },
+    {
+      "id": "EVT-X-61255C5FA256C9:2026-09-10",
+      "title": "Under the Chandelier",
+      "commune": "Bruxelles",
+      "region": "",
+      "category": "Culture et découvertes",
+      "date": "2026-09-10",
+      "date_end": "2026-10-31",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme",
+        "couple",
+        "amis"
+      ],
+      "price_label": "",
+      "url": "https://www.ericmouchet.com/expositions/",
+      "verified": true,
+      "publication_status": "Autorisé"
+    },
+    {
       "id": "EVT-X-18FD1F58A4A708:2026-09-11",
       "title": "Horizons domestiques",
       "commune": "Ixelles",
@@ -60,6 +155,61 @@
       ],
       "price_label": "",
       "url": "https://alicebxl.com/exhibitions/horizons-domestiques",
+      "verified": true,
+      "publication_status": "Autorisé"
+    },
+    {
+      "id": "EVT-X-E542816BAD9344:2026-10-02",
+      "title": "Jean Brusselmans — Painter by Nature",
+      "commune": "Bruxelles",
+      "region": "",
+      "category": "Nature et plein air",
+      "date": "2026-10-02",
+      "date_end": "2027-01-31",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme",
+        "couple",
+        "amis"
+      ],
+      "price_label": "",
+      "url": "https://www.bozar.be/fr/calendrier/jean-brusselmans",
+      "verified": true,
+      "publication_status": "Autorisé"
+    },
+    {
+      "id": "EVT-X-4E670DBFC95AE1:2026-10-14",
+      "title": "House of Memory",
+      "commune": "Bruxelles",
+      "region": "",
+      "category": "Culture et découvertes",
+      "date": "2026-10-14",
+      "date_end": "2026-11-22",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme"
+      ],
+      "price_label": "",
+      "url": "https://www.bozar.be/fr/calendrier/house-memory-byt-aldhakrt-basil-al-rawi",
+      "verified": true,
+      "publication_status": "Autorisé"
+    },
+    {
+      "id": "EVT-X-F1EF974773E7AB:2026-10-14",
+      "title": "The Fabric Decides",
+      "commune": "Bruxelles",
+      "region": "",
+      "category": "Culture et découvertes",
+      "date": "2026-10-14",
+      "date_end": "2027-01-31",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme",
+        "couple",
+        "amis"
+      ],
+      "price_label": "",
+      "url": "https://www.bozar.be/en/calendar/cristobal-balenciaga-x-edith-dekyndt",
       "verified": true,
       "publication_status": "Autorisé"
     },
@@ -358,6 +508,25 @@
       "publication_status": "Autorisé"
     },
     {
+      "id": "EVT-X-BE62AD225C014A:2026-11-11",
+      "title": "Central. Never Alone",
+      "commune": "Bruxelles",
+      "region": "",
+      "category": "Culture et découvertes",
+      "date": "2026-11-11",
+      "date_end": "2027-01-24",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme",
+        "couple",
+        "amis"
+      ],
+      "price_label": "",
+      "url": "https://www.bozar.be/fr/calendrier/central-never-alone",
+      "verified": true,
+      "publication_status": "Autorisé"
+    },
+    {
       "id": "EVT-X-41FE318C698090:2026-11-12",
       "title": "UNLONELY",
       "commune": "Ixelles",
@@ -373,6 +542,44 @@
       ],
       "price_label": "",
       "url": "https://alicebxl.com/exhibitions",
+      "verified": true,
+      "publication_status": "Autorisé"
+    },
+    {
+      "id": "EVT-X-80E3232BEFA5D1:2026-11-19",
+      "title": "Ritual Sounds",
+      "commune": "Bruxelles",
+      "region": "",
+      "category": "Culture et découvertes",
+      "date": "2026-11-19",
+      "date_end": "2027-02-06",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme",
+        "couple",
+        "amis"
+      ],
+      "price_label": "",
+      "url": "https://galeriegretameert.com/exhibitions/",
+      "verified": true,
+      "publication_status": "Autorisé"
+    },
+    {
+      "id": "EVT-X-5654B58F0229D9:2026-11-19",
+      "title": "things from dust",
+      "commune": "Bruxelles",
+      "region": "",
+      "category": "Culture et découvertes",
+      "date": "2026-11-19",
+      "date_end": "2027-02-06",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme",
+        "couple",
+        "amis"
+      ],
+      "price_label": "",
+      "url": "https://galeriegretameert.com/exhibitions/",
       "verified": true,
       "publication_status": "Autorisé"
     },
