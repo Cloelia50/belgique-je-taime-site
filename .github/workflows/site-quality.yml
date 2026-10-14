@@ -1,6 +1,7 @@
 name: Site public — garde-fous qualité
 
 on:
+  workflow_dispatch:
   pull_request:
   push:
     branches: [main]
@@ -21,7 +22,7 @@ jobs:
         run: python scripts/site_quality.py
   r65-browser:
     # One-time browser proof on this PR only; no cron and no job on main.
-    if: github.event_name == 'pull_request' && github.head_ref == 'tests/r65-three-engines-browser-20261014'
+    if: github.event_name == 'workflow_dispatch' || (github.event_name == 'pull_request' && github.head_ref == 'tests/r65-three-engines-browser-20261014')
     runs-on: ubuntu-latest
     timeout-minutes: 8
     permissions:
