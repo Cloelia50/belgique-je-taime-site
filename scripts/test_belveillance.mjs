@@ -17,11 +17,11 @@ const modes={
   amis:"Entre amis",
 };
 
-const first=page.search(/<fieldset\\b[^>]*\\bid="modes"/);
+const first=page.search(/<fieldset\b[^>]*\bid="modes"/);
 const next=page.indexOf("</fieldset>",first);
 assert(first>=0&&next>first,"Primary mode filters missing");
 const modeMarkup=page.slice(first,next);
-const found=[...modeMarkup.matchAll(/<label\\b[^>]*>[\\s\\S]*?<input\\b[^>]*type="checkbox"[^>]*value="([^"]+)"[^>]*>([\\s\\S]*?)<\\/label>/g)]
+const found=[...modeMarkup.matchAll(/<label\b[^>]*>[\s\S]*?<input\b[^>]*type="checkbox"[^>]*value="([^"]+)"[^>]*>([\s\S]*?)<\/label>/g)]
   .map(m=>[m[1],m[2].replace(/<[^>]*>/g,"").trim()]);
 assert.equal(found.length,4,"Exactly four initial mode checkboxes expected");
 assert.deepEqual(Object.fromEntries(found),modes,
