@@ -7,12 +7,70 @@
   "status": "fiches_validees_disponibles",
   "items": [
     {
+      "id": "EVT-X-F9B7661D6EA7FC:2026-09-05",
+      "title": "Soul Witness",
+      "commune": "Forest",
+      "region": "",
+      "category": "Culture et découvertes",
+      "date": "2026-09-05",
+      "date_end": "2027-01-03",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme",
+        "couple",
+        "amis"
+      ],
+      "price_label": "",
+      "url": "https://wiels.org/en/exhibitions/soul-witness",
+      "verified": true,
+      "publication_status": "Autorisé"
+    },
+    {
+      "id": "EVT-X-A6C9DB27515F18:2026-09-10",
+      "title": "BOLERO",
+      "commune": "Bruxelles",
+      "region": "",
+      "category": "Culture et découvertes",
+      "date": "2026-09-10",
+      "date_end": "2026-10-24",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme",
+        "couple",
+        "amis"
+      ],
+      "price_label": "",
+      "url": "https://www.sorrywereclosed.com/en/exhibitions/presentation/208/bolero",
+      "verified": true,
+      "publication_status": "Autorisé"
+    },
+    {
+      "id": "EVT-X-18FD1F58A4A708:2026-09-11",
+      "title": "Horizons domestiques",
+      "commune": "Ixelles",
+      "region": "",
+      "category": "Culture et découvertes",
+      "date": "2026-09-11",
+      "date_end": "2026-10-17",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme",
+        "couple",
+        "amis"
+      ],
+      "price_label": "",
+      "url": "https://alicebxl.com/exhibitions/horizons-domestiques",
+      "verified": true,
+      "publication_status": "Autorisé"
+    },
+    {
       "id": "ED-BV26-N5-3",
       "title": "Atelier de réveil corporel — Maison des Femmes",
       "commune": "Schaerbeek",
       "region": "Bruxelles",
       "category": "Ateliers et créativité",
       "date": "2026-10-15",
+      "date_end": "2026-10-15",
       "availability": "Date annoncée",
       "modes": [
         "solo_sociable"
@@ -29,6 +87,7 @@
       "region": "Bruxelles",
       "category": "Jeux et convivialité",
       "date": "2026-10-15",
+      "date_end": "2026-10-15",
       "availability": "Date annoncée",
       "modes": [
         "solo_sociable"
@@ -45,6 +104,7 @@
       "region": "Bruxelles",
       "category": "Ateliers et créativité",
       "date": "2026-10-15",
+      "date_end": "2026-10-15",
       "availability": "Date annoncée",
       "modes": [
         "solo_sociable"
@@ -59,8 +119,9 @@
       "title": "Dochters in een cirkel — cercle de femmes à Eeklo",
       "commune": "Eeklo",
       "region": "Flandre",
-      "category": "Rencontres et participation",
+      "category": "Culture et découvertes",
       "date": "2026-10-23",
+      "date_end": "2026-10-23",
       "availability": "Date annoncée",
       "modes": [
         "solo_sociable"
@@ -77,6 +138,7 @@
       "region": "Flandre",
       "category": "Bien-être et détente",
       "date": "2026-10-24",
+      "date_end": "2026-10-24",
       "availability": "Date annoncée",
       "modes": [
         "solo_sociable"
@@ -91,8 +153,9 @@
       "title": "Cercle de femmes — L'Univers d'Achaiah (26 octobre)",
       "commune": "Sint-Pieters-Leeuw",
       "region": "Flandre",
-      "category": "Rencontres et participation",
+      "category": "Culture et découvertes",
       "date": "2026-10-26",
+      "date_end": "2026-10-26",
       "availability": "Date annoncée",
       "modes": [
         "solo_sociable"
@@ -109,6 +172,7 @@
       "region": "Flandre",
       "category": "Bien-être et détente",
       "date": "2026-10-26",
+      "date_end": "2026-10-26",
       "availability": "Date annoncée",
       "modes": [
         "solo_sociable"
@@ -125,6 +189,7 @@
       "region": "Bruxelles",
       "category": "Sport et activités collectives",
       "date": "2026-10-27",
+      "date_end": "2026-10-27",
       "availability": "Date annoncée",
       "modes": [
         "solo_sociable"
@@ -135,12 +200,50 @@
       "publication_status": "Autorisé"
     },
     {
+      "id": "EVT-BV26-14OCT-LUDOBOX-2026-10-30:2026-10-30",
+      "title": "Soirée jeux de société — Ludobox Laeken",
+      "commune": "Laeken",
+      "region": "",
+      "category": "Jeux et convivialité",
+      "date": "2026-10-30",
+      "date_end": "2026-10-30",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_sociable",
+        "amis"
+      ],
+      "price_label": "Gratuit",
+      "url": "https://www.bruxelles.be/soiree-jeux-ludobox",
+      "verified": true,
+      "publication_status": "Autorisé"
+    },
+    {
+      "id": "EVT-X-2A4CFE0F43EB17:2026-10-31",
+      "title": "Kuzviramba Mamuri",
+      "commune": "Forest",
+      "region": "",
+      "category": "Culture et découvertes",
+      "date": "2026-10-31",
+      "date_end": "2027-02-28",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme",
+        "couple",
+        "amis"
+      ],
+      "price_label": "",
+      "url": "https://wiels.org/en/exhibitions/portia-zvavahera",
+      "verified": true,
+      "publication_status": "Autorisé"
+    },
+    {
       "id": "EVT-BV26-14OCT-5R-20261103:2026-11-03",
       "title": "5Rhythms — danse libre avec deux enseignantes",
       "commune": "Ixelles",
       "region": "Bruxelles",
       "category": "Sport et activités collectives",
       "date": "2026-11-03",
+      "date_end": "2026-11-03",
       "availability": "Date annoncée",
       "modes": [
         "solo_sociable"
@@ -151,12 +254,32 @@
       "publication_status": "Autorisé"
     },
     {
+      "id": "EVT-X-FC1028B24DB938:2026-11-04",
+      "title": "Nocturnes gratuites WIELS",
+      "commune": "Forest",
+      "region": "",
+      "category": "Culture et découvertes",
+      "date": "2026-11-04",
+      "date_end": "2026-11-04",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_sociable",
+        "couple",
+        "amis"
+      ],
+      "price_label": "Gratuit",
+      "url": "https://wiels.org/fr/events/nocturnes",
+      "verified": true,
+      "publication_status": "Autorisé"
+    },
+    {
       "id": "ED-BV26-N7-3",
       "title": "Board Game Monkeys — Join & Play",
       "commune": "Bruxelles",
       "region": "Bruxelles",
       "category": "Jeux et convivialité",
       "date": "2026-11-05",
+      "date_end": "2026-11-05",
       "availability": "Date annoncée",
       "modes": [
         "solo_sociable"
@@ -173,6 +296,7 @@
       "region": "Bruxelles",
       "category": "Ateliers et créativité",
       "date": "2026-11-05",
+      "date_end": "2026-11-05",
       "availability": "Date annoncée",
       "modes": [
         "solo_sociable"
@@ -189,6 +313,7 @@
       "region": "Flandre",
       "category": "Rencontres et participation",
       "date": "2026-11-05",
+      "date_end": "2026-11-05",
       "availability": "Date annoncée",
       "modes": [
         "solo_sociable"
@@ -199,12 +324,30 @@
       "publication_status": "Autorisé"
     },
     {
+      "id": "ED-BV26-N7-4",
+      "title": "Honore qui tu es — cercle de femmes à Liège",
+      "commune": "Liège",
+      "region": "",
+      "category": "Culture et découvertes",
+      "date": "2026-11-08",
+      "date_end": "2026-11-08",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_sociable"
+      ],
+      "price_label": "40 €",
+      "url": "https://anneclairegiffroy.be/cercle-de-femmes-liege/",
+      "verified": true,
+      "publication_status": "Autorisé"
+    },
+    {
       "id": "ED-BV26-N3-4",
       "title": "Cercle de femmes — L'Univers d'Achaiah (9 novembre)",
       "commune": "Sint-Pieters-Leeuw",
       "region": "Flandre",
-      "category": "Rencontres et participation",
+      "category": "Culture et découvertes",
       "date": "2026-11-09",
+      "date_end": "2026-11-09",
       "availability": "Date annoncée",
       "modes": [
         "solo_sociable"
@@ -215,12 +358,32 @@
       "publication_status": "Autorisé"
     },
     {
+      "id": "EVT-X-41FE318C698090:2026-11-12",
+      "title": "UNLONELY",
+      "commune": "Ixelles",
+      "region": "",
+      "category": "Culture et découvertes",
+      "date": "2026-11-12",
+      "date_end": "2026-12-12",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme",
+        "couple",
+        "amis"
+      ],
+      "price_label": "",
+      "url": "https://alicebxl.com/exhibitions",
+      "verified": true,
+      "publication_status": "Autorisé"
+    },
+    {
       "id": "EVT-BV26-14OCT-EEKLO-2026-11-20:2026-11-20",
       "title": "Dochters in een cirkel — cercle de femmes à Eeklo",
       "commune": "Eeklo",
       "region": "Flandre",
-      "category": "Rencontres et participation",
+      "category": "Culture et découvertes",
       "date": "2026-11-20",
+      "date_end": "2026-11-20",
       "availability": "Date annoncée",
       "modes": [
         "solo_sociable"
@@ -237,6 +400,7 @@
       "region": "Flandre",
       "category": "Bien-être et détente",
       "date": "2026-11-24",
+      "date_end": "2026-11-24",
       "availability": "Date annoncée",
       "modes": [
         "solo_sociable"
@@ -253,6 +417,7 @@
       "region": "Wallonie",
       "category": "Rencontres et participation",
       "date": "2026-11-26",
+      "date_end": "2026-11-26",
       "availability": "Date annoncée",
       "modes": [
         "solo_sociable"
@@ -263,12 +428,66 @@
       "publication_status": "Autorisé"
     },
     {
+      "id": "EVT-BV26-14OCT-LUDOBOX-2026-11-27:2026-11-27",
+      "title": "Soirée jeux de société — Ludobox Laeken",
+      "commune": "Laeken",
+      "region": "Bruxelles",
+      "category": "Jeux et convivialité",
+      "date": "2026-11-27",
+      "date_end": "2026-11-27",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_sociable",
+        "couple",
+        "amis"
+      ],
+      "price_label": "Gratuit",
+      "url": "https://www.bruxelles.be/soiree-jeux-ludobox",
+      "verified": true,
+      "publication_status": "Autorisé"
+    },
+    {
+      "id": "EVT-BV26-14OCT-SOUL-2026-11-27:2026-11-27",
+      "title": "Women's Circle — cercle de femmes à Uccle",
+      "commune": "Uccle",
+      "region": "Bruxelles",
+      "category": "Culture et découvertes",
+      "date": "2026-11-27",
+      "date_end": "2026-11-27",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_sociable"
+      ],
+      "price_label": "",
+      "url": "https://www.soullingohealing.com/fr/womens-circles-brussels",
+      "verified": true,
+      "publication_status": "Autorisé"
+    },
+    {
+      "id": "EVT-BV26-14OCT-B3-2026-11-28:2026-11-28",
+      "title": "Atelier d'arpentage — L'intelligence artificielle",
+      "commune": "Liège",
+      "region": "Wallonie",
+      "category": "Ateliers et créativité",
+      "date": "2026-11-28",
+      "date_end": "2026-11-28",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_sociable"
+      ],
+      "price_label": "",
+      "url": "https://b3.provincedeliege.be/articles/2026/08/25/5713-lire-ensemble-penser-ensemble-ateliers-arpentage",
+      "verified": true,
+      "publication_status": "Autorisé"
+    },
+    {
       "id": "EVT-BV26-14OCT-5R-20261201:2026-12-01",
       "title": "5Rhythms — danse libre avec Pauline van Hezik",
       "commune": "Ixelles",
       "region": "Bruxelles",
       "category": "Sport et activités collectives",
       "date": "2026-12-01",
+      "date_end": "2026-12-01",
       "availability": "Date annoncée",
       "modes": [
         "solo_sociable"
@@ -279,12 +498,31 @@
       "publication_status": "Autorisé"
     },
     {
+      "id": "EVT-X-6A27A66A24429B:2026-12-02",
+      "title": "Nocturnes gratuites WIELS",
+      "commune": "Forest",
+      "region": "",
+      "category": "Culture et découvertes",
+      "date": "2026-12-02",
+      "date_end": "2026-12-02",
+      "availability": "Date annoncée",
+      "modes": [
+        "couple",
+        "amis"
+      ],
+      "price_label": "Gratuit",
+      "url": "https://wiels.org/fr/events/nocturnes",
+      "verified": true,
+      "publication_status": "Autorisé"
+    },
+    {
       "id": "ED-BV26-N2-2",
       "title": "Vrouwencirkel Loslaten — THEANTARA",
       "commune": "Maasmechelen",
       "region": "Flandre",
       "category": "Rencontres et participation",
       "date": "2026-12-03",
+      "date_end": "2026-12-03",
       "availability": "Date annoncée",
       "modes": [
         "solo_sociable"
@@ -295,12 +533,31 @@
       "publication_status": "Autorisé"
     },
     {
+      "id": "EVT-BV26-14OCT-NOH-2026-12-11:2026-12-11",
+      "title": "Soirée jeux de société — Neder-Over-Heembeek",
+      "commune": "Neder-Over-Heembeek",
+      "region": "Bruxelles",
+      "category": "Jeux et convivialité",
+      "date": "2026-12-11",
+      "date_end": "2026-12-11",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_sociable",
+        "amis"
+      ],
+      "price_label": "",
+      "url": "https://www.bruxelles.be/soiree-jeux-de-societe-noh",
+      "verified": true,
+      "publication_status": "Autorisé"
+    },
+    {
       "id": "EVT-BV26-14OCT-EEKLO-2026-12-18:2026-12-18",
       "title": "Dochters in een cirkel — cercle de femmes à Eeklo",
       "commune": "Eeklo",
       "region": "Flandre",
-      "category": "Rencontres et participation",
+      "category": "Culture et découvertes",
       "date": "2026-12-18",
+      "date_end": "2026-12-18",
       "availability": "Date annoncée",
       "modes": [
         "solo_sociable"
@@ -311,12 +568,48 @@
       "publication_status": "Autorisé"
     },
     {
+      "id": "EVT-BV26-14OCT-LUDOBOX-2026-12-18:2026-12-18",
+      "title": "Soirée jeux de société — Ludobox Laeken",
+      "commune": "Laeken",
+      "region": "Bruxelles",
+      "category": "Jeux et convivialité",
+      "date": "2026-12-18",
+      "date_end": "2026-12-18",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_sociable",
+        "amis"
+      ],
+      "price_label": "Gratuit",
+      "url": "https://www.bruxelles.be/soiree-jeux-ludobox",
+      "verified": true,
+      "publication_status": "Autorisé"
+    },
+    {
+      "id": "EVT-BV26-14OCT-SOUL-2026-12-18:2026-12-18",
+      "title": "Women's Circle — cercle de femmes à Uccle",
+      "commune": "Uccle",
+      "region": "Bruxelles",
+      "category": "Culture et découvertes",
+      "date": "2026-12-18",
+      "date_end": "2026-12-18",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_sociable"
+      ],
+      "price_label": "",
+      "url": "https://www.soullingohealing.com/fr/womens-circles-brussels",
+      "verified": true,
+      "publication_status": "Autorisé"
+    },
+    {
       "id": "EVT-BV26-N1-4:2026-12-23",
       "title": "Muntpunt Schaakclub — échecs pour tous",
       "commune": "Bruxelles",
       "region": "Bruxelles",
       "category": "Jeux et convivialité",
       "date": "2026-12-23",
+      "date_end": "2026-12-23",
       "availability": "Date annoncée",
       "modes": [
         "solo_sociable"
@@ -333,6 +626,7 @@
       "region": "Bruxelles",
       "category": "Culture et découvertes",
       "date": "2026-12-24",
+      "date_end": "2026-12-24",
       "availability": "Date annoncée",
       "modes": [
         "couple",
@@ -350,6 +644,7 @@
       "region": "Bruxelles",
       "category": "Culture et découvertes",
       "date": "2026-12-31",
+      "date_end": "2026-12-31",
       "availability": "Date annoncée",
       "modes": [
         "couple",
@@ -361,12 +656,48 @@
       "publication_status": "Autorisé"
     },
     {
+      "id": "EVT-BV26-14OCT-NOH-2027-01-22:2027-01-22",
+      "title": "Soirée jeux de société — Neder-Over-Heembeek",
+      "commune": "Neder-Over-Heembeek",
+      "region": "Bruxelles",
+      "category": "Jeux et convivialité",
+      "date": "2027-01-22",
+      "date_end": "2027-01-22",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_sociable",
+        "amis"
+      ],
+      "price_label": "",
+      "url": "https://www.bruxelles.be/soiree-jeux-de-societe-noh",
+      "verified": true,
+      "publication_status": "Autorisé"
+    },
+    {
+      "id": "EVT-BV26-14OCT-B3-2027-01-30:2027-01-30",
+      "title": "Atelier d'arpentage — Classes sociales et mépris de classe",
+      "commune": "Liège",
+      "region": "Wallonie",
+      "category": "Ateliers et créativité",
+      "date": "2027-01-30",
+      "date_end": "2027-01-30",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_sociable"
+      ],
+      "price_label": "",
+      "url": "https://b3.provincedeliege.be/articles/2026/08/25/5713-lire-ensemble-penser-ensemble-ateliers-arpentage",
+      "verified": true,
+      "publication_status": "Autorisé"
+    },
+    {
       "id": "EVT-BV26-N4-2:permanent",
       "title": "Arpentage féministe — Maison des Femmes",
       "commune": "Schaerbeek",
       "region": "Bruxelles",
       "category": "Culture et découvertes",
       "date": "",
+      "date_end": "",
       "availability": "Horaires à consulter",
       "modes": [
         "solo_sociable"
@@ -383,6 +714,7 @@
       "region": "Wallonie",
       "category": "Jeux et convivialité",
       "date": "",
+      "date_end": "",
       "availability": "Horaires à consulter",
       "modes": [
         "solo_sociable"
@@ -399,6 +731,7 @@
       "region": "Bruxelles",
       "category": "Jeux et convivialité",
       "date": "",
+      "date_end": "",
       "availability": "Horaires à consulter",
       "modes": [
         "solo_sociable"
@@ -413,8 +746,9 @@
       "title": "Cercle de femmes — Maison des Femmes Schaerbeek",
       "commune": "Schaerbeek",
       "region": "Bruxelles",
-      "category": "Rencontres et participation",
+      "category": "Culture et découvertes",
       "date": "",
+      "date_end": "",
       "availability": "Horaires à consulter",
       "modes": [
         "solo_sociable"
@@ -431,6 +765,7 @@
       "region": "Bruxelles",
       "category": "Rencontres et participation",
       "date": "",
+      "date_end": "",
       "availability": "Horaires à consulter",
       "modes": [
         "solo_sociable"
@@ -447,6 +782,7 @@
       "region": "Bruxelles",
       "category": "Rencontres et participation",
       "date": "",
+      "date_end": "",
       "availability": "Horaires à consulter",
       "modes": [
         "solo_sociable"
@@ -463,6 +799,7 @@
       "region": "Bruxelles",
       "category": "Culture et découvertes",
       "date": "",
+      "date_end": "",
       "availability": "Horaires à consulter",
       "modes": [
         "solo_calme",
@@ -481,6 +818,7 @@
       "region": "",
       "category": "Rencontres et participation",
       "date": "",
+      "date_end": "",
       "availability": "Horaires à consulter",
       "modes": [
         "solo_sociable"
@@ -497,6 +835,7 @@
       "region": "Bruxelles",
       "category": "Rencontres et participation",
       "date": "",
+      "date_end": "",
       "availability": "Horaires à consulter",
       "modes": [
         "solo_sociable"
@@ -513,6 +852,7 @@
       "region": "Bruxelles",
       "category": "Culture et découvertes",
       "date": "",
+      "date_end": "",
       "availability": "Horaires à consulter",
       "modes": [
         "couple",
@@ -528,8 +868,9 @@
       "title": "Séances bien-être — Maison des Femmes",
       "commune": "Schaerbeek",
       "region": "",
-      "category": "Bien-être et détente",
+      "category": "Sport et activités collectives",
       "date": "",
+      "date_end": "",
       "availability": "Horaires à consulter",
       "modes": [
         "solo_calme"
@@ -546,6 +887,7 @@
       "region": "Bruxelles",
       "category": "Jeux et convivialité",
       "date": "",
+      "date_end": "",
       "availability": "Horaires à consulter",
       "modes": [
         "solo_sociable"
@@ -562,6 +904,7 @@
       "region": "",
       "category": "Bien-être et détente",
       "date": "",
+      "date_end": "",
       "availability": "Horaires à consulter",
       "modes": [
         "couple"
@@ -578,6 +921,7 @@
       "region": "Bruxelles",
       "category": "Jeux et convivialité",
       "date": "",
+      "date_end": "",
       "availability": "Horaires à consulter",
       "modes": [
         "solo_sociable",
@@ -595,6 +939,7 @@
       "region": "Bruxelles",
       "category": "Jeux et convivialité",
       "date": "",
+      "date_end": "",
       "availability": "Horaires à consulter",
       "modes": [
         "solo_sociable",
@@ -610,8 +955,9 @@
       "title": "Tricothé — tricot et crochet entre femmes",
       "commune": "Schaerbeek",
       "region": "Bruxelles",
-      "category": "Ateliers et créativité",
+      "category": "Culture et découvertes",
       "date": "",
+      "date_end": "",
       "availability": "Horaires à consulter",
       "modes": [
         "solo_sociable"
@@ -628,6 +974,7 @@
       "region": "Bruxelles",
       "category": "Bien-être et détente",
       "date": "",
+      "date_end": "",
       "availability": "Horaires à consulter",
       "modes": [
         "solo_sociable"
