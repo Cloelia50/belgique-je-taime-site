@@ -635,6 +635,23 @@
       "publication_status": "Autorisé"
     },
     {
+      "id": "ED-BV26-N7-5",
+      "title": "Cercles de femmes — Centre Odonata",
+      "commune": "Liège",
+      "region": "",
+      "category": "Rencontres et participation",
+      "date": "2026-11-27",
+      "date_end": "2026-11-27",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_sociable"
+      ],
+      "price_label": "30 €",
+      "url": "https://anneclairegiffroy.be/cercles-de-femmes-liege-2026-2027-odonata/",
+      "verified": true,
+      "publication_status": "Autorisé"
+    },
+    {
       "id": "EVT-BV26-14OCT-LUDOBOX-2026-11-27:2026-11-27",
       "title": "Soirée jeux de société — Ludobox Laeken",
       "commune": "Laeken",
@@ -979,6 +996,43 @@
       ],
       "price_label": "Tarif dégressif selon séances restantes",
       "url": "https://www.artscade.be/chorale",
+      "verified": true,
+      "publication_status": "Autorisé"
+    },
+    {
+      "id": "EVT-X-31C41FB7038FBB:permanent",
+      "title": "Explor Games — Connection Failed",
+      "commune": "Wavre",
+      "region": "",
+      "category": "Jeux et convivialité",
+      "date": "",
+      "date_end": "",
+      "availability": "Horaires à consulter",
+      "modes": [
+        "couple",
+        "amis"
+      ],
+      "price_label": "",
+      "url": "https://www.aventureparc.be/fr/categorie/explor-games",
+      "verified": true,
+      "publication_status": "Autorisé"
+    },
+    {
+      "id": "EVT-BV26-14OCT-TOOTS-LATEJAM:permanent",
+      "title": "Late jam de jazz — Toots Jazz Club",
+      "commune": "Bruxelles",
+      "region": "",
+      "category": "Culture et découvertes",
+      "date": "",
+      "date_end": "",
+      "availability": "Horaires à consulter",
+      "modes": [
+        "solo_sociable",
+        "couple",
+        "amis"
+      ],
+      "price_label": "Entrée libre, consommation obligatoire",
+      "url": "https://www.toots.brussels/fr/about",
       "verified": true,
       "publication_status": "Autorisé"
     },
