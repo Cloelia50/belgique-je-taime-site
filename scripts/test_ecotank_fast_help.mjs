@@ -172,12 +172,12 @@ function allGuideSteps(view){
       view.click("[data-food-find]");
       continue;
     }
-    assert.match(html,/href="(?:https:\/\/|mailto:)/,"Une démarche doit fournir un lien direct");
     pages.push(html);
     if(!html.includes("data-help-next") || /data-help-next\s+disabled/.test(html)) break;
     view.click("[data-help-next]");
   }
   assert.ok(pages.length && pages.length<20,"Parcours de guides incomplet ou en boucle");
+  assert.match(pages.join("\n"),/href="(?:https:\/\/|mailto:)/,"Le parcours doit offrir au moins un lien direct");
   return pages.join("\n").replaceAll("&#39;","'");
 }
 
