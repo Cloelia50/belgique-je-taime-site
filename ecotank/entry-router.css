@@ -161,22 +161,30 @@
 @media(max-width:620px){.ecotank-page #simpleDifficultHelp .guided-one-step{margin:12px 0}.ecotank-page #simpleDifficultHelp .guided-one-step h3{max-width:25ch}}
 
 
-/* EcoTank : raccorder les parcours validés à l'accueil public.
-   Cartes sobres, sans publicité ni injonction à dévoiler ses revenus. */
-.ecotank-page .ecotank-home-quick-access{margin:20px 0 18px;padding:18px;background:color-mix(in srgb,var(--brand-soft,#e9f7f2) 35%,var(--sheet));border:1px solid var(--line);border-radius:18px}
-.ecotank-page .ecotank-home-quick-access h2{margin:0 0 5px;font-size:clamp(1.15rem,2.4vw,1.45rem);font-family:var(--display);line-height:1.2}
-.ecotank-page .ecotank-home-quick-access>p{margin:0 0 14px;color:var(--muted);font-size:.93rem;line-height:1.45}
-.ecotank-page .ecotank-home-quick-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
-.ecotank-page .ecotank-home-quick-grid button{min-height:84px;border:1.5px solid var(--line);border-radius:13px;padding:13px 15px;background:var(--sheet);color:var(--ink);font:inherit;text-align:left;line-height:1.3;cursor:pointer}
-.ecotank-page .ecotank-home-quick-grid button.quick-urgent{border-color:var(--brand,#0e6f5c);background:color-mix(in srgb,var(--brand-soft,#e9f7f2) 55%,var(--sheet))}
-.ecotank-page .ecotank-home-quick-grid button strong{display:block;font-size:1rem;font-weight:800}
-.ecotank-page .ecotank-home-quick-grid button span{display:block;color:var(--muted);margin-top:4px;font-size:.85rem}
-.ecotank-page .ecotank-home-quick-grid button:hover{border-color:var(--brand,#0e6f5c)}
-.ecotank-page .ecotank-home-quick-grid button:focus-visible{outline:3px solid var(--brand,#0e6f5c);outline-offset:2px}
-.ecotank-page .ecotank-home-quick-access .ecotank-home-quick-note{margin:14px 0 0;font-weight:650;font-size:.88rem;color:var(--ink)}
+/* EcoTank — économies d'abord : un parcours chaleureux et discret,
+   aide d'urgence à portée de main sans dominer l'accueil. */
+.ecotank-page .ecotank-home-quick-access.economies-first{margin:20px 0 18px;padding:0;background:transparent;border:0;border-radius:0}
+.ecotank-page .ecotank-economies-intro p{font-size:1.02rem;line-height:1.55;color:var(--ink);margin:0 0 9px;max-width:60ch}
+.ecotank-page .ecotank-economies-intro p+p{font-size:.92rem;color:var(--muted)}
+.ecotank-page .ecotank-savings-primary{width:100%;min-height:60px;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:16px 18px;text-align:left;font:inherit;font-size:1.07rem;font-weight:800;border:0;border-radius:13px;color:#fff;background:var(--brand,#0e6f5c);cursor:pointer}
+.ecotank-page .ecotank-savings-primary:hover{filter:brightness(1.07)}
+.ecotank-page .ecotank-savings-primary:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+.ecotank-page .ecotank-economies-footnote{font-size:.82rem;color:var(--muted);margin:9px 0 21px;line-height:1.5}
+.ecotank-page .ecotank-secondary-help{display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:13px 0 0;border-top:1px solid var(--line)}
+.ecotank-page .ecotank-secondary-help span{font-size:.85rem;color:var(--muted);width:100%;font-weight:700}
+.ecotank-page .ecotank-secondary-help button{border:1px solid var(--line);border-radius:12px;padding:9px 11px;min-height:42px;background:var(--sheet);color:var(--ink);font:inherit;font-size:.86rem;text-align:left;cursor:pointer}
+.ecotank-page .ecotank-secondary-help button:hover,.ecotank-page .ecotank-secondary-help button:focus-visible{border-color:var(--brand,#0e6f5c)}
+.ecotank-page .ecotank-results-guide{border:1px solid var(--line);border-radius:13px;padding:13px 16px;background:var(--sheet);margin:0 0 14px}
+.ecotank-page .ecotank-results-guide p{margin:5px 0 0;color:var(--muted);font-size:.91rem;line-height:1.45}
+.ecotank-page .ecotank-result-tools{display:flex;gap:9px;flex-wrap:wrap}
+.ecotank-page .simple-badge.ecotank-obtention{white-space:normal;line-height:1.35;font-weight:750}
+.ecotank-page .simple-badge.ecotank-obtention.automatic{background:#e3f2e7;color:#1e593b}
+.ecotank-page .simple-badge.ecotank-obtention.request{background:#fff0da;color:#6c4200}
+.ecotank-page .simple-badge.ecotank-obtention.check{background:var(--bg);color:var(--muted)}
 @media(max-width:620px){
-  .ecotank-page .ecotank-home-quick-access{margin:14px 0;padding:13px;border-radius:14px}
-  .ecotank-page .ecotank-home-quick-grid{grid-template-columns:minmax(0,1fr);gap:8px}
-  .ecotank-page .ecotank-home-quick-grid button{min-height:60px;padding:10px 12px}
-  .ecotank-page .ecotank-home-quick-grid button span{font-size:.8rem;margin-top:2px}
+  .ecotank-page .ecotank-home-quick-access.economies-first{margin:14px 0}
+  .ecotank-page .ecotank-savings-primary{min-height:57px;padding:13px}
+  .ecotank-page .ecotank-secondary-help{gap:6px}
+  .ecotank-page .ecotank-secondary-help button{font-size:.81rem}
+  .ecotank-page .ecotank-result-tools{flex-direction:column}
 }
