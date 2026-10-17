@@ -1,0 +1,295 @@
+name: Jodoigne — preuve HTTP officielle (manuel, lecture seule)
+
+# Intentionally no other triggers. No arbitrary URL inputs.
+on:
+  workflow_dispatch:
+
+# No checkout, no repository permissions, no OIDC, no private robot access.
+permissions: {}
+
+concurrency:
+  group: jodoigne-http-evidence-once-per-manual-run
+  cancel-in-progress: false
+
+jobs:
+  capture-only:
+    if: github.event_name == 'workflow_dispatch' && github.repository == 'Cloelia50/belgique-je-taime-site'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - name: Capturer les octets HTTP officiels en lecture seule
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'BJT_PYTHON_CAPTURE'
+          """One-shot BJT proof capture: stdlib only, no credentials, no writes outside artifacts.
+
+          This module is embedded verbatim in the workflow: the repository needs only ONE new file.
+          No URLs or domains are accepted through CLI/environment/user-supplied inputs.
+          """
+          from __future__ import annotations
+
+          import hashlib
+          import json
+          import os
+          from pathlib import Path
+          import re
+          import sys
+          import urllib.error
+          import urllib.parse
+          import urllib.request
+          import urllib.robotparser
+          from datetime import datetime, timezone
+          from html.parser import HTMLParser
+          import zlib
+          import time
+
+          HOSTS = frozenset(("culturejodoigne.be", "www.culturejodoigne.be"))
+          PAGES = (
+              ("detail", "https://culturejodoigne.be/evenement/soiree-doudou-novembre/"),
+              ("agenda", "https://culturejodoigne.be/agenda/mois/2026-11/"),
+          )
+          ROBOTS = "https://culturejodoigne.be/robots.txt"
+          USER_AGENT = "BJT-Official-ReadOnly-Evidence/1.0"
+          OUTPUT = Path("artifacts/jodoigne-evidence")
+          PAGE_BYTES_MAX = 2_000_000
+          ROBOTS_BYTES_MAX = 128_000
+          DECODED_MAX = 4_000_000
+          SOCKET_TIMEOUT = 12
+          MAX_REDIRECTS = 3
+
+
+          def checked_url(url: str) -> str:
+              p = urllib.parse.urlsplit(str(url))
+              try:
+                  good_port = p.port in (None, 443)
+              except ValueError:
+                  good_port = False
+              if (p.scheme != "https" or p.hostname not in HOSTS or
+                      p.username or p.password or not good_port or p.fragment):
+                  raise ValueError("Forbidden URL: only exact Culture Jodoigne HTTPS hosts are allowed")
+              return url
+
+
+          class BoundedRedirect(urllib.request.HTTPRedirectHandler):
+              def __init__(self):
+                  super().__init__()
+                  self.chain = []
+
+              def redirect_request(self, req, fp, code, msg, headers, newurl):
+                  checked_url(newurl)
+                  if len(self.chain) >= MAX_REDIRECTS:
+                      raise ValueError("Too many redirects")
+                  self.chain.append({"status": code, "from": req.full_url, "to": newurl})
+                  return super().redirect_request(req, fp, code, msg, headers, newurl)
+
+
+          def opener_and_redirects():
+              handler = BoundedRedirect()
+              # Explicitly ignore inherited proxy settings; no untrusted proxy endpoint.
+              opener = urllib.request.build_opener(urllib.request.ProxyHandler({}), handler)
+              return opener, handler
+
+
+          def limited_read(response, cap):
+              declared = response.headers.get("Content-Length")
+              if declared is not None and declared.strip().isdigit() and int(declared) > cap:
+                  raise ValueError("HTTP Content-Length exceeds byte limit")
+              body = bytearray()
+              while True:
+                  part = response.read(min(65536, cap + 1 - len(body)))
+                  if not part:
+                      break
+                  body.extend(part)
+                  if len(body) > cap:
+                      raise ValueError("HTTP body exceeds byte limit")
+              return bytes(body)
+
+
+          def get_one(label, url, cap):
+              checked_url(url)
+              opener, redirects = opener_and_redirects()
+              request = urllib.request.Request(url, headers={
+                  "User-Agent": USER_AGENT,
+                  "Accept": "text/html,text/plain;q=0.8,*/*;q=0.1",
+                  "Accept-Encoding": "identity",
+                  "Cache-Control": "no-cache",
+              }, method="GET")
+              with opener.open(request, timeout=SOCKET_TIMEOUT) as response:
+                  checked_url(response.geturl())
+                  content_type = response.headers.get("Content-Type", "")
+                  encoding = response.headers.get("Content-Encoding", "identity")
+                  status = response.status
+                  if status != 200:
+                      raise ValueError(f"{label}: expected HTTP 200, got {status}")
+                  body = limited_read(response, cap)
+                  details = {
+                      "status": status,
+                      "requested_url": url,
+                      "final_url": response.geturl(),
+                      "redirects": redirects.chain,
+                      "content_type": content_type,
+                      "content_encoding": encoding,
+                      "content_length_bytes": len(body),
+                      "raw_body_sha256": hashlib.sha256(body).hexdigest(),
+                      "retrieved_utc": datetime.now(timezone.utc).isoformat(),
+                      "user_agent": USER_AGENT,
+                  }
+              return body, details
+
+
+          class JsonLdScripts(HTMLParser):
+              def __init__(self):
+                  super().__init__(convert_charrefs=False)
+                  self.collect = False
+                  self.fragments = []
+                  self.buf = []
+
+              def handle_starttag(self, tag, attrs):
+                  if tag.lower() == "script" and not self.collect:
+                      a = dict(attrs)
+                      self.collect = a.get("type", "").split(";")[0].strip().lower() == "application/ld+json"
+                      self.buf = []
+
+              def handle_data(self, data):
+                  if self.collect:
+                      self.buf.append(data)
+
+              def handle_endtag(self, tag):
+                  if tag.lower() == "script" and self.collect:
+                      self.fragments.append("".join(self.buf))
+                      self.collect = False
+                      self.buf = []
+
+
+          def decode_html(body, encoding, content_type):
+              if encoding.lower() in ("", "identity"):
+                  decoded = body
+              elif encoding.lower() == "gzip":
+                  decoder = zlib.decompressobj(16 + zlib.MAX_WBITS)
+                  decoded = decoder.decompress(body, DECODED_MAX + 1)
+                  if len(decoded) > DECODED_MAX or decoder.unconsumed_tail or not decoder.eof:
+                      raise ValueError("Decoded gzip too large or incomplete")
+              else:
+                  raise ValueError("Unsupported content encoding for HTML parsing; raw bytes preserved")
+              if len(decoded) > DECODED_MAX:
+                  raise ValueError("HTML text over decoded limit")
+              if "text/html" not in content_type.lower():
+                  raise ValueError("Not text/html; raw bytes preserved")
+              charset = re.search(r"charset\s*=\s*['\"]?([A-Za-z0-9_-]+)", content_type, re.I)
+              codec = charset.group(1).lower() if charset else "utf-8"
+              if codec not in ("utf-8", "iso-8859-1", "windows-1252"):
+                  raise ValueError("Unapproved HTML charset; raw bytes preserved")
+              return decoded.decode(codec, errors="strict")
+
+
+          def write_json(path, object_):
+              path.write_text(json.dumps(object_, ensure_ascii=False, sort_keys=True, indent=2) + "\n", encoding="utf-8")
+
+
+          def capture_robots():
+              try:
+                  body, receipt = get_one("robots", ROBOTS, ROBOTS_BYTES_MAX)
+              except urllib.error.HTTPError as error:
+                  # RFC-style absent robots.txt permits access, but deny all other failures.
+                  if error.code != 404:
+                      raise ValueError(f"robots.txt rejected with HTTP {error.code}") from error
+                  return {"status": 404, "policy": "robots_not_present", "robots_allowed": True}
+              OUTPUT.joinpath("robots.body").write_bytes(body)
+              if body.strip() and b"user-agent" not in body.lower():
+                  raise ValueError("robots.txt is nonempty but has no recognizable User-agent field")
+              lines = body.decode("utf-8", errors="replace").splitlines()
+              parser = urllib.robotparser.RobotFileParser()
+              parser.parse(lines)
+              allowed = {name: parser.can_fetch(USER_AGENT, url) for name, url in PAGES}
+              delay = parser.crawl_delay(USER_AGENT) or 0
+              request_rate = parser.request_rate(USER_AGENT)
+              if request_rate:
+                  delay = max(delay, request_rate.seconds / max(request_rate.requests, 1))
+              if delay > 30:
+                  raise ValueError("robots.txt requires a crawl delay exceeding this bounded one-shot job")
+              receipt.update({"policy": "robots_rules_checked", "robots_allowed": all(allowed.values()),
+                              "path_permissions": allowed, "delay_between_event_requests_s": delay})
+              if not receipt["robots_allowed"]:
+                  raise ValueError("robots.txt disallows official detail or agenda for our user-agent")
+              return receipt
+
+
+          def capture():
+              OUTPUT.mkdir(parents=True, exist_ok=True)
+              result = {
+                  "schema": "bjt-unauthenticated-public-http-capture-v1",
+                  "purpose": "READ_ONLY_EVIDENCE_NOT_PUBLICATION_APPROVAL",
+                  "source_id": "SRC-21AF71F7C7341C4",
+                  "generated_utc": datetime.now(timezone.utc).isoformat(),
+                  "runner": os.environ.get("RUNNER_NAME", "unexecuted"),
+                  "github_run_id": os.environ.get("GITHUB_RUN_ID", ""),
+                  "state": "STARTED", "pages": {},
+                  "permissions": "none: no repository read/write token requested",
+              }
+              try:
+                  robots = capture_robots()
+                  result["robots"] = robots
+                  for index, (name, url) in enumerate(PAGES):
+                      if index and robots.get("delay_between_event_requests_s", 0):
+                          time.sleep(robots["delay_between_event_requests_s"])
+                      body, receipt = get_one(name, url, PAGE_BYTES_MAX)
+                      path = OUTPUT / f"{name}.body"
+                      path.write_bytes(body)  # EXACT entity-body bytes; never text-normalized.
+                      receipt["body_file"] = path.name
+                      try:
+                          doc = decode_html(body, receipt["content_encoding"], receipt["content_type"])
+                          extractor = JsonLdScripts()
+                          extractor.feed(doc)
+                          entries = []
+                          for fragment in extractor.fragments:
+                              entry = {"script_text_sha256": hashlib.sha256(fragment.encode("utf-8")).hexdigest(),
+                                       "script_text": fragment}
+                              try:
+                                  entry["parsed"] = json.loads(fragment)
+                              except (ValueError, TypeError) as error:
+                                  entry["parse_error"] = str(error)[:200]
+                              entries.append(entry)
+                          write_json(OUTPUT / f"{name}.jsonld.json", {"url": receipt["final_url"],
+                                    "jsonld_script_count": len(entries), "scripts": entries,
+                                    "is_structured_event_certified": False})
+                          receipt["jsonld_scripts_found"] = len(entries)
+                      except Exception as error:
+                          receipt["extraction_warning"] = f"{type(error).__name__}: {error}"
+                          receipt["jsonld_scripts_found"] = None
+                      result["pages"][name] = receipt
+                  result["state"] = "CAPTURED_NOT_VALIDATED"
+              except Exception as error:
+                  result["state"] = "BLOCKED"
+                  result["error"] = f"{type(error).__name__}: {error}"
+                  raise
+              finally:
+                  write_json(OUTPUT / "receipt.json", result)
+                  (OUTPUT / "README.txt").write_text(
+                      "PUBLIC HTTP EVIDENCE ONLY. Not authenticated to private robots, not a "
+                      "signed A decision, not a Google write receipt, not a publication permit. "
+                      "Body files are raw HTTP entity bytes, not original TLS packets.\n",
+                      encoding="utf-8")
+                  entries = []
+                  for f in sorted(OUTPUT.iterdir()):
+                      if f.is_file() and f.name != "sha256sums.txt":
+                          entries.append(hashlib.sha256(f.read_bytes()).hexdigest() + "  " + f.name)
+                  (OUTPUT / "sha256sums.txt").write_text("\n".join(entries) + "\n", encoding="utf-8")
+              print(json.dumps({"state": result["state"], "pages": {
+                  k: {"status": v["status"], "sha256": v["raw_body_sha256"],
+                      "final_url": v["final_url"]} for k, v in result["pages"].items()}}, indent=2))
+
+
+          if __name__ == "__main__":
+              capture()
+          BJT_PYTHON_CAPTURE
+
+      - name: Mettre la preuve à disposition (sans déploiement)
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: jodoigne-official-http-evidence-${{ github.run_id }}
+          path: artifacts/jodoigne-evidence/
+          retention-days: 1
+          if-no-files-found: error
+          compression-level: 0
