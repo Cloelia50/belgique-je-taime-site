@@ -1141,8 +1141,8 @@ nav.index .tab{width:12px;height:22px;border-radius:5px 5px 0 0}
 
     <section id="simpleResults" class="simple-screen">
       <div class="simple-results-head">
-        <div><div class="simple-kicker">Vos résultats</div><h2>Vos 5 priorités</h2><p>Ce ne sont pas vos seules économies : Ecotank met d’abord cinq pistes en avant, puis affiche juste en dessous les autres pistes liées aux situations que vous avez signalées.</p></div>
-        <button type="button" class="soft" id="simpleEditAnswers">Modifier mes réponses</button>
+        <div><div class="simple-kicker">Vos résultats</div><h2>Mes aides, primes, chèques et économies</h2><p>Ce ne sont pas vos seules économies : Ecotank met d’abord cinq pistes en avant, puis affiche juste en dessous les autres pistes liées aux situations que vous avez signalées.</p></div>
+        <div class="ecotank-result-tools"><button type="button" class="soft" id="simpleEditAnswers">Modifier mon profil ou ma commune</button><button type="button" class="soft" id="simpleRefineAnswers">Affiner avec quelques questions</button></div>
       </div>
       <div id="simpleResultsList" class="simple-results-list"></div>
       <div id="simpleSituationGroups" class="simple-situation-groups"></div>
@@ -67249,10 +67249,37 @@ enhanceFactChoices();syncFactForm();applyGlossary(document.getElementById("list"
     {key:"age",title:"Quel âge avez-vous ?",help:"L’âge suffit à repérer plusieurs tarifs et droits. Vous pouvez passer.",render(){return `<div class="simple-input"><label for="sqAge">Âge</label><input id="sqAge" type="number" min="0" max="120" inputmode="numeric" value="${esc(facts.age||"")}" placeholder="Ex. 43"></div><div class="simple-q-footer"><button class="linkish" data-skip>Passer</button><button class="primary" data-continue="age">Continuer</button></div>`}},
     {key:"children",title:"Avez-vous des enfants à charge ?",help:"Si oui, leurs âges permettent d’éviter de vous montrer des aides qui ne correspondent pas.",render(){if(!childYes)return `<div class="simple-choice-grid"><button data-child="no">Non</button><button data-child="yes">Oui</button></div><div class="simple-q-footer"><button class="linkish" data-skip>Je préfère ne pas répondre</button><span></span></div>`;return `<div class="simple-choice-grid"><button data-child="no">Non</button><button data-child="yes" aria-pressed="true">Oui</button></div><div class="simple-input"><label for="sqChildren">Âge(s), facultatif(s)</label><input id="sqChildren" type="text" value="${esc(facts.children||"")}" placeholder="Ex. 8, 13, 16"></div><div class="simple-q-footer"><button class="linkish" data-skip>Passer</button><button class="primary" data-continue="children">Continuer</button></div>`}},
     {key:"housing",title:"Vous êtes propriétaire ou locataire ?",help:"C’est l’un des filtres les plus utiles pour le logement, l’énergie et certaines primes.",render(){const v=facts.housing||"";return `<div class="simple-choice-grid">${[["owner","Propriétaire"],["tenant","Locataire"],["other","Autre"]].map(([x,l])=>`<button data-choice="housing" data-value="${x}" aria-pressed="${v===x}">${l}</button>`).join("")}</div><div class="simple-q-footer"><button class="linkish" data-skip>Je ne sais pas / passer</button><span></span></div>`}},
-    {key:"employment",title:"Quelle est votre situation principale ?",help:"Choisissez ce qui vous ressemble le plus aujourd’hui.",render(){const v=facts.employment||"";const a=[["employee","Salarié·e"],["self","Indépendant·e"],["unemployed","Sans emploi / chômage"],["incapacity","Incapacité de travail"],["student","Étudiant·e"],["pensioner","Pensionné·e"],["other","Autre"]];return `<div class="simple-choice-grid">${a.map(([x,l])=>`<button data-choice="employment" data-value="${x}" aria-pressed="${v===x}">${l}</button>`).join("")}</div><div class="simple-q-footer"><button class="linkish" data-skip>Passer</button><span></span></div>`}},
+    {key:"employment",title:"Quelle est votre situation principale ?",help:"Choisissez votre situation principale. Vous pourrez indiquer d’autres situations ensuite.",render(){const v=facts.employment||"";const a=[["employee","Salarié·e"],["self","Indépendant·e"],["unemployed","Sans emploi / chômage"],["incapacity","Incapacité / invalidité"],["home","Au foyer / autre situation sans emploi"],["student","Étudiant·e"],["pensioner","Pensionné·e"],["other","Autre"]];return `<div class="simple-choice-grid">${a.map(([x,l])=>`<button data-choice="employment" data-value="${x}" aria-pressed="${v===x}">${l}</button>`).join("")}</div><div class="simple-q-footer"><button class="linkish" data-skip>Passer</button><span></span></div>`}},
     {key:"bim",title:"Concernant le statut BIM, où en êtes-vous ?",help:"Vous n’avez pas besoin de connaître le jargon : si vous hésitez, Ecotank peut simplement garder la piste à vérifier.",render(){const v=facts.bim||"";const a=[["yes","Oui, je suis BIM"],["no","Non"],["check","Je me demande si j’y ai droit"],["private","Je préfère ne pas le dire"]];return `<div class="simple-choice-grid">${a.map(([x,l])=>`<button data-choice="bim" data-value="${x}" aria-pressed="${v===x}">${l}</button>`).join("")}</div><div class="simple-q-footer"><button class="linkish" data-skip>Passer</button><span></span></div>`}},
-    {key:"extras",title:"Une de ces situations vous concerne-t-elle ?",help:"C’est facultatif. Vous pouvez en choisir plusieurs, puis continuer.",render(){const a=[["pet","Animaux de compagnie"],["hand","Handicap / invalidité"],["aid","Aidant proche"],["par","Grossesse / naissance"],["voit","Voiture"],["cred","Crédit / dettes"],["mal","Soins lourds"],["copro","Copropriété"],["logurg","Logement précaire"]];return `<div class="simple-multichoice">${a.map(([x,l])=>`<button data-extra="${x}" aria-pressed="${prof.includes(x)}">${l}</button>`).join("")}</div><div class="simple-q-footer"><button class="linkish" data-skip>Aucune / passer</button><button class="primary" data-finish>Voir mes économies</button></div>`}}
+    {key:"extras",title:"Une de ces situations vous concerne-t-elle ?",help:"C’est facultatif. Vous pouvez en choisir plusieurs, puis continuer.",render(){const a=[["pet","Animaux de compagnie"],["hand","Handicap / invalidité"],["aid","Aidant proche"],["par","Grossesse / naissance"],["voit","Voiture"],["cred","Crédit / dettes"],["mal","Soins lourds"],["copro","Copropriété"],["logurg","Logement précaire"]];return `<div class="simple-multichoice">${a.map(([x,l])=>`<button data-extra="${x}" aria-pressed="${prof.includes(x)}">${l}</button>`).join("")}</div><div class="simple-q-footer"><button class="linkish" data-skip>Aucune / passer</button><button class="primary" ${questions[wizardIndex+1]?"data-extra-continue":"data-finish"}>${questions[wizardIndex+1]?"Continuer":"Voir mes économies"}</button></div>`}}
   ];
+  // Parcours principal : situation → besoins cumulables → commune → résultats immédiats.
+  // Les questions d'âge, logement et statuts confirmés restent facultatives via "Affiner".
+  const questionnaire=Object.fromEntries(questions.map(q=>[q.key,q]));
+  function configureEconomiesQuestions(detailed=false){
+    const keys=detailed
+      ? ["employment","extras","commune","age","children","housing","bim"]
+      : ["employment","extras","commune"];
+    questions.splice(0,questions.length,...keys.map(k=>questionnaire[k]));
+  }
+  function startDetailedWizard(){
+    configureEconomiesQuestions(true);
+    wizardIndex=3;
+    childYes=(parseChildrenAges(facts.children).length>0||prof.includes("enf"));
+    showSimple("simpleWizard");
+    renderQuestion();
+  }
+  function acquisitionMode(it){
+    const form=String(it.form||"").trim(), steps=Array.isArray(it.steps)?it.steps.join(" "):"";
+    // Une piste probable n'est pas automatiquement un droit déjà accordé.
+    if(/^(?:aucune demande (?:de .{0,45}distincte|à introduire|nécessaire)|sans démarche(?: spécifique)?|automatiquement (?:accordé|attribué|versé))/i.test(form)
+       || /^(?:examiné(?:e)? automatiquement|automatique dans le calcul)/i.test(form))
+      return {id:"automatic",label:"Normalement automatique : vérifier qu'il est bien appliqué"};
+    if(/(?:demande|formulaire|inscription|introduire|transmett|déclaration|dossier à déposer|requête)/i.test(form)
+       || /(?:introduisez votre demande|complétez le formulaire|envoyez la demande)/i.test(steps))
+      return {id:"request",label:"Démarche à effectuer"};
+    return {id:"check",label:"Mode d’obtention à vérifier sur la fiche officielle"};
+  }
   function renderQuestion(){
     const q=questions[wizardIndex],host=document.getElementById("simpleQuestionHost");if(!q||!host)return;
     if(q.key==="employment"&&window.ECOTANK_ENTRY_EMPLOYMENT){
@@ -67266,13 +67293,14 @@ enhanceFactChoices();syncFactForm();applyGlossary(document.getElementById("list"
   function nextQuestion(){if(wizardIndex<questions.length-1){wizardIndex++;renderQuestion();}else finishWizard();}
   function prevQuestion(){if(wizardIndex>0){wizardIndex--;renderQuestion();}else showSimple("simpleHome");}
   function finishWizard(){profileValidated=true;save();paint();showSimple("simpleResults");}
-  function startWizard(){wizardIndex=0;childYes=(parseChildrenAges(facts.children).length>0||prof.includes("enf"));showSimple("simpleWizard");renderQuestion();}
+  function startWizard(){configureEconomiesQuestions(false);wizardIndex=0;childYes=(parseChildrenAges(facts.children).length>0||prof.includes("enf"));showSimple("simpleWizard");renderQuestion();}
 
   document.getElementById("simpleQuestionHost")?.addEventListener("click",e=>{
     const skip=e.target.closest("[data-skip]");if(skip){nextQuestion();return;}
     const child=e.target.closest("[data-child]");if(child){if(child.dataset.child==="no"){applyChildrenNo();nextQuestion();}else{childYes=true;renderQuestion();}return;}
     const ch=e.target.closest("[data-choice]");if(ch){const type=ch.dataset.choice,v=ch.dataset.value;if(type==="housing")applyHousing(v);if(type==="employment")applyEmployment(v);if(type==="bim")applyBim(v);nextQuestion();return;}
     const ex=e.target.closest("[data-extra]");if(ex){toggleExtra(ex.dataset.extra);renderQuestion();return;}
+    if(e.target.closest("[data-extra-continue]")){nextQuestion();return;}
     if(e.target.closest("[data-finish]")){finishWizard();return;}
     const cont=e.target.closest("[data-continue]");if(cont){const type=cont.dataset.continue;if(type==="commune"){commune=document.getElementById("sqCommune")?.value||"";persistSimple();}if(type==="age")applyAge(document.getElementById("sqAge")?.value||"");if(type==="children")applyChildrenAges(document.getElementById("sqChildren")?.value||"");nextQuestion();}
   });
@@ -67339,8 +67367,8 @@ enhanceFactChoices();syncFactForm();applyGlossary(document.getElementById("list"
     host.innerHTML=blocks.length?`<p class="simple-situation-intro"><strong>Et aussi, selon ce que vous avez indiqué :</strong> ouvrez seulement les rubriques qui vous intéressent.</p>${blocks.join("")}`:"";
   }
   function statusLabel(id){const s=simpleStatusFor(id);return s==="todo"?"À faire":s==="wait"?"En attente":s==="done"?"Fait":"";}
-  function resultCard(x,compact=false){const g=potentialGainInfo(x.it),st=statusLabel(x.id),badge=x.e.status==="likely"?"Très probable":"À confirmer";return `<article class="simple-result${compact?" compact-situation":""}"><div class="simple-result-top"><div class="simple-result-title">${esc(x.it.t)}</div><div class="simple-gain">${esc(g.label)}</div></div><div class="simple-why">${esc(simpleWhy(x,x.e))}</div><div class="simple-badges"><span class="simple-badge ${x.e.status}">${badge}</span>${st?`<span class="simple-badge ${simpleStatusFor(x.id)}">${esc(st)}</span>`:""}</div><div class="simple-result-actions"><button type="button" class="primary" data-simple-open="${esc(x.id)}">Voir comment l’obtenir</button>${!st?`<button type="button" data-simple-quick="${esc(x.id)}">À faire</button>`:""}<button type="button" class="linkish" data-simple-dismiss="${esc(x.id)}">Écarter</button></div></article>`;}
-  function renderSimpleResults(){const host=document.getElementById("simpleResultsList"),hits=simpleCandidateHits(),all=allSimpleCandidateHits();host.innerHTML=hits.length?hits.map(x=>resultCard(x)).join(""):`<div class="simple-empty"><strong>Aucune piste évidente avec les réponses actuelles.</strong><br>Vous pouvez modifier vos réponses ou explorer toute la base.</div>`;const head=document.querySelector("#simpleResults .simple-results-head p");if(head)head.textContent=all.length>5?`Ecotank a repéré ${all.length} pistes plausibles. Les 5 priorités sont affichées d’abord ; vos situations particulières sont détaillées juste en dessous.`:`Ecotank a repéré ${all.length} piste${all.length>1?"s":""} plausible${all.length>1?"s":""} avec vos réponses.`;renderSituationGroups(hits);}
+  function resultCard(x,compact=false){const g=potentialGainInfo(x.it),st=statusLabel(x.id),badge=x.e.status==="likely"?"Situation compatible avec les critères connus":"Conditions à vérifier",mode=acquisitionMode(x.it);return `<article class="simple-result${compact?" compact-situation":""}"><div class="simple-result-top"><div class="simple-result-title">${esc(x.it.t)}</div><div class="simple-gain">${esc(g.label)}</div></div><div class="simple-why">${esc(simpleWhy(x,x.e))}</div><div class="simple-badges"><span class="simple-badge ${x.e.status}">${badge}</span><span class="simple-badge ecotank-obtention ${mode.id}">${esc(mode.label)}</span>${st?`<span class="simple-badge ${simpleStatusFor(x.id)}">${esc(st)}</span>`:""}</div><div class="simple-result-actions"><button type="button" class="primary" data-simple-open="${esc(x.id)}">Voir comment l’obtenir</button>${!st?`<button type="button" data-simple-quick="${esc(x.id)}">À faire</button>`:""}<button type="button" class="linkish" data-simple-dismiss="${esc(x.id)}">Écarter</button></div></article>`;}
+  function renderSimpleResults(){const host=document.getElementById("simpleResultsList"),hits=simpleCandidateHits(),all=allSimpleCandidateHits();host.innerHTML=hits.length?'<div class="ecotank-results-guide"><strong>Comment recevoir ces avantages ?</strong><p>Chaque fiche indique si une demande est nécessaire ou si le droit est normalement appliqué sans demande distincte. « Situation compatible » ne signifie jamais « droit accordé » : vérifiez la fiche officielle.</p></div>'+hits.map(x=>resultCard(x)).join(""):`<div class="simple-empty"><strong>Aucune piste évidente avec les réponses actuelles.</strong><br>Vous pouvez modifier vos réponses ou explorer toute la base.</div>`;const head=document.querySelector("#simpleResults .simple-results-head p");if(head)head.textContent=all.length>5?`Ecotank a repéré ${all.length} pistes plausibles. Les 5 priorités sont affichées d’abord ; vos situations particulières sont détaillées juste en dessous.`:`Ecotank a repéré ${all.length} piste${all.length>1?"s":""} plausible${all.length>1?"s":""} avec vos réponses.`;renderSituationGroups(hits);}
 
   function simpleTrackedHits(){const out=[];for(const cat of DATA){for(const it of cat.items||[]){if(cat.meta||it.meta)continue;const id=stableId(cat,it),s=simpleStatusFor(id);if(["todo","wait","done"].includes(s))out.push({cat,it,id,s});}}const order={wait:0,todo:1,done:2};return out.sort((a,b)=>(order[a.s]-order[b.s])||a.it.t.localeCompare(b.it.t,"fr"));}
   function renderSimpleSavings(){const host=document.getElementById("simpleSavingsList"),hits=simpleTrackedHits();if(!hits.length){host.innerHTML=`<div class="simple-empty">Vous n’avez encore rien enregistré.<br><br><button type="button" class="primary" data-find-now>Trouver mes premières économies</button></div>`;return;}host.innerHTML=hits.map(x=>{const g=potentialGainInfo(x.it),label=statusLabel(x.id);return `<article class="simple-result"><div class="simple-result-top"><div><div class="simple-result-title">${esc(x.it.t)}</div><div class="simple-badges" style="margin-top:6px"><span class="simple-badge ${x.s}">${esc(label)}</span></div></div><div class="simple-gain">${esc(g.label)}</div></div><div class="simple-result-actions"><button type="button" class="primary" data-simple-open="${esc(x.id)}" data-origin="simpleSavings">Ouvrir</button></div></article>`;}).join("");}
@@ -67656,6 +67684,7 @@ enhanceFactChoices();syncFactForm();applyGlossary(document.getElementById("list"
   document.getElementById("simpleExplore")?.addEventListener("click",enterExplore);
   document.getElementById("simpleWizardHome")?.addEventListener("click",()=>showSimple("simpleHome"));
   document.getElementById("simpleEditAnswers")?.addEventListener("click",startWizard);
+  document.getElementById("simpleRefineAnswers")?.addEventListener("click",startDetailedWizard);
   document.getElementById("simpleResultsSavings")?.addEventListener("click",()=>showSimple("simpleSavings"));
   document.getElementById("simpleResultsExplore")?.addEventListener("click",enterExplore);
   document.getElementById("simpleResultsHome")?.addEventListener("click",()=>showSimple("simpleHome"));
