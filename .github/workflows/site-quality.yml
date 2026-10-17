@@ -50,7 +50,7 @@ jobs:
 
   ecotank-home-browser:
     # Vérification réelle unique de la PR EcoTank, pas de job récurrent.
-    if: github.event_name == 'pull_request' && github.head_ref == 'fix/ecotank-public-home-access-20261017'
+    if: github.event_name == 'pull_request' && github.head_ref == 'fix/ecotank-economies-first-restoration-20261017'
     runs-on: ubuntu-latest
     timeout-minutes: 8
     permissions:

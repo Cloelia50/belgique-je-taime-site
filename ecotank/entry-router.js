@@ -3055,35 +3055,45 @@
     urgent.parentElement.insertBefore(urgent,standard);
   }
 
-  // Accès publics indépendants du revenu : les guides existaient mais restaient
-  // derrière deux choix sur l'emploi. Pas de collecte ni de données nouvelles.
+  // L'accueil EcoTank doit d'abord proposer les économies aux particuliers.
+  // Les aides urgentes et parcours administratifs restent accessibles en second plan.
   function mountPublicHomeAccess(){
     const choices=document.querySelector("#simpleHome .simple-home-buttons");
     if(!choices||document.getElementById("ecotankHomeQuickAccess"))return;
     const host=document.createElement("section");
     host.id="ecotankHomeQuickAccess";
-    host.className="ecotank-home-quick-access";
-    host.setAttribute("aria-label","Accès directs aux aides et démarches");
+    host.className="ecotank-home-quick-access economies-first";
+    host.setAttribute("aria-label","Trouver mes aides et économies");
     host.innerHTML=
-      '<h2>Besoin d’un coup de main ?</h2>'+
-      '<p>Choisissez directement ce dont vous avez besoin, sans devoir préciser vos revenus.</p>'+
-      '<div class="ecotank-home-quick-grid">'+
-        '<button type="button" class="quick-urgent" data-ecotank-home="urgent"><strong>J’ai besoin d’aide maintenant</strong><span>Manger, dormir, soins, revenus ou refus urgent</span></button>'+
-        '<button type="button" data-ecotank-home="administration"><strong>Mes démarches administratives</strong><span>Identité, séjour, mutualité, compte et courrier</span></button>'+
-        '<button type="button" data-ecotank-home="blocked"><strong>Je suis bloqué·e dans une démarche</strong><span>eID, itsme, téléphone ou accès en ligne</span></button>'+
-        '<button type="button" data-ecotank-home="business"><strong>Mon activité ou entreprise</strong><span>Indépendant, création ou gestion d’une société</span></button>'+
-      '</div><p class="ecotank-home-quick-note">Pour explorer les primes et économies du quotidien, choisissez ensuite votre situation :</p>';
+      '<div class="ecotank-economies-intro">'+
+      '<p>Primes, chèques, réductions et avantages près de chez vous.</p>'+
+      '<p>En quelques clics : votre situation, ce qui vous intéresse et votre commune. Vous recevrez des pistes concrètes à vérifier, sans devoir créer de compte.</p></div>'+
+      '<button type="button" class="ecotank-savings-primary" data-ecotank-home="savings">'+
+      'Trouver mes aides et mes économies <span aria-hidden="true">→</span></button>'+
+      '<p class="ecotank-economies-footnote">Les résultats distinguent les démarches à faire des droits normalement automatiques, sans vous promettre une éligibilité.</p>'+
+      '<div class="ecotank-secondary-help">'+
+        '<span>Une difficulté particulière ?</span>'+
+        '<button type="button" data-ecotank-home="urgent">Aide immédiate</button>'+
+        '<button type="button" data-ecotank-home="administration">Mes démarches administratives</button>'+
+        '<button type="button" data-ecotank-home="blocked">Accès eID / itsme bloqué</button>'+
+      '</div>';
     choices.parentNode.insertBefore(host,choices);
+    // Les deux anciens raccourcis « emploi / sans emploi » forçaient la mauvaise
+    // interface thématique ; le questionnaire EcoTank comprend ce choix directement.
+    choices.hidden=true;
+    choices.style.display="none";
+    choices.setAttribute("aria-hidden","true");
   }
-
-  // Raccordement à des moteurs DÉJÀ présents dans les fichiers publics.
-  // Ne publie aucune piste issue des files privées de validation.
   document.addEventListener("click",event=>{
     const button=event.target?.closest?.("#ecotankHomeQuickAccess [data-ecotank-home]");
     if(!button)return;
     event.preventDefault();
     const kind=button.dataset.ecotankHome;
-    if(kind==="urgent"){
+    if(kind==="savings"){
+      // Appel au parcours historique, qui filtre les fiches du catalogue public.
+      // Ne pas utiliser l'ancien simpleStart : il est détourné vers l'orientation.
+      document.getElementById("simpleEditAnswers")?.click();
+    }else if(kind==="urgent"){
       state.fromAdminHome=true;
       startImmediateHelp();
     }else if(kind==="administration"){
@@ -3093,30 +3103,10 @@
       state.accessIssue="";
       state.accessService="general";
       renderAccessHelp();
-    }else if(kind==="business"){
-      if(!ensureScreens())return;
-      const target=document.getElementById("entryRouterHost");
-      if(!target)return;
-      target.innerHTML='<div class="entry-topline"><button type="button" data-entry-home>← Accueil</button><span class="entry-step">Professionnels</span></div>'+
-        '<h2>Votre activité</h2><p>Quelle situation souhaitez-vous examiner ?</p>'+
-        '<div class="entry-choice-grid"><button type="button" class="entry-choice" data-ecotank-business-kind="self_employed">Je suis indépendant·e</button>'+
-        '<button type="button" class="entry-choice" data-ecotank-business-kind="company_director">Je dirige une société</button></div>';
-      showScreen("simpleEntryRouter");
     }
   });
-  document.addEventListener("click",event=>{
-    const button=event.target?.closest?.("[data-ecotank-business-kind]");
-    if(!button)return;
-    event.preventDefault();
-    const kind=button.dataset.ecotankBusinessKind;
-    if(!["self_employed","company_director"].includes(kind))return;
-    state.answers={q_entry_situation:kind};
-    state.destinationId=kind==="self_employed"?"self_employed":"company";
-    loadCatalog().then(()=>renderQuestion(kind==="self_employed"?"q_business_stage":"q_company_stage"))
-      .catch(()=>renderLoadFailure());
-  });
-
   mountPublicHomeAccess();
+
   combinedRestore();
   prioritizeAdminResults();
   highlightUrgentEntry();
