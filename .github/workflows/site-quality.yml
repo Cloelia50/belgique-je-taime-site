@@ -46,3 +46,22 @@ jobs:
           path: reports/r65-browser/
           retention-days: 14
           if-no-files-found: warn
+
+
+  ecotank-home-browser:
+    # Vérification réelle unique de la PR EcoTank, pas de job récurrent.
+    if: github.event_name == 'pull_request' && github.head_ref == 'fix/ecotank-public-home-access-20261017'
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.12'
+      - name: Selenium sur Chromium pour EcoTank (sans réseau externe)
+        run: |
+          google-chrome --version
+          python -m pip install --disable-pip-version-check 'selenium>=4.25,<5'
+          python scripts/test_ecotank_home_public_browser.py
