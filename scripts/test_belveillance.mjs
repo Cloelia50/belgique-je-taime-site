@@ -46,7 +46,10 @@ assert.equal(source.engine,"BELVEILLANCE");
 assert(Array.isArray(source.items));
 for(const x of source.items){
   assert(x.publication_status==="Autorisé"&&x.verified===true,"Unreviewed record exposed");
-  assert(x.title&&Array.isArray(x.modes)&&x.modes.length,"Unknown participation");
+  // Participation modes are OPTIONAL facts: absent knowledge must neither
+  // suppress an otherwise complete outing nor invent a social recommendation.
+  // The page excludes mode-less records when a specific mode is selected.
+  assert(x.title&&Array.isArray(x.modes),"Invalid participation field");
   assert(x.modes.every(m=>Object.hasOwn(modes,m)),"Unknown participation label");
   assert(/^https:\/\/[^@\s]+$/i.test(x.url),"Non-HTTPS external URL");
   assert(!("email" in x)&&!("phone" in x)&&!("private_notes" in x),"Private fields exposed");
