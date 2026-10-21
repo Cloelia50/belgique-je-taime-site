@@ -6351,13 +6351,37 @@
         "couple",
         "amis"
       ],
-      "price_label": "Accès gratuit au Village du Père Noël, achats et restauration sel",
+      "price_label": "Gratuit",
       "url": "https://www.destinationbw.be/fr/fiche/evenement/le-village-du-pere-noel-braine-le-chateau_TFOEVT-1H-000SMQ/",
       "verified": true,
       "publication_status": "Autorisé",
       "booking_required": null,
       "booking_method": "",
-      "venue": "Grand'Place de Braine-le-Château"
+      "venue": "Grand'Place de Braine-le-Château",
+      "publication_history": [
+        {
+          "id": "ED-28955705F35EB2",
+          "title": "Village du Père Noël – grand marché et animations enfants",
+          "commune": "Braine-le-Château",
+          "region": "Wallonie",
+          "category": "Nature et plein air",
+          "date": "2026-12-12",
+          "date_end": "2026-12-13",
+          "availability": "Date annoncée",
+          "modes": [
+            "solo_calme",
+            "couple",
+            "amis"
+          ],
+          "price_label": "Accès gratuit au Village du Père Noël, achats et restauration sel",
+          "url": "https://www.destinationbw.be/fr/fiche/evenement/le-village-du-pere-noel-braine-le-chateau_TFOEVT-1H-000SMQ/",
+          "verified": true,
+          "publication_status": "Autorisé",
+          "booking_required": null,
+          "booking_method": "",
+          "venue": "Grand'Place de Braine-le-Château"
+        }
+      ]
     },
     {
       "id": "EVT-X-EAB6C90090F836:2026-12-12",
@@ -7110,14 +7134,39 @@
         "couple",
         "amis"
       ],
-      "price_label": "Entrée libre annoncée dans l'agenda CCBW",
+      "price_label": "Gratuit",
       "url": "https://www.ccbw.be/agenda/",
       "verified": true,
       "publication_status": "Autorisé",
       "booking_required": null,
       "booking_method": "url",
       "venue": "Centre culturel du Brabant wallon — lieu exact à confirmer",
-      "time": "19:00"
+      "time": "19:00",
+      "publication_history": [
+        {
+          "id": "ED-4AD6FC7206E7F2",
+          "title": "Fast – spectacle INTI Théâtre ados",
+          "commune": "Court-Saint-Étienne",
+          "region": "Wallonie",
+          "category": "Jeux et convivialité",
+          "date": "2027-04-09",
+          "date_end": "2027-04-09",
+          "availability": "Date annoncée",
+          "modes": [
+            "solo_calme",
+            "couple",
+            "amis"
+          ],
+          "price_label": "Entrée libre annoncée dans l'agenda CCBW",
+          "url": "https://www.ccbw.be/agenda/",
+          "verified": true,
+          "publication_status": "Autorisé",
+          "booking_required": null,
+          "booking_method": "url",
+          "venue": "Centre culturel du Brabant wallon — lieu exact à confirmer",
+          "time": "19:00"
+        }
+      ]
     },
     {
       "id": "EVT-X-13AA487FA9277F:2027-04-13",
@@ -11277,6 +11326,114 @@
       "booking_method": "",
       "venue": "Quatre Quarts",
       "time": "19:30"
+    },
+    {
+      "id": "EVT-X-B5D4DAC03A7DE9:2026-11-12",
+      "title": "David Smalling Flemish Light",
+      "commune": "Saint-Gilles",
+      "region": "",
+      "category": "Culture et découvertes",
+      "date": "2026-11-12",
+      "date_end": "2027-01-09",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme",
+        "couple",
+        "amis"
+      ],
+      "price_label": "Tarif éventuel à confirmer à la galerie",
+      "url": "https://www.visit.brussels/fr/visiteurs/agenda/event-detail.David-Smalling-Flemish-Light.5700027898",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "Galerie Templon Bruxelles"
+    },
+    {
+      "id": "EVT-X-C3F9501770E99B:2026-11-13",
+      "title": "Francisco Mendes Moreira Karaoké de chambre",
+      "commune": "Ixelles",
+      "region": "",
+      "category": "Culture et découvertes",
+      "date": "2026-11-13",
+      "date_end": "2026-12-12",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme",
+        "couple",
+        "amis"
+      ],
+      "price_label": "Entrée : prix éventuel à vérifier auprès de la galerie",
+      "url": "https://www.visit.brussels/fr/visiteurs/agenda/l-art-contemporain-a-bruxelles-",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "Alice Gallery"
+    },
+    {
+      "id": "EVT-X-7CAF20E7DEDEB7:2027-01-30",
+      "title": "KêR",
+      "commune": "Bruxelles-Ville",
+      "region": "",
+      "category": "Culture et découvertes",
+      "date": "2027-01-30",
+      "date_end": "2027-01-31",
+      "availability": "Date annoncée",
+      "modes": [],
+      "price_label": "Tarifs à confirmer lors de l'ouverture de la billetterie",
+      "url": "https://brigittines.be/en/agenda/festival-bandit-bandiet/ker",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "url",
+      "venue": "Les Brigittines",
+      "time": "15:00"
+    },
+    {
+      "id": "EVT-X-5592A71C0623D0:2026-12-15",
+      "title": "La Cenerentola — Rossini",
+      "commune": "Bruxelles-Ville",
+      "region": "",
+      "category": "Culture et découvertes",
+      "date": "2026-12-15",
+      "date_end": "2026-12-15",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme",
+        "couple",
+        "amis"
+      ],
+      "price_label": "15–175 € billet standard, tarif variable ; réduction jeunes et mo",
+      "url": "https://www.lamonnaiedemunt.be/en/program/3932-la-cenerentola",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "url",
+      "venue": "Théâtre royal de La Monnaie",
+      "time": "19:30"
+    },
+    {
+      "id": "EVT-X-19A63AE52C7240:2026-11-12",
+      "title": "Louis-Cyprien Rials",
+      "commune": "Forest",
+      "region": "",
+      "category": "Culture et découvertes",
+      "date": "2026-11-12",
+      "date_end": "2027-01-09",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme",
+        "couple",
+        "amis"
+      ],
+      "price_label": "Tarif éventuel à confirmer auprès de la galerie",
+      "url": "https://www.ericmouchet.com/",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "Galerie Eric Mouchet Bruxelles"
     }
   ]
 }
