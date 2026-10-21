@@ -916,7 +916,7 @@ function listFixed(){
 // guessed from last year's pattern is not enough to publish an outing.
 function upcomingAnnualEditions(e){
   return (e.ed||[]).filter(function(d){
-    return d.s&&(/^\\d{4}-\\d{2}-\\d{2}$/.test(d.s))&&
+    return d.s&&(/^\d{4}-\d{2}-\d{2}$/.test(d.s))&&
       (d.e||d.s)>=TODAY&&d.st!=='annulee'&&d.st!=='passee'&&d.st!=='annulée';
   });
 }
