@@ -23,7 +23,8 @@
       "price_label": "",
       "url": "https://wiels.org/en/exhibitions/soul-witness",
       "verified": true,
-      "publication_status": "Autorisé"
+      "publication_status": "Autorisé",
+      "venue": "WIELS, Forest"
     },
     {
       "id": "EVT-X-A6C9DB27515F18:2026-09-10",
@@ -42,7 +43,8 @@
       "price_label": "",
       "url": "https://www.sorrywereclosed.com/en/exhibitions/presentation/208/bolero",
       "verified": true,
-      "publication_status": "Autorisé"
+      "publication_status": "Autorisé",
+      "venue": "Sorry We’re Closed"
     },
     {
       "id": "EVT-X-07A8515910A1BA:2026-09-10",
@@ -61,7 +63,8 @@
       "price_label": "",
       "url": "https://www.ericmouchet.com/expositions/",
       "verified": true,
-      "publication_status": "Autorisé"
+      "publication_status": "Autorisé",
+      "venue": "Galerie Eric Mouchet Bruxelles"
     },
     {
       "id": "EVT-X-6C440E13AE8A30:2026-09-10",
@@ -80,7 +83,8 @@
       "price_label": "",
       "url": "https://www.damienandtheloveguru.com/exhibitions/mathias-toubro-in-shape-of-a-heart-brussels",
       "verified": true,
-      "publication_status": "Autorisé"
+      "publication_status": "Autorisé",
+      "venue": "Bruxelles"
     },
     {
       "id": "EVT-X-1584AF79DC8167:2026-09-10",
@@ -99,7 +103,8 @@
       "price_label": "",
       "url": "https://galeriegretameert.com/exhibitions/",
       "verified": true,
-      "publication_status": "Autorisé"
+      "publication_status": "Autorisé",
+      "venue": "Galerie Greta Meert"
     },
     {
       "id": "EVT-X-F6B3E4A7B81F49:2026-09-10",
@@ -118,7 +123,8 @@
       "price_label": "",
       "url": "https://galeriegretameert.com/exhibitions/",
       "verified": true,
-      "publication_status": "Autorisé"
+      "publication_status": "Autorisé",
+      "venue": "Galerie Greta Meert"
     },
     {
       "id": "EVT-X-61255C5FA256C9:2026-09-10",
@@ -137,7 +143,8 @@
       "price_label": "",
       "url": "https://www.ericmouchet.com/expositions/",
       "verified": true,
-      "publication_status": "Autorisé"
+      "publication_status": "Autorisé",
+      "venue": "Galerie Eric Mouchet Bruxelles"
     },
     {
       "id": "EVT-X-18FD1F58A4A708:2026-09-11",
@@ -175,7 +182,8 @@
       "price_label": "",
       "url": "https://www.bozar.be/fr/calendrier/jean-brusselmans",
       "verified": true,
-      "publication_status": "Autorisé"
+      "publication_status": "Autorisé",
+      "venue": "Bozar, Bruxelles"
     },
     {
       "id": "EVT-X-4E670DBFC95AE1:2026-10-14",
@@ -208,10 +216,11 @@
         "couple",
         "amis"
       ],
-      "price_label": "",
+      "price_label": "10 € standard ; gratuit moins de 18 ans ; tarifs réduits",
       "url": "https://www.bozar.be/en/calendar/cristobal-balenciaga-x-edith-dekyndt",
       "verified": true,
-      "publication_status": "Autorisé"
+      "publication_status": "Autorisé",
+      "venue": "Bozar, Bruxelles"
     },
     {
       "id": "ED-BV26-N5-3",
@@ -330,7 +339,12 @@
       "price_label": "35 €",
       "url": "https://www.eeklo.be/activiteiten/detail/7116/dochters-in-een-cirkel-vrouwencirkel",
       "verified": true,
-      "publication_status": "Autorisé"
+      "publication_status": "Autorisé",
+      "time": "19:30",
+      "booking_url": "https://www.eeklo.be/activiteiten/detail/7116/dochters-in-een-cirkel-vrouwencirkel",
+      "booking_required": true,
+      "booking_method": "url",
+      "venue": "Praktijk Crescendo"
     },
     {
       "id": "ED-BV26-N4-1",
@@ -347,7 +361,12 @@
       "price_label": "77 €",
       "url": "https://www.theantara.be/activiteiten/inspiratiedag-24-oktober-2026",
       "verified": true,
-      "publication_status": "Autorisé"
+      "publication_status": "Autorisé",
+      "time": "10:00",
+      "booking_url": "https://www.theantara.be/activiteiten/inspiratiedag-24-oktober-2026",
+      "booking_required": true,
+      "booking_method": "url",
+      "venue": "THEANTARA, Maasmechelen"
     },
     {
       "id": "ED-BV26-N3-3",
@@ -364,7 +383,12 @@
       "price_label": "25 €",
       "url": "https://www.l-univers-d-achaiah.be/cercle-de-femmes/",
       "verified": true,
-      "publication_status": "Autorisé"
+      "publication_status": "Autorisé",
+      "time": "19:00",
+      "booking_url": "https://www.l-univers-d-achaiah.be/cercle-de-femmes/",
+      "booking_required": true,
+      "booking_method": "url",
+      "venue": "L'Univers d'Achaiah, Sint-Pieters-Leeuw (adresse à confirmer)"
     },
     {
       "id": "ED-BV26-N3-1",
@@ -381,7 +405,10 @@
       "price_label": "30 €",
       "url": "https://verbindendleven.be/product/vrouwencirkel/",
       "verified": true,
-      "publication_status": "Autorisé"
+      "publication_status": "Autorisé",
+      "time": "20:00",
+      "booking_required": true,
+      "venue": "Atelier, Kriekenstraat, 2500 Lier"
     },
     {
       "id": "EVT-BV26-14OCT-5R-20261027:2026-10-27",
@@ -398,7 +425,9 @@
       "price_label": "20 € sur place",
       "url": "https://www.5rhythms.com/classes/WeeklyDropInWaveSessionwithGuestTeacherNataliePoole-299422",
       "verified": true,
-      "publication_status": "Autorisé"
+      "publication_status": "Autorisé",
+      "time": "19:30",
+      "venue": "Institut Saint-André"
     },
     {
       "id": "EVT-BV26-14OCT-LUDOBOX-2026-10-30:2026-10-30",
@@ -416,7 +445,10 @@
       "price_label": "Gratuit",
       "url": "https://www.bruxelles.be/soiree-jeux-ludobox",
       "verified": true,
-      "publication_status": "Autorisé"
+      "publication_status": "Autorisé",
+      "time": "18:30",
+      "booking_method": "url",
+      "venue": "Ludobox, Laeken"
     },
     {
       "id": "EVT-X-2A4CFE0F43EB17:2026-10-31",
@@ -432,10 +464,13 @@
         "couple",
         "amis"
       ],
-      "price_label": "",
+      "price_label": "12 € tarif standard ; 8 € tarif réduit ; 5 € étudiants/demandeurs",
       "url": "https://wiels.org/en/exhibitions/portia-zvavahera",
       "verified": true,
-      "publication_status": "Autorisé"
+      "publication_status": "Autorisé",
+      "booking_required": false,
+      "booking_method": "aucune",
+      "venue": "WIELS, avenue Van Volxem 354, 1190 Forest"
     },
     {
       "id": "EVT-BV26-14OCT-5R-20261103:2026-11-03",
@@ -452,7 +487,9 @@
       "price_label": "Tarif à vérifier",
       "url": "https://www.5rhythms.com/teachers/Cecile%2BKlefstad",
       "verified": true,
-      "publication_status": "Autorisé"
+      "publication_status": "Autorisé",
+      "time": "19:30",
+      "venue": "Institut Saint-André"
     },
     {
       "id": "EVT-X-FC1028B24DB938:2026-11-04",
@@ -471,7 +508,9 @@
       "price_label": "Gratuit",
       "url": "https://wiels.org/fr/events/nocturnes",
       "verified": true,
-      "publication_status": "Autorisé"
+      "publication_status": "Autorisé",
+      "time": "18:00",
+      "venue": "WIELS, Forest"
     },
     {
       "id": "ED-BV26-N7-3",
@@ -485,10 +524,12 @@
       "modes": [
         "solo_sociable"
       ],
-      "price_label": "",
+      "price_label": "Inscription via événement ; tarif non indiqué",
       "url": "https://www.wanna-play.be/fr/o/board-game-monkeys/",
       "verified": true,
-      "publication_status": "Autorisé"
+      "publication_status": "Autorisé",
+      "time": "19:30",
+      "venue": "Rue de la Tribune 8, 1000 Bruxelles"
     },
     {
       "id": "ED-BV26-N5-2",
@@ -505,7 +546,12 @@
       "price_label": "",
       "url": "https://www.1030.be/fr/agenda/bricoladies-0",
       "verified": true,
-      "publication_status": "Autorisé"
+      "publication_status": "Autorisé",
+      "time": "13:30",
+      "booking_url": "https://www.1030.be/fr/agenda/bricoladies-0",
+      "booking_required": true,
+      "booking_method": "url",
+      "venue": "Maison des Femmes de Schaerbeek"
     },
     {
       "id": "ED-BV26-14OCT-NEW-FABRICA-20261105",
@@ -522,7 +568,9 @@
       "price_label": "",
       "url": "https://quatrequarts.coop/event/fabricauserie-5/2026-11-05/",
       "verified": true,
-      "publication_status": "Autorisé"
+      "publication_status": "Autorisé",
+      "time": "19:30",
+      "venue": "Quatre Quarts"
     },
     {
       "id": "ED-BV26-N2-1",
@@ -539,7 +587,12 @@
       "price_label": "22 €",
       "url": "https://www.theantara.be/agenda",
       "verified": true,
-      "publication_status": "Autorisé"
+      "publication_status": "Autorisé",
+      "time": "20:00",
+      "booking_url": "https://www.theantara.be/agenda",
+      "booking_required": true,
+      "booking_method": "url",
+      "venue": "THEANTARA, Maasmechelen"
     },
     {
       "id": "ED-BV26-14OCT-NEW-AIGUILLES-20261105",
@@ -556,7 +609,9 @@
       "price_label": "Gratuit",
       "url": "https://quatrequarts.coop/agenda/mois/2026-11/",
       "verified": true,
-      "publication_status": "Autorisé"
+      "publication_status": "Autorisé",
+      "time": "13:00",
+      "venue": "Quatre Quarts"
     },
     {
       "id": "ED-BV26-14OCT-NEW-JAM-20261106",
@@ -574,7 +629,11 @@
       "price_label": "Gratuit",
       "url": "https://quatrequarts.coop/event/jam-2-5-4/2026-11-06/",
       "verified": true,
-      "publication_status": "Autorisé"
+      "publication_status": "Autorisé",
+      "time": "20:00",
+      "booking_required": false,
+      "booking_method": "aucune",
+      "venue": "Quatre Quarts"
     },
     {
       "id": "ED-BV26-N7-4",
@@ -591,7 +650,10 @@
       "price_label": "40 €",
       "url": "https://anneclairegiffroy.be/cercle-de-femmes-liege/",
       "verified": true,
-      "publication_status": "Autorisé"
+      "publication_status": "Autorisé",
+      "time": "15:00",
+      "booking_required": true,
+      "venue": "Centre Odonata, rue des Armuriers 19, 4000 Liège"
     },
     {
       "id": "ED-BV26-N3-4",
@@ -608,7 +670,12 @@
       "price_label": "25 €",
       "url": "https://www.l-univers-d-achaiah.be/cercle-de-femmes/",
       "verified": true,
-      "publication_status": "Autorisé"
+      "publication_status": "Autorisé",
+      "time": "19:00",
+      "booking_url": "https://www.l-univers-d-achaiah.be/cercle-de-femmes/",
+      "booking_required": true,
+      "booking_method": "url",
+      "venue": "L'Univers d'Achaiah, Sint-Pieters-Leeuw (adresse à confirmer)"
     },
     {
       "id": "EVT-X-BE62AD225C014A:2026-11-11",
@@ -624,10 +691,11 @@
         "couple",
         "amis"
       ],
-      "price_label": "",
+      "price_label": "10 € standard ; gratuit moins de 18 ans ; tarifs réduits",
       "url": "https://www.bozar.be/fr/calendrier/central-never-alone",
       "verified": true,
-      "publication_status": "Autorisé"
+      "publication_status": "Autorisé",
+      "venue": "Bozar, Bruxelles"
     },
     {
       "id": "ED-BV26-14OCT-NEW-ENGLISH-20261111",
@@ -645,7 +713,9 @@
       "price_label": "Gratuit",
       "url": "https://quatrequarts.coop/event/table-de-conversation-en-anglais-4/2026-11-11/",
       "verified": true,
-      "publication_status": "Autorisé"
+      "publication_status": "Autorisé",
+      "time": "10:30",
+      "venue": "Quatre Quarts"
     },
     {
       "id": "ED-BV26-14OCT-NEW-BRICO-20261112",
@@ -662,7 +732,12 @@
       "price_label": "",
       "url": "https://www.1030.be/fr/agenda/bricoladies-0",
       "verified": true,
-      "publication_status": "Autorisé"
+      "publication_status": "Autorisé",
+      "time": "13:30",
+      "booking_url": "https://www.1030.be/fr/agenda/bricoladies-0",
+      "booking_required": true,
+      "booking_method": "url",
+      "venue": "Maison des Femmes ou atelier partenaire — à confirmer"
     },
     {
       "id": "EVT-X-41FE318C698090:2026-11-12",
@@ -681,7 +756,8 @@
       "price_label": "",
       "url": "https://alicebxl.com/exhibitions",
       "verified": true,
-      "publication_status": "Autorisé"
+      "publication_status": "Autorisé",
+      "venue": "Alice Gallery, Ixelles"
     },
     {
       "id": "ED-BV26-14OCT-NEW-ARP-20261117",
@@ -698,7 +774,10 @@
       "price_label": "",
       "url": "https://www.1030.be/fr/agenda/arpentage-feministe-5",
       "verified": true,
-      "publication_status": "Autorisé"
+      "publication_status": "Autorisé",
+      "time": "13:30",
+      "booking_required": true,
+      "venue": "Maison des Femmes"
     },
     {
       "id": "ED-BV26-14OCT-NEW-AUTH-20261117",
@@ -715,7 +794,10 @@
       "price_label": "",
       "url": "https://authentikasoi.com/",
       "verified": true,
-      "publication_status": "Autorisé"
+      "publication_status": "Autorisé",
+      "time": "19:30",
+      "booking_required": true,
+      "venue": "Gîte Santé du Rouge-Cloître"
     },
     {
       "id": "ED-BV26-14OCT-NEW-BRICO-20261119",
@@ -732,7 +814,12 @@
       "price_label": "",
       "url": "https://www.1030.be/fr/agenda/bricoladies-0",
       "verified": true,
-      "publication_status": "Autorisé"
+      "publication_status": "Autorisé",
+      "time": "13:30",
+      "booking_url": "https://www.1030.be/fr/agenda/bricoladies-0",
+      "booking_required": true,
+      "booking_method": "url",
+      "venue": "Maison des Femmes ou atelier partenaire — à confirmer"
     },
     {
       "id": "ED-BV26-14OCT-NEW-FABRICA-20261119",
@@ -749,7 +836,9 @@
       "price_label": "",
       "url": "https://quatrequarts.coop/series/fabricauserie/",
       "verified": true,
-      "publication_status": "Autorisé"
+      "publication_status": "Autorisé",
+      "time": "19:30",
+      "venue": "Quatre Quarts"
     },
     {
       "id": "EVT-X-80E3232BEFA5D1:2026-11-19",
@@ -768,7 +857,8 @@
       "price_label": "",
       "url": "https://galeriegretameert.com/exhibitions/",
       "verified": true,
-      "publication_status": "Autorisé"
+      "publication_status": "Autorisé",
+      "venue": "Galerie Greta Meert"
     },
     {
       "id": "EVT-X-5654B58F0229D9:2026-11-19",
@@ -787,7 +877,8 @@
       "price_label": "",
       "url": "https://galeriegretameert.com/exhibitions/",
       "verified": true,
-      "publication_status": "Autorisé"
+      "publication_status": "Autorisé",
+      "venue": "Galerie Greta Meert"
     },
     {
       "id": "ED-BV26-14OCT-NEW-AIGUILLES-20261119",
@@ -804,7 +895,9 @@
       "price_label": "Gratuit",
       "url": "https://quatrequarts.coop/agenda/mois/2026-11/",
       "verified": true,
-      "publication_status": "Autorisé"
+      "publication_status": "Autorisé",
+      "time": "13:00",
+      "venue": "Quatre Quarts"
     },
     {
       "id": "EVT-BV26-14OCT-EEKLO-2026-11-20:2026-11-20",
@@ -821,7 +914,12 @@
       "price_label": "35 €",
       "url": "https://www.eeklo.be/activiteiten/detail/7116/dochters-in-een-cirkel-vrouwencirkel",
       "verified": true,
-      "publication_status": "Autorisé"
+      "publication_status": "Autorisé",
+      "time": "19:30",
+      "booking_url": "https://www.eeklo.be/activiteiten/detail/7116/dochters-in-een-cirkel-vrouwencirkel",
+      "booking_required": true,
+      "booking_method": "url",
+      "venue": "Praktijk Crescendo"
     },
     {
       "id": "ED-BV26-N3-2",
@@ -838,7 +936,10 @@
       "price_label": "30 €",
       "url": "https://verbindendleven.be/product/vrouwencirkel/",
       "verified": true,
-      "publication_status": "Autorisé"
+      "publication_status": "Autorisé",
+      "time": "20:00",
+      "booking_required": true,
+      "venue": "Atelier, Kriekenstraat, 2500 Lier"
     },
     {
       "id": "ED-BV26-N7-6",
@@ -855,7 +956,11 @@
       "price_label": "Gratuit",
       "url": "https://www.activites-solidaris.be/event/groupe-a-liege-les-aperos-feministes-joyeux/2026-11-26/",
       "verified": true,
-      "publication_status": "Autorisé"
+      "publication_status": "Autorisé",
+      "time": "18:00",
+      "booking_required": false,
+      "booking_method": "aucune",
+      "venue": "Lieu variable selon la séance — Liège"
     },
     {
       "id": "ED-BV26-14OCT-NEW-BRICO-20261126",
@@ -872,7 +977,12 @@
       "price_label": "",
       "url": "https://www.1030.be/fr/agenda/bricoladies-0",
       "verified": true,
-      "publication_status": "Autorisé"
+      "publication_status": "Autorisé",
+      "time": "13:30",
+      "booking_url": "https://www.1030.be/fr/agenda/bricoladies-0",
+      "booking_required": true,
+      "booking_method": "url",
+      "venue": "Maison des Femmes ou atelier partenaire — à confirmer"
     },
     {
       "id": "ED-BV26-N7-5",
@@ -889,7 +999,9 @@
       "price_label": "30 €",
       "url": "https://anneclairegiffroy.be/cercles-de-femmes-liege-2026-2027-odonata/",
       "verified": true,
-      "publication_status": "Autorisé"
+      "publication_status": "Autorisé",
+      "time": "19:00",
+      "venue": "Centre Odonata, rue des Armuriers 19, 4000 Liège"
     },
     {
       "id": "EVT-BV26-14OCT-LUDOBOX-2026-11-27:2026-11-27",
@@ -908,7 +1020,10 @@
       "price_label": "Gratuit",
       "url": "https://www.bruxelles.be/soiree-jeux-ludobox",
       "verified": true,
-      "publication_status": "Autorisé"
+      "publication_status": "Autorisé",
+      "time": "18:30",
+      "booking_method": "url",
+      "venue": "Ludobox"
     },
     {
       "id": "EVT-BV26-14OCT-SOUL-2026-11-27:2026-11-27",
@@ -925,7 +1040,12 @@
       "price_label": "",
       "url": "https://www.soullingohealing.com/fr/womens-circles-brussels",
       "verified": true,
-      "publication_status": "Autorisé"
+      "publication_status": "Autorisé",
+      "time": "18:30",
+      "booking_url": "https://www.soullingohealing.com/fr/womens-circles-brussels",
+      "booking_required": true,
+      "booking_method": "url",
+      "venue": "Soul Lingo Healing"
     },
     {
       "id": "EVT-BV26-14OCT-B3-2026-11-28:2026-11-28",
@@ -942,7 +1062,10 @@
       "price_label": "",
       "url": "https://b3.provincedeliege.be/articles/2026/08/25/5713-lire-ensemble-penser-ensemble-ateliers-arpentage",
       "verified": true,
-      "publication_status": "Autorisé"
+      "publication_status": "Autorisé",
+      "time": "10:00",
+      "booking_required": true,
+      "venue": "B3 Centre de Ressources"
     },
     {
       "id": "ED-BV26-14OCT-NEW-GAREAUXJEUX-20261128",
@@ -960,7 +1083,9 @@
       "price_label": "Prix libre (contribution souhaitée)",
       "url": "https://quatrequarts.coop/agenda/mois/2026-11/",
       "verified": true,
-      "publication_status": "Autorisé"
+      "publication_status": "Autorisé",
+      "time": "19:00",
+      "venue": "Quatre Quarts"
     },
     {
       "id": "EVT-BV26-14OCT-5R-20261201:2026-12-01",
@@ -977,7 +1102,9 @@
       "price_label": "20 € sur place",
       "url": "https://www.5rhythms.com/nl//classes/WeeklyDropInWaveSessionGuestTeacherPaulineVanHezik-299421",
       "verified": true,
-      "publication_status": "Autorisé"
+      "publication_status": "Autorisé",
+      "time": "19:30",
+      "venue": "Institut Saint-André"
     },
     {
       "id": "EVT-X-6A27A66A24429B:2026-12-02",
@@ -995,7 +1122,9 @@
       "price_label": "Gratuit",
       "url": "https://wiels.org/fr/events/nocturnes",
       "verified": true,
-      "publication_status": "Autorisé"
+      "publication_status": "Autorisé",
+      "time": "18:00",
+      "venue": "WIELS, avenue Van Volxem 354, Forest"
     },
     {
       "id": "ED-BV26-14OCT-NEW-BRICO-20261203",
@@ -1012,7 +1141,12 @@
       "price_label": "",
       "url": "https://www.1030.be/fr/agenda/bricoladies-0",
       "verified": true,
-      "publication_status": "Autorisé"
+      "publication_status": "Autorisé",
+      "time": "13:30",
+      "booking_url": "https://www.1030.be/fr/agenda/bricoladies-0",
+      "booking_required": true,
+      "booking_method": "url",
+      "venue": "Maison des Femmes ou atelier partenaire — à confirmer"
     },
     {
       "id": "ED-BV26-14OCT-NEW-FABRICA-20261203",
@@ -1029,7 +1163,9 @@
       "price_label": "",
       "url": "https://quatrequarts.coop/event/fabricauserie-5/2026-12-03/",
       "verified": true,
-      "publication_status": "Autorisé"
+      "publication_status": "Autorisé",
+      "time": "19:30",
+      "venue": "Quatre Quarts"
     },
     {
       "id": "ED-BV26-N2-2",
@@ -1046,7 +1182,12 @@
       "price_label": "22 €",
       "url": "https://www.theantara.be/agenda",
       "verified": true,
-      "publication_status": "Autorisé"
+      "publication_status": "Autorisé",
+      "time": "20:00",
+      "booking_url": "https://www.theantara.be/agenda",
+      "booking_required": true,
+      "booking_method": "url",
+      "venue": "THEANTARA, Maasmechelen"
     },
     {
       "id": "ED-BV26-14OCT-NEW-AIGUILLES-20261203",
@@ -1063,7 +1204,9 @@
       "price_label": "Gratuit",
       "url": "https://quatrequarts.coop/agenda/mois/2026-12/",
       "verified": true,
-      "publication_status": "Autorisé"
+      "publication_status": "Autorisé",
+      "time": "13:00",
+      "venue": "Quatre Quarts"
     },
     {
       "id": "ED-BV26-14OCT-NEW-JAM-20261204",
@@ -1081,7 +1224,11 @@
       "price_label": "Gratuit",
       "url": "https://quatrequarts.coop/event/jam-2-5-4/2026-12-04/",
       "verified": true,
-      "publication_status": "Autorisé"
+      "publication_status": "Autorisé",
+      "time": "20:00",
+      "booking_required": false,
+      "booking_method": "aucune",
+      "venue": "Quatre Quarts"
     },
     {
       "id": "ED-BV26-14OCT-NEW-ENGLISH-20261209",
@@ -1099,7 +1246,9 @@
       "price_label": "Gratuit",
       "url": "https://quatrequarts.coop/event/table-de-conversation-en-anglais-4/2026-12-09/",
       "verified": true,
-      "publication_status": "Autorisé"
+      "publication_status": "Autorisé",
+      "time": "10:30",
+      "venue": "Quatre Quarts"
     },
     {
       "id": "ED-BV26-14OCT-NEW-BRICO-20261210",
@@ -1116,7 +1265,12 @@
       "price_label": "",
       "url": "https://www.1030.be/fr/agenda/bricoladies-0",
       "verified": true,
-      "publication_status": "Autorisé"
+      "publication_status": "Autorisé",
+      "time": "13:30",
+      "booking_url": "https://www.1030.be/fr/agenda/bricoladies-0",
+      "booking_required": true,
+      "booking_method": "url",
+      "venue": "Maison des Femmes ou atelier partenaire — à confirmer"
     },
     {
       "id": "EVT-BV26-14OCT-NOH-2026-12-11:2026-12-11",
@@ -1134,7 +1288,9 @@
       "price_label": "",
       "url": "https://www.bruxelles.be/soiree-jeux-de-societe-noh",
       "verified": true,
-      "publication_status": "Autorisé"
+      "publication_status": "Autorisé",
+      "time": "20:00",
+      "venue": "Centre culturel de Neder-Over-Heembeek"
     },
     {
       "id": "ED-BV26-14OCT-NEW-AUTH-20261216",
@@ -1151,7 +1307,10 @@
       "price_label": "",
       "url": "https://authentikasoi.com/",
       "verified": true,
-      "publication_status": "Autorisé"
+      "publication_status": "Autorisé",
+      "time": "19:30",
+      "booking_required": true,
+      "venue": "Gîte Santé du Rouge-Cloître"
     },
     {
       "id": "ED-BV26-14OCT-NEW-ENGLISH-20261216",
@@ -1169,7 +1328,9 @@
       "price_label": "Gratuit",
       "url": "https://quatrequarts.coop/event/table-de-conversation-en-anglais-4/2026-12-16/",
       "verified": true,
-      "publication_status": "Autorisé"
+      "publication_status": "Autorisé",
+      "time": "10:30",
+      "venue": "Quatre Quarts"
     },
     {
       "id": "ED-BV26-14OCT-NEW-FABRICA-20261217",
@@ -1186,7 +1347,9 @@
       "price_label": "",
       "url": "https://quatrequarts.coop/series/fabricauserie/",
       "verified": true,
-      "publication_status": "Autorisé"
+      "publication_status": "Autorisé",
+      "time": "19:30",
+      "venue": "Quatre Quarts"
     },
     {
       "id": "ED-BV26-14OCT-NEW-AIGUILLES-20261217",
@@ -1203,7 +1366,9 @@
       "price_label": "Gratuit",
       "url": "https://quatrequarts.coop/agenda/mois/2026-12/",
       "verified": true,
-      "publication_status": "Autorisé"
+      "publication_status": "Autorisé",
+      "time": "13:00",
+      "venue": "Quatre Quarts"
     },
     {
       "id": "EVT-BV26-14OCT-EEKLO-2026-12-18:2026-12-18",
@@ -1220,7 +1385,12 @@
       "price_label": "35 €",
       "url": "https://www.eeklo.be/activiteiten/detail/7116/dochters-in-een-cirkel-vrouwencirkel",
       "verified": true,
-      "publication_status": "Autorisé"
+      "publication_status": "Autorisé",
+      "time": "19:30",
+      "booking_url": "https://www.eeklo.be/activiteiten/detail/7116/dochters-in-een-cirkel-vrouwencirkel",
+      "booking_required": true,
+      "booking_method": "url",
+      "venue": "Praktijk Crescendo"
     },
     {
       "id": "EVT-BV26-14OCT-LUDOBOX-2026-12-18:2026-12-18",
@@ -1238,7 +1408,9 @@
       "price_label": "Gratuit",
       "url": "https://www.bruxelles.be/soiree-jeux-ludobox",
       "verified": true,
-      "publication_status": "Autorisé"
+      "publication_status": "Autorisé",
+      "time": "18:30",
+      "venue": "Ludobox"
     },
     {
       "id": "EVT-BV26-14OCT-SOUL-2026-12-18:2026-12-18",
@@ -1255,7 +1427,12 @@
       "price_label": "",
       "url": "https://www.soullingohealing.com/fr/womens-circles-brussels",
       "verified": true,
-      "publication_status": "Autorisé"
+      "publication_status": "Autorisé",
+      "time": "18:30",
+      "booking_url": "https://www.soullingohealing.com/fr/womens-circles-brussels",
+      "booking_required": true,
+      "booking_method": "url",
+      "venue": "Soul Lingo Healing"
     },
     {
       "id": "EVT-BV26-N1-4:2026-12-23",
@@ -1272,7 +1449,8 @@
       "price_label": "Gratuit",
       "url": "https://www.visit.brussels/fr/visiteurs/evenement.Muntpunt-Schaakclub.587307",
       "verified": true,
-      "publication_status": "Autorisé"
+      "publication_status": "Autorisé",
+      "venue": "Muntpunt, Bruxelles"
     },
     {
       "id": "EVT-X-8F3B0A82AF62A2:2026-12-24",
@@ -1290,7 +1468,9 @@
       "price_label": "",
       "url": "https://www.lilys.be/fr/agenda/",
       "verified": true,
-      "publication_status": "Autorisé"
+      "publication_status": "Autorisé",
+      "booking_method": "url",
+      "venue": "BVEL-014"
     },
     {
       "id": "EVT-X-8AAE33C659EE9F:2026-12-31",
@@ -1308,7 +1488,9 @@
       "price_label": "",
       "url": "https://www.lilys.be/fr/agenda/",
       "verified": true,
-      "publication_status": "Autorisé"
+      "publication_status": "Autorisé",
+      "booking_method": "url",
+      "venue": "BVEL-014"
     },
     {
       "id": "EVT-BV26-14OCT-NOH-2027-01-22:2027-01-22",
@@ -1323,10 +1505,12 @@
         "solo_sociable",
         "amis"
       ],
-      "price_label": "",
+      "price_label": "Gratuit",
       "url": "https://www.bruxelles.be/soiree-jeux-de-societe-noh",
       "verified": true,
-      "publication_status": "Autorisé"
+      "publication_status": "Autorisé",
+      "time": "20:00",
+      "venue": "Centre culturel de Neder-Over-Heembeek"
     },
     {
       "id": "EVT-BV26-14OCT-B3-2027-01-30:2027-01-30",
@@ -1343,7 +1527,10 @@
       "price_label": "",
       "url": "https://b3.provincedeliege.be/articles/2026/08/25/5713-lire-ensemble-penser-ensemble-ateliers-arpentage",
       "verified": true,
-      "publication_status": "Autorisé"
+      "publication_status": "Autorisé",
+      "time": "10:00",
+      "booking_required": true,
+      "venue": "B3 Centre de Ressources"
     },
     {
       "id": "EVT-BV26-N4-2:permanent",
