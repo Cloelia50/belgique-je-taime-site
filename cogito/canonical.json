@@ -143,15 +143,36 @@
       "date": "2026-10-14",
       "start": "2026-10-14",
       "end": "2026-11-22",
-      "time": "",
-      "location": "Bozar, Bruxelles",
+      "time": "10:00",
+      "location": "Bozar — Foyer 4, rue Ravenstein 23, 1000 Bruxelles",
       "city": "Bruxelles",
       "category": "Expérience VR",
       "subject": "Expérience VR",
       "description": "",
       "official_url": "https://www.bozar.be/fr/calendrier/house-memory-byt-aldhakrt-basil-al-rawi",
-      "registration_url": "",
-      "mode": "Présentiel"
+      "registration_url": "https://tickets.bozar.be/selection/timeslotpass?lang=fr&productId=10229928116799",
+      "mode": "Présentiel",
+      "price_label": "Séances de réalité virtuelle à partir de 0 € selon le créneau et le billet; réservation d'un créneau",
+      "booking_required": true,
+      "booking_method": "url",
+      "publication_history": [
+        {
+          "id": "EVT-X-4E670DBFC95AE1:2026-10-14",
+          "title": "House of Memory",
+          "date": "2026-10-14",
+          "start": "2026-10-14",
+          "end": "2026-11-22",
+          "time": "",
+          "location": "Bozar, Bruxelles",
+          "city": "Bruxelles",
+          "category": "Expérience VR",
+          "subject": "Expérience VR",
+          "description": "",
+          "official_url": "https://www.bozar.be/fr/calendrier/house-memory-byt-aldhakrt-basil-al-rawi",
+          "registration_url": "",
+          "mode": "Présentiel"
+        }
+      ]
     },
     {
       "id": "EVT-X-E542816BAD9344:2026-10-02",
@@ -177,14 +198,36 @@
       "start": "2026-10-31",
       "end": "2027-02-28",
       "time": "",
-      "location": "WIELS, Forest",
+      "location": "WIELS, avenue Van Volxem 354, 1190 Forest",
       "city": "Forest",
       "category": "Exposition",
       "subject": "Exposition",
       "description": "",
       "official_url": "https://wiels.org/en/exhibitions/portia-zvavahera",
       "registration_url": "",
-      "mode": "Présentiel"
+      "mode": "Présentiel",
+      "is_free": false,
+      "price_label": "12 € tarif standard ; 8 € tarif réduit ; 5 € étudiants/demandeurs d'emploi/PMR ; 1,25 € Article 27 ;",
+      "booking_required": false,
+      "booking_method": "aucune",
+      "publication_history": [
+        {
+          "id": "EVT-X-2A4CFE0F43EB17:2026-10-31",
+          "title": "Kuzviramba Mamuri",
+          "date": "2026-10-31",
+          "start": "2026-10-31",
+          "end": "2027-02-28",
+          "time": "",
+          "location": "WIELS, Forest",
+          "city": "Forest",
+          "category": "Exposition",
+          "subject": "Exposition",
+          "description": "",
+          "official_url": "https://wiels.org/en/exhibitions/portia-zvavahera",
+          "registration_url": "",
+          "mode": "Présentiel"
+        }
+      ]
     },
     {
       "id": "EVT-X-F9B7661D6EA7FC:2026-09-05",

@@ -197,10 +197,34 @@
       "modes": [
         "solo_calme"
       ],
-      "price_label": "",
-      "url": "https://www.bozar.be/fr/calendrier/house-memory-byt-aldhakrt-basil-al-rawi",
+      "price_label": "Séances de réalité virtuelle à partir de 0 € selon le créneau et ",
+      "url": "https://tickets.bozar.be/selection/timeslotpass?lang=fr&productId=10229928116799",
       "verified": true,
-      "publication_status": "Autorisé"
+      "publication_status": "Autorisé",
+      "booking_url": "https://tickets.bozar.be/selection/timeslotpass?lang=fr&productId=10229928116799",
+      "booking_required": true,
+      "booking_method": "url",
+      "venue": "Bozar — Foyer 4, rue Ravenstein 23, 1000 Bruxelles",
+      "time": "10:00",
+      "publication_history": [
+        {
+          "id": "EVT-X-4E670DBFC95AE1:2026-10-14",
+          "title": "House of Memory",
+          "commune": "Bruxelles",
+          "region": "",
+          "category": "Culture et découvertes",
+          "date": "2026-10-14",
+          "date_end": "2026-11-22",
+          "availability": "Date annoncée",
+          "modes": [
+            "solo_calme"
+          ],
+          "price_label": "",
+          "url": "https://www.bozar.be/fr/calendrier/house-memory-byt-aldhakrt-basil-al-rawi",
+          "verified": true,
+          "publication_status": "Autorisé"
+        }
+      ]
     },
     {
       "id": "EVT-X-F1EF974773E7AB:2026-10-14",
