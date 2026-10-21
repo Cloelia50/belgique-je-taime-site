@@ -78,7 +78,7 @@ function detail(e,base){
  '<section class="g-topic"><h2>Informations pratiques</h2>'+
  '<p><strong>Quand ?</strong> <time datetime="'+esc(e.start)+'">'+esc(fmt(e.start))+'</time>'+(e.end!==e.start?" au "+esc(fmt(e.end)):"")+(e.startDate.includes("T")?" · "+esc(e.startDate.split("T")[1].slice(0,5)):"")+'</p>'+
  '<p><strong>Où ?</strong> '+esc(e.place)+' — '+esc(e.address)+'</p>'+
- '<p><strong>Tarif :</strong> '+esc(e.price||"à confirmer")+'</p>'+
+ '<p><strong>Tarif :</strong> '+esc(e.price||"À confirmer")+'</p>'+
  (e.verifiedPriceSource?'<p><a href="'+esc(e.verifiedPriceSource)+'" rel="noopener noreferrer" target="_blank">Consulter les tarifs officiels Filem’On ↗</a></p>':"")+
  (e.age?'<p><strong>Public :</strong> '+esc(e.age)+'</p>':"")+
  (e.organizer?'<p><strong>Organisateur :</strong> '+esc(e.organizer)+'</p>':"")+
