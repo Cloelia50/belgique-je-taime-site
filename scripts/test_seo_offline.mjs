@@ -73,7 +73,14 @@ try{
    const halloween=read("evenements/activikids-evt-0010-2026-10-31/index.html");
    ok(filemon.includes("8 € (standard), 6 € (moins de 26 ans)"),"Tarif Filem’On 2026 confirmé absent");
    ok(filemon.includes("filemon.be/fr/festival-filemon/programme"),"Source tarifaire Filem’On absente");
-   ok(halloween.includes("<strong>Tarif :</strong> À confirmer"),"Prix Halloween non confirmé à afficher prudemment");
+   // The source catalogue can gain an event-specific price after an official
+   // update. Check that the page shows that source value, or "À confirmer"
+   // when the catalogue still has no price; never freeze a historical guess.
+   const halloweenSource=JSON.parse(read("activikids/data/catalog.json")).events.find(e=>e.id==="EVT-0010");
+   const halloweenEdition=halloweenSource?.ed?.find(ed=>ed.s==="2026-10-31");
+   const halloweenPrice=halloweenEdition?.prix||halloweenSource?.prix||"À confirmer";
+   const escapedPrice=String(halloweenPrice).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+   ok(halloween.includes("<strong>Tarif :</strong> "+escapedPrice),"Prix Halloween différent de sa source catalogue ou omis");
   }
   const indexedPages=[];
   for(const eventName of names){
