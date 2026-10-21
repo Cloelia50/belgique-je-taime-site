@@ -11212,6 +11212,29 @@
       "booking_method": "",
       "venue": "KANAL — Centre Pompidou",
       "time": "10:00"
+    },
+    {
+      "id": "ED-E3E7D77EA1D55A",
+      "title": "Plaisirs d’Hiver / Winter Wonders",
+      "commune": "Bruxelles-Ville",
+      "region": "Bruxelles",
+      "category": "Nature et plein air",
+      "date": "2026-11-27",
+      "date_end": "2027-01-03",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme",
+        "couple",
+        "amis"
+      ],
+      "price_label": "Accès libre ; attractions payantes",
+      "url": "https://www.plaisirsdhiver.be/",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": false,
+      "booking_method": "aucune",
+      "venue": "Centre de Bruxelles",
+      "time": "12:00"
     }
   ]
 }
