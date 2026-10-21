@@ -394,7 +394,8 @@ var LANGS=[['FR','Français'],['NL','Néerlandais'],['EN','Anglais'],['nc','Non 
 var CITY_NC='Lieu non précisé';
 
 /* ---------- normalisation (vue calculée, objets d’origine intacts) ---------- */
-var TODAY=iso(new Date());
+// Dates in the Belgian agenda always follow the Brussels calendar day.
+var TODAY=new Intl.DateTimeFormat('sv-SE',{timeZone:'Europe/Brussels',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date());
 var N={}, BYID={};
 EV.forEach(function(e){
   var endIso=(e.end&&e.end.length>=10)?e.end.slice(0,10):e.date;
@@ -417,7 +418,7 @@ try{ var f=JSON.parse(localStorage.getItem(FAV_KEY)||'[]'); if(Array.isArray(f))
 function saveFav(){ try{ localStorage.setItem(FAV_KEY,JSON.stringify(Array.from(FAV))); }catch(err){} }
 
 /* ---------- état ---------- */
-var S={q:'',from:'',to:'',cats:new Set(),city:'',modes:new Set(),prices:new Set(),langs:new Set(),format:'',fav:false,past:!HAS_UPCOMING,view:'list',shown:40,calMonth:'',openId:null};
+var S={q:'',from:'',to:'',cats:new Set(),city:'',modes:new Set(),prices:new Set(),langs:new Set(),format:'',fav:false,past:false,view:'list',shown:40,calMonth:'',openId:null};
 var qTokens=[];
 
 /* ---------- filtrage ---------- */
@@ -439,7 +440,10 @@ function match(e,skip){
   return true;
 }
 function timeKey(e){return e.time||(e.start&&e.start.length>10?e.start.slice(11,16):'99:99');}
-function cmpDate(a,b){ return a.date<b.date?-1:a.date>b.date?1:(timeKey(a)<timeKey(b)?-1:timeKey(a)>timeKey(b)?1:String(a.title||'').localeCompare(String(b.title||''),'fr')); }
+// An ongoing exhibition can start in September but is still an October
+// outing: order it under today's date, not under the old opening month.
+function effectiveDate(e){return e.date<TODAY&&N[e.id].end>=TODAY?TODAY:e.date;}
+function cmpDate(a,b){ var x=effectiveDate(a),y=effectiveDate(b);return x<y?-1:x>y?1:(timeKey(a)<timeKey(b)?-1:timeKey(a)>timeKey(b)?1:String(a.title||'').localeCompare(String(b.title||''),'fr')); }
 var RESULTS=[];
 function compute(){
   RESULTS=EV.filter(function(e){return match(e);});
@@ -616,7 +620,8 @@ function favBtn(id){
   return '<button type="button" class="cogito-fav" data-fav="'+esc(id)+'" aria-pressed="'+on+'" aria-label="Favori : '+esc(BYID[id].title)+'" title="Favori">'+ICON.mark+'</button>';
 }
 function rowHtml(e,showDate){
-  var n=N[e.id], d=pd(e.date), meta=[], spk=(e.speakers||[]);
+  var n=N[e.id], d=pd(effectiveDate(e)), meta=[], spk=(e.speakers||[]);
+  if(e.date<TODAY&&n.end>=TODAY)meta.push('<span class="cogito-remote">En cours depuis le '+esc(fDM.format(pd(e.date)))+'</span>');
   var tl=timeLabel(e); if(tl) meta.push('<span>'+esc(tl)+'</span>');
   if(n.end!==e.date) meta.push('<span>jusqu’au '+esc(fDM.format(pd(n.end)))+'</span>');
   if(n.city!=='nc') meta.push('<span>'+esc(n.city)+'</span>');
@@ -645,9 +650,9 @@ function renderList(){
   if(!RESULTS.length){ box.innerHTML=emptyHtml(); return; }
   var slice=RESULTS.slice(0,S.shown), out='', lastMonth='', lastDay='';
   slice.forEach(function(e){
-    var mk=e.date.slice(0,7);
-    if(mk!==lastMonth){ out+='<h2 class="cogito-month">'+esc(fMonth.format(pd(e.date)))+'</h2>'; lastMonth=mk; lastDay=''; }
-    out+=rowHtml(e,e.date!==lastDay); lastDay=e.date;
+    var visibleDay=effectiveDate(e),mk=visibleDay.slice(0,7);
+    if(mk!==lastMonth){ out+='<h2 class="cogito-month">'+esc(fMonth.format(pd(visibleDay)))+'</h2>'; lastMonth=mk; lastDay=''; }
+    out+=rowHtml(e,visibleDay!==lastDay); lastDay=visibleDay;
   });
   if(RESULTS.length>slice.length){
     out+='<div class="cogito-more"><button type="button" class="cogito-btn" id="cogito-more">Afficher la suite ('+(RESULTS.length-slice.length)+' de plus)</button></div>';
@@ -662,14 +667,14 @@ function emptyHtml(){
 }
 
 /* ---------- rendu : calendrier ---------- */
-function monthOfFirst(){ return RESULTS.length?RESULTS[0].date.slice(0,7):TODAY.slice(0,7); }
+function monthOfFirst(){ return RESULTS.length?effectiveDate(RESULTS[0]).slice(0,7):TODAY.slice(0,7); }
 function renderCal(){
   var box=$('#cogito-list');
   if(!RESULTS.length){ box.innerHTML=emptyHtml(); return; }
   if(!S.calMonth) S.calMonth=monthOfFirst();
   var y=+S.calMonth.slice(0,4), m=+S.calMonth.slice(5,7)-1;
   var first=new Date(y,m,1), start=addDays(first,-((first.getDay()||7)-1));
-  var by={}; RESULTS.forEach(function(e){(by[e.date]=by[e.date]||[]).push(e);});
+  var by={}; RESULTS.forEach(function(e){var key=effectiveDate(e);(by[key]=by[key]||[]).push(e);});
   var days=['lun.','mar.','mer.','jeu.','ven.','sam.','dim.'];
   var h='<div class="cogito-cal-nav"><h3>'+esc(fMonth.format(first))+'</h3><button type="button" data-cal="-1" aria-label="Mois précédent">'+ICON.prev+'</button><button type="button" data-cal="1" aria-label="Mois suivant">'+ICON.next+'</button></div><div class="cogito-cal" role="grid">';
   days.forEach(function(d){h+='<div class="cogito-cal-h" role="columnheader">'+d+'</div>';});
