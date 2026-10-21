@@ -11235,6 +11235,48 @@
       "booking_method": "aucune",
       "venue": "Centre de Bruxelles",
       "time": "12:00"
+    },
+    {
+      "id": "ED-AUTO-3EDFD19EE7256F48",
+      "title": "Fabricauserie",
+      "commune": "Court-Saint-Etienne",
+      "region": "Wallonie",
+      "category": "Culture et découvertes",
+      "date": "2027-01-21",
+      "date_end": "2027-01-21",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_sociable"
+      ],
+      "price_label": "Tarifs sur le site officiel",
+      "url": "https://quatrequarts.coop/event/fabricauserie-4/2027-01-21/",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "Quatre Quarts",
+      "time": "19:30"
+    },
+    {
+      "id": "ED-AUTO-B5D620531CA21B64",
+      "title": "Fabricauserie",
+      "commune": "Court-Saint-Etienne",
+      "region": "Wallonie",
+      "category": "Culture et découvertes",
+      "date": "2027-01-07",
+      "date_end": "2027-01-07",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_sociable"
+      ],
+      "price_label": "Tarifs sur le site officiel",
+      "url": "https://quatrequarts.coop/event/fabricauserie-5/2027-01-07/",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "Quatre Quarts",
+      "time": "19:30"
     }
   ]
 }
