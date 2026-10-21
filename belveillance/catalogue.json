@@ -10977,6 +10977,30 @@
       "booking_method": "",
       "venue": "Lieu communal à confirmer",
       "time": "14:00"
+    },
+    {
+      "id": "EVT-X-42ABB7D262899C:2026-11-28",
+      "title": "Week-end d’ouverture de KANAL — Centre Pompidou",
+      "commune": "Bruxelles",
+      "region": "Bruxelles",
+      "category": "Ateliers et créativité",
+      "date": "2026-11-28",
+      "date_end": "2026-11-29",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme",
+        "solo_sociable",
+        "couple",
+        "amis"
+      ],
+      "price_label": "Gratuit",
+      "url": "https://kanal.brussels/fr/agenda/week-end-douverture",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "KANAL — Centre Pompidou",
+      "time": "10:00"
     }
   ]
 }

@@ -20589,6 +20589,26 @@
       "price_label": "5 €/personne, forfait 16 € pour 4 ; +1 € par personne supplémentaire",
       "booking_required": true,
       "booking_method": ""
+    },
+    {
+      "id": "EVT-X-42ABB7D262899C:2026-11-28",
+      "title": "Week-end d’ouverture de KANAL — Centre Pompidou",
+      "date": "2026-11-28",
+      "start": "2026-11-28",
+      "end": "2026-11-29",
+      "time": "10:00",
+      "location": "KANAL — Centre Pompidou",
+      "city": "Bruxelles",
+      "category": "Musée / festival culturel / ateliers familles",
+      "subject": "Musée / festival culturel / ateliers familles",
+      "description": "Ouverture de KANAL du samedi 28 novembre 10 h au dimanche 29 novembre 22 h sans interruption. Expositions inaugurales sur réservation de créneau (30 000 billets gratuits annoncés tous réservés le 16/09/2026). Espaces communs, performances, concerts et animations familles accessibles gratuitement sans réservation ; consulter les horaires des ateliers individuels.",
+      "official_url": "https://kanal.brussels/fr/agenda/week-end-douverture",
+      "registration_url": "",
+      "mode": "Présentiel",
+      "is_free": true,
+      "price_label": "Entrée du week-end gratuite ; expositions inaugurales : créneau de visite à réserver (30 000 billets",
+      "booking_required": null,
+      "booking_method": ""
     }
   ],
   "updated_at": "2026-10-14"
