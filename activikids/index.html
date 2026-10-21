@@ -714,10 +714,19 @@ function occurrenceSelectableOnDate(o,day){
   var end=hmMinutes(o.d.he),now=hmMinutes(NOWHM);
   return end==null||now==null||end>now;
 }
+// An event that began earlier must still have a real selectable day left.
+// Keep the original edition dates in the archive but never label a September
+// opening as an upcoming outing in October.
+function nextSelectableDay(o){
+  if(o.en<TODAY)return null;
+  var day=o.s>TODAY?o.s:TODAY;
+  for(var i=0;i<367&&day<=o.en;i++,day=addDays(day,1)){
+    if(occurrenceSelectableOnDate(o,day))return day;
+  }
+  return null;
+}
 function occurrenceStillRelevant(o){
-  if(o.en<TODAY)return false;
-  if(o.en>TODAY)return true;
-  return occurrenceSelectableOnDate(o,TODAY);
+  return !!nextSelectableDay(o);
 }
 function passDate(o,w){
   var r=whenRange(w); if(!r)return true;
@@ -732,7 +741,7 @@ function passDate(o,w){
 }
 function displayDateForOcc(o,w){
   w=w||state.when;
-  var r=whenRange(w); if(!r)return o.s;
+  var r=whenRange(w); if(!r)return nextSelectableDay(o)||o.s;
   var a=o.s>r[0]?o.s:r[0],b=o.en<r[1]?o.en:r[1],d=a;
   while(d<=b){if(occurrenceSelectableOnDate(o,d))return d;d=addDays(d,1)}
   return o.s;
