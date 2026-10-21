@@ -11,6 +11,10 @@ for(const id of ["COG-EVT-39F3F09CA789A5","COG-EVT-CE0F204DAE1A20","COG-EVT-1FA1
  const e=out.events.find(x=>x.id===id);
  if(e)assert.notEqual(e.ticketing_kind,"direct","faux lien direct "+id);
 }
-assert(out.events.find(x=>x.id==="COG-EVT-CE0F204DAE1A20")?.official_url?.includes("/2026-ecmi-annual-conference/"),"page CEPS exacte manquante");
-assert(out.events.find(x=>x.id==="COG-EVT-39F3F09CA789A5")?.official_url?.includes("/the-uneven-implementation-of-the-ccd2-"),"page CCD2 exacte manquante");
+// Archived events intentionally leave the live public agenda. Check their
+// verified exact URLs only while the underlying event is still included.
+const ceps=out.events.find(x=>x.id==="COG-EVT-CE0F204DAE1A20");
+if(ceps)assert(ceps.official_url?.includes("/2026-ecmi-annual-conference/"),"page CEPS exacte manquante");
+const ccd2=out.events.find(x=>x.id==="COG-EVT-39F3F09CA789A5");
+if(ccd2)assert(ccd2.official_url?.includes("/the-uneven-implementation-of-the-ccd2-"),"page CCD2 exacte manquante");
 console.log("COGITO TEST OK :",out.events.length,"événements, cinq fiches garanties, idempotence.");
