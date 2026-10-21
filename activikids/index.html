@@ -906,9 +906,17 @@ function groupsSoon(rows){
   if(lng.length)g.push({title:'Toute la saison',sub:'séries et rendez-vous qui durent',items:lng});
   return g;
 }
+// A weekly/holiday offer with *only* expired announced editions must not
+// remain advertised as an active outing. Permanently visitable places are
+// different: a historical opening date does not close the venue.
+function onlyExpiredKnownEditions(e){
+  if(e.k==='permanent')return false;
+  var dated=(e.ed||[]).filter(function(d){return d.s&&/^\d{4}-\d{2}-\d{2}$/.test(d.s)});
+  return dated.length>0&&dated.every(function(d){return (d.e||d.s)<TODAY});
+}
 function listFixed(){
   var items=[];
-  var evs=EVENTS.filter(function(e){return (e.k==='permanent'||e.k==='regular'||e.k==='holiday')&&e.stat!=='fini'&&passEvent(e)});
+  var evs=EVENTS.filter(function(e){return (e.k==='permanent'||e.k==='regular'||e.k==='holiday')&&e.stat!=='fini'&&!onlyExpiredKnownEditions(e)&&passEvent(e)});
   if(state.fkind!=='all'&&state.fkind!=='lieux')evs=evs.filter(function(e){return e.k===state.fkind});
   if(state.day)evs=evs.filter(function(e){return e.days.indexOf(state.day)>=0});
   if(state.fkind==='lieux')evs=[];
