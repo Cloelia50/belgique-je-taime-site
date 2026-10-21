@@ -6,4 +6,97 @@
 <li class="g-item"><h2><a href="activikids-evt-0010-2026-10-31/">Halloween au Rouge-Cloître</a></h2><p class="g-detail">31 octobre 2026 · Auderghem · Activikids</p><p>Parcours Halloween, version plus douce pour jeunes enfants, grimage et animations.</p></li>
 <li class="g-item"><h2><a href="activikids-evt-0474-2026-11-11/">Bourse gratuite de jouets – Geefmarkt Speelgoed</a></h2><p class="g-detail">11 novembre 2026 · Kortenberg · Activikids</p><p>Donnerie gratuite de jouets; dépôts du 19 octobre au 4 novembre.</p></li>
 <li class="g-item"><h2><a href="cogito-cog-evt-b79daee18fa62f/">Burn-out parental — « Y en a marre de ces gosses ! »</a></h2><p class="g-detail">17 novembre 2026 · Watermael-Boitsfort · Cogito</p><p>Conférence-stand-up de Maurice Johnson-Kanyonga, organisée par l’Antenne scolaire et le service Vie sociale de Watermael-Boitsfort. Sujet : comprendre le…</p></li>
-<li class="g-item"><h2><a href="activikids-evt-0025-2026-11-29/">Classiques du Marché</a></h2><p class="g-detail">29 novembre 2026 · Watermael-Boitsfort · Activikids</p><p>Pierre et le loup avec la Compagnie Artichoke ; cinq musiciens et une comédienne.</p></li></ul></section><section class="g-related"><h2>Autres idées</h2><p><a href="../guides/sorties-ce-week-end/">Sorties du week-end</a> · <a href="../guides/conferences-bruxelles/">Conférences à Bruxelles</a></p></section></main><footer class="g-footer"><p><strong>Belgique, je t’aime</strong> — projet gratuit et indépendant. Vérifiez les informations auprès des organisateurs.</p><p><a href="../methodologie.html">Méthode &amp; sources</a> · <a href="../signaler.html">Signaler une erreur</a></p></footer></div></body></html>
+<li class="g-item"><h2><a href="activikids-evt-0025-2026-11-29/">Classiques du Marché</a></h2><p class="g-detail">29 novembre 2026 · Watermael-Boitsfort · Activikids</p><p>Pierre et le loup avec la Compagnie Artichoke ; cinq musiciens et une comédienne.</p></li></ul></section><section class="g-related"><h2>Autres idées</h2><p><a href="../guides/sorties-ce-week-end/">Sorties du week-end</a> · <a href="../guides/conferences-bruxelles/">Conférences à Bruxelles</a></p></section></main><footer class="g-footer"><p><strong>Belgique, je t’aime</strong> — projet gratuit et indépendant. Vérifiez les informations auprès des organisateurs.</p><p><a href="../methodologie.html">Méthode &amp; sources</a> · <a href="../signaler.html">Signaler une erreur</a></p></footer></div>
+<script>
+/* Agenda courant : le HTML statique n'est qu'un repli si un réseau échoue. */
+(()=>{
+  "use strict";
+  const root=document.querySelector(".g-event-list");
+  if(!root)return;
+  const dateBE=()=>new Intl.DateTimeFormat("sv-SE",{timeZone:"Europe/Brussels",year:"numeric",month:"2-digit",day:"2-digit"}).format(new Date());
+  const valid=d=>/^\d{4}-\d{2}-\d{2}$/.test(String(d||""));
+  const dateOnly=s=>String(s||"").slice(0,10);
+  const tidy=s=>String(s||"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").trim().toLowerCase();
+  const months={janvier:1,fevrier:2,mars:3,avril:4,mai:5,juin:6,juillet:7,aout:8,septembre:9,octobre:10,novembre:11,decembre:12};
+  const today=dateBE();
+  // Even if the three catalogs are temporarily offline, never show a
+  // hard-coded historical event under the "prochains rendez-vous" heading.
+  Array.from(root.querySelectorAll("li")).forEach(li=>{
+    const txt=tidy(li.querySelector(".g-detail")?.textContent);
+    const match=txt.match(/\b(\d{1,2})\s+(janvier|fevrier|mars|avril|mai|juin|juillet|aout|septembre|octobre|novembre|decembre)\s+(\d{4})\b/);
+    if(match){
+      const day=match[3]+"-"+String(months[match[2]]).padStart(2,"0")+"-"+match[1].padStart(2,"0");
+      if(day<today)li.remove();
+    }
+  });
+  const feeds=[
+    ["../activikids/data/catalog.json","Activikids"],
+    ["../belveillance/catalogue.json","Belveillance"],
+    ["../cogito/canonical.json","Cogito"]
+  ];
+  const collect=(data,source)=>{
+    const out=[];
+    if(source==="Activikids"){
+      for(const e of data.events||[])for(const ed of e.ed||[]){
+        const start=dateOnly(ed.s),end=dateOnly(ed.e)||start;
+        if(!valid(start)||!valid(end)||end<today||/annul/i.test(ed.st||""))continue;
+        out.push({title:e.n,city:e.co,start,end,url:ed.src||e.url,source,details:ed.prog||""});
+      }
+    }else if(source==="Belveillance"){
+      for(const e of data.items||[]){
+        const start=dateOnly(e.date),end=dateOnly(e.date_end||e.dateEnd)||start;
+        if(!valid(start)||!valid(end)||end<today||e.cancelled===true)continue;
+        out.push({title:e.title,city:e.commune,start,end,url:e.url,source,details:e.description||""});
+      }
+    }else{
+      for(const e of data.events||[]){
+        const start=dateOnly(e.date||e.start),end=dateOnly(e.end)||start;
+        if(!valid(start)||!valid(end)||end<today||e.cancelled===true)continue;
+        out.push({title:e.title,city:e.city||e.location,start,end,url:e.official_url,source,details:e.subject||e.description||""});
+      }
+    }
+    return out;
+  };
+  Promise.allSettled(feeds.map(async ([url,source])=>{
+    const response=await fetch(url,{cache:"no-store"});
+    if(!response.ok)throw Error("catalogue indisponible");
+    return collect(await response.json(),source);
+  })).then(results=>{
+    const all=results.filter(x=>x.status==="fulfilled").flatMap(x=>x.value);
+    if(!all.length)return;
+    const unique=new Set();
+    const clean=all.filter(e=>{
+      if(!e.title||!e.city)return false;
+      const key=tidy(e.title)+"|"+e.start+"|"+tidy(e.city);
+      if(unique.has(key))return false;
+      unique.add(key);return true;
+    });
+    clean.sort((a,b)=>Math.max(a.start,today).localeCompare(Math.max(b.start,today))||a.title.localeCompare(b.title,"fr"));
+    const fragment=document.createDocumentFragment();
+    const fmt=new Intl.DateTimeFormat("fr-BE",{weekday:"short",day:"numeric",month:"long",year:"numeric",timeZone:"Europe/Brussels"});
+    const readable=iso=>fmt.format(new Date(iso+"T12:00:00"));
+    for(const e of clean.slice(0,50)){
+      const li=document.createElement("li");li.className="g-item";
+      const heading=document.createElement("h2"),a=document.createElement("a");
+      let url;
+      try{url=new URL(e.url,location.href)}catch{}
+      const href=url&&/^https?:$/.test(url.protocol)?url.href:
+        (e.source==="Activikids"?"../activikids/":e.source==="Cogito"?"../cogito/":"../belveillance/");
+      a.href=href;
+      if(url){a.target="_blank";a.rel="noopener noreferrer";}
+      a.textContent=e.title;heading.append(a);li.append(heading);
+      const meta=document.createElement("p");meta.className="g-detail";
+      const ongoing=e.start<today;
+      meta.textContent=(ongoing?"En cours jusqu’au "+readable(e.end):readable(e.start))+
+        " · "+e.city+" · "+e.source;
+      li.append(meta);
+      if(e.details){const description=document.createElement("p");description.textContent=String(e.details).replace(/<[^>]*>/g," ").slice(0,210);li.append(description);}
+      fragment.append(li);
+    }
+    if(fragment.childNodes.length)root.replaceChildren(fragment);
+    const label=document.querySelector(".g-asof");
+    if(label)label.textContent="Sélection actualisée au "+readable(today)+" depuis les catalogues publics. Vérifiez les horaires auprès des organisateurs.";
+  }).catch(()=>{});
+})();
+</script>
+</body></html>
