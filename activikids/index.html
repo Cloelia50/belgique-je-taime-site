@@ -911,19 +911,46 @@ function listFixed(){
   var ls=lieuxOk?LIEUX.filter(function(l){return passPlace(l)&&passText(l._h)}):[];
   return {evs:evs,lieux:ls};
 }
+// An annual archive is NOT an upcoming outing. The event must have at least
+// one actually announced edition whose end date has not passed. A "next" date
+// guessed from last year's pattern is not enough to publish an outing.
+function upcomingAnnualEditions(e){
+  return (e.ed||[]).filter(function(d){
+    return d.s&&(/^\\d{4}-\\d{2}-\\d{2}$/.test(d.s))&&
+      (d.e||d.s)>=TODAY&&d.st!=='annulee'&&d.st!=='passee'&&d.st!=='annulée';
+  });
+}
+function annualShownThisMonth(e,m){
+  var dates=upcomingAnnualEditions(e);
+  if(!dates.length)return false;
+  if(m==='?')return false; // a confirmed dated edition has a known month
+  return dates.some(function(d){
+    var start=d.s>TODAY?d.s:TODAY,end=d.e||d.s;
+    var y=+start.slice(0,4),last=+end.slice(0,4);
+    for(;y<=last;y++){
+      var first=y+'-'+pad(m)+'-01',lastDay=new Date(y,m,0).getDate();
+      var final=y+'-'+pad(m)+'-'+pad(lastDay);
+      if(start<=final&&end>=first)return true;
+    }
+    return false;
+  });
+}
 function listYear(){
   var m=state.month;
   return EVENTS.filter(function(e){
     if(e.k!=='annual'||e.stat==='fini')return false;
+    if(!upcomingAnnualEditions(e).length)return false;
     if(!passEvent(e))return false;
-    if(state.q)return true; // une recherche texte parcourt toute l’année
-    if(m==='?')return !e.mois.length;
-    return e.mois.indexOf(m)>=0;
+    if(state.q)return true; // recherche uniquement parmi les éditions confirmées
+    return annualShownThisMonth(e,m);
   });
 }
 function countYear(m){
   var n=0;
-  EVENTS.forEach(function(e){if(e.k!=='annual'||e.stat==='fini')return;if(!passEvent(e))return;if(m==='?'?!e.mois.length:e.mois.indexOf(m)>=0)n++});
+  EVENTS.forEach(function(e){
+    if(e.k!=='annual'||e.stat==='fini'||!passEvent(e))return;
+    if(annualShownThisMonth(e,m))n++;
+  });
   return n;
 }
 
