@@ -2935,7 +2935,9 @@
       "date": "2026-10-23",
       "date_end": "2026-10-23",
       "availability": "Date annoncée",
-      "modes": [],
+      "modes": [
+        "solo_calme"
+      ],
       "price_label": "15 € par séance ; 10 € par séance avec abonnement trimestriel",
       "url": "https://quatrequarts.coop/event/atelier-colle-et-decolle/2026-10-23/",
       "verified": true,
@@ -2955,7 +2957,9 @@
       "date": "2026-11-13",
       "date_end": "2026-11-13",
       "availability": "Date annoncée",
-      "modes": [],
+      "modes": [
+        "solo_calme"
+      ],
       "price_label": "15 € par séance ; 10 € par séance avec abonnement trimestriel",
       "url": "https://quatrequarts.coop/event/atelier-colle-et-decolle/2026-11-13/",
       "verified": true,
@@ -2975,7 +2979,9 @@
       "date": "2026-12-11",
       "date_end": "2026-12-11",
       "availability": "Date annoncée",
-      "modes": [],
+      "modes": [
+        "solo_calme"
+      ],
       "price_label": "15 € par séance ; 10 € par séance avec abonnement trimestriel",
       "url": "https://quatrequarts.coop/event/atelier-colle-et-decolle/2026-12-11/",
       "verified": true,
@@ -11436,6 +11442,157 @@
       "booking_required": null,
       "booking_method": "",
       "venue": "Galerie Eric Mouchet Bruxelles"
+    },
+    {
+      "id": "ED-V6-8E93DC843B17A667",
+      "title": "Bal folk (initiation Frisse Folk)",
+      "commune": "Saint-Gilles",
+      "region": "Bruxelles",
+      "category": "Culture et découvertes",
+      "date": "2026-10-25",
+      "date_end": "2026-10-25",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_sociable",
+        "couple"
+      ],
+      "price_label": "Réduit 14 € ; normal 22 € ; soutien 26 €",
+      "url": "https://latricoterie.fr/fr/agenda/l-agenda-culturel/bal-folk?id_evenement=7882",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "La Tricoterie",
+      "time": "17:00"
+    },
+    {
+      "id": "ED-V6-9DCB7EAE415DD8CA",
+      "title": "Café des Tricoteur·euses",
+      "commune": "Saint-Gilles",
+      "region": "Bruxelles",
+      "category": "Sorties conviviales",
+      "date": "2026-11-02",
+      "date_end": "2026-11-02",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_sociable"
+      ],
+      "price_label": "Sur le site organisateur",
+      "url": "https://latricoterie.fr/fr/agenda/l-agenda-culturel/?archives=2026-11-02",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "La Tricoterie"
+    },
+    {
+      "id": "ED-V6-D69003FF97E304DE",
+      "title": "Nous qui parlons — cercle de parole féministe",
+      "commune": "Saint-Gilles",
+      "region": "Bruxelles",
+      "category": "Rencontres et participation",
+      "date": "2026-11-02",
+      "date_end": "2026-11-02",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_sociable"
+      ],
+      "price_label": "Prix libre et conscient à partir de 3 €",
+      "url": "https://latricoterie.be/fr/agenda/l-agenda-culturel/nous-qui-parlons-cercle-de-parole-feministe?id_evenement=7606",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "La Tricoterie",
+      "time": "19:00"
+    },
+    {
+      "id": "ED-V6-751366ABDDD0D302",
+      "title": "Le Café de l'entraide professionnelle",
+      "commune": "Saint-Gilles",
+      "region": "Bruxelles",
+      "category": "Sorties conviviales",
+      "date": "2026-11-16",
+      "date_end": "2026-11-16",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_sociable"
+      ],
+      "price_label": "Gratuit",
+      "url": "https://www.tricoterie.be/fr/agenda/l-agenda-culturel/le-cafe-de-l-entraide-professionnelle?id_evenement=7603",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_url": "",
+      "booking_required": true,
+      "booking_method": "",
+      "venue": "La Tricoterie",
+      "time": "18:15"
+    },
+    {
+      "id": "ED-V6-3DD8AA3B020E18DE",
+      "title": "Le Café de l'entraide professionnelle",
+      "commune": "Saint-Gilles",
+      "region": "Bruxelles",
+      "category": "Sorties conviviales",
+      "date": "2027-01-25",
+      "date_end": "2027-01-25",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_sociable"
+      ],
+      "price_label": "Gratuit",
+      "url": "https://www.tricoterie.be/fr/agenda/l-agenda-culturel/le-cafe-de-l-entraide-professionnelle?id_evenement=7603",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_url": "",
+      "booking_required": true,
+      "booking_method": "",
+      "venue": "La Tricoterie",
+      "time": "18:15"
+    },
+    {
+      "id": "ED-V6-647AE4B360607555",
+      "title": "Soirée jeux de société — Tables ouvertes",
+      "commune": "Saint-Gilles",
+      "region": "Bruxelles",
+      "category": "Jeux et convivialité",
+      "date": "2027-01-25",
+      "date_end": "2027-01-25",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_sociable",
+        "amis"
+      ],
+      "price_label": "Prix libre dès 3 € sans jeu ; gratuit avec boisson offerte si la ",
+      "url": "https://tricoterie.net/fr/agenda/l-agenda-culturel/soiree-jeux-de-societe-tables-ouvertes?id_evenement=7886",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "La Tricoterie",
+      "time": "19:45"
+    },
+    {
+      "id": "ED-V6-C3E77F2EA7C3E2D5",
+      "title": "Bal folk (initiation Frisse Folk)",
+      "commune": "Saint-Gilles",
+      "region": "Bruxelles",
+      "category": "Culture et découvertes",
+      "date": "2027-01-31",
+      "date_end": "2027-01-31",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_sociable",
+        "couple"
+      ],
+      "price_label": "Réduit 14 € ; normal 22 € ; soutien 26 €",
+      "url": "https://latricoterie.fr/fr/agenda/l-agenda-culturel/bal-folk?id_evenement=7882",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "La Tricoterie",
+      "time": "17:30"
     }
   ]
 }
