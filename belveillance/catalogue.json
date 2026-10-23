@@ -11593,6 +11593,133 @@
       "booking_method": "",
       "venue": "La Tricoterie",
       "time": "17:30"
+    },
+    {
+      "id": "ED-BV26-FILGOOD-2026-11-06",
+      "title": "Fil Good — atelier tricot et broderie",
+      "commune": "Bruxelles",
+      "region": "Bruxelles",
+      "category": "Ateliers et créativité",
+      "date": "2026-11-06",
+      "date_end": "2026-11-06",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme"
+      ],
+      "price_label": "Gratuit",
+      "url": "https://www.emca.be/node/55685002",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": false,
+      "booking_method": "aucune",
+      "venue": "Bibliothèque Bruegel",
+      "time": "18:00"
+    },
+    {
+      "id": "ED-BV26-FILGOOD-2026-11-13",
+      "title": "Fil Good — atelier tricot et broderie",
+      "commune": "Bruxelles",
+      "region": "Bruxelles",
+      "category": "Ateliers et créativité",
+      "date": "2026-11-13",
+      "date_end": "2026-11-13",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme"
+      ],
+      "price_label": "Gratuit",
+      "url": "https://www.emca.be/node/55685002",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": false,
+      "booking_method": "aucune",
+      "venue": "Bibliothèque Bruegel",
+      "time": "18:00"
+    },
+    {
+      "id": "ED-BV26-FILGOOD-2026-12-16",
+      "title": "Fil Good — atelier tricot et broderie",
+      "commune": "Bruxelles",
+      "region": "Bruxelles",
+      "category": "Ateliers et créativité",
+      "date": "2026-12-16",
+      "date_end": "2026-12-16",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme"
+      ],
+      "price_label": "Gratuit",
+      "url": "https://www.emca.be/node/55685002",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": false,
+      "booking_method": "aucune",
+      "venue": "Bibliothèque Bruegel",
+      "time": "18:00"
+    },
+    {
+      "id": "ED-BV26-WOLKOFFIE-2026-11-10",
+      "title": "Wol en koffie — tricot solidaire",
+      "commune": "Duffel",
+      "region": "Flandre",
+      "category": "Ateliers et créativité",
+      "date": "2026-11-10",
+      "date_end": "2026-11-10",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_sociable"
+      ],
+      "price_label": "Gratuit",
+      "url": "https://www.duffel.be/activiteiten/detail/8061/wol-en-koffie",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "LDC de Peerle",
+      "time": "14:00"
+    },
+    {
+      "id": "ED-BV26-WOLKOFFIE-2026-12-08",
+      "title": "Wol en koffie — tricot solidaire",
+      "commune": "Duffel",
+      "region": "Flandre",
+      "category": "Ateliers et créativité",
+      "date": "2026-12-08",
+      "date_end": "2026-12-08",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_sociable"
+      ],
+      "price_label": "Gratuit",
+      "url": "https://www.duffel.be/activiteiten/detail/8061/wol-en-koffie",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "LDC de Peerle",
+      "time": "14:00"
+    },
+    {
+      "id": "ED-BV26-CONVIVENCE-2026-11-09",
+      "title": "Chantier participatif — isolation intérieure durable",
+      "commune": "Laeken (Bruxelles)",
+      "region": "Bruxelles",
+      "category": "Ateliers et créativité",
+      "date": "2026-11-09",
+      "date_end": "2026-11-23",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_sociable"
+      ],
+      "price_label": "Gratuit",
+      "url": "https://www.brussels.be/hands-workshop-internal-insulation",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_url": "https://www.brussels.be/hands-workshop-internal-insulation",
+      "booking_required": true,
+      "booking_method": "url",
+      "venue": "CAPLA",
+      "time": "09:00"
     }
   ]
 }
