@@ -15390,6 +15390,49 @@
       "booking_method": "url",
       "venue": "B3 — L’Exploratoire",
       "time": "18:00"
+    },
+    {
+      "id": "ED-BVL-20261024-2001-ECRITURE-20261126",
+      "title": "Atelier d’écriture — L’actualité te met en colère ?",
+      "commune": "Liège",
+      "region": "Wallonie",
+      "category": "Ateliers et créativité",
+      "date": "2026-11-26",
+      "date_end": "2026-11-26",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme",
+        "solo_sociable"
+      ],
+      "price_label": "Gratuit",
+      "url": "https://laiciteliege.be/agenda/atelier-decriture-lactualite-te-met-en-colere-te-revolte-te-laisse-parfois-sans-voix/",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "La Cité Miroir",
+      "time": "18:00"
+    },
+    {
+      "id": "ED-BVL-20261024-2001-FAMILLE-20261210",
+      "title": "Atelier créatif — Survivre aux repas de famille",
+      "commune": "Liège",
+      "region": "Wallonie",
+      "category": "Ateliers et créativité",
+      "date": "2026-12-10",
+      "date_end": "2026-12-10",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_sociable"
+      ],
+      "price_label": "Gratuit",
+      "url": "https://laiciteliege.be/agenda/atelier-de-fin-dannee-survivre-aux-repas-de-famille/",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "La Cité Miroir",
+      "time": "18:00"
     }
   ]
 }
