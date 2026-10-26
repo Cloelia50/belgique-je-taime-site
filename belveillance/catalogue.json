@@ -20218,6 +20218,177 @@
       "booking_method": "",
       "venue": "Maison poème",
       "time": "12:30"
+    },
+    {
+      "id": "ED-BVL-20261026-1156-AALST-LEZEN-20261112",
+      "title": "Samen Lezen — histoire, café et échanges",
+      "commune": "Aalst",
+      "region": "Flandre",
+      "category": "Sorties conviviales",
+      "date": "2026-11-12",
+      "date_end": "2026-11-12",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme",
+        "solo_sociable"
+      ],
+      "price_label": "Gratuit",
+      "url": "https://demens.nu/locatie/huisvandemens-aalst/",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "huisvandeMens Aalst",
+      "time": "14:30"
+    },
+    {
+      "id": "ED-BVL-20261026-1156-AALST-LEZEN-20261126",
+      "title": "Samen Lezen — histoire, café et échanges",
+      "commune": "Aalst",
+      "region": "Flandre",
+      "category": "Sorties conviviales",
+      "date": "2026-11-26",
+      "date_end": "2026-11-26",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme",
+        "solo_sociable"
+      ],
+      "price_label": "Gratuit",
+      "url": "https://demens.nu/evenementenlocatie/huisvandemens-aalst/pagina/2/",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "huisvandeMens Aalst",
+      "time": "14:30"
+    },
+    {
+      "id": "ED-BVL-20261026-1156-AALST-LEZEN-20261210",
+      "title": "Samen Lezen — histoire, café et échanges",
+      "commune": "Aalst",
+      "region": "Flandre",
+      "category": "Sorties conviviales",
+      "date": "2026-12-10",
+      "date_end": "2026-12-10",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme",
+        "solo_sociable"
+      ],
+      "price_label": "Gratuit",
+      "url": "https://demens.nu/evenementenlocatie/huisvandemens-aalst/pagina/2/",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "huisvandeMens Aalst",
+      "time": "14:30"
+    },
+    {
+      "id": "ED-BVL-20261026-1156-AALST-AMNESTY-20261120",
+      "title": "Amnesty schrijfactie — écriture solidaire collective",
+      "commune": "Aalst",
+      "region": "Flandre",
+      "category": "Rencontres et participation",
+      "date": "2026-11-20",
+      "date_end": "2026-11-20",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme"
+      ],
+      "price_label": "",
+      "url": "https://demens.nu/evenement/amnesty-schrijfactie-2/2026-11-20/",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "huisvandeMens Aalst",
+      "time": "14:30"
+    },
+    {
+      "id": "ED-BVL-20261026-1156-AALST-AMNESTY-20261218",
+      "title": "Amnesty schrijfactie — écriture solidaire collective",
+      "commune": "Aalst",
+      "region": "Flandre",
+      "category": "Rencontres et participation",
+      "date": "2026-12-18",
+      "date_end": "2026-12-18",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme"
+      ],
+      "price_label": "",
+      "url": "https://demens.nu/evenement/amnesty-schrijfactie-2/2026-12-18/",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "huisvandeMens Aalst",
+      "time": "14:30"
+    },
+    {
+      "id": "ED-BVL-20261026-1156-AALST-ADEM-20261125",
+      "title": "Kom op adem — respiration consciente en groupe",
+      "commune": "Aalst",
+      "region": "Flandre",
+      "category": "Rencontres et participation",
+      "date": "2026-11-25",
+      "date_end": "2026-11-25",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme"
+      ],
+      "price_label": "Gratuit",
+      "url": "https://demens.nu/serie/kom-op-adem-2/",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "huisvandeMens Aalst",
+      "time": "16:00"
+    },
+    {
+      "id": "ED-BVL-20261026-1156-AALST-ADEM-20261207",
+      "title": "Kom op adem — respiration consciente en groupe",
+      "commune": "Aalst",
+      "region": "Flandre",
+      "category": "Rencontres et participation",
+      "date": "2026-12-07",
+      "date_end": "2026-12-07",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme"
+      ],
+      "price_label": "Gratuit",
+      "url": "https://demens.nu/serie/kom-op-adem-2/",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "huisvandeMens Aalst",
+      "time": "18:00"
+    },
+    {
+      "id": "ED-BVL-20261026-1156-AALST-ADEM-20261223",
+      "title": "Kom op adem — respiration consciente en groupe",
+      "commune": "Aalst",
+      "region": "Flandre",
+      "category": "Rencontres et participation",
+      "date": "2026-12-23",
+      "date_end": "2026-12-23",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme"
+      ],
+      "price_label": "Gratuit",
+      "url": "https://demens.nu/serie/kom-op-adem-2/",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "huisvandeMens Aalst",
+      "time": "16:00"
     }
   ]
 }
