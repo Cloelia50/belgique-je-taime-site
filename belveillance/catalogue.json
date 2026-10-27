@@ -22730,6 +22730,174 @@
       "booking_method": "",
       "venue": "Quatre Quarts",
       "time": "18:30"
+    },
+    {
+      "id": "ED-BVL-20261027-1156-ATH-JEUXCO-20261120",
+      "title": "Jeux and Co — matinée de jeux de société inclusifs",
+      "commune": "Ath",
+      "region": "Wallonie",
+      "category": "Jeux et convivialité",
+      "date": "2026-11-20",
+      "date_end": "2026-11-20",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_sociable"
+      ],
+      "price_label": "Gratuit",
+      "url": "https://lesassociationssolidaris.be/portfolio-items/esencamwp-atelier-jeux-and-co/",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "url",
+      "venue": "Ludothèque Pirouette — Tour Burbant, salle de la Maison culturelle (face au cinéma)",
+      "time": "10:00"
+    },
+    {
+      "id": "ED-BVL-20261027-1156-ATH-JEUXCO-20270115",
+      "title": "Jeux and Co — matinée de jeux de société inclusifs",
+      "commune": "Ath",
+      "region": "Wallonie",
+      "category": "Jeux et convivialité",
+      "date": "2027-01-15",
+      "date_end": "2027-01-15",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_sociable"
+      ],
+      "price_label": "Gratuit",
+      "url": "https://lesassociationssolidaris.be/portfolio-items/esencamwp-atelier-jeux-and-co/",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "url",
+      "venue": "Ludothèque Pirouette — Tour Burbant, salle de la Maison culturelle (face au cinéma)",
+      "time": "10:00"
+    },
+    {
+      "id": "ED-BVL-20261027-1156-ATH-JEUXCO-20270219",
+      "title": "Jeux and Co — matinée de jeux de société inclusifs",
+      "commune": "Ath",
+      "region": "Wallonie",
+      "category": "Jeux et convivialité",
+      "date": "2027-02-19",
+      "date_end": "2027-02-19",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_sociable"
+      ],
+      "price_label": "Gratuit",
+      "url": "https://lesassociationssolidaris.be/portfolio-items/esencamwp-atelier-jeux-and-co/",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "url",
+      "venue": "Ludothèque Pirouette — Tour Burbant, salle de la Maison culturelle (face au cinéma)",
+      "time": "10:00"
+    },
+    {
+      "id": "ED-BVL-20261027-1156-ATH-JEUXCO-20270319",
+      "title": "Jeux and Co — matinée de jeux de société inclusifs",
+      "commune": "Ath",
+      "region": "Wallonie",
+      "category": "Jeux et convivialité",
+      "date": "2027-03-19",
+      "date_end": "2027-03-19",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_sociable"
+      ],
+      "price_label": "Gratuit",
+      "url": "https://lesassociationssolidaris.be/portfolio-items/esencamwp-atelier-jeux-and-co/",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "url",
+      "venue": "Ludothèque Pirouette — Tour Burbant, salle de la Maison culturelle (face au cinéma)",
+      "time": "10:00"
+    },
+    {
+      "id": "ED-BVL-20261027-1156-ATH-JEUXCO-20270416",
+      "title": "Jeux and Co — matinée de jeux de société inclusifs",
+      "commune": "Ath",
+      "region": "Wallonie",
+      "category": "Jeux et convivialité",
+      "date": "2027-04-16",
+      "date_end": "2027-04-16",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_sociable"
+      ],
+      "price_label": "Gratuit",
+      "url": "https://lesassociationssolidaris.be/portfolio-items/esencamwp-atelier-jeux-and-co/",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "url",
+      "venue": "Ludothèque Pirouette — Tour Burbant, salle de la Maison culturelle (face au cinéma)",
+      "time": "10:00"
+    },
+    {
+      "id": "ED-BVL-20261027-1156-ATH-JEUXCO-20270528",
+      "title": "Jeux and Co — matinée de jeux de société inclusifs",
+      "commune": "Ath",
+      "region": "Wallonie",
+      "category": "Jeux et convivialité",
+      "date": "2027-05-28",
+      "date_end": "2027-05-28",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_sociable"
+      ],
+      "price_label": "Gratuit",
+      "url": "https://lesassociationssolidaris.be/portfolio-items/esencamwp-atelier-jeux-and-co/",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "url",
+      "venue": "Ludothèque Pirouette — Tour Burbant, salle de la Maison culturelle (face au cinéma)",
+      "time": "10:00"
+    },
+    {
+      "id": "ED-BVL-20261027-1156-ATH-JEUXCO-20270618",
+      "title": "Jeux and Co — matinée de jeux de société inclusifs",
+      "commune": "Ath",
+      "region": "Wallonie",
+      "category": "Jeux et convivialité",
+      "date": "2027-06-18",
+      "date_end": "2027-06-18",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_sociable"
+      ],
+      "price_label": "Gratuit",
+      "url": "https://lesassociationssolidaris.be/portfolio-items/esencamwp-atelier-jeux-and-co/",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "url",
+      "venue": "Ludothèque Pirouette — Tour Burbant, salle de la Maison culturelle (face au cinéma)",
+      "time": "10:00"
+    },
+    {
+      "id": "ED-BVL-20261027-1156-SCHAERBEEK-DIEST-20261103",
+      "title": "Excursion seniors — Diest et abbaye d'Averbode",
+      "commune": "Schaerbeek (départ); Diest et Averbode (visites)",
+      "region": "Bruxelles",
+      "category": "Rencontres et participation",
+      "date": "2026-11-03",
+      "date_end": "2026-11-03",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_sociable"
+      ],
+      "price_label": "67 € par personne, autocar + repas + visites guidées compris",
+      "url": "https://www.1030.be/fr/agenda/excursion-seniors-diest-et-averbode",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "Départ devant l'Hôtel communal de Schaerbeek",
+      "time": "09:00"
     }
   ]
 }
