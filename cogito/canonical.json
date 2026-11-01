@@ -21021,6 +21021,26 @@
       "price_label": "Tarif éventuel à confirmer auprès de la galerie",
       "booking_required": null,
       "booking_method": ""
+    },
+    {
+      "id": "EVT-X-4D7D0A5853A532:2026-11-10",
+      "title": "BAFF – Brussels Art Film Festival",
+      "date": "2026-11-10",
+      "start": "2026-11-10",
+      "end": "2026-11-15",
+      "time": "19:00",
+      "location": "Palace, CINEMATEK, BOZAR et lieux partenaires",
+      "city": "Bruxelles",
+      "category": "Cinéma / arts / festival",
+      "subject": "Cinéma / arts / festival",
+      "description": "25e édition, du 10 au 15 novembre 2026. Films sur l'art, compétitions nationales, panorama international, focus Liban et séances spéciales. Séances au Palace, à CINEMATEK, à BOZAR et dans des lieux partenaires. Ouverture avec Days of Wonder le 10/11 à 19h au Palace.",
+      "official_url": "https://baffestival.be/fr/",
+      "registration_url": "https://baffestival.be/fr/film-tout/",
+      "mode": "Présentiel",
+      "is_free": false,
+      "price_label": "Tarifs selon les salles : CINEMATEK 6 €, BOZAR 8 €, Palace 11 €, réductions possibles",
+      "booking_required": null,
+      "booking_method": "url"
     }
   ],
   "updated_at": "2026-10-14"

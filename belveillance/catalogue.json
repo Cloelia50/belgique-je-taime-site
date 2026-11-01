@@ -27395,6 +27395,125 @@
       "booking_method": "",
       "venue": "Atelier Marcel Hastir",
       "time": "17:00"
+    },
+    {
+      "id": "EVT-X-4D7D0A5853A532:2026-11-10",
+      "title": "BAFF – Brussels Art Film Festival",
+      "commune": "Bruxelles",
+      "region": "Bruxelles",
+      "category": "Culture et découvertes",
+      "date": "2026-11-10",
+      "date_end": "2026-11-15",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme",
+        "couple",
+        "amis"
+      ],
+      "price_label": "Tarifs selon les salles : CINEMATEK 6 €, BOZAR 8 €, Palace 11 €, ",
+      "url": "https://baffestival.be/fr/",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "url",
+      "venue": "Palace, CINEMATEK, BOZAR et lieux partenaires",
+      "time": "19:00"
+    },
+    {
+      "id": "ED-2026-319123713663",
+      "title": "Amazing Asia — Bruxelles 2026",
+      "commune": "Bruxelles",
+      "region": "Bruxelles",
+      "category": "Ateliers et créativité",
+      "date": "2026-11-06",
+      "date_end": "2026-11-08",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme",
+        "solo_sociable",
+        "couple",
+        "amis"
+      ],
+      "price_label": "Entrée en ligne : 7 € soirée / 11 € journée ; gratuit jusqu'à 12 ",
+      "url": "https://www.amazingasia.be/fr/festival/brussels",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "url",
+      "venue": "Tour & Taxis — Sheds",
+      "time": "17:00"
+    },
+    {
+      "id": "ED-2026-36A12E86DFC2",
+      "title": "Brussels Design Market — novembre 2026",
+      "commune": "Bruxelles",
+      "region": "Bruxelles",
+      "category": "Nature et plein air",
+      "date": "2026-11-21",
+      "date_end": "2026-11-22",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme",
+        "solo_sociable",
+        "couple",
+        "amis"
+      ],
+      "price_label": "Samedi preview 30 € (pass week-end) ; samedi après-midi 20 € ; di",
+      "url": "https://www.brusselsdesignmarket.be/fr/",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "url",
+      "venue": "Gare Maritime — Tour & Taxis",
+      "time": "09:00"
+    },
+    {
+      "id": "ED-2026-ED6BDF6CC91E",
+      "title": "InterClassics Brussels — Rally Legends 2026",
+      "commune": "Bruxelles (Laeken)",
+      "region": "Bruxelles",
+      "category": "Culture et découvertes",
+      "date": "2026-11-20",
+      "date_end": "2026-11-22",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme",
+        "solo_sociable",
+        "couple",
+        "amis"
+      ],
+      "price_label": "Payant ; gratuit moins de 8 ans ; 8–15 ans 12,50 € ; adulte tarif",
+      "url": "https://interclassics.events/fr/interclassics-brussels/",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "url",
+      "venue": "Brussels Expo",
+      "time": "10:00"
+    },
+    {
+      "id": "ED-2026-84AF5CA6A8AB",
+      "title": "Listen Festival — 24 heures, 15 lieux (2026)",
+      "commune": "Bruxelles — plusieurs communes",
+      "region": "Bruxelles",
+      "category": "Culture et découvertes",
+      "date": "2026-11-21",
+      "date_end": "2026-11-22",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme",
+        "solo_sociable",
+        "couple",
+        "amis"
+      ],
+      "price_label": "Billet payant ; prix actualisé sur la billetterie officielle",
+      "url": "https://www.listenfestival.be/",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "url",
+      "venue": "15 lieux à Bruxelles — notamment gares et clubs",
+      "time": "14:00"
     }
   ]
 }
