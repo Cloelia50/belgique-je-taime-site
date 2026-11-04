@@ -2,7 +2,7 @@
   "schema_version": 1,
   "engine": "BELVEILLANCE",
   "source": "BJT_CALENDRIER_OFFICIEL",
-  "updated_at": "2026-10-28",
+  "updated_at": "2026-11-04",
   "publication_policy": "Only individually verified and publication-authorized entries with an explicitly confirmed participation mode.",
   "status": "fiches_validees_disponibles",
   "items": [
@@ -4599,7 +4599,7 @@
       "title": "Parcours d'artistes d'Ixelles 2026",
       "commune": "Ixelles",
       "region": "",
-      "category": "Nature et plein air",
+      "category": "Culture et découvertes",
       "date": "2026-11-06",
       "date_end": "2026-11-08",
       "availability": "Date annoncée",
@@ -4608,8 +4608,8 @@
         "couple",
         "amis"
       ],
-      "price_label": "Modalités et éventuels frais selon site ; consulter chaque lieu",
-      "url": "https://www.visit.brussels/fr/visiteurs/evenement.Parcours-d-artistes-d-Ixelles.5700027324",
+      "price_label": "Accès libre et gratuit au parcours ; modalités propres à certains ateliers",
+      "url": "https://culture.ixelles.be/fr/parcours-artistes-ixelles-2026/",
       "verified": true,
       "publication_status": "Autorisé",
       "booking_required": null,
@@ -27514,6 +27514,28 @@
       "booking_method": "url",
       "venue": "15 lieux à Bruxelles — notamment gares et clubs",
       "time": "14:00"
+    },
+    {
+      "id": "EVT-BJT-PINK-SCREENS:2026-10-28",
+      "title": "Pink Screens Film Festival — 25e édition (2026)",
+      "commune": "Bruxelles",
+      "region": "Bruxelles",
+      "category": "Culture et découvertes",
+      "date": "2026-10-28",
+      "date_end": "2026-11-07",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme",
+        "couple",
+        "amis"
+      ],
+      "price_label": "Tarifs variables selon les séances et les salles",
+      "url": "https://pinkscreens.org/fr/pink-screens/2026",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "url",
+      "venue": "Cinéma Nova, Galeries, Palace, Aventure et autres lieux à Bruxelles"
     }
   ]
 }
