@@ -27536,6 +27536,46 @@
       "booking_required": null,
       "booking_method": "url",
       "venue": "Cinéma Nova, Galeries, Palace, Aventure et autres lieux à Bruxelles"
+    },
+    {
+      "id": "ED-BJT-IXELLES-2026",
+      "title": "Parcours d'artistes d'Ixelles 2026",
+      "commune": "Ixelles",
+      "region": "",
+      "category": "Nature et plein air",
+      "date": "2026-11-06",
+      "date_end": "2026-11-08",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme",
+        "couple",
+        "amis"
+      ],
+      "price_label": "Gratuit",
+      "url": "https://culture.ixelles.be/fr/parcours-artistes-ixelles-2026/",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "90 lieux à Ixelles — plusieurs sites"
+    },
+    {
+      "id": "ED-BJT-PINK-SCREENS-2026",
+      "title": "Pink Screens Film Festival — 25e édition (2026)",
+      "commune": "Bruxelles",
+      "region": "Bruxelles",
+      "category": "Culture et découvertes",
+      "date": "2026-10-28",
+      "date_end": "2026-11-07",
+      "availability": "Date annoncée",
+      "modes": [],
+      "price_label": "Nova 7 € / 4 € réduit ; autres cinémas 10 € / 8 € réduit ; événem",
+      "url": "https://pinkscreens.org/fr/pink-screens/2026",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "Plusieurs salles : Nova, Aventure, Galeries, Palace, Beursschouwburg et lieux associés"
     }
   ]
 }

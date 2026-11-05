@@ -1841,14 +1841,36 @@
       "city": "Ixelles",
       "category": "Parcours",
       "subject": "Parcours",
-      "description": "",
-      "official_url": "https://www.visit.brussels/fr/visiteurs/evenement.Parcours-d-artistes-d-Ixelles.5700027324",
+      "description": "Du 6 au 8 novembre 2026, 120 artistes dans 90 lieux sur l'itinéraire du bus 95, de Boondael à la place de Luxembourg. Ateliers, maisons, galeries, performances, expositions. Vendredi 18h–22h, samedi et dimanche 11h–18h, horaires propres à chaque lieu à vérifier. Accès gratuit au parcours.",
+      "official_url": "https://culture.ixelles.be/fr/parcours-artistes-ixelles-2026/",
       "registration_url": "",
       "mode": "Présentiel",
-      "is_free": null,
-      "price_label": "Modalités et éventuels frais selon site ; consulter chaque lieu",
+      "is_free": true,
+      "price_label": "Parcours gratuit ; vérifier les activités particulières",
       "booking_required": null,
-      "booking_method": ""
+      "booking_method": "",
+      "publication_history": [
+        {
+          "id": "EVT-X-2C8C89C7D2274D:2026-11-06",
+          "title": "Parcours d'artistes d'Ixelles 2026",
+          "date": "2026-11-06",
+          "start": "2026-11-06",
+          "end": "2026-11-08",
+          "time": "",
+          "location": "90 lieux à Ixelles — plusieurs sites",
+          "city": "Ixelles",
+          "category": "Parcours",
+          "subject": "Parcours",
+          "description": "",
+          "official_url": "https://www.visit.brussels/fr/visiteurs/evenement.Parcours-d-artistes-d-Ixelles.5700027324",
+          "registration_url": "",
+          "mode": "Présentiel",
+          "is_free": null,
+          "price_label": "Modalités et éventuels frais selon site ; consulter chaque lieu",
+          "booking_required": null,
+          "booking_method": ""
+        }
+      ]
     },
     {
       "id": "EVT-0688:2026-11-07:ED-8B7DFC6194D3D9",
