@@ -27576,6 +27576,69 @@
       "booking_required": null,
       "booking_method": "",
       "venue": "Plusieurs salles : Nova, Aventure, Galeries, Palace, Beursschouwburg et lieux associés"
+    },
+    {
+      "id": "ED-AUTO-D29C456FFC7D32C8",
+      "title": "Fabricauserie",
+      "commune": "Court-Saint-Etienne",
+      "region": "Wallonie",
+      "category": "Culture et découvertes",
+      "date": "2027-02-04",
+      "date_end": "2027-02-04",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_sociable"
+      ],
+      "price_label": "Tarifs sur le site officiel",
+      "url": "https://quatrequarts.coop/event/fabricauserie-5/2027-02-04/",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "Quatre Quarts",
+      "time": "19:30"
+    },
+    {
+      "id": "ED-AUTO-CC462F815B30B99C",
+      "title": "Fabricauserie",
+      "commune": "Court-Saint-Etienne",
+      "region": "Wallonie",
+      "category": "Culture et découvertes",
+      "date": "2027-04-15",
+      "date_end": "2027-04-15",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_sociable"
+      ],
+      "price_label": "Tarifs sur le site officiel",
+      "url": "https://quatrequarts.coop/event/fabricauserie-4/2027-04-15/",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "Quatre Quarts",
+      "time": "19:30"
+    },
+    {
+      "id": "ED-AUTO-EA22DB03C7222C6F",
+      "title": "Fabricauserie",
+      "commune": "Court-Saint-Etienne",
+      "region": "Wallonie",
+      "category": "Culture et découvertes",
+      "date": "2027-05-06",
+      "date_end": "2027-05-06",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_sociable"
+      ],
+      "price_label": "Tarifs sur le site officiel",
+      "url": "https://quatrequarts.coop/event/fabricauserie-5/2027-05-06/",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "Quatre Quarts",
+      "time": "19:30"
     }
   ]
 }
