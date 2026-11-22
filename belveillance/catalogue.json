@@ -27639,6 +27639,29 @@
       "booking_method": "",
       "venue": "Quatre Quarts",
       "time": "19:30"
+    },
+    {
+      "id": "ED-BJT-JAPON-EN-LUMIERES-2026-2027",
+      "title": "Le Japon en Lumières — festival des lanternes à Tour & Taxis",
+      "commune": "Bruxelles",
+      "region": "Bruxelles",
+      "category": "Culture et découvertes",
+      "date": "2026-12-02",
+      "date_end": "2027-01-03",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme",
+        "couple",
+        "amis"
+      ],
+      "price_label": "Tarifs non confirmés ; ouverture de la vente annoncée le 24/11/20",
+      "url": "https://lejaponenlumieres.com/bruxelles/fr/",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "url",
+      "venue": "Parc de Tour & Taxis",
+      "time": "17:00"
     }
   ]
 }
