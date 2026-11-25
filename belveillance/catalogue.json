@@ -28609,6 +28609,247 @@
       "booking_required": null,
       "booking_method": "",
       "venue": "Atelier Les ArtLevents"
+    },
+    {
+      "id": "ED-BJT-BRODERIE-20261204",
+      "title": "Atelier de broderie spécial Noël",
+      "commune": "Bruxelles",
+      "region": "Bruxelles",
+      "category": "Ateliers et créativité",
+      "date": "2026-12-04",
+      "date_end": "2026-12-04",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme",
+        "solo_sociable"
+      ],
+      "price_label": "",
+      "url": "https://bibliotheques.bruxelles.be/agenda/atelier-broderie-noel",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "Réseau des bibliothèques de la Ville de Bruxelles",
+      "time": "14:00"
+    },
+    {
+      "id": "ED-BJT-LOCAL-DEC26-LABO",
+      "title": "Labo créatif",
+      "commune": "Anderlecht",
+      "region": "Bruxelles",
+      "category": "Ateliers et créativité",
+      "date": "2026-12-05",
+      "date_end": "2026-12-05",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme",
+        "solo_sociable"
+      ],
+      "price_label": "",
+      "url": "https://biblio.brussels/evenement/labo-creatif",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "Bibliothèque de l’Espace Carême",
+      "time": "13:00"
+    },
+    {
+      "id": "ED-BJT-LOCAL-DEC26-ORIGAMI",
+      "title": "Atelier origami avec Michaël David",
+      "commune": "Schaerbeek",
+      "region": "Bruxelles",
+      "category": "Ateliers et créativité",
+      "date": "2026-12-19",
+      "date_end": "2026-12-19",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme",
+        "solo_sociable"
+      ],
+      "price_label": "",
+      "url": "https://biblio.brussels/index.php/node/55215551",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "Bibliothèque Sésame",
+      "time": "13:00"
+    },
+    {
+      "id": "ED-BJT-LOCAL-DEC26-AMNESTY",
+      "title": "Marathon des lettres avec Amnesty International",
+      "commune": "Anderlecht",
+      "region": "Bruxelles",
+      "category": "Ateliers et créativité",
+      "date": "2026-12-05",
+      "date_end": "2026-12-05",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme",
+        "solo_sociable"
+      ],
+      "price_label": "",
+      "url": "https://biblio.brussels/evenement/marathon-des-lettres-avec-amnesty-international",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "Bibliothèque de l’Espace Carême",
+      "time": "10:00"
+    },
+    {
+      "id": "ED-BJT-LOCAL-DEC26-KIMIA",
+      "title": "Inauguration de la fresque Kimia",
+      "commune": "Bruxelles",
+      "region": "Bruxelles",
+      "category": "Rencontres et participation",
+      "date": "2026-12-03",
+      "date_end": "2026-12-03",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme",
+        "solo_sociable"
+      ],
+      "price_label": "",
+      "url": "https://www.bruxelles.be/inauguration-de-la-fresque-kimia",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "Quartier Nord"
+    },
+    {
+      "id": "ED-BJT-LOCAL-DEC26-MASQUE",
+      "title": "Crée ton masque de Mangemort !",
+      "commune": "Bruxelles",
+      "region": "Bruxelles",
+      "category": "Ateliers et créativité",
+      "date": "2026-12-18",
+      "date_end": "2026-12-18",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme",
+        "solo_sociable"
+      ],
+      "price_label": "",
+      "url": "https://bibliotheques.bruxelles.be/agenda/cree-ton-masque-de-mangemort",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "Ludobox",
+      "time": "18:30"
+    },
+    {
+      "id": "ED-BJT-LOCAL-DEC26-CARTES",
+      "title": "Atelier cartes de vœux",
+      "commune": "Laeken",
+      "region": "Bruxelles",
+      "category": "Ateliers et créativité",
+      "date": "2026-12-18",
+      "date_end": "2026-12-18",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme",
+        "solo_sociable"
+      ],
+      "price_label": "",
+      "url": "https://www.emca.be/node/57471252",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "Bibliothèque de Laeken",
+      "time": "17:30"
+    },
+    {
+      "id": "ED-BJT-LOCAL-DEC26-CAFEJOD",
+      "title": "Café littéraire",
+      "commune": "Jodoigne",
+      "region": "Wallonie",
+      "category": "Sorties conviviales",
+      "date": "2026-12-13",
+      "date_end": "2026-12-13",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme",
+        "solo_sociable"
+      ],
+      "price_label": "Gratuit",
+      "url": "https://culturejodoigne.be/agenda/mois/2026-12/",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "",
+      "time": "14:00"
+    },
+    {
+      "id": "ED-BJT-LOCAL-DEC26-BARSICS",
+      "title": "Atelier d’écriture avec Catherine Barsics",
+      "commune": "Molenbeek-Saint-Jean",
+      "region": "Bruxelles",
+      "category": "Ateliers et créativité",
+      "date": "2026-12-02",
+      "date_end": "2026-12-02",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme",
+        "solo_sociable"
+      ],
+      "price_label": "Gratuit",
+      "url": "https://biblio.brussels/index.php/node/56333869",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "Bibliothèque Jacqueline Harpman",
+      "time": "14:30"
+    },
+    {
+      "id": "ED-BJT-LOCAL-DEC26-LAMARCHE",
+      "title": "Rencontre littéraire avec Caroline Lamarche",
+      "commune": "Molenbeek-Saint-Jean",
+      "region": "Bruxelles",
+      "category": "Nature et plein air",
+      "date": "2026-12-10",
+      "date_end": "2026-12-10",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme",
+        "solo_sociable"
+      ],
+      "price_label": "Gratuit",
+      "url": "https://biblio.brussels/index.php/node/56389800",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "Bibliothèque Jacqueline Harpman",
+      "time": "18:00"
+    },
+    {
+      "id": "ED-BJT-LOCAL-DEC26-JAM",
+      "title": "Jam au Cabaret du Moine",
+      "commune": "Villers-la-Ville",
+      "region": "Wallonie",
+      "category": "Culture et découvertes",
+      "date": "2026-12-10",
+      "date_end": "2026-12-10",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme",
+        "solo_sociable"
+      ],
+      "price_label": "",
+      "url": "https://villers.be/fr/agenda/jam-au-cabaret-du-moine",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "Abbaye de Villers",
+      "time": "20:00"
     }
   ]
 }
