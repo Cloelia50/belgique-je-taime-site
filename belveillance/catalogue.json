@@ -30244,7 +30244,11 @@
       "date": "2026-12-05",
       "date_end": "2026-12-06",
       "availability": "Date annoncée",
-      "modes": [],
+      "modes": [
+        "solo_calme",
+        "couple",
+        "amis"
+      ],
       "price_label": "",
       "url": "https://tour-taxis.com/fr/evenements/marche-de-noel-des-artisans/",
       "verified": true,
@@ -30263,7 +30267,11 @@
       "date": "2026-12-12",
       "date_end": "2026-12-13",
       "availability": "Date annoncée",
-      "modes": [],
+      "modes": [
+        "solo_calme",
+        "couple",
+        "amis"
+      ],
       "price_label": "",
       "url": "https://tour-taxis.com/fr/evenements/marche-de-noel-des-artisans/",
       "verified": true,
@@ -30282,7 +30290,11 @@
       "date": "2026-12-19",
       "date_end": "2026-12-24",
       "availability": "Date annoncée",
-      "modes": [],
+      "modes": [
+        "solo_calme",
+        "couple",
+        "amis"
+      ],
       "price_label": "",
       "url": "https://tour-taxis.com/fr/evenements/marche-de-noel-des-artisans/",
       "verified": true,
@@ -30301,7 +30313,10 @@
       "date": "2026-12-05",
       "date_end": "2027-01-03",
       "availability": "Date annoncée",
-      "modes": [],
+      "modes": [
+        "couple",
+        "amis"
+      ],
       "price_label": "",
       "url": "https://tour-taxis.com/fr/agenda/?related_series=70868",
       "verified": true,
@@ -30319,7 +30334,11 @@
       "date": "2026-12-04",
       "date_end": "2026-12-06",
       "availability": "Date annoncée",
-      "modes": [],
+      "modes": [
+        "solo_calme",
+        "couple",
+        "amis"
+      ],
       "price_label": "",
       "url": "https://kanal.brussels/en/calendar/brussels-ass-book-fair-2026",
       "verified": true,
@@ -30337,7 +30356,10 @@
       "date": "2026-12-05",
       "date_end": "2026-12-06",
       "availability": "Date annoncée",
-      "modes": [],
+      "modes": [
+        "solo_sociable",
+        "amis"
+      ],
       "price_label": "",
       "url": "https://kanal.brussels/fr/agenda/andrew-graham",
       "verified": true,
@@ -30355,7 +30377,11 @@
       "date": "2026-11-28",
       "date_end": "2027-04-18",
       "availability": "Date annoncée",
-      "modes": [],
+      "modes": [
+        "solo_calme",
+        "couple",
+        "amis"
+      ],
       "price_label": "",
       "url": "https://kanal.brussels/fr/agenda/otobong-nkanga",
       "verified": true,
@@ -30373,7 +30399,9 @@
       "date": "2026-11-28",
       "date_end": "2027-03-28",
       "availability": "Date annoncée",
-      "modes": [],
+      "modes": [
+        "solo_calme"
+      ],
       "price_label": "",
       "url": "https://kanal.brussels/fr/agenda/manon-de-boer",
       "verified": true,
@@ -30391,7 +30419,11 @@
       "date": "2026-12-09",
       "date_end": "2026-12-09",
       "availability": "Date annoncée",
-      "modes": [],
+      "modes": [
+        "solo_calme",
+        "couple",
+        "amis"
+      ],
       "price_label": "",
       "url": "https://kanal.brussels/fr/agenda/ant-hampton",
       "verified": true,
@@ -30410,7 +30442,11 @@
       "date": "2026-11-27",
       "date_end": "2026-11-27",
       "availability": "Date annoncée",
-      "modes": [],
+      "modes": [
+        "solo_calme",
+        "couple",
+        "amis"
+      ],
       "price_label": "",
       "url": "https://tictacartcentre.com/event-category/fridays-special-residency-performances/",
       "verified": true,
@@ -30429,7 +30465,9 @@
       "date": "2026-12-07",
       "date_end": "2026-12-11",
       "availability": "Date annoncée",
-      "modes": [],
+      "modes": [
+        "solo_sociable"
+      ],
       "price_label": "",
       "url": "https://tictacartcentre.com/fr/ateliers/",
       "verified": true,
@@ -30447,7 +30485,9 @@
       "date": "2026-12-07",
       "date_end": "2026-12-11",
       "availability": "Date annoncée",
-      "modes": [],
+      "modes": [
+        "solo_sociable"
+      ],
       "price_label": "",
       "url": "https://tictacartcentre.com/workshop/puzzlework/",
       "verified": true,
@@ -30465,7 +30505,9 @@
       "date": "2026-12-14",
       "date_end": "2026-12-18",
       "availability": "Date annoncée",
-      "modes": [],
+      "modes": [
+        "solo_sociable"
+      ],
       "price_label": "",
       "url": "https://tictacartcentre.com/fr/atelier/transformation/",
       "verified": true,
@@ -30483,7 +30525,9 @@
       "date": "2026-12-14",
       "date_end": "2026-12-18",
       "availability": "Date annoncée",
-      "modes": [],
+      "modes": [
+        "solo_sociable"
+      ],
       "price_label": "",
       "url": "https://tictacartcentre.com/workshop/in-the-moment/",
       "verified": true,
@@ -30501,7 +30545,9 @@
       "date": "2026-12-20",
       "date_end": "2026-12-23",
       "availability": "Date annoncée",
-      "modes": [],
+      "modes": [
+        "solo_sociable"
+      ],
       "price_label": "",
       "url": "https://tictacartcentre.com/fr/ateliers/",
       "verified": true,
@@ -30519,7 +30565,11 @@
       "date": "2026-12-05",
       "date_end": "2026-12-06",
       "availability": "Date annoncée",
-      "modes": [],
+      "modes": [
+        "solo_calme",
+        "couple",
+        "amis"
+      ],
       "price_label": "Gratuit",
       "url": "https://www.visit.brussels/fr/visiteurs/agenda/event-detail.Marche-de-Noel-chez-Arthis.5700029319",
       "verified": true,
@@ -30538,7 +30588,11 @@
       "date": "2026-12-12",
       "date_end": "2026-12-12",
       "availability": "Date annoncée",
-      "modes": [],
+      "modes": [
+        "solo_calme",
+        "couple",
+        "amis"
+      ],
       "price_label": "",
       "url": "https://www.visit.brussels/fr/visiteurs/agenda/noel-a-bruxelles-notre-selection-de-marches",
       "verified": true,
@@ -30557,7 +30611,10 @@
       "date": "2026-12-16",
       "date_end": "2026-12-20",
       "availability": "Date annoncée",
-      "modes": [],
+      "modes": [
+        "couple",
+        "amis"
+      ],
       "price_label": "",
       "url": "https://www.destinationbw.be/fr/fiche/evenement/les-hivernales-wavre_TFOEVT-A0-018M-04KB/",
       "verified": true,
@@ -30575,7 +30632,10 @@
       "date": "2026-11-27",
       "date_end": "2027-01-01",
       "availability": "Date annoncée",
-      "modes": [],
+      "modes": [
+        "couple",
+        "amis"
+      ],
       "price_label": "",
       "url": "https://www.visit.brussels/fr/visiteurs/evenement.Christmas-Fairies-The-Secret-Kingdom.5700022784",
       "verified": true,
