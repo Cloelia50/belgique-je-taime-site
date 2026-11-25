@@ -29313,6 +29313,280 @@
       "booking_method": "",
       "venue": "Bibliothèque du Centre",
       "time": "14:00"
+    },
+    {
+      "id": "ED-BJT-FOREST-DEC26-SOLAH",
+      "title": "Solah + Daisy Gual",
+      "commune": "Forest",
+      "region": "Bruxelles",
+      "category": "Culture et découvertes",
+      "date": "2026-12-12",
+      "date_end": "2026-12-12",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme"
+      ],
+      "price_label": "",
+      "url": "https://www.lebrass.be/event/concert-satan-2/",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "BRASS",
+      "time": "16:00"
+    },
+    {
+      "id": "ED-BJT-FOREST-DEC26-OVO",
+      "title": "OvO + Duflan Duflan + Sauvageonnes",
+      "commune": "Forest",
+      "region": "Bruxelles",
+      "category": "Culture et découvertes",
+      "date": "2026-12-11",
+      "date_end": "2026-12-11",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme"
+      ],
+      "price_label": "",
+      "url": "https://www.lebrass.be/event/concert-satan/",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "BRASS",
+      "time": "20:00"
+    },
+    {
+      "id": "ED-BJT-FOREST-DEC26-CLUB",
+      "title": "Club de lecture — Biblif",
+      "commune": "Forest",
+      "region": "Bruxelles",
+      "category": "Rencontres et participation",
+      "date": "2026-12-01",
+      "date_end": "2026-12-01",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme",
+        "solo_sociable"
+      ],
+      "price_label": "",
+      "url": "https://biblif.be/animations-biblif/club-de-lecture-5/",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "Biblif, rue de Belgrade 17"
+    },
+    {
+      "id": "ED-BJT-FOREST-DEC26-EAT",
+      "title": "Food Film Fest — Eat More Trees",
+      "commune": "Forest",
+      "region": "Bruxelles",
+      "category": "Culture et découvertes",
+      "date": "2026-12-04",
+      "date_end": "2026-12-04",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme"
+      ],
+      "price_label": "Gratuit",
+      "url": "https://www.tenweyngaert.be/activiteiten/food-film-fest-eat-more-trees",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "GC Ten Weyngaert"
+    },
+    {
+      "id": "ED-BJT-FOREST-DEC26-VITALSKI",
+      "title": "Don Vitalski’s Legendarische DinsdagClub",
+      "commune": "Forest",
+      "region": "Bruxelles",
+      "category": "Culture et découvertes",
+      "date": "2026-12-18",
+      "date_end": "2026-12-18",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme"
+      ],
+      "price_label": "",
+      "url": "https://www.tenweyngaert.be/activiteiten/don-vitalskis-legendarische-dinsdagclub",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "GC Ten Weyngaert"
+    },
+    {
+      "id": "ED-BJT-FOREST-DEC26-MENDING",
+      "title": "Visible mending — atelier de réparation textile",
+      "commune": "Forest",
+      "region": "Bruxelles",
+      "category": "Ateliers et créativité",
+      "date": "2026-12-10",
+      "date_end": "2026-12-10",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme"
+      ],
+      "price_label": "",
+      "url": "https://www.tenweyngaert.be/activiteiten/visible-mending",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "GC Ten Weyngaert"
+    },
+    {
+      "id": "ED-BJT-FOREST-DEC26-HOBBY",
+      "title": "Hobbyclub Vorst",
+      "commune": "Forest",
+      "region": "Bruxelles",
+      "category": "Culture et découvertes",
+      "date": "2026-12-17",
+      "date_end": "2026-12-17",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme",
+        "solo_sociable"
+      ],
+      "price_label": "",
+      "url": "https://www.visit.brussels/en/visitors/agenda/event-detail.Hobbyclub-Vorst.593293",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "GC Ten Weyngaert"
+    },
+    {
+      "id": "ED-BJT-FOREST-DEC26-BOOK",
+      "title": "Présentation de livre : Shake the Riverbed des mountaincutters",
+      "commune": "Forest",
+      "region": "Bruxelles",
+      "category": "Rencontres et participation",
+      "date": "2026-12-02",
+      "date_end": "2026-12-02",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme"
+      ],
+      "price_label": "Gratuit",
+      "url": "https://wiels.org/fr/events/book-launch-shake-the-riverbed-by-mountaincutters-in-conversation-with-caroline-wolewinski-and-sofia-dati",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "WIELS",
+      "time": "19:00"
+    },
+    {
+      "id": "ED-BJT-FOREST-DEC26-NOCT",
+      "title": "Nocturne gratuite au WIELS",
+      "commune": "Forest",
+      "region": "Bruxelles",
+      "category": "Culture et découvertes",
+      "date": "2026-12-02",
+      "date_end": "2026-12-02",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme"
+      ],
+      "price_label": "Gratuit",
+      "url": "https://wiels.org/fr/events/nocturnes",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "WIELS",
+      "time": "18:00"
+    },
+    {
+      "id": "ED-BJT-FOREST-DEC26-REFORME10",
+      "title": "Atelier créatif — réforme du chômage en images",
+      "commune": "Forest",
+      "region": "Bruxelles",
+      "category": "Ateliers et créativité",
+      "date": "2026-12-10",
+      "date_end": "2026-12-10",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme",
+        "solo_sociable"
+      ],
+      "price_label": "",
+      "url": "https://www.bornin.brussels/evenement/reforme-chomage-on-en-parle-participez-a-deux-ateliers-creatifs-les-10-et-17-decembre/",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "Maison des Parents Solos",
+      "time": "17:30"
+    },
+    {
+      "id": "ED-BJT-FOREST-DEC26-REFORME17",
+      "title": "Atelier créatif — réforme du chômage en images",
+      "commune": "Forest",
+      "region": "Bruxelles",
+      "category": "Ateliers et créativité",
+      "date": "2026-12-17",
+      "date_end": "2026-12-17",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme",
+        "solo_sociable"
+      ],
+      "price_label": "",
+      "url": "https://www.bornin.brussels/evenement/reforme-chomage-on-en-parle-participez-a-un-atelier-creatif-le-17-decembre/",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "Maison des Parents Solos",
+      "time": "17:30"
+    },
+    {
+      "id": "ED-BJT-FOREST-DEC26-PARENT03",
+      "title": "Atelier parentalité — parents solos",
+      "commune": "Forest",
+      "region": "Bruxelles",
+      "category": "Ateliers et créativité",
+      "date": "2026-12-03",
+      "date_end": "2026-12-03",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme",
+        "solo_sociable"
+      ],
+      "price_label": "",
+      "url": "https://eenoudergezinnenthuis.be/agenda/417-ateliers-parentalite",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "Maison des Parents Solos",
+      "time": "09:00"
+    },
+    {
+      "id": "ED-BJT-FOREST-DEC26-PARENT17",
+      "title": "Atelier parentalité — parents solos",
+      "commune": "Forest",
+      "region": "Bruxelles",
+      "category": "Ateliers et créativité",
+      "date": "2026-12-17",
+      "date_end": "2026-12-17",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme",
+        "solo_sociable"
+      ],
+      "price_label": "",
+      "url": "https://eenoudergezinnenthuis.be/agenda/417-ateliers-parentalite",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "Maison des Parents Solos",
+      "time": "09:00"
     }
   ]
 }
