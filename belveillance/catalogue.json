@@ -29016,6 +29016,303 @@
       "booking_required": null,
       "booking_method": "",
       "venue": "Centre culturel de Tubize"
+    },
+    {
+      "id": "ED-BJT-UCCLE-DEC26-SOUFFLE",
+      "title": "Le souffle des mots",
+      "commune": "Uccle",
+      "region": "Bruxelles",
+      "category": "Culture et découvertes",
+      "date": "2026-12-03",
+      "date_end": "2026-12-03",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme"
+      ],
+      "price_label": "",
+      "url": "https://www.emca.be/index.php/node/56852500",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "Le Phare",
+      "time": "19:00"
+    },
+    {
+      "id": "ED-BJT-UCCLE-DEC26-JEUX",
+      "title": "Soirée jeux de société — La Roseraie",
+      "commune": "Uccle",
+      "region": "Bruxelles",
+      "category": "Jeux et convivialité",
+      "date": "2026-12-04",
+      "date_end": "2026-12-04",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme",
+        "solo_sociable"
+      ],
+      "price_label": "",
+      "url": "https://www.roseraie.org/d-tails-et-inscription/soiree-jeux-de-societe-2026-12-04-18-00",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "La Roseraie",
+      "time": "18:00"
+    },
+    {
+      "id": "ED-BJT-UCCLE-DEC26-PLANTES",
+      "title": "Balade autour des plantes médicinales",
+      "commune": "Uccle",
+      "region": "Bruxelles",
+      "category": "Ateliers et créativité",
+      "date": "2026-12-05",
+      "date_end": "2026-12-05",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme"
+      ],
+      "price_label": "",
+      "url": "https://www.roseraie.org/d-tails-et-inscription/balade-autour-des-plantes-medicinales-2026-12-05-10-00",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "La Roseraie",
+      "time": "10:00"
+    },
+    {
+      "id": "ED-BJT-UCCLE-DEC26-FOURNEE",
+      "title": "Fournée banale — four collectif",
+      "commune": "Uccle",
+      "region": "Bruxelles",
+      "category": "Ateliers et créativité",
+      "date": "2026-12-05",
+      "date_end": "2026-12-05",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme",
+        "solo_sociable"
+      ],
+      "price_label": "",
+      "url": "https://www.roseraie.org/quartier-agenda",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "La Roseraie",
+      "time": "10:00"
+    },
+    {
+      "id": "ED-BJT-UCCLE-DEC26-JDR",
+      "title": "Après-midi Jeux de Rôles",
+      "commune": "Uccle",
+      "region": "Bruxelles",
+      "category": "Jeux et convivialité",
+      "date": "2026-12-12",
+      "date_end": "2026-12-12",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme"
+      ],
+      "price_label": "Gratuit",
+      "url": "https://www.visit.brussels/fr/visiteurs/agenda/event-detail.Apres-midi-Jeux-de-Roles.596526",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "Le Phare",
+      "time": "13:00"
+    },
+    {
+      "id": "ED-BJT-UCCLE-DEC26-HUYS",
+      "title": "Het Warmste Huys — fête de quartier solidaire",
+      "commune": "Uccle",
+      "region": "Bruxelles",
+      "category": "Culture et découvertes",
+      "date": "2026-12-18",
+      "date_end": "2026-12-18",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme"
+      ],
+      "price_label": "Gratuit",
+      "url": "https://www.hethuys.be/activiteiten/het-warmste-huys",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "GC Het Huys",
+      "time": "14:00"
+    },
+    {
+      "id": "ED-BJT-UCCLE-DEC26-BUUREN",
+      "title": "Hé doe je mee — visite du musée van Buuren",
+      "commune": "Uccle",
+      "region": "Bruxelles",
+      "category": "Culture et découvertes",
+      "date": "2026-12-12",
+      "date_end": "2026-12-12",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme"
+      ],
+      "price_label": "5 €",
+      "url": "https://www.hethuys.be/activiteiten/he-doe-je-mee-museum-van-buuren",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "Musée van Buuren",
+      "time": "10:00"
+    },
+    {
+      "id": "ED-BJT-UCCLE-DEC26-MOON",
+      "title": "Moon Makao & F-Luve",
+      "commune": "Uccle",
+      "region": "Bruxelles",
+      "category": "Culture et découvertes",
+      "date": "2026-12-18",
+      "date_end": "2026-12-18",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme"
+      ],
+      "price_label": "",
+      "url": "https://www.visit.brussels/nl/bezoekers/agenda/event-detail.Moon-Makao-and-F-Luve.5700028725",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "Petit Théâtre du Collège Saint-Pierre",
+      "time": "19:30"
+    },
+    {
+      "id": "ED-BJT-UCCLE-DEC26-EXPO",
+      "title": "Exposition annuelle d’Uccle Centre d’Art",
+      "commune": "Uccle",
+      "region": "Bruxelles",
+      "category": "Culture et découvertes",
+      "date": "2026-12-03",
+      "date_end": "2026-12-13",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme"
+      ],
+      "price_label": "",
+      "url": "https://wolvendael.be/exposition-uccle-centre-art-2026/",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "Maison des Arts"
+    },
+    {
+      "id": "ED-BJT-UCCLE-DEC26-CONCERT",
+      "title": "Concert de l’Académie à la Maison des Arts",
+      "commune": "Uccle",
+      "region": "Bruxelles",
+      "category": "Culture et découvertes",
+      "date": "2026-12-04",
+      "date_end": "2026-12-04",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme"
+      ],
+      "price_label": "",
+      "url": "https://www.aca-uccle.be/",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "Maison des Arts",
+      "time": "18:00"
+    },
+    {
+      "id": "ED-BJT-UCCLE-DEC26-DUCS",
+      "title": "Les Grands Ducs",
+      "commune": "Uccle",
+      "region": "Bruxelles",
+      "category": "Culture et découvertes",
+      "date": "2026-12-15",
+      "date_end": "2026-12-15",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme"
+      ],
+      "price_label": "",
+      "url": "https://www.ccu.be/projects/les-grands-ducs/",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "Centre culturel d’Uccle",
+      "time": "20:00"
+    },
+    {
+      "id": "ED-BJT-UCCLE-DEC26-RELIURE",
+      "title": "Atelier de reliure",
+      "commune": "Uccle",
+      "region": "Bruxelles",
+      "category": "Ateliers et créativité",
+      "date": "2026-12-15",
+      "date_end": "2026-12-15",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme"
+      ],
+      "price_label": "Gratuit",
+      "url": "https://www.visit.brussels/fr/visiteurs/evenement.Atelier-de-reliure.597558",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "Bibliothèque du Centre",
+      "time": "14:00"
+    },
+    {
+      "id": "ED-BJT-UCCLE-DEC26-ECRITURE",
+      "title": "L’Atelier — club d’écriture",
+      "commune": "Uccle",
+      "region": "Bruxelles",
+      "category": "Ateliers et créativité",
+      "date": "2026-12-11",
+      "date_end": "2026-12-11",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme",
+        "solo_sociable"
+      ],
+      "price_label": "Gratuit",
+      "url": "https://www.visit.brussels/fr/visiteurs/venue-details.Bibliotheque-d-Uccle-Centre.272043",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "Bibliothèque du Centre",
+      "time": "17:30"
+    },
+    {
+      "id": "ED-BJT-UCCLE-DEC26-CAFE",
+      "title": "Café littéraire",
+      "commune": "Uccle",
+      "region": "Bruxelles",
+      "category": "Sorties conviviales",
+      "date": "2026-12-18",
+      "date_end": "2026-12-18",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme",
+        "solo_sociable"
+      ],
+      "price_label": "Gratuit",
+      "url": "https://www.visit.brussels/fr/visiteurs/venue-details.Bibliotheque-d-Uccle-Centre.272043",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "Bibliothèque du Centre",
+      "time": "14:00"
     }
   ]
 }
