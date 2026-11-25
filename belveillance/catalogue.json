@@ -29587,6 +29587,528 @@
       "booking_method": "",
       "venue": "Maison des Parents Solos",
       "time": "09:00"
+    },
+    {
+      "id": "ED-BJT-WB-2511-FRIT",
+      "title": "Finissage Quotidiens singuliers — week-end Saint-Nicolas",
+      "commune": "Forest",
+      "region": "Bruxelles",
+      "category": "Culture et découvertes",
+      "date": "2026-12-05",
+      "date_end": "2026-12-06",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme"
+      ],
+      "price_label": "Gratuit",
+      "url": "https://forest.brussels/fr/agenda/exposition/2026/vernissage-exposition-quotidiens-singuliers-par-alfred-michel-fabry",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "Home Frit’ Home"
+    },
+    {
+      "id": "ED-BJT-WB-2511-HABRYS",
+      "title": "Soirée Plein Feu — L’Invitation, tête-à-tête marionnettique",
+      "commune": "Forest",
+      "region": "Bruxelles",
+      "category": "Sorties conviviales",
+      "date": "2026-11-27",
+      "date_end": "2026-11-27",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme"
+      ],
+      "price_label": "",
+      "url": "https://forest.brussels/fr/agenda/spectacle/2026/soiree-plein-feu-linvitation-tete-a-tete-marionnettique",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "Habrÿs",
+      "time": "18:00"
+    },
+    {
+      "id": "ED-BJT-WB-2511-ARCADO",
+      "title": "ARCADO — exposition des artistes locaux",
+      "commune": "Watermael-Boitsfort",
+      "region": "Bruxelles",
+      "category": "Culture et découvertes",
+      "date": "2026-12-04",
+      "date_end": "2026-12-06",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme"
+      ],
+      "price_label": "",
+      "url": "https://www.watermael-boitsfort.be/fr/agenda/arcado",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": ""
+    },
+    {
+      "id": "ED-BJT-WB-2511-CONCERT",
+      "title": "Concert d’hiver",
+      "commune": "Watermael-Boitsfort",
+      "region": "Bruxelles",
+      "category": "Culture et découvertes",
+      "date": "2026-12-13",
+      "date_end": "2026-12-13",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme"
+      ],
+      "price_label": "",
+      "url": "https://watermael-boitsfort.be/fr/agenda/concert-hiver",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "",
+      "time": "14:00"
+    },
+    {
+      "id": "ED-BJT-WB-2511-SENIORS",
+      "title": "Goûter de Noël des seniors",
+      "commune": "Watermael-Boitsfort",
+      "region": "Bruxelles",
+      "category": "Rencontres et participation",
+      "date": "2026-12-16",
+      "date_end": "2026-12-16",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme"
+      ],
+      "price_label": "",
+      "url": "https://www.watermael-boitsfort.be/fr/agenda/gouter-noel",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "Maison Haute",
+      "time": "13:30"
+    },
+    {
+      "id": "ED-BJT-WB-2511-BEECK",
+      "title": "Vincent Beeckman — les Pieds dans le CLA",
+      "commune": "Watermael-Boitsfort",
+      "region": "Bruxelles",
+      "category": "Rencontres et participation",
+      "date": "2026-12-11",
+      "date_end": "2026-12-11",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme"
+      ],
+      "price_label": "",
+      "url": "https://biblioludowb.be/ven-11-dec-vincent-beeckman-pieds-dans-le-cla/",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "Bibliothèque de Watermael",
+      "time": "18:30"
+    },
+    {
+      "id": "ED-BJT-WB-2511-LIVRE",
+      "title": "Rencontre autour d’un livre",
+      "commune": "Watermael-Boitsfort",
+      "region": "Bruxelles",
+      "category": "Rencontres et participation",
+      "date": "2026-12-12",
+      "date_end": "2026-12-12",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme",
+        "solo_sociable"
+      ],
+      "price_label": "",
+      "url": "https://biblioludowb.be/rencontre-autour-dun-livre-la-saison-2026-2027/",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "Bibliothèque de Watermael",
+      "time": "10:45"
+    },
+    {
+      "id": "ED-BJT-WB-2511-JEUX",
+      "title": "Les (presque) 12h jeux — 5e édition",
+      "commune": "Watermael-Boitsfort",
+      "region": "Bruxelles",
+      "category": "Jeux et convivialité",
+      "date": "2026-12-12",
+      "date_end": "2026-12-12",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme",
+        "solo_sociable"
+      ],
+      "price_label": "",
+      "url": "https://biblioludowb.be/sam-12-dec-les-presque-12h-jeux-5-edition/",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "Ludothèque de Watermael",
+      "time": "13:00"
+    },
+    {
+      "id": "ED-BJT-WB-2511-ECRIRE",
+      "title": "Écrire pour faire exister — atelier d’écriture",
+      "commune": "Watermael-Boitsfort",
+      "region": "Bruxelles",
+      "category": "Ateliers et créativité",
+      "date": "2026-12-07",
+      "date_end": "2026-12-07",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme"
+      ],
+      "price_label": "",
+      "url": "https://biblioludowb.be/lun-7-dec-atelier-decriture-ecrire-pour-faire-exister/",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "Bibliothèque de Watermael",
+      "time": "16:30"
+    },
+    {
+      "id": "ED-BJT-WB-2511-VIE04",
+      "title": "Nous racontons notre vie — atelier",
+      "commune": "Watermael-Boitsfort",
+      "region": "Bruxelles",
+      "category": "Ateliers et créativité",
+      "date": "2026-12-04",
+      "date_end": "2026-12-04",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme"
+      ],
+      "price_label": "",
+      "url": "https://biblioludowb.be/nous-racontons-notre-vie-10-ateliers-de-novembre-a-avril/",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "Bibliothèque"
+    },
+    {
+      "id": "ED-BJT-WB-2511-VIE18",
+      "title": "Nous racontons notre vie — atelier",
+      "commune": "Watermael-Boitsfort",
+      "region": "Bruxelles",
+      "category": "Ateliers et créativité",
+      "date": "2026-12-18",
+      "date_end": "2026-12-18",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme"
+      ],
+      "price_label": "",
+      "url": "https://biblioludowb.be/nous-racontons-notre-vie-10-ateliers-de-novembre-a-avril/",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "Bibliothèque"
+    },
+    {
+      "id": "ED-BJT-WB-2511-BLUE",
+      "title": "The Blue Trail — Ciné Apéro",
+      "commune": "Watermael-Boitsfort",
+      "region": "Bruxelles",
+      "category": "Culture et découvertes",
+      "date": "2026-12-02",
+      "date_end": "2026-12-02",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme"
+      ],
+      "price_label": "4–10 €",
+      "url": "https://www.lavenerie.be/evenement/the-blue-trail/",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "Espace Delvaux",
+      "time": "19:00"
+    },
+    {
+      "id": "ED-BJT-WB-2511-CHANT",
+      "title": "Ce soir on chante",
+      "commune": "Watermael-Boitsfort",
+      "region": "Bruxelles",
+      "category": "Culture et découvertes",
+      "date": "2026-12-08",
+      "date_end": "2026-12-08",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme",
+        "solo_sociable"
+      ],
+      "price_label": "4–10 €",
+      "url": "https://www.lavenerie.be/evenement/ce-soir-on-chante-26-27/",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "Espace Delvaux",
+      "time": "19:00"
+    },
+    {
+      "id": "ED-BJT-WB-2511-CALLE",
+      "title": "Calle Malaga — Ciné Apéro",
+      "commune": "Watermael-Boitsfort",
+      "region": "Bruxelles",
+      "category": "Culture et découvertes",
+      "date": "2026-12-09",
+      "date_end": "2026-12-09",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme"
+      ],
+      "price_label": "",
+      "url": "https://www.lavenerie.be/evenement/calle-malaga/",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "Espace Delvaux",
+      "time": "19:00"
+    },
+    {
+      "id": "ED-BJT-WB-2511-LIGNE",
+      "title": "Ligne Ouverte",
+      "commune": "Watermael-Boitsfort",
+      "region": "Bruxelles",
+      "category": "Culture et découvertes",
+      "date": "2026-12-10",
+      "date_end": "2026-12-11",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme"
+      ],
+      "price_label": "8–22 €",
+      "url": "https://www.lavenerie.be/evenement/ligne-ouverte/",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "Espace Delvaux",
+      "time": "20:00"
+    },
+    {
+      "id": "ED-BJT-WB-2511-REMONTADA",
+      "title": "La Remontada",
+      "commune": "Watermael-Boitsfort",
+      "region": "Bruxelles",
+      "category": "Culture et découvertes",
+      "date": "2026-12-16",
+      "date_end": "2026-12-16",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme"
+      ],
+      "price_label": "",
+      "url": "https://www.lavenerie.be/evenement/la-remontada/",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "La Vénerie",
+      "time": "19:00"
+    },
+    {
+      "id": "ED-BJT-WB-2511-SONIAN",
+      "title": "Sonian Resonance",
+      "commune": "Watermael-Boitsfort",
+      "region": "Bruxelles",
+      "category": "Culture et découvertes",
+      "date": "2026-12-13",
+      "date_end": "2026-12-13",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme"
+      ],
+      "price_label": "Gratuit",
+      "url": "https://www.wabo.be/activiteiten/sonian-resonance",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "GC WaBo",
+      "time": "13:30"
+    },
+    {
+      "id": "ED-BJT-WB-2511-FERMENT",
+      "title": "Musea van Fermentatie",
+      "commune": "Watermael-Boitsfort",
+      "region": "Bruxelles",
+      "category": "Rencontres et participation",
+      "date": "2026-12-04",
+      "date_end": "2026-12-04",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme"
+      ],
+      "price_label": "",
+      "url": "https://www.wabo.be/activiteiten/musea-van-fermentatie-0",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "GC WaBo"
+    },
+    {
+      "id": "ED-BJT-WB-2511-BREI",
+      "title": "Breicafé — café tricot",
+      "commune": "Watermael-Boitsfort",
+      "region": "Bruxelles",
+      "category": "Ateliers et créativité",
+      "date": "2026-12-03",
+      "date_end": "2026-12-03",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme",
+        "solo_sociable"
+      ],
+      "price_label": "Gratuit",
+      "url": "https://www.wabo.be/activiteiten",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "GC WaBo"
+    },
+    {
+      "id": "ED-BJT-WB-2511-JAM",
+      "title": "WaBoJam",
+      "commune": "Watermael-Boitsfort",
+      "region": "Bruxelles",
+      "category": "Culture et découvertes",
+      "date": "2026-12-11",
+      "date_end": "2026-12-11",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme",
+        "solo_sociable"
+      ],
+      "price_label": "Gratuit",
+      "url": "https://www.wabo.be/activiteiten",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "GC WaBo"
+    },
+    {
+      "id": "ED-BJT-WB-2511-ZELF",
+      "title": "De Zelfmakerij — atelier textile libre",
+      "commune": "Watermael-Boitsfort",
+      "region": "Bruxelles",
+      "category": "Ateliers et créativité",
+      "date": "2026-12-16",
+      "date_end": "2026-12-16",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme",
+        "solo_sociable"
+      ],
+      "price_label": "Gratuit",
+      "url": "https://www.visit.brussels/en/visitors/event-details.De-zelfmakerij.596890",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "GC WaBo",
+      "time": "16:00"
+    },
+    {
+      "id": "ED-BJT-WB-2511-RELIURE",
+      "title": "Boekbinden — reliure",
+      "commune": "Watermael-Boitsfort",
+      "region": "Bruxelles",
+      "category": "Culture et découvertes",
+      "date": "2026-12-01",
+      "date_end": "2026-12-01",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme"
+      ],
+      "price_label": "",
+      "url": "https://www.visit.brussels/fr/visiteurs/agenda/event-detail.Boekbinden.596628",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "GC WaBo"
+    },
+    {
+      "id": "ED-BJT-WB-2511-LIPIT",
+      "title": "Là où la terre affronte la mer — Jean-Pierre Lipit",
+      "commune": "Watermael-Boitsfort",
+      "region": "Bruxelles",
+      "category": "Culture et découvertes",
+      "date": "2026-09-06",
+      "date_end": "2026-12-13",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme"
+      ],
+      "price_label": "",
+      "url": "https://www.lelogisfloreal.be/visitor-center/",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "Visitor Center Le Logis-Floréal"
+    },
+    {
+      "id": "ED-BJT-WB-2511-MAC12",
+      "title": "Rando nature et macramé — édition Noël",
+      "commune": "Watermael-Boitsfort",
+      "region": "Bruxelles",
+      "category": "Ateliers et créativité",
+      "date": "2026-12-12",
+      "date_end": "2026-12-12",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme"
+      ],
+      "price_label": "25 €",
+      "url": "https://quefaire.be/rando-nature-et-macrame-8779631.shtml",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "Forêt de Soignes",
+      "time": "12:30"
+    },
+    {
+      "id": "ED-BJT-WB-2511-MAC19",
+      "title": "Rando nature et macramé — édition Noël",
+      "commune": "Watermael-Boitsfort",
+      "region": "Bruxelles",
+      "category": "Ateliers et créativité",
+      "date": "2026-12-19",
+      "date_end": "2026-12-19",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme"
+      ],
+      "price_label": "25 €",
+      "url": "https://quefaire.be/rando-nature-et-macrame-8779631.shtml",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "Forêt de Soignes",
+      "time": "12:30"
     }
   ]
 }
