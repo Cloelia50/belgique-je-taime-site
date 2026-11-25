@@ -30109,6 +30109,131 @@
       "booking_method": "",
       "venue": "Forêt de Soignes",
       "time": "12:30"
+    },
+    {
+      "id": "ED-BJT-WB-COMP-2511-KASBA",
+      "title": "Paysages exquis — exposition de gravure et lithographie",
+      "commune": "Watermael-Boitsfort",
+      "region": "Bruxelles",
+      "category": "Culture et découvertes",
+      "date": "2026-12-05",
+      "date_end": "2026-12-13",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme"
+      ],
+      "price_label": "",
+      "url": "https://atelier-kasba.be/exposition-paysages-exquis/",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "Atelier KASBA, rue Middelbourg 126"
+    },
+    {
+      "id": "ED-BJT-WB-COMP-2511-CREA",
+      "title": "CreAtelier — atelier créatif ouvert",
+      "commune": "Watermael-Boitsfort",
+      "region": "Bruxelles",
+      "category": "Ateliers et créativité",
+      "date": "2026-12-09",
+      "date_end": "2026-12-09",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme"
+      ],
+      "price_label": "",
+      "url": "https://www.wabo.be/activiteiten/createlier",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "GC WaBo",
+      "time": "14:00"
+    },
+    {
+      "id": "ED-BJT-WB-COMP-2511-MAISON",
+      "title": "Écrire la maison — atelier d’écriture",
+      "commune": "Watermael-Boitsfort",
+      "region": "Bruxelles",
+      "category": "Ateliers et créativité",
+      "date": "2026-12-19",
+      "date_end": "2026-12-19",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme",
+        "solo_sociable"
+      ],
+      "price_label": "",
+      "url": "https://quefaire.be/ecrire-la-maison-8773134.shtml",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "Le Chapelier Fou"
+    },
+    {
+      "id": "ED-BJT-WB-COMP-2511-AQUARELLE",
+      "title": "Stage d’aquarelle — Hors Champs",
+      "commune": "Watermael-Boitsfort",
+      "region": "Bruxelles",
+      "category": "Culture et découvertes",
+      "date": "2026-12-28",
+      "date_end": "2026-12-29",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme"
+      ],
+      "price_label": "",
+      "url": "https://www.quefaire.be/stage-daquarelle-8777645.shtml",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "Hors Champs"
+    },
+    {
+      "id": "ED-BJT-WB-COMP-2511-COUTURE",
+      "title": "Naaiatelier — atelier de couture collective",
+      "commune": "Watermael-Boitsfort",
+      "region": "Bruxelles",
+      "category": "Ateliers et créativité",
+      "date": "2026-12-14",
+      "date_end": "2026-12-14",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme",
+        "solo_sociable"
+      ],
+      "price_label": "",
+      "url": "https://www.wabo.be/activiteiten/naaiatelier",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "GC WaBo",
+      "time": "19:00"
+    },
+    {
+      "id": "ED-BJT-WB-COMP-2511-GIRLY",
+      "title": "Girly hiphop avec Luna",
+      "commune": "Watermael-Boitsfort",
+      "region": "Bruxelles",
+      "category": "Culture et découvertes",
+      "date": "2026-12-05",
+      "date_end": "2026-12-05",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme"
+      ],
+      "price_label": "",
+      "url": "https://www.wabo.be/activiteiten/girly-hiphop-met-luna",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "GC WaBo",
+      "time": "12:45"
     }
   ]
 }
