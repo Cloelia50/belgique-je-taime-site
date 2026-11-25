@@ -28020,6 +28020,295 @@
       "booking_method": "",
       "venue": "L’Boutroule d’Ame",
       "time": "14:00"
+    },
+    {
+      "id": "ED-BJT-COGITO-DEC26-TEDX",
+      "title": "TEDxBrussels — (Dis)agree",
+      "commune": "Bruxelles",
+      "region": "Bruxelles",
+      "category": "Jeux et convivialité",
+      "date": "2026-12-02",
+      "date_end": "2026-12-02",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme"
+      ],
+      "price_label": "",
+      "url": "https://www.tedxbrussels.com/evenements/dis-agree",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "Théâtre National Wallonie-Bruxelles"
+    },
+    {
+      "id": "ED-BJT-COGITO-DEC26-HEHESCL",
+      "title": "Se souvenir du passé, comprendre le présent",
+      "commune": "Bruxelles",
+      "region": "Bruxelles",
+      "category": "Jeux et convivialité",
+      "date": "2026-12-02",
+      "date_end": "2026-12-02",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme"
+      ],
+      "price_label": "",
+      "url": "https://historia.europa.eu/fr/expositions-et-evenements/evenements/se-souvenir-du-passe-comprendre-le-present",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "Maison de l’histoire européenne",
+      "time": "09:00"
+    },
+    {
+      "id": "ED-BJT-COGITO-DEC26-BRUTALISME",
+      "title": "Brutalisme Bruxelles — Jean-Marc Basyn",
+      "commune": "Woluwe-Saint-Lambert",
+      "region": "Bruxelles",
+      "category": "Culture et découvertes",
+      "date": "2026-12-03",
+      "date_end": "2026-12-03",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme"
+      ],
+      "price_label": "Gratuit",
+      "url": "https://www.maisoncfc.be/fr/agenda/1739-conference-autour-du-livre-brutalisme-bruxelles-avec-jean-marc-basyn",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_url": "",
+      "booking_required": true,
+      "booking_method": "",
+      "venue": "Château Malou"
+    },
+    {
+      "id": "ED-BJT-COGITO-DEC26-FOROUGH",
+      "title": "Une vie brève, une empreinte profonde — Forough Farrokhzad",
+      "commune": "Bruxelles",
+      "region": "Bruxelles",
+      "category": "Culture et découvertes",
+      "date": "2026-12-03",
+      "date_end": "2026-12-03",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme"
+      ],
+      "price_label": "5 €",
+      "url": "https://www.maisoncfc.be/fr/agenda/1731-une-vie-breve-une-empreinte-profonde-l-oeuvre-litteraire-et-cinematographique-de-forough-farrokhzad",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "Maison CFC",
+      "time": "19:00"
+    },
+    {
+      "id": "ED-BJT-COGITO-DEC26-EMIGRATION",
+      "title": "Quand c’étaient les Belges qui émigraient",
+      "commune": "Colfontaine",
+      "region": "Wallonie",
+      "category": "Culture et découvertes",
+      "date": "2026-12-03",
+      "date_end": "2026-12-03",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme"
+      ],
+      "price_label": "",
+      "url": "https://extension.ulb.be/quand-cetaient-les-belges-qui-emigraient",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "Maison de la Laïcité",
+      "time": "19:00"
+    },
+    {
+      "id": "ED-BJT-COGITO-DEC26-BEAULAiD",
+      "title": "Puissance du beau, utilité du laid — conférence",
+      "commune": "Louvain-la-Neuve",
+      "region": "Wallonie",
+      "category": "Culture et découvertes",
+      "date": "2026-12-03",
+      "date_end": "2026-12-03",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme"
+      ],
+      "price_label": "",
+      "url": "https://www.museel.be/fr/article/conference",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "Musée L"
+    },
+    {
+      "id": "ED-BJT-COGITO-DEC26-ANIMAL",
+      "title": "L’Invention de l’animal — Pierre-Olivier Dittmar",
+      "commune": "Bruxelles",
+      "region": "Bruxelles",
+      "category": "Culture et découvertes",
+      "date": "2026-12-05",
+      "date_end": "2026-12-05",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme"
+      ],
+      "price_label": "5 €",
+      "url": "https://www.maisoncfc.be/fr/agenda/1732-l-invention-de-l-animal-essai-d-anthropologie-medievale-de-pierre-olivier-dittmar",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "Maison CFC",
+      "time": "12:00"
+    },
+    {
+      "id": "ED-BJT-COGITO-DEC26-RETABLE",
+      "title": "Le Retable de la Passion de Staßfurt — Didier Martens",
+      "commune": "Bruxelles",
+      "region": "Bruxelles",
+      "category": "Culture et découvertes",
+      "date": "2026-12-08",
+      "date_end": "2026-12-08",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme"
+      ],
+      "price_label": "",
+      "url": "https://www.srab.be/Activites_conferences.html",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "Salle des Arbalétriers"
+    },
+    {
+      "id": "ED-BJT-COGITO-DEC26-KNOW",
+      "title": "IN THE (K)NOW — festival arts-sciences",
+      "commune": "Bruxelles",
+      "region": "Bruxelles",
+      "category": "Culture et découvertes",
+      "date": "2026-12-09",
+      "date_end": "2026-12-13",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme"
+      ],
+      "price_label": "",
+      "url": "https://ohme.be/projects/in-the-know/",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "KANAL et lieux partenaires"
+    },
+    {
+      "id": "ED-BJT-COGITO-DEC26-CREA",
+      "title": "Le passé en chantier, le passé à l’œuvre — 25 ans du CReA",
+      "commune": "Bruxelles",
+      "region": "Bruxelles",
+      "category": "Culture et découvertes",
+      "date": "2026-12-10",
+      "date_end": "2026-12-11",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme"
+      ],
+      "price_label": "",
+      "url": "https://crea.phisoc.ulb.be/fr/agenda/le-crea-patrimoine-fete-ses-25-ans",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "ULB"
+    },
+    {
+      "id": "ED-BJT-COGITO-DEC26-DANTE",
+      "title": "Dante, promoteur des Lumières",
+      "commune": "Charleroi",
+      "region": "Wallonie",
+      "category": "Culture et découvertes",
+      "date": "2026-12-10",
+      "date_end": "2026-12-10",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme"
+      ],
+      "price_label": "",
+      "url": "https://extension.ulb.be/dante-promoteur-des-lumieres",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "CampusUCharleroi — Zénobe Gramme",
+      "time": "14:00"
+    },
+    {
+      "id": "ED-BJT-COGITO-DEC26-FOODSTORIES",
+      "title": "Food Stories — goûter aux histoires coloniales",
+      "commune": "Bruxelles",
+      "region": "Bruxelles",
+      "category": "Culture et découvertes",
+      "date": "2026-12-12",
+      "date_end": "2026-12-12",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme"
+      ],
+      "price_label": "",
+      "url": "https://historia.europa.eu/fr/expositions-et-evenements/evenements/food-stories-gouter-aux-histoires-coloniales",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "Maison de l’histoire européenne",
+      "time": "11:00"
+    },
+    {
+      "id": "ED-BJT-COGITO-DEC26-LAFON",
+      "title": "Le Livre de Madame Jean — Marie-Hélène Lafon",
+      "commune": "Bruxelles",
+      "region": "Bruxelles",
+      "category": "Culture et découvertes",
+      "date": "2026-12-12",
+      "date_end": "2026-12-12",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme"
+      ],
+      "price_label": "5 €",
+      "url": "https://www.maisoncfc.be/fr/agenda/1733-le-livre-de-madame-jean-marie-helene-lafon",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "Maison CFC",
+      "time": "12:00"
+    },
+    {
+      "id": "ED-BJT-COGITO-DEC26-IMAGE",
+      "title": "Penser l’image par l’image à l’ère du numérique — Roxanne Loos",
+      "commune": "Bruxelles",
+      "region": "Bruxelles",
+      "category": "Culture et découvertes",
+      "date": "2026-12-15",
+      "date_end": "2026-12-15",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme"
+      ],
+      "price_label": "",
+      "url": "https://phisoc.ulb.be/fr/agenda-facultaire/15-dec-2026-conference-sociamm-penser-limage-par-limage-a-lere-du-numerique-roxanne-loos",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "ULB, Solbosch, NA4.302",
+      "time": "14:30"
     }
   ]
 }
