@@ -28309,6 +28309,219 @@
       "booking_method": "",
       "venue": "ULB, Solbosch, NA4.302",
       "time": "14:30"
+    },
+    {
+      "id": "ED-BJT-VEILLE-20261125-LIBREX",
+      "title": "Arpentage — Résister dans des milieux ravagés : une fabrication d’héritages (Benedikte Zitouni)",
+      "commune": "Bruxelles",
+      "region": "Bruxelles",
+      "category": "Jeux et convivialité",
+      "date": "2026-12-09",
+      "date_end": "2026-12-09",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme",
+        "solo_sociable"
+      ],
+      "price_label": "",
+      "url": "https://centrelibrex.be/rendez-vous/resister-dans-des-milieux-ravages-une-fabrication-dheritages-de-benedikte-zitouni/",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "Centre Librex",
+      "time": "10:00"
+    },
+    {
+      "id": "ED-BJT-VEILLE-20261125-SOIL",
+      "title": "Meet the Architects: So-IL",
+      "commune": "Bruxelles",
+      "region": "Bruxelles",
+      "category": "Culture et découvertes",
+      "date": "2026-12-01",
+      "date_end": "2026-12-01",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme"
+      ],
+      "price_label": "",
+      "url": "https://tickets.bozar.be/selection/event/date?productId=10229842448097",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "Bozar",
+      "time": "19:00"
+    },
+    {
+      "id": "ED-BJT-VEILLE-20261125-AGUALUSA",
+      "title": "Meet the Writers: José Eduardo Agualusa & Mohamed Mbougar Sarr",
+      "commune": "Bruxelles",
+      "region": "Bruxelles",
+      "category": "Rencontres et participation",
+      "date": "2026-12-08",
+      "date_end": "2026-12-08",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme"
+      ],
+      "price_label": "",
+      "url": "https://tickets.bozar.be/selection/event/date?productId=10229843193474",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "Bozar",
+      "time": "19:30"
+    },
+    {
+      "id": "ED-BJT-VEILLE-20261125-MARIN",
+      "title": "Meet the Thinker: Claire Marin",
+      "commune": "Bruxelles",
+      "region": "Bruxelles",
+      "category": "Rencontres et participation",
+      "date": "2026-12-12",
+      "date_end": "2026-12-12",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme"
+      ],
+      "price_label": "",
+      "url": "https://tickets.bozar.be/selection/event/date?productId=10229835997124",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "Bozar",
+      "time": "19:30"
+    },
+    {
+      "id": "ED-BJT-VEILLE-20261125-CHECKPOINT",
+      "title": "Checkpoint Brussels — un programme d’actualité en direct",
+      "commune": "Bruxelles",
+      "region": "Bruxelles",
+      "category": "Culture et découvertes",
+      "date": "2026-12-16",
+      "date_end": "2026-12-16",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme"
+      ],
+      "price_label": "12 € standard ; 8 € moins de 26 ans",
+      "url": "https://tickets.bozar.be/selection/event/date?productId=10229842468091",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "Bozar — Salle M",
+      "time": "19:00"
+    },
+    {
+      "id": "ED-BJT-VEILLE-20261125-TRACTEUR",
+      "title": "Ciné-débat : Beau comme un tracteur",
+      "commune": "Court-Saint-Étienne",
+      "region": "Wallonie",
+      "category": "Culture et découvertes",
+      "date": "2026-12-08",
+      "date_end": "2026-12-08",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme",
+        "solo_sociable"
+      ],
+      "price_label": "5 €",
+      "url": "https://quatrequarts.coop/event/cine-debat-2/",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "Quatre Quarts",
+      "time": "20:00"
+    },
+    {
+      "id": "ED-BJT-VEILLE-20261125-CONTER",
+      "title": "Conter pour résister",
+      "commune": "Court-Saint-Étienne",
+      "region": "Wallonie",
+      "category": "Culture et découvertes",
+      "date": "2026-12-05",
+      "date_end": "2026-12-05",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme",
+        "solo_sociable"
+      ],
+      "price_label": "Gratuit",
+      "url": "https://quatrequarts.coop/event/conter-pour-resister/",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "Quatre Quarts",
+      "time": "19:30"
+    },
+    {
+      "id": "ED-BJT-VEILLE-20261125-OUVERTS",
+      "title": "Journée ateliers ouverts — Quatre Quarts",
+      "commune": "Court-Saint-Étienne",
+      "region": "Wallonie",
+      "category": "Ateliers et créativité",
+      "date": "2026-12-05",
+      "date_end": "2026-12-05",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_sociable"
+      ],
+      "price_label": "",
+      "url": "https://quatrequarts.coop/event/journee-ateliers-ouverts/",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "Quatre Quarts",
+      "time": "14:00"
+    },
+    {
+      "id": "ED-BJT-VEILLE-20261125-PREHISTOIRE",
+      "title": "La femme dans la préhistoire — Pierre Cattelain",
+      "commune": "Jamioulx",
+      "region": "Wallonie",
+      "category": "Culture et découvertes",
+      "date": "2026-12-10",
+      "date_end": "2026-12-10",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme"
+      ],
+      "price_label": "",
+      "url": "https://extension.ulb.be/la-femme-dans-la-prehistoire",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "Espace Jean Hainaut",
+      "time": "19:30"
+    },
+    {
+      "id": "ED-BJT-VEILLE-20261125-KINTSUGI",
+      "title": "Atelier de kintsugi traditionnel à l’hon urushi",
+      "commune": "Court-Saint-Étienne",
+      "region": "Wallonie",
+      "category": "Ateliers et créativité",
+      "date": "2026-12-02",
+      "date_end": "2026-12-02",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme",
+        "solo_sociable"
+      ],
+      "price_label": "",
+      "url": "https://quatrequarts.coop/event/atelier-de-kintsugi-traditionnel-a-lhon-urushi/",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "Quatre Quarts"
     }
   ]
 }
