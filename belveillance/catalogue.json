@@ -28522,6 +28522,93 @@
       "booking_required": null,
       "booking_method": "",
       "venue": "Quatre Quarts"
+    },
+    {
+      "id": "ED-BJT-SIMPLICITIES-20261220",
+      "title": "Atelier créatif Simplicities",
+      "commune": "Bruxelles",
+      "region": "Bruxelles",
+      "category": "Ateliers et créativité",
+      "date": "2026-12-20",
+      "date_end": "2026-12-20",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme",
+        "solo_sociable"
+      ],
+      "price_label": "",
+      "url": "https://www.visit.brussels/fr/visiteurs/evenement.Atelier-creatif-Simplicities.590622",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "Musée Mode & Dentelle"
+    },
+    {
+      "id": "ED-BJT-LOCAL-2511-INCLUSIF",
+      "title": "Ateliers créatifs inclusifs — peinture et vernissage",
+      "commune": "Louvain-la-Neuve",
+      "region": "Wallonie",
+      "category": "Ateliers et créativité",
+      "date": "2026-12-17",
+      "date_end": "2026-12-17",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme",
+        "solo_sociable"
+      ],
+      "price_label": "Gratuit",
+      "url": "https://museel.be/fr/evenement/atelier/ateliers-creatifs-inclusifs",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_url": "",
+      "booking_required": true,
+      "booking_method": "",
+      "venue": "Musée L",
+      "time": "16:30"
+    },
+    {
+      "id": "ED-BJT-LOCAL-2511-DESSIN",
+      "title": "Atelier de dessin ados et adultes — Les ArtLevents",
+      "commune": "Court-Saint-Étienne",
+      "region": "Wallonie",
+      "category": "Ateliers et créativité",
+      "date": "2026-12-01",
+      "date_end": "2026-12-01",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme",
+        "solo_sociable"
+      ],
+      "price_label": "25 € la séance",
+      "url": "https://www.lesartlevents.be/locations/a-latelier-les-artlevents/",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "Atelier Les ArtLevents",
+      "time": "19:45"
+    },
+    {
+      "id": "ED-BJT-LOCAL-2511-COUTURE",
+      "title": "Atelier couture et création de modèle",
+      "commune": "Court-Saint-Étienne",
+      "region": "Wallonie",
+      "category": "Ateliers et créativité",
+      "date": "2026-12-13",
+      "date_end": "2026-12-13",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme",
+        "solo_sociable"
+      ],
+      "price_label": "",
+      "url": "https://www.lesartlevents.be/couture-et-modele/",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "Atelier Les ArtLevents"
     }
   ]
 }
