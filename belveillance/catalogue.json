@@ -27662,6 +27662,364 @@
       "booking_method": "url",
       "venue": "Parc de Tour & Taxis",
       "time": "17:00"
+    },
+    {
+      "id": "ED-BJT-INUITNOCTURNE-20261217",
+      "title": "Nocturne Inuit — rencontre avec Carl Norac",
+      "commune": "Bruxelles",
+      "region": "Bruxelles",
+      "category": "Rencontres et participation",
+      "date": "2026-12-17",
+      "date_end": "2026-12-17",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme",
+        "solo_sociable"
+      ],
+      "price_label": "18 € adulte; 14 € +65; 9 € 18–25; gratuit moins de 18 ans",
+      "url": "https://www.artandhistory.museum/index.php/fr/activite/nocturne-inuit-1",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "Musée Art & Histoire",
+      "time": "17:00"
+    },
+    {
+      "id": "ED-BJT-LOCAL-BRUJAS-20261205",
+      "title": "Brujas Are Out — atelier bijoux en pierres naturelles",
+      "commune": "Bruxelles",
+      "region": "Bruxelles",
+      "category": "Ateliers et créativité",
+      "date": "2026-12-05",
+      "date_end": "2026-12-05",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_sociable"
+      ],
+      "price_label": "",
+      "url": "https://www.frenesie.be/evenements?artiste=4d26a601-4a91-49d8-9396-ee94a05a609d",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "Café culturel Frénésie",
+      "time": "15:00"
+    },
+    {
+      "id": "ED-BJT-DEC26-MONSLUM-12",
+      "title": "Balade des Lumières — cortège au beffroi",
+      "commune": "Mons",
+      "region": "Wallonie",
+      "category": "Culture et découvertes",
+      "date": "2026-12-12",
+      "date_end": "2026-12-12",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme"
+      ],
+      "price_label": "",
+      "url": "https://monscoeurenneige.be/",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "Place Léopold → Beffroi",
+      "time": "17:00"
+    },
+    {
+      "id": "ED-BJT-DEC26-HABAYNIC-05",
+      "title": "Saint-Nicolas et traditions locales à la villa de Mageroy",
+      "commune": "Habay-la-Vieille",
+      "region": "Wallonie",
+      "category": "Culture et découvertes",
+      "date": "2026-12-05",
+      "date_end": "2026-12-05",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme"
+      ],
+      "price_label": "8 € ; gratuit moins de 6 ans",
+      "url": "https://www.habay-tourisme.be/event/a-la-decouverte-de-saint-nicolas-et-des-traditions-locales-a-la-villa-de-mageroy/",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "Villa gallo-romaine de Mageroy"
+    },
+    {
+      "id": "ED-BJT-DEC26-MODAVE-12",
+      "title": "Noël au château de Modave",
+      "commune": "Modave",
+      "region": "Wallonie",
+      "category": "Culture et découvertes",
+      "date": "2026-12-12",
+      "date_end": "2027-01-03",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme"
+      ],
+      "price_label": "Tarifs sur site officiel",
+      "url": "https://www.modave-castle.be/agenda",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "Château de Modave",
+      "time": "11:00"
+    },
+    {
+      "id": "ED-BJT-DEC26-VILLERSOR-19",
+      "title": "D’Or et de Sang — cirque équestre à l’abbaye",
+      "commune": "Villers-la-Ville",
+      "region": "Wallonie",
+      "category": "Culture et découvertes",
+      "date": "2026-12-19",
+      "date_end": "2026-12-29",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme"
+      ],
+      "price_label": "",
+      "url": "https://www.villers.be/fr/agenda/spectacle-dor-et-de-sang-par-tempo-deole",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "Abbaye de Villers"
+    },
+    {
+      "id": "ED-BJT-DEC26-TANGLE-04",
+      "title": "Atelier Tangle — rencontre Soralia",
+      "commune": "Tournai",
+      "region": "Wallonie",
+      "category": "Ateliers et créativité",
+      "date": "2026-12-04",
+      "date_end": "2026-12-04",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_sociable"
+      ],
+      "price_label": "",
+      "url": "https://www.soralia.be/accueil/events/categorie/regional/jour/2026-12-04/",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "",
+      "time": "09:00"
+    },
+    {
+      "id": "ED-BJT-DEC26-BRACELETS-11",
+      "title": "Bracelets inspirants — rencontre Soralia",
+      "commune": "Tournai",
+      "region": "Wallonie",
+      "category": "Ateliers et créativité",
+      "date": "2026-12-11",
+      "date_end": "2026-12-11",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_sociable"
+      ],
+      "price_label": "",
+      "url": "https://www.soralia.be/accueil/organisateur/soralia-wallonie-picarde/",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "",
+      "time": "09:00"
+    },
+    {
+      "id": "ED-BJT-DEC26-PORTRAIT-05",
+      "title": "Portrait de femme — parcours artistique",
+      "commune": "Wavre",
+      "region": "Wallonie",
+      "category": "Ateliers et créativité",
+      "date": "2026-12-05",
+      "date_end": "2026-12-05",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_sociable"
+      ],
+      "price_label": "",
+      "url": "https://www.soralia.be/accueil/events/categorie/themes/jour/2026-12-05/",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "Yambi Développement",
+      "time": "11:00"
+    },
+    {
+      "id": "ED-BJT-DEC26-PORTRAIT-18",
+      "title": "Portrait de femme — parcours artistique",
+      "commune": "Wavre",
+      "region": "Wallonie",
+      "category": "Ateliers et créativité",
+      "date": "2026-12-18",
+      "date_end": "2026-12-18",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_sociable"
+      ],
+      "price_label": "",
+      "url": "https://www.soralia.be/accueil/events/categorie/regional/soralia-brabant-wallon/liste/?tribe-bar-date=2026-11-30",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "Yambi Développement",
+      "time": "11:00"
+    },
+    {
+      "id": "ED-BJT-DEC26-LECTUREVERV-10",
+      "title": "Lecture collective sur les violences faites aux femmes",
+      "commune": "Verviers",
+      "region": "Wallonie",
+      "category": "Rencontres et participation",
+      "date": "2026-12-10",
+      "date_end": "2026-12-10",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme",
+        "solo_sociable"
+      ],
+      "price_label": "",
+      "url": "https://www.soralia.be/accueil/event/atelier-a-verviers-lecture-collective-sur-les-violences-faites-aux-femmes/",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "",
+      "time": "18:00"
+    },
+    {
+      "id": "ED-BJT-DEC26-ECRITUCCLE-05",
+      "title": "Atelier d’écriture avec Tuyêt-Nga Nguyên",
+      "commune": "Uccle",
+      "region": "Bruxelles",
+      "category": "Ateliers et créativité",
+      "date": "2026-12-05",
+      "date_end": "2026-12-05",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme",
+        "solo_sociable"
+      ],
+      "price_label": "Gratuit",
+      "url": "https://www.visit.brussels/fr/visiteurs/agenda/event-detail.Atelier-d-ecriture.594910",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "Bibliothèque Le Phare",
+      "time": "10:30"
+    },
+    {
+      "id": "ED-BJT-DEC26-ECRITZOEL-12",
+      "title": "Lumières — atelier d’écriture avec Zoé Derleyn",
+      "commune": "Bruxelles",
+      "region": "Bruxelles",
+      "category": "Ateliers et créativité",
+      "date": "2026-12-12",
+      "date_end": "2026-12-12",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme",
+        "solo_sociable"
+      ],
+      "price_label": "Gratuit",
+      "url": "https://www.visit.brussels/fr/visiteurs/agenda/event-detail.Atrlier-d-ecriture-avec-Zoe-Derleyn.5700029361",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "Bibliothèque Romain Rolland"
+    },
+    {
+      "id": "ED-BJT-DEC26-TEXTILEUCCLE-09",
+      "title": "Atelier textile zéro déchet",
+      "commune": "Uccle",
+      "region": "Bruxelles",
+      "category": "Ateliers et créativité",
+      "date": "2026-12-09",
+      "date_end": "2026-12-09",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme",
+        "solo_sociable"
+      ],
+      "price_label": "Gratuit",
+      "url": "https://www.visit.brussels/fr/visiteurs/agenda/event-detail.Atelier-Textile.590424",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "Bibliothèque d’Uccle-Centre"
+    },
+    {
+      "id": "ED-BJT-DEC26-MRBABCONTES-22",
+      "title": "Contes d’hiver et de Noël — visite contée",
+      "commune": "Bruxelles",
+      "region": "Bruxelles",
+      "category": "Culture et découvertes",
+      "date": "2026-12-22",
+      "date_end": "2026-12-22",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme"
+      ],
+      "price_label": "",
+      "url": "https://fine-arts-museum.be/fr/agenda/2026/12/22/contes-d-hiver-et-de-noel-fr-7",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "Musées royaux des Beaux-Arts de Belgique"
+    },
+    {
+      "id": "ED-BJT-DEC26-MRBABCONTES-23",
+      "title": "Contes d’hiver et de Noël — visite contée",
+      "commune": "Bruxelles",
+      "region": "Bruxelles",
+      "category": "Culture et découvertes",
+      "date": "2026-12-23",
+      "date_end": "2026-12-23",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme"
+      ],
+      "price_label": "18 € adulte, enfants gratuits",
+      "url": "https://fine-arts-museum.be/fr/agenda/2026/12/23/contes-d-hiver-et-de-noel-fr-8",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "Musées royaux des Beaux-Arts de Belgique",
+      "time": "10:15"
+    },
+    {
+      "id": "ED-BJT-DEC26-INSTANTSCONTES-10",
+      "title": "Instants contés — estaminet culturel",
+      "commune": "Hamme-Mille (Beauvechain)",
+      "region": "Wallonie",
+      "category": "Rencontres et participation",
+      "date": "2026-12-10",
+      "date_end": "2026-12-10",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme",
+        "solo_sociable"
+      ],
+      "price_label": "",
+      "url": "https://conteetlitterature.be/prestation/instants-contes/",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "L’Boutroule d’Ame",
+      "time": "14:00"
     }
   ]
 }
