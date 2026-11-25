@@ -28850,6 +28850,172 @@
       "booking_method": "",
       "venue": "Abbaye de Villers",
       "time": "20:00"
+    },
+    {
+      "id": "ED-BJT-LOCAL-NOV25B-MABOULE",
+      "title": "Festival MAboule — marionnettes et arts associés",
+      "commune": "Genappe",
+      "region": "Wallonie",
+      "category": "Culture et découvertes",
+      "date": "2026-12-17",
+      "date_end": "2026-12-20",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme"
+      ],
+      "price_label": "",
+      "url": "https://maboule.be/",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "Le Monty et lieux partenaires"
+    },
+    {
+      "id": "ED-BJT-LOCAL-NOV25B-COSY",
+      "title": "Cosy mystery et pelotes de laine",
+      "commune": "Woluwe-Saint-Pierre",
+      "region": "Bruxelles",
+      "category": "Culture et découvertes",
+      "date": "2026-12-08",
+      "date_end": "2026-12-08",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme",
+        "solo_sociable"
+      ],
+      "price_label": "",
+      "url": "https://biblio.woluwe1150.be/agenda/cosy-mystery-et-pelotes-de-laine-2/",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "Bibliothèque du Chant d’Oiseau",
+      "time": "10:00"
+    },
+    {
+      "id": "ED-BJT-LOCAL-NOV25B-HOLIDAY",
+      "title": "Holiday House Bruxelles — après-midi en famille",
+      "commune": "Bruxelles",
+      "region": "Bruxelles",
+      "category": "Rencontres et participation",
+      "date": "2026-12-13",
+      "date_end": "2026-12-13",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme"
+      ],
+      "price_label": "Gratuit",
+      "url": "https://parentsolo.brussels/agendas/1310-holiday-house-bruxelles",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "",
+      "time": "13:30"
+    },
+    {
+      "id": "ED-BJT-LOCAL-NOV25B-KARIBU",
+      "title": "Les ateliers Karibu",
+      "commune": "Bruxelles",
+      "region": "Bruxelles",
+      "category": "Ateliers et créativité",
+      "date": "2026-12-09",
+      "date_end": "2026-12-09",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme",
+        "solo_sociable"
+      ],
+      "price_label": "",
+      "url": "https://parentsolo.brussels/agendas/1185-les-ateliers-karibu",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": ""
+    },
+    {
+      "id": "ED-BJT-LOCAL-NOV25B-BARONNES",
+      "title": "Les Baronnes — cinéma",
+      "commune": "Anderlecht",
+      "region": "Bruxelles",
+      "category": "Culture et découvertes",
+      "date": "2026-12-12",
+      "date_end": "2026-12-12",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme"
+      ],
+      "price_label": "",
+      "url": "https://escaledunord.brussels/event/les-baronnes/",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "Escale du Nord"
+    },
+    {
+      "id": "ED-BJT-LOCAL-NOV25B-CAFE",
+      "title": "Café Créatif — Open Atelier",
+      "commune": "Bruxelles",
+      "region": "Bruxelles",
+      "category": "Ateliers et créativité",
+      "date": "2026-12-01",
+      "date_end": "2026-12-01",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme",
+        "solo_sociable"
+      ],
+      "price_label": "",
+      "url": "https://www.visit.brussels/fr/visiteurs/agenda/event-detail.Cafe-Creatif-Open-Atelier.597533",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": ""
+    },
+    {
+      "id": "ED-BJT-LOCAL-NOV25B-CINEMASYM",
+      "title": "Cinéma en Symphonie",
+      "commune": "Nivelles",
+      "region": "Wallonie",
+      "category": "Culture et découvertes",
+      "date": "2026-12-05",
+      "date_end": "2026-12-05",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme"
+      ],
+      "price_label": "",
+      "url": "https://www.centrecultureldenivelles.be/event/cinema-en-symphonie/",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "Waux-Hall",
+      "time": "19:30"
+    },
+    {
+      "id": "ED-BJT-LOCAL-NOV25B-MAOLONI",
+      "title": "Exposition L’art de Pascal Maoloni",
+      "commune": "Tubize",
+      "region": "Wallonie",
+      "category": "Culture et découvertes",
+      "date": "2026-11-26",
+      "date_end": "2026-12-13",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_calme"
+      ],
+      "price_label": "",
+      "url": "https://tubizeculture.be/notre-programmation/",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "Centre culturel de Tubize"
     }
   ]
 }
