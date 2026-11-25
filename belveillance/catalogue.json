@@ -30583,6 +30583,108 @@
       "booking_required": null,
       "booking_method": "",
       "venue": "Le Roy d’Espagne, Grand-Place"
+    },
+    {
+      "id": "ED-BJT-AUD-2511-MENDING",
+      "title": "Visible mending avec Kaat Winters",
+      "commune": "Auderghem",
+      "region": "Bruxelles",
+      "category": "Ateliers et créativité",
+      "date": "2026-12-03",
+      "date_end": "2026-12-03",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_sociable"
+      ],
+      "price_label": "18 €",
+      "url": "https://www.gcdendam.be/activiteiten",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "GC Den Dam",
+      "time": "18:30"
+    },
+    {
+      "id": "ED-BJT-AUD-2511-JEUX",
+      "title": "Café Den Dam — jeux de société",
+      "commune": "Auderghem",
+      "region": "Bruxelles",
+      "category": "Jeux et convivialité",
+      "date": "2026-12-03",
+      "date_end": "2026-12-03",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_sociable"
+      ],
+      "price_label": "Gratuit",
+      "url": "https://www.visit.brussels/nl/bezoekers/event-details.Cafe-Den-Dam-Gezelschapspelen.597426",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "GC Den Dam"
+    },
+    {
+      "id": "ED-BJT-AUD-2511-CREACAFE",
+      "title": "Café Den Dam — Creacafé",
+      "commune": "Auderghem",
+      "region": "Bruxelles",
+      "category": "Ateliers et créativité",
+      "date": "2026-12-10",
+      "date_end": "2026-12-10",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_sociable"
+      ],
+      "price_label": "Gratuit",
+      "url": "https://www.gcdendam.be/activiteiten",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "GC Den Dam"
+    },
+    {
+      "id": "ED-BJT-AUD-2511-SUDHA",
+      "title": "Atelier cuisine — street food indienne avec Sudha",
+      "commune": "Auderghem",
+      "region": "Bruxelles",
+      "category": "Ateliers et créativité",
+      "date": "2026-12-11",
+      "date_end": "2026-12-11",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_sociable"
+      ],
+      "price_label": "",
+      "url": "https://www.auderghem.be/agenda/kookavonden-indisch-streetfood-met-sudha",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "GC Den Dam"
+    },
+    {
+      "id": "ED-BJT-AUD-2511-RANDO",
+      "title": "Randonnée hivernale en forêt de Soignes — 22 km",
+      "commune": "Auderghem",
+      "region": "Bruxelles",
+      "category": "Culture et découvertes",
+      "date": "2026-12-27",
+      "date_end": "2026-12-27",
+      "availability": "Date annoncée",
+      "modes": [
+        "solo_sociable"
+      ],
+      "price_label": "",
+      "url": "https://www.visit.brussels/fr/visiteurs/agenda/event-detail.Rando-Foret-de-Soignes-hivernale.5700027921",
+      "verified": true,
+      "publication_status": "Autorisé",
+      "booking_required": null,
+      "booking_method": "",
+      "venue": "Rouge-Cloître",
+      "time": "09:00"
     }
   ]
 }
